@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.scripts;
+using Assets.scripts.character;
 using Assets.scripts.controllers;
 using Assets.scripts.components;
 

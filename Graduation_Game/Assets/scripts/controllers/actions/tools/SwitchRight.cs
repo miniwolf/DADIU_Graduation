@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.scripts.character;
 using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {

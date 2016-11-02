@@ -20,7 +20,7 @@ namespace Assets.scripts.components.factory {
 		}
 
 		private Handler PickupPlutonium() {
-			inventory.text = int.Parse (inventory.text) + 1;
+			inventory.text = int.Parse (inventory.text) + "1";
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Despawn());
 			return actionHandler;

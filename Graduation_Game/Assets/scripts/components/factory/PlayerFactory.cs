@@ -18,9 +18,10 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 	    }
 
-	    private static Handler CreateMove() {
+	    private Handler CreateMove() {
 	        var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable));
+//		    actionHandler.AddAction(new MoveForward());
 	        actionHandler.AddAction(new StartMovingSound());
 	        return actionHandler;
 	    }
