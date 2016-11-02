@@ -4,13 +4,7 @@ using UnityEngine;
 namespace Assets.scripts.controllers.actions.movement
 {
     public class MoveForward : Action {
-        private readonly Destinationable _destin;
         private CharacterController characterController;
-
-        public MoveForward(Destinationable destin)
-        {
-            _destin = destin;
-        }
 
         public void Setup(GameObject gameObject) {
             characterController = gameObject.GetComponent<CharacterController>();

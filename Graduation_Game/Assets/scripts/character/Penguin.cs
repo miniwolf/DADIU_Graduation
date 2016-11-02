@@ -8,10 +8,6 @@ namespace Assets.scripts.character {
 
         void Update() {
             ExecuteAction(ControllableActions.Move);
-
-            if ( GetComponent<CharacterController>().velocity.magnitude < 0.2f ) {
-                ExecuteAction(ControllableActions.Stop);
-            }
         }
 
         public override string GetTag() {
