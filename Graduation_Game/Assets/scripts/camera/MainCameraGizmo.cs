@@ -3,6 +3,10 @@ using System.Collections;
 
 namespace Assets.scripts.camera
 {
+	/// <summary>
+	/// Always displays the camera frustum in the Scene
+	/// in color red, even when the camera is not selected.
+	/// </summary>
 	public class MainCameraGizmo : MonoBehaviour
 	{
 		public virtual void OnDrawGizmos()
