@@ -1,13 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.scripts;
-using Assets.scripts.components;
-using Assets.scripts.components.registers;
+﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using Assets.scripts.controllers.handlers;
+using UnityEngine;
 
-public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntity, Directionable {
+namespace Assets.scripts.character {
+public class Penguin : ActionableGameEntityImpl<ControllableActions>{
 	public enum Lane {Left, Right};
 
     Dictionary<ControllableActions, Handler> actions = new Dictionary<ControllableActions, Handler>();
@@ -20,7 +16,7 @@ public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntit
 	}
 
 	void Start() {
-		direction = new Vector3(1, 0, 0);
+		direction = Vector3.back;
 	}
 
     void Update() {
@@ -31,22 +27,21 @@ public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntit
         actions.Add(actionName, action);
     }
 
-    public void ExecuteAction(ControllableActions actionName) {
-        actions[actionName].DoAction();
-    }
-
-    public string GetTag() {
+    public override string GetTag() {
         return TagConstants.PLAYER;
     }
 
-    public void SetupComponents() {
-        foreach (var handler in actions.Values) {
-            handler.SetupComponents(gameObject);
-        }
+    public Vector3 GetDestination() {
+        return destination;
     }
+
 
     public Vector3 GetDirection() {
         return direction;
+	}
+
+    public void SetDestination(Vector3 destination) {
+        this.destination = destination;
     }
 
 	public void SetDirection(Vector3 direction) {

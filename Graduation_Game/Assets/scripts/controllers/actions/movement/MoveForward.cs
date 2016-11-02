@@ -1,8 +1,7 @@
 ﻿using Assets.scripts.components;
 using UnityEngine;
 
-namespace Assets.scripts.controllers.actions.movement
-{
+namespace Assets.scripts.controllers.actions.movement {
     public class MoveForward : Action {
         private CharacterController characterController;
 		private readonly Directionable direction;
