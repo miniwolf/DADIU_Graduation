@@ -11,7 +11,7 @@ namespace Assets.scripts.controllers.actions.movement
         }
 
         public void Execute() {
-            characterController.Move(Vector3.forward * Time.deltaTime);
+            characterController.Move(Vector3.back * Time.deltaTime);
         }
     }
 }
