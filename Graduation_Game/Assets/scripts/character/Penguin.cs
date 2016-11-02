@@ -1,50 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.scripts;
-using Assets.scripts.components;
-using Assets.scripts.components.registers;
+﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using Assets.scripts.controllers.handlers;
+using UnityEngine;
 
-public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntity {
-    Dictionary<ControllableActions, Handler> actions = new Dictionary<ControllableActions, Handler>();
+namespace Assets.scripts.character {
+    public class Penguin : ActionableGameEntityImpl<ControllableActions> {
+        private Vector3 destination = Vector3.forward;
 
-    private Vector3 destination;
+        void Update() {
+            ExecuteAction(ControllableActions.Move);
 
-	// Use this for initialization
-	void Awake() {
-	    InjectionRegister.Register(this);
-	}
-
-    void Update() {
-        ExecuteAction(ControllableActions.Move);
-
-        if (GetComponent<CharacterController>().velocity.magnitude < 0.2f) {
-            ExecuteAction(ControllableActions.Stop);
+            if ( GetComponent<CharacterController>().velocity.magnitude < 0.2f ) {
+                ExecuteAction(ControllableActions.Stop);
+            }
         }
-    }
 
-    public void AddAction(ControllableActions actionName, Handler action) {
-        actions.Add(actionName, action);
-    }
-
-    public void ExecuteAction(ControllableActions actionName) {
-        actions[actionName].DoAction();
-    }
-
-    public string GetTag() {
-        return TagConstants.PLAYER;
-    }
-
-    public void SetupComponents() {
-        foreach (var handler in actions.Values) {
-            handler.SetupComponents(gameObject);
+        public override string GetTag() {
+            return TagConstants.PLAYER;
         }
-    }
 
-    public Vector3 GetDestination() {
-        return destination;
+        public Vector3 GetDestination() {
+            return destination;
+        }
+
+        public void SetDestination(Vector3 destination) {
+            this.destination = destination;
+        }
     }
 }
 
