@@ -7,22 +7,24 @@ using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.handlers;
 
-public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntity {
-    Dictionary<ControllableActions, Handler> actions = new Dictionary<ControllableActions, Handler>();
+public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntity, Directionable {
+	public enum Lane {Left, Right};
 
-    private Vector3 destination;
+    Dictionary<ControllableActions, Handler> actions = new Dictionary<ControllableActions, Handler>();
+    private Vector3 direction;
+	private Lane lane = Lane.Left;
 
 	// Use this for initialization
 	void Awake() {
 	    InjectionRegister.Register(this);
 	}
 
+	void Start() {
+		direction = new Vector3(1, 0, 0);
+	}
+
     void Update() {
         ExecuteAction(ControllableActions.Move);
-
-        if (GetComponent<CharacterController>().velocity.magnitude < 0.2f) {
-            ExecuteAction(ControllableActions.Stop);
-        }
     }
 
     public void AddAction(ControllableActions actionName, Handler action) {
@@ -43,8 +45,20 @@ public class Penguin : MonoBehaviour, Actionable<ControllableActions>, GameEntit
         }
     }
 
-    public Vector3 GetDestination() {
-        return destination;
+    public Vector3 GetDirection() {
+        return direction;
     }
+
+	public void SetDirection(Vector3 direction) {
+		this.direction = direction;
+	}
+
+	public Lane GetLane() {
+		return lane;
+	}
+
+	public void SetLane(Lane lane) {
+		this.lane = lane;
+	}
 }
 
