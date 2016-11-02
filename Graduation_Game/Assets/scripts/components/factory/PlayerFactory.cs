@@ -1,6 +1,6 @@
 ﻿using Assets.scripts.controllers;
-using Assets.scripts.controllers.actions;
 using Assets.scripts.controllers.actions.movement;
+using Assets.scripts.controllers.actions.movement.sound;
 using Assets.scripts.controllers.handlers;
 
 namespace Assets.scripts.components.factory {
@@ -16,9 +16,10 @@ namespace Assets.scripts.components.factory {
 	        actionable.AddAction(ControllableActions.Move, CreateMove());
 	    }
 
-	    private Handler CreateMove() {
+	    private static Handler CreateMove() {
 	        var actionHandler = new ActionHandler();
-	        actionHandler.AddAction(new MoveForward((Destinationable) actionable));
+	        actionHandler.AddAction(new MoveForward());
+	        actionHandler.AddAction(new StartMovingSound());
 	        return actionHandler;
 	    }
 	}
