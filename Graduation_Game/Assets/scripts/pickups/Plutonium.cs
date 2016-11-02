@@ -7,20 +7,19 @@ using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.handlers;
 
-public class Plutonium : MonoBehaviour {
-
-	Inventory inventory;
-	Dictionary<PickupActions, Handler> actions = new Dictionary<PickupActions, Handler>();
-
+public class Plutonium : ActionableGameEntityImpl<PickupActions> {
+	
 	void Awake(){
-		inventory = GetComponent<Inventory> ();
+		base.Awake();
 	}
 
 	public void OnTriggerEnter(Collider colider) {
 		if (colider.tag == TagConstants.PLAYER) {
-			inventory.plutonium.IncreaseAmount ();
-			//ExecuteAction(PickupActions.Despawn);
-		}
-		
+			ExecuteAction(PickupActions.PickupPlutonium);
+		}		
+	}
+
+	override public string GetTag() {
+		return TagConstants.PLUTONIUM_PICKUP;
 	}
 }
