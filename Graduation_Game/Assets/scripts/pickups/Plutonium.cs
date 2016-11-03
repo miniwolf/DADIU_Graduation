@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.scripts.pickups {
 	public class Plutonium : ActionableGameEntityImpl<PickupActions> {
 		public void OnTriggerEnter(Collider colider) {
-			if (colider.tag == TagConstants.PLAYER) {
+			if (colider.tag == TagConstants.PENGUIN) {
 				ExecuteAction(PickupActions.PickupPlutonium);
 			}
 		}

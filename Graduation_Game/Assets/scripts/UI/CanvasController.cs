@@ -8,7 +8,7 @@ namespace Assets.scripts.components.factory {
 
 		// Use this for initialization
 		void Start () {
-			GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>().text = GameObject.FindGameObjectsWithTag(TagConstants.PLAYER).Length.ToString();
+			GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>().text = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN).Length.ToString();
 		}
 		
 		// Update is called once per frame

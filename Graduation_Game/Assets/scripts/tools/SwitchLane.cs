@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.scripts.tools {
 	public class SwitchLane : MonoBehaviour {
 		protected void OnTriggerEnter(Collider collision) {
-			if ( collision.tag != TagConstants.PLAYER ) {
+			if ( collision.tag != TagConstants.PENGUIN ) {
 				return;
 			}
 
