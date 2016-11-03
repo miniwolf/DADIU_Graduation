@@ -3,5 +3,7 @@
 		public const string PLAYER = "Player";
 		public const string PLUTONIUM_PICKUP = "Plutonium_Pickup";
 		public const string PLUTONIUM_COUNTER_TEXT = "PlutoniumCounterText";
+		public const string SPIKETRAP = "SpikeTrap";
+		public const string PITTRAP = "PitTrap";
     }
 }
