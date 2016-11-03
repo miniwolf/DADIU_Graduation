@@ -6,16 +6,16 @@ namespace Assets.scripts.controllers.actions.pickups
 {
 	public class DespawnPlutonium : Action {
 		private GameObject gameObject;
-		private Text inventory;
+		private Text plutoniumCounter;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
-			inventory = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 		}
 
 		public void Execute() {
 			gameObject.transform.parent.gameObject.SetActive (false);
-			inventory.text = (int.Parse(inventory.text) + 1).ToString();
+			plutoniumCounter.text = (int.Parse(plutoniumCounter.text) + 1).ToString();
 		}
 	}
 }
