@@ -4,13 +4,16 @@ using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.movement.sound;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
+using UnityEngine;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
 	    private readonly Actionable<ControllableActions> actionable;
+		private GameObject levelSettings;
 
-	    public PlayerFactory(Actionable<ControllableActions> actionable){
+	    public PlayerFactory(Actionable<ControllableActions> actionable, GameObject levelSettings){
 	        this.actionable = actionable;
+			this.levelSettings = levelSettings;
 	    }
 
 	    public void Build() {
@@ -31,13 +34,13 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateSwitchLeft() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchLeft((Directionable) actionable));
+			actionHandler.AddAction(new SwitchLeft((Directionable) actionable, levelSettings));
 			return actionHandler;
 		}
 
 		private Handler CreateSwitchRight() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchRight((Directionable) actionable));
+			actionHandler.AddAction(new SwitchRight((Directionable) actionable, levelSettings));
 			return actionHandler;
 		}
 

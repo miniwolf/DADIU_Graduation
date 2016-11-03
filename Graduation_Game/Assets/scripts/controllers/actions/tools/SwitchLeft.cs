@@ -2,16 +2,18 @@
 using System.Collections;
 using Assets.scripts.character;
 using Assets.scripts.components;
+using Assets.scripts.level;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class SwitchLeft : Action {
 		private readonly Directionable direction;
 		private GameObject penguin;
 		private MonoBehaviour couroutineHandler;
-		public float laneWidth = 2.0f;
+		private LevelSettings levelSettings;
 
-		public SwitchLeft(Directionable direction){
+		public SwitchLeft(Directionable direction, GameObject levelSettings){
 			this.direction = direction;
+			this.levelSettings = levelSettings.GetComponent<LevelSettings>();
 		}
 
 		public void Setup(GameObject gameObject) {
@@ -25,7 +27,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			var newRotation = Quaternion.Euler(0, -45, 0);
 			Vector3 newDirection = newRotation * direction.GetDirection();
 			// make sure that penguin can change lane
-			if ( !Physics.Raycast(penguin.transform.position, newDirection, laneWidth) ) {
+			if ( !Physics.Raycast(penguin.transform.position, newDirection, levelSettings.GetLaneWidth()) ) {
 				direction.SetDirection(newDirection); //change penguin's direction
 				penguin.transform.rotation = newRotation; //rotate penguin
 				float zPos = penguin.transform.position.z;
@@ -37,7 +39,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			do {
 				// check every 0.25 seconds if penguin has reached the half of the lane
 				yield return new WaitForSeconds(0.25f);
-			} while(penguin.transform.position.z < zPos + laneWidth);
+			} while(penguin.transform.position.z < zPos + levelSettings.GetLaneWidth());
 
 			//when half lane reached, change direction to old one
 			direction.SetDirection(oldDirection); 
