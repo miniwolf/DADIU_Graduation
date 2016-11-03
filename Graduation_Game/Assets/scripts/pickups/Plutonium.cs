@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.scripts;
 using Assets.scripts.components;
-using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
-using Assets.scripts.controllers.handlers;
 
 public class Plutonium : ActionableGameEntityImpl<PickupActions> {
 	public void OnTriggerEnter(Collider colider) {
@@ -14,7 +10,7 @@ public class Plutonium : ActionableGameEntityImpl<PickupActions> {
 		}		
 	}
 
-	override public string GetTag() {
+	public override string GetTag() {
 		return TagConstants.PLUTONIUM_PICKUP;
 	}
 }
