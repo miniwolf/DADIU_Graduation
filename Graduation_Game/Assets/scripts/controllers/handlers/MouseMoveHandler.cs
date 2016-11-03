@@ -53,4 +53,3 @@ namespace Assets.scripts.controllers.handlers {
 		}
 	}
 }
-

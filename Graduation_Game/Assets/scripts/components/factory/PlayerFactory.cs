@@ -27,7 +27,6 @@ namespace Assets.scripts.components.factory {
 	    private Handler CreateMove() {
 	        var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable));
-//		    actionHandler.AddAction(new MoveForward());
 	        actionHandler.AddAction(new StartMovingSound());
 	        return actionHandler;
 	    }
