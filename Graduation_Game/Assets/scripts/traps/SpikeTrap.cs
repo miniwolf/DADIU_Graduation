@@ -5,10 +5,7 @@ using Assets.scripts.character;
 using UnityEngine.UI;
 
 namespace Assets.scripts.traps{
-	public class SpikeTrap : ActionableGameEntityImpl<ControllableActions> {
-		public override string GetTag(){
-			return TagConstants.SPIKETRAP;
-		}
+	public class SpikeTrap {
 
 		void OnTriggerEnter(Collider other){
 			if (other.transform.tag == TagConstants.PLAYER) {
