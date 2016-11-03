@@ -8,12 +8,17 @@ using UnityEngine;
 namespace Assets.scripts.components.registers {
 	public class InjectionRegister : MonoBehaviour {
 		private static readonly List<GameEntity> components = new List<GameEntity>();
-	    private static bool finished;
+		private static bool finished;
+		private static GameObject levelSettings;
 
-	    protected void Start() {
+		protected void Awake() {
+			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
+		}
+
+		protected void Start() {
 			InitializeComponents();
-		    components.Clear();
-		    finished = true;
+			components.Clear();
+			finished = true;
 		}
 
 		protected void OnDestroy() {
@@ -33,20 +38,20 @@ namespace Assets.scripts.components.registers {
 
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
-                case TagConstants.PLAYER:
-			        new PlayerFactory((Actionable<ControllableActions>) component).Build();
-			        break;
-                default:
-			        throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
+				case TagConstants.PLAYER:
+					new PlayerFactory((Actionable<ControllableActions>) component, levelSettings).Build();
+					break;
+				default:
+					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
 		}
 
-	    public static void Redo() {
-	        if ( !finished ) {
-	            return;
-	        }
-	        InitializeComponents();
-	        components.Clear();
-        }
+		public static void Redo() {
+			if ( !finished ) {
+				return;
+			}
+			InitializeComponents();
+			components.Clear();
+		}
 	}
 }

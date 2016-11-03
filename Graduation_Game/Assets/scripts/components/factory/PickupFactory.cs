@@ -1,6 +1,7 @@
 ﻿using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions;
 using Assets.scripts.controllers.actions.movement;
+using Assets.scripts.controllers.actions.pickups;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
 using UnityEngine.UI;
