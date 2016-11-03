@@ -41,6 +41,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.PLAYER:
 					new PlayerFactory((Actionable<ControllableActions>) component, levelSettings).Build();
 					break;
+				case TagConstants.PLUTONIUM_PICKUP:
+					new PickupFactory((Actionable<PickupActions>) component, levelSettings).Build();
+					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
