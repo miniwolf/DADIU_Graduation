@@ -1,8 +1,7 @@
 ﻿using Assets.scripts.components;
 using UnityEngine;
 
-namespace Assets.scripts.controllers.actions.traps
-{
+namespace Assets.scripts.controllers.actions.traps {
 	public class KillPenguinSpikes : Action {
 		private GameObject gameObject;
 

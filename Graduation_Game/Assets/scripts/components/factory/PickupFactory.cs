@@ -1,18 +1,18 @@
 ﻿using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions;
 using Assets.scripts.controllers.actions.movement;
+using Assets.scripts.controllers.actions.pickups;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.scripts.components.factory {
 	public class PickupFactory : Factory {
 		private readonly Actionable<PickupActions> actionable;
-		private Text inventory;
+		private GameObject levelSettings;
 
-		public PickupFactory(Actionable<PickupActions> actionable){
+		public PickupFactory(Actionable<PickupActions> actionable, GameObject levelSettings){
 			this.actionable = actionable;
-			inventory = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			this.levelSettings = levelSettings;
 		}
 
 		public void Build() {
@@ -20,9 +20,8 @@ namespace Assets.scripts.components.factory {
 		}
 
 		private Handler PickupPlutonium() {
-			inventory.text = int.Parse (inventory.text) + "1";
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Despawn());
+			actionHandler.AddAction(new DespawnPlutonium());
 			return actionHandler;
 		}
 	}

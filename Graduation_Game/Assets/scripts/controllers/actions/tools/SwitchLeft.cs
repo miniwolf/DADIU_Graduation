@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.scripts.character;
 using Assets.scripts.components;
 using Assets.scripts.level;
 
@@ -21,7 +20,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			couroutineHandler = gameObject.GetComponent<MonoBehaviour>();
 		}
 
-		public void Execute() {		
+		public void Execute() {
 			Vector3 oldDirection = direction.GetDirection();
 			var oldRotation = penguin.transform.rotation;
 			var newRotation = Quaternion.Euler(0, -45, 0);

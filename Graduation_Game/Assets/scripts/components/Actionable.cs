@@ -2,7 +2,7 @@
 using Assets.scripts.controllers.handlers;
 
 namespace Assets.scripts.components {
-	public interface Actionable<T> {
+	public interface Actionable<in T> {
 		/// <summary>
 		/// Adds the action along with the handler that will be executed when the command pattern invoker is called.
 		/// </summary>

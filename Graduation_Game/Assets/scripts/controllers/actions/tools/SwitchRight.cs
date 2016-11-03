@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.scripts.character;
 using Assets.scripts.components;
 using Assets.scripts.level;
 

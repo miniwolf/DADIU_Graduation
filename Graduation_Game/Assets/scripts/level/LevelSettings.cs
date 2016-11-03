@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace Assets.scripts.level {
 	public class LevelSettings : MonoBehaviour {

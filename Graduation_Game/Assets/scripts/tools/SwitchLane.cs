@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts;
-using Assets.scripts.character;
-using Assets.scripts.controllers;
+﻿using Assets.scripts.character;
 using Assets.scripts.components;
+using Assets.scripts.controllers;
+using UnityEngine;
 
-namespace Asset.scripts.tools {
+namespace Assets.scripts.tools {
 	public class SwitchLane : MonoBehaviour {
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag != TagConstants.PLAYER ) {
