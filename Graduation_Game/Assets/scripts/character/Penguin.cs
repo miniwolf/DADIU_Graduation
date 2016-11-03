@@ -1,30 +1,42 @@
-﻿using Assets.scripts.components;
+﻿using System.Collections.Generic;
+using Assets.scripts.components;
+using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
+using Assets.scripts.controllers.handlers;
 using UnityEngine;
 
 namespace Assets.scripts.character {
-    public class Penguin : ActionableGameEntityImpl<ControllableActions> {
-        private Vector3 destination = Vector3.forward;
+	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable {
+		public enum Lane {Left, Right};
 
-        void Update() {
-            ExecuteAction(ControllableActions.Move);
+		private Vector3 direction;
+		private Lane lane = Lane.Left;
 
-            if ( GetComponent<CharacterController>().velocity.magnitude < 0.2f ) {
-                ExecuteAction(ControllableActions.Stop);
-            }
-        }
+		void Start() {
+			direction = new Vector3(1,0,0);
+		}
 
-        public override string GetTag() {
-            return TagConstants.PLAYER;
-        }
+		void Update() {
+			ExecuteAction(ControllableActions.Move);
+		}
+		public override string GetTag() {
+			return TagConstants.PLAYER;
+		}
 
-        public Vector3 GetDestination() {
-            return destination;
-        }
+		public Vector3 GetDirection() {
+			return direction;
+		}
 
-        public void SetDestination(Vector3 destination) {
-            this.destination = destination;
-        }
-    }
+		public void SetDirection(Vector3 direction) {
+			this.direction = direction;
+		}
+
+		public Lane GetLane() {
+			return lane;
+		}
+
+		public void SetLane(Lane lane) {
+			this.lane = lane;
+		}
+	}
 }
-

@@ -8,7 +8,7 @@ namespace Assets.scripts.components {
         private readonly Dictionary<T, Handler> actions = new Dictionary<T, Handler>();
 
         // Use this for initialization
-        void Awake() {
+        protected void Awake() {
             InjectionRegister.Register(this);
         }
 
