@@ -8,5 +8,9 @@
 		public const string SPIKETRAP = "SpikeTrap";
 		public const string PITTRAP = "PitTrap";
 		public const string LEVELSETTINGS = "LevelSettings";
-	}
+
+		public class UI {
+			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+		}
+    }
 }
