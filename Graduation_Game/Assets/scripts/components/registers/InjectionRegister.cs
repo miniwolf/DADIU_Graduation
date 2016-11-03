@@ -34,9 +34,12 @@ namespace Assets.scripts.components.registers {
 
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
-                case TagConstants.PLAYER:
+				case TagConstants.PLAYER:
 					new PlayerFactory((Actionable<ControllableActions>) component, levelSettings).Build();
-			        break;
+					break;
+				case TagConstants.PLUTONIUM_PICKUP:
+					new PickupFactory((Actionable<PickupActions>) component, levelSettings).Build();
+					break;
 			}
 		}
 	}
