@@ -16,4 +16,3 @@ namespace Assets.scripts.controllers.actions {
 		void Execute();
 	}
 }
-

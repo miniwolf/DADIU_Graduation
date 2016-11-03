@@ -1,29 +1,48 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.scripts.character;
 using Assets.scripts.components;
+using Assets.scripts.level;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class SwitchLeft : Action {
 		private readonly Directionable direction;
-		private Penguin penguin;
+		private GameObject penguin;
+		private MonoBehaviour couroutineHandler;
+		private LevelSettings levelSettings;
 
-		public SwitchLeft(Directionable direction){
+		public SwitchLeft(Directionable direction, GameObject levelSettings){
 			this.direction = direction;
+			this.levelSettings = levelSettings.GetComponent<LevelSettings>();
 		}
 
 		public void Setup(GameObject gameObject) {
-			penguin = gameObject.GetComponent<Penguin>();
+			penguin = gameObject;
+			couroutineHandler = gameObject.GetComponent<MonoBehaviour>();
 		}
 
-		public void Execute() {			
-			// change direction of the penguin 45 degrees to the right
-			// create coroutine that computes the number of seconds it takes the penguin
-			// to change to the middle of the other lane, given its speed, and using 45 degrees
-			// then start coroutine that waits for those seconds and changes back the direction to forward
+		public void Execute() {
+			Vector3 oldDirection = direction.GetDirection();
+			var oldRotation = penguin.transform.rotation;
+			var newRotation = Quaternion.Euler(0, -45, 0);
+			Vector3 newDirection = newRotation * direction.GetDirection();
+			// make sure that penguin can change lane
+			if ( !Physics.Raycast(penguin.transform.position, newDirection, levelSettings.GetLaneWidth()) ) {
+				direction.SetDirection(newDirection); //change penguin's direction
+				penguin.transform.rotation = newRotation; //rotate penguin
+				float zPos = penguin.transform.position.z;
+				couroutineHandler.StartCoroutine(LaneReached(zPos, oldDirection, oldRotation));
+			}
+		}
 
-			// rotates -45 degrees around z axis
-			penguin.SetDirection(Quaternion.Euler(0, 0, -45) * direction.GetDirection());
+		IEnumerator LaneReached(float zPos, Vector3 oldDirection, Quaternion oldRotation) {
+			do {
+				// check every 0.25 seconds if penguin has reached the half of the lane
+				yield return new WaitForSeconds(0.25f);
+			} while(penguin.transform.position.z < zPos + levelSettings.GetLaneWidth());
+
+			//when half lane reached, change direction to old one
+			direction.SetDirection(oldDirection); 
+			penguin.transform.rotation = oldRotation;
 		}
 	}
 }
