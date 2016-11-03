@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.scripts.controllers.actions.movement
+namespace Assets.scripts.controllers.actions.pickups
 {
 	public class DespawnPlutonium : Action {
 		private GameObject gameObject;
