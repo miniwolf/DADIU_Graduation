@@ -10,7 +10,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-19</Value>
+										<Value>-32</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -37,7 +37,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-23</Value>
+										<Value>-30</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -400,92 +400,7 @@
 				</Folder>
 				<Folder Name="Penguin" ID="{AD2FA86C-8CF5-4186-BF12-C9BF4D250165}" ShortID="310648458">
 					<ChildrenList>
-						<Folder Name="Specific interactions" ID="{7D129D79-4D5B-4E0E-AD01-07E2E3E6D74A}" ShortID="254916465">
-							<ChildrenList>
-								<SwitchContainer Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" ShortID="183852843">
-									<PropertyList>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<RandomSequenceContainer Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}" ShortID="557811003">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="move_1" ID="{3F4A21B0-74A0-4433-83D2-EBCBB8C9CB5A}" ShortID="835856930" Type="SoundFX">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-10</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="move" ID="{87972324-5DE3-4632-8794-5B78681242AF}" ShortID="29157242">
-															<Language>SFX</Language>
-															<AudioFile>move.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="move" ID="{87972324-5DE3-4632-8794-5B78681242AF}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-										</RandomSequenceContainer>
-									</ChildrenList>
-									<GroupingInfo>
-										<GroupRef Name="footsteps" ID="{0D74F18D-1E90-479E-90D2-5E338A52F6BD}"/>
-										<DefaultSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
-										<GroupingBehaviorList>
-											<GroupingBehavior>
-												<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
-											</GroupingBehavior>
-										</GroupingBehaviorList>
-										<GroupingList>
-											<Grouping>
-												<SwitchRef Name="blood" ID="{3209A845-C748-4D25-A09C-0E768960E78F}"/>
-												<ItemList>
-													<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
-												</ItemList>
-											</Grouping>
-											<Grouping>
-												<SwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
-												<ItemList>
-													<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
-												</ItemList>
-											</Grouping>
-											<Grouping>
-												<SwitchRef Name="wooden_bridge" ID="{1E93FC69-011E-4F08-9252-087B2AF8C6F7}"/>
-												<ItemList>
-													<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
-												</ItemList>
-											</Grouping>
-										</GroupingList>
-									</GroupingInfo>
-								</SwitchContainer>
-							</ChildrenList>
-						</Folder>
+						<Folder Name="Specific interactions" ID="{7D129D79-4D5B-4E0E-AD01-07E2E3E6D74A}" ShortID="254916465"/>
 						<RandomSequenceContainer Name="death" ID="{69B6B3D7-758C-4EEE-8B22-5AF2CD3E2FF4}" ShortID="307440643">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -548,6 +463,92 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<SwitchContainer Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" ShortID="183852843">
+							<PropertyList>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}" ShortID="557811003">
+									<PropertyList>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="move_1" ID="{3F4A21B0-74A0-4433-83D2-EBCBB8C9CB5A}" ShortID="835856930" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="move" ID="{87972324-5DE3-4632-8794-5B78681242AF}" ShortID="29157242">
+													<Language>SFX</Language>
+													<AudioFile>move.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="move" ID="{87972324-5DE3-4632-8794-5B78681242AF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+							<GroupingInfo>
+								<GroupRef Name="footsteps" ID="{0D74F18D-1E90-479E-90D2-5E338A52F6BD}"/>
+								<DefaultSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
+								<GroupingBehaviorList>
+									<GroupingBehavior>
+										<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
+									</GroupingBehavior>
+								</GroupingBehaviorList>
+								<GroupingList>
+									<Grouping>
+										<SwitchRef Name="blood" ID="{3209A845-C748-4D25-A09C-0E768960E78F}"/>
+										<ItemList>
+											<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
+										</ItemList>
+									</Grouping>
+									<Grouping>
+										<SwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
+										<ItemList>
+											<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
+										</ItemList>
+									</Grouping>
+									<Grouping>
+										<SwitchRef Name="wooden_bridge" ID="{1E93FC69-011E-4F08-9252-087B2AF8C6F7}"/>
+										<ItemList>
+											<ItemRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}"/>
+										</ItemList>
+									</Grouping>
+								</GroupingList>
+							</GroupingInfo>
+						</SwitchContainer>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

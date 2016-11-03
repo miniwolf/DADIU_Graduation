@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="72">
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="172144482" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Attenuations\Default Work Unit.wwu" DateLow="172174484" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Audio Devices\Default Work Unit.wwu" DateLow="172204513" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Control Surface Sessions\Default Work Unit.wwu" DateLow="172234524" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Conversion Settings\Default Work Unit.wwu" DateLow="172264553" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Conversion Settings\Factory Conversion Settings.wwu" DateLow="172294576" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Dynamic Dialogue\Default Work Unit.wwu" DateLow="172319120" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Effects\Default Work Unit.wwu" DateLow="172341503" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Effects\Factory Effects.wwu" DateLow="172391558" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Events\Default Work Unit.wwu" DateLow="172421578" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Game Parameters\Default Work Unit.wwu" DateLow="172441594" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="172472390" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="172494591" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Mixing Sessions\Default Work Unit.wwu" DateLow="172514629" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Modulators\Default Work Unit.wwu" DateLow="172544637" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Penguin Panic.wproj" DateLow="2375201928" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Presets\Default Work Unit.wwu" DateLow="178517329" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Queries\Default Work Unit.wwu" DateLow="178537339" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Queries\Factory Queries.wwu" DateLow="178577348" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\SoundBanks\Default Work Unit.wwu" DateLow="178617374" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Soundcaster Sessions\Default Work Unit.wwu" DateLow="178637397" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\States\Default Work Unit.wwu" DateLow="178657410" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Switches\Default Work Unit.wwu" DateLow="178677423" DateHigh="30553556"/>
+	<ValidationCacheItem File="C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\Triggers\Default Work Unit.wwu" DateLow="178697431" DateHigh="30553556"/>
+</ValidationCache>

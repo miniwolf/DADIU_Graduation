@@ -7,20 +7,22 @@
 					<ObjectInclusionList>
 						<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_pit_triggered" ID="{BDA8CDE9-A81C-40C1-8135-7D0E0A588973}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_tool_change_lane" ID="{F7CA3E9A-9499-4337-846C-6EC7D4A5D51A}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="tool_selected_from_ui" ID="{122292A6-51ED-41B0-8ECD-02596A75B255}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="tool_returned_to_ui" ID="{1EBB1EEE-82AB-4486-A16D-13F31340BE5B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_death" ID="{453603AE-32E4-4508-B5F6-C0F7CCB386BB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="ambience_start" ID="{C62AAF8E-0ED3-4512-9BB6-80F024638A07}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_change_lane_placed" ID="{7978D418-4A75-454E-8153-8E49340E9FA3}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_trap_pit" ID="{6DCCD7CD-114B-479B-A0DB-DF2541032850}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="tool_speed_used" ID="{D580D294-9818-47FF-AF81-461840316E23}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_react" ID="{925FFCBB-07F5-483A-B5A2-20D7402CC920}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_jump_used" ID="{DABF1B46-9533-48C7-B947-A7D967F6D56B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_tool_jump" ID="{5BCFA718-2F09-4929-A637-9F625058887E}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_pickup_currency" ID="{24BD0608-D196-4937-A508-FE58B453593C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_trap_spikes" ID="{F6EA69ED-336B-4AFE-ADCE-B699A5319B7B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="music_start" ID="{5A521F74-4AC4-4AA5-A6FA-7415EFCC234D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_change_lane_used" ID="{FEE10636-5776-4B20-9BB0-663EF9D82F83}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="pressure_plate_used" ID="{0E33B6EC-6F36-4B54-B608-2B674A1998F3}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_spikes_triggered" ID="{828BEE91-960B-4C35-BE00-86AC53927BB8}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="tool_picked_up_from_level" ID="{2800CCE0-A2A8-4C85-80CA-F518AE387C94}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="button_pressed" ID="{5819BB17-80FF-4CAB-A86F-40199C2AB824}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="tool_speed_placed" ID="{4F052623-C0FC-4D43-821B-C538F1FC43FE}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_jump_placed" ID="{A3056245-329C-4F9B-9AB4-2A338892771E}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
