@@ -8,11 +8,6 @@ using Assets.scripts.controllers;
 using Assets.scripts.controllers.handlers;
 
 public class Plutonium : ActionableGameEntityImpl<PickupActions> {
-	
-	void Awake(){
-		base.Awake();
-	}
-
 	public void OnTriggerEnter(Collider colider) {
 		if (colider.tag == TagConstants.PLAYER) {
 			ExecuteAction(PickupActions.PickupPlutonium);
