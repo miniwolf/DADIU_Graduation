@@ -6,7 +6,7 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 
 namespace Asset.scripts.tools {
-public class SwitchLane : MonoBehaviour {
+public class SwitchLane : MonoBehaviour, Tool {
 	void OnCollisionEnter (Collision collision) {
 		if ( collision.collider.tag == TagConstants.PLAYER) {
 				var lane = collision.gameObject.GetComponent<Penguin>().GetLane();
@@ -20,5 +20,9 @@ public class SwitchLane : MonoBehaviour {
 				}
 		}
 	}
+    
+    public ToolType GetToolType() {
+        return ToolType.SwitchLane;
+    }
 }
 }
