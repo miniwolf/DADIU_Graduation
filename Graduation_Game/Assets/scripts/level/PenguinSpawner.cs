@@ -29,6 +29,7 @@ namespace Assets.scripts.level {
 			while ( penguinCount-- > 0 ) {
 				var go = (GameObject) Instantiate(penguinObject, transform.position, Quaternion.identity);
 				go.SetActive(true);
+				go.tag = TagConstants.PENGUIN;
 				InjectionRegister.Redo();
 				yield return new WaitForSeconds(countTime);
 			}

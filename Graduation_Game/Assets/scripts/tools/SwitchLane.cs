@@ -1,4 +1,5 @@
-﻿using Assets.scripts.character;
+﻿using Asset.scripts.tools;
+using Assets.scripts.character;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Assets.scripts.tools {
 	public class SwitchLane : MonoBehaviour, Tool {
 		protected void OnTriggerEnter(Collider collision) {
-			if ( collision.tag != TagConstants.PLAYER ) {
+			if ( collision.tag != TagConstants.PENGUIN ) {
 				return;
 			}
 	

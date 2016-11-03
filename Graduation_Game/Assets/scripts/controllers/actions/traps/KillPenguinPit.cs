@@ -11,6 +11,7 @@ namespace Assets.scripts.controllers.actions.traps {
 
 		public void Execute() {
 			gameObject.GetComponentInChildren<Animator>().SetTrigger(AnimationConstants.PITDEATH);
+			gameObject.GetComponent<Killable>().Kill();
 			//gameObject.SetActive (false);
 		}
 	}

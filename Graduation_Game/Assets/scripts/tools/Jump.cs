@@ -1,15 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts;
-using Assets.scripts.character;
+﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using Assets.scripts.components;
+using UnityEngine;
 
-namespace Asset.scripts.tools {
+namespace Assets.scripts.tools {
 	public class Jump : MonoBehaviour {
 		
 		protected void OnTriggerEnter(Collider collision) {
-			if ( collision.tag == TagConstants.PLAYER ) {
+			if ( collision.tag == TagConstants.PENGUIN ) {
 				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.Jump);
 			}
 		}

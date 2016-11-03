@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using Assets.scripts.components;
-using Assets.scripts.components.registers;
+﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using Assets.scripts.controllers.handlers;
 using UnityEngine;
 
 namespace Assets.scripts.character {
-	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable {
+	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
 		public enum Lane {Left, Right};
 
 		private Vector3 direction;
@@ -15,18 +12,28 @@ namespace Assets.scripts.character {
 		public float speed;
 		public bool jump = false;
 		public Lane lane = Lane.Left;
+		private bool isDead;
+		private CharacterController characterController;
 
 		void Start() {
 			direction = new Vector3(1,0,0);
+			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
 		}
 
 		void Update() {
-			ExecuteAction(ControllableActions.Move);
-
+			if (!isDead) {
+				ExecuteAction(ControllableActions.Move);
+			} else {
+				if ( !characterController.isGrounded ) {
+					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
+				} else {
+					characterController.enabled = false;
+				}
+			}
 		}
 		public override string GetTag() {
-			return TagConstants.PLAYER;
+			return TagConstants.PENGUIN;
 		}
 
 		public Vector3 GetDirection() {
@@ -67,6 +74,14 @@ namespace Assets.scripts.character {
 
 		public bool GetJump() {
 			return jump;
+		}
+
+		public void Kill() {
+			isDead = true;
+		}
+
+		public bool IsDead() {
+			return isDead;
 		}
 	}
 }
