@@ -16,11 +16,16 @@ namespace Assets.scripts.controllers.actions.movement {
         }
 
         public void Execute() {
-			if ( characterController.isGrounded ) {
-				characterController.Move(direction.GetDirection() * Time.deltaTime);
-			} else {
-				characterController.Move(new Vector3(0, -GRAVITY, 0) * Time.deltaTime);
+			if ( !characterController.isGrounded ) {
+				var dir = direction.GetDirection();
+				direction.SetDirection(new Vector3(dir.x, dir.y - GRAVITY * Time.deltaTime, dir.z));
+				direction.SetJump(true);
+			} else if ( characterController.isGrounded && direction.GetJump() ) {
+				direction.SetSpeed(direction.GetWalkSpeed());
+				direction.SetJump(false);
 			}
+
+			characterController.Move(direction.GetDirection() * direction.GetSpeed() * Time.deltaTime);
         }
     }
 }
