@@ -10,7 +10,7 @@ namespace Assets.scripts.character {
 		public enum Lane {Left, Right};
 
 		private Vector3 direction;
-		private Lane lane = Lane.Left;
+		public Lane lane = Lane.Left;
 
 		void Start() {
 			direction = new Vector3(1,0,0);
