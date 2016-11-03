@@ -1,8 +1,6 @@
-﻿using Assets.scripts.components;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.scripts.controllers.actions.movement
-{
+namespace Assets.scripts.controllers.actions.pickups {
 	public class Despawn : Action {
 		private GameObject gameObject;
 

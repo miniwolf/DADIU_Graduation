@@ -5,4 +5,3 @@
 		KillPenguinBySpikes, KillPenguinByPit
 	}
 }
-

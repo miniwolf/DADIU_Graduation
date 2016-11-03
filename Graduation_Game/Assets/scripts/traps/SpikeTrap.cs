@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts;
 using Assets.scripts.components;
-using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
-using Assets.scripts.controllers.handlers;
 using Assets.scripts.character;
 
 namespace Assets.scripts.traps{
