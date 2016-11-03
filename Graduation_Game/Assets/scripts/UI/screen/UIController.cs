@@ -11,10 +11,6 @@ namespace Assets.scripts.UI.screen {
             RefreshText();
         }
 
-        void Destroy() {
-
-        }
-
         /// /// <summary>
         /// This is called whenever we need to set correct texts in the canvas
         /// (screen is rendered for the first time or we change language)
