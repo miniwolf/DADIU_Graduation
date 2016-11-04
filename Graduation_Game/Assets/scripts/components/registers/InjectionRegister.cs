@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Assets.scripts.components.factory;
 using Assets.scripts.controllers;
@@ -39,10 +38,10 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory((Actionable<ControllableActions>) component, levelSettings).Build();
+					new PlayerFactory(component, component.GetGameObject(), levelSettings).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					new PickupFactory((Actionable<PickupActions>) component, levelSettings).Build();
+					new PickupFactory((Actionable<PickupActions>) component).Build();
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");

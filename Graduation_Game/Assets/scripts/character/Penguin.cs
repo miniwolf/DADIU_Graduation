@@ -6,14 +6,21 @@ namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
 		public enum Lane {Left, Right};
 
-		private Vector3 direction;
+		public Vector3 direction;
+		public float jumpSpeed = 7;
+		public float walkSpeed = 5;
+		public float speed;
+		public bool jump = false;
 		public Lane lane = Lane.Left;
 		private bool isDead;
 		private CharacterController characterController;
+		private float groundY;
 
 		void Start() {
+			groundY = transform.position.y;
 			direction = new Vector3(1,0,0);
 			characterController = GetComponent<CharacterController>();
+			speed = walkSpeed;
 		}
 
 		void Update() {
@@ -45,6 +52,34 @@ namespace Assets.scripts.character {
 
 		public void SetLane(Lane lane) {
 			this.lane = lane;
+		}
+
+		public float GetJumpSpeed() {
+			return jumpSpeed;
+		}
+
+		public float GetWalkSpeed() {
+			return walkSpeed;
+		}
+
+		public void SetSpeed(float speed) {
+			this.speed = speed;
+		}
+
+		public float GetSpeed() {
+			return speed;
+		}
+
+		public void SetJump(bool jump) {
+			this.jump = jump;
+		}
+
+		public bool GetJump() {
+			return jump;
+		}
+
+		public float GetGroundY() {
+			return groundY;
 		}
 
 		public void Kill() {
