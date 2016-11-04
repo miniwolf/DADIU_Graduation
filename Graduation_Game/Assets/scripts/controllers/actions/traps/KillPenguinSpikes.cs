@@ -11,6 +11,7 @@ namespace Assets.scripts.controllers.actions.traps {
 
 		public void Execute() {
 			gameObject.GetComponentInChildren<Animator>().SetTrigger(AnimationConstants.SPIKEDEATH);
+			gameObject.GetComponent<Killable>().Kill();
 			//Play sound
 			//Add all the global things here, e.g. remove a penguin from the amount you have, etc.
 		}

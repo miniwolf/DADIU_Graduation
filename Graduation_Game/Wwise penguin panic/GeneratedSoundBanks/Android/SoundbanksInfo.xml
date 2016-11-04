@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="118">
+	<RootPaths>
+		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2228651116" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main_Soundbank</ObjectPath>
+			<ShortName>Main_Soundbank</ShortName>
+			<Path>Main_Soundbank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3908818592" Name="ambience_start" ObjectPath="\Events\Default Work Unit\ambience_start"/>
+				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\UI\button_pressed"/>
+				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\music_start"/>
+				<Event Id="895256648" Name="penguin_death" ObjectPath="\Events\Default Work Unit\Penguin\penguin_death"/>
+				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\Penguin\penguin_move" MaxAttenuation="35.000000"/>
+				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\Penguin\penguin_react"/>
+				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency"/>
+				<Event Id="3083008975" Name="pressure_plate_used" ObjectPath="\Events\Default Work Unit\SFXs\Interactables\pressure_plate_used"/>
+				<Event Id="1345721513" Name="tool_change_lane_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Change Lane\tool_change_lane_placed"/>
+				<Event Id="1875929553" Name="tool_change_lane_used" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Change Lane\tool_change_lane_used"/>
+				<Event Id="1657019290" Name="tool_jump_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Jump\tool_jump_placed"/>
+				<Event Id="3642298946" Name="tool_jump_used" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Jump\tool_jump_used"/>
+				<Event Id="4106021142" Name="tool_picked_up_from_level" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_picked_up_from_level"/>
+				<Event Id="2095293986" Name="tool_returned_to_ui" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_returned_to_ui"/>
+				<Event Id="3392547493" Name="tool_selected_from_ui" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_selected_from_ui"/>
+				<Event Id="3406219605" Name="tool_speed_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Speed Boost\tool_speed_placed"/>
+				<Event Id="2359694829" Name="tool_speed_used" ObjectPath="\Events\Default Work Unit\SFXs\Tools\Speed Boost\tool_speed_used"/>
+				<Event Id="1083798624" Name="trap_pit_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_pit_triggered"/>
+				<Event Id="3289717504" Name="trap_spikes_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_spikes_triggered"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="8768817" Language="SFX">
+					<ShortName>speed boost used.wav</ShortName>
+					<Path>SFX\speed boost used_9E69E797.wem</Path>
+				</File>
+				<File Id="29157242" Language="SFX">
+					<ShortName>move.wav</ShortName>
+					<Path>SFX\move_9E69E797.wem</Path>
+				</File>
+				<File Id="59954777" Language="SFX">
+					<ShortName>button_press.wav</ShortName>
+					<Path>SFX\button_press_9E69E797.wem</Path>
+				</File>
+				<File Id="68691595" Language="SFX">
+					<ShortName>fall to pit.wav</ShortName>
+					<Path>SFX\fall to pit_9E69E797.wem</Path>
+				</File>
+				<File Id="277295194" Language="SFX">
+					<ShortName>pressure plate used.wav</ShortName>
+					<Path>SFX\pressure plate used_9E69E797.wem</Path>
+				</File>
+				<File Id="296354402" Language="SFX">
+					<ShortName>tool selected from ui.wav</ShortName>
+					<Path>SFX\tool selected from ui_9E69E797.wem</Path>
+				</File>
+				<File Id="303016610" Language="SFX">
+					<ShortName>speed boost placed.wav</ShortName>
+					<Path>SFX\speed boost placed_9E69E797.wem</Path>
+				</File>
+				<File Id="319381485" Language="SFX">
+					<ShortName>change lane used.wav</ShortName>
+					<Path>SFX\change lane used_9E69E797.wem</Path>
+				</File>
+				<File Id="351348797" Language="SFX">
+					<ShortName>tool picked up from level.wav</ShortName>
+					<Path>SFX\tool picked up from level_9E69E797.wem</Path>
+				</File>
+				<File Id="353691520" Language="SFX">
+					<ShortName>jump placed.wav</ShortName>
+					<Path>SFX\jump placed_9E69E797.wem</Path>
+				</File>
+				<File Id="374880862" Language="SFX">
+					<ShortName>pickup currency.wav</ShortName>
+					<Path>SFX\pickup currency_9E69E797.wem</Path>
+				</File>
+				<File Id="407339339" Language="SFX">
+					<ShortName>penguin react.wav</ShortName>
+					<Path>SFX\penguin react_9E69E797.wem</Path>
+				</File>
+				<File Id="507301971" Language="SFX">
+					<ShortName>music.wav</ShortName>
+					<Path>SFX\music_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="572702028" Language="SFX">
+					<ShortName>change lane placed.wav</ShortName>
+					<Path>SFX\change lane placed_9E69E797.wem</Path>
+				</File>
+				<File Id="618539846" Language="SFX">
+					<ShortName>tool returned to ui.wav</ShortName>
+					<Path>SFX\tool returned to ui_9E69E797.wem</Path>
+				</File>
+				<File Id="705205903" Language="SFX">
+					<ShortName>jump used.wav</ShortName>
+					<Path>SFX\jump used_9E69E797.wem</Path>
+				</File>
+				<File Id="751189480" Language="SFX">
+					<ShortName>spiked.wav</ShortName>
+					<Path>SFX\spiked_9E69E797.wem</Path>
+				</File>
+				<File Id="875179529" Language="SFX">
+					<ShortName>penguin death.wav</ShortName>
+					<Path>SFX\penguin death_9E69E797.wem</Path>
+				</File>
+				<File Id="1002454765" Language="SFX">
+					<ShortName>ambience.wav</ShortName>
+					<Path>SFX\ambience_4B8CC0C5.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
