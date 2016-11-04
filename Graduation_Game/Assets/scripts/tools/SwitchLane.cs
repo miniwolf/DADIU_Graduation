@@ -1,17 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts;
+﻿using Asset.scripts.tools;
 using Assets.scripts.character;
-using Assets.scripts.controllers;
 using Assets.scripts.components;
+using Assets.scripts.controllers;
+using UnityEngine;
 
-namespace Asset.scripts.tools {
-	public class SwitchLane : MonoBehaviour {
+namespace Assets.scripts.tools {
+	public class SwitchLane : MonoBehaviour, Tool {
 		protected void OnTriggerEnter(Collider collision) {
-			if ( collision.tag != TagConstants.PLAYER ) {
+			if ( collision.tag != TagConstants.PENGUIN ) {
 				return;
 			}
-
+	
 			switch ( collision.gameObject.GetComponent<Penguin>().GetLane() ) {
 				case Penguin.Lane.Right:
 					ChangeLane(collision, ControllableActions.SwitchLeft, Penguin.Lane.Left);
@@ -26,5 +25,9 @@ namespace Asset.scripts.tools {
 			collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(action);
 			collision.gameObject.GetComponent<Penguin>().SetLane(lane);
 		}
+    
+	    public ToolType GetToolType() {
+	        return ToolType.SwitchLane;
+	    }
 	}
 }

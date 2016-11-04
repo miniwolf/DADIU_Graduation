@@ -22,12 +22,12 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
 			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
+			actionable.AddAction(ControllableActions.Jump, CreateJump());
 		}
 
 	    private Handler CreateMove() {
 	        var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable));
-//		    actionHandler.AddAction(new MoveForward());
 	        actionHandler.AddAction(new StartMovingSound());
 	        return actionHandler;
 	    }
@@ -44,14 +44,21 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateKillPenguinBySpikes () {
+		private Handler CreateKillPenguinBySpikes() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguinSpikes());
 			return actionHandler;
 		}
-		private Handler CreateKillPenguinByPit () {
+
+		private Handler CreateKillPenguinByPit() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguinPit());
+			return actionHandler;
+		}
+
+		private Handler CreateJump() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
 			return actionHandler;
 		}
 	}

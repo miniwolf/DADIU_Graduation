@@ -13,7 +13,7 @@ namespace Assets.scripts.controllers.handlers {
 		}
 
 		public virtual void DoAction() {
-			int rnd = Random.Range(0, actions.Count);
+			var rnd = Random.Range(0, actions.Count);
 			actions[rnd].Execute();
 		}
 

@@ -1,8 +1,7 @@
 ﻿using Assets.scripts.components;
 using UnityEngine;
 
-namespace Assets.scripts.controllers.actions.traps
-{
+namespace Assets.scripts.controllers.actions.traps {
 	public class KillPenguinPit : Action {
 		private GameObject gameObject;
 
@@ -12,6 +11,7 @@ namespace Assets.scripts.controllers.actions.traps
 
 		public void Execute() {
 			gameObject.GetComponentInChildren<Animator>().SetTrigger(AnimationConstants.PITDEATH);
+			gameObject.GetComponent<Killable>().Kill();
 			//gameObject.SetActive (false);
 		}
 	}
