@@ -198,10 +198,10 @@
 					<ChildrenList>
 						<Event Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}">
 							<ChildrenList>
-								<Action Name="Play" ID="{A4BDEE78-991C-422F-853D-80D0E9CF586C}" ShortID="283416510" Type="Play" Scope="One" Global="false">
+								<Action Name="Play" ID="{1042F00A-115C-4A89-88CE-73488BEDA2F5}" ShortID="208580913" Type="Play" Scope="One" Global="false">
 									<ElementList>
-										<Element ID="{7ED989DA-D768-48B8-B527-E25DFE7312AC}" Global="false">
-											<ObjectRef Name="move" ID="{B3AB3406-C1F9-4233-9A14-D2829353253D}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										<Element ID="{C9E4A506-A2E6-4F74-A289-96CD7DFF1B71}" Global="false">
+											<ObjectRef Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
