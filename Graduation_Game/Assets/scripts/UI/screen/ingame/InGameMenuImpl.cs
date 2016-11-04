@@ -16,7 +16,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool dragging = false;
 	
 		public override void ResolveDependencies() {
-			switchLaneToolObjectOriginal = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE) as GameObject; 
+			/*switchLaneToolObjectOriginal = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE) as GameObject; 
 
 			// code below is just for internal UI testing. Call this from somewhere else
 			Tool t = switchLaneToolObjectOriginal.GetComponent<Tool>();
@@ -25,12 +25,13 @@ namespace Assets.scripts.UI.screen.ingame {
 			// especially this part
 			ToolsAvailable(tls);
 			DrawTools();
+			*/
 		}
 
 		public override void RefreshText() {
 
 		}
-
+		/*
 		void Update() {
 			if(Input.GetMouseButton(0)) {
 				if(!dragging) { // if not dragging, check if user wants to drag something
@@ -63,15 +64,15 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 			}
 		}
-
+*/
 		public void InventoryItemsAvaliable(List<InventoryItem> items) {
-			inventoryItemsAvailable = items;
-			DrawInventoryItems();
+			/*inventoryItemsAvailable = items;
+			DrawInventoryItems();*/
 		}
 
 		public void ToolsAvailable(List<Tool> tools) {
-			toolsAvailable = tools;
-			DrawTools();
+			/*toolsAvailable = tools;
+			DrawTools();*/
 		}
 
 		void DrawInventoryItems() {
@@ -82,7 +83,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		/// Draw tools that are present, disable others
 		/// </summary>
 		private void DrawTools() {
-			HideAllTools();
+			/*HideAllTools();
 			foreach(var tool in toolsAvailable) {
 				switch(tool.GetToolType()) {
 				case ToolType.SwitchLane:
@@ -92,11 +93,11 @@ namespace Assets.scripts.UI.screen.ingame {
 					// todo
 					break;
 				}
-			}
+			}*/
 		}
 
 		private void HideAllTools() {
-			switchLaneToolObjectOriginal.SetActive(false);
+			//switchLaneToolObjectOriginal.SetActive(false);
 		}
 	}
 }
