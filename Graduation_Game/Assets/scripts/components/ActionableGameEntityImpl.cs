@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.scripts.components.registers;
+using Assets.scripts.controllers;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
 
@@ -30,6 +31,14 @@ namespace Assets.scripts.components {
 			foreach (var handlers in actions.Values) {
 				handlers.SetupComponents(gameObject);
 			}
+		}
+
+		public GameObject GetGameObject() {
+			return gameObject;
+		}
+
+		public Actionable<ControllableActions> GetActionable() {
+			return (Actionable<ControllableActions>)this;
 		}
 	}
 }

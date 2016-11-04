@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Asset.scripts.tools;
-using Assets.scripts.controllers.actions.movement.sound;
-using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
     public interface InGameMenu {
