@@ -10,5 +10,7 @@ namespace Assets.scripts.components {
 		float GetSpeed();
 		void SetJump(bool jump);
 		bool GetJump();
-    }
+
+		float GetGroundY();
+	}
 }
