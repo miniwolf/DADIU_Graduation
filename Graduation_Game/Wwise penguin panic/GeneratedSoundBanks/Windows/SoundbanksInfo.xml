@@ -25,7 +25,7 @@
 				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\UI\button_pressed"/>
 				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\music_start"/>
 				<Event Id="895256648" Name="penguin_death" ObjectPath="\Events\Default Work Unit\Penguin\penguin_death"/>
-				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\Penguin\penguin_move"/>
+				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\Penguin\penguin_move" MaxAttenuation="35.000000"/>
 				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\Penguin\penguin_react"/>
 				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency"/>
 				<Event Id="3083008975" Name="pressure_plate_used" ObjectPath="\Events\Default Work Unit\SFXs\Interactables\pressure_plate_used"/>
