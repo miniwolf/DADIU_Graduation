@@ -7,7 +7,7 @@ namespace Assets.scripts.tools {
 		
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
-				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.Jump);
+				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.StartJump);
 			}
 		}
 	}
