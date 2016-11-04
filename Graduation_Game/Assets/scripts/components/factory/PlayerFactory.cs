@@ -12,8 +12,8 @@ namespace Assets.scripts.components.factory {
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
-			this.actionable = actionable;
+		public PlayerFactory(GameEntity entity, GameObject penguin, GameObject levelSettings){
+			this.actionable = entity.GetActionable();
 			this.levelSettings = levelSettings;
 
 			animator = penguin.GetComponentInChildren<Animator>();
@@ -25,12 +25,13 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
 			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
-			actionable.AddAction(ControllableActions.Jump, CreateJump());
+			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
+			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 		}
 
 		private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new MoveForward((Directionable) actionable));
+			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
 			return actionHandler;
 		}
 
@@ -60,9 +61,16 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateJump() {
+		private Handler CreateStartJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.JUMP));
+			return actionHandler;
+		}
+
+		private Handler CreateStopJump() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.JUMP));
 			return actionHandler;
 		}
 	}
