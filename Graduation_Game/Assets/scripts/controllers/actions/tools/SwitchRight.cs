@@ -20,17 +20,22 @@ namespace Assets.scripts.controllers.actions.tools {
 			couroutineHandler = gameObject.GetComponent<MonoBehaviour>();
 		}
 
-		public void Execute() {		
+		public void Execute() {
 			Vector3 oldDirection = direction.GetDirection();
 			var oldRotation = penguin.transform.rotation;
 			var newRotation = Quaternion.Euler(0, 45, 0);
 			Vector3 newDirection = newRotation * direction.GetDirection();
 			// make sure that penguin can change lane
-			if ( !Physics.Raycast(penguin.transform.position, newDirection, levelSettings.GetLaneWidth()) ) {
+			RaycastHit hit;
+			if (!Physics.Raycast(new Ray(penguin.transform.position, newDirection), out hit, levelSettings.GetLaneWidth())
+			    || hit.transform.tag == TagConstants.SWITCHTEMPLATE)
+			{
 				direction.SetDirection(newDirection); //change penguin's direction
 				penguin.transform.rotation = newRotation; //rotate penguin
 				float zPos = penguin.transform.position.z;
 				couroutineHandler.StartCoroutine(LaneReached(zPos, oldDirection, oldRotation));
+			} else {
+				Debug.Log(hit.transform.tag);
 			}
 		}
 

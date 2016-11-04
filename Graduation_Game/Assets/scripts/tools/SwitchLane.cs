@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.scripts.tools {
 	public class SwitchLane : MonoBehaviour, Tool {
-		protected void OnTriggerEnter(Collider collision) {
+		public void OnTriggerEnter(Collider collision) {
 			if ( collision.tag != TagConstants.PENGUIN ) {
 				return;
 			}
@@ -25,9 +25,9 @@ namespace Assets.scripts.tools {
 			collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(action);
 			collision.gameObject.GetComponent<Penguin>().SetLane(lane);
 		}
-    
-	    public ToolType GetToolType() {
-	        return ToolType.SwitchLane;
-	    }
+
+		public ToolType GetToolType() {
+			return ToolType.SwitchLane;
+		}
 	}
 }
