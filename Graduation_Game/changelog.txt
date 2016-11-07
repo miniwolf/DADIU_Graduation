@@ -1,0 +1,21 @@
+v1.0
+- First level is made
+- Spike trap
+- Pit death
+- Penguin spawners in the world
+- Moveable camera
+- Penguins die
+- Pickups
+	* Plutonium
+v2.0
+	- Switch lane tool
+	- Jump tool
+		* Jump animation
+	- UI for tools
+	- UI counters
+		* Penguin count
+		* Plutonium
+v3.0
+Camera fix - not possible to move while dragging objects in the scene
+Tool fix - different tools work properly
+Reset button
