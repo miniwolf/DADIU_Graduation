@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour {
+	public class ToolButtons : MonoBehaviour, Draggable {
 
 		// TODO maybe take z position of the penguin as a ref and add it to the offsets
 		public float leftLaneOffset = 1f;
@@ -94,6 +94,10 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = false;
 
 			// TODO snaping
+		}
+
+		public bool IsDragged() {
+			return dragging;
 		}
 	}
 }
