@@ -108,7 +108,7 @@ public class AkInitializer : MonoBehaviour
             return;
         }
 
-        Debug.Log("WwiseUnity: Initialize sound engine ...");
+        //Debug.Log("WwiseUnity: Initialize sound engine ...");
 
         //Use default properties for most SoundEngine subsystem.  
         //The game programmer should modify these when needed.  See the Wwise SDK documentation for the initialization.

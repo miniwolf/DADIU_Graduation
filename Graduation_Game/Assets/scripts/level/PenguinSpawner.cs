@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets.scripts.components.registers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -11,8 +12,10 @@ namespace Assets.scripts.level {
 		public float countTime = 3;
 
 		private GameObject penguinObject;
+		private Text penguinCounter;
 
 		public void Start() {
+			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -28,6 +31,7 @@ namespace Assets.scripts.level {
 			// Create an instance of the penguin at the objects position
 			while ( penguinCount-- > 0 ) {
 				var go = (GameObject) Instantiate(penguinObject, transform.position, Quaternion.identity);
+				penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 				go.SetActive(true);
 				go.tag = TagConstants.PENGUIN;
 				InjectionRegister.Redo();

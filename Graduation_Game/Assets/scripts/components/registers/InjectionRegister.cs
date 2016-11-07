@@ -43,7 +43,10 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.PLUTONIUM_PICKUP:
 					new PickupFactory((Actionable<PickupActions>) component).Build();
 					break;
-				default:
+				case TagConstants.PRESSURE_PLATE:
+				new PressurePlateFactory((Actionable<PressurePlateActions>) component).BuildActionOnLinkingObject((LinkingComponent) component);
+					break;
+			default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
 		}
