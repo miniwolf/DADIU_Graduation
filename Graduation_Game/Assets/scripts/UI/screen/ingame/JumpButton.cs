@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class JumpButton : MonoBehaviour {
+	public class JumpButton : MonoBehaviour, Draggable {
 
 		private GameObject jumpObjTool;
 		private bool dragging;
@@ -10,10 +10,12 @@ namespace Assets.scripts.UI.screen.ingame {
 		// TODO maybe take z position of the penguin as a ref and add it to the offsets
 		public float leftLaneOffset = 1f;
 		public float rightLaneOffset = -1f;
+		private bool thisIsBeingPlaced = false;
 
 		private Vector3 mouseHitPosition;
 
 		public void PlaceJump() {
+			thisIsBeingPlaced = true;
 			dragging = true;
 			var findGameObjectWithTag = GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL);
 			var obj = GetJumpButton(findGameObjectWithTag);
@@ -30,20 +32,20 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		protected void Update() {
 			foreach ( var touch in Input.touches ) {
-				if ( touch.phase == TouchPhase.Moved ) {
+				if ( touch.phase == TouchPhase.Moved && thisIsBeingPlaced) {
 					PlaceObject(touch.position);
 				}
-				if ( touch.phase == TouchPhase.Ended ) {
-					//Snap();
+				if ( touch.phase == TouchPhase.Ended && thisIsBeingPlaced) {
+					Snap();
 				}
 			}
 
-			if ( Input.GetMouseButton(0) ) {
+			if ( Input.GetMouseButton(0) && thisIsBeingPlaced ) {
 				PlaceObject(Input.mousePosition);
 			}
 			// Release object to the scene
-			if ( Input.GetMouseButtonUp(0) ) {
-				//Snap();
+			if ( Input.GetMouseButtonUp(0) && thisIsBeingPlaced ) {
+				Snap();
 			}
 		}
 
@@ -51,7 +53,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( !dragging ) {
 				return;
 			}
-
+				
 			var ray =  Camera.main.ScreenPointToRay(position);
 			RaycastHit hit;
 
@@ -64,12 +66,19 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void Snap() {
 			dragging = false;
-
+			thisIsBeingPlaced = false;
+			jumpObjTool.GetComponentInChildren<SphereCollider>().enabled = true;
+			/*
 			// Handles snapping on the left lane
 			jumpObjTool.transform.position =
 				Mathf.Abs(leftLaneOffset - mouseHitPosition.z) < Mathf.Abs(rightLaneOffset - mouseHitPosition.z)
 					? new Vector3(mouseHitPosition.x, mouseHitPosition.y, leftLaneOffset)
 					: new Vector3(mouseHitPosition.x, mouseHitPosition.y, rightLaneOffset);
+			*/
+		}
+
+		public bool IsDragged() {
+			return dragging;
 		}
 	}
 }
