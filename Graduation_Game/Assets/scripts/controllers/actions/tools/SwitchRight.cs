@@ -23,7 +23,12 @@ namespace Assets.scripts.controllers.actions.tools {
 		public void Execute() {
 			Vector3 oldDirection = direction.GetDirection();
 			var oldRotation = penguin.transform.rotation;
-			var newRotation = Quaternion.Euler(0, 45, 0);
+			Quaternion newRotation;
+			if ( oldRotation.y == 0) {
+				newRotation = Quaternion.Euler(0, 45, 0);
+			} else {
+				newRotation = Quaternion.Euler(0, 90, 0);
+			}
 			Vector3 newDirection = newRotation * direction.GetDirection();
 			// make sure that penguin can change lane
 			RaycastHit hit;
@@ -43,7 +48,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			do {
 				// check every 0.25 seconds if penguin has reached the half of the lane
 				yield return new WaitForSeconds(0.25f);
-			} while(penguin.transform.position.z > zPos - levelSettings.GetLaneWidth());
+			} while(penguin.transform.position.z > zPos - levelSettings.GetLaneWidth() );
 
 			//when half lane reached, change direction to old one
 			direction.SetDirection(oldDirection); 
