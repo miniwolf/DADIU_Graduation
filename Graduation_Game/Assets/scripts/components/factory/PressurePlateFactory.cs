@@ -12,14 +12,13 @@ namespace Assets.scripts.components.factory{
 			this.actionable = actionable;
 		}
 
-		public void BuildFallDownBridge() {
-			actionable.AddAction (PressurePlateActions.Excute, CreateFallDown());
+		public void BuildActionOnLinkingObject(LinkingComponent linkingObject) {
+			actionable.AddAction (PressurePlateActions.Excute, CreateAction(linkingObject));
 		}
 
-		private static Handler CreateFallDown() {
+		private static Handler CreateAction(LinkingComponent linkingObject) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new FallDownBridge());
-			Console.Write ("It works, mon!!!");
+			actionHandler.AddAction(new TriggerLinkingComponent(linkingObject));
 			return actionHandler;
 		}
 	}

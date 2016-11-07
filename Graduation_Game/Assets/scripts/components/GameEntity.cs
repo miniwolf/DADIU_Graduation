@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.components {
-	public interface GameEntity {
+	public interface GameEntity  {
 		string GetTag();
 		void SetupComponents();
 		GameObject GetGameObject();
