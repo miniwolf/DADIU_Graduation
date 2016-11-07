@@ -3,11 +3,11 @@ using Assets.scripts.controllers.actions;
 using UnityEngine;
 
 namespace Assets.scripts.controllers.handlers {
-	public class DeathRandomHandler : Handler {
+	public class RandomChoiceHandler : Handler {
 		protected List<Action> actions = new List<Action>();
 
 		public virtual void SetupComponents(GameObject obj) {
-			foreach ( Action action in actions ) {
+			foreach ( var action in actions ) {
 				action.Setup(obj);
 			}
 		}

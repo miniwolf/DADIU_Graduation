@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts.character;
 using Assets.scripts.components;
 using Assets.scripts.level;
 
@@ -18,7 +16,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			return;
 		}
 
-		public void Execute() {	
+		public void Execute() {
 			Vector3 moveDirection = direction.GetDirection();
 			moveDirection.y += levelSettings.GetJumpHeight();
 			direction.SetSpeed(direction.GetJumpSpeed());
@@ -26,4 +24,3 @@ namespace Assets.scripts.controllers.actions.tools {
 		}
 	}
 }
-
