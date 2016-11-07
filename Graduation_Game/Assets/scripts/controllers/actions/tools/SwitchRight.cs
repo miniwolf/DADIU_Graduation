@@ -35,7 +35,7 @@ namespace Assets.scripts.controllers.actions.tools {
 				float zPos = penguin.transform.position.z;
 				couroutineHandler.StartCoroutine(LaneReached(zPos, oldDirection, oldRotation));
 			} else {
-				Debug.Log(hit.transform.tag);
+				//Debug.Log(hit.transform.tag);
 			}
 		}
 
