@@ -7,21 +7,21 @@ using Assets.scripts.controllers;
 
 
 namespace Assets.scripts.tools {
-	public class PressurePlate : MonoBehaviour, Asset.scripts.tools.Tool {
-		public readonly Actionable<PressurePlateActions> actionable;
+	
+	public class PressurePlate : ActionableGameEntityImpl<PressurePlateActions>, LinkingComponent {
+		public ObjectControlledByPressurePlate linkingObject;
 
-		PressurePlate(Actionable<PressurePlateActions> actionable) {
-			this.actionable = actionable;
-		}
-		// Use this for initialization
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
-				actionable.ExecuteAction(PressurePlateActions.Excute);
+				ExecuteAction(PressurePlateActions.Excute);
 			}
 		}
+		public override string GetTag() {
+			return TagConstants.PRESSURE_PLATE;
+		}
 
-		public ToolType GetToolType() {
-			return ToolType.PressurePlate;
+		public ObjectControlledByPressurePlate GetLinkingObject() {
+			return linkingObject;
 		}
 	}
 }

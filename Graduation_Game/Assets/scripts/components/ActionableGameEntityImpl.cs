@@ -36,7 +36,7 @@ namespace Assets.scripts.components {
 		public GameObject GetGameObject() {
 			return gameObject;
 		}
-
+	
 		public Actionable<ControllableActions> GetActionable() {
 			return (Actionable<ControllableActions>)this;
 		}
