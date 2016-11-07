@@ -13,9 +13,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameObject player;
 		private bool dragging;
 		private Vector3 mouseHitPosition;
+		private bool thisIsBeingPlaced = false;
 
 		public void PlaceSwitchLane() {
 			dragging = true;
+			thisIsBeingPlaced = true;
 			var switchLaneObj = GetSwitchLane(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 			switchLaneTool = Instantiate(switchLaneObj);
 			switchLaneTool.SetActive(true);
@@ -29,21 +31,21 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		void Update() {
-			foreach ( var touch in Input.touches ) {
-				if ( touch.phase == TouchPhase.Moved ) {
+			foreach ( var touch in Input.touches) {
+				if ( touch.phase == TouchPhase.Moved && thisIsBeingPlaced ) {
 					PlaceObject(touch.position);
 				}
-				if ( touch.phase == TouchPhase.Ended ) {
-					//Snap();
+				if ( touch.phase == TouchPhase.Ended && thisIsBeingPlaced ) {
+					Snap();
 				}
 			}
 
-			if ( Input.GetMouseButton(0) ) {
+			if ( Input.GetMouseButton(0) && thisIsBeingPlaced ) {
 				PlaceObject(Input.mousePosition);
 			}
 			// Release object to the scene
-			if ( Input.GetMouseButtonUp(0) ) {
-				//Snap();
+			if ( Input.GetMouseButtonUp(0) && thisIsBeingPlaced ) {
+				Snap();
 			}
 		}
 
@@ -57,7 +59,6 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			if ( Physics.Raycast(ray, out hit) ) {
 				if ( hit.transform.tag.Equals(TagConstants.LANE) ) {
-					mouseHitPosition = hit.point;
 					switchLaneTool.transform.position = hit.point;
 				}
 			}
@@ -65,12 +66,15 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void Snap() {
 			dragging = false;
-
+			thisIsBeingPlaced = false;
+			switchLaneTool.GetComponentInChildren<SphereCollider>().enabled = true;
+			/*
 			// Handles snapping on the left lane
 			switchLaneTool.transform.position =
 				Mathf.Abs(leftLaneOffset - mouseHitPosition.z) < Mathf.Abs(rightLaneOffset - mouseHitPosition.z)
 				? new Vector3(mouseHitPosition.x, mouseHitPosition.y, leftLaneOffset)
 				: new Vector3(mouseHitPosition.x, mouseHitPosition.y, rightLaneOffset);
+			*/
 		}
 	}
 }
