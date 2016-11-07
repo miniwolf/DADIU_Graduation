@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class JumpButton : MonoBehaviour {
+	public class JumpButton : MonoBehaviour, Draggable {
 
 		private GameObject jumpObjTool;
 		private bool dragging;
@@ -75,6 +75,10 @@ namespace Assets.scripts.UI.screen.ingame {
 					? new Vector3(mouseHitPosition.x, mouseHitPosition.y, leftLaneOffset)
 					: new Vector3(mouseHitPosition.x, mouseHitPosition.y, rightLaneOffset);
 			*/
+		}
+
+		public bool IsDragged() {
+			return dragging;
 		}
 	}
 }

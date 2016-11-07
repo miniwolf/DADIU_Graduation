@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class SwitchLaneButton : MonoBehaviour {
+	public class SwitchLaneButton : MonoBehaviour, Draggable {
 
 		// TODO maybe take z position of the penguin as a ref and add it to the offsets
 		public float leftLaneOffset = 1f;
@@ -75,6 +75,10 @@ namespace Assets.scripts.UI.screen.ingame {
 				? new Vector3(mouseHitPosition.x, mouseHitPosition.y, leftLaneOffset)
 				: new Vector3(mouseHitPosition.x, mouseHitPosition.y, rightLaneOffset);
 			*/
+		}
+
+		public bool IsDragged() {
+			return dragging;
 		}
 	}
 }
