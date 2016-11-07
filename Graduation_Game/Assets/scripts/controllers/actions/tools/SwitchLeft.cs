@@ -9,6 +9,7 @@ namespace Assets.scripts.controllers.actions.tools {
 		private GameObject penguin;
 		private MonoBehaviour couroutineHandler;
 		private LevelSettings levelSettings;
+		int layerMask = 1 << 8;
 
 		public SwitchLeft(Directionable direction, GameObject levelSettings){
 			this.direction = direction;
@@ -23,11 +24,17 @@ namespace Assets.scripts.controllers.actions.tools {
 		public void Execute() {
 			Vector3 oldDirection = direction.GetDirection();
 			var oldRotation = penguin.transform.rotation;
-			var newRotation = Quaternion.Euler(0, -45, 0);
+			Quaternion newRotation;
+
+			if ( oldRotation.y == 0) {
+				newRotation = Quaternion.Euler(0, -45, 0);
+			} else {
+				newRotation = Quaternion.Euler(0, -90, 0);
+			}
 			Vector3 newDirection = newRotation * direction.GetDirection();
 			// make sure that penguin can change lane
 			RaycastHit hit;
-			if (!Physics.Raycast(new Ray(penguin.transform.position, newDirection), out hit, levelSettings.GetLaneWidth())
+			if (!Physics.Raycast(new Ray(penguin.transform.position, newDirection), out hit, levelSettings.GetLaneWidth(),layerMask)
 				|| hit.transform.tag == TagConstants.SWITCHTEMPLATE)
 			{
 				direction.SetDirection(newDirection); //change penguin's direction
