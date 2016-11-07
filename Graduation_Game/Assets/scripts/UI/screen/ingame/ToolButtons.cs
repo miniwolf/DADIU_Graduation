@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, Draggable {
+	public class ToolButtons : SnappingTool, Draggable {
 
 		// TODO maybe take z position of the penguin as a ref and add it to the offsets
 		public float leftLaneOffset = 1f;
@@ -38,7 +38,7 @@ namespace Assets.scripts.UI.screen.ingame {
 					switchIsBeingPlaced = false;
 					//activate collider when we place it on the scene
 					switchLaneTool.GetComponentInChildren<SphereCollider>().enabled = true;
-					Snap();
+					SetDraggingFalse();
 				}
 
 				// jump tool
@@ -48,7 +48,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if ( touch.phase == TouchPhase.Ended && jumpIsBeingPlaced ) {
 					jumpIsBeingPlaced = false;
 					jumpObjTool.GetComponentInChildren<SphereCollider>().enabled = true;
-					Snap();
+					SetDraggingFalse();
 				}
 			}
 
@@ -60,7 +60,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Input.GetMouseButtonUp(0) && switchIsBeingPlaced ) {
 				switchIsBeingPlaced = false;
 				switchLaneTool.GetComponentInChildren<SphereCollider>().enabled = true;
-				Snap();
+				SetDraggingFalse();
 			}
 
 			// jump tool
@@ -71,7 +71,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Input.GetMouseButtonUp(0) && jumpIsBeingPlaced ) {
 				jumpObjTool.GetComponentInChildren<SphereCollider>().enabled = true;
 				jumpIsBeingPlaced = false;
-				Snap();
+				SetDraggingFalse();
 			}
 		}
 
@@ -86,14 +86,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Physics.Raycast(ray, out hit) ) {
 				if ( hit.transform.tag.Equals(TagConstants.LANE) ) {
 					obj.transform.position = hit.point;
+
+					Snap(hit.point, obj.transform, leftLaneOffset, rightLaneOffset);
+
 				}
 			}
 		}
 
-		private void Snap() {
+		private void SetDraggingFalse() {
 			dragging = false;
-
-			// TODO snaping
 		}
 
 		public bool IsDragged() {
