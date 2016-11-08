@@ -27,6 +27,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
 			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
+			actionable.AddAction(ControllableActions.KillPenguinByOrca, CreateKillPenguinByOrca());
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
@@ -70,6 +71,13 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
 			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ELECTRICUTION));
+			return actionHandler;
+		}
+
+		private Handler CreateKillPenguinByOrca() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new KillPenguin((Killable) actionable));
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ORCADEATH));
 			return actionHandler;
 		}
 
