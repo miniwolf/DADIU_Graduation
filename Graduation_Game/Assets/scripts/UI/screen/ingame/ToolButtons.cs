@@ -3,13 +3,12 @@ using System.Linq;
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : SnappingTool, Draggable {
+	public class ToolButtons : MonoBehaviour, Draggable {
+
+		private SnappingTool snapping = new SnappingTool();
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
-
-		public float leftLaneOffset = 1f;
-		public float rightLaneOffset = -1f;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
@@ -120,7 +119,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if ( hit.transform.tag.Equals(TagConstants.LANE)) {
 					obj.transform.position = hit.point;
 
-					Snap(hit.point, obj.transform, leftLaneOffset, rightLaneOffset);
+					snapping.Snap(hit.point, obj.transform);
 
 				}
 			}

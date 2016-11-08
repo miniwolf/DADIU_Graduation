@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.scripts;
 
+namespace Assets.scripts.UI.screen.ingame{
 public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	public Color returning, notReturning;
 	private RaycastHit hit;
@@ -13,6 +14,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	private int layerMask = 1 << 8;
 	private Image img;
 	private bool shouldReturn = false;
+		private SnappingTool snap = new SnappingTool();
 
 	void Start(){
 		img = GetComponent<Image>();
@@ -70,7 +72,7 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 			if (hit.transform.tag == TagConstants.JUMPTEMPLATE||hit.transform.tag == TagConstants.SWITCHTEMPLATE) {
 				shouldMove = true;
 				hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
-				movingAround = hit.transform.gameObject;
+				movingAround = hit.transform.parent.gameObject;
 			}
 		}
 	}
@@ -78,16 +80,19 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 	void MoveTheTool(Vector3 pos){
 		if (Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layerMask)) {
 			if (hit.transform.tag ==TagConstants.LANE) {
-				movingAround.transform.parent.position = hit.point;
+					snap.Snap(hit.point, movingAround.transform);
+				//movingAround.transform.position = hit.point;
 				//print(cam.WorldToViewportPoint(Input.mousePosition).y);
 				//Add some kind of visual which makes it clear it will be reclaimed
 			}
+
 		}
 	}
 
+
 	void NoLongerMoveTool(){
 		if (shouldReturn) {
-			Destroy(movingAround.transform.parent.transform.gameObject);
+			Destroy(movingAround);
 			shouldMove = false;
 			NoColor();
 			shouldReturn = false;
@@ -97,4 +102,5 @@ public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
 			movingAround.GetComponentInChildren<SphereCollider>().enabled = true;
 		}
 		}
+}
 }
