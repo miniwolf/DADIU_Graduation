@@ -19,7 +19,7 @@ namespace Assets.scripts.UI {
 		private void Touch() {
 			foreach(TouchInputListener l in touchListeners) {
 				if(Input.touchCount > 0) {
-					l.OnTouch(Input.touches);			
+					l.OnTouch(Input.GetTouch(0), Input.touches);			
 				}
 			}
 		}
