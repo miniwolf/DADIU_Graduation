@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
-using Assets.scripts.character;
 
 namespace Assets.scripts.traps{
 	public class SpikeTrap : MonoBehaviour {
