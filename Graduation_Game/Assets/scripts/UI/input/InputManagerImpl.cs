@@ -17,9 +17,9 @@ namespace Assets.scripts.UI {
 		}
 
 		private void Touch() {
-			foreach(TouchInputListener l in touchListeners) {
-				if(Input.touchCount > 0) {
-					l.OnTouch(Input.GetTouch(0), Input.touches);			
+		    if(Input.touchCount > 0) {
+		        foreach(TouchInputListener l in touchListeners) {
+					l.OnTouch(Input.touches);
 				}
 			}
 		}
