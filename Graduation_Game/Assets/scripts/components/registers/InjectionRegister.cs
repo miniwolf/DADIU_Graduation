@@ -58,7 +58,6 @@ namespace Assets.scripts.components.registers {
 					break;
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
-					new PressurePlateFactory((Actionable<PressurePlateActions>) component).BuildActionOnLinkingObject((LinkingComponent) component);
 					break;
 				case TagConstants.SNAPPING:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
