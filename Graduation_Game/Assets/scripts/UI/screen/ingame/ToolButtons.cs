@@ -148,7 +148,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		public GameObject GetGameObject () {
 			return gameObject;
 		}
-		public Actionable<Assets.scripts.controllers.ControllableActions> GetActionable () {
+		public Actionable<T> GetActionable<T>() {
 			return null;
 		}
 	}
