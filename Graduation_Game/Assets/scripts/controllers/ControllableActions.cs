@@ -4,6 +4,7 @@
 		Move, Stop,
 		KillPenguinBySpikes, KillPenguinByPit,
 		StartJump, StopJump,
+		StartSpeed, Speed, StopSpeed,
 		KillPenguinByElectricution
 	}
 }

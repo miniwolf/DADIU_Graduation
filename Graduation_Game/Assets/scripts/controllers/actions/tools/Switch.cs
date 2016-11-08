@@ -30,9 +30,10 @@ namespace Assets.scripts.controllers.actions.tools {
 
 			var newRotation = laneSwitch.GetNewRotation(oldRotation);
 			var newDirection = newRotation * oldDirection;
+			var tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 			// make sure that penguin can change lane
 			RaycastHit hit;
-			if ( Physics.Raycast(new Ray(penguin.transform.position, newDirection),
+			if ( Physics.Raycast(new Ray(penguin.transform.position, tempDir),
 				     out hit, levelSettings.GetLaneWidth(), layerMask)
 			     && hit.transform.tag != TagConstants.SWITCHTEMPLATE ) {
 				return;

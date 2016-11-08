@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Assets.scripts.components;
+using Assets.scripts.components.registers;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : SnappingTool, Draggable {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool {
+
+		private SnappingToolInterface snapping;
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
-
-		public float leftLaneOffset = 1f;
-		public float rightLaneOffset = -1f;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
@@ -21,7 +22,9 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
 
-
+		void Awake(){
+			InjectionRegister.Register(this);
+		}
 
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
@@ -29,7 +32,6 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
-			
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -120,7 +122,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if ( hit.transform.tag.Equals(TagConstants.LANE)) {
 					obj.transform.position = hit.point;
 
-					Snap(hit.point, obj.transform, leftLaneOffset, rightLaneOffset);
+					snapping.Snap(hit.point, obj.transform);
 
 				}
 			}
@@ -132,6 +134,22 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public bool IsDragged() {
 			return dragging;
+		}
+
+		public void SetSnap (SnappingToolInterface snapTool) {
+			snapping = snapTool;
+		}
+		public string GetTag () {
+			return TagConstants.SNAPPING;
+		}
+		public void SetupComponents () {
+			return;
+		}
+		public GameObject GetGameObject () {
+			return gameObject;
+		}
+		public Actionable<Assets.scripts.controllers.ControllableActions> GetActionable () {
+			return null;
 		}
 	}
 }

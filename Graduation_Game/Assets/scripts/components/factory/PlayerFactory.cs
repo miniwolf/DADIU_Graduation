@@ -29,6 +29,9 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
+			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
+			actionable.AddAction(ControllableActions.Speed, CreateSpeed());
+			actionable.AddAction(ControllableActions.StopSpeed, CreateStopSpeed());
 		}
 
 		private Handler CreateMove() {
@@ -80,6 +83,26 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateStopJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.JUMP));
+			return actionHandler;
+		}
+
+		private Handler CreateStartSpeed() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartSpeed());
+			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			return actionHandler;
+		}
+
+		private Handler CreateSpeed() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Speed());
+			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			return actionHandler;
+		}
+		private Handler CreateStopSpeed() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopSpeed());
+			//actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 	}

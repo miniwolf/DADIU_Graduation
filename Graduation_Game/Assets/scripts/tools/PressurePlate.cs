@@ -9,7 +9,7 @@ using Assets.scripts.controllers;
 namespace Assets.scripts.tools {
 	
 	public class PressurePlate : ActionableGameEntityImpl<PressurePlateActions>, LinkingComponent {
-		public ObjectControlledByPressurePlate linkingObject;
+		public GameObject linkingObject;
 
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
@@ -21,7 +21,7 @@ namespace Assets.scripts.tools {
 		}
 
 		public ObjectControlledByPressurePlate GetLinkingObject() {
-			return linkingObject;
+			return linkingObject.GetComponent<ObjectControlledByPressurePlate> ();
 		}
 	}
 }
