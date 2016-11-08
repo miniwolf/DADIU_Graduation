@@ -19,3 +19,8 @@ v3.0
 Camera fix - not possible to move while dragging objects in the scene
 Tool fix - different tools work properly
 Reset button
+v4.0
+Features (for non-programmers):
+
+Tech (for programmers):
+    New input manager - get a reference to InputManager from Injector and use it for handling the input. Register for different input chanels (touch, keyboard, mouse).

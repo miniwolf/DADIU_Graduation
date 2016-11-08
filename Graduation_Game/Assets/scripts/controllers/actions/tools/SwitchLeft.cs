@@ -32,9 +32,10 @@ namespace Assets.scripts.controllers.actions.tools {
 				newRotation = Quaternion.Euler(0, -90, 0);
 			}
 			Vector3 newDirection = newRotation * direction.GetDirection();
+			Vector3 tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 			// make sure that penguin can change lane
 			RaycastHit hit;
-			if (!Physics.Raycast(new Ray(penguin.transform.position, newDirection), out hit, levelSettings.GetLaneWidth(),layerMask)
+			if (!Physics.Raycast(new Ray(penguin.transform.position, tempDir), out hit, levelSettings.GetLaneWidth(),layerMask)
 				|| hit.transform.tag == TagConstants.SWITCHTEMPLATE)
 			{
 				direction.SetDirection(newDirection); //change penguin's direction

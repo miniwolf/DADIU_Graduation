@@ -7,6 +7,8 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private SnappingTool snapping = new SnappingTool();
 
+		public GameObject blockOneGroup;
+
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
 
@@ -20,14 +22,14 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
 
-
-
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
+
+			snapping.DefineOffSet (blockOneGroup);
 			
 		}
 

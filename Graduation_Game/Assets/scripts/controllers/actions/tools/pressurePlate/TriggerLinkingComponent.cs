@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Assets.scripts.controllers.actions.tools.pressurePlate{
 	public class TriggerLinkingComponent : Action {
 		private GameObject gameObject;
-		private Assets.scripts.tools.ObjectControlledByPressurePlate linkingObject;
+		private ObjectControlledByPressurePlate linkingObject;
 
 		public TriggerLinkingComponent(LinkingComponent linkingObject){
 			this.linkingObject = linkingObject.GetLinkingObject();
@@ -17,8 +17,7 @@ namespace Assets.scripts.controllers.actions.tools.pressurePlate{
 		}
 
 		public void Execute() {
-			Debug.Log("Triggering Linking Object");
-			//linkingObject.Trigger();
+			linkingObject.Trigger();
 		}
 	}
 }
