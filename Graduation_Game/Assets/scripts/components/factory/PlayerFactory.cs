@@ -2,6 +2,7 @@
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
+using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
@@ -12,8 +13,8 @@ namespace Assets.scripts.components.factory {
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
 
-		public PlayerFactory(GameEntity entity, GameObject penguin, GameObject levelSettings){
-			this.actionable = entity.GetActionable();
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 
 			animator = penguin.GetComponentInChildren<Animator>();
@@ -25,6 +26,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
 			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
+			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
@@ -40,13 +42,13 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateSwitchLeft() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchLeft((Directionable) actionable, levelSettings));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Left()));
 			return actionHandler;
 		}
 
 		private Handler CreateSwitchRight() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchRight((Directionable) actionable, levelSettings));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Right()));
 			return actionHandler;
 		}
 
@@ -61,6 +63,13 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
 			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.PITDEATH));
+			return actionHandler;
+		}
+
+		private Handler CreateKillPenguinByElectricution() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new KillPenguin((Killable) actionable));
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ELECTRICUTION));
 			return actionHandler;
 		}
 
