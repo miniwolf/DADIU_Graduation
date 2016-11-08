@@ -10,7 +10,9 @@ namespace Assets.scripts.UI {
 		private List<MouseInputListener> mouseListeners = new List<MouseInputListener>();
 		private List<KeyboardInputListener> keyboardListeners = new List<KeyboardInputListener>();
 
-		void Update() {
+	    private bool cameraBlocked;
+
+	    void Update() {
 			Touch();
 			Mouse();
 			Keyboard();
@@ -51,10 +53,6 @@ namespace Assets.scripts.UI {
 			}
 		}
 
-		/// <summary>
-		/// Don't forget to call Unsubscribe
-		/// </summary>
-		/// <param name="l">L.</param>
 		public void SubscribeForTouch(TouchInputListener l) {
 			touchListeners.Add(l);
 		}
@@ -84,6 +82,18 @@ namespace Assets.scripts.UI {
 		public void UnsubscribeForMouse(MouseInputListener l) {
 			mouseListeners.Remove(l);
 		}
+
+	    public void BlockCameraMovement() {
+	        cameraBlocked = true;
+	    }
+
+	    public void UnblockCameraMovement() {
+			cameraBlocked = false;
+	    }
+
+	    public bool IsCameraBlocked() {
+			return cameraBlocked;
+	    }
 	}
 }
 
