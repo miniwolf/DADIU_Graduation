@@ -1,11 +1,10 @@
-﻿using Assets.scripts.controllers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.scripts.components {
 	public interface GameEntity  {
 		string GetTag();
 		void SetupComponents();
 		GameObject GetGameObject();
-		Actionable<ControllableActions> GetActionable();
+		Actionable<T> GetActionable<T>();
 	}
 }

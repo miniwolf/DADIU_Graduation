@@ -1,3 +1,6 @@
-﻿public enum TrapActions {
-	WeightBasedSinking, WeightBasedLifting, KillPenguingByWeightBased
+﻿namespace Assets.scripts.controllers {
+	public enum TrapActions {
+		PULSATE, 
+		WEIGHTBASEDSINKING, WEIGHTBASEDLIFTING
+	}
 }
