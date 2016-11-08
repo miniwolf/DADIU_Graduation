@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.scripts.components.factory;
 using Assets.scripts.controllers;
+using Assets.scripts.UI;
 using UnityEngine;
 
 namespace Assets.scripts.components.registers {
@@ -9,9 +10,11 @@ namespace Assets.scripts.components.registers {
 		private static readonly List<GameEntity> components = new List<GameEntity>();
 		private static bool finished;
 		private static GameObject levelSettings;
+	    private static InputManager inputManager;
 
 		protected void Awake() {
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
+		    inputManager = GetComponent<InputManager>();
 		}
 
 		protected void Start() {
