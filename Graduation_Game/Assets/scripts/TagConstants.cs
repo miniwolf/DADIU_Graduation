@@ -2,6 +2,7 @@
 	public class TagConstants {
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
+		public const string SPEEDTEMPLATE = "SpeedTemplate";
 		public const string SPAWNPOOL = "SpawnPool";
 		public const string PENGUIN_TEMPLATE = "Penguin template";
 		public const string PENGUIN = "Penguin";
