@@ -2,6 +2,7 @@
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
+using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
@@ -37,13 +38,13 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateSwitchLeft() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchLeft((Directionable) actionable, levelSettings));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Left()));
 			return actionHandler;
 		}
 
 		private Handler CreateSwitchRight() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SwitchRight((Directionable) actionable, levelSettings));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Right()));
 			return actionHandler;
 		}
 
