@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Assets.scripts.components;
+using Assets.scripts.components.registers;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, Draggable {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool {
 
-		private SnappingTool snapping = new SnappingTool();
+		private SnappingToolInterface snapping;
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
@@ -20,13 +22,16 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
 
+		void Awake(){
+			InjectionRegister.Register(this);
+		}
+
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
-			
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -129,6 +134,22 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public bool IsDragged() {
 			return dragging;
+		}
+
+		public void SetSnap (SnappingToolInterface snapTool) {
+			snapping = snapTool;
+		}
+		public string GetTag () {
+			return TagConstants.SNAPPING;
+		}
+		public void SetupComponents () {
+			return;
+		}
+		public GameObject GetGameObject () {
+			return gameObject;
+		}
+		public Actionable<Assets.scripts.controllers.ControllableActions> GetActionable () {
+			return null;
 		}
 	}
 }
