@@ -8,7 +8,7 @@ namespace Assets.scripts.traps{
 			if ( other.transform.tag != TagConstants.PENGUIN ) {
 				return;
 			}
-
+			
 			other.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguinBySpikes);
 		}
 	}
