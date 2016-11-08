@@ -45,7 +45,7 @@ namespace Assets.scripts.controllers.actions.tools {
 
 		private IEnumerator LaneReached(float zPos, Vector3 oldDirection, Quaternion oldRotation) {
 			do {
-				// check every 0.25 seconds if penguin has reached the half of the lane
+				// check every 0.25 pulsateInterval if penguin has reached the half of the lane
 				yield return new WaitForSeconds(0.25f);
 			} while ( laneSwitch.LaneSwitchCondition(penguin.transform.position.z, zPos + levelSettings.GetLaneWidth()) );
 

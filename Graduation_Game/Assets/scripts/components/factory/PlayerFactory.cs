@@ -13,8 +13,8 @@ namespace Assets.scripts.components.factory {
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
 
-		public PlayerFactory(GameEntity entity, GameObject penguin, GameObject levelSettings){
-			this.actionable = entity.GetActionable();
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 
 			animator = penguin.GetComponentInChildren<Animator>();
@@ -26,6 +26,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
 			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
+			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 		}
@@ -59,6 +60,13 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
 			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.PITDEATH));
+			return actionHandler;
+		}
+
+		private Handler CreateKillPenguinByElectricution() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new KillPenguin((Killable) actionable));
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ELECTRICUTION));
 			return actionHandler;
 		}
 

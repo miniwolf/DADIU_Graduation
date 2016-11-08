@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.scripts.components.factory;
 using Assets.scripts.controllers;
+using Assets.scripts.traps;
 using UnityEngine;
 
 namespace Assets.scripts.components.registers {
@@ -9,9 +10,11 @@ namespace Assets.scripts.components.registers {
 		private static readonly List<GameEntity> components = new List<GameEntity>();
 		private static bool finished;
 		private static GameObject levelSettings;
+		private static CouroutineDelegateHandler handler;
 
 		protected void Awake() {
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
+			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 		}
 
 		protected void Start() {
@@ -38,13 +41,16 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component, component.GetGameObject(), levelSettings).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					new PickupFactory((Actionable<PickupActions>) component).Build();
+					new PickupFactory(component.GetActionable<PickupActions>()).Build();
 					break;
 				case TagConstants.PRESSURE_PLATE:
-				new PressurePlateFactory((Actionable<PressurePlateActions>) component).BuildActionOnLinkingObject((LinkingComponent) component);
+					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent) component);
+					break;
+				case TagConstants.WIRE:
+					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
 					break;
 			default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");

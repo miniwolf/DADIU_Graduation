@@ -16,9 +16,12 @@
 		public const string SWITCHLANE = "SwitchLane";
 		public const string LANE = "Lane";
 		public const string JUMP = "Jump";
+		public const string WIRE = "Wire";
 
 		public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 		}
-    }
+
+
+	}
 }
