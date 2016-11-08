@@ -2,11 +2,13 @@
 using System.Collections;
 namespace Assets.scripts.UI.screen.ingame {
 
-	public class SnappingTool : MonoBehaviour {
+	public class SnappingTool {
 
+		public float leftLaneOffset = 1f;
+		public float rightLaneOffset = -1f;
 
 		// Handles snapping on left or right lane
-		public void Snap(Vector3 hitPos, Transform tool, float leftLaneOffset, float rightLaneOffset) {
+		public void Snap(Vector3 hitPos, Transform tool) {
 			tool.position =
 					Mathf.Abs(leftLaneOffset - hitPos.z) < Mathf.Abs(rightLaneOffset - hitPos.z)
 					? new Vector3(hitPos.x, tool.position.y, leftLaneOffset)
