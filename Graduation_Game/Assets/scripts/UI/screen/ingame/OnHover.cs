@@ -37,7 +37,6 @@ namespace Assets.scripts.UI.screen.ingame{
 					case TouchPhase.Ended:
 						if (shouldMove) {
 							touchPhaseEnded = true;
-							shouldReturn = true;
 							NoLongerMoveTool();
 						}
 						break;
