@@ -15,6 +15,9 @@ namespace Assets.scripts.character {
 		private bool isDead;
 		private CharacterController characterController;
 		private float groundY;
+		private bool isRunning;
+		private float initialRunTime;
+		private AnimationCurve curve;
 
 		void Start() {
 			groundY = transform.position.y;
@@ -26,6 +29,9 @@ namespace Assets.scripts.character {
 		void Update() {
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
+				if ( isRunning ) {
+					ExecuteAction(ControllableActions.Speed);
+				}
 			} else {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
@@ -88,6 +94,30 @@ namespace Assets.scripts.character {
 
 		public bool IsDead() {
 			return isDead;
+		}
+
+		public bool IsRunning() {
+			return isRunning;
+		}
+
+		public void SetRunning(bool running) {
+			isRunning = running;
+		}
+
+		public float GetInitialRunTime() {
+			return initialRunTime;
+		}
+
+		public void SetInitialRunTime(float time) {
+			initialRunTime = time;
+		}
+
+		public void SetCurve(AnimationCurve curve) {
+			this.curve = curve;
+		}
+
+		public AnimationCurve GetCurve() {
+			return curve;
 		}
 	}
 }
