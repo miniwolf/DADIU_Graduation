@@ -11,16 +11,20 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
+		public GameObject speedPrefab;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
+		private GameObject[] speedTools;
 		public int numberOfJumpTools = 8;
 		public int numberOfSwitchLaneTools = 8;
+		public int numberOfSpeedTools = 8;
 
 		private bool dragging;
 		private Vector3 mouseHitPosition;
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
+		private bool speedIsBeingPlaced = false;
 
 		void Awake(){
 			InjectionRegister.Register(this);
@@ -29,9 +33,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
+			speedTools = new GameObject[numberOfSpeedTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
+			PoolSystem(speedTools, speedPrefab, numberOfSpeedTools);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -62,6 +68,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		public void OnButtonClickPlaceSpeed() {
+			if(numberOfSpeedTools > 0) {
+				speedIsBeingPlaced = true;
+				dragging = true;
+				numberOfSpeedTools--;
+				speedTools[numberOfSpeedTools].SetActive(true);
+			}
+		}
+
 
 		void Update() {
 			foreach ( var touch in Input.touches) {
@@ -85,6 +100,16 @@ namespace Assets.scripts.UI.screen.ingame {
 					jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
 					SetDraggingFalse();
 				}
+
+				// speed tool
+				if ( touch.phase == TouchPhase.Moved && speedIsBeingPlaced ) {
+					PlaceObject(speedTools[numberOfSpeedTools], touch.position);
+				}
+				if ( touch.phase == TouchPhase.Ended && speedIsBeingPlaced ) {
+					speedIsBeingPlaced = false;
+					speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					SetDraggingFalse();
+				}
 			}
 
 			// switch lane tool
@@ -106,6 +131,17 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Input.GetMouseButtonUp(0) && jumpIsBeingPlaced ) {
 				jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
 				jumpIsBeingPlaced = false;
+				SetDraggingFalse();
+			}
+
+			// speed tool
+			if ( Input.GetMouseButton(0) && speedIsBeingPlaced ) {
+				PlaceObject(speedTools[numberOfSpeedTools], Input.mousePosition);
+			}
+			// Release jump to the scene
+			if ( Input.GetMouseButtonUp(0) && speedIsBeingPlaced ) {
+				speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				speedIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
 		}

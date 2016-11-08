@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 namespace Assets.scripts.UI.screen.ingame {
 
 	public class SnappingTool : SnappingToolInterface {
