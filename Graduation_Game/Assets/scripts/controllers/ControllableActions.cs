@@ -3,6 +3,7 @@
 		SwitchLeft, SwitchRight,
 		Move, Stop,
 		KillPenguinBySpikes, KillPenguinByPit,
+		KillPenguingByWeightBased,
 		StartJump, StopJump
 	}
 }
