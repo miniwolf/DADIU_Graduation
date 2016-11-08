@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.scripts.components;
+using Assets.scripts.controllers;
 
 namespace Assets.scripts.traps{
 	public class WeightBasedTrap : ActionableGameEntityImpl<TrapActions>, WeightBasedInterface {
@@ -13,8 +14,13 @@ namespace Assets.scripts.traps{
 		private float initialHeight;
 		private float whenSunk;
 		public float maxNegativeYMovement = 4f;
-		public float movementFactor = 0.5f;
+		public float movementFactor = 0.1f;
+		private Coroutine sinking;
 
+		void Start(){
+			Init();
+			DivideChildren();
+		}
 
 		void Init(){
 			initialHeight = transform.position.y;
@@ -31,11 +37,12 @@ namespace Assets.scripts.traps{
 			}
 		}
 
-		void Sinking(){
-			ExecuteAction(TrapActions.WeightBasedSinking);
+		void Sinking(float sinkingSpeed){
+			sinking = StartCoroutine(SinkIt(sinkingSpeed));
 		}
 		void Lifting(){
-			ExecuteAction(TrapActions.WeightBasedLifting);
+			StopCoroutine(sinking);
+			ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
 		}
 
 
@@ -47,7 +54,7 @@ namespace Assets.scripts.traps{
 			if (other.tag == TagConstants.PENGUIN) {
 				penguins.Add(other.gameObject);
 				if (penguins.Count > 0) {
-					Sinking();
+					Sinking(0.5f);
 				}
 			}
 		}
@@ -74,6 +81,12 @@ namespace Assets.scripts.traps{
 
 		public float GetMovementFactor(){
 			return movementFactor;
+		}
+		IEnumerator SinkIt(float speed){
+			while(gos[0].transform.position.y>whenSunk){
+				ExecuteAction(TrapActions.WEIGHTBASEDSINKING);
+				yield return new WaitForSeconds(speed);
+			}
 		}
 	}
 }

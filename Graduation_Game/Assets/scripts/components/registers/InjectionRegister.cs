@@ -64,6 +64,9 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
 					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
 					break;
+				case TagConstants.WEIGHTBASED:
+					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>());
+					break;
 			default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
