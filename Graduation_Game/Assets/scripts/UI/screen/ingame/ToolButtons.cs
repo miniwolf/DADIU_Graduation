@@ -21,8 +21,6 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
 
-
-
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
