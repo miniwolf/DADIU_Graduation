@@ -23,7 +23,6 @@ public class SlopeGenerator : MonoBehaviour
             DestroyImmediate(t.gameObject);
         }
 
-
         int width = 2;
 
         var data = new MeshData(length, width);
@@ -31,7 +30,8 @@ public class SlopeGenerator : MonoBehaviour
         float minY = float.MaxValue;
         float startX = 0, endX = length;
 
-        { // add plane vertices, uvs and triangles
+        {
+            // add plane vertices, uvs and triangles
             int vertexIndex = 0;
             for (int x = 0; x < length; x++)
             {
@@ -57,7 +57,7 @@ public class SlopeGenerator : MonoBehaviour
                 }
             }
 
-            for (int vertex = 0; vertex < data.planeVertices -2; vertex += 2)
+            for (int vertex = 0; vertex < data.planeVertices - 2; vertex += 2)
             {
                 data.AddTriangle(vertex, vertex + 2, vertex + 1);
                 data.AddTriangle(vertex + 2, vertex, vertex + 1);
@@ -68,24 +68,25 @@ public class SlopeGenerator : MonoBehaviour
         }
 
 
-        {// add bottom triangles + vertices and UVS
-			int vertexIndex = data.planeVertices;
+        {// add bottom triangles and side triangles + vertices and UVS
+            int vertexIndex = data.planeVertices;
             for (int x = 0; x < length; x++)
             {
                 Vector3 start = new Vector3(x, minY, 0);
                 PlaceCube(start);
-				data.vertices[vertexIndex] = start;
-				data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
+                data.vertices[vertexIndex] = start;
+                data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
                 vertexIndex++;
 
                 start = new Vector3(x, minY, width);
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
-				data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
+                data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
                 vertexIndex++;
             }
 
             for (int vertex = data.planeVertices; vertex < data.planeVertices + data.bottomVertices - 2; vertex += 2)
+                // bottom triangles
             {
                 data.AddTriangle(vertex, vertex + 2, vertex + 1);
                 data.AddTriangle(vertex + 2, vertex, vertex + 1);
@@ -93,7 +94,23 @@ public class SlopeGenerator : MonoBehaviour
                 data.AddTriangle(vertex + 1, vertex + 2 + 1, vertex + 1 + 1);
                 data.AddTriangle(vertex + 2 + 1, vertex + 1, vertex + 1 + 1);
             }
+
+            for (int triangle = 0; triangle < width * length - width; triangle++) // side triangles
+            {
+                    data.AddTriangle(triangle, triangle + 2, data.planeVertices + triangle);
+                    data.AddTriangle(triangle + 2, triangle, data.planeVertices + triangle);
+
+                    data.AddTriangle(data.planeVertices + triangle + 2, data.planeVertices + triangle, triangle + 2);
+                    data.AddTriangle(data.planeVertices + triangle, data.planeVertices + triangle + 2, triangle + 2);
+            }
+
+
         }
+
+        { // generate
+        }
+
+
 
         var mesh = new Mesh();
         mesh.vertices = data.vertices;
@@ -112,10 +129,10 @@ public class SlopeGenerator : MonoBehaviour
 
     private void PlaceCube(Vector3 vector3)
     {
-        GameObject corner = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        corner.transform.position = vector3;
-        corner.transform.localScale = scale;
-        corner.transform.parent = transform;
+//        GameObject corner = GameObject.CreatePrimitive(PrimitiveType.Cube);
+//        corner.transform.position = vector3;
+//        corner.transform.localScale = scale;
+//        corner.transform.parent = transform;
     }
 
     public class MeshData
@@ -141,9 +158,14 @@ public class SlopeGenerator : MonoBehaviour
             bottomVertices = length * width;
             bottomUVs = length * width;
 
+            sideTriangles = length * width * 2 * 3;
+            sideTriangles *= 2; // we have two sides
+//            sideVertices = length * width;
+//            sideUVs = length * width;
+
             vertices = new Vector3[planeVertices + bottomVertices];
             uvs = new Vector2[planeUVs + bottomUVs];
-            triangles = new int[planeTriangles + bottomTriangles];
+            triangles = new int[planeTriangles + bottomTriangles + sideTriangles];
         }
 
         public void AddTriangle(int a, int b, int c)
