@@ -7,29 +7,28 @@ using Assets.scripts.components.registers;
 using System.Collections;
 
 namespace Assets.scripts.tools {
-	public class Speed : MonoBehaviour, Tool {
+	public class Minimize : MonoBehaviour, Tool {
 		private Penguin penguin;
 		public AnimationCurve curve;
-		public float timeForRun;
+		public float timeForMinimize;
 
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
 				penguin = collision.gameObject.GetComponent<Penguin>();
-				penguin.SetCurve(Penguin.CurveType.Speed, curve);
+				penguin.SetCurve(Penguin.CurveType.Minimize, curve);
 
 				var actionable = collision.gameObject.GetComponent<Actionable<ControllableActions>>();
-				actionable.ExecuteAction(ControllableActions.StartSpeed);
-				StartCoroutine(WaitForSpeedup(actionable));
+				actionable.ExecuteAction(ControllableActions.StartMinimize);
+				StartCoroutine(WaitForMinimize(actionable));
 			}
 		}
 
-		public ToolType GetToolType() {
-			return ToolType.Speed;
+		private IEnumerator WaitForMinimize(Actionable<ControllableActions> actionable) {
+			yield return new WaitForSeconds(timeForMinimize);
+			actionable.ExecuteAction(ControllableActions.StopMinimize);
 		}
-
-		private IEnumerator WaitForSpeedup(Actionable<ControllableActions> actionable) {
-			yield return new WaitForSeconds(timeForRun);
-			actionable.ExecuteAction(ControllableActions.StopSpeed);
+		public ToolType GetToolType() {
+			return ToolType.Minimize;
 		}
 	}
 }
