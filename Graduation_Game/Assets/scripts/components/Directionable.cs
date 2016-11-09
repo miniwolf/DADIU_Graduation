@@ -23,6 +23,8 @@ namespace Assets.scripts.components {
 		void SetRunning(bool running);
 		bool IsEnlarging();
 		void SetEnlarging(bool enlarging);
+		bool IsMinimizing();
+		void SetMinimizing(bool minimizing);
 		Penguin.Weight GetWeight();
 		void SetWeight(Penguin.Weight weight);
 

@@ -21,6 +21,7 @@ namespace Assets.scripts.character {
 		private float groundY;
 		private bool isRunning;
 		private bool isEnlarging;
+		private bool isMinimizing;
 		private Dictionary<CurveType, AnimationCurve> curveDict;
 		private Dictionary<CurveType, float> initialTimeDict;
 		private Weight weight; 
@@ -43,6 +44,9 @@ namespace Assets.scripts.character {
 				} 
 				if ( isEnlarging ) {
 					ExecuteAction(ControllableActions.Enlarge);
+				}
+				if ( isMinimizing ) {
+					ExecuteAction(ControllableActions.Minimize);
 				}
 			} else {
 				if ( !characterController.isGrounded ) {
@@ -150,6 +154,14 @@ namespace Assets.scripts.character {
 
 		public void SetEnlarging(bool enlarging) {
 			isEnlarging = enlarging;
+		}
+
+		public bool IsMinimizing() {
+			return isMinimizing;
+		}
+
+		public void SetMinimizing(bool minimizing) {
+			isMinimizing = minimizing;
 		}
 
 		public void SetScale(Vector3 scale) {

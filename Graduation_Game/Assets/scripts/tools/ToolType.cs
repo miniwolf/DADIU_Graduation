@@ -4,6 +4,7 @@
 		PressurePlate,
         Jump,
 		Speed,
-		Enlarge
+		Enlarge,
+		Minimize
     }
 }

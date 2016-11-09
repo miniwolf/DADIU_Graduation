@@ -4,10 +4,10 @@ using Assets.scripts.level;
 using Assets.scripts.character;
 
 namespace Assets.scripts.controllers.actions.tools {
-	public class Enlarge : Action {
+	public class Minimize : Action {
 		private Directionable direction;
 
-		public Enlarge(Directionable direction) {
+		public Minimize(Directionable direction) {
 			this.direction = direction;
 		}
 
@@ -17,11 +17,11 @@ namespace Assets.scripts.controllers.actions.tools {
 
 		public void Execute() {
 			Vector3 initialScale = direction.GetInitialScale();
-			float initialTime = direction.GetInitialTime(Penguin.CurveType.Enlarge);
+			float initialTime = direction.GetInitialTime(Penguin.CurveType.Minimize);
 			float actualTime = Time.timeSinceLevelLoad;
-			AnimationCurve curve = direction.GetCurve(Penguin.CurveType.Enlarge);
+			AnimationCurve curve = direction.GetCurve(Penguin.CurveType.Minimize);
 			float scalingFactor = curve.Evaluate(actualTime - initialTime);
-			Vector3 newScale = initialScale * scalingFactor;
+			Vector3 newScale = initialScale / scalingFactor;
 			direction.SetScale(newScale);
 		}
 	}

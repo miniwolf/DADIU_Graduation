@@ -38,6 +38,9 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartEnlarge, CreateStartEnlarge());
 			actionable.AddAction(ControllableActions.Enlarge, CreateEnlarge());
 			actionable.AddAction(ControllableActions.StopEnlarge, CreateStopEnlarge());
+			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
+			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
+			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 		}
 
 		private Handler CreateMove() {
@@ -148,6 +151,25 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new StopEnlarge((Directionable) actionable));
 			// TODO there is an offset from when the shrinking animation should be played and when it is actually played
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.ENLARGE));
+			return actionHandler;
+		}
+
+		private Handler CreateStartMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.MINIMIZE));
+			return actionHandler;
+		}
+
+		private Handler CreateMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Minimize((Directionable) actionable));
+			return actionHandler;
+		}
+		private Handler CreateStopMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.MINIMIZE));
 			return actionHandler;
 		}
 	}
