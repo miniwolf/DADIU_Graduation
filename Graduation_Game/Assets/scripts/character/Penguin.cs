@@ -52,7 +52,8 @@ namespace Assets.scripts.character {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
-					characterController.enabled = false;
+					//TODO Instantiate a dead penguin mesh into the position of the penguin.
+					//characterController.enabled = false;
 				}
 			}
 		}
@@ -61,11 +62,23 @@ namespace Assets.scripts.character {
 		}
 
 		public void SetCurve(CurveType type, AnimationCurve curve) {
-			curveDict.Add(type, curve);
+			AnimationCurve curveStored;
+			if ( curveDict.TryGetValue(type, out curveStored) ) {
+				//overwrite previous curve (from previous tool)
+				curveDict[type] = curve;
+			} else {
+				curveDict.Add(type, curve);
+			}
 		}
 
 		public void SetInitialTime(CurveType type, float time) {
-			initialTimeDict.Add(type, time);
+			float timeStored;
+			if ( initialTimeDict.TryGetValue(type, out timeStored) ) {
+				//overwrite previous time (from previous tool)
+				initialTimeDict[type] = time;
+			} else {
+				initialTimeDict.Add(type, time);
+			}
 		}
 
 		public AnimationCurve GetCurve(CurveType type) {
