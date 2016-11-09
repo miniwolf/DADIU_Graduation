@@ -70,7 +70,7 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateKillPenguinByWeightBased() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.SPIKEDEATH)); // Should be another anim, it does not exists right now
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.DROWNDEATH));
 			return actionHandler;
 		}
 
