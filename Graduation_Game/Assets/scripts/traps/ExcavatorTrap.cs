@@ -37,6 +37,7 @@ namespace Assets.scripts.traps {
 		protected void OnCollisionEnter(Collision collision) {
 			if (collision.transform.tag == TagConstants.PENGUIN) {
 				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguinByExcavator);
+				collision.collider.enabled = false; // Disables the character controller on the dead penguins
 			}
 		}
 

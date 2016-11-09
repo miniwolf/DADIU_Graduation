@@ -5,6 +5,7 @@
         Jump,
 		Speed,
 		Enlarge,
-		Minimize
+		Minimize,
+		Bridge
     }
 }
