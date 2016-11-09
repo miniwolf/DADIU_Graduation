@@ -69,17 +69,20 @@ public class SlopeGenerator : MonoBehaviour
 
 
         {// add bottom triangles + vertices and UVS
-            for (int x = 0; x < length; x+=2)
+			int vertexIndex = data.planeVertices;
+            for (int x = 0; x < length; x++)
             {
                 Vector3 start = new Vector3(x, minY, 0);
                 PlaceCube(start);
-                data.vertices[data.planeVertices + x] = start;
-                data.uvs[data.planeUVs + x] = new Vector2(x / (float) length, 0);
+				data.vertices[vertexIndex] = start;
+				data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
+                vertexIndex++;
 
                 start = new Vector3(x, minY, width);
                 PlaceCube(start);
-                data.vertices[data.planeVertices + x + 1] = start;
-                data.uvs[data.planeUVs + x + 1] = new Vector2(x / (float) length, 1);
+                data.vertices[vertexIndex] = start;
+				data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
+                vertexIndex++;
             }
 
             for (int vertex = data.planeVertices; vertex < data.planeVertices + data.bottomVertices - 2; vertex += 2)
