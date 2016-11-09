@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Assets.scripts.level;
 
 namespace Assets.scripts.controllers.actions.tools.lane {
 	public class Right : LaneSwitch {
@@ -10,7 +11,12 @@ namespace Assets.scripts.controllers.actions.tools.lane {
 		}
 
 		public bool LaneSwitchCondition(float positionZ, float f) {
+			Debug.Log(positionZ + " " + f);
 			return positionZ > f;
+		}
+
+		public float GetDirection(float zPos, LevelSettings levelSettings) {
+			return zPos - levelSettings.GetLaneWidth();
 		}
 	}
 }
