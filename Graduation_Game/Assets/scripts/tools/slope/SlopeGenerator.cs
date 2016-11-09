@@ -68,7 +68,8 @@ public class SlopeGenerator : MonoBehaviour
         }
 
 
-        {// add bottom triangles and side triangles + vertices and UVS
+        {
+// add bottom triangles and side triangles + vertices and UVS
             int vertexIndex = data.planeVertices;
             for (int x = 0; x < length; x++)
             {
@@ -97,19 +98,29 @@ public class SlopeGenerator : MonoBehaviour
 
             for (int triangle = 0; triangle < width * length - width; triangle++) // side triangles
             {
-                    data.AddTriangle(triangle, triangle + 2, data.planeVertices + triangle);
-                    data.AddTriangle(triangle + 2, triangle, data.planeVertices + triangle);
+                data.AddTriangle(triangle, triangle + 2, data.planeVertices + triangle);
+                data.AddTriangle(triangle + 2, triangle, data.planeVertices + triangle);
 
-                    data.AddTriangle(data.planeVertices + triangle + 2, data.planeVertices + triangle, triangle + 2);
-                    data.AddTriangle(data.planeVertices + triangle, data.planeVertices + triangle + 2, triangle + 2);
+                data.AddTriangle(data.planeVertices + triangle + 2, data.planeVertices + triangle, triangle + 2);
+                data.AddTriangle(data.planeVertices + triangle, data.planeVertices + triangle + 2, triangle + 2);
             }
-
-
         }
 
-        { // generate
-        }
+        {
+            // generate
 
+            data.AddTriangle(0, 1, data.planeVertices);
+            data.AddTriangle(1, 0, data.planeVertices);
+
+            data.AddTriangle(data.planeVertices, data.planeVertices + 1, 1);
+            data.AddTriangle(data.planeVertices + 1, data.planeVertices, 1);
+
+            data.AddTriangle(data.planeVertices - 1, data.planeVertices - 2, data.planeVertices + data.bottomVertices - 1);
+            data.AddTriangle(data.planeVertices - 2, data.planeVertices - 1, data.planeVertices + data.bottomVertices - 1);
+
+            data.AddTriangle(data.planeVertices + data.bottomVertices - 1, data.planeVertices + data.bottomVertices - 2, data.planeVertices -2);
+            data.AddTriangle(data.planeVertices + data.bottomVertices - 2, data.planeVertices + data.bottomVertices - 1,  data.planeVertices -2);
+        }
 
 
         var mesh = new Mesh();
@@ -139,8 +150,8 @@ public class SlopeGenerator : MonoBehaviour
     {
         public int planeTriangles, planeVertices, planeUVs;
         public int bottomTriangles, bottomVertices, bottomUVs;
-        public int sideTriangles, sideVertices, sideUVs;
-
+        public int sideTriangles;
+        public int frontBackTriangles;
 
         public Vector3[] vertices;
         public int[] triangles;
@@ -160,12 +171,12 @@ public class SlopeGenerator : MonoBehaviour
 
             sideTriangles = length * width * 2 * 3;
             sideTriangles *= 2; // we have two sides
-//            sideVertices = length * width;
-//            sideUVs = length * width;
+
+            frontBackTriangles = 2 * 2 * 2 * 3;
 
             vertices = new Vector3[planeVertices + bottomVertices];
             uvs = new Vector2[planeUVs + bottomUVs];
-            triangles = new int[planeTriangles + bottomTriangles + sideTriangles];
+            triangles = new int[planeTriangles + bottomTriangles + sideTriangles + frontBackTriangles];
         }
 
         public void AddTriangle(int a, int b, int c)
