@@ -14,17 +14,20 @@ namespace Assets.scripts.UI.screen.ingame {
 		public GameObject speedPrefab;
 		public GameObject enlargePrefab;
 		public GameObject minimizePrefab;
+		public GameObject bridgePrefab;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
 		private GameObject[] speedTools;
 		private GameObject[] enlargeTools;
 		private GameObject[] minimizeTools;
+		private GameObject[] bridgeTools;
 		public int numberOfJumpTools = 8;
 		public int numberOfSwitchLaneTools = 8;
 		public int numberOfSpeedTools = 8;
 		public int numberOfEnlargeTools = 8;
 		public int numberOfMinimizeTools = 8;
+		public int numberOfBridgeTools = 8;
 
 		private bool dragging;
 		private Vector3 mouseHitPosition;
@@ -33,6 +36,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool speedIsBeingPlaced = false;
 		private bool enlargeIsBeingPlaced = false;
 		private bool minimizeIsBeingPlaced = false;
+		private bool bridgeIsBeingPlaced = false;
 
 		void Awake(){
 			InjectionRegister.Register(this);
@@ -44,12 +48,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			speedTools = new GameObject[numberOfSpeedTools];
 			enlargeTools = new GameObject[numberOfEnlargeTools];
 			minimizeTools = new GameObject[numberOfMinimizeTools];
+			bridgeTools = new GameObject[numberOfBridgeTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
 			PoolSystem(speedTools, speedPrefab, numberOfSpeedTools);
 			PoolSystem(enlargeTools, enlargePrefab, numberOfEnlargeTools);
 			PoolSystem(minimizeTools, minimizePrefab, numberOfMinimizeTools);
+			PoolSystem(bridgeTools, bridgePrefab, numberOfBridgeTools);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -107,6 +113,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		public void OnButtonClickPlaceBridge() {
+			if (numberOfBridgeTools > 0) {
+				bridgeIsBeingPlaced = true;
+				dragging = true;
+				numberOfBridgeTools--;
+				bridgeTools[numberOfBridgeTools].SetActive(true);
+			}
+		}
+
 
 		void Update() {
 			foreach ( var touch in Input.touches) {
@@ -117,7 +132,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if ( touch.phase == TouchPhase.Ended && switchIsBeingPlaced ) {
 					switchIsBeingPlaced = false;
 					//activate collider when we place it on the scene
-					switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<Collider>().enabled = true;
 					SetDraggingFalse();
 				}
 
@@ -127,7 +142,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				if ( touch.phase == TouchPhase.Ended && jumpIsBeingPlaced ) {
 					jumpIsBeingPlaced = false;
-					jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					jumpTools[numberOfJumpTools].GetComponentInChildren<Collider>().enabled = true;
 					SetDraggingFalse();
 				}
 
@@ -137,7 +152,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				if ( touch.phase == TouchPhase.Ended && speedIsBeingPlaced ) {
 					speedIsBeingPlaced = false;
-					speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					speedTools[numberOfSpeedTools].GetComponentInChildren<Collider>().enabled = true;
 					SetDraggingFalse();
 				}
 
@@ -147,7 +162,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				if ( touch.phase == TouchPhase.Ended && enlargeIsBeingPlaced ) {
 					enlargeIsBeingPlaced = false;
-					enlargeTools[numberOfEnlargeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					enlargeTools[numberOfEnlargeTools].GetComponentInChildren<Collider>().enabled = true;
 					SetDraggingFalse();
 				}
 
@@ -157,7 +172,17 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				if ( touch.phase == TouchPhase.Ended && minimizeIsBeingPlaced ) {
 					minimizeIsBeingPlaced = false;
-					minimizeTools[numberOfMinimizeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					minimizeTools[numberOfMinimizeTools].GetComponentInChildren<Collider>().enabled = true;
+					SetDraggingFalse();
+				}
+
+				// bridge tool
+				if (touch.phase == TouchPhase.Moved && bridgeIsBeingPlaced) {
+					PlaceObject(bridgeTools[numberOfBridgeTools], touch.position);
+				}
+				if (touch.phase == TouchPhase.Ended && bridgeIsBeingPlaced) {
+					bridgeIsBeingPlaced = false;
+					bridgeTools[numberOfBridgeTools].GetComponentInChildren<Collider>().enabled = true;
 					SetDraggingFalse();
 				}
 			}
@@ -169,7 +194,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			// Release switch lane to the scene
 			if ( Input.GetMouseButtonUp(0) && switchIsBeingPlaced ) {
 				switchIsBeingPlaced = false;
-				switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<Collider>().enabled = true;
 				SetDraggingFalse();
 			}
 
@@ -179,7 +204,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			// Release jump to the scene
 			if ( Input.GetMouseButtonUp(0) && jumpIsBeingPlaced ) {
-				jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				jumpTools[numberOfJumpTools].GetComponentInChildren<Collider>().enabled = true;
 				jumpIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
@@ -191,7 +216,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			// Release speed to the scene
 			if ( Input.GetMouseButtonUp(0) && speedIsBeingPlaced ) {
-				speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				speedTools[numberOfSpeedTools].GetComponentInChildren<Collider>().enabled = true;
 				speedIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
@@ -202,7 +227,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			// Release enlarge to the scene
 			if ( Input.GetMouseButtonUp(0) && enlargeIsBeingPlaced ) {
-				enlargeTools[numberOfEnlargeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				enlargeTools[numberOfEnlargeTools].GetComponentInChildren<Collider>().enabled = true;
 				enlargeIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
@@ -213,8 +238,19 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			// Release minimize to the scene
 			if ( Input.GetMouseButtonUp(0) && minimizeIsBeingPlaced ) {
-				minimizeTools[numberOfMinimizeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				minimizeTools[numberOfMinimizeTools].GetComponentInChildren<Collider>().enabled = true;
 				minimizeIsBeingPlaced = false;
+				SetDraggingFalse();
+			}
+
+			// bridge tool
+			if (Input.GetMouseButton(0) && bridgeIsBeingPlaced) {
+				PlaceObject(bridgeTools[numberOfBridgeTools], Input.mousePosition);
+			}
+			// Release bridge to the scene
+			if (Input.GetMouseButtonUp(0) && bridgeIsBeingPlaced) {
+				bridgeTools[numberOfBridgeTools].GetComponentInChildren<Collider>().enabled = true;
+				bridgeIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
 		}
