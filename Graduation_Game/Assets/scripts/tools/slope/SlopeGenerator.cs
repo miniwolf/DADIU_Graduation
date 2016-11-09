@@ -10,6 +10,8 @@ public class SlopeGenerator : MonoBehaviour
 {
     public AnimationCurve slopeCurve;
     public int length = 100;
+    public int slopeWidth = 4;
+
     private Vector3 scale = Vector3.one / 3;
     private int vertPerLine = 1;
     // Use this for initialization
@@ -48,7 +50,7 @@ public class SlopeGenerator : MonoBehaviour
                     data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
                     vertexIndex++;
 
-                    start.z = start.z + width;
+                    start.z = start.z + slopeWidth;
 
                     PlaceCube(start);
                     data.vertices[vertexIndex] = start;
@@ -67,7 +69,6 @@ public class SlopeGenerator : MonoBehaviour
             }
         }
 
-
         {
 // add bottom triangles and side triangles + vertices and UVS
             int vertexIndex = data.planeVertices;
@@ -79,7 +80,7 @@ public class SlopeGenerator : MonoBehaviour
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
                 vertexIndex++;
 
-                start = new Vector3(x, minY, width);
+                start = new Vector3(x, minY, slopeWidth);
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
@@ -107,8 +108,7 @@ public class SlopeGenerator : MonoBehaviour
         }
 
         {
-            // generate
-
+            // generate front and back triangles
             data.AddTriangle(0, 1, data.planeVertices);
             data.AddTriangle(1, 0, data.planeVertices);
 
@@ -134,6 +134,7 @@ public class SlopeGenerator : MonoBehaviour
         slope.transform.parent = transform;
         MeshFilter meshFilter = slope.AddComponent<MeshFilter>();
         MeshRenderer renderer = slope.AddComponent<MeshRenderer>();
+        slope.AddComponent<MeshCollider>();
         renderer.material.color = Color.white;
         meshFilter.sharedMesh = mesh;
     }
