@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using Assets.scripts.tools.slope;
 using UnityEditor;
 
 
@@ -134,7 +135,10 @@ public class SlopeGenerator : MonoBehaviour
         slope.transform.parent = transform;
         MeshFilter meshFilter = slope.AddComponent<MeshFilter>();
         MeshRenderer renderer = slope.AddComponent<MeshRenderer>();
-        slope.AddComponent<MeshCollider>();
+        MeshCollider collider= slope.AddComponent<MeshCollider>();
+        collider.sharedMesh = mesh;
+        slope.AddComponent<SlopeScript>();
+
         renderer.material.color = Color.white;
         meshFilter.sharedMesh = mesh;
     }
