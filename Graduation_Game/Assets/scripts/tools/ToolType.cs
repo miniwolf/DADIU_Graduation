@@ -3,6 +3,7 @@
 		SwitchLane,
 		PressurePlate,
         Jump,
-		Speed
+		Speed,
+		Enlarge
     }
 }

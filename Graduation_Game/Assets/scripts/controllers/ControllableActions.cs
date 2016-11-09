@@ -7,6 +7,7 @@
 		KillPenguingByWeightBased,
 		StartJump, StopJump,
 		StartSpeed, Speed, StopSpeed,
+		StartEnlarge, Enlarge, StopEnlarge,
 		KillPenguinByElectricution,
 		KillPenguinByOrca
 

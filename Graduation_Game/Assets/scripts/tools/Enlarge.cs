@@ -7,29 +7,28 @@ using Assets.scripts.components.registers;
 using System.Collections;
 
 namespace Assets.scripts.tools {
-	public class Speed : MonoBehaviour, Tool {
+	public class Enlarge : MonoBehaviour, Tool {
 		private Penguin penguin;
 		public AnimationCurve curve;
-		public float timeForRun;
+		public float timeForEnlarge;
 
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
 				penguin = collision.gameObject.GetComponent<Penguin>();
-				penguin.SetCurve(Penguin.CurveType.Speed, curve);
+				penguin.SetCurve(Penguin.CurveType.Enlarge, curve);
 
 				var actionable = collision.gameObject.GetComponent<Actionable<ControllableActions>>();
-				actionable.ExecuteAction(ControllableActions.StartSpeed);
+				actionable.ExecuteAction(ControllableActions.StartEnlarge);
 				StartCoroutine(WaitForSpeedup(actionable));
 			}
 		}
 
-		public ToolType GetToolType() {
-			return ToolType.Speed;
-		}
-
 		private IEnumerator WaitForSpeedup(Actionable<ControllableActions> actionable) {
-			yield return new WaitForSeconds(timeForRun);
-			actionable.ExecuteAction(ControllableActions.StopSpeed);
+			yield return new WaitForSeconds(timeForEnlarge);
+			actionable.ExecuteAction(ControllableActions.StopEnlarge);
+		}
+		public ToolType GetToolType() {
+			return ToolType.Enlarge;
 		}
 	}
 }
