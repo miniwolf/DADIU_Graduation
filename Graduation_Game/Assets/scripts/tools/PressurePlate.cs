@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Asset.scripts.tools;
-using Assets.scripts.controllers.handlers;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
 
 
 namespace Assets.scripts.tools {
-	
 	public class PressurePlate : ActionableGameEntityImpl<PressurePlateActions>, LinkingComponent {
 		public GameObject linkingObject;
 

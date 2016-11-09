@@ -8,6 +8,5 @@
 		StartSpeed, Speed, StopSpeed,
 		KillPenguinByElectricution,
 		KillPenguinByOrca
-
 	}
 }

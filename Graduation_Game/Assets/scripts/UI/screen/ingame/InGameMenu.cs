@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Asset.scripts.tools;
+using Assets.scripts.tools;
 
 namespace Assets.scripts.UI.screen.ingame {
     public interface InGameMenu {

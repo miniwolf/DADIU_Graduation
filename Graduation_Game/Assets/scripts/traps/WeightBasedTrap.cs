@@ -22,31 +22,33 @@ namespace Assets.scripts.traps{
 			DivideChildren();
 		}
 
-		void Init(){
+		private void Init() {
 			initialHeight = transform.position.y;
 			whenSunk = initialHeight - maxNegativeYMovement;
 		}
 
-
-		void DivideChildren(){
-			foreach (Transform t in GetComponentsInChildren<Transform>()) {
-				if (t.gameObject.GetComponent<MeshRenderer>() != null) {
-					gos[iterator] = t.gameObject;
-					iterator++;
+		private void DivideChildren() {
+			foreach (var t in GetComponentsInChildren<Transform>()) {
+				if ( t.gameObject.GetComponent<MeshRenderer>() == null ) {
+					continue;
 				}
+
+				gos[iterator] = t.gameObject;
+				iterator++;
 			}
 		}
 
-		void Sinking(float sinkingSpeed){
+		private void Sinking(float sinkingSpeed) {
 			sinking = StartCoroutine(SinkIt(sinkingSpeed));
 		}
-		void Lifting(){
+
+		private void Lifting() {
 			StopCoroutine(sinking);
 			ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
 		}
 
 
-		public override string GetTag () {
+		public override string GetTag() {
 			return TagConstants.WEIGHTBASED;
 		}
 
@@ -82,6 +84,7 @@ namespace Assets.scripts.traps{
 		public float GetMovementFactor(){
 			return movementFactor;
 		}
+
 		IEnumerator SinkIt(float speed){
 			while(gos[0].transform.position.y>whenSunk){
 				ExecuteAction(TrapActions.WEIGHTBASEDSINKING);

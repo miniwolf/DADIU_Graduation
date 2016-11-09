@@ -1,4 +1,5 @@
-﻿using Assets.scripts.controllers;
+﻿using Assets.scripts.character;
+using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
@@ -12,11 +13,14 @@ namespace Assets.scripts.components.factory {
 	    private readonly Actionable<ControllableActions> actionable;
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
+		private readonly Penguin penguin;
+		private readonly Directionable directionable;
 
 		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
-
+			this.penguin = penguin.GetComponent<Penguin>();
+			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
 		}
 
@@ -70,7 +74,7 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateKillPenguinByWeightBased() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.SPIKEDEATH)); // Should be another anim, it does not exists right now
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.DROWNING));
 			return actionHandler;
 		}
 
@@ -103,20 +107,20 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateStartSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StartSpeed());
+			actionHandler.AddAction(new StartSpeed(penguin, directionable));
 			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 
 		private Handler CreateSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Speed());
+			actionHandler.AddAction(new Speed(penguin, directionable));
 			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 		private Handler CreateStopSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StopSpeed());
+			actionHandler.AddAction(new StopSpeed(penguin, directionable));
 			//actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}

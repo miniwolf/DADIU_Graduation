@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
-using Assets.scripts.components;
-using Assets.scripts.level;
 using Assets.scripts.character;
+using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class Speed : Action {
-		private Penguin penguin;
+		private readonly Penguin penguin;
+		private readonly Directionable diretionable;
+
+		public Speed(Penguin penguin, Directionable directionable) {
+			this.penguin = penguin;
+			this.diretionable = directionable;
+		}
 
 		public void Setup(GameObject gameObject) {
-			penguin = gameObject.GetComponent<Penguin>();
-
 		}
 
 		public void Execute() {
-			float initialSpeed = penguin.GetWalkSpeed();
-			float initialTime = penguin.GetInitialRunTime();
-			float actualTime = Time.timeSinceLevelLoad;
-			float newSpeed = initialSpeed * penguin.GetCurve().Evaluate(actualTime - initialTime);
-			penguin.SetSpeed(newSpeed);
+			var newSpeed = diretionable.GetWalkSpeed() *
+						   penguin.GetCurve().Evaluate(Time.timeSinceLevelLoad - penguin.GetInitialRunTime());
+			diretionable.SetSpeed(newSpeed);
 		}
 	}
 }

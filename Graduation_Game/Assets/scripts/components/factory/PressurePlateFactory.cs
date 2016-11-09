@@ -1,6 +1,4 @@
-﻿using System;
-using Assets.scripts.components;
-using Assets.scripts.controllers.handlers;
+﻿using Assets.scripts.controllers.handlers;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.tools.pressurePlate;
 
@@ -23,4 +21,3 @@ namespace Assets.scripts.components.factory{
 		}
 	}
 }
-

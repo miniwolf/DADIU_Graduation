@@ -1,10 +1,9 @@
 ﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using UnityEngine;
-using Asset.scripts.tools;
 using Assets.scripts.character;
-using Assets.scripts.components.registers;
+
 using System.Collections;
+using UnityEngine;
 
 namespace Assets.scripts.tools {
 	public class Speed : MonoBehaviour, Tool {

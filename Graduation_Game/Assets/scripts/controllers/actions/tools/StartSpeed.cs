@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
-using Assets.scripts.components;
-using Assets.scripts.level;
 using Assets.scripts.character;
+using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class StartSpeed : Action {
-		private Penguin penguin;
-		private float initialSpeed;
+		private readonly Penguin penguin;
+		private readonly Directionable directionable;
+
+		public StartSpeed(Penguin penguin, Directionable directionable) {
+			this.penguin = penguin;
+			this.directionable = directionable;
+		}
 
 		public void Setup(GameObject gameObject) {
-			penguin = gameObject.GetComponent<Penguin>();
 		}
 
 		public void Execute() {
-			penguin.SetRunning(true);
+			directionable.SetRunning(true);
 			penguin.SetInitialRunTime(Time.timeSinceLevelLoad);
 		}
 	}
