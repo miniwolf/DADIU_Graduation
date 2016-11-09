@@ -2,6 +2,7 @@
 	public enum ToolType {
 		SwitchLane,
 		PressurePlate,
-        Jump
+        Jump,
+		Speed
     }
 }

@@ -1,36 +1,43 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Assets.scripts.components;
+using Assets.scripts.components.registers;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, Draggable {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool {
 
-		private SnappingTool snapping = new SnappingTool();
-
-		public GameObject blockOneGroup;
+		private SnappingToolInterface snapping;
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
+		public GameObject speedPrefab;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
+		private GameObject[] speedTools;
 		public int numberOfJumpTools = 8;
 		public int numberOfSwitchLaneTools = 8;
+		public int numberOfSpeedTools = 8;
 
 		private bool dragging;
 		private Vector3 mouseHitPosition;
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
+		private bool speedIsBeingPlaced = false;
+
+		void Awake(){
+			InjectionRegister.Register(this);
+		}
 
 		void Start() {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
+			speedTools = new GameObject[numberOfSpeedTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
-
-			snapping.DefineOffSet (blockOneGroup);
-			
+			PoolSystem(speedTools, speedPrefab, numberOfSpeedTools);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -61,6 +68,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		public void OnButtonClickPlaceSpeed() {
+			if(numberOfSpeedTools > 0) {
+				speedIsBeingPlaced = true;
+				dragging = true;
+				numberOfSpeedTools--;
+				speedTools[numberOfSpeedTools].SetActive(true);
+			}
+		}
+
 
 		void Update() {
 			foreach ( var touch in Input.touches) {
@@ -84,6 +100,16 @@ namespace Assets.scripts.UI.screen.ingame {
 					jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
 					SetDraggingFalse();
 				}
+
+				// speed tool
+				if ( touch.phase == TouchPhase.Moved && speedIsBeingPlaced ) {
+					PlaceObject(speedTools[numberOfSpeedTools], touch.position);
+				}
+				if ( touch.phase == TouchPhase.Ended && speedIsBeingPlaced ) {
+					speedIsBeingPlaced = false;
+					speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					SetDraggingFalse();
+				}
 			}
 
 			// switch lane tool
@@ -105,6 +131,17 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Input.GetMouseButtonUp(0) && jumpIsBeingPlaced ) {
 				jumpTools[numberOfJumpTools].GetComponentInChildren<SphereCollider>().enabled = true;
 				jumpIsBeingPlaced = false;
+				SetDraggingFalse();
+			}
+
+			// speed tool
+			if ( Input.GetMouseButton(0) && speedIsBeingPlaced ) {
+				PlaceObject(speedTools[numberOfSpeedTools], Input.mousePosition);
+			}
+			// Release jump to the scene
+			if ( Input.GetMouseButtonUp(0) && speedIsBeingPlaced ) {
+				speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				speedIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
 		}
@@ -133,6 +170,22 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public bool IsDragged() {
 			return dragging;
+		}
+
+		public void SetSnap (SnappingToolInterface snapTool) {
+			snapping = snapTool;
+		}
+		public string GetTag () {
+			return TagConstants.SNAPPING;
+		}
+		public void SetupComponents () {
+			return;
+		}
+		public GameObject GetGameObject () {
+			return gameObject;
+		}
+		public Actionable<T> GetActionable<T>() {
+			return null;
 		}
 	}
 }
