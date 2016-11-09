@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using UnityEditor;
 
@@ -8,7 +9,7 @@ using UnityEditor;
 public class SlopeGenerator : MonoBehaviour
 {
     public AnimationCurve slopeCurve;
-
+    public int length = 100;
     private Vector3 scale = Vector3.one / 3;
     private int vertPerLine = 1;
     // Use this for initialization
@@ -22,10 +23,10 @@ public class SlopeGenerator : MonoBehaviour
             DestroyImmediate(t.gameObject);
         }
 
-        int length = 100;
+
         int width = 2;
 
-        var data = new MeshData(length, 2);
+        var data = new MeshData(length, width);
         int vertexIndex = 0;
 
         float minY = float.MaxValue;
@@ -45,8 +46,6 @@ public class SlopeGenerator : MonoBehaviour
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
-//                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
-//                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
                 vertexIndex++;
 
                 start.z = start.z + width;
@@ -54,19 +53,30 @@ public class SlopeGenerator : MonoBehaviour
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
-//                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
-//                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
                 vertexIndex++;
             }
         }
 
-        for (int vertex = 0; vertex < data.vertices.Length - 2; vertex += 2)
+        for (int vertex = 0; vertex < data.vertices.Length - 2; vertex += 2) // add triangles for plane
         {
             data.AddTriangle(vertex, vertex + 2, vertex + 1);
             data.AddTriangle(vertex + 2, vertex, vertex + 1);
 
             data.AddTriangle(vertex +1, vertex + 2+1, vertex + 1+1);
             data.AddTriangle(vertex + 2+1, vertex+1, vertex + 1+1);
+        }
+
+        for (int x = 0; x < length; x++) // add bottom triangles
+        {
+            Vector3 start = new Vector3(x, minY, 0);
+            PlaceCube(start);
+//            data.vertices[vertexIndex] = start;
+//            data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
+
+            start = new Vector3(x, minY, width);
+            PlaceCube(start);
+//            data.vertices[vertexIndex] = start;
+//            data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
         }
 
         var mesh = new Mesh();
@@ -83,14 +93,6 @@ public class SlopeGenerator : MonoBehaviour
         renderer.material.color = Color.white;
         meshFilter.sharedMesh = mesh;
 
-
-        for (int x = 0; x < length; x++) // generate bottoms
-        {
-            PlaceCube(new Vector3(x, minY, 0));
-            PlaceCube(new Vector3(x, minY, width));
-//            PlaceCube(new Vector3(endX, minY, 0));
-//            PlaceCube(new Vector3(endX, minY, width));
-        }
     }
 
     private void PlaceCube(Vector3 vector3)
@@ -103,17 +105,29 @@ public class SlopeGenerator : MonoBehaviour
 
     public class MeshData
     {
+
+        public int planeTriangles, planeVertices, planeUVs;
+        public int bottomTriangles, bottomVertices, bottomUVs;
+        public int sideTriangles, sideVertices, sideUVs;
+
+
         public Vector3[] vertices;
         public int[] triangles;
         public Vector2[] uvs;
 
         int index;
 
-        public MeshData(int width, int height)
+        public MeshData(int length, int width)
         {
-            vertices = new Vector3[width * height];
-            uvs = new Vector2[width * height];
-            triangles = new int[width * height * 2 * 3];
+            planeTriangles = length * width * 2 * 3;
+            planeVertices = length * width;
+            planeUVs = length * width;
+
+            bottomTriangles = length * width * 2 * 3;
+
+            vertices = new Vector3[planeVertices];
+            uvs = new Vector2[planeUVs];
+            triangles = new int[planeTriangles ]; //+ bottomTriangles
             // number of triangles in the map, number of squares * 2 triangles * 3 vertices
         }
 
