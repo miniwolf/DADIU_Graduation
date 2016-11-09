@@ -7,7 +7,7 @@ namespace Assets.scripts.tools.PressurePlateControlledObjects {
 
 		public override void Trigger() {
             transform.RotateAround(transform.position - (transform.lossyScale / 2), Vector3.forward, -90);
-            //transform.Translate(new Vector3(0, transform.lossyScale.y, 0));
+			tag = TagConstants.LANE;
         }
 	}
 }
