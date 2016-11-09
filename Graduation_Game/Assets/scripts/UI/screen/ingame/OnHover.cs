@@ -83,7 +83,8 @@ namespace Assets.scripts.UI.screen.ingame{
 		void IsAToolHit(Vector3 pos){
 			if (Physics.Raycast(cam.ScreenPointToRay(pos),out hit)) {
 				if (hit.transform.tag == TagConstants.JUMPTEMPLATE || hit.transform.tag == TagConstants.SWITCHTEMPLATE 
-					|| hit.transform.tag == TagConstants.SPEEDTEMPLATE) {
+					|| hit.transform.tag == TagConstants.SPEEDTEMPLATE || hit.transform.tag == TagConstants.ENLARGETEMPLATE
+					|| hit.transform.tag == TagConstants.MINIMIZETEMPLATE) {
 					shouldMove = true;
 					hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
 					movingAround = hit.transform.parent.gameObject;
