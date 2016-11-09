@@ -25,41 +25,6 @@ public class SlopeGenerator : MonoBehaviour
         int length = 100;
         int width = 2;
 
-//        var data = new MeshData(length, width);
-//        int vertexIndex = 0;
-
-//        for (int y = 0; y < height; y++)
-//        {
-//            for (int x = 0; x < 2; x++)
-//            {
-//                data.vertices[vertexIndex] = new Vector3(x, slopeCurve.Evaluate(x), y);
-//                data.uvs[vertexIndex] = new Vector2(x / (float) width, y / (float) height);
-//
-//                if (x < width - 1 && y < height - 1)
-//                {
-//                    // ignore right and bottom vertices
-//                    data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
-//                    data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
-//                }
-//                vertexIndex++;
-//            }
-//        }
-//
-//        var mesh = new Mesh();
-//        mesh.vertices = data.vertices;
-//        mesh.triangles = data.triangles;
-//        mesh.uv = data.uvs;
-//        mesh.RecalculateBounds();
-//        mesh.RecalculateNormals();
-//
-//        GameObject slope = new GameObject();
-//        slope.transform.parent = this.transform;
-//        MeshFilter meshFilter = slope.AddComponent<MeshFilter>();
-//        MeshRenderer renderer = slope.AddComponent<MeshRenderer>();
-//        renderer.material.color = Color.white;
-//        meshFilter.sharedMesh = mesh;
-
-
         var data = new MeshData(length, 2);
         int vertexIndex = 0;
 
@@ -80,8 +45,8 @@ public class SlopeGenerator : MonoBehaviour
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 0);
-                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
-                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
+//                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
+//                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
                 vertexIndex++;
 
                 start.z = start.z + width;
@@ -89,25 +54,34 @@ public class SlopeGenerator : MonoBehaviour
                 PlaceCube(start);
                 data.vertices[vertexIndex] = start;
                 data.uvs[vertexIndex] = new Vector2(x / (float) length, 1);
-                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
-                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
+//                data.AddTriangle(vertexIndex, vertexIndex + vertPerLine + 1, vertexIndex + vertPerLine);
+//                data.AddTriangle(vertexIndex + vertPerLine + 1, vertexIndex, vertexIndex + 1);
                 vertexIndex++;
             }
-
-            var mesh = new Mesh();
-            mesh.vertices = data.vertices;
-            mesh.triangles = data.triangles;
-            mesh.uv = data.uvs;
-            mesh.RecalculateBounds();
-            mesh.RecalculateNormals();
-
-            GameObject slope = new GameObject();
-            slope.transform.parent = transform;
-            MeshFilter meshFilter = slope.AddComponent<MeshFilter>();
-            MeshRenderer renderer = slope.AddComponent<MeshRenderer>();
-            renderer.material.color = Color.white;
-            meshFilter.sharedMesh = mesh;
         }
+
+        for (int vertex = 0; vertex < data.vertices.Length - 2; vertex += 2)
+        {
+            data.AddTriangle(vertex, vertex + 2, vertex + 1);
+            data.AddTriangle(vertex + 2, vertex, vertex + 1);
+
+            data.AddTriangle(vertex +1, vertex + 2+1, vertex + 1+1);
+            data.AddTriangle(vertex + 2+1, vertex+1, vertex + 1+1);
+        }
+
+        var mesh = new Mesh();
+        mesh.vertices = data.vertices;
+        mesh.triangles = data.triangles;
+        mesh.uv = data.uvs;
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+
+        GameObject slope = new GameObject();
+        slope.transform.parent = transform;
+        MeshFilter meshFilter = slope.AddComponent<MeshFilter>();
+        MeshRenderer renderer = slope.AddComponent<MeshRenderer>();
+        renderer.material.color = Color.white;
+        meshFilter.sharedMesh = mesh;
 
 
         for (int x = 0; x < length; x++) // generate bottoms
@@ -139,7 +113,7 @@ public class SlopeGenerator : MonoBehaviour
         {
             vertices = new Vector3[width * height];
             uvs = new Vector2[width * height];
-            triangles = new int[(width - 1) * (height - 1) * 2 * 3];
+            triangles = new int[width * height * 2 * 3];
             // number of triangles in the map, number of squares * 2 triangles * 3 vertices
         }
 
