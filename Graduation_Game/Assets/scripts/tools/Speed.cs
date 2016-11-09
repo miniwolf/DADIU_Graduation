@@ -15,7 +15,7 @@ namespace Assets.scripts.tools {
 		protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
 				penguin = collision.gameObject.GetComponent<Penguin>();
-				penguin.SetCurve(curve);
+				penguin.SetCurve(Penguin.CurveType.Speed, curve);
 
 				var actionable = collision.gameObject.GetComponent<Actionable<ControllableActions>>();
 				actionable.ExecuteAction(ControllableActions.StartSpeed);

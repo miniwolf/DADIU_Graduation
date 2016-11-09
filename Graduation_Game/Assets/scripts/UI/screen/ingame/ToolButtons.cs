@@ -136,6 +136,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			// speed tool
 			if ( Input.GetMouseButton(0) && speedIsBeingPlaced ) {
+				
 				PlaceObject(speedTools[numberOfSpeedTools], Input.mousePosition);
 			}
 			// Release jump to the scene
