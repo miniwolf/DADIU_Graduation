@@ -30,12 +30,14 @@ namespace Assets.scripts.controllers.actions.tools {
 
 			var newRotation = laneSwitch.GetNewRotation(oldRotation);
 			var newDirection = newRotation * oldDirection;
+			newDirection = new Vector3(newDirection.x, newDirection.y+0.2f,newDirection.z);
 			var tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 			// make sure that penguin can change lane
 			RaycastHit hit;
-			if ( Physics.Raycast(new Ray(penguin.transform.position, tempDir),
-				     out hit, levelSettings.GetLaneWidth(), layerMask)
-			     && hit.transform.tag != TagConstants.SWITCHTEMPLATE ) {
+			Debug.DrawRay(penguin.transform.position, newDirection,Color.red);
+			if ( Physics.Raycast(new Ray(penguin.transform.position, newDirection),
+				out hit, 8f, layerMask) ) {
+				Debug.Log("returning");
 				return;
 			}
 
@@ -48,11 +50,12 @@ namespace Assets.scripts.controllers.actions.tools {
 			do {
 				// check every 0.25 pulsateInterval if penguin has reached the half of the lane
 				yield return new WaitForSeconds(0.05f);
-			} while ( laneSwitch.LaneSwitchCondition(penguin.transform.position.z, zPos + levelSettings.GetLaneWidth()) );
+			} while (laneSwitch.LaneSwitchCondition(penguin.transform.position.z, laneSwitch.GetDirection(zPos, levelSettings)) );
 
 			//when half lane reached, change direction to old one
 			direction.SetDirection(oldDirection);
 			penguin.transform.rotation = oldRotation;
+
 		}
 	}
 }
