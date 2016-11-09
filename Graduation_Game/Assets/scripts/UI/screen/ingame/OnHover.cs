@@ -3,9 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.scripts;
+using Assets.scripts.components;
+using Assets.scripts.components.registers;
 
 namespace Assets.scripts.UI.screen.ingame{
-	public class OnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+	public class OnHover : MonoBehaviour, GameEntity, IPointerEnterHandler, IPointerExitHandler, SetSnappingTool {
 		public Color returning, notReturning;
 		private RaycastHit hit;
 		Camera cam;
@@ -14,12 +16,16 @@ namespace Assets.scripts.UI.screen.ingame{
 		private int layerMask = 1 << 8;
 		private Image img;
 		private bool shouldReturn = false;
-			private bool touchPhaseEnded = false;
-			private SnappingTool snap = new SnappingTool();
+		private bool touchPhaseEnded = false;
+		private SnappingToolInterface snap;
+
+		void Awake(){
+			InjectionRegister.Register(this);
+		}
 
 		void Start(){
 			img = GetComponent<Image>();
-				cam = Camera.main;
+			cam = Camera.main;
 		}
 
 		void Update(){
@@ -37,7 +43,6 @@ namespace Assets.scripts.UI.screen.ingame{
 					case TouchPhase.Ended:
 						if (shouldMove) {
 							touchPhaseEnded = true;
-							shouldReturn = true;
 							NoLongerMoveTool();
 						}
 						break;
@@ -77,7 +82,8 @@ namespace Assets.scripts.UI.screen.ingame{
 
 		void IsAToolHit(Vector3 pos){
 			if (Physics.Raycast(cam.ScreenPointToRay(pos),out hit)) {
-				if (hit.transform.tag == TagConstants.JUMPTEMPLATE||hit.transform.tag == TagConstants.SWITCHTEMPLATE) {
+				if (hit.transform.tag == TagConstants.JUMPTEMPLATE || hit.transform.tag == TagConstants.SWITCHTEMPLATE 
+					|| hit.transform.tag == TagConstants.SPEEDTEMPLATE) {
 					shouldMove = true;
 					hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
 					movingAround = hit.transform.parent.gameObject;
@@ -89,17 +95,13 @@ namespace Assets.scripts.UI.screen.ingame{
 			if (Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layerMask)) {
 				if (hit.transform.tag ==TagConstants.LANE) {
 						snap.Snap(hit.point, movingAround.transform);
-					//movingAround.transform.position = hit.point;
-					//print(cam.WorldToViewportPoint(Input.mousePosition).y);
 					//Add some kind of visual which makes it clear it will be reclaimed
 				}
 
 			}
 		}
 
-
 		void NoLongerMoveTool(){
-				print("jeg");
 				if (shouldReturn&&touchPhaseEnded) {
 				Destroy(movingAround);
 				shouldMove = false;
@@ -116,6 +118,24 @@ namespace Assets.scripts.UI.screen.ingame{
 			yield return new WaitForSeconds(0.2f);
 			shouldReturn = false;
 			NoColor();
+		}
+
+		public void SetSnap (SnappingToolInterface snapTool) {
+			snap = snapTool;
+		}
+
+		public string GetTag () {
+			return TagConstants.SNAPPING;
+		}
+		public void SetupComponents () {
+			return;
+		}
+		public GameObject GetGameObject () {
+			return gameObject;
+		}
+
+		public Actionable<T> GetActionable<T>() {
+			return null;
 		}
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Assets.scripts.controllers.actions.traps {
 	public class KillPenguin : Action {
-		private Killable killable;
+		private readonly Killable killable;
 
 		public KillPenguin(Killable killable) {
 			this.killable = killable;

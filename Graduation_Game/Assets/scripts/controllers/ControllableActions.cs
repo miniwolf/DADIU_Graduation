@@ -3,6 +3,14 @@
 		SwitchLeft, SwitchRight,
 		Move, Stop,
 		KillPenguinBySpikes, KillPenguinByPit,
-		StartJump, StopJump
+		KillPenguinByExcavator,
+		KillPenguingByWeightBased,
+		StartJump, StopJump,
+		StartSpeed, Speed, StopSpeed,
+		StartEnlarge, Enlarge, StopEnlarge,
+		StartMinimize, Minimize, StopMinimize,
+		KillPenguinByElectricution,
+		KillPenguinByOrca
+
 	}
 }
