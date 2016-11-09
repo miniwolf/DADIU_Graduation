@@ -35,6 +35,12 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
 			actionable.AddAction(ControllableActions.Speed, CreateSpeed());
 			actionable.AddAction(ControllableActions.StopSpeed, CreateStopSpeed());
+			actionable.AddAction(ControllableActions.StartEnlarge, CreateStartEnlarge());
+			actionable.AddAction(ControllableActions.Enlarge, CreateEnlarge());
+			actionable.AddAction(ControllableActions.StopEnlarge, CreateStopEnlarge());
+			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
+			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
+			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 		}
 
 		private Handler CreateMove() {
@@ -111,21 +117,59 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateStartSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StartSpeed());
-			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			actionHandler.AddAction(new StartSpeed((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 
 		private Handler CreateSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Speed());
-			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			actionHandler.AddAction(new Speed((Directionable) actionable));
 			return actionHandler;
 		}
 		private Handler CreateStopSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StopSpeed());
-			//actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			actionHandler.AddAction(new StopSpeed((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			return actionHandler;
+		}
+
+		private Handler CreateStartEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartEnlarge((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.ENLARGE));
+			return actionHandler;
+		}
+
+		private Handler CreateEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Enlarge((Directionable) actionable));
+			return actionHandler;
+		}
+		private Handler CreateStopEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopEnlarge((Directionable) actionable));
+			// TODO there is an offset from when the shrinking animation should be played and when it is actually played
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.ENLARGE));
+			return actionHandler;
+		}
+
+		private Handler CreateStartMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.MINIMIZE));
+			return actionHandler;
+		}
+
+		private Handler CreateMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Minimize((Directionable) actionable));
+			return actionHandler;
+		}
+		private Handler CreateStopMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.MINIMIZE));
 			return actionHandler;
 		}
 	}
