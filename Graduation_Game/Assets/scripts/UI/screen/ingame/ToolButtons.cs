@@ -12,19 +12,27 @@ namespace Assets.scripts.UI.screen.ingame {
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
 		public GameObject speedPrefab;
+		public GameObject enlargePrefab;
+		public GameObject minimizePrefab;
 
 		private GameObject[] jumpTools;
 		private GameObject[] switchLaneTools;
 		private GameObject[] speedTools;
+		private GameObject[] enlargeTools;
+		private GameObject[] minimizeTools;
 		public int numberOfJumpTools = 8;
 		public int numberOfSwitchLaneTools = 8;
 		public int numberOfSpeedTools = 8;
+		public int numberOfEnlargeTools = 8;
+		public int numberOfMinimizeTools = 8;
 
 		private bool dragging;
 		private Vector3 mouseHitPosition;
 		private bool jumpIsBeingPlaced = false;
 		private bool switchIsBeingPlaced = false;
 		private bool speedIsBeingPlaced = false;
+		private bool enlargeIsBeingPlaced = false;
+		private bool minimizeIsBeingPlaced = false;
 
 		void Awake(){
 			InjectionRegister.Register(this);
@@ -34,10 +42,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
 			speedTools = new GameObject[numberOfSpeedTools];
+			enlargeTools = new GameObject[numberOfEnlargeTools];
+			minimizeTools = new GameObject[numberOfMinimizeTools];
 
 			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
 			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
 			PoolSystem(speedTools, speedPrefab, numberOfSpeedTools);
+			PoolSystem(enlargeTools, enlargePrefab, numberOfEnlargeTools);
+			PoolSystem(minimizeTools, minimizePrefab, numberOfMinimizeTools);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -77,6 +89,24 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		public void OnButtonClickPlaceEnlarge() {
+			if(numberOfEnlargeTools > 0) {
+				enlargeIsBeingPlaced = true;
+				dragging = true;
+				numberOfEnlargeTools--;
+				enlargeTools[numberOfEnlargeTools].SetActive(true);
+			}
+		}
+
+		public void OnButtonClickPlaceMinimize() {
+			if(numberOfMinimizeTools > 0) {
+				minimizeIsBeingPlaced = true;
+				dragging = true;
+				numberOfMinimizeTools--;
+				minimizeTools[numberOfMinimizeTools].SetActive(true);
+			}
+		}
+
 
 		void Update() {
 			foreach ( var touch in Input.touches) {
@@ -110,6 +140,26 @@ namespace Assets.scripts.UI.screen.ingame {
 					speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
 					SetDraggingFalse();
 				}
+
+				// enlarge tool
+				if ( touch.phase == TouchPhase.Moved && enlargeIsBeingPlaced ) {
+					PlaceObject(enlargeTools[numberOfEnlargeTools], touch.position);
+				}
+				if ( touch.phase == TouchPhase.Ended && enlargeIsBeingPlaced ) {
+					enlargeIsBeingPlaced = false;
+					enlargeTools[numberOfEnlargeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					SetDraggingFalse();
+				}
+
+				// minimize tool
+				if ( touch.phase == TouchPhase.Moved && minimizeIsBeingPlaced ) {
+					PlaceObject(minimizeTools[numberOfMinimizeTools], touch.position);
+				}
+				if ( touch.phase == TouchPhase.Ended && minimizeIsBeingPlaced ) {
+					minimizeIsBeingPlaced = false;
+					minimizeTools[numberOfMinimizeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+					SetDraggingFalse();
+				}
 			}
 
 			// switch lane tool
@@ -139,10 +189,32 @@ namespace Assets.scripts.UI.screen.ingame {
 				
 				PlaceObject(speedTools[numberOfSpeedTools], Input.mousePosition);
 			}
-			// Release jump to the scene
+			// Release speed to the scene
 			if ( Input.GetMouseButtonUp(0) && speedIsBeingPlaced ) {
 				speedTools[numberOfSpeedTools].GetComponentInChildren<SphereCollider>().enabled = true;
 				speedIsBeingPlaced = false;
+				SetDraggingFalse();
+			}
+
+			// enlarge tool
+			if ( Input.GetMouseButton(0) && enlargeIsBeingPlaced ) {
+				PlaceObject(enlargeTools[numberOfEnlargeTools], Input.mousePosition);
+			}
+			// Release enlarge to the scene
+			if ( Input.GetMouseButtonUp(0) && enlargeIsBeingPlaced ) {
+				enlargeTools[numberOfEnlargeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				enlargeIsBeingPlaced = false;
+				SetDraggingFalse();
+			}
+
+			// minimize tool
+			if ( Input.GetMouseButton(0) && minimizeIsBeingPlaced ) {
+				PlaceObject(minimizeTools[numberOfMinimizeTools], Input.mousePosition);
+			}
+			// Release minimize to the scene
+			if ( Input.GetMouseButtonUp(0) && minimizeIsBeingPlaced ) {
+				minimizeTools[numberOfMinimizeTools].GetComponentInChildren<SphereCollider>().enabled = true;
+				minimizeIsBeingPlaced = false;
 				SetDraggingFalse();
 			}
 		}
