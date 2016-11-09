@@ -5,16 +5,19 @@ using Assets.scripts.character;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class StartSpeed : Action {
-		private Penguin penguin;
-		private float initialSpeed;
+		private Directionable direction;
+
+		public StartSpeed(Directionable direction) {
+			this.direction = direction;
+		}
 
 		public void Setup(GameObject gameObject) {
-			penguin = gameObject.GetComponent<Penguin>();
+			return;
 		}
 
 		public void Execute() {
-			penguin.SetRunning(true);
-			penguin.SetInitialRunTime(Time.timeSinceLevelLoad);
+			direction.SetRunning(true);
+			direction.SetInitialTime(Penguin.CurveType.Speed, Time.timeSinceLevelLoad);
 		}
 	}
 }
