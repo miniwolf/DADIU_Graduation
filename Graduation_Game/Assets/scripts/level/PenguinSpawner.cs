@@ -14,13 +14,16 @@ namespace Assets.scripts.level {
 		public float countTime = 3;
 
 		[Tooltip("Time for the player to get ready")]
-		public int countDownTime = 3000;
+		public int waitTimeMilisecondsInterval = 1000; //the waiting time would be waitTimeMilisecondsInterval * numIntervals
+		public int numIntervals = 3;
 
 		private GameObject penguinObject;
+		private Text countDown;
 		private Text penguinCounter;
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			countDown = GameObject.FindGameObjectWithTag(TagConstants.COUNT_DOWN_TEXT).GetComponent<Text>();
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -35,14 +38,19 @@ namespace Assets.scripts.level {
 		private IEnumerator Spawn() {
 			// spawn first penguin and freeze time
 			SpawnPenguin();
-			yield return StartCoroutine(SpawnRest());
+			yield return StartCoroutine(FreezeAndSpawnRest());
 		}
 
-		private IEnumerator SpawnRest() {
-			yield return new WaitForSeconds(0.1f);
-			Time.timeScale = 0.0f;
-			Thread.Sleep(countDownTime);
-			Time.timeScale = 1.0f;
+		private IEnumerator FreezeAndSpawnRest() {
+			int counter = numIntervals;
+			do {
+				// print in text UI
+				countDown.text = counter.ToString();
+				Time.timeScale = 0.000001f;
+				yield return new WaitForSeconds(1f * Time.timeScale);
+				Time.timeScale = 1.0f;
+			} while ( --counter > 0 );
+			countDown.enabled = false;
 			while ( penguinCount > 0 ) {
 				yield return new WaitForSeconds(countTime);
 				SpawnPenguin();
