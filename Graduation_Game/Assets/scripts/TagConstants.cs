@@ -20,8 +20,9 @@
 		public const string WIRE = "Wire";
 		public const string SNAPPING = "Snapping";
 		public const string WEIGHTBASED = "WeightBased";
+	    public const string SLOPE = "Slope";
 
-		public class UI {
+	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 		}
 	}

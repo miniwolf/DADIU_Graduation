@@ -2,6 +2,7 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 
 namespace Assets.scripts.character {
