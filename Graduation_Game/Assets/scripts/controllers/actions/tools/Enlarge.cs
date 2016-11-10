@@ -19,8 +19,11 @@ namespace Assets.scripts.controllers.actions.tools {
 			Vector3 initialScale = direction.GetInitialScale();
 			float initialTime = direction.GetInitialTime(Penguin.CurveType.Enlarge);
 			float actualTime = Time.timeSinceLevelLoad;
+			Debug.Log(actualTime-initialTime + " " + actualTime + " " + initialTime);
 			AnimationCurve curve = direction.GetCurve(Penguin.CurveType.Enlarge);
+
 			float scalingFactor = curve.Evaluate(actualTime - initialTime);
+			Debug.Log (scalingFactor);
 			Vector3 newScale = initialScale * scalingFactor;
 			direction.SetScale(newScale);
 		}
