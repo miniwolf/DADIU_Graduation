@@ -1,8 +1,11 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
 		public const string SPEEDTEMPLATE = "SpeedTemplate";
+		public const string ENLARGETEMPLATE = "EnlargeTemplate";
+		public const string MINIMIZETEMPLATE = "MinimizeTemplate";
 		public const string SPAWNPOOL = "SpawnPool";
 		public const string PENGUIN_TEMPLATE = "Penguin template";
 		public const string PENGUIN = "Penguin";

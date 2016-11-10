@@ -1,28 +1,22 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts.components;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.scripts.controllers.actions.traps{
 	public class LiftWeightBased : Action {
-		private GameObject iceParent;
-		private GameObject[] toManipulate = new GameObject[6];
-		private float moveFactor;
-		private float maxHeight;
-		private WeightBasedInterface weightInt;
+		private readonly List<GameObject> toManipulate;
+		private readonly float moveFactor;
 
-		public void Setup(GameObject obj){
-			iceParent = obj;
-			weightInt = obj.GetComponent<WeightBasedInterface>();
-			moveFactor = weightInt.GetMovementFactor();
-			maxHeight = weightInt.GetInitialHeight();
-			toManipulate = weightInt.GetChildrenToManipulate();
+		public LiftWeightBased(WeightBasedInterface weight) {
+			toManipulate = weight.GetChildrenToManipulate();
+			moveFactor = weight.GetMovementFactor();
 		}
 
-		public void Execute(){
-			if (toManipulate[0].transform.position.y < maxHeight) {
-				for (int i = 0; i < toManipulate.Length; i++) {
-					toManipulate[i].transform.position += new Vector3(0, 0.5f, 0);
-				}
+		public void Setup( GameObject obj ) {
+		}
+
+		public void Execute() {
+			foreach ( var go in toManipulate ) {
+				go.transform.position += new Vector3(0, moveFactor, 0);
 			}
 		}
 	}

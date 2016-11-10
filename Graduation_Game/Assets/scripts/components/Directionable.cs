@@ -13,10 +13,12 @@ namespace Assets.scripts.components {
 		Vector3 GetInitialScale();
 		void SetJump(bool jump);
 		bool GetJump();
+
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);
-		void SetInitialTime(Penguin.CurveType type, float time);
 		AnimationCurve GetCurve(Penguin.CurveType type);
+		void SetInitialTime(Penguin.CurveType type, float time);
 		float GetInitialTime(Penguin.CurveType type);
+
 		void removeCurve(Penguin.CurveType type);
 		void removeInitialTime(Penguin.CurveType type);
 		bool IsRunning();

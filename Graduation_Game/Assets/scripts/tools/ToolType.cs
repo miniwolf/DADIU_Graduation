@@ -1,10 +1,11 @@
-﻿namespace Asset.scripts.tools {
+﻿namespace Assets.scripts.tools {
 	public enum ToolType {
 		SwitchLane,
 		PressurePlate,
         Jump,
 		Speed,
 		Enlarge,
-		Minimize
+		Minimize,
+		Bridge
     }
 }
