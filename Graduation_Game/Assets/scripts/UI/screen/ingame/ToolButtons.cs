@@ -34,6 +34,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -72,6 +73,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				case TagConstants.MINIMIZETEMPLATE:
 				case TagConstants.SPEEDTEMPLATE:
 				case TagConstants.SWITCHTEMPLATE:
+				case TagConstants.METALTEMPLATE:
 					PlaceTool(tools[toolName]);
 					break;
 				default:
@@ -131,7 +133,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 
 			dragging = true;
-			hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
+			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 		}
 
@@ -139,14 +141,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( shouldReturn ) {
 				PutObjectInPool(currentObject.transform);
 				currentObject.SetActive(false);
-				currentObject.GetComponentInChildren<SphereCollider>().enabled = false;
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
 				dragging = false;
 				ChangeColor(notReturning);
 				shouldReturn = false;
 			} else {
 				dragging = false;
-				currentObject.GetComponentInChildren<SphereCollider>().enabled = true;
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 		}
 
