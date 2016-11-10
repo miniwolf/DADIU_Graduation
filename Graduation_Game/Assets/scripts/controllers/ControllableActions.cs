@@ -11,6 +11,5 @@
 		StartMinimize, Minimize, StopMinimize,
 		KillPenguinByElectricution,
 		KillPenguinByOrca
-
 	}
 }

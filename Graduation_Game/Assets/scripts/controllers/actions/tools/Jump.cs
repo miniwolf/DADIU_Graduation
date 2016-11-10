@@ -5,7 +5,7 @@ using Assets.scripts.level;
 namespace Assets.scripts.controllers.actions.tools {
 	public class Jump : Action {
 		private readonly Directionable direction;
-		private LevelSettings levelSettings;
+		private readonly LevelSettings levelSettings;
 
 		public Jump(Directionable direction, GameObject levelSettings) {
 			this.direction = direction;
@@ -17,7 +17,7 @@ namespace Assets.scripts.controllers.actions.tools {
 		}
 
 		public void Execute() {
-			Vector3 moveDirection = direction.GetDirection();
+			var moveDirection = direction.GetDirection();
 			moveDirection.y += levelSettings.GetJumpHeight();
 			direction.SetSpeed(direction.GetJumpSpeed());
 			direction.SetDirection(moveDirection);

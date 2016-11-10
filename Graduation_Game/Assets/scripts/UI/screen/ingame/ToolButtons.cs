@@ -1,298 +1,215 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler {
+		public Color returning, notReturning;
 
 		private SnappingToolInterface snapping;
+		private GameObject currentObject;
+		private Vector3 mouseHitPosition;
+		private Camera cam;
+		private Image img;
 
-		public GameObject jumpPrefab;
-		public GameObject switchLanePrefab;
-		public GameObject speedPrefab;
-		public GameObject enlargePrefab;
-		public GameObject minimizePrefab;
-		public GameObject bridgePrefab;
+		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 
-		private GameObject[] jumpTools;
-		private GameObject[] switchLaneTools;
-		private GameObject[] speedTools;
-		private GameObject[] enlargeTools;
-		private GameObject[] minimizeTools;
-		private GameObject[] bridgeTools;
-		public int numberOfJumpTools = 8;
-		public int numberOfSwitchLaneTools = 8;
-		public int numberOfSpeedTools = 8;
-		public int numberOfEnlargeTools = 8;
-		public int numberOfMinimizeTools = 8;
-		public int numberOfBridgeTools = 8;
 
 		private bool dragging;
-		private Vector3 mouseHitPosition;
-		private bool jumpIsBeingPlaced = false;
-		private bool switchIsBeingPlaced = false;
-		private bool speedIsBeingPlaced = false;
-		private bool enlargeIsBeingPlaced = false;
-		private bool minimizeIsBeingPlaced = false;
-		private bool bridgeIsBeingPlaced = false;
+		private bool shouldReturn;
+		private const int layermask = 1 << 8;
 
-		void Awake(){
+		protected void Awake() {
 			InjectionRegister.Register(this);
 		}
 
-		void Start() {
-			jumpTools = new GameObject[numberOfJumpTools];
-			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
-			speedTools = new GameObject[numberOfSpeedTools];
-			enlargeTools = new GameObject[numberOfEnlargeTools];
-			minimizeTools = new GameObject[numberOfMinimizeTools];
-			bridgeTools = new GameObject[numberOfBridgeTools];
+		protected void Start() {
+			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 
-			PoolSystem(jumpTools, jumpPrefab, numberOfJumpTools);
-			PoolSystem(switchLaneTools, switchLanePrefab, numberOfSwitchLaneTools);
-			PoolSystem(speedTools, speedPrefab, numberOfSpeedTools);
-			PoolSystem(enlargeTools, enlargePrefab, numberOfEnlargeTools);
-			PoolSystem(minimizeTools, minimizePrefab, numberOfMinimizeTools);
-			PoolSystem(bridgeTools, bridgePrefab, numberOfBridgeTools);
+			img = GetComponent<Image>();
+			cam = Camera.main;
+			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
+		}
+
+		private void PoolSystem(GameObject spawnPool) {
+			foreach ( var child in spawnPool.transform.GetComponentsInChildren<Transform>() ) {
+				PutObjectInPool(child);
+			}
+		}
+
+		private void PutObjectInPool(Component child) {
+			PoolSystem(child.tag, child.gameObject);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
 		// and sets them to all to false.
-		void PoolSystem(GameObject[] objArray, GameObject prefab, int n) {
-			for(int i = 0; i < n; i++) {
-				GameObject objTool = Instantiate(prefab);
-				objArray[i] = objTool;
-				objArray[i].SetActive(false);
+		private void PoolSystem(string objArray, GameObject template) {
+			List<GameObject> toolArray = null;
+			try {
+				toolArray = tools[objArray];
+			} catch (KeyNotFoundException) {
+				Debug.Log("Did not add '" + objArray +"' for object '" + template.name + "'");
+			}
+			if (toolArray != null) {
+				toolArray.Add(template);
 			}
 		}
 
-		public void OnButtonClickPlaceJump() {
-			if(numberOfJumpTools > 0) {
-				jumpIsBeingPlaced = true;
-				dragging = true;
-				numberOfJumpTools--;
-				jumpTools[numberOfJumpTools].SetActive(true);
+		public void PlaceTool(string toolName) {
+			switch ( toolName ) {
+				case TagConstants.JUMPTEMPLATE:
+				case TagConstants.BRIDGETEMPLATE:
+				case TagConstants.ENLARGETEMPLATE:
+				case TagConstants.MINIMIZETEMPLATE:
+				case TagConstants.SPEEDTEMPLATE:
+				case TagConstants.SWITCHTEMPLATE:
+					PlaceTool(tools[toolName]);
+					break;
+				default:
+					Debug.LogError("Could find a handler for '" + toolName + "' in ToolButtons.cs");
+					break;
 			}
 		}
 
-		public void OnButtonClickPlaceSwitchLane() {
-			if(numberOfSwitchLaneTools > 0) {
-				switchIsBeingPlaced = true;
-				dragging = true;
-				numberOfSwitchLaneTools--;
-				switchLaneTools[numberOfSwitchLaneTools].SetActive(true);
+		public void PlaceTool(IList<GameObject> tools) {
+			var count = tools.Count;
+			if ( count <= 0 ) {
+				return;
 			}
+
+			dragging = true;
+			currentObject = tools[count - 1];
+			currentObject.SetActive(true);
+			tools.RemoveAt(count - 1);
 		}
 
-		public void OnButtonClickPlaceSpeed() {
-			if(numberOfSpeedTools > 0) {
-				speedIsBeingPlaced = true;
-				dragging = true;
-				numberOfSpeedTools--;
-				speedTools[numberOfSpeedTools].SetActive(true);
-			}
-		}
-
-		public void OnButtonClickPlaceEnlarge() {
-			if(numberOfEnlargeTools > 0) {
-				enlargeIsBeingPlaced = true;
-				dragging = true;
-				numberOfEnlargeTools--;
-				enlargeTools[numberOfEnlargeTools].SetActive(true);
-			}
-		}
-
-		public void OnButtonClickPlaceMinimize() {
-			if(numberOfMinimizeTools > 0) {
-				minimizeIsBeingPlaced = true;
-				dragging = true;
-				numberOfMinimizeTools--;
-				minimizeTools[numberOfMinimizeTools].SetActive(true);
-			}
-		}
-
-		public void OnButtonClickPlaceBridge() {
-			if (numberOfBridgeTools > 0) {
-				bridgeIsBeingPlaced = true;
-				dragging = true;
-				numberOfBridgeTools--;
-				bridgeTools[numberOfBridgeTools].SetActive(true);
-			}
-		}
-
-
-		void Update() {
+		protected void Update() {
 			foreach ( var touch in Input.touches) {
-				// switch lane tool
-				if ( touch.phase == TouchPhase.Moved && switchIsBeingPlaced ) {
-					PlaceObject(switchLaneTools[numberOfSwitchLaneTools], touch.position);
-				}
-				if ( touch.phase == TouchPhase.Ended && switchIsBeingPlaced ) {
-					switchIsBeingPlaced = false;
-					//activate collider when we place it on the scene
-					switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
-				}
-
-				// jump tool
-				if ( touch.phase == TouchPhase.Moved && jumpIsBeingPlaced ) {
-					PlaceObject(jumpTools[numberOfJumpTools], touch.position);
-				}
-				if ( touch.phase == TouchPhase.Ended && jumpIsBeingPlaced ) {
-					jumpIsBeingPlaced = false;
-					jumpTools[numberOfJumpTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
-				}
-
-				// speed tool
-				if ( touch.phase == TouchPhase.Moved && speedIsBeingPlaced ) {
-					PlaceObject(speedTools[numberOfSpeedTools], touch.position);
-				}
-				if ( touch.phase == TouchPhase.Ended && speedIsBeingPlaced ) {
-					speedIsBeingPlaced = false;
-					speedTools[numberOfSpeedTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
-				}
-
-				// enlarge tool
-				if ( touch.phase == TouchPhase.Moved && enlargeIsBeingPlaced ) {
-					PlaceObject(enlargeTools[numberOfEnlargeTools], touch.position);
-				}
-				if ( touch.phase == TouchPhase.Ended && enlargeIsBeingPlaced ) {
-					enlargeIsBeingPlaced = false;
-					enlargeTools[numberOfEnlargeTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
-				}
-
-				// minimize tool
-				if ( touch.phase == TouchPhase.Moved && minimizeIsBeingPlaced ) {
-					PlaceObject(minimizeTools[numberOfMinimizeTools], touch.position);
-				}
-				if ( touch.phase == TouchPhase.Ended && minimizeIsBeingPlaced ) {
-					minimizeIsBeingPlaced = false;
-					minimizeTools[numberOfMinimizeTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
-				}
-
-				// bridge tool
-				if (touch.phase == TouchPhase.Moved && bridgeIsBeingPlaced) {
-					PlaceObject(bridgeTools[numberOfBridgeTools], touch.position);
-				}
-				if (touch.phase == TouchPhase.Ended && bridgeIsBeingPlaced) {
-					bridgeIsBeingPlaced = false;
-					bridgeTools[numberOfBridgeTools].GetComponentInChildren<Collider>().enabled = true;
-					SetDraggingFalse();
+				if ( touch.phase == TouchPhase.Began ) {
+					IsAToolHit(touch.position);
+				} else if ( dragging ) {
+					switch (touch.phase) {
+						case TouchPhase.Moved:
+							PlaceObject(currentObject, touch.position);
+							break;
+						case TouchPhase.Ended:
+							ReleaseTool();
+							break;
+					}
 				}
 			}
 
-			// switch lane tool
-			if ( Input.GetMouseButton(0) && switchIsBeingPlaced ) {
-				PlaceObject(switchLaneTools[numberOfSwitchLaneTools], Input.mousePosition);
+			// Pickup tool
+			if ( Input.GetMouseButtonDown(0) && !dragging ) {
+				IsAToolHit(Input.mousePosition);
 			}
-			// Release switch lane to the scene
-			if ( Input.GetMouseButtonUp(0) && switchIsBeingPlaced ) {
-				switchIsBeingPlaced = false;
-				switchLaneTools[numberOfSwitchLaneTools].GetComponentInChildren<Collider>().enabled = true;
-				SetDraggingFalse();
+			// Place tool
+			if ( Input.GetMouseButton(0) && dragging ) {
+				PlaceObject(currentObject, Input.mousePosition);
+			}
+			// Release tool
+			if ( Input.GetMouseButtonUp(0) && dragging ) {
+				ReleaseTool();
+			}
+		}
+
+		private void IsAToolHit(Vector3 pos) {
+			RaycastHit hit;
+			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, layermask)
+				 || hit.transform == null
+				 || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
+				return;
 			}
 
-			// jump tool
-			if ( Input.GetMouseButton(0) && jumpIsBeingPlaced ) {
-				PlaceObject(jumpTools[numberOfJumpTools], Input.mousePosition);
-			}
-			// Release jump to the scene
-			if ( Input.GetMouseButtonUp(0) && jumpIsBeingPlaced ) {
-				jumpTools[numberOfJumpTools].GetComponentInChildren<Collider>().enabled = true;
-				jumpIsBeingPlaced = false;
-				SetDraggingFalse();
-			}
+			dragging = true;
+			hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
+			currentObject = hit.transform.parent.gameObject;
+		}
 
-			// speed tool
-			if ( Input.GetMouseButton(0) && speedIsBeingPlaced ) {
-				
-				PlaceObject(speedTools[numberOfSpeedTools], Input.mousePosition);
-			}
-			// Release speed to the scene
-			if ( Input.GetMouseButtonUp(0) && speedIsBeingPlaced ) {
-				speedTools[numberOfSpeedTools].GetComponentInChildren<Collider>().enabled = true;
-				speedIsBeingPlaced = false;
-				SetDraggingFalse();
-			}
-
-			// enlarge tool
-			if ( Input.GetMouseButton(0) && enlargeIsBeingPlaced ) {
-				PlaceObject(enlargeTools[numberOfEnlargeTools], Input.mousePosition);
-			}
-			// Release enlarge to the scene
-			if ( Input.GetMouseButtonUp(0) && enlargeIsBeingPlaced ) {
-				enlargeTools[numberOfEnlargeTools].GetComponentInChildren<Collider>().enabled = true;
-				enlargeIsBeingPlaced = false;
-				SetDraggingFalse();
-			}
-
-			// minimize tool
-			if ( Input.GetMouseButton(0) && minimizeIsBeingPlaced ) {
-				PlaceObject(minimizeTools[numberOfMinimizeTools], Input.mousePosition);
-			}
-			// Release minimize to the scene
-			if ( Input.GetMouseButtonUp(0) && minimizeIsBeingPlaced ) {
-				minimizeTools[numberOfMinimizeTools].GetComponentInChildren<Collider>().enabled = true;
-				minimizeIsBeingPlaced = false;
-				SetDraggingFalse();
-			}
-
-			// bridge tool
-			if (Input.GetMouseButton(0) && bridgeIsBeingPlaced) {
-				PlaceObject(bridgeTools[numberOfBridgeTools], Input.mousePosition);
-			}
-			// Release bridge to the scene
-			if (Input.GetMouseButtonUp(0) && bridgeIsBeingPlaced) {
-				bridgeTools[numberOfBridgeTools].GetComponentInChildren<Collider>().enabled = true;
-				bridgeIsBeingPlaced = false;
-				SetDraggingFalse();
+		private void ReleaseTool() {
+			if ( shouldReturn ) {
+				PutObjectInPool(currentObject.transform);
+				currentObject.SetActive(false);
+				currentObject.GetComponentInChildren<SphereCollider>().enabled = false;
+				currentObject = null;
+				dragging = false;
+				ChangeColor(notReturning);
+				shouldReturn = false;
+			} else {
+				dragging = false;
+				currentObject.GetComponentInChildren<SphereCollider>().enabled = true;
 			}
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
+			var ray =  Camera.main.ScreenPointToRay(position);
+			RaycastHit hit;
+
+			if ( !Physics.Raycast(ray, out hit, 400f, layermask) ||
+			     !hit.transform.tag.Equals(TagConstants.LANE) ) {
+				return;
+			}
+
+			obj.transform.position = hit.point;
+			snapping.Snap(hit.point, obj.transform);
+		}
+
+		public void OnPointerEnter(PointerEventData data){
 			if ( !dragging ) {
 				return;
 			}
 
-			Ray ray =  Camera.main.ScreenPointToRay(position);
-			RaycastHit hit;
+			ChangeColor(returning);
+			shouldReturn = true;
+		}
 
-			if ( Physics.Raycast(ray, out hit) ) {
-				if ( hit.transform.tag.Equals(TagConstants.LANE)) {
-					obj.transform.position = hit.point;
-
-					snapping.Snap(hit.point, obj.transform);
-
-				}
+		public void OnPointerExit(PointerEventData data){
+			if ( !dragging ) {
+				return;
 			}
+
+			ChangeColor(notReturning);
+			StartCoroutine(CheckIfItemShouldBeDestroyedUsingTouch());
 		}
 
-		private void SetDraggingFalse() {
-			dragging = false;
+		private IEnumerator CheckIfItemShouldBeDestroyedUsingTouch(){
+			yield return new WaitForSeconds(0.2f);
+			shouldReturn = false;
+			ChangeColor(notReturning);
 		}
 
-		public bool IsDragged() {
+		private void ChangeColor(Color color) {
+			img.color = color;
+		}
+
+		public bool IsDragging() {
 			return dragging;
 		}
 
-		public void SetSnap (SnappingToolInterface snapTool) {
+		public void SetSnap(SnappingToolInterface snapTool) {
 			snapping = snapTool;
 		}
+
 		public string GetTag () {
 			return TagConstants.SNAPPING;
 		}
+
 		public void SetupComponents () {
-			return;
 		}
+
 		public GameObject GetGameObject () {
 			return gameObject;
 		}
+
 		public Actionable<T> GetActionable<T>() {
 			return null;
 		}
