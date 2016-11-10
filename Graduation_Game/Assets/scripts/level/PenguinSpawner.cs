@@ -2,6 +2,8 @@
 using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -10,6 +12,9 @@ namespace Assets.scripts.level {
 
 		[Tooltip("Time between penguins")]
 		public float countTime = 3;
+
+		[Tooltip("Time for the player to get ready")]
+		public int countDownTime = 3000;
 
 		private GameObject penguinObject;
 		private Text penguinCounter;
@@ -28,15 +33,30 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator Spawn() {
-			// Create an instance of the penguin at the objects position
-			while ( penguinCount-- > 0 ) {
-				var go = (GameObject) Instantiate(penguinObject, transform.position, Quaternion.identity);
-				penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
-				go.SetActive(true);
-				go.tag = TagConstants.PENGUIN;
-				InjectionRegister.Redo();
+			// spawn first penguin and freeze time
+			SpawnPenguin();
+			yield return StartCoroutine(SpawnRest());
+		}
+
+		private IEnumerator SpawnRest() {
+			yield return new WaitForSeconds(0.1f);
+			Time.timeScale = 0.0f;
+			Thread.Sleep(countDownTime);
+			Time.timeScale = 1.0f;
+			while ( penguinCount > 0 ) {
 				yield return new WaitForSeconds(countTime);
+				SpawnPenguin();
 			}
+		}
+
+		void SpawnPenguin() {
+			// Create an instance of the penguin at the objects position
+			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
+			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
+			go.SetActive(true);
+			go.tag = TagConstants.PENGUIN;
+			InjectionRegister.Redo();
+			penguinCount--;
 		}
 	}
 }
