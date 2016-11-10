@@ -17,6 +17,7 @@ namespace Assets.scripts.character {
 		public bool jump = false;
 		public Lane lane = Lane.Left;
 		private bool isDead;
+		private bool isFrozen;
 		private CharacterController characterController;
 		private float groundY;
 		private bool isRunning;
@@ -37,6 +38,9 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
+			if ( isFrozen ) {
+				return;
+			}
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
 				if ( isRunning ) {
@@ -151,6 +155,14 @@ namespace Assets.scripts.character {
 
 		public bool IsDead() {
 			return isDead;
+		}
+
+		public void Freeze() {
+			isFrozen = true;
+		}
+
+		public bool isFrozen() {
+			return isFrozen;
 		}
 
 		public bool IsRunning() {

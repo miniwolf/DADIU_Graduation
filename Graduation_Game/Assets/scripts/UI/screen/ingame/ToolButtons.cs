@@ -33,6 +33,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.FREEZETEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -65,6 +66,9 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public void PlaceTool(string toolName) {
 			switch ( toolName ) {
+				case TagConstants.FREEZETEMPLATE:
+					FreezeTime();
+					break;
 				case TagConstants.JUMPTEMPLATE:
 				case TagConstants.BRIDGETEMPLATE:
 				case TagConstants.ENLARGETEMPLATE:
@@ -79,6 +83,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		public void FreezeTime() {
+			//get list with all penguins, finding Penguin tag
+			// set variable isFrozen to true in all of them
+			// start a coroutine for X seconds 
+			// set variable isFrozen to false in all of them
+
+			GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN);
+		}
+
 		public void PlaceTool(IList<GameObject> tools) {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
@@ -91,6 +104,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			currentObject.SetActive(true);
 			tools.RemoveAt(count - 1);
 		}
+
+
 
 		protected void Update() {
 			foreach ( var touch in Input.touches) {
