@@ -53,7 +53,15 @@ namespace Assets.scripts.UI.screen.ingame {
 		// Instantiates prefabs of length n, stores them in an array objArray
 		// and sets them to all to false.
 		private void PoolSystem(string objArray, GameObject template) {
-			tools[objArray].Add(template);
+			List<GameObject> toolArray = null;
+			try {
+				toolArray = tools[objArray];
+			} catch (KeyNotFoundException) {
+				Debug.Log("Did not add '" + objArray +"' for object '" + template.name + "'");
+			}
+			if (toolArray != null) {
+				toolArray.Add(template);
+			}
 		}
 
 		public void PlaceTool(string toolName) {
