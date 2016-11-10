@@ -14,6 +14,7 @@
 		public const string FALLING_BRIDGE_CONTROLLER = "Falling_Bridge_Controller";
 		public const string PLUTONIUM_COUNTER_TEXT = "PlutoniumCounterText";
 		public const string PENGUIN_COUNTER_TEXT = "PenguinCounterText";
+		public const string COUNT_DOWN_TEXT = "CountDownText";
 		public const string SPIKETRAP = "SpikeTrap";
 		public const string PITTRAP = "PitTrap";
 		public const string LEVELSETTINGS = "LevelSettings";
