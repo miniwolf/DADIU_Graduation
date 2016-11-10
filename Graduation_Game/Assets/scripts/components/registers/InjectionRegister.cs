@@ -15,13 +15,13 @@ namespace Assets.scripts.components.registers {
 		private static GameObject levelSettings;
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
-	    private static InputManager inputManager;
+		private static InputManager inputManager;
 
 		protected void Awake() {
 			snap = new SnappingTool();
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
-		    inputManager = GetComponent<InputManager>();
+			inputManager = GetComponent<InputManager>();
 		}
 
 		protected void Start() {
@@ -59,13 +59,19 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
 					break;
-				case TagConstants.SNAPPING:
-					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
-					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
-					break;
+				//case TagConstants.SNAPPING:
+				//	
+				//	break;
 				case TagConstants.WEIGHTBASED:
-					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>());
+					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
 					break;
+				case TagConstants.TOOLBUTTON:
+					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
+					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
+					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
+					break;
+					
+					
 			default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}

@@ -24,31 +24,8 @@ namespace Assets.Editor {
 				|| Selection.transforms[0].position == prevPosition ) {
 				return;
 			}
-			PlacementSnap();
-			if ( doBlockSnap ) {
-
-			}
 			if ( doSnap ) {
 				Snap();
-			}
-		}
-
-		private void PlacementSnap() {
-			var transforms = Selection.transforms;
-			foreach ( var myTransform in transforms ) {
-				RaycastHit hit;
-				if ( !Physics.Raycast(myTransform.position, -Vector3.up, out hit) ) {
-					continue;
-				}
-
-				var targetPosition = hit.point;
-				if ( myTransform.gameObject.GetComponent<MeshFilter>() != null ) {
-					var bounds = myTransform.gameObject.GetComponent<MeshFilter>().sharedMesh.bounds;
-					targetPosition.y += bounds.extents.y;
-				}
-				myTransform.position = targetPosition;
-				var targetRotation = new Vector3 (hit.normal.x, myTransform.eulerAngles.y, hit.normal.z);
-				myTransform.eulerAngles = targetRotation;
 			}
 		}
 

@@ -2,6 +2,7 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 
 namespace Assets.scripts.character {
@@ -24,7 +25,7 @@ namespace Assets.scripts.character {
 		private bool isMinimizing;
 		private Dictionary<CurveType, AnimationCurve> curveDict;
 		private Dictionary<CurveType, float> initialTimeDict;
-		private Weight weight; 
+		private Weight weight;
 
 		void Start() {
 			groundY = transform.position.y;
@@ -41,7 +42,7 @@ namespace Assets.scripts.character {
 				ExecuteAction(ControllableActions.Move);
 				if ( isRunning ) {
 					ExecuteAction(ControllableActions.Speed);
-				} 
+				}
 				if ( isEnlarging ) {
 					ExecuteAction(ControllableActions.Enlarge);
 				}
@@ -84,13 +85,13 @@ namespace Assets.scripts.character {
 		public AnimationCurve GetCurve(CurveType type) {
 			AnimationCurve curve;
 			curveDict.TryGetValue(type, out curve);
-			return curve; 
+			return curve;
 		}
 
 		public float GetInitialTime(CurveType type) {
 			float time;
 			initialTimeDict.TryGetValue(type, out time);
-			return time; 
+			return time;
 		}
 
 		public void removeCurve(CurveType type) {

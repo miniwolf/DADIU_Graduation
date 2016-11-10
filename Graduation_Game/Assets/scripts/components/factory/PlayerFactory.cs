@@ -1,4 +1,5 @@
-﻿using Assets.scripts.controllers;
+﻿using Assets.scripts.character;
+using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
@@ -12,11 +13,14 @@ namespace Assets.scripts.components.factory {
 	    private readonly Actionable<ControllableActions> actionable;
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
+		private readonly Penguin penguin;
+		private readonly Directionable directionable;
 
 		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
-
+			this.penguin = penguin.GetComponent<Penguin>();
+			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
 		}
 
@@ -24,12 +28,12 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
 			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLeft());
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
-			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
-			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
-			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, CreateKillPenguinByWeightBased());
-			actionable.AddAction(ControllableActions.KillPenguinByExcavator, CreateKillPenguinByExcavator());
-			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
-			actionable.AddAction(ControllableActions.KillPenguinByOrca, CreateKillPenguinByOrca());
+			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(AnimationConstants.SPIKEDEATH));
+			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(AnimationConstants.PITDEATH));
+			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(AnimationConstants.SPIKEDEATH)); // TODO: There should be another
+			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(AnimationConstants.DROWNING));
+			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(AnimationConstants.ELECTRICUTION));
+			actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(AnimationConstants.ORCADEATH));
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
@@ -41,9 +45,22 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
 			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
+			actionable.AddAction(ControllableActions.StartSliding,CreateSlideAction(true));
+			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
 		}
 
-		private Handler CreateMove() {
+	    private Handler CreateSlideAction(bool slide) {
+	        var actionHandler = new ActionHandler();
+
+	        if(slide)
+	            actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+	        else
+	            actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+
+	        return actionHandler;
+	    }
+
+	    private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
 			return actionHandler;
@@ -61,44 +78,10 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateKillPenguinBySpikes() {
+		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.SPIKEDEATH));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByPit() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.PITDEATH));
-			return actionHandler;
-		}
-		private Handler CreateKillPenguinByWeightBased() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.DROWNDEATH));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByExcavator() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable)actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.SPIKEDEATH)); // Should be another anim, it does not exists right now
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByElectricution() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ELECTRICUTION));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByOrca() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ORCADEATH));
+			actionHandler.AddAction(new SetTrigger(animator, constant));
 			return actionHandler;
 		}
 
@@ -117,19 +100,21 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateStartSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StartSpeed((Directionable) actionable));
-			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			actionHandler.AddAction(new StartSpeed(directionable));
+			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 
 		private Handler CreateSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Speed((Directionable) actionable));
+			actionHandler.AddAction(new Speed(directionable));
+			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
+
 		private Handler CreateStopSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StopSpeed((Directionable) actionable));
+			actionHandler.AddAction(new StopSpeed(directionable));
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
@@ -146,6 +131,7 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new Enlarge((Directionable) actionable));
 			return actionHandler;
 		}
+
 		private Handler CreateStopEnlarge() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopEnlarge((Directionable) actionable));
@@ -166,6 +152,7 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new Minimize((Directionable) actionable));
 			return actionHandler;
 		}
+
 		private Handler CreateStopMinimize() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopMinimize((Directionable) actionable));

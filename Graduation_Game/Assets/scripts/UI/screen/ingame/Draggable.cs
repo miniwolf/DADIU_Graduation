@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public interface Draggable {
-		bool IsDragged();
+		bool IsDragging();
 	}
 }
 

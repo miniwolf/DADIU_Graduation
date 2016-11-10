@@ -1,24 +1,21 @@
 ﻿using UnityEngine;
-using Assets.scripts.components;
-using Assets.scripts.level;
 using Assets.scripts.character;
+using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class StopSpeed : Action {
-		private Directionable direction;
+		private readonly Directionable direction;
 
 		public StopSpeed(Directionable direction) {
 			this.direction = direction;
 		}
 
 		public void Setup(GameObject gameObject) {
-			return;
 		}
 
 		public void Execute() {
 			direction.SetRunning(false);
-			float initialSpeed = direction.GetWalkSpeed();
-			direction.SetSpeed(initialSpeed);
+			direction.SetSpeed(direction.GetWalkSpeed());
 			direction.removeCurve(Penguin.CurveType.Speed);
 		}
 	}
