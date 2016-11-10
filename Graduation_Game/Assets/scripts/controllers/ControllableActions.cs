@@ -10,6 +10,7 @@
 		StartEnlarge, Enlarge, StopEnlarge,
 		StartMinimize, Minimize, StopMinimize,
 		KillPenguinByElectricution,
-		KillPenguinByOrca
+		KillPenguinByOrca,
+	    StartSliding, StopSliding,
 	}
 }

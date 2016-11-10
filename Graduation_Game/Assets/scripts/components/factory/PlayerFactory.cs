@@ -45,9 +45,22 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
 			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
+			actionable.AddAction(ControllableActions.StartSliding,CreateSlideAction(true));
+			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
 		}
 
-		private Handler CreateMove() {
+	    private Handler CreateSlideAction(bool slide) {
+	        var actionHandler = new ActionHandler();
+
+	        if(slide)
+	            actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+	        else
+	            actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+
+	        return actionHandler;
+	    }
+
+	    private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
 			return actionHandler;
