@@ -28,12 +28,12 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		protected void Start() {
-			tools.Add("Jump", new List<GameObject>());
-			tools.Add("Speed", new List<GameObject>());
-			tools.Add("Switch Lane", new List<GameObject>());
-			tools.Add("Bridge", new List<GameObject>());
-			tools.Add("Enlarge", new List<GameObject>());
-			tools.Add("Minimize", new List<GameObject>());
+			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -47,23 +47,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PutObjectInPool(Component child) {
-			switch ( child.tag ) {
-				case TagConstants.SWITCHTEMPLATE:
-					PoolSystem("Switch Lane", child.gameObject);
-					break;
-				case TagConstants.JUMPTEMPLATE:
-					PoolSystem("Jump", child.gameObject);
-					break;
-				case TagConstants.SPEEDTEMPLATE:
-					PoolSystem("Speed", child.gameObject);
-					break;
-				//case TagConstants.BRIDGETEMPLATE:
-//					PoolSystem("Speed", child.gameObject);
-					//break;
-				default:
-					Debug.Log("Did not add a template for '" + child.tag + "' in ToolButtons.cs");
-					break;
-			}
+			PoolSystem(child.tag, child.gameObject);
 		}
 
 		// Instantiates prefabs of length n, stores them in an array objArray
@@ -74,12 +58,12 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public void PlaceTool(string toolName) {
 			switch ( toolName ) {
-				case "Jump":
-				case "Speed":
-				case "Switch Lane":
-				case "Bridge":
-				case "Enlarge":
-				case "Minimize":
+				case TagConstants.JUMPTEMPLATE:
+				case TagConstants.BRIDGETEMPLATE:
+				case TagConstants.ENLARGETEMPLATE:
+				case TagConstants.MINIMIZETEMPLATE:
+				case TagConstants.SPEEDTEMPLATE:
+				case TagConstants.SWITCHTEMPLATE:
 					PlaceTool(tools[toolName]);
 					break;
 				default:
