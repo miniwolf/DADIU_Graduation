@@ -15,13 +15,13 @@ namespace Assets.scripts.components.registers {
 		private static GameObject levelSettings;
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
-	    private static InputManager inputManager;
+		private InputManager inputManager;
 
 		protected void Awake() {
 			snap = new SnappingTool();
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
-		    inputManager = GetComponent<InputManager>();
+			inputManager = GetComponent<InputManager>();
 		}
 
 		protected void Start() {
@@ -63,7 +63,7 @@ namespace Assets.scripts.components.registers {
 				//	
 				//	break;
 				case TagConstants.WEIGHTBASED:
-					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>());
+					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
 					break;
 				case TagConstants.TOOLBUTTON:
 					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());

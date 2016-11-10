@@ -6,7 +6,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		private CharacterController characterController;
 		private readonly Directionable direction;
 		private const float GRAVITY = 9.8f;
-		private Actionable<ControllableActions> actionable;
+		private readonly Actionable<ControllableActions> actionable;
 
 		public MoveForward(Directionable direction, Actionable<ControllableActions> actionable){
 			this.actionable = actionable;

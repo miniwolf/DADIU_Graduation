@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
 		public const string SPEEDTEMPLATE = "SpeedTemplate";
@@ -23,7 +24,6 @@
 		public const string SNAPPING = "Snapping";
 		public const string WEIGHTBASED = "WeightBased";
 		public const string TOOLBUTTON = "ToolButton";
-		public const string BRIDGETEMPLATE = "BridgeTemplate";
 
 		public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";

@@ -7,10 +7,9 @@ using Assets.scripts.character;
 
 namespace Assets.scripts.traps{
 	public class WeightBasedTrap : ActionableGameEntityImpl<TrapActions>, WeightBasedInterface {
-
-		List<GameObject> gos = new List<GameObject>(); //it is known that there are only 6 GO's at the time of creation which should be handled using this array.
-		int iterator = 0;
-		List<GameObject> penguins = new List<GameObject>();
+		private readonly List<GameObject> gos = new List<GameObject>(); //it is known that there are only 6 GO's at the time of creation which should be handled using this array.
+		private int iterator = 0;
+		private readonly List<GameObject> penguins = new List<GameObject>();
 
 		private float initialHeight;
 		private float whenSunk;
@@ -25,29 +24,20 @@ namespace Assets.scripts.traps{
 
 		public int amountOfPenguinsThatMakeItSink = 1;
 
-		void Start(){
+		protected void Start(){
 			Init();
 			DivideChildren();
 		}
 
-		void Init(){
+		protected void Init(){
 			col = GetComponent<BoxCollider>();
-			if (isBothLanes) {
-				col.size = new Vector3(col.size.x, col.size.y, 4f);
-				col.center = new Vector3(col.center.x, 1.3f, 0f);
-			}else if (isOnlyRight) {
-				col.size = new Vector3(col.size.x, col.size.y, 2f);
-				col.center = new Vector3(col.center.x, 1.3f, -1f);
-			} else if (!isOnlyRight) {
-				col.size = new Vector3(col.size.x, col.size.y, 2f);
-				col.center = new Vector3(col.center.x, 1.3f, 1f);
-			} 
-
+			col.center = new Vector3(col.center.x, 1.3f, isBothLanes ? 0 : isOnlyRight ? -1f : 1f);
+			col.size = isBothLanes ? new Vector3(col.size.x, col.size.y, 4f) : new Vector3(col.size.x, col.size.y, 2f);
 		}
 
 
-		void DivideChildren(){
-			foreach (Transform t in GetComponentsInChildren<Transform>()) {
+		private void DivideChildren(){
+			foreach (var t in GetComponentsInChildren<Transform>()) {
 				if (t.gameObject.GetComponent<MeshRenderer>() != null) {
 					gos.Add(t.gameObject);
 				}
@@ -56,17 +46,18 @@ namespace Assets.scripts.traps{
 			whenSunk = initialHeight - maxNegativeYMovement;
 		}
 
-		void Sinking(){
+		private void Sinking() {
 			if (liftRunning) {
 				StopCoroutine(lifting);
 				liftRunning = false;
 			}
+
 			if (!sinkRunning) {
 				sinking = StartCoroutine(SinkIt());
 			}
 		}
 
-		void Lifting(){
+		private void Lifting(){
 			if (sinkRunning) {
 				StopCoroutine(sinking);
 				sinkRunning = false;
@@ -76,40 +67,42 @@ namespace Assets.scripts.traps{
 			}
 		}
 
-
 		public override string GetTag () {
 			return TagConstants.WEIGHTBASED;
 		}
 
 		protected void OnTriggerEnter(Collider other){
-			if (other.tag == TagConstants.PENGUIN) {
-				switch (other.GetComponent<Penguin>().GetWeight()){
-					case Penguin.Weight.Big:
-						penguins.Add(other.gameObject);
-						Sinking();
-						break;
-					case Penguin.Weight.Small:
-						break;
-					case Penguin.Weight.Normal:
-						penguins.Add(other.gameObject);
-						break;
-					default:
-						break;
-				}
-				if (penguins.Count >= amountOfPenguinsThatMakeItSink) {
-					Sinking();
-				}
+			if ( other.tag != TagConstants.PENGUIN ) {
+				return;
+			}
+
+			switch (other.GetComponent<Penguin>().GetWeight()){
+				case Penguin.Weight.Big:
+					penguins.Add(other.gameObject);
+					Sinking(sinksFasterFactor);
+					break;
+				case Penguin.Weight.Small:
+					break;
+				case Penguin.Weight.Normal:
+					penguins.Add(other.gameObject);
+					break;
+				default:
+					break;
+			}
+
+			if ( penguins.Count >= amountOfPenguinsThatMakeItSink ) {
+				Sinking();
 			}
 		}
 
 		//POSSIBLY TODO implement OnTriggerStay checking the size of the penguins, if it is possible to place objects on it, and depending on the speed
-
-		protected void OnTriggerExit(Collider other){
-			if (other.tag == TagConstants.PENGUIN) {
-				penguins.Remove(other.gameObject);
-				if (penguins.Count == 0) {
-					Lifting();
-				}
+		protected void OnTriggerExit(Collider other) {
+			if ( other.tag != TagConstants.PENGUIN ) {
+				return;
+			}
+			penguins.Remove(other.gameObject);
+			if ( penguins.Count == 0 ) {
+				Lifting();
 			}
 		}
 
@@ -133,7 +126,7 @@ namespace Assets.scripts.traps{
 			return sinksFasterFactor;
 		}
 
-		IEnumerator SinkIt(){
+		private IEnumerator SinkIt() {
 			sinkRunning = true;
 			while(gos[0].transform.position.y>whenSunk){
 				ExecuteAction(TrapActions.WEIGHTBASEDSINKING);
@@ -141,7 +134,8 @@ namespace Assets.scripts.traps{
 			}
 			sinkRunning = false;
 		}
-		IEnumerator LiftIt(){
+
+		private IEnumerator LiftIt() {
 			liftRunning = true;
 			while(gos[0].transform.position.y<initialHeight){
 				ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
