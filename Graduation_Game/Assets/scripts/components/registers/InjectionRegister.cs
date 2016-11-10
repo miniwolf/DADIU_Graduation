@@ -15,13 +15,11 @@ namespace Assets.scripts.components.registers {
 		private static GameObject levelSettings;
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
-	    private static InputManager inputManager;
 
 		protected void Awake() {
 			snap = new SnappingTool();
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
-		    inputManager = GetComponent<InputManager>();
 		}
 
 		protected void Start() {

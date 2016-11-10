@@ -28,11 +28,11 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
 			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLeft());
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
-			actionable.AddAction(ControllableActions.KillPenguinBySpikes, CreateKillPenguinBySpikes());
-			actionable.AddAction(ControllableActions.KillPenguinByPit, CreateKillPenguinByPit());
-			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, CreateKillPenguinByWeightBased());
-			actionable.AddAction(ControllableActions.KillPenguinByElectricution, CreateKillPenguinByElectricution());
-			actionable.AddAction(ControllableActions.KillPenguinByOrca, CreateKillPenguinByOrca());
+			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(AnimationConstants.SPIKEDEATH));
+			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(AnimationConstants.PITDEATH));
+			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(AnimationConstants.DROWNING));
+			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(AnimationConstants.ELECTRICUTION));
+			actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(AnimationConstants.ORCADEATH));
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
@@ -58,37 +58,10 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateKillPenguinBySpikes() {
+		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.SPIKEDEATH));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByPit() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.PITDEATH));
-			return actionHandler;
-		}
-		private Handler CreateKillPenguinByWeightBased() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.DROWNING));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByElectricution() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ELECTRICUTION));
-			return actionHandler;
-		}
-
-		private Handler CreateKillPenguinByOrca() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.ORCADEATH));
+			actionHandler.AddAction(new SetTrigger(animator, constant));
 			return actionHandler;
 		}
 

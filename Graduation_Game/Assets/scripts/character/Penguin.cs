@@ -36,6 +36,8 @@ namespace Assets.scripts.character {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
+
+
 					characterController.enabled = false;
 				}
 			}

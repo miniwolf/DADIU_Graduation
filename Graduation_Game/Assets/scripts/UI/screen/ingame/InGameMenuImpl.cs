@@ -13,8 +13,6 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameObject switchLaneToolObjectOriginal, // template from which we create switchLaneToolObjectCurrentlyDragging
 			switchLaneToolObjectCurrentlyDragging; // actually dragged object
 
-		private bool dragging = false;
-	
 		public override void ResolveDependencies() {
 			/*switchLaneToolObjectOriginal = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE) as GameObject; 
 
