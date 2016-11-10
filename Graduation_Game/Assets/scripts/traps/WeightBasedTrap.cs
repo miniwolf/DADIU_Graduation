@@ -79,7 +79,7 @@ namespace Assets.scripts.traps{
 			switch (other.GetComponent<Penguin>().GetWeight()){
 				case Penguin.Weight.Big:
 					penguins.Add(other.gameObject);
-					Sinking(sinksFasterFactor);
+					Sinking();
 					break;
 				case Penguin.Weight.Small:
 					break;

@@ -80,6 +80,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
+			inputManager.BlockCameraMovement();
 			var count = tools.Count;
 			if ( count <= 0 ) {
 				return;
@@ -123,14 +124,15 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, layermask)
+			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
 				 || hit.transform == null
+				 || hit.transform.parent == null
 				 || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
 				return;
 			}
 
 			dragging = true;
-			//inputManager.BlockCameraMovement();
+			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 		}
@@ -148,6 +150,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<SphereCollider>().enabled = true;
 			}
+			StartCoroutine(CameraHack());
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
@@ -186,6 +189,12 @@ namespace Assets.scripts.UI.screen.ingame {
 			shouldReturn = false;
 			ChangeColor(notReturning);
 		}
+
+		private IEnumerator CameraHack(){
+			yield return new WaitForSeconds(0.2f);
+			inputManager.UnblockCameraMovement();
+		}
+
 
 		private void ChangeColor(Color color) {
 			img.color = color;
