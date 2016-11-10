@@ -5,6 +5,7 @@ using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Assets.scripts.character;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler {
@@ -83,13 +84,23 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
-		public void FreezeTime() {
-			//get list with all penguins, finding Penguin tag
-			// set variable isFrozen to true in all of them
+		public IEnumerator FreezeTime() {
 			// start a coroutine for X seconds 
-			// set variable isFrozen to false in all of them
 
-			GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN);
+			// set variable isFrozen to true in all of them
+			GameObject[] penguins = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN);
+			foreach ( GameObject penguin in penguins ) {
+				penguin.GetComponent<Penguin>().SetFreeze(true);
+			}
+			// TODO change these 5 seconds for a public variable in the tool (gameobject that you can find by tag here and 
+			// that is not visible in the scene)
+			yield return new WaitForSeconds(5f); 
+
+			// set variable isFrozen to false in all of them
+			foreach ( GameObject penguin in penguins ) {
+				penguin.GetComponent<Penguin>().SetFreeze(false);
+			}
+
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {

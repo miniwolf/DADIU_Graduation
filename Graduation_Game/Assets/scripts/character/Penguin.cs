@@ -39,6 +39,8 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
+			// TODO make a bool variable to disable (or not) the buttons in the UI
+			// so game designer can try and decide what option is better 
 			if ( isFrozen ) {
 				return;
 			}
@@ -158,11 +160,11 @@ namespace Assets.scripts.character {
 			return isDead;
 		}
 
-		public void Freeze() {
-			isFrozen = true;
+		public void SetFreeze(bool freeze) {
+			isFrozen = freeze;
 		}
 
-		public bool isFrozen() {
+		public bool IsFrozen() {
 			return isFrozen;
 		}
 
