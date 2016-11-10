@@ -1,8 +1,5 @@
-﻿using System.ComponentModel;
-
-namespace Asset.scripts.tools {
+﻿namespace Assets.scripts.tools {
     public interface Tool {
-
         ToolType GetToolType();
     }
 }
