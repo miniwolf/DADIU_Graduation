@@ -87,22 +87,21 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateStartSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StartSpeed(penguin, directionable));
+			actionHandler.AddAction(new StartSpeed(directionable));
 			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
 
 		private Handler CreateSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Speed(penguin, directionable));
+			actionHandler.AddAction(new Speed(directionable));
 			//actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
+
 		private Handler CreateStopSpeed() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new StopSpeed(penguin, directionable));
-			//actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
-			actionHandler.AddAction(new StopSpeed((Directionable) actionable));
+			actionHandler.AddAction(new StopSpeed(directionable));
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
 			return actionHandler;
 		}
@@ -119,6 +118,7 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new Enlarge((Directionable) actionable));
 			return actionHandler;
 		}
+
 		private Handler CreateStopEnlarge() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopEnlarge((Directionable) actionable));
@@ -139,6 +139,7 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new Minimize((Directionable) actionable));
 			return actionHandler;
 		}
+
 		private Handler CreateStopMinimize() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
