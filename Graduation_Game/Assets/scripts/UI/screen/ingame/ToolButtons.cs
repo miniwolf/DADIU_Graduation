@@ -8,6 +8,7 @@ namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool {
 
 		private SnappingToolInterface snapping;
+		private InputManager inputManager;
 
 		public GameObject jumpPrefab;
 		public GameObject switchLanePrefab;
@@ -43,6 +44,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		void Start() {
+			
 			jumpTools = new GameObject[numberOfJumpTools];
 			switchLaneTools = new GameObject[numberOfSwitchLaneTools];
 			speedTools = new GameObject[numberOfSpeedTools];
@@ -256,6 +258,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
+			inputManager.BlockCameraMovement();
 			if ( !dragging ) {
 				return;
 			}
@@ -275,6 +278,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void SetDraggingFalse() {
 			dragging = false;
+			inputManager.UnblockCameraMovement();
 		}
 
 		public bool IsDragged() {
@@ -284,8 +288,13 @@ namespace Assets.scripts.UI.screen.ingame {
 		public void SetSnap (SnappingToolInterface snapTool) {
 			snapping = snapTool;
 		}
+
+		public void SetInputManager(InputManager inputManage){
+			this.inputManager = inputManage;
+		}
+
 		public string GetTag () {
-			return TagConstants.SNAPPING;
+			return TagConstants.TOOLBUTTON;
 		}
 		public void SetupComponents () {
 			return;
