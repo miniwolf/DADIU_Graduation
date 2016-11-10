@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.scripts.controllers.actions.traps{
 	public class LiftWeightBased : Action {
-		private readonly GameObject[] toManipulate;
+		private readonly List<GameObject> toManipulate;
 		private readonly float moveFactor;
 
 		public LiftWeightBased(WeightBasedInterface weight) {

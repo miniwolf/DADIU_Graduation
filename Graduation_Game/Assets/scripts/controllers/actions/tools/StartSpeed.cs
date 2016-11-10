@@ -4,20 +4,18 @@ using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class StartSpeed : Action {
-		private readonly Penguin penguin;
-		private readonly Directionable directionable;
+		private readonly Directionable direction;
 
-		public StartSpeed(Penguin penguin, Directionable directionable) {
-			this.penguin = penguin;
-			this.directionable = directionable;
+		public StartSpeed(Directionable direction) {
+			this.direction = direction;
 		}
 
 		public void Setup(GameObject gameObject) {
 		}
 
 		public void Execute() {
-			directionable.SetRunning(true);
-			penguin.SetInitialRunTime(Time.timeSinceLevelLoad);
+			direction.SetRunning(true);
+			direction.SetInitialTime(Penguin.CurveType.Speed, Time.timeSinceLevelLoad);
 		}
 	}
 }

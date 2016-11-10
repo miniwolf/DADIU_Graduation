@@ -3,6 +3,9 @@
 		SwitchLane,
 		PressurePlate,
         Jump,
-		Speed
+		Speed,
+		Enlarge,
+		Minimize,
+		Bridge
     }
 }

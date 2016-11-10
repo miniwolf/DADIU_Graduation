@@ -3,69 +3,111 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
+using Assets.scripts.character;
 
 namespace Assets.scripts.traps{
 	public class WeightBasedTrap : ActionableGameEntityImpl<TrapActions>, WeightBasedInterface {
-
-		GameObject[] gos = new GameObject[6]; //it is known that there are only 6 GO's at the time of creation which should be handled using this array.
-		int iterator = 0;
-		List<GameObject> penguins = new List<GameObject>();
+		private readonly List<GameObject> gos = new List<GameObject>(); //it is known that there are only 6 GO's at the time of creation which should be handled using this array.
+		private int iterator = 0;
+		private readonly List<GameObject> penguins = new List<GameObject>();
 
 		private float initialHeight;
 		private float whenSunk;
-		public float maxNegativeYMovement = 4f;
-		public float movementFactor = 0.1f;
-		private Coroutine sinking;
+		public float maxNegativeYMovement = 1.5f;
+		public float movementFactor = 0.0000001f;
+		private Coroutine sinking, lifting;
+		public bool isBothLanes = false, isOnlyRight = true;
+		private BoxCollider col; 
+		private Penguin.Weight weight;
+		public float sinksFasterFactor = 2f; 
 
-		void Start(){
+		public int amountOfPenguinsThatMakeItSink = 1;
+
+		protected void Start(){
 			Init();
 			DivideChildren();
 		}
 
-		private void Init() {
-			initialHeight = transform.position.y;
+		protected void Init(){
+			col = GetComponent<BoxCollider>();
+			col.center = new Vector3(col.center.x, 1.3f, isBothLanes ? 0 : isOnlyRight ? -1f : 1f);
+			col.size = isBothLanes ? new Vector3(col.size.x, col.size.y, 4f) : new Vector3(col.size.x, col.size.y, 2f);
+		}
+
+
+		private void DivideChildren(){
+			foreach (var t in GetComponentsInChildren<Transform>()) {
+				if (t.gameObject.GetComponent<MeshRenderer>() != null) {
+					gos.Add(t.gameObject);
+				}
+			}
+			initialHeight = gos[0].transform.position.y;
 			whenSunk = initialHeight - maxNegativeYMovement;
 		}
 
-		private void DivideChildren() {
-			foreach (var t in GetComponentsInChildren<Transform>()) {
-				if ( t.gameObject.GetComponent<MeshRenderer>() == null ) {
-					continue;
-				}
-
-				gos[iterator] = t.gameObject;
-				iterator++;
+		private void Sinking() {
+			if (lifting != null) {
+				StopCoroutine(lifting);
+			}
+			if (sinking == null) {
+				sinking = StartCoroutine(SinkIt());
 			}
 		}
 
-		private void Sinking(float sinkingSpeed) {
-			sinking = StartCoroutine(SinkIt(sinkingSpeed));
+		private void Sinking(float factor) {
+			if (lifting != null) {
+				StopCoroutine(lifting);
+			}
+			if (sinking == null) {
+				sinking = StartCoroutine(SinkIt());
+			}
 		}
 
-		private void Lifting() {
-			StopCoroutine(sinking);
-			ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
+		private void Lifting(){
+			if (sinking != null) {
+				StopCoroutine(sinking);
+			}
+			lifting = StartCoroutine(LiftIt());
 		}
 
 
-		public override string GetTag() {
+		public override string GetTag () {
 			return TagConstants.WEIGHTBASED;
 		}
 
 		protected void OnTriggerEnter(Collider other){
-			if (other.tag == TagConstants.PENGUIN) {
-				penguins.Add(other.gameObject);
-				if (penguins.Count > 0) {
-					Sinking(0.5f);
-				}
+			if ( other.tag != TagConstants.PENGUIN ) {
+				return;
+			}
+
+			switch (other.GetComponent<Penguin>().GetWeight()){
+				case Penguin.Weight.Big:
+					penguins.Add(other.gameObject);
+					Sinking(sinksFasterFactor);
+					break;
+				case Penguin.Weight.Small:
+					break;
+				case Penguin.Weight.Normal:
+					penguins.Add(other.gameObject);
+					break;
+				default:
+					break;
+			}
+
+			if ( penguins.Count >= amountOfPenguinsThatMakeItSink ) {
+				Sinking();
 			}
 		}
-		protected void OnTriggerExit(Collider other){
-			if (other.tag == TagConstants.PENGUIN) {
-				penguins.Remove(other.gameObject);
-				if (penguins.Count == 0) {
-					Lifting();
-				}
+
+		//POSSIBLY TODO implement OnTriggerStay checking the size of the penguins, if it is possible to place objects on it, and depending on the speed
+
+		protected void OnTriggerExit(Collider other) {
+			if ( other.tag != TagConstants.PENGUIN ) {
+				return;
+			}
+			penguins.Remove(other.gameObject);
+			if ( penguins.Count == 0 ) {
+				Lifting();
 			}
 		}
 
@@ -77,7 +119,7 @@ namespace Assets.scripts.traps{
 			return whenSunk;
 		}
 
-		public GameObject[] GetChildrenToManipulate(){
+		public List<GameObject> GetChildrenToManipulate(){
 			return gos;
 		}
 
@@ -85,10 +127,21 @@ namespace Assets.scripts.traps{
 			return movementFactor;
 		}
 
-		IEnumerator SinkIt(float speed){
+		public float GetHeavinessFactor(){
+			return sinksFasterFactor;
+		}
+
+		private IEnumerator SinkIt() {
 			while(gos[0].transform.position.y>whenSunk){
 				ExecuteAction(TrapActions.WEIGHTBASEDSINKING);
-				yield return new WaitForSeconds(speed);
+				yield return new WaitForEndOfFrame();
+			}
+		}
+
+		private IEnumerator LiftIt() {
+			while(gos[0].transform.position.y<initialHeight){
+				ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
+				yield return new WaitForEndOfFrame();
 			}
 		}
 	}

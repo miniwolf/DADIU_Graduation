@@ -30,6 +30,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(AnimationConstants.SPIKEDEATH));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(AnimationConstants.PITDEATH));
+			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(AnimationConstants.SPIKEDEATH)); // TODO: There should be another
 			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(AnimationConstants.DROWNING));
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(AnimationConstants.ELECTRICUTION));
 			actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(AnimationConstants.ORCADEATH));
@@ -38,6 +39,12 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
 			actionable.AddAction(ControllableActions.Speed, CreateSpeed());
 			actionable.AddAction(ControllableActions.StopSpeed, CreateStopSpeed());
+			actionable.AddAction(ControllableActions.StartEnlarge, CreateStartEnlarge());
+			actionable.AddAction(ControllableActions.Enlarge, CreateEnlarge());
+			actionable.AddAction(ControllableActions.StopEnlarge, CreateStopEnlarge());
+			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
+			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
+			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 		}
 
 		private Handler CreateMove() {
@@ -95,6 +102,47 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopSpeed(penguin, directionable));
 			//actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			actionHandler.AddAction(new StopSpeed((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			return actionHandler;
+		}
+
+		private Handler CreateStartEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartEnlarge((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.ENLARGE));
+			return actionHandler;
+		}
+
+		private Handler CreateEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Enlarge((Directionable) actionable));
+			return actionHandler;
+		}
+		private Handler CreateStopEnlarge() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopEnlarge((Directionable) actionable));
+			// TODO there is an offset from when the shrinking animation should be played and when it is actually played
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.ENLARGE));
+			return actionHandler;
+		}
+
+		private Handler CreateStartMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.MINIMIZE));
+			return actionHandler;
+		}
+
+		private Handler CreateMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Minimize((Directionable) actionable));
+			return actionHandler;
+		}
+		private Handler CreateStopMinimize() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
+			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.MINIMIZE));
 			return actionHandler;
 		}
 	}

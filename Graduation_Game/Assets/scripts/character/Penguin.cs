@@ -1,10 +1,14 @@
 ﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
 		public enum Lane {Left, Right};
+		public enum CurveType {Speed, Enlarge, Minimize};
+		public enum Weight {Normal, Big, Small}
 
 		public Vector3 direction;
 		public float jumpSpeed = 7;
@@ -16,14 +20,20 @@ namespace Assets.scripts.character {
 		private CharacterController characterController;
 		private float groundY;
 		private bool isRunning;
-		private float initialRunTime;
-		private AnimationCurve curve;
+		private bool isEnlarging;
+		private bool isMinimizing;
+		private Dictionary<CurveType, AnimationCurve> curveDict;
+		private Dictionary<CurveType, float> initialTimeDict;
+		private Weight weight;
 
 		void Start() {
 			groundY = transform.position.y;
 			direction = new Vector3(1,0,0);
 			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
+			curveDict = new Dictionary<CurveType, AnimationCurve>();
+			initialTimeDict = new Dictionary<CurveType, float>();
+			weight = Weight.Normal;
 		}
 
 		void Update() {
@@ -32,18 +42,63 @@ namespace Assets.scripts.character {
 				if ( isRunning ) {
 					ExecuteAction(ControllableActions.Speed);
 				}
+				if ( isEnlarging ) {
+					ExecuteAction(ControllableActions.Enlarge);
+				}
+				if ( isMinimizing ) {
+					ExecuteAction(ControllableActions.Minimize);
+				}
 			} else {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
-
-
-					characterController.enabled = false;
+					//TODO Instantiate a dead penguin mesh into the position of the penguin.
+					//characterController.enabled = false;
 				}
 			}
 		}
 		public override string GetTag() {
 			return TagConstants.PENGUIN;
+		}
+
+		public void SetCurve(CurveType type, AnimationCurve curve) {
+			AnimationCurve curveStored;
+			if ( curveDict.TryGetValue(type, out curveStored) ) {
+				//overwrite previous curve (from previous tool)
+				curveDict[type] = curve;
+			} else {
+				curveDict.Add(type, curve);
+			}
+		}
+
+		public void SetInitialTime(CurveType type, float time) {
+			float timeStored;
+			if ( initialTimeDict.TryGetValue(type, out timeStored) ) {
+				//overwrite previous time (from previous tool)
+				initialTimeDict[type] = time;
+			} else {
+				initialTimeDict.Add(type, time);
+			}
+		}
+
+		public AnimationCurve GetCurve(CurveType type) {
+			AnimationCurve curve;
+			curveDict.TryGetValue(type, out curve);
+			return curve;
+		}
+
+		public float GetInitialTime(CurveType type) {
+			float time;
+			initialTimeDict.TryGetValue(type, out time);
+			return time;
+		}
+
+		public void removeCurve(CurveType type) {
+			curveDict.Remove(type);
+		}
+
+		public void removeInitialTime(CurveType type) {
+			initialTimeDict.Remove(type);
 		}
 
 		public Vector3 GetDirection() {
@@ -106,20 +161,36 @@ namespace Assets.scripts.character {
 			isRunning = running;
 		}
 
-		public float GetInitialRunTime() {
-			return initialRunTime;
+		public bool IsEnlarging() {
+			return isEnlarging;
 		}
 
-		public void SetInitialRunTime(float time) {
-			initialRunTime = time;
+		public void SetEnlarging(bool enlarging) {
+			isEnlarging = enlarging;
 		}
 
-		public void SetCurve(AnimationCurve curve) {
-			this.curve = curve;
+		public bool IsMinimizing() {
+			return isMinimizing;
 		}
 
-		public AnimationCurve GetCurve() {
-			return curve;
+		public void SetMinimizing(bool minimizing) {
+			isMinimizing = minimizing;
+		}
+
+		public void SetScale(Vector3 scale) {
+			transform.localScale = scale;
+		}
+
+		public Vector3 GetInitialScale() {
+			return new Vector3(1, 1, 1);
+		}
+
+		public Weight GetWeight() {
+			return weight;
+		}
+
+		public void SetWeight(Weight weight) {
+			this.weight = weight;
 		}
 	}
 }

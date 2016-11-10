@@ -3,6 +3,8 @@
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
 		public const string SPEEDTEMPLATE = "SpeedTemplate";
+		public const string ENLARGETEMPLATE = "EnlargeTemplate";
+		public const string MINIMIZETEMPLATE = "MinimizeTemplate";
 		public const string SPAWNPOOL = "SpawnPool";
 		public const string PENGUIN_TEMPLATE = "Penguin template";
 		public const string PENGUIN = "Penguin";
@@ -19,7 +21,7 @@
 		public const string JUMP = "Jump";
 		public const string WIRE = "Wire";
 		public const string SNAPPING = "Snapping";
-		public const string WEIGHTBASED = "Weightbased";
+		public const string WEIGHTBASED = "WeightBased";
 
 		public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";

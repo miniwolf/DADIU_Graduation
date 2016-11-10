@@ -4,22 +4,19 @@ using Assets.scripts.components;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class StopSpeed : Action {
-		private Penguin penguin;
-		private float initialSpeed;
-		private readonly Directionable directionable;
+		private readonly Directionable direction;
 
-		public StopSpeed(Penguin penguin, Directionable directionable) {
-			this.penguin = penguin;
-			this.directionable = directionable;
+		public StopSpeed(Directionable direction) {
+			this.direction = direction;
 		}
 
 		public void Setup(GameObject gameObject) {
-			penguin = gameObject.GetComponent<Penguin>();
 		}
 
 		public void Execute() {
-			directionable.SetRunning(false);
-			penguin.SetSpeed(directionable.GetWalkSpeed());
+			direction.SetRunning(false);
+			direction.SetSpeed(direction.GetWalkSpeed());
+			direction.removeCurve(Penguin.CurveType.Speed);
 		}
 	}
 }
