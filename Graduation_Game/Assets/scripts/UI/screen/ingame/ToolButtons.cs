@@ -102,6 +102,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
+			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
 		}
 
@@ -148,7 +149,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			dragging = true;
 			inputManager.BlockCameraMovement();
-			hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
+			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 		}
 
@@ -156,14 +157,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( shouldReturn ) {
 				PutObjectInPool(currentObject.transform);
 				currentObject.SetActive(false);
-				currentObject.GetComponentInChildren<SphereCollider>().enabled = false;
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
 				dragging = false;
 				ChangeColor(notReturning);
 				shouldReturn = false;
 			} else {
 				dragging = false;
-				currentObject.GetComponentInChildren<SphereCollider>().enabled = true;
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 			StartCoroutine(CameraHack());
 		}
