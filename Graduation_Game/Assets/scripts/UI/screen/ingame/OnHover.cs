@@ -18,6 +18,7 @@ namespace Assets.scripts.UI.screen.ingame{
 		private bool shouldReturn = false;
 		private bool touchPhaseEnded = false;
 		private SnappingToolInterface snap;
+		private InputManager inputManager;
 
 		void Awake(){
 			InjectionRegister.Register(this);
@@ -84,10 +85,16 @@ namespace Assets.scripts.UI.screen.ingame{
 			if (Physics.Raycast(cam.ScreenPointToRay(pos),out hit)) {
 				if (hit.transform.tag == TagConstants.JUMPTEMPLATE || hit.transform.tag == TagConstants.SWITCHTEMPLATE 
 					|| hit.transform.tag == TagConstants.SPEEDTEMPLATE || hit.transform.tag == TagConstants.ENLARGETEMPLATE
-					|| hit.transform.tag == TagConstants.MINIMIZETEMPLATE) {
+					|| hit.transform.tag == TagConstants.MINIMIZETEMPLATE || hit.transform.tag == TagConstants.BRIDGETEMPLATE) {
 					shouldMove = true;
-					hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
+					if (hit.transform.tag != TagConstants.BRIDGETEMPLATE) {
+						hit.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
+					} else {
+						hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+					}
 					movingAround = hit.transform.parent.gameObject;
+					inputManager.BlockCameraMovement();
+					print(inputManager.IsCameraBlocked());
 				}
 			}
 		}
@@ -111,8 +118,18 @@ namespace Assets.scripts.UI.screen.ingame{
 				//Add it back to the count you have for the stash
 			} else {
 				shouldMove = false;
-				movingAround.GetComponentInChildren<SphereCollider>().enabled = true;
+				if (movingAround.tag != TagConstants.BRIDGETEMPLATE) {
+					movingAround.GetComponentInChildren<SphereCollider>().enabled = true;
+				} else {
+					movingAround.GetComponentInChildren<BoxCollider>().enabled = true;
+				}
 			}
+			StartCoroutine(CameraHack());
+		}
+
+		IEnumerator CameraHack(){
+			yield return new WaitForSeconds(0.2f);
+			inputManager.UnblockCameraMovement();
 		}
 
 		IEnumerator CheckIfItemShouldBeDestroyedUsingTouch(){
@@ -125,8 +142,12 @@ namespace Assets.scripts.UI.screen.ingame{
 			snap = snapTool;
 		}
 
+		public void SetInputManager (InputManager inputManage) {
+			this.inputManager = inputManage;
+		}
+
 		public string GetTag () {
-			return TagConstants.SNAPPING;
+			return TagConstants.TOOLBUTTON;
 		}
 		public void SetupComponents () {
 			return;
