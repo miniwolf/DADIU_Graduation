@@ -81,6 +81,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			case TagConstants.MINIMIZETEMPLATE:
 			case TagConstants.SPEEDTEMPLATE:
 			case TagConstants.SWITCHTEMPLATE:
+			case TagConstants.METALTEMPLATE:
 				PlaceTool(tools[toolName]);
 				break;
 			case TagConstants.Tool.FREEZE_TIME:

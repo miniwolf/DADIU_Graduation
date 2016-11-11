@@ -4,6 +4,7 @@ using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.tools.lane;
+using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using Assets.scripts.gamestate;
@@ -18,13 +19,13 @@ namespace Assets.scripts.components.factory {
 		private readonly Directionable directionable;
 		private readonly GameStateManager gameStateManager;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
-			this.gameStateManager = gameStateManager;
-			this.penguin.GetComponent<Penguin>().SetGameStateManager(this.gameStateManager);
+			gameStateManager = stateManager;
+			penguin.GetComponent<Penguin>().SetGameStateManager(gameStateManager);
 		}
 
 		public void Build() {
