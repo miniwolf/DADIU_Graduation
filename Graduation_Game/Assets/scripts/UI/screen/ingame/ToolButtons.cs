@@ -121,6 +121,8 @@ namespace Assets.scripts.UI.screen.ingame {
 				} else if ( dragging ) {
 					switch (touch.phase) {
 						case TouchPhase.Moved:
+							//Debug.Log(currentObject);
+							// If Bridge PlaceBridgeObject
 							PlaceObject(currentObject, touch.position);
 							break;
 						case TouchPhase.Ended:
@@ -176,16 +178,44 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
-			var ray =  Camera.main.ScreenPointToRay(position);
-			RaycastHit hit;
 
-			if ( !Physics.Raycast(ray, out hit, 400f, layermask) ||
-			     !hit.transform.tag.Equals(TagConstants.LANE) ) {
-				return;
+			// Special case when we have a bridge
+			if(obj.tag == TagConstants.BRIDGETEMPLATE) {
+				var ray = Camera.main.ScreenPointToRay(position);
+				RaycastHit hit;
+
+				if (Physics.Raycast(ray, out hit, 400f, layermask)) {
+					//Debug.Log("Level height : " + hit.transform.position.y + ", Hit point height : " + hit.point.y);
+					float hitPointHeight = hit.point.y;
+					float currentLevelHeight = hit.transform.position.y + 1f; // 1f is added because of how the parent of the blocks is transformed
+
+					// Makes sure the placement of a bridge does not go
+					// below the height of the current block
+					if (hitPointHeight < currentLevelHeight) {
+						return;
+					}
+
+					Vector3 hitWithFixedLevelHeight = new Vector3(hit.point.x, currentLevelHeight, hit.point.z);
+
+					obj.transform.position = hitWithFixedLevelHeight;
+					snapping.Snap(hitWithFixedLevelHeight, obj.transform);
+				}
 			}
 
-			obj.transform.position = hit.point;
-			snapping.Snap(hit.point, obj.transform);
+			// All other tools
+			else {
+				var ray = Camera.main.ScreenPointToRay(position);
+				RaycastHit hit;
+
+
+				if (!Physics.Raycast(ray, out hit, 400f, layermask) ||
+					!hit.transform.tag.Equals(TagConstants.LANE)) {
+					return;
+				}
+
+				obj.transform.position = hit.point;
+				snapping.Snap(hit.point, obj.transform);
+			}
 		}
 
 		public void OnPointerEnter(PointerEventData data){
