@@ -59,7 +59,7 @@ namespace Assets.scripts.components.factory {
 	    private Handler CreateFreezeAction(bool freeze)
 	    {
 	        var actionHandler = new ActionHandler();
-	        animator.speed = (freeze ? 0 : 1);
+	        actionHandler.AddAction(new FreezeAction(animator, freeze));
 	        return actionHandler;
 	    }
 
