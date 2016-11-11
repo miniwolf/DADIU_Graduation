@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.scripts.character;
 using Assets.scripts.components;
 using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.level;
@@ -17,6 +18,9 @@ namespace Assets.scripts.controllers.actions.tools {
 			this.direction = direction;
 			this.levelSettings = levelSettings.GetComponent<LevelSettings>();
 			this.laneSwitch = laneSwitch;
+			direction.SetGoingTo(laneSwitch.GetType() == typeof(Left)
+				? Penguin.Lane.Left
+				: Penguin.Lane.Right);
 		}
 
 		public void Setup(GameObject gameObject) {
@@ -37,7 +41,6 @@ namespace Assets.scripts.controllers.actions.tools {
 			Debug.DrawRay(penguin.transform.position, newDirection, Color.red);
 			if ( Physics.Raycast(new Ray(penguin.transform.position, newDirection),
 				out hit, 8f, layerMask) ) {
-				Debug.Log("returning");
 				return;
 			}
 
@@ -48,7 +51,7 @@ namespace Assets.scripts.controllers.actions.tools {
 
 		private IEnumerator LaneReached(float zPos, Vector3 oldDirection, Quaternion oldRotation) {
 			do {
-				// check every 0.25 pulsateInterval if penguin has reached the half of the lane
+				// check every 0.05 pulsateInterval if penguin has reached the half of the lane
 				yield return new WaitForSeconds(0.05f);
 			} while (laneSwitch.LaneSwitchCondition(penguin.transform.position.z, laneSwitch.GetDirection(zPos, levelSettings)) );
 

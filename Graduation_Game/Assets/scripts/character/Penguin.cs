@@ -2,8 +2,6 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
@@ -15,8 +13,9 @@ namespace Assets.scripts.character {
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
 		public float speed;
-		public bool jump = false;
+		public bool jump;
 		public Lane lane = Lane.Left;
+		public Lane goingToLane = Lane.Left;
 		private bool isDead;
 		private CharacterController characterController;
 		private float groundY;
@@ -144,6 +143,10 @@ namespace Assets.scripts.character {
 
 		public float GetGroundY() {
 			return groundY;
+		}
+
+		public void SetGoingTo(Lane left) {
+
 		}
 
 		public void Kill() {

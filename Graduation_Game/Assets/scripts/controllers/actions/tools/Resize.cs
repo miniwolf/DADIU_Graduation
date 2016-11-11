@@ -3,20 +3,22 @@ using Assets.scripts.components;
 using Assets.scripts.character;
 
 namespace Assets.scripts.controllers.actions.tools {
-	public class Enlarge : Action {
+	public class Resize : Action {
 		private readonly Directionable direction;
+		private readonly resize.Resize resize;
 
-		public Enlarge(Directionable direction) {
+		public Resize(Directionable direction, resize.Resize resize) {
 			this.direction = direction;
+			this.resize = resize;
 		}
 
 		public void Setup(GameObject gameObject) {
 		}
 
 		public void Execute() {
-			var curve = direction.GetCurve(Penguin.CurveType.Enlarge);
+			var curve = direction.GetCurve(resize.GetCurveType());
 			var scalingFactor = curve.Evaluate(Time.timeSinceLevelLoad - direction.GetInitialTime(Penguin.CurveType.Enlarge));
-			direction.SetScale(direction.GetInitialScale() * scalingFactor);
+			direction.SetScale(resize.GetScale(direction, scalingFactor));
 		}
 	}
 }
