@@ -1,31 +1,22 @@
 ﻿using UnityEngine;
 using Assets.scripts.components;
-using Assets.scripts.level;
 using Assets.scripts.character;
 
 namespace Assets.scripts.controllers.actions.tools {
 	public class Enlarge : Action {
-		private Directionable direction;
+		private readonly Directionable direction;
 
 		public Enlarge(Directionable direction) {
 			this.direction = direction;
 		}
 
 		public void Setup(GameObject gameObject) {
-			return;
 		}
 
 		public void Execute() {
-			Vector3 initialScale = direction.GetInitialScale();
-			float initialTime = direction.GetInitialTime(Penguin.CurveType.Enlarge);
-			float actualTime = Time.timeSinceLevelLoad;
-			Debug.Log(actualTime-initialTime + " " + actualTime + " " + initialTime);
-			AnimationCurve curve = direction.GetCurve(Penguin.CurveType.Enlarge);
-
-			float scalingFactor = curve.Evaluate(actualTime - initialTime);
-			Debug.Log (scalingFactor);
-			Vector3 newScale = initialScale * scalingFactor;
-			direction.SetScale(newScale);
+			var curve = direction.GetCurve(Penguin.CurveType.Enlarge);
+			var scalingFactor = curve.Evaluate(Time.timeSinceLevelLoad - direction.GetInitialTime(Penguin.CurveType.Enlarge));
+			direction.SetScale(direction.GetInitialScale() * scalingFactor);
 		}
 	}
 }
