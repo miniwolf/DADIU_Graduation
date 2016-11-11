@@ -12,5 +12,6 @@
 		KillPenguinByElectricution,
 		KillPenguinByOrca,
 	    StartSliding, StopSliding,
+	    Freeze, UnFreeze
 	}
 }

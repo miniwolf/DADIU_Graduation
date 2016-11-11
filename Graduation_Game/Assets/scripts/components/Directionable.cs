@@ -31,5 +31,6 @@ namespace Assets.scripts.components {
 		void SetWeight(Penguin.Weight weight);
 
 		float GetGroundY();
+		void SetGoingTo(Penguin.Lane left);
 	}
 }

@@ -5,10 +5,14 @@ using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Assets.scripts.character;
+using Assets.scripts.gamestate;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
 		public Color returning, notReturning;
+		[Tooltip("How long the level will be frozen when freeze tool is used (seconds)")]
+		public int freezeToolTime = 5;
 
 		private SnappingToolInterface snapping;
 		private InputManager inputManager;
@@ -16,6 +20,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Vector3 mouseHitPosition;
 		private Camera cam;
 		private Image img;
+		private GameStateManager gameStateManager;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -33,6 +38,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
+			tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -40,7 +47,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
-			foreach ( var child in spawnPool.transform.GetComponentsInChildren<Transform>() ) {
+			foreach(var child in spawnPool.transform.GetComponentsInChildren<Transform>()) {
 				PutObjectInPool(child);
 			}
 		}
@@ -55,8 +62,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			List<GameObject> toolArray = null;
 			try {
 				toolArray = tools[objArray];
-			} catch (KeyNotFoundException) {
-				Debug.Log("Did not add '" + objArray +"' for object '" + template.name + "'");
+			} catch(KeyNotFoundException) {
+				Debug.Log("Did not add '" + objArray + "' for object '" + template.name + "'");
 			}
 			if (toolArray != null) {
 				toolArray.Add(template);
@@ -64,19 +71,32 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public void PlaceTool(string toolName) {
-			switch ( toolName ) {
-				case TagConstants.JUMPTEMPLATE:
-				case TagConstants.BRIDGETEMPLATE:
-				case TagConstants.ENLARGETEMPLATE:
-				case TagConstants.MINIMIZETEMPLATE:
-				case TagConstants.SPEEDTEMPLATE:
-				case TagConstants.SWITCHTEMPLATE:
-					PlaceTool(tools[toolName]);
-					break;
-				default:
-					Debug.LogError("Could find a handler for '" + toolName + "' in ToolButtons.cs");
-					break;
+			if(gameStateManager.IsGameFrozen())
+				return;
+
+			switch(toolName) {
+			case TagConstants.JUMPTEMPLATE:
+			case TagConstants.BRIDGETEMPLATE:
+			case TagConstants.ENLARGETEMPLATE:
+			case TagConstants.MINIMIZETEMPLATE:
+			case TagConstants.SPEEDTEMPLATE:
+			case TagConstants.SWITCHTEMPLATE:
+			case TagConstants.METALTEMPLATE:
+				PlaceTool(tools[toolName]);
+				break;
+			case TagConstants.Tool.FREEZE_TIME:
+				StartCoroutine(FreezeTime());
+				break;
+			default:
+				Debug.LogError("Could find a handler for '" + toolName + "' in ToolButtons.cs");
+				break;
 			}
+		}
+
+		public IEnumerator FreezeTime() {
+			gameStateManager.SetGameFrozen(true);
+			yield return new WaitForSeconds(freezeToolTime);
+			gameStateManager.SetGameFrozen(false);
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
@@ -86,6 +106,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				return;
 			}
 
+			inputManager.BlockCameraMovement();
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
@@ -226,7 +247,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.UnblockCameraMovement();
 		}
 
-
 		private void ChangeColor(Color color) {
 			img.color = color;
 		}
@@ -256,6 +276,10 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public Actionable<T> GetActionable<T>() {
 			return null;
+		}
+
+		public void SetGameStateManager(GameStateManager manager) {
+			gameStateManager = manager;
 		}
 	}
 }

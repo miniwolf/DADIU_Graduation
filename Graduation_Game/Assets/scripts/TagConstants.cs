@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string METALTEMPLATE = "MetalTemplate";
 		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
@@ -26,6 +27,11 @@
 		public const string WEIGHTBASED = "WeightBased";
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
+
+	    // when refactoring, please put all tools here, so it's more structured (martin)
+	    public class Tool {
+	        public const string FREEZE_TIME = "FreezeTemplate";
+	    }
 
 	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
