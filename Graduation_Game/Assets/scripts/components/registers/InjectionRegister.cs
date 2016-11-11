@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.scripts.components.factory;
 using Assets.scripts.controllers;
+using Assets.scripts.gamestate;
 using Assets.scripts.traps;
 using Assets.scripts.UI;
 using Assets.scripts.UI.screen.ingame;
@@ -16,12 +17,14 @@ namespace Assets.scripts.components.registers {
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
 		private static InputManager inputManager;
+	    private static GameStateManager gameStateManager;
 
 		protected void Awake() {
 			snap = new SnappingTool();
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
+		    gameStateManager = GetComponent<GameStateManager>();
 		}
 
 		protected void Start() {
@@ -48,7 +51,7 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings, gameStateManager).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
 					new PickupFactory(component.GetActionable<PickupActions>()).Build();
@@ -69,9 +72,8 @@ namespace Assets.scripts.components.registers {
 					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
+			        component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
-					
-					
 			default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}

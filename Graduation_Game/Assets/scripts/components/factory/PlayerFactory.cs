@@ -6,6 +6,7 @@ using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
+using Assets.scripts.gamestate;
 using UnityEngine;
 
 namespace Assets.scripts.components.factory {
@@ -15,13 +16,17 @@ namespace Assets.scripts.components.factory {
 		private readonly Animator animator;
 		private readonly Penguin penguin;
 		private readonly Directionable directionable;
+	    private readonly GameStateManager gameStateManager;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager gameStateManager){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			this.penguin = penguin.GetComponent<Penguin>();
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
+		    this.gameStateManager = gameStateManager;
+		    this.penguin.SetGameStateManager(this.gameStateManager);
 		}
 
 		public void Build() {
@@ -47,7 +52,16 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 			actionable.AddAction(ControllableActions.StartSliding,CreateSlideAction(true));
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
+			actionable.AddAction(ControllableActions.Freeze, CreateFreezeAction(true));
+			actionable.AddAction(ControllableActions.UnFreeze, CreateFreezeAction(false));
 		}
+
+	    private Handler CreateFreezeAction(bool freeze)
+	    {
+	        var actionHandler = new ActionHandler();
+	        animator.speed = (freeze ? 0 : 1);
+	        return actionHandler;
+	    }
 
 	    private Handler CreateSlideAction(bool slide) {
 	        var actionHandler = new ActionHandler();

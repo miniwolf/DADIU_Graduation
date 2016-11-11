@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Assets.scripts.character;
+using Assets.scripts.gamestate;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
 		public Color returning, notReturning;
 
 		private SnappingToolInterface snapping;
@@ -17,6 +18,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Vector3 mouseHitPosition;
 		private Camera cam;
 		private Image img;
+	    private GameStateManager gameStateManager;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -34,7 +36,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.FREEZETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -65,11 +67,11 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
-		public void PlaceTool(string toolName) {
+		public void PlaceTool(string toolName)
+		{
+		    if (gameStateManager.IsGameFrozen()) return;
+
 			switch ( toolName ) {
-				case TagConstants.FREEZETEMPLATE:
-					FreezeTime();
-					break;
 				case TagConstants.JUMPTEMPLATE:
 				case TagConstants.BRIDGETEMPLATE:
 				case TagConstants.ENLARGETEMPLATE:
@@ -78,29 +80,19 @@ namespace Assets.scripts.UI.screen.ingame {
 				case TagConstants.SWITCHTEMPLATE:
 					PlaceTool(tools[toolName]);
 					break;
-				default:
+                case TagConstants.Tool.FREEZE_TIME:
+			        StartCoroutine(FreezeTime());
+			        break;
+			    default:
 					Debug.LogError("Could find a handler for '" + toolName + "' in ToolButtons.cs");
 					break;
 			}
 		}
 
 		public IEnumerator FreezeTime() {
-			// start a coroutine for X seconds 
-
-			// set variable isFrozen to true in all of them
-			GameObject[] penguins = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN);
-			foreach ( GameObject penguin in penguins ) {
-				penguin.GetComponent<Penguin>().SetFreeze(true);
-			}
-			// TODO change these 5 seconds for a public variable in the tool (gameobject that you can find by tag here and 
-			// that is not visible in the scene)
-			yield return new WaitForSeconds(5f); 
-
-			// set variable isFrozen to false in all of them
-			foreach ( GameObject penguin in penguins ) {
-				penguin.GetComponent<Penguin>().SetFreeze(false);
-			}
-
+		    gameStateManager.SetGameFrozen(true);
+		    yield return new WaitForSeconds(5f);
+		    gameStateManager.SetGameFrozen(false);
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
@@ -116,8 +108,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
 		}
-
-
 
 		protected void Update() {
 			foreach ( var touch in Input.touches) {
@@ -222,7 +212,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.UnblockCameraMovement();
 		}
 
-
 		private void ChangeColor(Color color) {
 			img.color = color;
 		}
@@ -253,5 +242,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		public Actionable<T> GetActionable<T>() {
 			return null;
 		}
+
+	    public void SetGameStateManager(GameStateManager manager)
+	    {
+	        gameStateManager = manager;
+	    }
 	}
 }

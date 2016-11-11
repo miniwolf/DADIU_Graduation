@@ -6,7 +6,6 @@
 		public const string SPEEDTEMPLATE = "SpeedTemplate";
 		public const string ENLARGETEMPLATE = "EnlargeTemplate";
 		public const string MINIMIZETEMPLATE = "MinimizeTemplate";
-		public const string FREEZETEMPLATE = "FreezeTemplate";
 		public const string SPAWNPOOL = "SpawnPool";
 		public const string PENGUIN_TEMPLATE = "Penguin template";
 		public const string PENGUIN = "Penguin";
@@ -27,6 +26,11 @@
 		public const string WEIGHTBASED = "WeightBased";
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
+
+	    // when refactoring, please put all tools here, so it's more structured (martin)
+	    public class Tool {
+	        public const string FREEZE_TIME = "FreezeTemplate";
+	    }
 
 	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
