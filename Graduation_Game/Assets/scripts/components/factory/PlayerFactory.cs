@@ -3,9 +3,11 @@ using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.tools.lane;
+using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
+using Resize = Assets.scripts.controllers.actions.tools.Resize;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
@@ -126,7 +128,7 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateEnlarge() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Enlarge((Directionable) actionable));
+			actionHandler.AddAction(new Resize((Directionable) actionable, new Enlarge()));
 			return actionHandler;
 		}
 
@@ -147,7 +149,7 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateMinimize() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Minimize((Directionable) actionable));
+			actionHandler.AddAction(new Resize((Directionable) actionable, new Minimize()));
 			return actionHandler;
 		}
 
