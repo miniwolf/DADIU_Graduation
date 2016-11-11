@@ -177,14 +177,6 @@ namespace Assets.scripts.character {
 			return isDead;
 		}
 
-		public void SetFreeze(bool freeze) {
-			isFrozen = freeze;
-		}
-
-		public bool IsFrozen() {
-			return isFrozen;
-		}
-
 		public bool IsRunning() {
 			return isRunning;
 		}
