@@ -39,6 +39,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
+			tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -64,7 +65,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			} catch(KeyNotFoundException) {
 				Debug.Log("Did not add '" + objArray + "' for object '" + template.name + "'");
 			}
-			if(toolArray != null) {
+			if (toolArray != null) {
 				toolArray.Add(template);
 			}
 		}
@@ -100,10 +101,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		public void PlaceTool(IList<GameObject> tools) {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
-			if(count <= 0) {
+			if ( count <= 0 ) {
 				return;
 			}
 
+			inputManager.BlockCameraMovement();
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
@@ -112,41 +114,41 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		protected void Update() {
-			foreach(var touch in Input.touches) {
-				if(touch.phase == TouchPhase.Began) {
+			foreach ( var touch in Input.touches) {
+				if ( touch.phase == TouchPhase.Began ) {
 					IsAToolHit(touch.position);
-				} else if(dragging) {
-					switch(touch.phase) {
-					case TouchPhase.Moved:
-						PlaceObject(currentObject, touch.position);
-						break;
-					case TouchPhase.Ended:
-						ReleaseTool();
-						break;
+				} else if ( dragging ) {
+					switch (touch.phase) {
+						case TouchPhase.Moved:
+							PlaceObject(currentObject, touch.position);
+							break;
+						case TouchPhase.Ended:
+							ReleaseTool();
+							break;
 					}
 				}
 			}
 
 			// Pickup tool
-			if(Input.GetMouseButtonDown(0) && !dragging) {
+			if ( Input.GetMouseButtonDown(0) && !dragging ) {
 				IsAToolHit(Input.mousePosition);
 			}
 			// Place tool
-			if(Input.GetMouseButton(0) && dragging) {
+			if ( Input.GetMouseButton(0) && dragging ) {
 				PlaceObject(currentObject, Input.mousePosition);
 			}
 			// Release tool
-			if(Input.GetMouseButtonUp(0) && dragging) {
+			if ( Input.GetMouseButtonUp(0) && dragging ) {
 				ReleaseTool();
 			}
 		}
 
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
-			    || hit.transform == null
-			    || hit.transform.parent == null
-			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
+			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+				 || hit.transform == null
+				 || hit.transform.parent == null
+				 || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
 				return;
 			}
 
@@ -157,7 +159,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void ReleaseTool() {
-			if(shouldReturn) {
+			if ( shouldReturn ) {
 				PutObjectInPool(currentObject.transform);
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
@@ -173,11 +175,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
-			var ray = Camera.main.ScreenPointToRay(position);
+			var ray =  Camera.main.ScreenPointToRay(position);
 			RaycastHit hit;
 
-			if(!Physics.Raycast(ray, out hit, 400f, layermask) ||
-			    !hit.transform.tag.Equals(TagConstants.LANE)) {
+			if ( !Physics.Raycast(ray, out hit, 400f, layermask) ||
+			     !hit.transform.tag.Equals(TagConstants.LANE) ) {
 				return;
 			}
 
@@ -185,8 +187,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			snapping.Snap(hit.point, obj.transform);
 		}
 
-		public void OnPointerEnter(PointerEventData data) {
-			if(!dragging) {
+		public void OnPointerEnter(PointerEventData data){
+			if ( !dragging ) {
 				return;
 			}
 
@@ -194,8 +196,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			shouldReturn = true;
 		}
 
-		public void OnPointerExit(PointerEventData data) {
-			if(!dragging) {
+		public void OnPointerExit(PointerEventData data){
+			if ( !dragging ) {
 				return;
 			}
 
@@ -203,13 +205,13 @@ namespace Assets.scripts.UI.screen.ingame {
 			StartCoroutine(CheckIfItemShouldBeDestroyedUsingTouch());
 		}
 
-		private IEnumerator CheckIfItemShouldBeDestroyedUsingTouch() {
+		private IEnumerator CheckIfItemShouldBeDestroyedUsingTouch(){
 			yield return new WaitForSeconds(0.2f);
 			shouldReturn = false;
 			ChangeColor(notReturning);
 		}
 
-		private IEnumerator CameraHack() {
+		private IEnumerator CameraHack(){
 			yield return new WaitForSeconds(0.2f);
 			inputManager.UnblockCameraMovement();
 		}
@@ -226,18 +228,18 @@ namespace Assets.scripts.UI.screen.ingame {
 			snapping = snapTool;
 		}
 
-		public void SetInputManager(InputManager inputManage) {
+		public void SetInputManager(InputManager inputManage){
 			this.inputManager = inputManage;
 		}
 
-		public string GetTag() {
+		public string GetTag () {
 			return TagConstants.TOOLBUTTON;
 		}
 
-		public void SetupComponents() {
+		public void SetupComponents () {
 		}
 
-		public GameObject GetGameObject() {
+		public GameObject GetGameObject () {
 			return gameObject;
 		}
 

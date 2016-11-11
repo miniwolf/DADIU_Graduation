@@ -17,8 +17,9 @@ namespace Assets.scripts.character {
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
 		public float speed;
-		public bool jump = false;
+		public bool jump;
 		public Lane lane = Lane.Left;
+		public Lane goingToLane = Lane.Left;
 		private bool isDead;
 		private bool isFrozen;
 		private CharacterController characterController;
@@ -42,8 +43,8 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
-			// TODO make a bool variable to disable (or not) the buttons in the UI    
-			// so game designer can try and decide what option is better 
+			// TODO make a bool variable to disable (or not) the buttons in the UI
+			// so game designer can try and decide what option is better
 		    if (gameStateManager.IsGameFrozen()) {
 		        ExecuteAction(ControllableActions.Freeze);
 		        return;
@@ -162,6 +163,10 @@ namespace Assets.scripts.character {
 
 		public float GetGroundY() {
 			return groundY;
+		}
+
+		public void SetGoingTo(Lane left) {
+
 		}
 
 		public void Kill() {
