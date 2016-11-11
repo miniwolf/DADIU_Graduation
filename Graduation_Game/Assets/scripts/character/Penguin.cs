@@ -39,7 +39,7 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
-			// TODO make a bool variable to disable (or not) the buttons in the UI
+			// TODO make a bool variable to disable (or not) the buttons in the UI    
 			// so game designer can try and decide what option is better 
 			if ( isFrozen ) {
 				return;
