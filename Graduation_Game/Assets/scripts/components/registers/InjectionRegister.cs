@@ -17,14 +17,14 @@ namespace Assets.scripts.components.registers {
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
 		private static InputManager inputManager;
-	    private static GameStateManager gameStateManager;
+		private static GameStateManager gameStateManager;
 
 		protected void Awake() {
 			snap = new SnappingTool();
 			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
-		    gameStateManager = GetComponent<GameStateManager>();
+			gameStateManager = GetComponent<GameStateManager>();
 		}
 
 		protected void Start() {
@@ -42,45 +42,45 @@ namespace Assets.scripts.components.registers {
 		}
 
 		private static void InitializeComponents() {
-			foreach ( var component in components ) {
+			foreach(var component in components) {
 				InitializeComponent(component);
 				component.SetupComponents();
 			}
 		}
 
 		private static void InitializeComponent(GameEntity component) {
-			switch ( component.GetTag() ) {
-				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings, gameStateManager).Build();
-					break;
-				case TagConstants.PLUTONIUM_PICKUP:
-					new PickupFactory(component.GetActionable<PickupActions>()).Build();
-					break;
-				case TagConstants.PRESSURE_PLATE:
-					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent) component);
-					break;
-				case TagConstants.WIRE:
-					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
-					break;
-				//case TagConstants.SNAPPING:
-				//	
-				//	break;
-				case TagConstants.WEIGHTBASED:
-					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
-					break;
-				case TagConstants.TOOLBUTTON:
-					snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
-					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
-					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
-			        component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
-					break;
+			switch(component.GetTag()) {
+			case TagConstants.PENGUIN:
+				new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings, gameStateManager).Build();
+				break;
+			case TagConstants.PLUTONIUM_PICKUP:
+				new PickupFactory(component.GetActionable<PickupActions>()).Build();
+				break;
+			case TagConstants.PRESSURE_PLATE:
+				new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
+				break;
+			case TagConstants.WIRE:
+				TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
+				break;
+			//case TagConstants.SNAPPING:
+			//	
+			//	break;
+			case TagConstants.WEIGHTBASED:
+				TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
+				break;
+			case TagConstants.TOOLBUTTON:
+				snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
+				component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
+				component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
+				component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
+				break;
 			default:
-					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
+				throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
 		}
 
 		public static void Redo() {
-			if ( !finished ) {
+			if(!finished) {
 				return;
 			}
 			InitializeComponents();

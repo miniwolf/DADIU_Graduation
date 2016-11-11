@@ -1,9 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Diagnostics;
 using System.Threading;
+using Assets.scripts.gamestate;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -20,10 +22,17 @@ namespace Assets.scripts.level {
 		private GameObject penguinObject;
 		private Text countDown;
 		private Text penguinCounter;
+	    private GameStateManager gameStateManager;
+	    /// <summary>
+	    ///  Determines how many penguin should have been spawned but were not, because game was frozen  (freeze time tool was used)
+	    /// </summary>
+	    private int penguinSpawnQueue;
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			countDown = GameObject.FindGameObjectWithTag(TagConstants.COUNT_DOWN_TEXT).GetComponent<Text>();
+		    gameStateManager = FindObjectOfType<GameStateManager>();
+
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -42,7 +51,8 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {
-			int counter = numIntervals;
+
+		    int counter = numIntervals;
 			do {
 				// print in text UI
 				countDown.text = counter.ToString();
@@ -51,9 +61,12 @@ namespace Assets.scripts.level {
 				Time.timeScale = 1.0f;
 			} while ( --counter > 0 );
 			countDown.enabled = false;
-			while ( penguinCount > 0 ) {
+
+		    while ( penguinCount > 0 ) {
 				yield return new WaitForSeconds(countTime);
-				SpawnPenguin();
+			    if (!gameStateManager.IsGameFrozen()) {
+			        SpawnPenguin();
+			    }
 			}
 		}
 
