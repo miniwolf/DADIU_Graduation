@@ -68,12 +68,16 @@ namespace Assets.scripts.components.registers {
 			case TagConstants.WEIGHTBASED:
 				TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
 				break;
+			case TagConstants.CANVAS:
+				new GameFactory(component.GetActionable<GameActions>()).Build();
+				break;
 			case TagConstants.TOOLBUTTON:
 				snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 				component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 				break;
+>>>>>>> develop
 			default:
 				throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
