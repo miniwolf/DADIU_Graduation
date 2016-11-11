@@ -11,4 +11,3 @@ namespace Assets.scripts.tools {
 		}
 	}
 }
-

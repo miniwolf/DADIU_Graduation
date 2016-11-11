@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 0e9182eba9fb58a49aff466483aa5783
+timeCreated: 1478704779
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - jumpPrefab: {fileID: 1000012002992546, guid: 3ed4fa636cf58dd45b39f82b72244da6,
+      type: 2}
+  - switchLanePrefab: {fileID: 1000012931690594, guid: 740d5996544c71e4fb2b2fe7d0b3193a,
+      type: 2}
+  - speedPrefab: {fileID: 1000014133789446, guid: dcd4772b84f0fbb469a30085edc62acb,
+      type: 2}
+  - enlargePrefab: {fileID: 1000012463141004, guid: 7389089f6ad53db4885fd7b10c71cc1f,
+      type: 2}
+  - minimizePrefab: {fileID: 1000010681508930, guid: c85648a5bce9ef443a08dbdf128d68ac,
+      type: 2}
+  - bridgePrefab: {fileID: 1000012240068186, guid: a57c6fd194961ac4096098b2d6e95857,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

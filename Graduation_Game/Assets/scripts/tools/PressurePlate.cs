@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Asset.scripts.tools;
-using Assets.scripts.controllers.handlers;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
 
 
 namespace Assets.scripts.tools {
-	
 	public class PressurePlate : ActionableGameEntityImpl<PressurePlateActions>, LinkingComponent {
-		public ObjectControlledByPressurePlate linkingObject;
+        public GameObject linkingObject;
+        public bool triggerOnlyOnce;
 
-		protected void OnTriggerEnter(Collider collision) {
+        protected void OnTriggerEnter(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
-				ExecuteAction(PressurePlateActions.Excute);
+                if (triggerOnlyOnce) {
+                    foreach (Collider c in GetComponents<Collider>())
+                        c.enabled = false;
+                    ExecuteAction(PressurePlateActions.Excute);
+                }
 			}
 		}
 		public override string GetTag() {
@@ -21,7 +22,7 @@ namespace Assets.scripts.tools {
 		}
 
 		public ObjectControlledByPressurePlate GetLinkingObject() {
-			return linkingObject;
+			return linkingObject.GetComponent<ObjectControlledByPressurePlate> ();
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Assets.scripts.components.registers;
-using Assets.scripts.controllers;
 using Assets.scripts.controllers.handlers;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ namespace Assets.scripts.components {
 			if ( actions.ContainsKey(actionName) ) {
 				actions[actionName].DoAction();
 			} else {
-				Debug.Log("Cannot execute action " + actionName + " on " + this);
+				Debug.LogError("Cannot execute action " + actionName + " on " + this);
 			}
 		}
 
@@ -36,9 +35,9 @@ namespace Assets.scripts.components {
 		public GameObject GetGameObject() {
 			return gameObject;
 		}
-	
-		public Actionable<ControllableActions> GetActionable() {
-			return (Actionable<ControllableActions>)this;
+
+		public Actionable<T1> GetActionable<T1>() {
+			return (Actionable<T1>) this;
 		}
 	}
 }
