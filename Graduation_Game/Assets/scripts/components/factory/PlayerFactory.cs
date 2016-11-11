@@ -1,5 +1,4 @@
-﻿using Assets.scripts.character;
-using Assets.scripts.controllers;
+﻿using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
@@ -13,13 +12,11 @@ namespace Assets.scripts.components.factory {
 	    private readonly Actionable<ControllableActions> actionable;
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
-		private readonly Penguin penguin;
 		private readonly Directionable directionable;
 
 		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
-			this.penguin = penguin.GetComponent<Penguin>();
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
 		}
@@ -45,22 +42,23 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
 			actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
-			actionable.AddAction(ControllableActions.StartSliding,CreateSlideAction(true));
+			actionable.AddAction(ControllableActions.StartSliding, CreateSlideAction(true));
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
 		}
 
-	    private Handler CreateSlideAction(bool slide) {
-	        var actionHandler = new ActionHandler();
+		private Handler CreateSlideAction(bool slide) {
+			var actionHandler = new ActionHandler();
 
-	        if(slide)
-	            actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
-	        else
-	            actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			if ( slide ) {
+				actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+			} else {
+				actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			}
 
-	        return actionHandler;
-	    }
+			return actionHandler;
+		}
 
-	    private Handler CreateMove() {
+		private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
 			return actionHandler;
