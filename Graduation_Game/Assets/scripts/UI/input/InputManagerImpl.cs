@@ -13,6 +13,9 @@ namespace Assets.scripts.UI {
 	    private bool cameraBlocked;
 
 	    void Update() {
+			if (IsCameraBlocked()) {
+				return;
+			}
 			Touch();
 			Mouse();
 			Keyboard();

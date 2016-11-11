@@ -11,14 +11,13 @@ namespace Assets.scripts.UI.screen.ingame {
 		public Color returning, notReturning;
 
 		private SnappingToolInterface snapping;
+		private InputManager inputManager;
 		private GameObject currentObject;
 		private Vector3 mouseHitPosition;
 		private Camera cam;
 		private Image img;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
-
-
 		private bool dragging;
 		private bool shouldReturn;
 		private const int layermask = 1 << 8;
@@ -83,6 +82,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
+			inputManager.BlockCameraMovement(); // TODO: Move this
 			var count = tools.Count;
 			if ( count <= 0 ) {
 				return;
@@ -91,6 +91,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
+			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
 		}
 
@@ -126,13 +127,15 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, layermask)
+			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
 				 || hit.transform == null
+				 || hit.transform.parent == null
 				 || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
 				return;
 			}
 
 			dragging = true;
+			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 		}
@@ -150,6 +153,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
+			StartCoroutine(CameraHack());
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
@@ -189,6 +193,12 @@ namespace Assets.scripts.UI.screen.ingame {
 			ChangeColor(notReturning);
 		}
 
+		private IEnumerator CameraHack(){
+			yield return new WaitForSeconds(0.2f);
+			inputManager.UnblockCameraMovement();
+		}
+
+
 		private void ChangeColor(Color color) {
 			img.color = color;
 		}
@@ -201,8 +211,12 @@ namespace Assets.scripts.UI.screen.ingame {
 			snapping = snapTool;
 		}
 
+		public void SetInputManager(InputManager inputManage){
+			this.inputManager = inputManage;
+		}
+
 		public string GetTag () {
-			return TagConstants.SNAPPING;
+			return TagConstants.TOOLBUTTON;
 		}
 
 		public void SetupComponents () {

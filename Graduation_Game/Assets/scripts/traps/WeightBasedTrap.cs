@@ -20,6 +20,7 @@ namespace Assets.scripts.traps{
 		private BoxCollider col; 
 		private Penguin.Weight weight;
 		public float sinksFasterFactor = 2f; 
+		private bool sinkRunning = false, liftRunning = false;
 
 		public int amountOfPenguinsThatMakeItSink = 1;
 
@@ -46,30 +47,25 @@ namespace Assets.scripts.traps{
 		}
 
 		private void Sinking() {
-			if (lifting != null) {
+			if (liftRunning) {
 				StopCoroutine(lifting);
+				liftRunning = false;
 			}
-			if (sinking == null) {
-				sinking = StartCoroutine(SinkIt());
-			}
-		}
 
-		private void Sinking(float factor) {
-			if (lifting != null) {
-				StopCoroutine(lifting);
-			}
-			if (sinking == null) {
+			if (!sinkRunning) {
 				sinking = StartCoroutine(SinkIt());
 			}
 		}
 
 		private void Lifting(){
-			if (sinking != null) {
+			if (sinkRunning) {
 				StopCoroutine(sinking);
+				sinkRunning = false;
 			}
-			lifting = StartCoroutine(LiftIt());
+			if (!liftRunning) {
+				lifting = StartCoroutine(LiftIt());
+			}
 		}
-
 
 		public override string GetTag () {
 			return TagConstants.WEIGHTBASED;
@@ -83,7 +79,7 @@ namespace Assets.scripts.traps{
 			switch (other.GetComponent<Penguin>().GetWeight()){
 				case Penguin.Weight.Big:
 					penguins.Add(other.gameObject);
-					Sinking(sinksFasterFactor);
+					Sinking();
 					break;
 				case Penguin.Weight.Small:
 					break;
@@ -100,7 +96,6 @@ namespace Assets.scripts.traps{
 		}
 
 		//POSSIBLY TODO implement OnTriggerStay checking the size of the penguins, if it is possible to place objects on it, and depending on the speed
-
 		protected void OnTriggerExit(Collider other) {
 			if ( other.tag != TagConstants.PENGUIN ) {
 				return;
@@ -132,17 +127,21 @@ namespace Assets.scripts.traps{
 		}
 
 		private IEnumerator SinkIt() {
+			sinkRunning = true;
 			while(gos[0].transform.position.y>whenSunk){
 				ExecuteAction(TrapActions.WEIGHTBASEDSINKING);
 				yield return new WaitForEndOfFrame();
 			}
+			sinkRunning = false;
 		}
 
 		private IEnumerator LiftIt() {
+			liftRunning = true;
 			while(gos[0].transform.position.y<initialHeight){
 				ExecuteAction(TrapActions.WEIGHTBASEDLIFTING);
 				yield return new WaitForEndOfFrame();
 			}
+			liftRunning = false;
 		}
 	}
 }
