@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Assets.scripts;
 using Assets.scripts.tools.slope;
-using ADInterstitialAd = UnityEngine.iOS.ADInterstitialAd;
 
 public class SlopeTriggerEnter : MonoBehaviour {
 	void OnTriggerEnter(Collider collision) {
