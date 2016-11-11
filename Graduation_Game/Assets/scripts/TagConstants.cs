@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string METALTEMPLATE = "MetalTemplate";
 		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
 		public const string SWITCHTEMPLATE = "SwitchTemplate";
@@ -29,10 +30,13 @@
 		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
 		public const string CANVAS = "Canvas";
 		public const string ENDSCENE = "EndScene";
+		
+	    public class Tool {
+	        public const string FREEZE_TIME = "FreezeTemplate";
+	    }
 
-		public class UI {
+	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
-
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
 	        public const string LVL_3 = "BtnLevel3";

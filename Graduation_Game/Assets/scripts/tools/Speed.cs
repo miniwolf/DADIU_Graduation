@@ -6,7 +6,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace Assets.scripts.tools {
-	public class Speed : MonoBehaviour, Tool {
+	public class Speed : MonoBehaviour {
 		private Penguin penguin;
 		public AnimationCurve curve;
 		public float timeForRun;
@@ -20,10 +20,6 @@ namespace Assets.scripts.tools {
 				actionable.ExecuteAction(ControllableActions.StartSpeed);
 				StartCoroutine(WaitForSpeedup(actionable));
 			}
-		}
-
-		public ToolType GetToolType() {
-			return ToolType.Speed;
 		}
 
 		private IEnumerator WaitForSpeedup(Actionable<ControllableActions> actionable) {

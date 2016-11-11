@@ -11,7 +11,6 @@ namespace Assets.scripts.controllers.actions.tools.lane {
 		}
 
 		public bool LaneSwitchCondition(float positionZ, float f) {
-			Debug.Log(positionZ + " " + f);
 			return positionZ < f;
 		}
 
