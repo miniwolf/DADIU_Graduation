@@ -11,6 +11,8 @@ using Assets.scripts.gamestate;
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
 		public Color returning, notReturning;
+		[Tooltip("How long the level will be frozen when freeze tool is used (seconds)")]
+		public int freezeToolTime = 5;
 
 		private SnappingToolInterface snapping;
 		private InputManager inputManager;
@@ -91,7 +93,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		public IEnumerator FreezeTime() {
 		    gameStateManager.SetGameFrozen(true);
-		    yield return new WaitForSeconds(5f);
+			yield return new WaitForSeconds(freezeToolTime);
 		    gameStateManager.SetGameFrozen(false);
 		}
 
