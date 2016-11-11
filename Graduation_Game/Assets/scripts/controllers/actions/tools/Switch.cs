@@ -34,7 +34,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			var tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 			// make sure that penguin can change lane
 			RaycastHit hit;
-			Debug.DrawRay(penguin.transform.position, newDirection,Color.red);
+			Debug.DrawRay(penguin.transform.position, newDirection, Color.red);
 			if ( Physics.Raycast(new Ray(penguin.transform.position, newDirection),
 				out hit, 8f, layerMask) ) {
 				Debug.Log("returning");
