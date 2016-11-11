@@ -44,13 +44,10 @@ namespace Assets.scripts.character {
 		void Update() {
 			// TODO make a bool variable to disable (or not) the buttons in the UI    
 			// so game designer can try and decide what option is better 
-		    if (gameStateManager.IsGameFrozen())
-		    {
+		    if (gameStateManager.IsGameFrozen()) {
 		        ExecuteAction(ControllableActions.Freeze);
 		        return;
-		    }
-		    else
-		    {
+		    } else {
 		        ExecuteAction(ControllableActions.UnFreeze);
 		    }
 
@@ -75,8 +72,7 @@ namespace Assets.scripts.character {
 			}
 		}
 
-	    void OnDestroy()
-	    {
+	    void OnDestroy() {
 	        gameStateManager = null;
 	    }
 
@@ -224,8 +220,7 @@ namespace Assets.scripts.character {
 			this.weight = weight;
 		}
 
-	    public void SetGameStateManager(GameStateManager manager)
-	    {
+	    public void SetGameStateManager(GameStateManager manager) {
 	        gameStateManager = manager;
 	    }
 	}

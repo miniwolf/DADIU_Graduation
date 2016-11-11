@@ -23,10 +23,6 @@ namespace Assets.scripts.level {
 		private Text countDown;
 		private Text penguinCounter;
 	    private GameStateManager gameStateManager;
-	    /// <summary>
-	    ///  Determines how many penguin should have been spawned but were not, because game was frozen  (freeze time tool was used)
-	    /// </summary>
-	    private int penguinSpawnQueue;
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();

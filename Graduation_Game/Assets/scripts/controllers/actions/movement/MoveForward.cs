@@ -1,5 +1,4 @@
 ﻿using Assets.scripts.components;
-using Assets.scripts.gamestate;
 using UnityEngine;
 
 namespace Assets.scripts.controllers.actions.movement {
@@ -8,7 +7,6 @@ namespace Assets.scripts.controllers.actions.movement {
 		private readonly Directionable direction;
 		private const float GRAVITY = 9.8f;
 		private readonly Actionable<ControllableActions> actionable;
-	    private readonly GameStateManager gameStateManager;
 
 		public MoveForward(Directionable direction, Actionable<ControllableActions> actionable){
 			this.actionable = actionable;
@@ -19,8 +17,7 @@ namespace Assets.scripts.controllers.actions.movement {
 			characterController = gameObject.GetComponent<CharacterController>();
 		}
 
-		public void Execute()
-		{
+		public void Execute() {
 			if ( !characterController.isGrounded ) {
 				var dir = direction.GetDirection();
 				direction.SetDirection(new Vector3(dir.x, dir.y - GRAVITY * Time.deltaTime, dir.z));
