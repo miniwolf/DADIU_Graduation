@@ -5,7 +5,7 @@ using Assets.scripts.character;
 using System.Collections;
 
 namespace Assets.scripts.tools {
-	public class Enlarge : MonoBehaviour, Tool {
+	public class Enlarge : MonoBehaviour {
 		private Penguin penguin;
 		public AnimationCurve curve;
 		public float timeForEnlarge;
@@ -24,9 +24,6 @@ namespace Assets.scripts.tools {
 		private IEnumerator WaitForEnlarge(Actionable<ControllableActions> actionable) {
 			yield return new WaitForSeconds(timeForEnlarge);
 			actionable.ExecuteAction(ControllableActions.StopEnlarge);
-		}
-		public ToolType GetToolType() {
-			return ToolType.Enlarge;
 		}
 	}
 }

@@ -33,6 +33,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -71,6 +72,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				case TagConstants.MINIMIZETEMPLATE:
 				case TagConstants.SPEEDTEMPLATE:
 				case TagConstants.SWITCHTEMPLATE:
+				case TagConstants.METALTEMPLATE:
 					PlaceTool(tools[toolName]);
 					break;
 				default:
@@ -80,7 +82,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
-			inputManager.BlockCameraMovement();
+			inputManager.BlockCameraMovement(); // TODO: Move this
 			var count = tools.Count;
 			if ( count <= 0 ) {
 				return;
