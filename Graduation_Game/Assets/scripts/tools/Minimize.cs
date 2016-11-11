@@ -5,7 +5,7 @@ using Assets.scripts.character;
 using System.Collections;
 
 namespace Assets.scripts.tools {
-	public class Minimize : MonoBehaviour, Tool {
+	public class Minimize : MonoBehaviour {
 		private Penguin penguin;
 		public AnimationCurve curve;
 		public float timeForMinimize;
@@ -26,10 +26,6 @@ namespace Assets.scripts.tools {
 		private IEnumerator WaitForMinimize(Actionable<ControllableActions> actionable) {
 			yield return new WaitForSeconds(timeForMinimize);
 			actionable.ExecuteAction(ControllableActions.StopMinimize);
-		}
-
-		public ToolType GetToolType() {
-			return ToolType.Minimize;
 		}
 	}
 }
