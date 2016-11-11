@@ -1,4 +1,5 @@
-﻿using Assets.scripts.controllers;
+﻿using Assets.scripts.character;
+using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
@@ -6,21 +7,25 @@ using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
+using Assets.scripts.gamestate;
 using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
-	    private readonly Actionable<ControllableActions> actionable;
+		private readonly Actionable<ControllableActions> actionable;
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
 		private readonly Directionable directionable;
+		private readonly GameStateManager gameStateManager;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
+			gameStateManager = stateManager;
+			penguin.GetComponent<Penguin>().SetGameStateManager(gameStateManager);
 		}
 
 		public void Build() {
@@ -46,6 +51,14 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 			actionable.AddAction(ControllableActions.StartSliding, CreateSlideAction(true));
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
+			actionable.AddAction(ControllableActions.Freeze, CreateFreezeAction(true));
+			actionable.AddAction(ControllableActions.UnFreeze, CreateFreezeAction(false));
+		}
+
+		private Handler CreateFreezeAction(bool freeze) {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new FreezeAction(animator, freeze));
+			return actionHandler;
 		}
 
 		private Handler CreateSlideAction(bool slide) {

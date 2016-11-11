@@ -2,9 +2,13 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.scripts.gamestate;
+using Assets.scripts.UI.screen.ingame;
+using JetBrains.Annotations;
+
 
 namespace Assets.scripts.character {
-	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
+	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
@@ -17,6 +21,7 @@ namespace Assets.scripts.character {
 		public Lane lane = Lane.Left;
 		public Lane goingToLane = Lane.Left;
 		private bool isDead;
+		private bool isFrozen;
 		private CharacterController characterController;
 		private float groundY;
 		private bool isRunning;
@@ -25,6 +30,7 @@ namespace Assets.scripts.character {
 		private Dictionary<CurveType, AnimationCurve> curveDict;
 		private Dictionary<CurveType, float> initialTimeDict;
 		private Weight weight;
+	    private GameStateManager gameStateManager;
 
 		void Start() {
 			groundY = transform.position.y;
@@ -37,6 +43,15 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
+			// TODO make a bool variable to disable (or not) the buttons in the UI
+			// so game designer can try and decide what option is better
+		    if (gameStateManager.IsGameFrozen()) {
+		        ExecuteAction(ControllableActions.Freeze);
+		        return;
+		    } else {
+		        ExecuteAction(ControllableActions.UnFreeze);
+		    }
+
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
 				if ( isRunning ) {
@@ -57,6 +72,11 @@ namespace Assets.scripts.character {
 				}
 			}
 		}
+
+	    void OnDestroy() {
+	        gameStateManager = null;
+	    }
+
 		public override string GetTag() {
 			return TagConstants.PENGUIN;
 		}
@@ -196,5 +216,9 @@ namespace Assets.scripts.character {
 		public void SetWeight(Weight weight) {
 			this.weight = weight;
 		}
+
+	    public void SetGameStateManager(GameStateManager manager) {
+	        gameStateManager = manager;
+	    }
 	}
 }

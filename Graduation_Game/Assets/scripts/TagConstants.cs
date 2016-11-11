@@ -28,6 +28,11 @@
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
 
+	    // when refactoring, please put all tools here, so it's more structured (martin)
+	    public class Tool {
+	        public const string FREEZE_TIME = "FreezeTemplate";
+	    }
+
 	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 
