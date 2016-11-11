@@ -59,6 +59,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
 					break;
+				case TagConstants.CANVAS:
+					new GameFactory(component.GetActionable<GameActions>()).Build();
+					break;
 				//case TagConstants.SNAPPING:
 				//	
 				//	break;

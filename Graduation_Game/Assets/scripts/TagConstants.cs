@@ -26,8 +26,11 @@
 		public const string WEIGHTBASED = "WeightBased";
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
+		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
+		public const string CANVAS = "Canvas";
+		public const string ENDSCENE = "EndScene";
 
-	    public class UI {
+		public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 
 	        public const string LVL_1 = "BtnLevel1";
