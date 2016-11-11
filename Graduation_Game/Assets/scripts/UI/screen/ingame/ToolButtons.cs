@@ -82,12 +82,12 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
-			inputManager.BlockCameraMovement(); // TODO: Move this
 			var count = tools.Count;
 			if ( count <= 0 ) {
 				return;
 			}
 
+			inputManager.BlockCameraMovement();
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
