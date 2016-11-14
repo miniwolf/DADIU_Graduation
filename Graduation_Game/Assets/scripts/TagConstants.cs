@@ -27,6 +27,7 @@
 		public const string WEIGHTBASED = "WeightBased";
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
+		public const string PENGUIN_SPAWNER = "PenguinSpawner";
 
 	    // when refactoring, please put all tools here, so it's more structured (martin)
 	    public class Tool {
