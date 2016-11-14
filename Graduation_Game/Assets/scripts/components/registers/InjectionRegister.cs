@@ -69,7 +69,7 @@ namespace Assets.scripts.components.registers {
 				TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
 				break;
 			case TagConstants.CANVAS:
-				new GameFactory(component.GetActionable<GameActions>()).Build();
+				new GameFactory(component.GetActionable<GameActions>()).Build(handler);
 				break;
 			case TagConstants.TOOLBUTTON:
 				snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());

@@ -3,20 +3,22 @@ using Assets.scripts.controllers.actions.game;
 using Assets.scripts.controllers.handlers;
 
 namespace Assets.scripts.components.factory {
-	public class GameFactory : Factory {
+	public class GameFactory {
 		private readonly Actionable<GameActions> actionable;
+		private static CouroutineDelegateHandler handler;
 
 		public GameFactory(Actionable<GameActions> actionable) {
 			this.actionable = actionable;
 		}
 
-		public void Build() {
-			actionable.AddAction(GameActions.EndLevel, EndGame());
+		public void Build(CouroutineDelegateHandler handler) {
+			actionable.AddAction(GameActions.EndLevel, EndGame(handler));
+
 		}
 
-		private static Handler EndGame() {
+		private static Handler EndGame(CouroutineDelegateHandler handler) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new EndGame());
+			actionHandler.AddAction(new EndGame(handler));
 			return actionHandler;
 		}
 	}
