@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Assets.scripts.character;
 using Assets.scripts.gamestate;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
@@ -26,6 +27,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool dragging;
 		private bool shouldReturn;
 		private const int layermask = 1 << 8;
+	    private LevelSettings levelSettings;
 
 		protected void Awake() {
 			InjectionRegister.Register(this);
@@ -216,6 +218,8 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
 			}
+
+
 		}
 
 		public void OnPointerEnter(PointerEventData data){
@@ -281,5 +285,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		public void SetGameStateManager(GameStateManager manager) {
 			gameStateManager = manager;
 		}
+
+	    public void SetLevelSettings(LevelSettings s)
+	    {
+	        levelSettings = s;
+	    }
 	}
 }

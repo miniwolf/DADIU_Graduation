@@ -20,7 +20,7 @@ namespace Assets.scripts.level {
 		}
 
 	    [System.Serializable]
-	    public struct ToolSettings
+	    public class ToolSettings
 	    {
 	        public int switchLaneCnt, freezeTimeCnt, jumpCnt, bridgeCnt, speedCnt, enlargeCnt, minimizeCnt;
 	    }
