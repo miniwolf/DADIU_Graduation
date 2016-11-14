@@ -28,15 +28,20 @@
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
 		public const string PENGUIN_SPAWNER = "PenguinSpawner";
+		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
+		public const string CANVAS = "Canvas";
+		public const string ENDSCENE = "EndScene";
+		public const string STAR1 = "star1";
+		public const string STAR2 = "star2";
+		public const string STAR3 = "star3";
 
-	    // when refactoring, please put all tools here, so it's more structured (martin)
-	    public class Tool {
+
+		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
 	    }
 
 	    public class UI {
 			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
-
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
 	        public const string LVL_3 = "BtnLevel3";
