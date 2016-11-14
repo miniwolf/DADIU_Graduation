@@ -10,6 +10,7 @@ using Assets.scripts.controllers.handlers;
 using Assets.scripts.gamestate;
 using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
+using AssemblyCSharp;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
@@ -53,6 +54,8 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
 			actionable.AddAction(ControllableActions.Freeze, CreateFreezeAction(true));
 			actionable.AddAction(ControllableActions.UnFreeze, CreateFreezeAction(false));
+			actionable.AddAction(ControllableActions.Stop, CreateStopAction());
+			actionable.AddAction(ControllableActions.Start, CreateStartAction());
 		}
 
 		private Handler CreateFreezeAction(bool freeze) {
@@ -170,6 +173,18 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.MINIMIZE));
+			return actionHandler;
+		}
+
+		private Handler CreateStopAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopMoving(actionable));
+			return actionHandler;
+		}
+
+		private Handler CreateStartAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartMoving(actionable));
 			return actionHandler;
 		}
 	}
