@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Assets.scripts.controllers;
 using Assets.scripts.components;
+using System.Collections;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
@@ -23,8 +24,13 @@ namespace Assets.scripts.UI {
 		}
 		void Update () {
 			if (int.Parse(penguinCounter.text) < 1) {
+				Wait(0.8f);
 				ExecuteAction(GameActions.EndLevel);
 			}
+		}
+
+		public IEnumerator Wait(float delayInSecs) {
+			yield return new WaitForSeconds(delayInSecs);
 		}
 
 		public override string GetTag() {
