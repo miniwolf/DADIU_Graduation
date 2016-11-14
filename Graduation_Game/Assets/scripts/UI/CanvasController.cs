@@ -12,14 +12,17 @@ namespace Assets.scripts.UI {
 		public int penguinsRequiredFor1Stars;
 		private Text penguinCounter;
 		private bool levelEnded;
+		private GameObject endScene;
 
 		public void Start() {
 			levelEnded = false;
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			foreach (Transform g in gameObject.GetComponentsInChildren<Transform>(true))
+				if (g.tag == TagConstants.ENDSCENE)
+					endScene = g.gameObject;
 		}
 		void Update () {
-			if (!levelEnded && int.Parse(penguinCounter.text) < 1) {
-				levelEnded = true;
+			if (int.Parse(penguinCounter.text) < 1) {
 				ExecuteAction(GameActions.EndLevel);
 			}
 		}
