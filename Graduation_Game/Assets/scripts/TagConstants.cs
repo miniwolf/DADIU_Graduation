@@ -34,7 +34,7 @@
 		public const string STAR1 = "star1";
 		public const string STAR2 = "star2";
 		public const string STAR3 = "star3";
-
+		public const string NOTIFIER_SYSTEM = "NotifierSystem";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
