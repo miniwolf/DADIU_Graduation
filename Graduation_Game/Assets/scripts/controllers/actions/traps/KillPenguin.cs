@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Assets.scripts.components;
+﻿using Assets.scripts.components;
 using UnityEngine;
 using UnityEngine.UI;
 
