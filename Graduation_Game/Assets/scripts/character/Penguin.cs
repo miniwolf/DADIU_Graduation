@@ -31,10 +31,10 @@ namespace Assets.scripts.character {
 		private Dictionary<CurveType, float> initialTimeDict;
 		private Weight weight;
 	    private GameStateManager gameStateManager;
+		private bool isStopped = false;
 
 		void Start() {
 			groundY = transform.position.y;
-			direction = new Vector3(1,0,0);
 			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
 			curveDict = new Dictionary<CurveType, AnimationCurve>();
@@ -43,6 +43,9 @@ namespace Assets.scripts.character {
 		}
 
 		void Update() {
+			if (isStopped) {
+				return;
+			}
 			// TODO make a bool variable to disable (or not) the buttons in the UI
 			// so game designer can try and decide what option is better
 		    if (gameStateManager.IsGameFrozen()) {
@@ -220,5 +223,8 @@ namespace Assets.scripts.character {
 	    public void SetGameStateManager(GameStateManager manager) {
 	        gameStateManager = manager;
 	    }
+		public void SetStop(bool stop){		
+			isStopped = stop;
+		}
 	}
 }
