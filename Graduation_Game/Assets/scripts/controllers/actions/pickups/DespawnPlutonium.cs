@@ -31,8 +31,14 @@ namespace Assets.scripts.controllers.actions.pickups {
 			Vector3 counterCanvasPos = c.ScreenToWorldPoint(plutoniumCounter.transform.position);
 			Vector3 currencyCanvasPos = currencyGameObject.transform.position;
 
+//		    Vector3 pos = c.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+//            Debug.Log(pos + ", Screen.width: " + Screen.width);
+
 			counterCanvasPos.z = currencyCanvasPos.z; // we don't want to change the z-axis of item picked up
-			counterCanvasPos.x += 10; // magic number that fixes most of the issues
+		    counterCanvasPos.x += 10; // Mathf.Abs(pos.x); // this is a mind fuck
+
+		    ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
+		    p.startSpeed = 10f;
 
 			float fraction = 0;
 			float speed = 1f;
