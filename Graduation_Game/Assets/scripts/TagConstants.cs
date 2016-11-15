@@ -41,7 +41,15 @@
 	    }
 
 	    public class UI {
-			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
+	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
+	        public const string IN_GAME_TOOL_ENLARGE= "InGameMenuToolEnlarge";
+	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
+	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
+	        public const string IN_GAME_TOOL_METAL_PENGUIN= "InGameMenuToolMetalPenguin";
+	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
+
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
 	        public const string LVL_3 = "BtnLevel3";

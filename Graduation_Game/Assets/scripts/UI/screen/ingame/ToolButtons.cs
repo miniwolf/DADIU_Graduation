@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
@@ -7,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Assets.scripts.character;
 using Assets.scripts.gamestate;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
@@ -44,6 +46,10 @@ namespace Assets.scripts.UI.screen.ingame {
 			img = GetComponent<Image>();
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
+
+		    foreach (var key in tools.Keys) {
+		        UpdateUI(key);
+		    }
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -91,12 +97,16 @@ namespace Assets.scripts.UI.screen.ingame {
 				Debug.LogError("Could find a handler for '" + toolName + "' in ToolButtons.cs");
 				break;
 			}
+
+		    UpdateUI(toolName);
 		}
 
 		public IEnumerator FreezeTime() {
-			gameStateManager.SetGameFrozen(true);
-			yield return new WaitForSeconds(freezeToolTime);
-			gameStateManager.SetGameFrozen(false);
+		    if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0)		    {
+                gameStateManager.SetGameFrozen(true);
+                yield return new WaitForSeconds(freezeToolTime);
+                gameStateManager.SetGameFrozen(false);
+		    }
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
@@ -158,6 +168,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+			Debug.Log(hit.transform.tag);
 			currentObject = hit.transform.parent.gameObject;
 		}
 
@@ -174,10 +185,65 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
+//			UpdateUI(currentObject.tag);
 			StartCoroutine(CameraHack());
 		}
 
-		private void PlaceObject(GameObject obj, Vector3 position) {
+		void UpdateUI(string tag) {
+			var tool = tools[tag];
+		    string uiTag = "";
+		    string textValue = "";
+
+			switch(tag) {
+			    case TagConstants.SWITCHTEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
+			        textValue = "Switch Lane: ";
+			        break;
+				case TagConstants.JUMPTEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
+			        textValue = "Jump: ";
+			        break;
+			    case TagConstants.BRIDGETEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_BRIDGE;
+			        textValue = "Bridge: ";
+			        break;
+			    case TagConstants.ENLARGETEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_ENLARGE;
+			        textValue = "Enlarge: ";
+			        break;
+			    case TagConstants.MINIMIZETEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_MINIMIZE;
+			        textValue = "Minimize: ";
+			        break;
+			    case TagConstants.SPEEDTEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_SPEED;
+			        textValue = "Speed: ";
+			        break;
+			    case TagConstants.METALTEMPLATE:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_METAL_PENGUIN;
+			        textValue = "Metal penguin: ";
+			        break;
+			    case TagConstants.Tool.FREEZE_TIME:
+			        uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
+			        textValue = "Freeze time: ";
+			        break;
+			}
+
+		    var text = GetText(uiTag);
+		    if(text != null)
+		        text.text = textValue + tool.Count;
+		}
+
+	    private Text GetText(string uiTag)
+	    {
+			Debug.Log(uiTag);
+	        GameObject go = GameObject.FindGameObjectWithTag(uiTag);
+	        if (go != null) // tool might be disabled in first levels
+	            return go.GetComponentInChildren<Text>();
+	        return null;
+	    }
+
+	    private void PlaceObject(GameObject obj, Vector3 position) {
 
 			// Special case when we have a bridge
 			if(obj.tag == TagConstants.BRIDGETEMPLATE) {
