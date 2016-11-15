@@ -5,7 +5,6 @@ namespace Assets.scripts.level {
 		public float laneWidth = 2;
 		public float jumpHeight = 1;
 		public GameObject sceneCenter;
-	    public ToolSettings toolSettings;
 
 		public float GetLaneWidth() {
 			return laneWidth;
@@ -18,11 +17,5 @@ namespace Assets.scripts.level {
 		public GameObject GetSceneCenter(){
 			return sceneCenter;
 		}
-
-	    [System.Serializable]
-	    public class ToolSettings
-	    {
-	        public int switchLaneCnt, freezeTimeCnt, jumpCnt, bridgeCnt, speedCnt, enlargeCnt, minimizeCnt;
-	    }
 	}
 }

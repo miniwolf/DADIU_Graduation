@@ -73,7 +73,6 @@ namespace Assets.scripts.components.registers {
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 				component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
-			    component.GetGameObject().GetComponent<ToolButtons>().SetLevelSettings(levelSettings);
 			        break;
 			default:
 				throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
