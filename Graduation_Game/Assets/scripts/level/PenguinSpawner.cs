@@ -44,6 +44,7 @@ namespace Assets.scripts.level {
 		private IEnumerator Spawn() {
 			// spawn first penguin and freeze time
 			SpawnPenguin();
+			penguinCount--;
 			yield return StartCoroutine(FreezeAndSpawnRest());
 		}
 
@@ -63,11 +64,12 @@ namespace Assets.scripts.level {
 				yield return new WaitForSeconds(countTime);
 			    if (!gameStateManager.IsGameFrozen()) {
 			        SpawnPenguin();
+					penguinCount--;
 			    }
 			}
 		}
 
-		void SpawnPenguin() {
+		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
 			penguins.Add(go);
@@ -75,8 +77,9 @@ namespace Assets.scripts.level {
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
-			penguinCount--;
+			//penguinCount--;
 		}
+
 		public List<GameObject> GetAllPenguins(){
 			return penguins;
 		}
