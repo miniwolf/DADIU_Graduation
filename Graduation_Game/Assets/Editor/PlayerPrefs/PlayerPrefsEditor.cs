@@ -28,6 +28,9 @@ namespace Assets.Editor.PlayerPrefs {
 
 		private void DrawEntry(string s, Item<int> item) {
 			value = EditorGUILayout.TextField(s, item.GetValue().ToString());
+			if ( "".Equals(value) ) {
+				return;
+			}
 			item.SetValue(Convert.ToInt32(value));
 		}
 	}
