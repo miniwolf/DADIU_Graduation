@@ -54,7 +54,7 @@ namespace Assets.scripts.components.registers {
 				new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager).Build();
 				break;
 			case TagConstants.PLUTONIUM_PICKUP:
-				new PickupFactory(component.GetActionable<PickupActions>()).Build();
+				new PickupFactory(component.GetActionable<PickupActions>(), handler).Build();
 				break;
 			case TagConstants.PRESSURE_PLATE:
 				new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);

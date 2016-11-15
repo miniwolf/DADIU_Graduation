@@ -168,7 +168,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
-			Debug.Log(hit.transform.tag);
 			currentObject = hit.transform.parent.gameObject;
 		}
 
@@ -236,7 +235,6 @@ namespace Assets.scripts.UI.screen.ingame {
 
 	    private Text GetText(string uiTag)
 	    {
-			Debug.Log(uiTag);
 	        GameObject go = GameObject.FindGameObjectWithTag(uiTag);
 	        if (go != null) // tool might be disabled in first levels
 	            return go.GetComponentInChildren<Text>();
