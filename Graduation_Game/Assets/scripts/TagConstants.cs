@@ -27,14 +27,28 @@
 		public const string WEIGHTBASED = "WeightBased";
 	    public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
+		public const string PENGUIN_SPAWNER = "PenguinSpawner";
+		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
+		public const string CANVAS = "Canvas";
+		public const string ENDSCENE = "EndScene";
+		public const string STAR1 = "star1";
+		public const string STAR2 = "star2";
+		public const string STAR3 = "star3";
+		public const string NOTIFIER_SYSTEM = "NotifierSystem";
 
-	    // when refactoring, please put all tools here, so it's more structured (martin)
-	    public class Tool {
+		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
 	    }
 
 	    public class UI {
-			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
+	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
+	        public const string IN_GAME_TOOL_ENLARGE= "InGameMenuToolEnlarge";
+	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
+	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
+	        public const string IN_GAME_TOOL_METAL_PENGUIN= "InGameMenuToolMetalPenguin";
+	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";

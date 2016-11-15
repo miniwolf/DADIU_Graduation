@@ -23,6 +23,7 @@ namespace Assets.scripts.level {
 		private Text countDown;
 		private Text penguinCounter;
 	    private GameStateManager gameStateManager;
+		private List<GameObject> penguins = new List<GameObject>();
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
@@ -43,6 +44,7 @@ namespace Assets.scripts.level {
 		private IEnumerator Spawn() {
 			// spawn first penguin and freeze time
 			SpawnPenguin();
+			penguinCount--;
 			yield return StartCoroutine(FreezeAndSpawnRest());
 		}
 
@@ -62,18 +64,25 @@ namespace Assets.scripts.level {
 				yield return new WaitForSeconds(countTime);
 			    if (!gameStateManager.IsGameFrozen()) {
 			        SpawnPenguin();
+					penguinCount--;
 			    }
 			}
 		}
 
-		void SpawnPenguin() {
+		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
+			penguins.Add(go);
 			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
-			penguinCount--;
+			//penguinCount--;
+		}
+
+		public List<GameObject> GetAllPenguins(){
+			return penguins;
 		}
 	}
+
 }
