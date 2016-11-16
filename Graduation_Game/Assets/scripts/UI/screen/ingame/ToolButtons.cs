@@ -219,6 +219,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void ReleaseTool() {
 			if ( doubleTap ) {
 				PutObjectInPool(currentObject.transform);
+				UpdateUI(currentObject.tag);
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
@@ -229,7 +230,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-			//			UpdateUI(currentObject.tag);
+			//			
 			StartCoroutine(CameraHack());
 		}
 
