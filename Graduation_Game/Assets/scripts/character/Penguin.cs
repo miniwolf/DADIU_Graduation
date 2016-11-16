@@ -2,13 +2,14 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.scripts.components.registers;
 using Assets.scripts.gamestate;
 using Assets.scripts.UI.screen.ingame;
 using JetBrains.Annotations;
 
 
 namespace Assets.scripts.character {
-	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker {
+	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
@@ -32,8 +33,9 @@ namespace Assets.scripts.character {
 		private Weight weight;
 	    private GameStateManager gameStateManager;
 		private bool isStopped = false;
+	    private NotifierSystem notifierSystem;
 
-		void Start() {
+	    void Start() {
 			groundY = transform.position.y;
 			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
@@ -223,8 +225,23 @@ namespace Assets.scripts.character {
 	    public void SetGameStateManager(GameStateManager manager) {
 	        gameStateManager = manager;
 	    }
-		public void SetStop(bool stop){		
+
+	    public void SetNotifyManager(NotifierSystem s)
+	    {
+	        notifierSystem = s;
+	        notifierSystem.Register(NotifierSystem.Event.PenguinDied, this);
+	    }
+
+		public void SetStop(bool stop){
 			isStopped = stop;
 		}
+
+	    /// <summary>
+	    /// Triggered when some penguin dies
+	    /// </summary>
+	    /// <param name="penguin"></param>
+	    public void Notify(GameObject penguin) {
+	        ExecuteAction(ControllableActions.OtherPenguinDied);
+	    }
 	}
 }
