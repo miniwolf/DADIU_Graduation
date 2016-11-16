@@ -17,7 +17,8 @@ namespace Assets.scripts.controllers.actions.traps
         }
 
         public void Execute() {
-            Debug.Log("Penguin " + penguin + " was notified about the death");
+//            Debug.Log("Penguin " + penguin + " was notified about the death");
+            anim.SetTrigger(AnimationConstants.TRIGGER_REACT_TO_DEATH);
         }
     }
 }
