@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string PENGUINEGG = "PenguinEgg";
 		public const string METALTEMPLATE = "MetalTemplate";
 		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
@@ -25,7 +26,7 @@
 		public const string WIRE = "Wire";
 		public const string SNAPPING = "Snapping";
 		public const string WEIGHTBASED = "WeightBased";
-	    public const string SLOPE = "Slope";
+		public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
 		public const string PENGUIN_SPAWNER = "PenguinSpawner";
 		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
