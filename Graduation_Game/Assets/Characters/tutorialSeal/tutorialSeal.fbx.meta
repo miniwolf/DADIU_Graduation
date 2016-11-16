@@ -44,6 +44,10 @@ ModelImporter:
     4300012: seal_fine02
     7400000: walk
     7400002: falling
+    7400004: hop
+    7400006: airborne
+    7400008: land
+    7400010: fallingLoop
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -114,15 +118,191 @@ ModelImporter:
       name: falling
       takeName: Take 001
       firstFrame: 18
-      lastFrame: 30
+      lastFrame: 42
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: seal_body
+        weight: 1
+      - path: seal_body/seal_bigEye01
+        weight: 1
+      - path: seal_body/seal_bigEye01/seal_pupil01
+        weight: 1
+      - path: seal_body/seal_bigEye02
+        weight: 1
+      - path: seal_body/seal_bigEye02/seaL_pupil02
+        weight: 1
+      - path: seal_body/seal_fine01
+        weight: 1
+      - path: seal_body/seal_fine02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: hop
+      takeName: Take 001
+      firstFrame: 43
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: seal_body
+        weight: 1
+      - path: seal_body/seal_bigEye01
+        weight: 1
+      - path: seal_body/seal_bigEye01/seal_pupil01
+        weight: 1
+      - path: seal_body/seal_bigEye02
+        weight: 1
+      - path: seal_body/seal_bigEye02/seaL_pupil02
+        weight: 1
+      - path: seal_body/seal_fine01
+        weight: 1
+      - path: seal_body/seal_fine02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: airborne
+      takeName: Take 001
+      firstFrame: 51
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: seal_body
+        weight: 1
+      - path: seal_body/seal_bigEye01
+        weight: 1
+      - path: seal_body/seal_bigEye01/seal_pupil01
+        weight: 1
+      - path: seal_body/seal_bigEye02
+        weight: 1
+      - path: seal_body/seal_bigEye02/seaL_pupil02
+        weight: 1
+      - path: seal_body/seal_fine01
+        weight: 1
+      - path: seal_body/seal_fine02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: land
+      takeName: Take 001
+      firstFrame: 64
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: seal_body
+        weight: 1
+      - path: seal_body/seal_bigEye01
+        weight: 1
+      - path: seal_body/seal_bigEye01/seal_pupil01
+        weight: 1
+      - path: seal_body/seal_bigEye02
+        weight: 1
+      - path: seal_body/seal_bigEye02/seaL_pupil02
+        weight: 1
+      - path: seal_body/seal_fine01
+        weight: 1
+      - path: seal_body/seal_fine02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: fallingLoop
+      takeName: Take 001
+      firstFrame: 34
+      lastFrame: 42
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
