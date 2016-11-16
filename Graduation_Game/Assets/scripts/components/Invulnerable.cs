@@ -7,7 +7,7 @@ namespace Assets.scripts.components {
 	public class Invulnerable : Notifiable {
 		void OnClick() {
 			NotifierSystem notifierSystem = GameObject.FindGameObjectWithTag(TagConstants.NOTIFIER_SYSTEM).GetComponent<NotifierSystem>();
-			notifierSystem.Register(NotifierSystem.Events.PenguinDied, this);
+			notifierSystem.Register(NotifierSystem.Event.PenguinDied, this);
 		}
 
 		public void Notify(GameObject penguin) {
