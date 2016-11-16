@@ -10,5 +10,6 @@
 		public const string SPEED = "ifSpeed";
 		public const string ENLARGE = "isEnlarged";
 		public const string MINIMIZE = "isShrinked";
+		public const string TRIGGER_REACT_TO_DEATH = "reactToDeath";
 	}
 }

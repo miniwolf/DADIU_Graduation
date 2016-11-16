@@ -12,6 +12,7 @@
 		KillPenguinByElectricution,
 		KillPenguinByOrca,
 	    StartSliding, StopSliding,
-	    Freeze, UnFreeze
+	    Freeze, UnFreeze,
+	    OtherPenguinDied // reactions to death of other penguin
 	}
 }
