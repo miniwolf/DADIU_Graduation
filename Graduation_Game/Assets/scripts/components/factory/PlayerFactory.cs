@@ -1,4 +1,5 @@
-﻿using Assets.scripts.character;
+﻿using System;
+using Assets.scripts.character;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
@@ -11,6 +12,8 @@ using Assets.scripts.gamestate;
 using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
 using AssemblyCSharp;
+using Assets.scripts.components.registers;
+using UnityEngine.Networking.Types;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
@@ -19,14 +22,18 @@ namespace Assets.scripts.components.factory {
 		private readonly Animator animator;
 		private readonly Directionable directionable;
 		private readonly GameStateManager gameStateManager;
+	    private readonly NotifierSystem notifierSystem;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager){
+	    public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
 			gameStateManager = stateManager;
-			penguin.GetComponent<Penguin>().SetGameStateManager(gameStateManager);
+		    this.notifierSystem = notifierSystem;
+		    Penguin p = penguin.GetComponent<Penguin>();
+		    p.SetGameStateManager(gameStateManager);
+		    p.SetNotifyManager(this.notifierSystem);
 		}
 
 		public void Build() {
@@ -56,9 +63,17 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.UnFreeze, CreateFreezeAction(false));
 			actionable.AddAction(ControllableActions.Stop, CreateStopAction());
 			actionable.AddAction(ControllableActions.Start, CreateStartAction());
+			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
 		}
 
-		private Handler CreateFreezeAction(bool freeze) {
+	    private Handler CreateOtherPenguinDeath()
+	    {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
+			return actionHandler;
+	    }
+
+	    private Handler CreateFreezeAction(bool freeze) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new FreezeAction(animator, freeze));
 			return actionHandler;
@@ -96,7 +111,7 @@ namespace Assets.scripts.components.factory {
 
 		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
+			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
 			actionHandler.AddAction(new SetTrigger(animator, constant));
 			return actionHandler;
 		}

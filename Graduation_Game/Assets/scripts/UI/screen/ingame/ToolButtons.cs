@@ -11,7 +11,7 @@ using Assets.scripts.gamestate;
 using Assets.scripts.level;
 
 namespace Assets.scripts.UI.screen.ingame {
-	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, IPointerEnterHandler, IPointerExitHandler, GameFrozenChecker {
+	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
 		public Color returning, notReturning;
 		[Tooltip("How long the level will be frozen when freeze tool is used (seconds)")]
 		public int freezeToolTime = 5;
@@ -23,10 +23,12 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Camera cam;
 		private Image img;
 		private GameStateManager gameStateManager;
+		private float timeFirstClick;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
-		private bool shouldReturn;
+		private bool oneClick;
+		private bool doubleTap;
 		private const int layermask = 1 << 8;
 
 		protected void Awake() {
@@ -41,7 +43,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
-			tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
+			//tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -87,7 +89,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			case TagConstants.MINIMIZETEMPLATE:
 			case TagConstants.SPEEDTEMPLATE:
 			case TagConstants.SWITCHTEMPLATE:
-			case TagConstants.METALTEMPLATE:
+			//case TagConstants.METALTEMPLATE:
 				PlaceTool(tools[toolName]);
 				break;
 			case TagConstants.Tool.FREEZE_TIME:
@@ -126,6 +128,20 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		protected void Update() {
 			foreach ( var touch in Input.touches) {
+				if( touch.phase == TouchPhase.Began ) {
+					// first tap on tool
+					if ( !oneClick && IsATool(touch.position)) {
+						oneClick = true;
+						timeFirstClick = Time.time;
+					} 
+					//second tap on tool
+					else if (oneClick && IsATool(touch.position)) { 
+						oneClick = false;
+						if ( Time.time - timeFirstClick < 0.6f ) {
+							doubleTap = true;
+						}
+					}
+				} 
 				if ( touch.phase == TouchPhase.Began ) {
 					IsAToolHit(touch.position);
 				} else if ( dragging ) {
@@ -142,10 +158,27 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 			}
 
-			// Pickup tool
-			if ( Input.GetMouseButtonDown(0) && !dragging ) {
+			// check double click
+			if ( Input.GetMouseButtonDown(0)) {
+				// first click on tool
+				if ( !oneClick && IsATool(Input.mousePosition)) {
+					oneClick = true;
+					timeFirstClick = Time.time;
+				} 
+				//second click on tool
+				else if (oneClick && IsATool(Input.mousePosition)) { 
+					oneClick = false;
+					if ( Time.time - timeFirstClick < 0.6f ) {
+						doubleTap = true;
+					}
+				}
+			}
+
+			// pickup tool
+			if(Input.GetMouseButtonDown(0) && !dragging) {
 				IsAToolHit(Input.mousePosition);
 			}
+
 			// Place tool
 			if ( Input.GetMouseButton(0) && dragging ) {
 				PlaceObject(currentObject, Input.mousePosition);
@@ -154,6 +187,18 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Input.GetMouseButtonUp(0) && dragging ) {
 				ReleaseTool();
 			}
+		}
+
+		private bool IsATool(Vector3 pos) {
+			RaycastHit hit;
+			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+				|| hit.transform == null
+				|| hit.transform.parent == null
+				|| hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
+				return false;
+			}
+
+			return true;
 		}
 
 		private void IsAToolHit(Vector3 pos) {
@@ -172,23 +217,24 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void ReleaseTool() {
-			if ( shouldReturn ) {
+			if ( doubleTap ) {
 				PutObjectInPool(currentObject.transform);
+				UpdateUI(currentObject.tag);
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
 				dragging = false;
 				ChangeColor(notReturning);
-				shouldReturn = false;
+				doubleTap = false;
 			} else {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-//			UpdateUI(currentObject.tag);
 			StartCoroutine(CameraHack());
 		}
 
 		void UpdateUI(string tag) {
+			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";
@@ -218,10 +264,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			        uiTag = TagConstants.UI.IN_GAME_TOOL_SPEED;
 			        textValue = "Speed: ";
 			        break;
-			    case TagConstants.METALTEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_METAL_PENGUIN;
-			        textValue = "Metal penguin: ";
-			        break;
 			    case TagConstants.Tool.FREEZE_TIME:
 			        uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
 			        textValue = "Freeze time: ";
@@ -233,8 +275,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		        text.text = textValue + tool.Count;
 		}
 
-	    private Text GetText(string uiTag)
-	    {
+	    private Text GetText(string uiTag) {
 	        GameObject go = GameObject.FindGameObjectWithTag(uiTag);
 	        if (go != null) // tool might be disabled in first levels
 	            return go.GetComponentInChildren<Text>();
@@ -282,6 +323,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 		}
 
+		/*
 		public void OnPointerEnter(PointerEventData data){
 			if ( !dragging ) {
 				return;
@@ -305,6 +347,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			shouldReturn = false;
 			ChangeColor(notReturning);
 		}
+		*/
 
 		private IEnumerator CameraHack(){
 			yield return new WaitForSeconds(0.2f);

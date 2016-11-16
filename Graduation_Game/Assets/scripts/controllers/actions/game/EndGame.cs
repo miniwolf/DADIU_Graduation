@@ -18,6 +18,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private bool starsToSpawn;
 		private float delay;
 		private readonly CouroutineDelegateHandler handler;
+		private PlutoniumCounterController pcc;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -42,13 +43,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 		public void Execute() {
 			if (!endScene.active) {
-				endScene.SetActive(true);
-				plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
-				star[0] = GameObject.FindGameObjectWithTag(TagConstants.STAR1).GetComponent<Image>();
-				star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2).GetComponent<Image>();
-				star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3).GetComponent<Image>();
-				target = PlayerPrefs.GetInt("Plutonium") + int.Parse(plutoniumCounter.text);
-				plutoniumTotal.text = PlayerPrefs.GetInt("Plutonium").ToString();
+				SetupEndScene();
 			}
 
 			if (int.Parse(plutoniumTotal.text) < target) {
@@ -60,6 +55,20 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 		}
 
+		private void SetupEndScene() {
+			endScene.SetActive(true);
+			plutoniumCounter.transform.parent = endScene.GetComponentInChildren<Image>().transform;
+			plutoniumCounter.alignment = TextAnchor.MiddleLeft;
+			plutoniumCounter.transform.localPosition = new Vector3(-106, -79, 0);
+			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
+			star[0] = GameObject.FindGameObjectWithTag(TagConstants.STAR1).GetComponent<Image>();
+			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2).GetComponent<Image>();
+			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3).GetComponent<Image>();
+			target = PlayerPrefs.GetInt("Plutonium") + int.Parse(plutoniumCounter.text);
+			plutoniumTotal.text = PlayerPrefs.GetInt("Plutonium").ToString();
+			pcc = plutoniumCounter.GetComponent<PlutoniumCounterController>();
+			pcc.SetupFlowing();
+		}
 		private IEnumerator StarSpawning() {
 			while(starsToSpawn) {
 					yield return new WaitForSeconds(0.6f);
@@ -85,10 +94,7 @@ namespace Assets.scripts.controllers.actions.game {
 				PlayerPrefs.SetInt("Plutonium", 0);
 				PlayerPrefs.Save();
 			}
-			if (int.Parse(plutoniumTotal.text) < target) {
-				plutoniumTotal.text = (int.Parse(plutoniumTotal.text) + 1).ToString();
-				plutoniumCounter.text = (int.Parse(plutoniumCounter.text) - 1).ToString();
-			}
+			while (pcc.FlowPlutonium());
 
 			if (int.Parse(plutoniumTotal.text) == target) {
 				PlayerPrefs.SetInt("Plutonium", int.Parse(plutoniumTotal.text));

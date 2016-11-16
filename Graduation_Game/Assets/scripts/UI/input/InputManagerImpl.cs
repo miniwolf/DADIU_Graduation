@@ -13,10 +13,11 @@ namespace Assets.scripts.UI {
 	    private bool cameraBlocked;
 
 	    void Update() {
+			Touch();
 			if (IsCameraBlocked()) {
 				return;
 			}
-			Touch();
+
 			Mouse();
 			Keyboard();
 		}
