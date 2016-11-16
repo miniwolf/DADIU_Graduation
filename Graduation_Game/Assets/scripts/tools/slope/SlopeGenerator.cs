@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Assets.scripts;
 using Assets.scripts.tools.slope;
-//using UnityEditor;
 
 
 public class SlopeGenerator : MonoBehaviour {

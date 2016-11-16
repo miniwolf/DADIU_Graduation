@@ -230,11 +230,11 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-			//			
 			StartCoroutine(CameraHack());
 		}
 
 		void UpdateUI(string tag) {
+			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";
