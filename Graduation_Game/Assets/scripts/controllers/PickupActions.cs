@@ -1,5 +1,8 @@
 ﻿namespace Assets.scripts.controllers {
 	public enum PickupActions {
-		PickupPlutonium, FlowScore
+		FlowScore,
+		PickupPlutonium,
+		HatchEgg, ShakeEgg,
+		CollectPenguin
 	}
 }

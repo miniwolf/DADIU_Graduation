@@ -8,6 +8,7 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<int> penguinCount = Inventory.penguinCount;
 		private readonly Item<int> hasInitialized = Inventory.hasInitialized;
 		private readonly Item<int> penguinStorage  = Inventory.penguinStorage;
+		private readonly Item<string> eggTime = Inventory.eggHatchTime;
 		private readonly Item<int> cash = Inventory.cash;
 
 		[MenuItem("Window/Player Prefs Editor")]
@@ -23,6 +24,7 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
 			DrawEntry(InventoryConstants.PENGUINCOUNT, penguinCount);
 			DrawEntry(InventoryConstants.PENGUINSTORAGE, penguinStorage);
+			eggTime.SetValue(EditorGUILayout.TextField(InventoryConstants.EGGTIME, eggTime.GetValue()));
 			DrawEntry(InventoryConstants.CASH, cash);
 		}
 

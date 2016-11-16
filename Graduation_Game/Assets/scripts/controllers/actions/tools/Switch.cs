@@ -34,18 +34,22 @@ namespace Assets.scripts.controllers.actions.tools {
 
 			var newRotation = laneSwitch.GetNewRotation(oldRotation);
 			var newDirection = newRotation * oldDirection;
-			newDirection = new Vector3(newDirection.x, newDirection.y+0.2f,newDirection.z);
+			newDirection = new Vector3(newDirection.x, newDirection.y+Mathf.Abs(direction.GetDirection().y)+0.5f,newDirection.z);
 			var tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 			// make sure that penguin can change lane
 			RaycastHit hit;
 			Debug.DrawRay(penguin.transform.position, newDirection, Color.red);
 			if ( Physics.Raycast(new Ray(penguin.transform.position, newDirection),
-				out hit, 8f, layerMask) ) {
+				out hit, 2f, layerMask) ) {
 				return;
 			}
 
 			direction.SetDirection(newDirection); //change penguin's direction
 			penguin.transform.rotation = newRotation; //rotate penguin
+			// change lane of the penguin
+			penguin.GetComponent<Penguin>().SetLane(laneSwitch.GetType() == typeof(Left)
+													? Penguin.Lane.Left
+													: Penguin.Lane.Right);
 			couroutineHandler.StartCoroutine(LaneReached(penguin.transform.position.z, oldDirection, oldRotation));
 		}
 
@@ -58,7 +62,6 @@ namespace Assets.scripts.controllers.actions.tools {
 			//when half lane reached, change direction to old one
 			direction.SetDirection(oldDirection);
 			penguin.transform.rotation = oldRotation;
-
 		}
 	}
 }
