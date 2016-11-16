@@ -47,7 +47,6 @@
 	        public const string IN_GAME_TOOL_ENLARGE= "InGameMenuToolEnlarge";
 	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
 	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
-	        public const string IN_GAME_TOOL_METAL_PENGUIN= "InGameMenuToolMetalPenguin";
 	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
 
 	        public const string LVL_1 = "BtnLevel1";
