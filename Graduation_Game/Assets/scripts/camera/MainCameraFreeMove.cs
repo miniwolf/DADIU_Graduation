@@ -18,7 +18,9 @@ namespace Assets.scripts.camera {
 		private Vector2 dragTouchOrigin;
 
 		private bool usingTouch;
-		private Vector3 lastTouch;
+		private Vector3 lastTouchPosPos;
+		private Touch lastTouch;
+
 
 		// Limiters where the camera is allowed to move to
 		// Depends on cameraSteps placements
@@ -56,7 +58,11 @@ namespace Assets.scripts.camera {
 		void Update() {
 			foreach (Draggable d in draggable) {
 				if (d.IsDragging()) { // if any object is dragged, move the camera when touching the screen boundaries
-					MoveWhileDragging();
+					if (usingTouch) {
+						MoveWhileDragging(lastTouch);
+					} else {
+						MoveWhileDragging();
+					}
 				}
 			}
 		}
@@ -67,20 +73,40 @@ namespace Assets.scripts.camera {
 		//
 
 		public void OnTouch(Touch[] allTouches) {
-			Touch touch = allTouches[0];
+			if (!inputManager.IsCameraBlocked()) {
+				Touch touch = allTouches[0];
 
-			switch (touch.phase) {
-				case TouchPhase.Began:
-					usingTouch = true;
-					dragTouchOrigin = touch.position;
-					lastTouch = touch.position;
-					break;
-				case TouchPhase.Moved:
-					TouchMoveCamera(true, touch);
-					lastTouch = touch.position;
-					break;
-				case TouchPhase.Ended:
-					break;
+				switch (touch.phase) {
+					case TouchPhase.Began:
+						usingTouch = true;
+						dragTouchOrigin = touch.position;
+						lastTouch = touch;
+						lastTouchPosPos = touch.position;
+						break;
+					case TouchPhase.Moved:
+						TouchMoveCamera(true, touch);
+						lastTouchPosPos = touch.position;
+						lastTouch = touch;
+						break;
+					case TouchPhase.Ended:
+						break;
+				}
+			} else {
+				Touch touch = allTouches[0];
+
+				switch (touch.phase) {
+					case TouchPhase.Began:
+						lastTouch = touch;
+						break;
+					case TouchPhase.Moved:
+						lastTouch = touch;
+						break;
+					case TouchPhase.Ended:
+						lastTouch = touch;
+						break;
+					defualt:
+						break;
+				}
 			}
 		}
 
@@ -89,12 +115,13 @@ namespace Assets.scripts.camera {
 			Vector2 pos = Camera.main.ScreenToViewportPoint(touch.position - dragTouchOrigin);
 			Vector2 move = new Vector2(pos.x * speed, 0);
 			//transform.Translate(-move, Space.World); // Moves the camera in -x direction while touching and moving the finger
-			float xMovement = touch.position.x - lastTouch.x;
-			if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
-				transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
-			}
+			float xMovement = touch.position.x - lastTouchPosPos.x;
+
 
 			if (isFreelyMoving) {
+				if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
+					transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
+				}
 			}
 			else {
 				// Makes sure to have the same movement speed while dragging on the edges
@@ -126,11 +153,21 @@ namespace Assets.scripts.camera {
 				MoveCamera(false);
 			}
 		}
+		private void MoveWhileDragging(Touch touch) {
+			
+			if (touch.position.x >= rightScreenBoundary) {
+				TouchMoveCamera(false,touch);
+			}
+
+			if (touch.position.x <= leftScreenBoundary) {
+				TouchMoveCamera(false,touch);
+			}
+		}
 
 		public void OnMouseLeftDown() {
 			dragOrigin = Input.mousePosition;
-			lastTouch = Input.mousePosition;
-			//lastTouch = Input.mousePosition;
+			lastTouchPosPos = Input.mousePosition;
+			//lastTouchPosPos = Input.mousePosition;
 			return;
 		}
 
@@ -140,7 +177,7 @@ namespace Assets.scripts.camera {
 
 		public void OnMouseLeftPressed() {
 			MoveCamera(true);
-			lastTouch = Input.mousePosition;
+			lastTouchPosPos = Input.mousePosition;
 		}
 
 		// Moves the camera in x direction when mouse is held down
@@ -150,14 +187,15 @@ namespace Assets.scripts.camera {
 			}
 
 			Vector2 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-			Vector2 move = new Vector3(pos.x * speed, 0);
+			Vector2 move = new Vector3(transform.position.x * speed, 0);
 
-			float xMovement = Input.mousePosition.x - lastTouch.x;
-			if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
-				transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
-			}
+			float xMovement = Input.mousePosition.x - lastTouchPosPos.x;
+
 
 			if (isFreelyMoving) {
+				if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
+					transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
+				}
 			}
 			else {
 				if (Input.mousePosition.x >= rightScreenBoundary) {
