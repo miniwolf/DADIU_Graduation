@@ -21,7 +21,9 @@ namespace Assets.scripts.components.factory {
 		}
 
 		private Handler TriggerStar() {
-			throw new NotImplementedException();
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new TriggerStar());
+			return actionHandler;
 		}
 
 		private static Handler EndGame(CouroutineDelegateHandler handler) {

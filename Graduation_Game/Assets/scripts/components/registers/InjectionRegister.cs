@@ -13,7 +13,7 @@ namespace Assets.scripts.components.registers {
 	public class InjectionRegister : MonoBehaviour {
 		private static readonly List<GameEntity> components = new List<GameEntity>();
 		private static bool finished;
-		private static GameObject levelSettings;
+		private static LevelSettings levelSettings;
 		private static CouroutineDelegateHandler handler;
 		private static SnappingToolInterface snap;
 		private static InputManager inputManager;
@@ -21,7 +21,7 @@ namespace Assets.scripts.components.registers {
 
 		protected void Awake() {
 			snap = new SnappingTool();
-			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
+			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS).GetComponent<LevelSettings>();
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
@@ -51,10 +51,10 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch(component.GetTag()) {
 			case TagConstants.PENGUIN:
-				new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings, gameStateManager).Build();
+				new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager).Build();
 				break;
 			case TagConstants.PLUTONIUM_PICKUP:
-				new PickupFactory(component.GetActionable<PickupActions>()).Build();
+				new PickupFactory(component.GetActionable<PickupActions>(), handler).Build();
 				break;
 			case TagConstants.PRESSURE_PLATE:
 				new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
@@ -75,11 +75,11 @@ namespace Assets.scripts.components.registers {
 				new GameFactory(component.GetActionable<GameActions>()).BuildStar();
 				break;
 			case TagConstants.TOOLBUTTON:
-				snap.SetCenter(levelSettings.GetComponent<LevelSettings>().GetSceneCenter());
+				snap.SetCenter(levelSettings.GetSceneCenter());
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);
 				component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 				component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
-				break;
+			        break;
 			default:
 				throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}

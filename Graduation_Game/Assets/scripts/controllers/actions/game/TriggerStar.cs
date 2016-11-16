@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.scripts.controllers.actions.pickups {
+namespace Assets.scripts.controllers.actions.game {
 	public class TriggerStar : Action {
 		private GameObject gameObject;
 
