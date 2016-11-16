@@ -23,6 +23,7 @@ namespace Assets.scripts.controllers.actions.traps {
 			penguinCounter.text = (int.Parse(penguinCounter.text) - 1).ToString();
 			killable.Kill();
 			notifierSystem.PenguinDied(penguin);
+			penguin.GetComponent<Collider>().enabled = false;
 		}
 	}
 }
