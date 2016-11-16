@@ -19,6 +19,7 @@ namespace Assets.scripts.components.registers {
 		private static InputManager inputManager;
 		private static GameStateManager gameStateManager;
 		private static PickupFactory pickupFactory;
+		private static NotifierSystem notifierSystem;
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -30,6 +31,7 @@ namespace Assets.scripts.components.registers {
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
 			pickupFactory = new PickupFactory(handler);
+			notifierSystem = GetComponent<NotifierSystem>();
 		}
 
 		protected void Start() {
@@ -56,7 +58,7 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch(component.GetTag()) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
 					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
@@ -88,7 +90,7 @@ namespace Assets.scripts.components.registers {
 		}
 
 		public static void Redo() {
-			if(!finished) {
+			if ( !finished ) {
 				return;
 			}
 			InitializeComponents();
