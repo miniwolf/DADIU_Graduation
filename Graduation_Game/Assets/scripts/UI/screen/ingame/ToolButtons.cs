@@ -174,6 +174,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void ReleaseTool() {
 			if ( shouldReturn ) {
 				PutObjectInPool(currentObject.transform);
+				UpdateUI(currentObject.tag);
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
@@ -184,11 +185,11 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-//			UpdateUI(currentObject.tag);
 			StartCoroutine(CameraHack());
 		}
 
 		void UpdateUI(string tag) {
+			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";

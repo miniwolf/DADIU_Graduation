@@ -10,6 +10,8 @@ namespace Assets.scripts.controllers.actions.pickups {
 	public class DespawnPlutonium : Action {
 		private GameObject gameObject;
 		private Text plutoniumCounter;
+		private Image counter; 
+		private RectTransform canvas;
 		private readonly CouroutineDelegateHandler delegator;
 
 		public DespawnPlutonium(CouroutineDelegateHandler d) {
@@ -19,6 +21,8 @@ namespace Assets.scripts.controllers.actions.pickups {
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			counter = plutoniumCounter.transform.parent.GetComponent<Image>();
+			canvas = GameObject.Find(TagConstants.CANVAS).GetComponent<RectTransform>();
 		}
 
 		public void Execute() {
@@ -27,15 +31,17 @@ namespace Assets.scripts.controllers.actions.pickups {
 
 		private IEnumerator FeedbackCoroutine() {
 			Camera c = Camera.main;
+
+			//plutoniumCounter.rectTransform
+			Vector3 worldPos;
 			GameObject currencyGameObject = gameObject.transform.parent.gameObject;
-			Vector3 counterCanvasPos = c.ScreenToWorldPoint(plutoniumCounter.transform.position);
+			Vector3 counterCanvasPos;
+			RectTransformUtility.ScreenPointToWorldPointInRectangle(canvas,plutoniumCounter.rectTransform.position,c,out worldPos);
+			counterCanvasPos = worldPos;
 			Vector3 currencyCanvasPos = currencyGameObject.transform.position;
 
-//		    Vector3 pos = c.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
-//            Debug.Log(pos + ", Screen.width: " + Screen.width);
-
 			counterCanvasPos.z = currencyCanvasPos.z; // we don't want to change the z-axis of item picked up
-		    counterCanvasPos.x += 10; // Mathf.Abs(pos.x); // this is a mind fuck
+
 
 		    ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
 		    p.startSpeed = 10f;
