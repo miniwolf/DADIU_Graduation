@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Assets.scripts.shop.item;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.scripts.UI.inventory {
 	public class Inventory : MonoBehaviour {
@@ -10,8 +8,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> hasInitialized = new PreferenceItem<int>(InventoryConstants.HASINITIALIZED);
 		public static readonly Item<int> cash = new PreferenceItem<int>(InventoryConstants.CASH);
 		public static readonly Item<int> hatchablePenguins = new PreferenceItem<int>(InventoryConstants.HATCHABLEPENGUINS);
-		public static readonly Item<int> eggCount = new PreferenceItem<int>(InventoryConstants.PENGUINEGG);
-		public static readonly Item<Dictionary<string, PenguinEgg>> penguinEggs = new PreferenceItem<Dictionary<string, PenguinEgg>>();
+		public static readonly Item<string> eggHatchTime = new PreferenceItem<string>(InventoryConstants.EGGTIME);
 
 		public void Start() {
 			// SanityCheck

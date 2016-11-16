@@ -3,36 +3,32 @@ using System.Collections;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.scripts.shop.item {
+	[Serializable]
 	public class PenguinEgg : ActionableGameEntityImpl<PickupActions> {
-		private bool hatchable;
+		public bool hatchable;
 		public bool IsReady { get; set; }
-		public string ID { get; set; }
+		[SerializeField]
 		public DateTime HatchTime { get; set; }
 		public int shakeInterval = 2;
 
-		public override string GetTag() {
-			return TagConstants.PENGUINEGG;
+		private GameObject button;
+
+		protected void Start() {
+			button = GetComponentInChildren<Button>().gameObject;
+			button.SetActive(false);
 		}
 
 		protected void Update() {
-			if ( !hatchable && DateTime.Now >= HatchTime ) {
-				hatchable = true;
-				StartCoroutine(Hatchable());
+			if ( hatchable || DateTime.Now < HatchTime ) {
+				return;
 			}
-			foreach (var touch in Input.touches) {
-				if ( touch.phase != TouchPhase.Ended ) {
-					continue;
-				}
 
-				RaycastHit hit;
-				// Create a particle if hit
-				if ( Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit)
-					 && hit.collider.gameObject == gameObject ) {
-					ExecuteAction(PickupActions.HatchEgg);
-				}
-			}
+			hatchable = true;
+			button.SetActive(true);
+			StartCoroutine(Hatchable());
 		}
 
 		private IEnumerator Hatchable() {
@@ -42,12 +38,16 @@ namespace Assets.scripts.shop.item {
 			}
 		}
 
-		private void OnMouseUp() {
+		public void HatchEgg() {
 			ExecuteAction(PickupActions.HatchEgg);
 		}
 
-		public void DestroyThis() {
-			Destroy(gameObject);
+		public override string GetTag() {
+			return TagConstants.PENGUINEGG;
+		}
+
+		public void HideButton() {
+			button.SetActive(false);
 		}
 	}
 }

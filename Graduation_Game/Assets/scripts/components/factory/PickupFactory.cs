@@ -10,7 +10,7 @@ namespace Assets.scripts.components.factory {
 	        coroutineDelegator = handler;
 	    }
 
-		public static void BuildPlutonium(Actionable<PickupActions> actionable) {
+		public void BuildPlutonium(Actionable<PickupActions> actionable) {
 			actionable.AddAction(PickupActions.PickupPlutonium, PickupPlutonium());
 		}
 
@@ -20,14 +20,14 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		public static void BuildEgg(Actionable<PickupActions> actionable) {
+		public void BuildEgg(Actionable<PickupActions> actionable) {
 			actionable.AddAction(PickupActions.HatchEgg, HatchEgg());
 			actionable.AddAction(PickupActions.ShakeEgg, ShakeEgg());
 		}
 
 		private static Handler ShakeEgg() {
 			var actionHandler = new ActionHandler();
-			//actionHandler.AddAction(new ShakeEgg()); TODO: Probably some animation
+			actionHandler.AddAction(new ShakeEgg()); // TODO: Probably some animation
 			return actionHandler;
 		}
 

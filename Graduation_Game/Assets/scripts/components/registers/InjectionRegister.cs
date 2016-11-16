@@ -18,13 +18,18 @@ namespace Assets.scripts.components.registers {
 		private static SnappingToolInterface snap;
 		private static InputManager inputManager;
 		private static GameStateManager gameStateManager;
+		private static PickupFactory pickupFactory;
 
 		protected void Awake() {
 			snap = new SnappingTool();
-			levelSettings = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS).GetComponent<LevelSettings>();
+			var levelObj = GameObject.FindGameObjectWithTag(TagConstants.LEVELSETTINGS);
+			if ( levelObj != null ) {
+				levelSettings = levelObj.GetComponent<LevelSettings>();
+			}
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
+			pickupFactory = new PickupFactory(handler);
 		}
 
 		protected void Start() {
@@ -54,7 +59,7 @@ namespace Assets.scripts.components.registers {
 					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					new PickupFactory(component.GetActionable<PickupActions>(), handler).Build();
+					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
 					break;
 				case TagConstants.PRESSURE_PLATE:
 					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
@@ -75,7 +80,7 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					PickupFactory
+					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
