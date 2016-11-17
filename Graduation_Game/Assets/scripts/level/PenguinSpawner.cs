@@ -73,8 +73,6 @@ namespace Assets.scripts.level {
 		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
-		    Camera cam = go.GetComponentInChildren<Camera>();
-		    cam.targetTexture = (RenderTexture) GameObject.FindGameObjectWithTag("DeathCam").GetComponent<RawImage>().texture;
 			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
