@@ -31,12 +31,10 @@
 						<ObjectRef Name="seal_move" ID="{5BBE33CA-72D7-4567-9E88-2235B6E23BA9}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_state_change_footsteps_snow" ID="{5D5FFAF2-0560-4591-9B88-8B80EB54D173}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_death_pit_spikes" ID="{C1B36460-66E5-45AE-91C0-95E87936FBE1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_tool_jump_used" ID="{E63D0B90-BD3A-4664-B3BE-6547AFCFF451}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_death_excavator" ID="{7F6B76E7-716A-46A4-A7CC-81330E6D395B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="end_screen_star_spawn" ID="{42C5C776-4533-46C1-B9E6-F4791DCBECEB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_excavator_loop" ID="{CE6A0A2F-547D-46F8-82A2-2879430A754D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="seal_death_pit_spikes" ID="{3ADBD527-3A42-4734-91C1-F339F7B0191D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_react" ID="{925FFCBB-07F5-483A-B5A2-20D7402CC920}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_edge_fall" ID="{B0F4B0C9-D209-4858-85B6-C9B33B15C127}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_state_change_footsteps_wood" ID="{13F9E34C-6C63-4892-A40E-5F4BBC11C1CA}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
