@@ -1,0 +1,15 @@
+mainPlayGame;Start
+mainHowtoPlay;Guide
+mainSettings;Instillinger
+mainExitGame;Exit
+settingsToggleSound;Lyd
+settingsChangeLanguage;
+settingsReturnToMainMenu;Tilbage
+ingameExit;
+ingameRetry;
+ingameLife;
+ingameScore;Score:
+endSceneHighscore;Highscore: 
+endSceneMyScore;Score:
+endSceneMotivationalL;Godt klaret, prøv igen?
+endSceneMotivationalW;Godt klaret du er utrolig

@@ -1,0 +1,15 @@
+mainPlayGame;Play
+mainHowtoPlay;Guide
+mainSettings;Settings
+mainExitGame;Exit
+settingsToggleSound;Sound  
+settingsChangeLanguage; 
+settingsReturnToMainMenu;Back
+ingameExit; 
+ingameRetry;
+ingameLife;
+ingameScore;
+endSceneHighscore;Highscore: 
+endSceneMyScore;Score: 
+endSceneMotivationalL;Great job, try again
+endSceneMotivationalW;Good job You are amazing
