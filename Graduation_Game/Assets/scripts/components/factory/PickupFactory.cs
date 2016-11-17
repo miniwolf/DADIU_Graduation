@@ -1,6 +1,8 @@
 ﻿using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.pickups;
+using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.controllers.handlers;
+using Assets.scripts.sound;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +21,7 @@ namespace Assets.scripts.components.factory {
 		private static Handler PickupPlutonium() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>()));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICKUP_CURRENCY));
 			return actionHandler;
 		}
 
@@ -31,6 +34,7 @@ namespace Assets.scripts.components.factory {
 				}
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>(), textTotal));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICKUP_CURRENCY_FLY));
 			return actionHandler;
 		}
 
