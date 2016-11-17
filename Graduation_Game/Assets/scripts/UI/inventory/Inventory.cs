@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.inventory {
 	public class Inventory : MonoBehaviour {
@@ -20,6 +22,25 @@ namespace Assets.scripts.UI.inventory {
 				penguinCount.SetValue(5);
 				hasInitialized.SetValue(1);
 			}
+		}
+
+		public static void UpdateCount() {
+			// get penguins that are alive at the end of the level
+			Text penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			int alivePenguinsLevel = int.Parse(penguinCounter.text);
+			// get initial number of penguins at the beginning of the level
+			GameObject[] penguinSpawners = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
+			int initialPenguinCount = 0;
+			// we might have several penguin spawners (one in each lane)
+			foreach ( GameObject go in penguinSpawners ) {
+				initialPenguinCount += go.GetComponent<PenguinSpawner>().GetInitialPenguinCount();
+			}
+
+			// get number of dead penguins
+			int deadPenguins = initialPenguinCount - alivePenguinsLevel;
+			// update the penguin counter in the inventory
+			int inventoryPenguins = Inventory.penguinCount.GetValue();
+			Inventory.penguinCount.SetValue(inventoryPenguins - deadPenguins);
 		}
 	}
 }

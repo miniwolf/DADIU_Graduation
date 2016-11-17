@@ -8,7 +8,6 @@ public class PlutoniumCounterController : MonoBehaviour {
 	 
 	public void SetupFlowing() {
 		children = new Queue<Plutonium>(GetComponentsInChildren<Plutonium>(true));
-		Debug.Log(children.Count);
 	}
 
 	public bool FlowPlutonium()	{
