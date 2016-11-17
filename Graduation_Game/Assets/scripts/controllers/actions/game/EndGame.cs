@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Assets.scripts.UI;
 using Assets.scripts.components;
 using System.Collections;
+using UnityEditor;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -74,6 +75,25 @@ namespace Assets.scripts.controllers.actions.game {
 					yield return new WaitForSeconds(0.6f);
 					SpawnNextStar();
 			}
+			int totalStars = 0;
+			if (PlayerPrefs.HasKey("TotalStars")) {
+				totalStars = PlayerPrefs.GetInt("TotalStars");
+			}
+			if (!PlayerPrefs.HasKey(EditorApplication.currentScene)) {
+				PlayerPrefs.SetInt(EditorApplication.currentScene, starsSpawned);
+				PlayerPrefs.SetInt("TotalStars", totalStars + starsSpawned);
+				PlayerPrefs.Save();
+			}
+			else {
+				int starsThisLevel = PlayerPrefs.GetInt(EditorApplication.currentScene);
+				if (totalStars > starsThisLevel) {
+					PlayerPrefs.SetInt(EditorApplication.currentScene, starsSpawned);
+					PlayerPrefs.SetInt("TotalStars", totalStars - starsThisLevel + starsSpawned);
+					PlayerPrefs.Save();
+				}
+			}
+			Debug.Log(PlayerPrefs.GetInt("TotalStars"));
+			yield return null;
 		}
 
 		public void SpawnNextStar() {
@@ -86,6 +106,10 @@ namespace Assets.scripts.controllers.actions.game {
 					else {
 						starsToSpawn = false;
 					}
+					return;
+				}
+				else if (starsSpawned >= 3) {
+					starsToSpawn = false;
 					return;
 				}
 		}
