@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{42DDD444-252D-489E-BE53-7E339C6B5868}" SchemaVersion="72">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{42DDD444-252D-489E-BE53-7E339C6B5868}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{42DDD444-252D-489E-BE53-7E339C6B5868}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="New Soundcaster Session" ID="{89B39B03-1493-4BF0-A077-3E40A056F895}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="penguin_slide_takeoff" ID="{8CB0A57D-2B63-40A1-B217-51AD25D7EED1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="penguin_slide_loop" ID="{15178CF6-BAA5-44DC-80ED-9028CDDEC295}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="penguin_slide_end" ID="{2E539E9D-D2CB-4D19-ADB5-B4FA15DC980F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true"/>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
+					</CurrentSwitchList>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>

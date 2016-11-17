@@ -1,50 +1,137 @@
 Event	ID	Name			Wwise Object Path	Notes
-	895256648	penguin_death			\Default Work Unit\Penguin\penguin_death	
-	1083798624	trap_pit_triggered			\Default Work Unit\SFXs\Traps\trap_pit_triggered	
+	65816966	tool_picked_up			\Default Work Unit\SFXs\Tools\tool_picked_up	
+	254264362	seal_land			\Default Work Unit\seal\seal_land	
+	516816362	penguin_death_excavator			\Default Work Unit\penguin\deaths\penguin_death_excavator	
+	540083679	penguin_death_pit_drowning			\Default Work Unit\penguin\deaths\penguin_death_pit_drowning	
+	554915610	penguin_get_up			\Default Work Unit\penguin\penguin_get_up	
+	585790082	seal_spawn			\Default Work Unit\seal\seal_spawn	
+	730869888	penguin_death_pit_spikes			\Default Work Unit\penguin\deaths\penguin_death_pit_spikes	
+	823784186	penguin_slide_loop			\Default Work Unit\penguin\slide\penguin_slide_loop	
+	894118267	seal_death_pit_spikes			\Default Work Unit\seal\deaths\seal_death_pit_spikes	
+	913448855	seal_death_excavator			\Default Work Unit\seal\deaths\seal_death_excavator	
+	959070942	trap_pit_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_pit_spikes_triggered	
+	1037802744	penguin_tool_change_lane_used			\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used	
+	1049400906	shop_get_currency			\Default Work Unit\UI\shop_get_currency	
+	1191246039	penguin_edge_fall			\Default Work Unit\penguin\penguin_edge_fall	
+	1242067320	music_game_play			\Default Work Unit\music_game_play	
+	1242989296	unmute_master			\Default Work Unit\sound settings\unmute_master	
 	1250089922	button_pressed			\Default Work Unit\UI\button_pressed	
-	1345721513	tool_change_lane_placed			\Default Work Unit\SFXs\Tools\Change Lane\tool_change_lane_placed	
+	1336860092	trap_excavator_triggered			\Default Work Unit\SFXs\Traps\trap_excavator_triggered	
+	1345721513	tool_change_lane_placed			\Default Work Unit\SFXs\Tools\tool_change_lane_placed	
+	1441918971	unmute_music			\Default Work Unit\sound settings\unmute_music	
+	1548142744	tool_jump_triggered			\Default Work Unit\SFXs\Tools\tool_jump_triggered	
+	1577955597	penguin_celebrate			\Default Work Unit\penguin\penguin_celebrate	
 	1649917113	pickup_currency			\Default Work Unit\SFXs\Pickups\pickup_currency	
-	1657019290	tool_jump_placed			\Default Work Unit\SFXs\Tools\Jump\tool_jump_placed	
-	1767969117	penguin_move			\Default Work Unit\Penguin\penguin_move	
-	1875929553	tool_change_lane_used			\Default Work Unit\SFXs\Tools\Change Lane\tool_change_lane_used	
-	2095293986	tool_returned_to_ui			\Default Work Unit\SFXs\Tools\tool_returned_to_ui	
-	2359694829	tool_speed_used			\Default Work Unit\SFXs\Tools\Speed Boost\tool_speed_used	
-	3083008975	pressure_plate_used			\Default Work Unit\SFXs\Interactables\pressure_plate_used	
-	3289717504	trap_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_spikes_triggered	
-	3392547493	tool_selected_from_ui			\Default Work Unit\SFXs\Tools\tool_selected_from_ui	
-	3406219605	tool_speed_placed			\Default Work Unit\SFXs\Tools\Speed Boost\tool_speed_placed	
-	3642298946	tool_jump_used			\Default Work Unit\SFXs\Tools\Jump\tool_jump_used	
-	3725903807	music_start			\Default Work Unit\music_start	
-	3746285319	penguin_react			\Default Work Unit\Penguin\penguin_react	
-	3908818592	ambience_start			\Default Work Unit\ambience_start	
-	4106021142	tool_picked_up_from_level			\Default Work Unit\SFXs\Tools\tool_picked_up_from_level	
+	1767969117	penguin_move			\Default Work Unit\penguin\penguin_move	
+	1822983891	trap_pit_trash_triggered			\Default Work Unit\SFXs\Traps\trap_pit_trash_triggered	
+	1943522492	seal_death_pit_drowning			\Default Work Unit\seal\deaths\seal_death_pit_drowning	
+	1995024202	end_screen_star_spawn			\Default Work Unit\UI\end sreen\end_screen_star_spawn	
+	2001381670	penguin_death_spikes			\Default Work Unit\penguin\deaths\penguin_death_spikes	
+	2013246097	music_menu_play			\Default Work Unit\music_menu_play	
+	2088991191	end_screen_spawn			\Default Work Unit\UI\end sreen\end_screen_spawn	
+	2220048805	seal_jump			\Default Work Unit\seal\seal_jump	
+	2376935833	trap_wire_loop			\Default Work Unit\SFXs\Traps\trap_wire_loop	
+	2479484064	penguin_slide_takeoff			\Default Work Unit\penguin\slide\penguin_slide_takeoff	
+	2487352075	trap_excavator_loop			\Default Work Unit\SFXs\Traps\trap_excavator_loop	
+	2495070883	mute_master			\Default Work Unit\sound settings\mute_master	
+	2620900526	seal_move			\Default Work Unit\seal\seal_move	
+	2664374318	penguin_state_change_footsteps_snow			\Default Work Unit\penguin\footsteps switch state\penguin_state_change_footsteps_snow	
+	2674130862	seal_edge_fall			\Default Work Unit\seal\seal_edge_fall	
+	2677805925	tool_returned_to_toolbar			\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar	
+	2713534190	pickup_fly_to_score			\Default Work Unit\SFXs\Pickups\pickup_fly_to_score	
+	2741649490	mute_music			\Default Work Unit\sound settings\mute_music	
+	2948163585	penguin_tool_jump_used			\Default Work Unit\penguin\Interactions\penguin_tool_jump_used	
+	3054427212	pickup_add_to_score			\Default Work Unit\SFXs\Pickups\pickup_add_to_score	
+	3095703759	penguin_death_electrocution			\Default Work Unit\penguin\deaths\penguin_death_electrocution	
+	3165641387	penguin_spawn			\Default Work Unit\penguin\penguin_spawn	
+	3375059786	end_screen_pickup_count			\Default Work Unit\UI\end sreen\end_screen_pickup_count	
+	3430637553	egg_hatching			\Default Work Unit\SFXs\egg_hatching	
+	3443752665	trap_wall_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered	
+	3505549277	seal_death_spikes			\Default Work Unit\seal\deaths\seal_death_spikes	
+	3715428614	seal_death_electrocution			\Default Work Unit\seal\deaths\seal_death_electrocution	
+	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
+	3746285319	penguin_react			\Default Work Unit\penguin\penguin_react	
+	3876505889	penguin_land			\Default Work Unit\penguin\penguin_land	
+	3934525376	penguin_state_change_footsteps_wood			\Default Work Unit\penguin\footsteps switch state\penguin_state_change_footsteps_wood	
+	4274899430	trap_wire_triggered			\Default Work Unit\SFXs\Traps\trap_wire_triggered	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	2385628198	footsteps			\Default Work Unit\footsteps	
 
 Switch	ID	Name	Switch Group			Notes
 	787898836	snow	footsteps			
-	3934470635	blood	footsteps			
-	4045841685	wooden_bridge	footsteps			
+	2058049674	wood	footsteps			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	8768817	use	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\speed boost used_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Speed Boost\use		62464
-	29157242	move_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\move_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Penguin\footsteps\move\move_1		40704
-	59954777	button_press	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\button_press_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\button_press		55104
-	68691595	fall to pit	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\fall to pit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\fall_into_pit\fall to pit		53024
-	277295194	step_onto_pressure_plate	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pressure plate used_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Interactables\Pressure Plate\step_onto_pressure_plate		66784
-	296354402	tool_selected_from_ui	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\tool selected from ui_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\tool_selected_from_ui		70624
-	303016610	place	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\speed boost placed_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Speed Boost\place		65184
-	319381485	use	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\change lane used_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Change Lane\use		62304
-	351348797	tool_picked_up_from_level	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\tool picked up from level_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\tool_picked_up_from_level		69984
-	353691520	place	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\jump placed_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Jump\place		53664
-	374880862	pickup_currency	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pickup currency_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency		60544
-	407339339	react_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin react_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Penguin\penguin_react_to_other\react_1		61184
-	507301971	music placeholder	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\music_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\music placeholder		5443300
-	572702028	place	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\change lane placed_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Change Lane\place		65184
-	618539846	tool_returned_to_ui	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\tool returned to ui_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\tool_returned_to_ui		65504
-	705205903	use	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\jump used_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\Jump\use		50784
-	751189480	spiked	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\spiked_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\spiked\spiked		45504
-	875179529	death_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Penguin\death\death_1		57664
-	1002454765	ambience placeholder	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\ambience_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\ambience placeholder		2738824
+	6671893	footstep_snow_10	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_10_50B2D8EB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_10		68044
+	25802924	footsteps_sandy_7	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_7_E2B77F37.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_7		48506
+	27554006	end_screen_star_spawn	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\star spawn_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_star_spawn		54464
+	41600899	takeoff_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\takeoff_1_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\takeoff_1		96064
+	56336027	seal_spawn	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal spawn_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\seal_spawn		54304
+	61302796	seal_land	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal land_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\seal_land		52224
+	65922487	fall_thump_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\fall_thump_1_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\fall_thump_1		32400
+	88915096	seal_death_excavator	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal excavator death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_death_excavator		71904
+	103571485	footstep_snow_2	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_2_4E5ACF0D.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_2		57568
+	111494442	footstep_snow_5	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_5_57A5F8E3.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_5		51880
+	136581044	music placeholder	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_fail_music_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\music placeholder		15333324
+	158243406	seal_death_pit_drowning	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal drowning death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_death_pit_drowning		66464
+	172310834	pickup_fly_to_score	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pickup fly to score_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_fly_to_score		68704
+	197931819	footsteps_sandy_6	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_6_F49A7843.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_6		47152
+	202733313	footsteps_sandy_5	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_5_D8B3E3C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_5		42914
+	219864817	change_lane_placed_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\bridge_place_1_958B1DF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\change lane\change_lane_placed_1		91028
+	245969063	footsteps_sandy_2	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_2_8E4BB358.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_2		43020
+	268160669	footstep_snow_9	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_9_C5CEE914.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_9		47000
+	271193230	end_screen_spawn	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\end screen spawn_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_spawn		63104
+	288854026	trap_wire_triggered	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\electrical wire triggered_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_wire_triggered		74304
+	298808485	penguin_death_excavator	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin excavator  death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\penguin_death_excavator		77344
+	302680233	pallet_boots_4	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_4_DA9698DA.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_4		28350
+	340551335	footsteps_sandy_8	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_8_75680D12.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_8		46334
+	361774416	end_screen_pickups_count	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\count_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_pickups_count		41824
+	362420559	footstep_snow_6	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_6_762DA03C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_6		62156
+	374880862	pickup_currency	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pickup currency_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency		60544
+	380394281	penguin_death_spikes	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin spikes death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\penguin_death_spikes		72384
+	393953359	seal_edge_fall	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal edge fall_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\seal_edge_fall		58944
+	399067768	seal_death_electrocution	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal electrocution_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_death_electrocution		69504
+	407339339	react_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin react_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_react\react_1		61184
+	408013043	jump_picked_up_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\jump_picked_up_1_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\jump\jump_picked_up_1		96064
+	426444008	trap_excavator_loop	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\machine_loop_1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_excavator_loop		121072
+	431548459	pallet_boots_2	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_2_6D1B1960.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_2		34150
+	434815313	penguin_get_up	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin get up_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_get_up		60064
+	445560858	footsteps_sandy_3	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_3_E293E32A.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_3		39310
+	494470670	penguin_death_pit_drowning	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin drowning death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\penguin_death_pit_drowning		72064
+	513261671	trap_pit_trash_triggered	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pit with trash triggered_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_pit_trash_triggered		70304
+	580994143	seal_death_spikes	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal spikes death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_death_spikes		66784
+	591993358	seal_death_pit_spikes	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal pit spikes death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_death_pit_spikes		73184
+	595649065	celebrate 1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin celebrate_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\celebrate 1		65824
+	611844373	seal_jump	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\seal jump_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\seal_jump		51904
+	623715706	jump used	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\jump used_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\jump used		50784
+	651191199	footstep_snow_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_1_AC1730D8.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_1		68632
+	685779834	footsteps_sandy_9	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_9_16C890E7.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_9		48612
+	694513351	pallet_boots_6	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_6_E80EBDA7.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_6		30526
+	697271278	penguin_land	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin land_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_land		57984
+	710433947	pallet_boots_3	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_3_32BA9E2A.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_3		32022
+	712744485	pickup_add_to_score	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pickup to score_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_add_to_score		66624
+	723586134	slide_loop_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\slide_loop_1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\slide_loop_1		862864
+	727100169	jump_triggered_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\jump_triggered_3_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\jump\jump_triggered_1		355748
+	731587138	footstep_snow_7	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_7_81BC1BFD.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_7		55720
+	732152079	egg hatching	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\egg hatch_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\egg hatching		47584
+	740148435	pallet_boots_8	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_8_D33A969F.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_8		29316
+	746780092	trap_pit_spikes_triggered	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pit with spikes triggered_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_pit_spikes_triggered		71904
+	779633413	trap_wire_loop	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\electricity_loop_1_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_wire_loop		306812
+	798404511	footsteps_sandy_4	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_4_D1E94CBB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_4		47260
+	799401300	penguin_death_pit_spikes	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin pit spikes death_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\penguin_death_pit_spikes		78624
+	801272023	tool_returned_to_ui	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\menu_click_1_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\tool_returned_to_ui		17592
+	830153551	footsteps_sandy_11	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_11_4AAD1F9F.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_11		46620
+	877261597	trap_excavator_triggered	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\excavator triggered_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_excavator_triggered		63264
+	887882462	trap_wall_spikes_triggered	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\spikes triggered_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered		57984
+	937588227	penguin_spawn	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin spawn_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn		59904
+	964987848	slide_end_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\slide_end_1_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\slide_end_1		96064
+	967158891	shop_get_currency	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\bought currency_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\shop_get_currency		54304
+	972240149	footstep_snow_3	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_3_6DCD2EEE.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_3		54388
+	985930152	pallet_boots_7	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pallet_boots_7_46AE4355.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\footsteps\wood\pallet_boots_7		31104
+	994106824	footsteps_sandy_10	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_10_8BA7F20E.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_10		48332
+	1019648337	footsteps_sandy_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_1_6FDCACCE.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow1\footsteps_sandy_1		41590
+	1052616542	penguin_death_electrocution	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin electrocution_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\penguin_death_electrocution		85504
+	1060082749	footstep_snow_8	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_8_3C523372.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\footsteps\snow\snow2\footstep_snow_8		75256
+	1070117013	penguin_edge_fall	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin edge fall_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_edge_fall		64544
 
