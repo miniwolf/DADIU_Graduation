@@ -27,6 +27,7 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	private List<GameObject> penguins = new List<GameObject>();
 	private InputManager inputManager;
 	private Camera cam;
+	private Animator anim;
 
 	void Awake(){
 		InjectionRegister.Register(this);
@@ -35,10 +36,13 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	void Start(){
 		cam = Camera.main;
 
+
+
 		startTime = Time.time;
 
 		theSeal = GetComponentInChildren<Penguin>().gameObject; //add how it moves here
 		theSeal.SetActive(true);
+		anim = theSeal.GetComponent<Animator>();
 
 		FindPath();
 
@@ -66,6 +70,8 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	IEnumerator MoveTheSeal(){
 		StopPenguins();
 
+		anim.SetBool(AnimationConstants.SEAL_JUMP, true);
+
 		Vector3 moveTo = new Vector3(theSeal.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 		Vector3 startPosCam = cam.transform.position;
 
@@ -90,10 +96,16 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 			ndistCovered = (Time.time - startTime)*speedFactor;
 			nfracJourney = ndistCovered / journeyLength;
 			theSeal.transform.position = Vector3.Lerp(path[1], path[2], nfracJourney);
+			if (nfracJourney > 0.92f) {
+				anim.SetBool(AnimationConstants.SEAL_JUMP, false);
+			}
 			yield return new WaitForEndOfFrame();
 		}
 		chrController.enabled = true;
 		theSeal.GetComponent<Penguin>().SetDirection(new Vector3(1, 0, 0));
+
+
+
 	}
 
 	private void FindPath(){
