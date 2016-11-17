@@ -1,4 +1,5 @@
-﻿using System.Xml.Schema;
+﻿using System;
+using System.Xml.Schema;
 using Assets.scripts.UI.screen;
 using Assets.scripts.UI.translations;
 using UnityEngine;
@@ -7,33 +8,22 @@ using UnityEngine.UI;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener {
-		public string scene1Name;
-		public string scene2Name;
-		public string scene3Name;
-		public string scene4Name;
-		public string scene5Name;
 
-		private Button lvl1, lvl2, lvl3, lvl4, lvl5;
+	    public LvlData[] levels;
 	    private Dropdown languageDropdown;
 
 	    protected void Start() {
 	        TranslateApi.Register(this);
-			lvl1 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_1).GetComponent<Button>();
-			lvl2 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_2).GetComponent<Button>();
-			lvl3 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_3).GetComponent<Button>();
-			lvl4 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_4).GetComponent<Button>();
-			lvl5 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_5).GetComponent<Button>();
+	        foreach (var lvl in levels)	        {
+	            lvl.btnFromScene.onClick.AddListener(() => LoadLevel(lvl.sceneFileName));
+	        }
 
-			lvl1.onClick.AddListener(() => LoadLevel(scene1Name));
-			lvl2.onClick.AddListener(() => LoadLevel(scene2Name));
-			lvl3.onClick.AddListener(() => LoadLevel(scene3Name));
-			lvl4.onClick.AddListener(() => LoadLevel(scene4Name));
-			lvl5.onClick.AddListener(() => LoadLevel(scene5Name));
-
-			languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
+	        languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
             languageDropdown.onValueChanged.AddListener(delegate {
                 OnDropdownChanged();
             });
+
+	        UpdateTexts();
 		}
 
 	    void OnDestroy() {
@@ -53,8 +43,22 @@ namespace Assets.scripts.UI.mainmenu {
 			SceneManager.LoadScene(sceneName);
 		}
 
-	    public void OnLanguageChange(SupportedLanguage newLanguage) {
-	        // todo update texts in the main screen if necessary
+	    public void OnLanguageChange(SupportedLanguage newLanguage)	{
+	        UpdateTexts();
+	    }
+
+	    private void UpdateTexts() {
+
+	        foreach (var lvl in levels)
+	        {
+	            lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
+	        }
+	    }
+
+	    [Serializable] public struct LvlData {
+	        public string sceneFileName;
+	        public Button btnFromScene;
+	        public LocalizedString localizedText;
 	    }
 	}
 }

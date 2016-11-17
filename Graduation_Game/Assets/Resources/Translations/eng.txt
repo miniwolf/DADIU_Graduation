@@ -1,15 +1,6 @@
-mainPlayGame;Play
-mainHowtoPlay;Guide
-mainSettings;Settings
-mainExitGame;Exit
-settingsToggleSound;Sound  
-settingsChangeLanguage; 
-settingsReturnToMainMenu;Back
-ingameExit; 
-ingameRetry;
-ingameLife;
-ingameScore;
-endSceneHighscore;Highscore: 
-endSceneMyScore;Score: 
-endSceneMotivationalL;Great job, try again
-endSceneMotivationalW;Good job You are amazing
+level1;Level 1 EN
+level2;Level 2 EN
+level3;Level 3 EN
+level4;Level 4 EN
+level5;Level 5 EN
+level6;Level 6 EN

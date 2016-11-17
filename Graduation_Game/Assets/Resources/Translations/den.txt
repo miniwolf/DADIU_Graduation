@@ -1,15 +1,6 @@
-mainPlayGame;Start
-mainHowtoPlay;Guide
-mainSettings;Instillinger
-mainExitGame;Exit
-settingsToggleSound;Lyd
-settingsChangeLanguage;
-settingsReturnToMainMenu;Tilbage
-ingameExit;
-ingameRetry;
-ingameLife;
-ingameScore;Score:
-endSceneHighscore;Highscore: 
-endSceneMyScore;Score:
-endSceneMotivationalL;Godt klaret, prøv igen?
-endSceneMotivationalW;Godt klaret du er utrolig
+level1;Level 1 DK
+level2;Level 2 DK
+level3;Level 3 DK
+level4;Level 4 DK
+level5;Level 5 DK
+level6;Level 6 DK
