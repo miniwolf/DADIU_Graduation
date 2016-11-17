@@ -1,27 +1,22 @@
 fileFormatVersion: 2
-guid: be59a39588110474caa715daf984ccfd
-timeCreated: 1479298546
+guid: f3beb36093fccf84494fd008c0ba91f9
+timeCreated: 1479386968
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: saw_sawMachine
-    100002: //RootNode
-    100004: sawMachine_sawHolder
-    100006: sawMachine_sawMachine
-    400000: saw_sawMachine
-    400002: //RootNode
-    400004: sawMachine_sawHolder
-    400006: sawMachine_sawMachine
-    2300000: saw_sawMachine
-    2300002: sawMachine_sawHolder
-    2300004: sawMachine_sawMachine
-    3300000: saw_sawMachine
-    3300002: sawMachine_sawHolder
-    3300004: sawMachine_sawMachine
-    4300000: saw_sawMachine
-    4300002: sawMachine_sawHolder
-    4300004: sawMachine_sawMachine
+    100000: wire01
+    100002: wire02
+    100004: //RootNode
+    400000: wire01
+    400002: wire02
+    400004: //RootNode
+    2300000: wire01
+    2300002: wire02
+    3300000: wire01
+    3300002: wire02
+    4300000: wire01
+    4300002: wire02
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.4
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
