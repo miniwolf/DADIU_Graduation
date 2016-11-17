@@ -88,15 +88,6 @@ namespace Assets.scripts.controllers.actions.pickups {
 			yield return null;
 		}
 
-		private IEnumerator UpdateScore() {
-			while (pointsToAdd>0) {
-				Debug.Log(pointsToAdd);
-				ApplyChange(1);
-				yield return new WaitForSeconds(0.1f);
-			}
-			yield return null;
-		}
-
 		private void ApplyChange(int portion) {
 			if (totalCounter == null) {
 				currencyCounter.text = (int.Parse(currencyCounter.text) + portion).ToString();
