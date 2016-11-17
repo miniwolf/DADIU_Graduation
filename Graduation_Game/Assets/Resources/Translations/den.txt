@@ -4,3 +4,4 @@ level3;Level 3 DK
 level4;Level 4 DK
 level5;Level 5 DK
 level6;Level 6 DK
+popupNotEnoguhPenguins; Not enough penguins to play the level! DK

@@ -7,5 +7,6 @@ public enum LocalizedString  {
    level3,
    level4,
    level5,
-   level6
+   level6,
+   popupNotEnoguhPenguins
 }
