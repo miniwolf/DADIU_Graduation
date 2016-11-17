@@ -310,17 +310,6 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="penguin_death_pit_spikes" ID="{C1B36460-66E5-45AE-91C0-95E87936FBE1}">
-									<ChildrenList>
-										<Action Name="Play" ID="{C631230B-5BF8-4370-864D-AA54CDE50305}" ShortID="797241719" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{238BBD8C-4960-41C2-A67D-5841CA69EF01}" Global="false">
-													<ObjectRef Name="penguin_death_pit_spikes" ID="{8CAA148B-A8E7-428F-90B4-F9044E59A47C}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
 								<Event Name="penguin_death_excavator" ID="{AA1BFFAE-CCE8-4A4F-BB41-30B65D7B5EE6}">
 									<ChildrenList>
 										<Action Name="Play" ID="{9F02C6BF-04AA-4A5A-B219-CA2828D376DA}" ShortID="643883611" Type="Play" Scope="One" Global="false">
@@ -562,17 +551,6 @@
 											<ElementList>
 												<Element ID="{D7BCEA5F-0E2F-4857-8D88-578E8CB0E801}" Global="false">
 													<ObjectRef Name="seal_death_excavator" ID="{6CBECA19-ECC3-4CA4-8E31-CA5FE0DD73F5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="seal_death_pit_spikes" ID="{3ADBD527-3A42-4734-91C1-F339F7B0191D}">
-									<ChildrenList>
-										<Action Name="Play" ID="{0330616A-035C-4C85-BD5A-F8FA079C370A}" ShortID="836272554" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{4283DA24-1F91-49D7-BE2C-F722BED5A949}" Global="false">
-													<ObjectRef Name="seal_death_pit_spikes" ID="{19AE11FD-D3F1-4D78-BE5D-6A848C7FD0C4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
