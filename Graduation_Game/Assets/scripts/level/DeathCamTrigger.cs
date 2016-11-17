@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Assets.scripts.level
 {
-    public class DeathCamTrigger : MonoBehaviour, GameEntity
+    public class DeathCamTrigger : MonoBehaviour
     {
         public const string Tag = "DeathCamTag"; // tag is not used in unity
         public int deathCamVisibleSeconds = 5;
@@ -33,8 +33,6 @@ namespace Assets.scripts.level
             deathCamLeft = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_LEFT);
             deathCamRight = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_RIGHT);
             HideCamerasImmediately();
-
-            InjectionRegister.Register(this);
         }
 
         // Use this for initialization
@@ -45,25 +43,6 @@ namespace Assets.scripts.level
         // Update is called once per frame
         void Update()
         {
-        }
-
-        public string GetTag()
-        {
-            return Tag;
-        }
-
-        public void SetupComponents()
-        {
-        }
-
-        public GameObject GetGameObject()
-        {
-            return gameObject;
-        }
-
-        public Actionable<T> GetActionable<T>()
-        {
-            return null;
         }
 
         void OnTriggerEnter(Collider collider)
@@ -144,6 +123,5 @@ namespace Assets.scripts.level
         {
             o.transform.localScale  = Vector3.zero;
         }
-
     }
 }

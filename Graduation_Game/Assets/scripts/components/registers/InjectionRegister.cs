@@ -60,10 +60,6 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.PENGUIN:
 					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem).Build();
 					break;
-			    case DeathCamTrigger.Tag:
-			        DeathCamTrigger trigger = (DeathCamTrigger) component;
-//			        trigger.Set(notifierSystem);
-			        break;
 				case TagConstants.PLUTONIUM_PICKUP:
 					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
 					break;
