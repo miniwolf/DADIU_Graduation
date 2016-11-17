@@ -25,11 +25,13 @@ namespace Assets.scripts.level {
 		private Text penguinCounter;
 	    private GameStateManager gameStateManager;
 		private List<GameObject> penguins = new List<GameObject>();
+		private int count;
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			countDown = GameObject.FindGameObjectWithTag(TagConstants.COUNT_DOWN_TEXT).GetComponent<Text>();
 		    gameStateManager = FindObjectOfType<GameStateManager>();
+			count = penguinCount;
 
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
@@ -45,7 +47,7 @@ namespace Assets.scripts.level {
 		private IEnumerator Spawn() {
 			// spawn first penguin and freeze time
 			SpawnPenguin();
-			penguinCount--;
+			count--;
 			yield return StartCoroutine(FreezeAndSpawnRest());
 		}
 
@@ -61,11 +63,11 @@ namespace Assets.scripts.level {
 			} while ( --counter > 0 );
 			countDown.enabled = false;
 
-		    while ( penguinCount > 0 ) {
+			while ( count > 0 ) {
 				yield return new WaitForSeconds(countTime);
 			    if (!gameStateManager.IsGameFrozen()) {
 			        SpawnPenguin();
-					penguinCount--;
+					count--;
 			    }
 			}
 		}
@@ -78,11 +80,14 @@ namespace Assets.scripts.level {
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
-			//penguinCount--;
 		}
 
 		public List<GameObject> GetAllPenguins(){
 			return penguins;
+		}
+
+		public int GetInitialPenguinCount() {
+			return penguinCount;
 		}
 	}
 
