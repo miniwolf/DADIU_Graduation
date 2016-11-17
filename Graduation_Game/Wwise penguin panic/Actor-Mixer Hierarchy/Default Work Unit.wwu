@@ -125,8 +125,12 @@
 														</ModifierInfo>
 													</ModifierList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -166,8 +170,12 @@
 														<Value>330</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -217,8 +225,12 @@
 														</ModifierInfo>
 													</ModifierList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -248,8 +260,12 @@
 														<Value>500</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -274,8 +290,12 @@
 														<Value>150</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -1170,8 +1190,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1203,8 +1227,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1231,6 +1259,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1422,8 +1453,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2415,8 +2450,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2441,8 +2480,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2467,8 +2510,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2487,14 +2534,21 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="penguin_death_pit_spikes" ID="{8CAA148B-A8E7-428F-90B4-F9044E59A47C}" ShortID="163920596" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<PropertyList>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2519,8 +2573,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2547,8 +2605,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2585,8 +2647,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2611,8 +2677,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2637,8 +2707,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2665,6 +2739,7 @@
 												<Value>25</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-6</Value>
@@ -2672,6 +2747,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2697,6 +2775,7 @@
 											</ValueList>
 										</Property>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-6</Value>
@@ -2704,6 +2783,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2728,6 +2810,7 @@
 												<Value>35</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-6</Value>
@@ -2735,6 +2818,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2754,6 +2840,7 @@
 								</Sound>
 								<Sound Name="fall_thump_1" ID="{BFC2C65A-9EF2-45CF-BE64-214F2B3A32A3}" ShortID="1038443244" Type="SoundFX">
 									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-11</Value>
@@ -2761,6 +2848,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2787,8 +2877,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2813,8 +2907,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -2845,8 +2943,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2871,8 +2973,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2897,8 +3003,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2917,14 +3027,21 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="seal_death_pit_spikes" ID="{19AE11FD-D3F1-4D78-BE5D-6A848C7FD0C4}" ShortID="522853371" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<PropertyList>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2949,8 +3066,12 @@
 												<Value>600</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2977,8 +3098,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -3003,8 +3128,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -3029,8 +3158,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
@@ -4101,8 +4234,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 								</Reference>
