@@ -37,12 +37,16 @@
 		public const string STAR2 = "star2";
 		public const string STAR3 = "star3";
 		public const string NOTIFIER_SYSTEM = "NotifierSystem";
+		public const string SEAL_SPAWN = "Seal Spawn";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
 	    }
 
 	    public class UI {
+	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
+	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
+
 	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
 	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
