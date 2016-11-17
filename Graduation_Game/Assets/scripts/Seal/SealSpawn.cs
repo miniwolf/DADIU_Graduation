@@ -4,8 +4,11 @@ using Assets.scripts;
 using Assets.scripts.character;
 using Assets.scripts.level;
 using System.Collections.Generic;
+using Assets.scripts.UI;
+using Assets.scripts.components.registers;
+using Assets.scripts.components;
 
-public class SealSpawn : MonoBehaviour {
+public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 
 	public int pathPoints = 3;
 	private Vector3[] path;
@@ -22,8 +25,16 @@ public class SealSpawn : MonoBehaviour {
 	private CharacterController chrController;
 	private List<PenguinSpawner> penguinSpawner = new List<PenguinSpawner>();
 	private List<GameObject> penguins = new List<GameObject>();
+	private InputManager inputManager;
+	private Camera cam;
+
+	void Awake(){
+		InjectionRegister.Register(this);
+	}
 
 	void Start(){
+		cam = Camera.main;
+
 		startTime = Time.time;
 
 		theSeal = GetComponentInChildren<Penguin>().gameObject; //add how it moves here
@@ -45,6 +56,7 @@ public class SealSpawn : MonoBehaviour {
 
 	void Update(){
 		if (theSeal.GetComponent<Penguin>().IsDead() && !haveReactivatedPenguins) {
+			inputManager.UnblockCameraMovement();
 			StartPenguins();
 			haveReactivatedPenguins = true;
 		}
@@ -53,6 +65,11 @@ public class SealSpawn : MonoBehaviour {
 
 	IEnumerator MoveTheSeal(){
 		StopPenguins();
+
+		Vector3 moveTo = new Vector3(theSeal.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+		Vector3 startPosCam = cam.transform.position;
+
+
 		startTime = Time.time;
 		float distCovered = (Time.time - startTime)*speedFactor;
 		float fracJourney = distCovered / journeyLength;
@@ -61,7 +78,7 @@ public class SealSpawn : MonoBehaviour {
 			distCovered = (Time.time - startTime)*speedFactor;
 			fracJourney = distCovered / journeyLength;
 			theSeal.transform.position = Vector3.Lerp(path[0], path[1], fracJourney);
-
+			cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 			yield return new WaitForEndOfFrame();
 		}
 		path[1] = theSeal.transform.position;
@@ -118,9 +135,33 @@ public class SealSpawn : MonoBehaviour {
 			return;
 		}
 		if (!hasBeenActivated) {
+			inputManager.BlockCameraMovement();
 			hasBeenActivated = true;
 			StartCoroutine(MoveTheSeal());
 		}
+	}
+		
+	public void SetSnap (SnappingToolInterface snapTool) {
+		return;
+	}
+
+	public void SetInputManager (InputManager inputManage) {
+		this.inputManager = inputManage;
+	}
+
+	public string GetTag () {
+		return TagConstants.SEAL_SPAWN;
+	}
+
+	public void SetupComponents () {
+	}
+
+	public GameObject GetGameObject () {
+		return gameObject;
+	}
+
+	public Actionable<T> GetActionable<T> () {
+		return null;
 	}
 }
 

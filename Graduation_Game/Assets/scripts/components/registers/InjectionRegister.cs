@@ -87,6 +87,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.PENGUINEGG:
 					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
 					break;
+				case TagConstants.SEAL_SPAWN:
+					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
+					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
