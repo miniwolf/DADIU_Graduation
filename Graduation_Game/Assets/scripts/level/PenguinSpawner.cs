@@ -4,6 +4,7 @@ using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Diagnostics;
+using System.Security.Policy;
 using System.Threading;
 using Assets.scripts.gamestate;
 
@@ -72,7 +73,6 @@ namespace Assets.scripts.level {
 		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
-			penguins.Add(go);
 			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
