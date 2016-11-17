@@ -17,7 +17,6 @@ namespace Assets.scripts.components.registers
 
         public void Register(Event eve, Notifiable n)
         {
-            Debug.Log("Penguin added" + n);
             notifiers[eve].Add(n);
         }
 
@@ -30,7 +29,6 @@ namespace Assets.scripts.components.registers
             foreach (var notifiable in notifiers[Event.PenguinDied]) {
                 notifiable.Notify(penguin);
             }
-            Debug.Log("---------------------");
         }
 
         public void Unregister(Event ev, Notifiable listener)
