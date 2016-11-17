@@ -3,6 +3,7 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{1B28396D-01CA-4F58-85C7-FB2FD6C793BE}">
 			<PropertyList>
+				<Property Name="AudioFilesImporter\Path" Type="string" Value="C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\SOUNDS\placeholders"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Android"></Value>
@@ -30,16 +31,20 @@
 				<Property Name="MonitoringManager\WatchMgr\WatchesVersion" Type="int32" Value="5"/>
 				<Property Name="MonitoringManager\WatchMgr\x64_GameSyncWatches" Type="string" Value=""/>
 				<Property Name="MonitoringManager\WatchMgr\x64_Watches" Type="string" Value=""/>
+				<Property Name="OverrideCacheFolder\Active" Type="bool" Value="False"/>
+				<Property Name="OverrideCacheFolder\Path" Type="string" Value=".cache"/>
+				<Property Name="OverrideOriginalFolder\Active" Type="bool" Value="False"/>
+				<Property Name="OverrideOriginalFolder\Path" Type="string" Value="Originals"/>
 				<Property Name="ProjectExplorer\FirstVisible_10_1" Type="string" Value="{4C96B38B-3DB4-40C7-91C9-665510E38993}"/>
 				<Property Name="ProjectExplorer\FirstVisible_11_1" Type="string" Value="{23EC2DE3-3ED8-4B82-AC99-92E25F2E4C6B}"/>
-				<Property Name="ProjectExplorer\FirstVisible_1_1" Type="string" Value="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+				<Property Name="ProjectExplorer\FirstVisible_1_1" Type="string" Value="{2388DAEA-9775-46C6-A2ED-C5222A397756}"/>
 				<Property Name="ProjectExplorer\FirstVisible_3_1" Type="string" Value="{A69BF0FC-D84A-487C-ABDD-56F71CB2A126}"/>
 				<Property Name="ProjectExplorer\FirstVisible_4_1" Type="string" Value="{CB6175F1-6080-4A23-92EF-0807E304D0C1}"/>
 				<Property Name="ProjectExplorer\FirstVisible_6_1" Type="string" Value="{C98E673F-A24C-48A8-960F-10565FFE70A0}"/>
 				<Property Name="ProjectExplorer\FirstVisible_8_1" Type="string" Value="{41093F77-829F-4D88-8601-E8B25F3D4781}"/>
 				<Property Name="ProjectExplorer\x64_Expanded_10_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_11_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_12_1" Type="string" Value="jWMBFBjLrEiFZDjFj9Ng2g=="/>
+				<Property Name="ProjectExplorer\x64_Expanded_12_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_13_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_14_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_15_1" Type="string" Value=""/>
@@ -49,8 +54,8 @@
 				<Property Name="ProjectExplorer\x64_Expanded_19_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_1_1" Type="string" Value="4DPttl4BgEm4tu2TP9asWw=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_20_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="bKgvrfWMhkG/Esm/TSUBZW8JWZnO1aVDmJtUckUHkUi6eIpSA/r2RIV2474sGpLC4h2v+k8sAEWQ2Efw8i+c1xrRt1ImqcNFkxNj2l2daOLnRkxszdEfSqZp5kfIAJzgdN5dpdmyW0qk0aISFnImulIYKjoQAPNKo1q+r2/nLXZs3ksXysdoTIpDfRdEm6Q0I6nSQKjKL06zu0MLwl1u3+gRY+FwErpOs/our5JHuI7AYQNM7JjpT7Xvi64PvGfn"/>
-				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="inY7w5p+REGWE206vCVJ3Phfxlf16F1ChRrYAuWjoRei1O6eErAOQ6VNagJAtL1fHWqz/Xsrr0OXesYfsdE1523/j1r3Y0BFsr3L3bMkk4EhLmr2wJLeRpU3LKJGkH9vgwqNNOYR7Eaxa6V/eFy+AIZsgzpw/KlIrVVdt/kslcxWd87tpLYrSbCYPe8D/Ctzv7OVOvseTUqwmsH9rxfbc1Eycpraw4NNol2J1s17bYoXq2XFNPKTTa+eUlfT/LS/+Ocq1EWTtk2VbQUGSdntGQ=="/>
+				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="UhgqOhAA80qjWr6vb+ctdsBhA0zsmOlPte+Lrg+8Z+c="/>
+				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="inY7w5p+REGWE206vCVJ3MsP9NXlLJNBn8iCLiXioF4darP9eyuvQ5d6xh+x0TXnLFB1ql6THkWQ8fxlx5GxJm3/j1r3Y0BFsr3L3bMkk4GDCo005hHsRrFrpX94XL4ArJg6P6AG70eAhZoSv4o9W1Z3zu2ktitJsJg97wP8K3NMIUfFsH2qSabWpJBKlGSTv7OVOvseTUqwmsH9rxfbc1Eycpraw4NNol2J1s17bYr45yrURZO2TZVtBQZJ2e0Z"/>
 				<Property Name="ProjectExplorer\x64_Expanded_4_1" Type="string" Value="jfF0DZAenkeQ0l4zilL2vYkq3rRAbcdLrtbBtYiGe4A="/>
 				<Property Name="ProjectExplorer\x64_Expanded_5_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_6_1" Type="string" Value=""/>
@@ -93,6 +98,7 @@
 						<Value Platform="iOS"></Value>
 					</ValueList>
 				</Property>
+				<Property Name="Soundcaster\PreviousSession" Type="string" Value="{89B39B03-1493-4BF0-A077-3E40A056F895}"/>
 			</PropertyList>
 		</UserProjectSettings>
 	</UserProjectSettingsInfo>
