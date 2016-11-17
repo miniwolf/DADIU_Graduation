@@ -50,8 +50,9 @@ namespace Assets.scripts.controllers.actions.game {
 			if (int.Parse(plutoniumTotal.text) < target) {
 				UpdateScore();
 			}
+
 			else if(starsToSpawn) {
-				canvas.endLevelCalled = true;
+				canvas.EndLevel();
 				handler.StartCoroutine(StarSpawning());
 			}
 		}
@@ -72,8 +73,8 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 		private IEnumerator StarSpawning() {
 			while(starsToSpawn) {
-					yield return new WaitForSeconds(0.6f);
-					SpawnNextStar();
+				yield return new WaitForSeconds(0.6f);
+				SpawnNextStar();
 			}
 			int totalStars = 0;
 			if (PlayerPrefs.HasKey("TotalStars")) {
@@ -125,5 +126,6 @@ namespace Assets.scripts.controllers.actions.game {
 				PlayerPrefs.Save();
 			}
 		}
+
 	}
 }
