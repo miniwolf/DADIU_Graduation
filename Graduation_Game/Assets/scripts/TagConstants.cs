@@ -44,6 +44,7 @@
 	    }
 
 	    public class UI {
+	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
 	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
 	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
 

@@ -1,10 +1,12 @@
-﻿using Assets.scripts.UI.screen;
+﻿using System.Xml.Schema;
+using Assets.scripts.UI.screen;
+using Assets.scripts.UI.translations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.scripts.UI.mainmenu {
-	public class MainMenuScript : UIController {
+	public class MainMenuScript : UIController, LanguageChangeListener {
 		public string scene1Name;
 		public string scene2Name;
 		public string scene3Name;
@@ -12,8 +14,10 @@ namespace Assets.scripts.UI.mainmenu {
 		public string scene5Name;
 
 		private Button lvl1, lvl2, lvl3, lvl4, lvl5;
+	    private Dropdown languageDropdown;
 
-		protected void Start() {
+	    protected void Start() {
+	        TranslateApi.Register(this);
 			lvl1 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_1).GetComponent<Button>();
 			lvl2 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_2).GetComponent<Button>();
 			lvl3 = GameObject.FindGameObjectWithTag(TagConstants.UI.LVL_3).GetComponent<Button>();
@@ -25,10 +29,32 @@ namespace Assets.scripts.UI.mainmenu {
 			lvl3.onClick.AddListener(() => LoadLevel(scene3Name));
 			lvl4.onClick.AddListener(() => LoadLevel(scene4Name));
 			lvl5.onClick.AddListener(() => LoadLevel(scene5Name));
+
+			languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
+            languageDropdown.onValueChanged.AddListener(delegate {
+                OnDropdownChanged();
+            });
 		}
 
-		private void LoadLevel(string sceneName) {
+	    void OnDestroy() {
+	        TranslateApi.UnRegister(this);
+	    }
+
+	    private void OnDropdownChanged() {
+	        SupportedLanguage newLanguage = ResolveLangauge();
+            TranslateApi.ChangeLanguage(newLanguage);
+	    }
+
+	    private SupportedLanguage ResolveLangauge() {
+	        return languageDropdown.value == 0 ? SupportedLanguage.ENG : SupportedLanguage.DEN;
+	    }
+
+	    private void LoadLevel(string sceneName) {
 			SceneManager.LoadScene(sceneName);
 		}
+
+	    public void OnLanguageChange(SupportedLanguage newLanguage) {
+	        // todo update texts in the main screen if necessary
+	    }
 	}
 }

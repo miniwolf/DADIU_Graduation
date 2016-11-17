@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Assets.scripts.UI.translations;
 
 public class TranslateApi {
 	private static readonly object syncLock = new object();
@@ -8,6 +9,7 @@ public class TranslateApi {
 	// todo if LocalizedString.Parse is slow, just change to plain strings and instead of translationLookupTable[key] call translationLookupTable[Key.toString()]
 	private static Dictionary<LocalizedString, string> translationLookupTable = new Dictionary<LocalizedString, string>();
 	private static TextAsset txtFile;
+    private static List<LanguageChangeListener> listeners = new List<LanguageChangeListener>();
 
 	public static string GetString(LocalizedString key) {
 		lock(syncLock) {
@@ -23,8 +25,23 @@ public class TranslateApi {
 			lock(syncLock) {
 				LoadLanguage(newLanguage);
 			}
+		    NotifyListeners();
 		}
 	}
+
+    private static void NotifyListeners() {
+        foreach (var l in listeners) {
+            l.OnLanguageChange(languageLoaded);
+        }
+    }
+
+    public static void Register(LanguageChangeListener l) {
+        listeners.Add(l);
+    }
+
+    public static void UnRegister(LanguageChangeListener l) {
+        listeners.Remove(l);
+    }
 
 	private static void LoadLanguage(SupportedLanguage language)  {
 		txtFile = (TextAsset)Resources.Load("Translations/" + language.ToString().ToLower(), typeof(TextAsset));
