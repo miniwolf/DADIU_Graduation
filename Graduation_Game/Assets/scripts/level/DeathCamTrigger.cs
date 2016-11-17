@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Assets.scripts.character;
 using Assets.scripts.components;
@@ -9,119 +10,98 @@ using UnityEditor;
 using UnityEngine.UI;
 
 
-namespace Assets.scripts.level
-{
-    public class DeathCamTrigger : MonoBehaviour
-    {
-        public const string Tag = "DeathCamTag"; // tag is not used in unity
-        public int deathCamVisibleSeconds = 5;
+namespace Assets.scripts.level {
+	public class DeathCamTrigger : MonoBehaviour {
+		public int deathCamVisibleSeconds = 5;
 
-        /// <summary>
-        /// Determines if this trigger object is visible by camera (don't show death cam then) or is in one of {Right, Left}OfCamera sides
-        /// </summary>
-        private enum TriggerRelativePos
-        {
-            RightOfCamera,
-            LeftOfCamera,
-            Visible
-        }
+		/// <summary>
+		/// Determines if this trigger object is visible by camera (don't show death cam then) or is in one of {Right, Left}OfCamera sides
+		/// </summary>
+		private enum TriggerRelativePos {
+			RightOfCamera,
+			LeftOfCamera,
+			Visible
+		}
 
-        private GameObject deathCamLeft, deathCamRight;
+		private GameObject deathCamLeft, deathCamRight;
 
-        void Awake()
-        {
-            deathCamLeft = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_LEFT);
-            deathCamRight = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_RIGHT);
-            HideCamerasImmediately();
-        }
+		void Awake() {
+			deathCamLeft = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_LEFT);
+			deathCamRight = GameObject.FindGameObjectWithTag(TagConstants.UI.DEATH_CAM_RIGHT);
+			HideCamerasImmediately();
+		}
 
-        // Use this for initialization
-        void Start()
-        {
-        }
+		// Use this for initialization
+		void Start() {
+			
+		}
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
+		// Update is called once per frame
+		void Update() {
+			
+		}
 
-        void OnTriggerEnter(Collider collider)
-        {
-            // when penguin crosses dangerous zone, display death camera in UI and point it to the penguin
-            if (TagConstants.PENGUIN.Equals(collider.gameObject.tag))
-            {
-                TriggerRelativePos currentPos = GetCurrentPos();
+		void OnTriggerEnter(Collider collider) {
+			// when penguin crosses dangerous zone, display death camera in UI and point it to the penguin
+			if(TagConstants.PENGUIN.Equals(collider.gameObject.tag)) {
+				TriggerRelativePos currentPos = GetCurrentPos();
+				if(currentPos == TriggerRelativePos.Visible)
+					return; // don't show death cam if user sees the dying penguin
 
-                switch (currentPos)
-                {
-                    case TriggerRelativePos.Visible: // no DeadCam if user sees the death
-                        return;
-                    case TriggerRelativePos.LeftOfCamera:
-                        break;
-                    case TriggerRelativePos.RightOfCamera:
-                        break;
-                    default:
-                        Debug.Log("Fuck");
-                        break;
-                }
+				System.Action hideCamAction;
+				GameObject dc;
 
-                Camera cam = collider.gameObject.GetComponent<Penguin>().GetDeathCam();
-                cam.enabled = true;
+				switch(currentPos) {
+					case TriggerRelativePos.LeftOfCamera:
+						dc = deathCamLeft;
+						hideCamAction = HideLeftCameraImmediately;
+						break;
+					case TriggerRelativePos.RightOfCamera:
+						dc = deathCamRight;
+						hideCamAction = HideRightCameraImmediately;
+						break;
+					default :
+						throw new Exception("Death cam cannot be displayed");
+				}
 
-                // figure out if object is visible by camera
+				Camera cam = collider.gameObject.GetComponent<Penguin>().GetDeathCam();
+				cam.enabled = true;
+				dc.transform.localScale = Vector3.one;
+				cam.targetTexture = (RenderTexture)dc.GetComponent<RawImage>().texture;
+				StartCoroutine(HideCamera(hideCamAction));
+			}
+		}
 
-                if (currentPos == TriggerRelativePos.LeftOfCamera)
-                {
-					Debug.Log("DeathCam pos: " + deathCamLeft.transform.position);
-                    deathCamLeft.transform.localScale = Vector3.one;
-                    cam.targetTexture = (RenderTexture) deathCamLeft.GetComponent<RawImage>().texture;
-                    StartCoroutine(HideCamera(HideLeftCameraImmediately));
-                } else if (currentPos == TriggerRelativePos.RightOfCamera)
-                {
-					Debug.Log("DeathCam pos: " + deathCamRight.transform.position);
-                    deathCamRight.transform.localScale = Vector3.one;
-                    cam.targetTexture = (RenderTexture) deathCamRight.GetComponent<RawImage>().texture;
-                    StartCoroutine(HideCamera(HideRightCameraImmediately));
-                }
-            }
-        }
+		private TriggerRelativePos GetCurrentPos() {
+			var viewport = Camera.main.WorldToViewportPoint(transform.position);
+			// x is an offset of how where on the screen from (0,1) is the object displayed. Anything outside this bound is off the screen
+			if(viewport.x < 0)
+				return TriggerRelativePos.LeftOfCamera;
+			if(viewport.x > 1)
+				return TriggerRelativePos.RightOfCamera;
+			return TriggerRelativePos.Visible;
+		}
 
-        private TriggerRelativePos GetCurrentPos()
-        {
-            var viewport = Camera.main.WorldToViewportPoint(transform.position);
-            Debug.Log("Current viewport: " + viewport);
-// x is an offset of how where on the screen from (0,1) is the object displayed. Anything outside this bound is off the screen
-            if (viewport.x < 0)
-                return TriggerRelativePos.LeftOfCamera;
-            if (viewport.x > 1)
-                return TriggerRelativePos.RightOfCamera;
-            return TriggerRelativePos.Visible;
-        }
+		IEnumerator HideCamera(System.Action a) {
+			yield return new WaitForSeconds(deathCamVisibleSeconds);
+			a();
+		}
 
-        IEnumerator HideCamera(System.Action a)
-        {
-            yield return new WaitForSeconds(deathCamVisibleSeconds);
-            a();
-        }
+		void HideCamerasImmediately() {
+			HideLeftCameraImmediately();
+			HideRightCameraImmediately();
+		}
 
-        void HideCamerasImmediately()
-        {
-            HideLeftCameraImmediately();
-            HideRightCameraImmediately();
-        }
+		void HideLeftCameraImmediately() {
+			HideCamera(deathCamLeft);
+		}
 
-        void HideLeftCameraImmediately()
-        {
-            HideCamera(deathCamLeft);
-        }
-        void HideRightCameraImmediately()
-        {
-            HideCamera(deathCamRight);
-        }
+		void HideRightCameraImmediately() {
+			HideCamera(deathCamRight);
+		}
 
-        void HideCamera(GameObject o )
-        {
-            o.transform.localScale  = Vector3.zero;
-        }
-    }
+		void HideCamera(GameObject o) {
+			o.transform.localScale = Vector3.zero;
+		}
+	}
 }
