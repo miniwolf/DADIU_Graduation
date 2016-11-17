@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using Assets.scripts.UI;
 using Assets.scripts.components;
 using System.Collections;
+using Assets.scripts.UI.inventory;
+using Assets.scripts.level;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -49,8 +51,9 @@ namespace Assets.scripts.controllers.actions.game {
 			if (int.Parse(plutoniumTotal.text) < target) {
 				UpdateScore();
 			}
+
 			else if(starsToSpawn) {
-				canvas.endLevelCalled = true;
+				canvas.EndLevel();
 				handler.StartCoroutine(StarSpawning());
 			}
 		}
@@ -71,8 +74,8 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 		private IEnumerator StarSpawning() {
 			while(starsToSpawn) {
-					yield return new WaitForSeconds(0.6f);
-					SpawnNextStar();
+				yield return new WaitForSeconds(0.6f);
+				SpawnNextStar();
 			}
 		}
 
@@ -101,5 +104,6 @@ namespace Assets.scripts.controllers.actions.game {
 				PlayerPrefs.Save();
 			}
 		}
+
 	}
 }
