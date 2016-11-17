@@ -1,9 +1,9 @@
-﻿using Assets.scripts.UI.inventory;
+﻿using System;
+using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.shop.item {
 	public class BuyPenguin : ShopItemImpl {
 		private readonly Item<int> penguinCount = Inventory.penguinCount;
-		private readonly Item<int> hatchablePenguins = Inventory.hatchablePenguins;
 		private readonly Item<int> penguinStock = Inventory.penguinStorage;
 
 		public override bool Buy() {
@@ -11,7 +11,8 @@ namespace Assets.scripts.shop.item {
 				return false; // Cannot buy more penguins than there is stock
 			}
 
-			penguinCount.SetValue(Inventory.penguinCount.GetValue() + 1);
+			var penguin = new HatchablePenguin();
+			PenguinCollection.penguinsReady.Add(penguin);
 			return true;
 		}
 	}

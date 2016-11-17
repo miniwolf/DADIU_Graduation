@@ -1,5 +1,7 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string HATCHABLE_PENGUIN = "Hatchable penguin";
+		public const string PENGUINEGG = "PenguinEgg";
 		public const string METALTEMPLATE = "MetalTemplate";
 		public const string BRIDGETEMPLATE = "BridgeTemplate";
 		public const string JUMPTEMPLATE = "JumpTemplate";
@@ -25,7 +27,7 @@
 		public const string WIRE = "Wire";
 		public const string SNAPPING = "Snapping";
 		public const string WEIGHTBASED = "WeightBased";
-	    public const string SLOPE = "Slope";
+		public const string SLOPE = "Slope";
 		public const string TOOLBUTTON = "ToolButton";
 		public const string PENGUIN_SPAWNER = "PenguinSpawner";
 		public const string PLUTONIUM_TOTAL = "PlutoniumTotal";
@@ -47,7 +49,6 @@
 	        public const string IN_GAME_TOOL_ENLARGE= "InGameMenuToolEnlarge";
 	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
 	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
-	        public const string IN_GAME_TOOL_METAL_PENGUIN= "InGameMenuToolMetalPenguin";
 	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
 
 	        public const string LVL_1 = "BtnLevel1";

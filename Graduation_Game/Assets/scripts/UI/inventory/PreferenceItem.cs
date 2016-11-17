@@ -25,13 +25,13 @@ namespace Assets.scripts.UI.inventory {
 		}
 
 		public T GetValue() {
-			if ( value is int ) {
+			if ( typeof(T) == typeof(int) ) {
 				return (T)(object)PlayerPrefs.GetInt(name);
 			}
-			if ( value is float ) {
+			if ( typeof(T) == typeof(float) ) {
 				return (T)(object)PlayerPrefs.GetFloat(name);
 			}
-			if ( value is string ) {
+			if ( typeof(T) == typeof(string) ) {
 				return (T)(object)PlayerPrefs.GetString(name);
 			}
 			return default(T);
