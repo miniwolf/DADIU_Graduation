@@ -73,7 +73,8 @@ namespace Assets.scripts.level {
 		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
-			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
+		    penguins.Add(go);
+		    penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();

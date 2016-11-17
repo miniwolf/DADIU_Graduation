@@ -247,8 +247,7 @@ namespace Assets.scripts.character {
 	        ExecuteAction(ControllableActions.OtherPenguinDied);
 	    }
 
-	    public Camera GetDeathCam()
-	    {
+	    public Camera GetDeathCam() {
 	        return deathCam;
 	    }
 	}
