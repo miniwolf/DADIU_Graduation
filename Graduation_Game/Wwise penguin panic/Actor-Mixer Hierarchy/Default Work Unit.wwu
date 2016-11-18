@@ -8,11 +8,6 @@
 						<Sound Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" ShortID="908006912" Type="SoundFX">
 							<PropertyList>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-13</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -287,10 +282,15 @@
 											<PropertyList>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
-														<Value>150</Value>
+														<Value>500</Value>
 													</ValueList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-2</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -305,6 +305,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="jump_triggered_3" ID="{B665D3F4-CCC2-4A98-95D4-A061E79FAFC0}" ShortID="727100169">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.01516487630208"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.03377278645833"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>jump_triggered_3.wav</AudioFile>
 												</AudioFileSource>
@@ -768,9 +772,6 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="stone" ID="{F2F57220-498C-4DB0-82E3-6D41595533AB}" ShortID="565775591">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
 									<ChildrenList>
 										<Sound Name="stone_place_1" ID="{95DEF1C8-A0E1-4E09-AE2B-16D243C37616}" ShortID="57348797" Type="SoundFX">
 											<PropertyList>
@@ -991,6 +992,29 @@
 										<ActiveSource Name="menu_click_1" ID="{1414D524-8976-443D-9A6D-D74B190C18D9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Folder Name="freeze time" ID="{1DDEF6FF-D739-42D3-AECD-AC7093B3B2CD}" ShortID="207824390">
+									<ChildrenList>
+										<Sound Name="mechanical_click_6" ID="{CC1C980F-132E-4CBE-869F-0C222D10C750}" ShortID="558510705" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="mechanical_click_6" ID="{D22E6E05-9B8D-4A00-AA9A-F132CDF0BDE0}" ShortID="806008759">
+													<Language>SFX</Language>
+													<AudioFile>mechanical_click_6.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="mechanical_click_6" ID="{D22E6E05-9B8D-4A00-AA9A-F132CDF0BDE0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Traps" ID="{9959096F-D5CE-43A5-989B-547245079148}" ShortID="199268261">
@@ -1012,39 +1036,18 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="excavator triggered" ID="{F2F4BE1A-5D78-444A-A827-15DA5094EB1F}" ShortID="877261597">
+										<AudioFileSource Name="362993__outdoor-recordings__saw-a-branch" ID="{ADE10DAC-0F05-4EF5-82FF-6BAF0C379C2C}" ShortID="511891279">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.32736566650469"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="2.12787683228053"/>
+												<Property Name="TrimBegin" Type="Real64" Value="69.8925697987528"/>
+											</PropertyList>
 											<Language>SFX</Language>
-											<AudioFile>excavator triggered.wav</AudioFile>
+											<AudioFile>362993__outdoor-recordings__saw-a-branch.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="excavator triggered" ID="{F2F4BE1A-5D78-444A-A827-15DA5094EB1F}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="trap_wire_triggered" ID="{B92F965F-348A-44EA-8411-9BF6347967CB}" ShortID="618511808" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="electrical wire triggered" ID="{5175C42D-F2A3-4521-8BE2-E119A6987425}" ShortID="288854026">
-											<Language>SFX</Language>
-											<AudioFile>electrical wire triggered.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="electrical wire triggered" ID="{5175C42D-F2A3-4521-8BE2-E119A6987425}" Platform="Linked"/>
+										<ActiveSource Name="362993__outdoor-recordings__saw-a-branch" ID="{ADE10DAC-0F05-4EF5-82FF-6BAF0C379C2C}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="trap_wall_spikes_triggered" ID="{B1AA9523-C3A3-4BE0-8CF4-D5650BF27CDF}" ShortID="777475967" Type="SoundFX">
@@ -1179,23 +1182,37 @@
 										<ActiveSource Name="electricity_loop_1" ID="{248590B1-A8A3-4EB9-8616-1638161B90D5}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="trap_wire_triggered" ID="{B311820F-7BAD-4956-AD78-E681BDBCFA23}" ShortID="381498684" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="electrocution_placeholder_1" ID="{5885ABB8-22EE-4CBD-AF9C-1FF8011397B6}" ShortID="760545146">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.161789225260417"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.1004208984375"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.1423125"/>
+												<Property Name="TrimEnd" Type="Real64" Value="3.8494677734375"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>electrocution_placeholder_1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="electrocution_placeholder_1" ID="{5885ABB8-22EE-4CBD-AF9C-1FF8011397B6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Pickups" ID="{E16311E8-1270-4EBA-B3FA-2EAF9247B88E}" ShortID="98000116">
 							<ChildrenList>
-								<Sound Name="pickup_currency" ID="{AE1051FB-6E04-47DF-B347-D0570DEB059F}" ShortID="774263706" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
+								<BlendContainer Name="pickup_currency" ID="{3F1DDEAF-3C50-4914-9BEB-60705C24A5CA}" ShortID="915163284">
 									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1204,35 +1221,141 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="pickup currency" ID="{F3831419-1DFE-4664-B9C9-A0C6D7B2DEEE}" ShortID="374880862">
+										<Sound Name="coin_hit_1" ID="{AAE2D644-2929-409F-B5C3-D0D52DFF6915}" ShortID="298753036" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-500</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="coin_hit_1" ID="{DC9CB676-8EFE-45C9-A7D6-B344C10926A3}" ShortID="237716567">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="9.11402656300616E-03"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.138854875283447"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.192734855847101"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>coin_hit_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="coin_hit_1" ID="{DC9CB676-8EFE-45C9-A7D6-B344C10926A3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="coins_pickup_1" ID="{21A02D08-F31B-45E3-B0E8-073D09B92D9E}" ShortID="996892729" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-500</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="coins_pickup_1" ID="{0305FA2E-E087-4BD3-8DB4-775227F6DE82}" ShortID="537337564">
+													<Language>SFX</Language>
+													<AudioFile>coins_pickup_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="coins_pickup_1" ID="{0305FA2E-E087-4BD3-8DB4-775227F6DE82}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="stone_place_1" ID="{43AF802B-EFD8-4ED5-BA1D-FAA950BCABF0}" ShortID="401018127" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{AFA1EA50-1A25-480C-ABE5-A38ED4ED5141}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="50"/>
+																	<Property Name="Min" Type="Real64" Value="-50"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="stone_place_1" ID="{D750705B-CC46-4FD2-85FB-AE4C6478CCB1}" ShortID="164958998">
+													<Language>SFX</Language>
+													<AudioFile>stone_place_1.wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="573858228"/>
+													</ConvertedFileIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="stone_place_1" ID="{D750705B-CC46-4FD2-85FB-AE4C6478CCB1}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</BlendContainer>
+								<Sound Name="pickup_add_to_score" ID="{DC7E7E30-72B2-47CA-AF77-12B9265BAB56}" ShortID="910641010" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" ShortID="265097741">
 											<Language>SFX</Language>
-											<AudioFile>pickup currency.wav</AudioFile>
-										</AudioFileSource>
-										<AudioFileSource Name="pickup currency_01" ID="{4A7776AC-7B1F-42B8-AC3F-2586F886D2FB}" ShortID="508478904">
-											<Language>SFX</Language>
-											<AudioFile>pickup currency.wav</AudioFile>
+											<AudioFile>coins_pickup_1.wav</AudioFile>
 											<ConvertedFileIDList>
-												<File ID="374880862"/>
+												<File ID="537337564"/>
 											</ConvertedFileIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="pickup currency" ID="{F3831419-1DFE-4664-B9C9-A0C6D7B2DEEE}" Platform="Linked"/>
+										<ActiveSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="pickup_fly_to_score" ID="{D9ED2369-E145-47DF-9DFA-128CCC3DBC44}" ShortID="781314162" Type="SoundFX">
+								<Sound Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" ShortID="630599895" Type="SoundFX">
 									<PropertyList>
-										<Property Name="Pitch" Type="int32">
+										<Property Name="Lowpass" Type="int16">
 											<ValueList>
-												<Value>600</Value>
+												<Value>30</Value>
 											</ValueList>
 										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1241,42 +1364,18 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="pickup fly to score" ID="{4328C938-0EC0-4076-BB6F-8858CCF94ADE}" ShortID="172310834">
+										<AudioFileSource Name="metal_hit_1" ID="{674DB4F1-3C13-4F4A-8B6E-076DB3BC3FD9}" ShortID="1020207197">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.452457179300292"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.253558217930029"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.73296282798834E-02"/>
+											</PropertyList>
 											<Language>SFX</Language>
-											<AudioFile>pickup fly to score.wav</AudioFile>
+											<AudioFile>metal_hit_1.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="pickup fly to score" ID="{4328C938-0EC0-4076-BB6F-8858CCF94ADE}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="pickup_add_to_score" ID="{F920F20F-ADEB-4C50-BFB2-FC4CAC274895}" ShortID="1049726067" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="pickup to score" ID="{2FF1A8AC-B39E-4155-ADB8-330B3DB768BD}" ShortID="712744485">
-											<Language>SFX</Language>
-											<AudioFile>pickup to score.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="pickup to score" ID="{2FF1A8AC-B39E-4155-ADB8-330B3DB768BD}" Platform="Linked"/>
+										<ActiveSource Name="metal_hit_1" ID="{674DB4F1-3C13-4F4A-8B6E-076DB3BC3FD9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -1307,6 +1406,36 @@
 								<ActiveSource Name="egg hatch" ID="{ECF4404F-9673-4F74-89F1-AF986830EE6D}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Folder Name="3D objects" ID="{64E48760-C681-40EF-A551-F1A7C7084C2E}" ShortID="447548059">
+							<ChildrenList>
+								<Sound Name="airplane_loop" ID="{83C81A5A-28F8-4734-8830-26CFB9B6CEA4}" ShortID="461939528" Type="SoundFX">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="68969__abel-k__tumble-dryer" ID="{7F726992-B83C-4D42-90C6-88D2BC387EE8}" ShortID="203007558">
+											<PropertyList>
+												<Property Name="TrimBegin" Type="Real64" Value="1.55594752186589"/>
+												<Property Name="TrimEnd" Type="Real64" Value="7.14763392857142"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>68969__abel-k__tumble-dryer.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="68969__abel-k__tumble-dryer" ID="{7F726992-B83C-4D42-90C6-88D2BC387EE8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{A55DDE74-B2D9-4A5B-A4D1-A212167226BA}" ShortID="79623298">
@@ -1448,9 +1577,26 @@
 					<ChildrenList>
 						<RandomSequenceContainer Name="penguin_react" ID="{1F9C1FE6-54EF-43EF-9351-68390486CE17}" ShortID="310406864">
 							<PropertyList>
+								<Property Name="InitialDelay" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{618B952C-BF7C-40F9-A361-7EAB39932966}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="0.2"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>30</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>600</Value>
+										<Value>200</Value>
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
@@ -1468,6 +1614,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="react_1" ID="{2DA91CCC-5A39-4B5D-902A-D05AEFB1F9A7}" ShortID="257127895" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -1486,1053 +1635,34 @@
 										<ActiveSource Name="penguin react" ID="{03062FFB-4C85-4A7D-BFA2-01F364A03723}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="penguin_placeholder_react_1" ID="{3E4FA6FE-5FB9-4A9E-9BED-D1EB6A6AD42D}" ShortID="851930348" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_placeholder_react_1" ID="{841395D8-308D-4A1F-BDAC-8220B5F80CEA}" ShortID="639555924">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="7.12630208333333E-03"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.114020833333333"/>
+												<Property Name="TrimBegin" Type="Real64" Value="3.46134672619048E-02"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>penguin_placeholder_react_1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_placeholder_react_1" ID="{841395D8-308D-4A1F-BDAC-8220B5F80CEA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
-						<SwitchContainer Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" ShortID="183852843">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>700</Value>
-									</ValueList>
-								</Property>
-								<Property Name="PositioningType" Type="int16" Value="1"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Attenuation">
-									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-								</Reference>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<RandomSequenceContainer Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}" ShortID="646573809">
-									<PropertyList>
-										<Property Name="Highpass" Type="int16">
-											<ValueList>
-												<Value>40</Value>
-											</ValueList>
-										</Property>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>1000</Value>
-											</ValueList>
-											<ModifierList>
-												<ModifierInfo>
-													<Modifier Name="" ID="{463CCC0C-63DE-47C3-92DD-D83BE7A8200C}">
-														<PropertyList>
-															<Property Name="Enabled" Type="bool" Value="True"/>
-															<Property Name="Max" Type="Real64" Value="50"/>
-															<Property Name="Min" Type="Real64" Value="-50"/>
-														</PropertyList>
-													</Modifier>
-												</ModifierInfo>
-											</ModifierList>
-										</Property>
-										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
-										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
-										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-13</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<Sound Name="pallet_boots_1" ID="{D57B8DBA-5632-4300-8123-2463DBE8451D}" ShortID="50691084" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_1" ID="{5F7827EE-9B8A-4D5F-8367-73CEB2A5A9E2}" ShortID="70228303">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0047490234375"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="7.39490792410714E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="3.73137555803572E-03"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_1.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_1" ID="{5F7827EE-9B8A-4D5F-8367-73CEB2A5A9E2}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_2" ID="{18314822-13E1-47FC-81A1-F35EE967C7D4}" ShortID="759530631" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_2" ID="{0970D30A-DA87-4F8B-A51C-1537B36C3477}" ShortID="431548459">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="5.1518787202381E-03"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="4.59706101190476E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_2" ID="{0970D30A-DA87-4F8B-A51C-1537B36C3477}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_3" ID="{D13CA936-2213-4AF6-8168-526AC83F6916}" ShortID="616172707" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-5</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_3" ID="{CB06204B-D388-4A02-B1B0-FE3B66596033}" ShortID="710433947">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.01357177734375"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0335302734375"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.02474853515625"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_3" ID="{CB06204B-D388-4A02-B1B0-FE3B66596033}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_4" ID="{A99D8D95-70A3-4C59-839D-2E17CB279099}" ShortID="1051490747" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_4" ID="{B1BEBEFD-B3DA-4519-9942-7F0296F5885A}" ShortID="302680233">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="9.91634114583333E-03"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.131745675223214"/>
-														<Property Name="TrimBegin" Type="Real64" Value="2.26659226190476E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_4.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_4" ID="{B1BEBEFD-B3DA-4519-9942-7F0296F5885A}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_5" ID="{6C79D0FA-C9ED-474C-BDDB-57DBDE60508D}" ShortID="123359195" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_5" ID="{71BAAD03-C1E2-4FE2-A359-38AA54AA7427}" ShortID="911732199">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="2.79820033482143E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0548447265625"/>
-														<Property Name="TrimBegin" Type="Real64" Value="3.76824311755952E-02"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.277954566592262"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_5.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_5" ID="{71BAAD03-C1E2-4FE2-A359-38AA54AA7427}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_6" ID="{FC329FBF-B142-4C5F-AC46-8C00A52562E3}" ShortID="29756150" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_6" ID="{FC704CFE-DCB5-4E31-9C34-72876B711BB7}" ShortID="694513351">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="1.06022484188988E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.140022798084077"/>
-														<Property Name="TrimBegin" Type="Real64" Value="1.02366536458333E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_6.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_6" ID="{FC704CFE-DCB5-4E31-9C34-72876B711BB7}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_7" ID="{E5BED4AA-7B41-4B00-AF68-15622FC552AF}" ShortID="967214832" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_7" ID="{050FF226-EFCD-44AF-B5E3-969142A1C698}" ShortID="985930152">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="1.27689732142857E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="8.75050223214286E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.01314453125"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_7.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_7" ID="{050FF226-EFCD-44AF-B5E3-969142A1C698}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_8" ID="{BC2BD114-567B-4FEB-A355-75EC6F49E03C}" ShortID="68636979" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_8" ID="{03AA3A1E-945C-4AEB-B173-EBBA0948D88D}" ShortID="740148435">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="2.11363002232143E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="5.88293689546131E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="1.09204217819941E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_8.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_8" ID="{03AA3A1E-945C-4AEB-B173-EBBA0948D88D}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_9" ID="{F7DFEC85-92D6-4A38-9099-7646AFF5E1B8}" ShortID="735120121" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_9" ID="{BAA458CF-B887-4166-9807-0899CD389EC3}" ShortID="986028882">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="2.26207449776786E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="4.26875348772321E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="4.48766392299107E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_9.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_9" ID="{BAA458CF-B887-4166-9807-0899CD389EC3}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pallet_boots_10" ID="{DCF5CE93-B990-4ADD-B3CD-20EB25BFD65E}" ShortID="680163679" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pallet_boots_10" ID="{0ABE2552-5FE9-4893-BFB3-6D848B54F6B7}" ShortID="608908896">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="1.62145647321429E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="4.05364118303571E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="5.55498976934524E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pallet_boots_10.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pallet_boots_10" ID="{0ABE2552-5FE9-4893-BFB3-6D848B54F6B7}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-									</ChildrenList>
-								</RandomSequenceContainer>
-								<BlendContainer Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}" ShortID="158026135">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<RandomSequenceContainer Name="snow2" ID="{EE77D6ED-0E5D-4BE0-ACFC-B0FDD2468D4A}" ShortID="344724736">
-											<PropertyList>
-												<Property Name="Highpass" Type="int16">
-													<ValueList>
-														<Value>38</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>400</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{5B49479D-389E-4300-8542-7F9B143CE404}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="50"/>
-																	<Property Name="Min" Type="Real64" Value="-50"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
-												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
-												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="footstep_snow_1" ID="{2ADC6ED0-361C-4474-957B-4F2D8C80CF40}" ShortID="291830817" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_1" ID="{254B2E20-9241-4B59-9541-158FBA2D0C45}" ShortID="651191199">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.117978794642857"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.0418505859375"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_1.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_1" ID="{254B2E20-9241-4B59-9541-158FBA2D0C45}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_2" ID="{AB39A566-20DF-4C5A-B06C-DAB7C504C0D2}" ShortID="737831924" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_2" ID="{0AC26FD7-3556-488E-8D18-3DCC7F86C74E}" ShortID="103571485">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.119291759672619"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="5.55013020833333E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="2.34258742559524E-02"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_2.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_2" ID="{0AC26FD7-3556-488E-8D18-3DCC7F86C74E}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_3" ID="{A8FB3F1D-A489-47CE-8802-CB9AC4FF5CCF}" ShortID="1053488821" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_3" ID="{8F8C0A59-8DA4-4C82-B02B-D699F62D3EB2}" ShortID="972240149">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.135803571428571"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="5.31026785714286E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="1.08816964285714E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.293805803571429"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_3.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_3" ID="{8F8C0A59-8DA4-4C82-B02B-D699F62D3EB2}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_4" ID="{BD6464AB-D2DC-46F9-909E-9ADB108B81BA}" ShortID="488888031" Type="SoundFX">
-													<ExcludedPlatformList>
-														<Platform>Android</Platform>
-													</ExcludedPlatformList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_4" ID="{9AB4226E-74C4-424F-A569-B2B2A81CFEA0}" ShortID="303912625">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="1.86810825892857E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="5.15760323660714E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="4.42660435267857E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.307831752232143"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_4.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_4" ID="{9AB4226E-74C4-424F-A569-B2B2A81CFEA0}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_5" ID="{72563933-2ECB-4D6A-B733-C9D7D29FCF87}" ShortID="672653836" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_5" ID="{8FF1F0AD-BB05-41D9-A87A-B5CDBB04EC8D}" ShortID="111494442">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.104661458333333"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="5.64424293154762E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="1.27088913690478E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.2825859375"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_5.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_5" ID="{8FF1F0AD-BB05-41D9-A87A-B5CDBB04EC8D}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_6" ID="{E5F54BE1-8897-4AB2-BDE9-F4C932945AB0}" ShortID="336800881" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_6" ID="{023A05BE-0F3B-4841-89CF-5298CE141078}" ShortID="362420559">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.128240187872024"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.0630478515625"/>
-																<Property Name="TrimBegin" Type="Real64" Value="3.38828590029762E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.357271158854167"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_6.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_6" ID="{023A05BE-0F3B-4841-89CF-5298CE141078}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_7" ID="{7119FEF4-29C4-49DC-9302-C56C00AE833E}" ShortID="25628605" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_7" ID="{EA03510E-E956-4FB5-9CA9-303CB253AA9A}" ShortID="731587138">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.165962309337798"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.278501395089286"/>
-																<Property Name="TrimBegin" Type="Real64" Value="4.29137369791667E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.33280040922619"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_7.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_7" ID="{EA03510E-E956-4FB5-9CA9-303CB253AA9A}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_8" ID="{6005A292-DDD2-435D-93BB-1A181A1279AB}" ShortID="201059227" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_8" ID="{9AA7D60F-7CE9-421D-AF4F-D576E00CB7C3}" ShortID="1060082749">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.162204752604167"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.06317919921875"/>
-																<Property Name="TrimBegin" Type="Real64" Value="9.85774739583331E-03"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_8.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_8" ID="{9AA7D60F-7CE9-421D-AF4F-D576E00CB7C3}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_9" ID="{A079E7DF-360E-495F-90D0-C84001F27990}" ShortID="1070784504" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_9" ID="{2A45C875-16B1-485A-A010-A875AC8B2C65}" ShortID="268160669">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.132088797433036"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="2.78267066592262E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="3.02923642113095E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.274744698660714"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_9.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_9" ID="{2A45C875-16B1-485A-A010-A875AC8B2C65}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footstep_snow_10" ID="{54B9A502-A9E4-4889-ABF4-DFA296AD028C}" ShortID="264547398" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footstep_snow_10" ID="{24D0415A-E116-431A-B442-A95B79D8EC1D}" ShortID="6671893">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.143458844866071"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="3.91251395089285E-02"/>
-																<Property Name="TrimBegin" Type="Real64" Value="3.96081659226191E-02"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.393666527157738"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footstep_snow_10.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footstep_snow_10" ID="{24D0415A-E116-431A-B442-A95B79D8EC1D}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-										</RandomSequenceContainer>
-										<RandomSequenceContainer Name="snow1" ID="{0F3AF34A-3A99-467C-A198-9C226F325E8A}" ShortID="941312443">
-											<PropertyList>
-												<Property Name="Highpass" Type="int16">
-													<ValueList>
-														<Value>35</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>400</Value>
-													</ValueList>
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{9F414700-344B-46E3-9AEA-00659B356E01}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="50"/>
-																	<Property Name="Min" Type="Real64" Value="-50"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
-												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
-												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
-												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="footsteps_sandy_1" ID="{81D8CF91-1CEB-4F14-9852-4C60BAF22DFC}" ShortID="428605328" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_1" ID="{939BBA60-7C74-48BE-9FC3-10C51B419F26}" ShortID="1019648337">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="2.99317801339286E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.151589983258929"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_1.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_1" ID="{939BBA60-7C74-48BE-9FC3-10C51B419F26}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_2" ID="{168662FE-8D47-4A35-B52A-349C486441ED}" ShortID="514143522" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_2" ID="{BA135360-5139-437F-9735-9407171FB4B0}" ShortID="245969063">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="2.79661458333334E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.143825892857143"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_2.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_2" ID="{BA135360-5139-437F-9735-9407171FB4B0}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_3" ID="{B640FC8E-F51F-4460-975B-1721B67FF854}" ShortID="888070013" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_3" ID="{ACE9615E-A8A1-4B4C-BBF8-C5ADCD54AE92}" ShortID="445560858">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="0.02874462890625"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.269195731026786"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_3.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_3" ID="{ACE9615E-A8A1-4B4C-BBF8-C5ADCD54AE92}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_4" ID="{35F60132-2945-4B46-BEEA-25AE3DD90B46}" ShortID="616581499" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_4" ID="{DF04D9DB-ECA4-45F9-B36C-47D7649C95DA}" ShortID="798404511">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="4.33464006696429E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.16899609375"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_4.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_4" ID="{DF04D9DB-ECA4-45F9-B36C-47D7649C95DA}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_5" ID="{1A5F2493-CE63-4EDE-BE24-F03247C8A0B6}" ShortID="469525356" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_5" ID="{D2F5FEA9-BAE4-432A-B988-89A207507098}" ShortID="202733313">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="2.73989722842262E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.10411609468006"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_5.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_5" ID="{D2F5FEA9-BAE4-432A-B988-89A207507098}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_6" ID="{D4022A14-AE24-43BD-A458-019D04667ED3}" ShortID="77831463" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_6" ID="{C755FD2A-B493-4AC1-87A4-4896FC1066DD}" ShortID="197931819">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="6.35022321428573E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.166419642857143"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_6.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_6" ID="{C755FD2A-B493-4AC1-87A4-4896FC1066DD}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_7" ID="{4D19D86F-C8C0-4D3F-AB55-2DA516DBDF6C}" ShortID="946410836" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_7" ID="{7010A8EA-0CDD-4668-A765-8CA82FBA6A95}" ShortID="25802924">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="4.39275948660714E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.112071684337798"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_7.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_7" ID="{7010A8EA-0CDD-4668-A765-8CA82FBA6A95}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_8" ID="{A82480DE-7D1D-4043-9008-8875481F2ECC}" ShortID="896573673" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_8" ID="{EA789677-0693-4333-8042-0DA2301FD66C}" ShortID="340551335">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="5.16406249999999E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="9.41365559895833E-02"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_8.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_8" ID="{EA789677-0693-4333-8042-0DA2301FD66C}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_9" ID="{18C7199E-E1F9-4F91-B015-98DB7D207372}" ShortID="451121" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_9" ID="{1572DE99-09C3-42B4-8534-33F8D1A24BD8}" ShortID="685779834">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="4.12016834077381E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.109494884672619"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_9.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_9" ID="{1572DE99-09C3-42B4-8534-33F8D1A24BD8}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_10" ID="{EA6BCE61-AF02-44E4-97ED-73A4E90838C3}" ShortID="610464748" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_10" ID="{FA2B2E4A-ED7D-44C8-B673-9BB9D8E69096}" ShortID="994106824">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="4.43309616815477E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.110546828497024"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_10.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_10" ID="{FA2B2E4A-ED7D-44C8-B673-9BB9D8E69096}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="footsteps_sandy_11" ID="{41D8438A-6632-4444-9545-6E9F5BFB8FB8}" ShortID="828102524" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="footsteps_sandy_11" ID="{2A1D285A-A396-42DD-87B2-FAD92B150629}" ShortID="830153551">
-															<PropertyList>
-																<Property Name="FadeInDuration" Type="Real64" Value="6.33260323660714E-02"/>
-																<Property Name="FadeOutDuration" Type="Real64" Value="0.484958333333333"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>footsteps_sandy_11.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="footsteps_sandy_11" ID="{2A1D285A-A396-42DD-87B2-FAD92B150629}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-										</RandomSequenceContainer>
-									</ChildrenList>
-								</BlendContainer>
-							</ChildrenList>
-							<GroupingInfo>
-								<GroupRef Name="footsteps" ID="{0D74F18D-1E90-479E-90D2-5E338A52F6BD}"/>
-								<DefaultSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
-								<GroupingBehaviorList>
-									<GroupingBehavior>
-										<ItemRef Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}"/>
-									</GroupingBehavior>
-									<GroupingBehavior>
-										<ItemRef Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}"/>
-									</GroupingBehavior>
-								</GroupingBehaviorList>
-								<GroupingList>
-									<Grouping>
-										<SwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
-										<ItemList>
-											<ItemRef Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}"/>
-										</ItemList>
-									</Grouping>
-									<Grouping>
-										<SwitchRef Name="wood" ID="{1E93FC69-011E-4F08-9252-087B2AF8C6F7}"/>
-										<ItemList>
-											<ItemRef Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}"/>
-										</ItemList>
-									</Grouping>
-								</GroupingList>
-							</GroupingInfo>
-						</SwitchContainer>
 						<Folder Name="deaths" ID="{C11F7D1B-6A5F-4C13-B134-127E7A92580B}" ShortID="830453760">
 							<ChildrenList>
-								<Sound Name="penguin_death_electrocution" ID="{A563DE36-9164-4186-BD27-9EC1CA13EF19}" ShortID="101178754" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin electrocution" ID="{48582639-CC0F-41A6-9CE8-43325BBBD0BD}" ShortID="1052616542">
-											<Language>SFX</Language>
-											<AudioFile>penguin electrocution.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin electrocution" ID="{48582639-CC0F-41A6-9CE8-43325BBBD0BD}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="penguin_death_excavator" ID="{A7BB01FD-EDED-4CD8-8466-10E204FD4667}" ShortID="63746449" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin excavator  death" ID="{7B1542D8-C371-43CA-93A8-28A9F56812C9}" ShortID="298808485">
-											<Language>SFX</Language>
-											<AudioFile>penguin excavator  death.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin excavator  death" ID="{7B1542D8-C371-43CA-93A8-28A9F56812C9}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="penguin_death_pit_drowning" ID="{20062FA7-91A8-4644-96B1-170A3D3AB395}" ShortID="843684340" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin drowning death" ID="{7044B193-52F4-4EE7-BE14-A60C7E89427E}" ShortID="494470670">
-											<Language>SFX</Language>
-											<AudioFile>penguin drowning death.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin drowning death" ID="{7044B193-52F4-4EE7-BE14-A60C7E89427E}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="penguin_death_pit_spikes" ID="{8CAA148B-A8E7-428F-90B4-F9044E59A47C}" ShortID="163920596" Type="SoundFX">
 									<ExcludedPlatformList>
 										<Platform>Android</Platform>
@@ -2566,43 +1696,265 @@
 										<ActiveSource Name="penguin pit spikes death" ID="{AA16931E-F27B-47A2-84F5-101A6FC06269}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="penguin_death_spikes" ID="{4786A15B-C020-45E4-8DF1-DD10525AF7A5}" ShortID="897465980" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>600</Value>
-											</ValueList>
-										</Property>
-										<Property Name="PositioningType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Attenuation">
-											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
+								<Folder Name="excavator" ID="{9A53041C-D47D-4376-AB97-6E3F536FFF45}" ShortID="194272525">
 									<ChildrenList>
-										<AudioFileSource Name="penguin spikes death" ID="{181BE74B-1F1A-4CA1-81C8-DA6676825F53}" ShortID="380394281">
-											<Language>SFX</Language>
-											<AudioFile>penguin spikes death.wav</AudioFile>
-										</AudioFileSource>
+										<Sound Name="penguin_death_excavator" ID="{A7BB01FD-EDED-4CD8-8466-10E204FD4667}" ShortID="63746449" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>600</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin excavator  death" ID="{7B1542D8-C371-43CA-93A8-28A9F56812C9}" ShortID="298808485">
+													<Language>SFX</Language>
+													<AudioFile>penguin excavator  death.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin excavator  death" ID="{7B1542D8-C371-43CA-93A8-28A9F56812C9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_placeholder_death_excavator_1" ID="{2C021778-7801-4F68-9CB3-6EF92C062B93}" ShortID="151852977" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>800</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_placeholder_death_excavator_1" ID="{FAA6E566-EFA1-4967-96F2-C5EE32BB08FA}" ShortID="159031585">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.303837379092262"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.828269019717262"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_death_excavator_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_death_excavator_1" ID="{FAA6E566-EFA1-4967-96F2-C5EE32BB08FA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="splat_8" ID="{2C94698E-0FB2-4C6E-8A72-FDF7DAF0D6A5}" ShortID="798193132" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="splat_8" ID="{20FFA51B-6C54-47AC-AE77-2D483BE253BA}" ShortID="654747720">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="2.44642857142857E-02"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.269107142857143"/>
+														<Property Name="TrimBegin" Type="Real64" Value="5.05595238095238E-02"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.44502380952381"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>splat_8.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="splat_8" ID="{20FFA51B-6C54-47AC-AE77-2D483BE253BA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin spikes death" ID="{181BE74B-1F1A-4CA1-81C8-DA6676825F53}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</Folder>
+								<Folder Name="pit" ID="{FF709894-B2E8-434E-8D6A-A4E89305F55A}" ShortID="628875843">
+									<ChildrenList>
+										<Sound Name="penguin_death_pit_drowning" ID="{20062FA7-91A8-4644-96B1-170A3D3AB395}" ShortID="843684340" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin drowning death" ID="{7044B193-52F4-4EE7-BE14-A60C7E89427E}" ShortID="494470670">
+													<Language>SFX</Language>
+													<AudioFile>penguin drowning death.wav</AudioFile>
+												</AudioFileSource>
+												<AudioFileSource Name="penguin_placeholder_drowning_1" ID="{B39966A1-FB65-4AE1-AD57-CC2887CA4250}" ShortID="672518579">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="2.02678571428571E-02"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.359754464285714"/>
+														<Property Name="TrimBegin" Type="Real64" Value="2.78683035714286E-02"/>
+														<Property Name="TrimEnd" Type="Real64" Value="2.19652901785714"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_drowning_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_drowning_1" ID="{B39966A1-FB65-4AE1-AD57-CC2887CA4250}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" ShortID="207753465" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_placeholder_drowning_bubble_1" ID="{A53D215A-6605-4BE3-838A-C49040899BC4}" ShortID="1052706332">
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_drowning_bubble_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_drowning_bubble_1" ID="{A53D215A-6605-4BE3-838A-C49040899BC4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="electrocution" ID="{4B90DE1C-B09B-46B9-BC45-1258AA23F4EB}" ShortID="752264552">
+									<ChildrenList>
+										<Sound Name="penguin_placeholder_electro_death_1" ID="{B1980A73-D284-4C67-818C-F344BA0A8C59}" ShortID="603953020" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_placeholder_electro_death_1" ID="{C6DD917B-5236-421F-A67D-525354480151}" ShortID="1010485337">
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_electro_death_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_electro_death_1" ID="{C6DD917B-5236-421F-A67D-525354480151}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="spikes" ID="{619F199A-68B2-410C-ABF8-3FEDB91D7BBA}" ShortID="434427959">
+									<ChildrenList>
+										<Sound Name="penguin_death_spikes" ID="{4786A15B-C020-45E4-8DF1-DD10525AF7A5}" ShortID="897465980" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin spikes death" ID="{181BE74B-1F1A-4CA1-81C8-DA6676825F53}" ShortID="380394281">
+													<Language>SFX</Language>
+													<AudioFile>penguin spikes death.wav</AudioFile>
+												</AudioFileSource>
+												<AudioFileSource Name="penguin_placeholder_splat_1" ID="{03CE09D3-DC79-4746-A9BE-9124BF292689}" ShortID="513194388">
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_splat_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_splat_1" ID="{03CE09D3-DC79-4746-A9BE-9124BF292689}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="voice" ID="{15B39A8B-9692-4C1F-83A1-B7065AA8CCAE}" ShortID="166066420">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="penguin_placeholder_death_1" ID="{FD2EAE3D-4AB2-4553-8B41-47B1B008C826}" ShortID="191964885" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="penguin_placeholder_death_1" ID="{CC0EA59E-EBBC-48AB-A68C-25601C457557}" ShortID="256830340">
+															<Language>SFX</Language>
+															<AudioFile>penguin_placeholder_death_1.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="penguin_placeholder_death_1" ID="{CC0EA59E-EBBC-48AB-A68C-25601C457557}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<RandomSequenceContainer Name="penguin_celebrate" ID="{E49796CB-1DE6-4DC5-9005-8EF53FDD8598}" ShortID="398690270">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>600</Value>
+										<Value>200</Value>
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
@@ -2620,6 +1972,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="celebrate 1" ID="{EF015FAB-0647-48BC-8974-F8BEB43DF8E4}" ShortID="417684619" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -2638,13 +1993,38 @@
 										<ActiveSource Name="penguin celebrate" ID="{4B16FAB5-A82A-4697-B0AC-A3BBD5835A29}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="penguin_placeholder_celebrate_1" ID="{859E8472-6AC5-4E5F-9017-0665D987914A}" ShortID="202078708" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_placeholder_celebrate_1" ID="{EB908253-4DD9-4654-A806-C95476989D12}" ShortID="685552461">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="4.41682942708333E-02"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.14638634672619"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.166577566964286"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.984321986607141"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>penguin_placeholder_celebrate_1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_placeholder_celebrate_1" ID="{EB908253-4DD9-4654-A806-C95476989D12}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
 						<Sound Name="penguin_edge_fall" ID="{FB0841DE-63A3-44F9-ADA7-2B88AEA25188}" ShortID="879165397" Type="SoundFX">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>600</Value>
+										<Value>400</Value>
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
@@ -2665,16 +2045,26 @@
 									<Language>SFX</Language>
 									<AudioFile>penguin edge fall.wav</AudioFile>
 								</AudioFileSource>
+								<AudioFileSource Name="penguin_placeholder_fall_1" ID="{368AD98B-A4B7-4881-8465-1EE1DB1923BB}" ShortID="542419449">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="7.00930989583333E-02"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.913713611421131"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.180239397321429"/>
+										<Property Name="TrimEnd" Type="Real64" Value="2.1052962937128"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>penguin_placeholder_fall_1.wav</AudioFile>
+								</AudioFileSource>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="penguin edge fall" ID="{6268CEAD-5115-4075-AEA3-FB6C12C5E78E}" Platform="Linked"/>
+								<ActiveSource Name="penguin_placeholder_fall_1" ID="{368AD98B-A4B7-4881-8465-1EE1DB1923BB}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="penguin_get_up" ID="{134F9958-27DF-4F6F-882E-034403CDABB4}" ShortID="786558996" Type="SoundFX">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>600</Value>
+										<Value>400</Value>
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
@@ -2691,13 +2081,13 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="penguin get up" ID="{79FB2CC8-B172-47CE-A899-76B5A3826012}" ShortID="434815313">
+								<AudioFileSource Name="penguin_43" ID="{1D3197D9-7E5E-4AC8-8269-B9137D8D9011}" ShortID="319808485">
 									<Language>SFX</Language>
-									<AudioFile>penguin get up.wav</AudioFile>
+									<AudioFile>penguin_43.wav</AudioFile>
 								</AudioFileSource>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="penguin get up" ID="{79FB2CC8-B172-47CE-A899-76B5A3826012}" Platform="Linked"/>
+								<ActiveSource Name="penguin_43" ID="{1D3197D9-7E5E-4AC8-8269-B9137D8D9011}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="penguin_land" ID="{400C6210-96A4-4191-BD55-3F3A37261F6B}" ShortID="742710715" Type="SoundFX">
@@ -2868,43 +2258,52 @@
 										<ActiveSource Name="fall_thump_1" ID="{231C7F13-979E-4C2F-BD78-5AE6995378AC}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="penguin_placeholder_jump_1" ID="{E93C3116-D13C-4BCF-A5C1-B624216F45D0}" ShortID="893892610" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>32</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>35</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_placeholder_jump_1" ID="{7E5461B4-4C20-4A5F-9E21-6235971635EF}" ShortID="396036070">
+											<Language>SFX</Language>
+											<AudioFile>penguin_placeholder_jump_1.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="932264456"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_placeholder_jump_1" ID="{7E5461B4-4C20-4A5F-9E21-6235971635EF}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
-						<Sound Name="jump used" ID="{843D66B5-F1D7-4072-86DD-7E5CC5BF6350}" ShortID="712393772" Type="SoundFX">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>600</Value>
-									</ValueList>
-								</Property>
-								<Property Name="PositioningType" Type="int16" Value="1"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Attenuation">
-									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-								</Reference>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="jump used" ID="{56B47D61-55AD-40A3-95CE-DD22EF64D6BE}" ShortID="623715706">
-									<Language>SFX</Language>
-									<AudioFile>jump used.wav</AudioFile>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="jump used" ID="{56B47D61-55AD-40A3-95CE-DD22EF64D6BE}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="penguin_spawn" ID="{663E8196-D583-40CF-BC6E-CF6A6837FBE8}" ShortID="998261287" Type="SoundFX">
 							<PropertyList>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>600</Value>
+										<Value>200</Value>
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
@@ -2921,15 +2320,1359 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="penguin spawn" ID="{617D2787-3AFE-4614-B75A-6340A88E9961}" ShortID="937588227">
+								<AudioFileSource Name="penguin_placeholder_spawn_1" ID="{68FEC008-A7EF-4D3F-B3DD-81970D360E11}" ShortID="620465349">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="5.06481352306548E-02"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="6.63030133928571E-02"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.286392182849703"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.5801513671875"/>
+									</PropertyList>
 									<Language>SFX</Language>
-									<AudioFile>penguin spawn.wav</AudioFile>
+									<AudioFile>penguin_placeholder_spawn_1.wav</AudioFile>
 								</AudioFileSource>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="penguin spawn" ID="{617D2787-3AFE-4614-B75A-6340A88E9961}" Platform="Linked"/>
+								<ActiveSource Name="penguin_placeholder_spawn_1" ID="{68FEC008-A7EF-4D3F-B3DD-81970D360E11}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="penguin_jump_used" ID="{B592E696-2232-45B7-AA5D-E4BBCC9E5A28}" ShortID="576858787" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>32</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>35</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>500</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="penguin_placeholder_jump_1" ID="{8A50EE59-0000-4BA6-90F2-846F626B716E}" ShortID="13047438">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0195693359375"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.22943359375"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.11606640625"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>penguin_placeholder_jump_1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="penguin_placeholder_jump_1" ID="{8A50EE59-0000-4BA6-90F2-846F626B716E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Folder Name="land" ID="{75BCCA92-4706-4619-8891-48B97ADB1F8E}" ShortID="761546221">
+							<ChildrenList>
+								<Sound Name="fall_thump_1" ID="{31C08FD5-DECA-4F17-894B-78C2B4A27535}" ShortID="1046655199" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fall_thump_1" ID="{15C1E2AE-E81E-45BA-B3AC-FE016203C241}" ShortID="475400443">
+											<Language>SFX</Language>
+											<AudioFile>fall_thump_1.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="65922487"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fall_thump_1" ID="{15C1E2AE-E81E-45BA-B3AC-FE016203C241}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="penguin_edge_fall" ID="{B46AA1A5-E7E3-444A-8BE2-19F5C08AB169}" ShortID="664504589" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>200</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_placeholder_fall_1" ID="{37EBCA56-DD20-41FE-81E2-D2D6317198FD}" ShortID="180278603">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="3.00398995535713E-02"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.182742722284226"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.76734742373512"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.1052962937128"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>penguin_placeholder_fall_1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_placeholder_fall_1" ID="{37EBCA56-DD20-41FE-81E2-D2D6317198FD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Sound Name="penguin_change_lane_used" ID="{7E719EFD-63DD-40DC-A64A-F51279B0E3B9}" ShortID="734529410" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>35</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>400</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="penguin_46" ID="{7DB82860-4C77-4956-9993-56A367C9EB13}" ShortID="718507445">
+									<Language>SFX</Language>
+									<AudioFile>penguin_46.wav</AudioFile>
+								</AudioFileSource>
+								<AudioFileSource Name="penguin_42" ID="{1E49DE57-37F2-4D01-9746-AB99D69A114F}" ShortID="683631213">
+									<Language>SFX</Language>
+									<AudioFile>penguin_42.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="penguin_42" ID="{1E49DE57-37F2-4D01-9746-AB99D69A114F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Folder Name="movement" ID="{7163DE15-7100-4E70-8564-B47FFC660CEB}" ShortID="563844000">
+							<ChildrenList>
+								<SwitchContainer Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" ShortID="183852843">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}" ShortID="646573809">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>40</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>1400</Value>
+													</ValueList>
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{463CCC0C-63DE-47C3-92DD-D83BE7A8200C}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="50"/>
+																	<Property Name="Min" Type="Real64" Value="-50"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
+												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="pallet_boots_1" ID="{D57B8DBA-5632-4300-8123-2463DBE8451D}" ShortID="50691084" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_1" ID="{5F7827EE-9B8A-4D5F-8367-73CEB2A5A9E2}" ShortID="70228303">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0047490234375"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="7.39490792410714E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="3.73137555803572E-03"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_1.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_1" ID="{5F7827EE-9B8A-4D5F-8367-73CEB2A5A9E2}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_2" ID="{18314822-13E1-47FC-81A1-F35EE967C7D4}" ShortID="759530631" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_2" ID="{0970D30A-DA87-4F8B-A51C-1537B36C3477}" ShortID="431548459">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="5.1518787202381E-03"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="4.59706101190476E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_2" ID="{0970D30A-DA87-4F8B-A51C-1537B36C3477}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_3" ID="{D13CA936-2213-4AF6-8168-526AC83F6916}" ShortID="616172707" Type="SoundFX">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-5</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_3" ID="{CB06204B-D388-4A02-B1B0-FE3B66596033}" ShortID="710433947">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.01357177734375"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.0335302734375"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.02474853515625"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_3" ID="{CB06204B-D388-4A02-B1B0-FE3B66596033}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_4" ID="{A99D8D95-70A3-4C59-839D-2E17CB279099}" ShortID="1051490747" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_4" ID="{B1BEBEFD-B3DA-4519-9942-7F0296F5885A}" ShortID="302680233">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="9.91634114583333E-03"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.131745675223214"/>
+																<Property Name="TrimBegin" Type="Real64" Value="2.26659226190476E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_4.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_4" ID="{B1BEBEFD-B3DA-4519-9942-7F0296F5885A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_5" ID="{6C79D0FA-C9ED-474C-BDDB-57DBDE60508D}" ShortID="123359195" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_5" ID="{71BAAD03-C1E2-4FE2-A359-38AA54AA7427}" ShortID="911732199">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="2.79820033482143E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.0548447265625"/>
+																<Property Name="TrimBegin" Type="Real64" Value="3.76824311755952E-02"/>
+																<Property Name="TrimEnd" Type="Real64" Value="0.277954566592262"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_5.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_5" ID="{71BAAD03-C1E2-4FE2-A359-38AA54AA7427}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_6" ID="{FC329FBF-B142-4C5F-AC46-8C00A52562E3}" ShortID="29756150" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_6" ID="{FC704CFE-DCB5-4E31-9C34-72876B711BB7}" ShortID="694513351">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="1.06022484188988E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.140022798084077"/>
+																<Property Name="TrimBegin" Type="Real64" Value="1.02366536458333E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_6.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_6" ID="{FC704CFE-DCB5-4E31-9C34-72876B711BB7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_7" ID="{E5BED4AA-7B41-4B00-AF68-15622FC552AF}" ShortID="967214832" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_7" ID="{050FF226-EFCD-44AF-B5E3-969142A1C698}" ShortID="985930152">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="1.27689732142857E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="8.75050223214286E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.01314453125"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_7.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_7" ID="{050FF226-EFCD-44AF-B5E3-969142A1C698}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_8" ID="{BC2BD114-567B-4FEB-A355-75EC6F49E03C}" ShortID="68636979" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_8" ID="{03AA3A1E-945C-4AEB-B173-EBBA0948D88D}" ShortID="740148435">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="2.11363002232143E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="5.88293689546131E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="1.09204217819941E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_8.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_8" ID="{03AA3A1E-945C-4AEB-B173-EBBA0948D88D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_9" ID="{F7DFEC85-92D6-4A38-9099-7646AFF5E1B8}" ShortID="735120121" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_9" ID="{BAA458CF-B887-4166-9807-0899CD389EC3}" ShortID="986028882">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="2.26207449776786E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="4.26875348772321E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="4.48766392299107E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_9.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_9" ID="{BAA458CF-B887-4166-9807-0899CD389EC3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pallet_boots_10" ID="{DCF5CE93-B990-4ADD-B3CD-20EB25BFD65E}" ShortID="680163679" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pallet_boots_10" ID="{0ABE2552-5FE9-4893-BFB3-6D848B54F6B7}" ShortID="608908896">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="1.62145647321429E-02"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="4.05364118303571E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="5.55498976934524E-02"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pallet_boots_10.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pallet_boots_10" ID="{0ABE2552-5FE9-4893-BFB3-6D848B54F6B7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<BlendContainer Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}" ShortID="158026135">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>700</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-13</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="snow2" ID="{EE77D6ED-0E5D-4BE0-ACFC-B0FDD2468D4A}" ShortID="344724736">
+													<PropertyList>
+														<Property Name="Highpass" Type="int16">
+															<ValueList>
+																<Value>38</Value>
+															</ValueList>
+														</Property>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>400</Value>
+															</ValueList>
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{5B49479D-389E-4300-8542-7F9B143CE404}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="50"/>
+																			<Property Name="Min" Type="Real64" Value="-50"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+														<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+														<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
+														<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="footstep_snow_1" ID="{2ADC6ED0-361C-4474-957B-4F2D8C80CF40}" ShortID="291830817" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_1" ID="{254B2E20-9241-4B59-9541-158FBA2D0C45}" ShortID="651191199">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.117978794642857"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.0418505859375"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_1.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_1" ID="{254B2E20-9241-4B59-9541-158FBA2D0C45}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_2" ID="{AB39A566-20DF-4C5A-B06C-DAB7C504C0D2}" ShortID="737831924" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_2" ID="{0AC26FD7-3556-488E-8D18-3DCC7F86C74E}" ShortID="103571485">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.119291759672619"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="5.55013020833333E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="2.34258742559524E-02"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_2.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_2" ID="{0AC26FD7-3556-488E-8D18-3DCC7F86C74E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_3" ID="{A8FB3F1D-A489-47CE-8802-CB9AC4FF5CCF}" ShortID="1053488821" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_3" ID="{8F8C0A59-8DA4-4C82-B02B-D699F62D3EB2}" ShortID="972240149">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.135803571428571"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="5.31026785714286E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="1.08816964285714E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.293805803571429"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_3.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_3" ID="{8F8C0A59-8DA4-4C82-B02B-D699F62D3EB2}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_4" ID="{BD6464AB-D2DC-46F9-909E-9ADB108B81BA}" ShortID="488888031" Type="SoundFX">
+															<ExcludedPlatformList>
+																<Platform>Android</Platform>
+															</ExcludedPlatformList>
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_4" ID="{9AB4226E-74C4-424F-A569-B2B2A81CFEA0}" ShortID="303912625">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="1.86810825892857E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="5.15760323660714E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="4.42660435267857E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.307831752232143"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_4.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_4" ID="{9AB4226E-74C4-424F-A569-B2B2A81CFEA0}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_5" ID="{72563933-2ECB-4D6A-B733-C9D7D29FCF87}" ShortID="672653836" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_5" ID="{8FF1F0AD-BB05-41D9-A87A-B5CDBB04EC8D}" ShortID="111494442">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.104661458333333"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="5.64424293154762E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="1.27088913690478E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.2825859375"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_5.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_5" ID="{8FF1F0AD-BB05-41D9-A87A-B5CDBB04EC8D}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_6" ID="{E5F54BE1-8897-4AB2-BDE9-F4C932945AB0}" ShortID="336800881" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_6" ID="{023A05BE-0F3B-4841-89CF-5298CE141078}" ShortID="362420559">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.128240187872024"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.0630478515625"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="3.38828590029762E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.357271158854167"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_6.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_6" ID="{023A05BE-0F3B-4841-89CF-5298CE141078}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_7" ID="{7119FEF4-29C4-49DC-9302-C56C00AE833E}" ShortID="25628605" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_7" ID="{EA03510E-E956-4FB5-9CA9-303CB253AA9A}" ShortID="731587138">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.165962309337798"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.278501395089286"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="4.29137369791667E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.33280040922619"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_7.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_7" ID="{EA03510E-E956-4FB5-9CA9-303CB253AA9A}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_8" ID="{6005A292-DDD2-435D-93BB-1A181A1279AB}" ShortID="201059227" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_8" ID="{9AA7D60F-7CE9-421D-AF4F-D576E00CB7C3}" ShortID="1060082749">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.162204752604167"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.06317919921875"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="9.85774739583331E-03"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_8.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_8" ID="{9AA7D60F-7CE9-421D-AF4F-D576E00CB7C3}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_9" ID="{A079E7DF-360E-495F-90D0-C84001F27990}" ShortID="1070784504" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_9" ID="{2A45C875-16B1-485A-A010-A875AC8B2C65}" ShortID="268160669">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.132088797433036"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="2.78267066592262E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="3.02923642113095E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.274744698660714"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_9.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_9" ID="{2A45C875-16B1-485A-A010-A875AC8B2C65}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footstep_snow_10" ID="{54B9A502-A9E4-4889-ABF4-DFA296AD028C}" ShortID="264547398" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footstep_snow_10" ID="{24D0415A-E116-431A-B442-A95B79D8EC1D}" ShortID="6671893">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.143458844866071"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="3.91251395089285E-02"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="3.96081659226191E-02"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="0.393666527157738"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footstep_snow_10.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footstep_snow_10" ID="{24D0415A-E116-431A-B442-A95B79D8EC1D}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+												<RandomSequenceContainer Name="snow1" ID="{0F3AF34A-3A99-467C-A198-9C226F325E8A}" ShortID="941312443">
+													<PropertyList>
+														<Property Name="Highpass" Type="int16">
+															<ValueList>
+																<Value>35</Value>
+															</ValueList>
+														</Property>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>400</Value>
+															</ValueList>
+															<ModifierList>
+																<ModifierInfo>
+																	<Modifier Name="" ID="{9F414700-344B-46E3-9AEA-00659B356E01}">
+																		<PropertyList>
+																			<Property Name="Enabled" Type="bool" Value="True"/>
+																			<Property Name="Max" Type="Real64" Value="50"/>
+																			<Property Name="Min" Type="Real64" Value="-50"/>
+																		</PropertyList>
+																	</Modifier>
+																</ModifierInfo>
+															</ModifierList>
+														</Property>
+														<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+														<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+														<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
+														<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<Sound Name="footsteps_sandy_1" ID="{81D8CF91-1CEB-4F14-9852-4C60BAF22DFC}" ShortID="428605328" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_1" ID="{939BBA60-7C74-48BE-9FC3-10C51B419F26}" ShortID="1019648337">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="2.99317801339286E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.151589983258929"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_1.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_1" ID="{939BBA60-7C74-48BE-9FC3-10C51B419F26}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_2" ID="{168662FE-8D47-4A35-B52A-349C486441ED}" ShortID="514143522" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_2" ID="{BA135360-5139-437F-9735-9407171FB4B0}" ShortID="245969063">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="2.79661458333334E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.143825892857143"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_2.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_2" ID="{BA135360-5139-437F-9735-9407171FB4B0}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_3" ID="{B640FC8E-F51F-4460-975B-1721B67FF854}" ShortID="888070013" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_3" ID="{ACE9615E-A8A1-4B4C-BBF8-C5ADCD54AE92}" ShortID="445560858">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="0.02874462890625"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.269195731026786"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_3.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_3" ID="{ACE9615E-A8A1-4B4C-BBF8-C5ADCD54AE92}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_4" ID="{35F60132-2945-4B46-BEEA-25AE3DD90B46}" ShortID="616581499" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_4" ID="{DF04D9DB-ECA4-45F9-B36C-47D7649C95DA}" ShortID="798404511">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="4.33464006696429E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.16899609375"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_4.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_4" ID="{DF04D9DB-ECA4-45F9-B36C-47D7649C95DA}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_5" ID="{1A5F2493-CE63-4EDE-BE24-F03247C8A0B6}" ShortID="469525356" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_5" ID="{D2F5FEA9-BAE4-432A-B988-89A207507098}" ShortID="202733313">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="2.73989722842262E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.10411609468006"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_5.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_5" ID="{D2F5FEA9-BAE4-432A-B988-89A207507098}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_6" ID="{D4022A14-AE24-43BD-A458-019D04667ED3}" ShortID="77831463" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_6" ID="{C755FD2A-B493-4AC1-87A4-4896FC1066DD}" ShortID="197931819">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="6.35022321428573E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.166419642857143"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_6.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_6" ID="{C755FD2A-B493-4AC1-87A4-4896FC1066DD}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_7" ID="{4D19D86F-C8C0-4D3F-AB55-2DA516DBDF6C}" ShortID="946410836" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_7" ID="{7010A8EA-0CDD-4668-A765-8CA82FBA6A95}" ShortID="25802924">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="4.39275948660714E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.112071684337798"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_7.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_7" ID="{7010A8EA-0CDD-4668-A765-8CA82FBA6A95}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_8" ID="{A82480DE-7D1D-4043-9008-8875481F2ECC}" ShortID="896573673" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_8" ID="{EA789677-0693-4333-8042-0DA2301FD66C}" ShortID="340551335">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="5.16406249999999E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="9.41365559895833E-02"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_8.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_8" ID="{EA789677-0693-4333-8042-0DA2301FD66C}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_9" ID="{18C7199E-E1F9-4F91-B015-98DB7D207372}" ShortID="451121" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_9" ID="{1572DE99-09C3-42B4-8534-33F8D1A24BD8}" ShortID="685779834">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="4.12016834077381E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.109494884672619"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_9.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_9" ID="{1572DE99-09C3-42B4-8534-33F8D1A24BD8}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_10" ID="{EA6BCE61-AF02-44E4-97ED-73A4E90838C3}" ShortID="610464748" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_10" ID="{FA2B2E4A-ED7D-44C8-B673-9BB9D8E69096}" ShortID="994106824">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="4.43309616815477E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.110546828497024"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_10.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_10" ID="{FA2B2E4A-ED7D-44C8-B673-9BB9D8E69096}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="footsteps_sandy_11" ID="{41D8438A-6632-4444-9545-6E9F5BFB8FB8}" ShortID="828102524" Type="SoundFX">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="footsteps_sandy_11" ID="{2A1D285A-A396-42DD-87B2-FAD92B150629}" ShortID="830153551">
+																	<PropertyList>
+																		<Property Name="FadeInDuration" Type="Real64" Value="6.33260323660714E-02"/>
+																		<Property Name="FadeOutDuration" Type="Real64" Value="0.484958333333333"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>footsteps_sandy_11.wav</AudioFile>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="footsteps_sandy_11" ID="{2A1D285A-A396-42DD-87B2-FAD92B150629}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+													</ChildrenList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+									</ChildrenList>
+									<GroupingInfo>
+										<GroupRef Name="footsteps" ID="{0D74F18D-1E90-479E-90D2-5E338A52F6BD}"/>
+										<DefaultSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
+										<GroupingBehaviorList>
+											<GroupingBehavior>
+												<ItemRef Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}"/>
+											</GroupingBehavior>
+										</GroupingBehaviorList>
+										<GroupingList>
+											<Grouping>
+												<SwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
+												<ItemList>
+													<ItemRef Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="wood" ID="{1E93FC69-011E-4F08-9252-087B2AF8C6F7}"/>
+												<ItemList>
+													<ItemRef Name="wood" ID="{73854078-4549-4A59-868A-EF4DB46806CC}"/>
+												</ItemList>
+											</Grouping>
+										</GroupingList>
+									</GroupingInfo>
+								</SwitchContainer>
+								<RandomSequenceContainer Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" ShortID="513316199">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>45</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{089A36B8-94F1-460C-8735-6116AFCF6632}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="100"/>
+															<Property Name="Min" Type="Real64" Value="-100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+										<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
+										<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.9">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{2EB18054-3952-4702-916A-E5E0E6B7A0E8}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="1.6"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="penguin_30" ID="{A4185B4A-1A82-4BC5-9B30-95EE76ABE55A}" ShortID="1067124781" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{A8B0F0BB-DD10-43A8-9FBF-88568DDC0EF1}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_30" ID="{09A22A16-9F62-4DB3-81C3-F3A9DDBD69CD}" ShortID="866084732">
+													<Language>SFX</Language>
+													<AudioFile>penguin_30.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_30" ID="{09A22A16-9F62-4DB3-81C3-F3A9DDBD69CD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_31" ID="{846FB178-4998-4DF0-B7D9-E2D204065B00}" ShortID="786466690" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_31" ID="{0433382A-01F7-46F9-8667-F0166639C2CE}" ShortID="290686294">
+													<Language>SFX</Language>
+													<AudioFile>penguin_31.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_31" ID="{0433382A-01F7-46F9-8667-F0166639C2CE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_33" ID="{ECD54C28-4CA9-4067-A1C3-E4F119456219}" ShortID="639766439" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_33" ID="{83BEF622-00C7-4555-AB02-D0B18C88B22F}" ShortID="55462416">
+													<Language>SFX</Language>
+													<AudioFile>penguin_33.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_33" ID="{83BEF622-00C7-4555-AB02-D0B18C88B22F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_32" ID="{6D2BEA84-8810-4EA7-8A02-AA638B038EE1}" ShortID="169069616" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_32" ID="{03ECEC58-9196-42E8-948E-1783AD5EC885}" ShortID="680360679">
+													<Language>SFX</Language>
+													<AudioFile>penguin_32.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_32" ID="{03ECEC58-9196-42E8-948E-1783AD5EC885}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_34" ID="{7F808A53-5B43-4E3B-BD3A-741177BFF2A4}" ShortID="315192379" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_34" ID="{0C5D14A7-497D-4E40-B62C-C7F891A08AA0}" ShortID="11513722">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0094970703125"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.066099609375"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>penguin_34.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_34" ID="{0C5D14A7-497D-4E40-B62C-C7F891A08AA0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="penguin_spawn" ID="{E92CC8DC-673A-4E46-A8A5-D555FB8BD67B}" ShortID="845897895" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="penguin_placeholder_spawn_1" ID="{F48798B8-8629-48D9-83E8-8B7810FFAE56}" ShortID="618426641">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="5.06481352306548E-02"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="6.63030133928571E-02"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.286392182849703"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.5801513671875"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>penguin_placeholder_spawn_1.wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="620465349"/>
+													</ConvertedFileIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="penguin_placeholder_spawn_1" ID="{F48798B8-8629-48D9-83E8-8B7810FFAE56}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="seal" ID="{3A1AA5C2-31B4-4281-9324-DEECA22B4CA0}" ShortID="605867038">
@@ -3087,6 +3830,52 @@
 									</ChildrenList>
 									<ActiveSourceList>
 										<ActiveSource Name="seal spikes death" ID="{E7CEB3F0-DCE1-48C5-BCC4-24CA56076C6D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" ShortID="263129623" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-300</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{7C944FFC-5C2C-4EDF-8433-97CB0645B8BD}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="seal_placeholder_1" ID="{351C6BB4-A91B-4015-B5F5-E806D0CD30AA}" ShortID="904649584">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="5.49400712666019E-03"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.162759961127308"/>
+												<Property Name="TrimBegin" Type="Real64" Value="2.47230320699708E-02"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.374965986394558"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>seal_placeholder_1.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="831917530"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="seal_placeholder_1" ID="{351C6BB4-A91B-4015-B5F5-E806D0CD30AA}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -4255,6 +5044,46 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="seal spawn" ID="{983A3105-AC6D-480E-A5E2-61FA1F42384F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" ShortID="744727317" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{EC92D6DF-76D8-44B1-8C56-D25C8DB8F0B7}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="50"/>
+													<Property Name="Min" Type="Real64" Value="-50"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="seal_placeholder_1" ID="{73662120-42C9-45DA-B428-616C7D260D20}" ShortID="831917530">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="5.49400712666019E-03"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.162759961127308"/>
+										<Property Name="TrimBegin" Type="Real64" Value="2.47230320699708E-02"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.374965986394558"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>seal_placeholder_1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="seal_placeholder_1" ID="{73662120-42C9-45DA-B428-616C7D260D20}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
