@@ -6,7 +6,7 @@ using Assets.scripts.components.registers;
 using Assets.scripts.gamestate;
 using Assets.scripts.UI.screen.ingame;
 using JetBrains.Annotations;
-
+using System.Collections;
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
@@ -78,6 +78,14 @@ namespace Assets.scripts.character {
 					//TODO Instantiate a dead penguin mesh into the position of the penguin.
 					//characterController.enabled = false;
 				}
+			}
+		}
+
+		// TODO finish
+		IEnumerator OnTriggerEnter(Collider collider) {
+			if (collider.transform.tag == "WinZone") {
+				yield return new WaitForSeconds(2.5f);
+				ExecuteAction(ControllableActions.Stop); // TODO stop and celebrate, stop when colliding with other penguin, this is for WinZone
 			}
 		}
 
