@@ -9,6 +9,11 @@ namespace Assets.scripts.controllers.actions.sound {
 			this.soundEvent = soundEvent;
 		}
 
+		public PostSoundEvent(string soundEvent, Camera c) {
+			this.soundEvent = soundEvent;
+			go = c.gameObject;
+		}
+
 		public void Setup(GameObject gameObject) {
 			go = gameObject;
 		}

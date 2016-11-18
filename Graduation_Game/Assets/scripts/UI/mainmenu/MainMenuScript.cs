@@ -22,9 +22,12 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			foreach(var lvl in levels) {
-				lvl.btnFromScene.onClick.AddListener(() => CheckLoadLevel(lvl));
+			for(int i=0;i<levels.Length-1;i++) {
+				levels[i].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[i]));
 			}
+			levels[0].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[0]));
+
+
 
 			languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 			languageDropdown.onValueChanged.AddListener(delegate {
@@ -56,8 +59,9 @@ namespace Assets.scripts.UI.mainmenu {
 				DisablePopup();
 				return;
 			}
-
-			if(Inventory.penguinCount.GetValue() > lvl.penguinsRequired) {
+			print(lvl.localizedText);
+			print(lvl.penguinsRequired);
+			if(Inventory.penguinCount.GetValue() >= lvl.penguinsRequired) {
 				SceneManager.LoadScene(lvl.sceneFileName);
 			} else {
 				EnablePopup();
@@ -84,6 +88,8 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		private void EnablePopup() {
+			print(Inventory.penguinCount.GetValue());
+		
 			popup.transform.localScale = Vector3.one;
 			popup.enabled = true;
 //	        popup.gameObject.SetActive(true);
@@ -93,7 +99,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		public void OnTouch(Touch[] allTouches) {
-			DisablePopup();
+		//	DisablePopup(); //apparently it will activate and get removed super fast
 		}
 
 		public void OnMouseRightDown() {
