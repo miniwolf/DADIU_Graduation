@@ -6,7 +6,7 @@
 				<SoundcasterSession Name="New Soundcaster Session" ID="{89B39B03-1493-4BF0-A077-3E40A056F895}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="move_test" ID="{0BF5179F-1994-4D07-A222-9E781F3B7C96}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
@@ -14,48 +14,12 @@
 							<Position X="0" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="music_game_play" ID="{F756E8C6-A751-41A1-A794-089F12761F0D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="0" Y="2"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="music_menu_play" ID="{5A521F74-4AC4-4AA5-A6FA-7415EFCC234D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="0" Y="3"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="0" Y="4"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="penguin_slide_loop" ID="{15178CF6-BAA5-44DC-80ED-9028CDDEC295}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="1" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="1" Y="2"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="1" Y="4"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="penguin_slide_end" ID="{2E539E9D-D2CB-4D19-ADB5-B4FA15DC980F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="2" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="2" Y="2"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="pickup_add_to_score" ID="{968006F2-1F41-4E56-AC01-5D5D1981DC2B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="2" Y="4"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="penguin_edge_fall" ID="{B0F4B0C9-D209-4858-85B6-C9B33B15C127}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="3" Y="0"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="4" Y="0"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true"/>
