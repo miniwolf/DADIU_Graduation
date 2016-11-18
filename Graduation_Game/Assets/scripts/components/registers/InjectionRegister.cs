@@ -90,6 +90,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 					break;
+				case TagConstants.SEAL:
+					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject()).Build();
+					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
