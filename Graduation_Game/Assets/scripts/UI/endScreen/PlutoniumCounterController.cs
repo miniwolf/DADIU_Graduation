@@ -14,8 +14,8 @@ public class PlutoniumCounterController : MonoBehaviour {
 		if (children.Count > 0) {
 			Plutonium g = children.Dequeue();
 			g.gameObject.SetActive(true);
-			Camera camera = Camera.main;
-			g.transform.localPosition = camera.WorldToScreenPoint(gameObject.transform.localPosition);
+			/*Camera camera = Camera.main;
+			g.transform.localPosition = camera.WorldToScreenPoint(gameObject.transform.localPosition);*/
 			g.TriggerFlow();
 			return true;
 		}

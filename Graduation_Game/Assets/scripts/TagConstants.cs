@@ -38,6 +38,7 @@
 		public const string STAR3 = "star3";
 		public const string NOTIFIER_SYSTEM = "NotifierSystem";
 		public const string SEAL_SPAWN = "Seal Spawn";
+		public const string SEAL = "Seal";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
