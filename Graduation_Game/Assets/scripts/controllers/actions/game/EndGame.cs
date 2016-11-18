@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Assets.scripts.UI;
 using Assets.scripts.components;
 using System.Collections;
+using Assets.scripts.tools;
 using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.controllers.actions.game {
@@ -11,9 +12,10 @@ namespace Assets.scripts.controllers.actions.game {
 		private CanvasController canvas;
 		private GameObject endScene;
 		private Text plutoniumCounter;
-		private Text plutoniumTotal;
-		private Text penguinCounter;
-		private Image[] star = new Image[3];
+		private GameObject plutoniumTotal;
+		private GameObject penguinCounter;
+		private GameObject[] star = new GameObject[3];
+		private bool isSetUp = false;
 		private int target;
 		private int starsSpawned;
 		private bool scoreUpdated = false;
@@ -24,12 +26,13 @@ namespace Assets.scripts.controllers.actions.game {
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
 			canvas = gameObject.GetComponent<CanvasController>();
-			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
-			foreach (Transform g in gameObject.GetComponentsInChildren<Transform>(true))
-				if (g.tag == TagConstants.ENDSCENE) {
-					endScene = g.gameObject;
-					break;
-				}
+			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT);
+			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL);
+			endScene = GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE);
+			star[0] = GameObject.FindGameObjectWithTag(TagConstants.STAR1);
+			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2);
+			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
+
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			starsSpawned = 0;
 		}
@@ -41,7 +44,7 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
-			if (!endScene.active) {
+			if (!isSetUp) {
 				SetupEndScene();
 			}
 
@@ -51,18 +54,18 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private void SetupEndScene() {
-			endScene.SetActive(true);
 			plutoniumCounter.transform.parent = endScene.GetComponentInChildren<Image>().transform;
 			plutoniumCounter.alignment = TextAnchor.MiddleLeft;
 			plutoniumCounter.transform.localPosition = new Vector3(-106, -79, 0);
-			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
-			star[0] = GameObject.FindGameObjectWithTag(TagConstants.STAR1).GetComponent<Image>();
-			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2).GetComponent<Image>();
-			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3).GetComponent<Image>();
+
+			endScene.GetComponent<Image>().enabled = true;
+			plutoniumTotal.GetComponent<Text>().enabled = true;
+			plutoniumTotal.GetComponent<Text>().text = PlayerPrefs.GetInt("Plutonium").ToString();
+
 			target = PlayerPrefs.GetInt("Plutonium") + int.Parse(plutoniumCounter.text);
-			plutoniumTotal.text = PlayerPrefs.GetInt("Plutonium").ToString();
 			pcc = plutoniumCounter.GetComponent<PlutoniumCounterController>();
 			pcc.SetupFlowing();
+			isSetUp = true;
 		}
 
 		private IEnumerator UpdateScore() {
@@ -73,7 +76,7 @@ namespace Assets.scripts.controllers.actions.game {
 			while (pcc.FlowPlutonium()) {
 				yield return new WaitForSeconds(0.1f);
 			}
-			while (target != int.Parse(plutoniumTotal.text)) {
+			while (target != int.Parse(plutoniumTotal.GetComponent<Text>().text)) {
 				yield return new WaitForSeconds(0.5f);
 			}
 
@@ -107,8 +110,8 @@ namespace Assets.scripts.controllers.actions.game {
 		public bool SpawnNextStar() {
 			for (int i = 0; i < 3; i++) {
 				if (starsSpawned == i) {
-					if (int.Parse(penguinCounter.text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
-						star[i].sprite = Resources.Load<Sprite>("Images/star");
+					if (int.Parse(penguinCounter.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
+						star[i].GetComponent<Star>().FlyIn();
 						starsSpawned++;
 						return true;
 					}
