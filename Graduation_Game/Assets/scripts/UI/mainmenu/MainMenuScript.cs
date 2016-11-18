@@ -60,12 +60,7 @@ namespace Assets.scripts.UI.mainmenu {
 				DisablePopup();
 				return;
 			}
-<<<<<<< HEAD
-			print(lvl.localizedText);
-			print(lvl.penguinsRequired);
-=======
 
->>>>>>> develop
 			if(Inventory.penguinCount.GetValue() >= lvl.penguinsRequired) {
 				SceneManager.LoadScene(lvl.sceneFileName);
 			} else {
