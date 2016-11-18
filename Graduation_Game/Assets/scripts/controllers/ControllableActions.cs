@@ -13,6 +13,7 @@
 		KillPenguinByOrca,
 	    StartSliding, StopSliding,
 	    Freeze, UnFreeze,
-	    OtherPenguinDied // reactions to death of other penguin
+	    OtherPenguinDied, // reactions to death of other penguin
+		SealJump, SealMove, SealFall, SealDeath, SealLand
 	}
 }
