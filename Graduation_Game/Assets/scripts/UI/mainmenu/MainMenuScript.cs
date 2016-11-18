@@ -22,12 +22,13 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			for(int i=0;i<levels.Length-1;i++) {
-				levels[i].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[i]));
-			}
+			// TODO in a loop this doesn't work, it doesn't load the correct level when you click a button
 			levels[0].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[0]));
-
-
+			levels[1].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[1]));
+			levels[2].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[2]));
+			levels[3].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[3]));
+			levels[4].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[4]));
+			levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
 
 			languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 			languageDropdown.onValueChanged.AddListener(delegate {
@@ -59,8 +60,12 @@ namespace Assets.scripts.UI.mainmenu {
 				DisablePopup();
 				return;
 			}
+<<<<<<< HEAD
 			print(lvl.localizedText);
 			print(lvl.penguinsRequired);
+=======
+
+>>>>>>> develop
 			if(Inventory.penguinCount.GetValue() >= lvl.penguinsRequired) {
 				SceneManager.LoadScene(lvl.sceneFileName);
 			} else {

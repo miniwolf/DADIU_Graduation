@@ -16,8 +16,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private Image[] star = new Image[3];
 		private int target;
 		private int starsSpawned;
-		private bool starsToSpawn;
-		private float delay;
+		private bool scoreUpdated = false;
 		private readonly CouroutineDelegateHandler handler;
 		private PlutoniumCounterController pcc;
 		private SceneManager scenes;
@@ -33,8 +32,6 @@ namespace Assets.scripts.controllers.actions.game {
 				}
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			starsSpawned = 0;
-			starsToSpawn = true;
-			delay = 2f;
 		}
 
 
@@ -48,13 +45,8 @@ namespace Assets.scripts.controllers.actions.game {
 				SetupEndScene();
 			}
 
-			if (int.Parse(plutoniumTotal.text) < target) {
-				UpdateScore();
-			}
-
-			else if(starsToSpawn) {
-				canvas.EndLevel();
-				handler.StartCoroutine(StarSpawning());
+			if (!scoreUpdated) {
+				handler.StartCoroutine(UpdateScore());
 			}
 		}
 
@@ -72,10 +64,24 @@ namespace Assets.scripts.controllers.actions.game {
 			pcc = plutoniumCounter.GetComponent<PlutoniumCounterController>();
 			pcc.SetupFlowing();
 		}
-		private IEnumerator StarSpawning() {
-			while(starsToSpawn) {
-				yield return new WaitForSeconds(0.6f);
-				SpawnNextStar();
+
+		private IEnumerator UpdateScore() {
+			if (!PlayerPrefs.HasKey("Plutonium")) {
+				PlayerPrefs.SetInt("Plutonium", 0);
+				PlayerPrefs.Save();
+			}
+			while (pcc.FlowPlutonium()) {
+				yield return new WaitForSeconds(0.1f);
+			}
+			while (target != int.Parse(plutoniumTotal.text)) {
+				yield return new WaitForSeconds(0.5f);
+			}
+
+			PlayerPrefs.SetInt("Plutonium", target);
+			PlayerPrefs.Save();
+
+			while (SpawnNextStar()) {
+				yield return new WaitForSeconds(1f);
 			}
 			int totalStars = 0;
 			if (PlayerPrefs.HasKey("TotalStars")) {
@@ -97,36 +103,18 @@ namespace Assets.scripts.controllers.actions.game {
 			Debug.Log(PlayerPrefs.GetInt("TotalStars"));
 			yield return null;
 		}
-
-		public void SpawnNextStar() {
-			for(int i=0; i<3; i++)
-				if (starsSpawned == i) { 
+		
+		public bool SpawnNextStar() {
+			for (int i = 0; i < 3; i++) {
+				if (starsSpawned == i) {
 					if (int.Parse(penguinCounter.text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
 						star[i].sprite = Resources.Load<Sprite>("Images/star");
 						starsSpawned++;
+						return true;
 					}
-					else {
-						starsToSpawn = false;
-					}
-					return;
 				}
-				else if (starsSpawned >= 3) {
-					starsToSpawn = false;
-					return;
-				}
-		}
-		public void UpdateScore() {
-			if (!PlayerPrefs.HasKey("Plutonium")) {
-				PlayerPrefs.SetInt("Plutonium", 0);
-				PlayerPrefs.Save();
 			}
-			while (pcc.FlowPlutonium());
-
-			if (int.Parse(plutoniumTotal.text) == target) {
-				PlayerPrefs.SetInt("Plutonium", int.Parse(plutoniumTotal.text));
-				PlayerPrefs.Save();
-			}
+			return false;
 		}
-
 	}
 }
