@@ -12,6 +12,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		public Color returning, notReturning;
 		[Tooltip("How long the level will be frozen when freeze tool is used (seconds)")]
 		public int freezeToolTime = 5;
+		private int toolCount;
 
 		private SnappingToolInterface snapping;
 		private InputManager inputManager;
@@ -40,7 +41,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
-			//tools.Add(TagConstants.METALTEMPLATE, new List<GameObject>());
 
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -49,6 +49,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		    foreach (var key in tools.Keys) {
 		        UpdateUI(key);
 		    }
+		}
+
+		public void OnClicked(Button button) {
+			if (toolCount <= 0) button.gameObject.SetActive(false); // Remove button UI when no more tools are available
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -233,7 +237,6 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		void UpdateUI(string tag) {
-			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";
@@ -272,6 +275,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		    var text = GetText(uiTag);
 		    if(text != null)
 		        text.text = textValue + tool.Count;
+			
+			toolCount = tool.Count;
 		}
 
 	    private Text GetText(string uiTag) {
