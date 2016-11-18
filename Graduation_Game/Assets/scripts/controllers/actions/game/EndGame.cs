@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using Assets.scripts.UI;
 using Assets.scripts.components;
 using System.Collections;
-using UnityEditor;
 using Assets.scripts.tools;
+using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -21,6 +21,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private bool scoreUpdated = false;
 		private readonly CouroutineDelegateHandler handler;
 		private PlutoniumCounterController pcc;
+		private SceneManager scenes;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -89,15 +90,15 @@ namespace Assets.scripts.controllers.actions.game {
 			if (PlayerPrefs.HasKey("TotalStars")) {
 				totalStars = PlayerPrefs.GetInt("TotalStars");
 			}
-			if (!PlayerPrefs.HasKey(EditorApplication.currentScene)) {
-				PlayerPrefs.SetInt(EditorApplication.currentScene, starsSpawned);
+			if (!PlayerPrefs.HasKey(SceneManager.GetActiveScene().name)) {
+				PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, starsSpawned);
 				PlayerPrefs.SetInt("TotalStars", totalStars + starsSpawned);
 				PlayerPrefs.Save();
 			}
 			else {
-				int starsThisLevel = PlayerPrefs.GetInt(EditorApplication.currentScene);
+				int starsThisLevel = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
 				if (totalStars > starsThisLevel) {
-					PlayerPrefs.SetInt(EditorApplication.currentScene, starsSpawned);
+					PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, starsSpawned);
 					PlayerPrefs.SetInt("TotalStars", totalStars - starsThisLevel + starsSpawned);
 					PlayerPrefs.Save();
 				}

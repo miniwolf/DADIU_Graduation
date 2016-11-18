@@ -221,9 +221,18 @@ namespace Assets.scripts.UI.screen.ingame {
 				doubleTap = false;
 				AkSoundEngine.PostEvent(SoundConstants.TOOL_RETURNED, currentObject);
 			} else {
+				switch ( currentObject.tag ) {
+					case TagConstants.JUMPTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
+						break;
+					case TagConstants.SWITCHTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
+						break;
+				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
+
 			StartCoroutine(CameraHack());
 		}
 
@@ -300,14 +309,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
 			}
-			switch ( currentObject.tag ) {
-				case TagConstants.JUMPTEMPLATE:
-					AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
-					break;
-				case TagConstants.SWITCHTEMPLATE:
-					AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
-					break;
-			}
+
 		}
 
 		/*

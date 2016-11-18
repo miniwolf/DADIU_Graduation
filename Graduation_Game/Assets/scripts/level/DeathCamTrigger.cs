@@ -6,7 +6,6 @@ using Assets.scripts.components;
 using Assets.scripts.components.registers;
 using Assets.scripts.controllers.actions;
 using JetBrains.Annotations;
-using UnityEditor;
 using UnityEngine.UI;
 
 

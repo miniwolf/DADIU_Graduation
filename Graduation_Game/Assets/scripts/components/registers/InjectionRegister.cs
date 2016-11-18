@@ -30,7 +30,7 @@ namespace Assets.scripts.components.registers {
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
-			pickupFactory = new PickupFactory(handler);
+			//pickupFactory = new PickupFactory(handler);
 			notifierSystem = GetComponent<NotifierSystem>();
 		}
 
@@ -61,7 +61,7 @@ namespace Assets.scripts.components.registers {
 					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
+					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
 					break;
 				case TagConstants.PRESSURE_PLATE:
 					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
