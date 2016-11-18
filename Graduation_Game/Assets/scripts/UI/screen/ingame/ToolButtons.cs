@@ -72,7 +72,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			try {
 				toolArray = tools[objArray];
 			} catch(KeyNotFoundException) {
-				Debug.Log("Did not add '" + objArray + "' for object '" + template.name + "'");
+//				Debug.Log("Did not add '" + objArray + "' for object '" + template.name + "'");
 			}
 			if (toolArray != null) {
 				toolArray.Add(template);
@@ -237,6 +237,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		void UpdateUI(string tag) {
+			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";
