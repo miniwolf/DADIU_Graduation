@@ -30,7 +30,7 @@ namespace Assets.scripts.components.registers {
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
-			pickupFactory = new PickupFactory(handler);
+			//pickupFactory = new PickupFactory(handler);
 			notifierSystem = GetComponent<NotifierSystem>();
 		}
 
@@ -61,7 +61,7 @@ namespace Assets.scripts.components.registers {
 					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
+					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
 					break;
 				case TagConstants.PRESSURE_PLATE:
 					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
@@ -76,8 +76,9 @@ namespace Assets.scripts.components.registers {
 					new GameFactory(component.GetActionable<GameActions>()).BuildCanvas(handler);
 					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					new GameFactory(component.GetActionable<GameActions>()).BuildStar();
-				break;
+					print("hej");
+					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
+					break;
 				case TagConstants.TOOLBUTTON:
 					snap.SetCenter(levelSettings.GetSceneCenter());
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);

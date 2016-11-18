@@ -3,6 +3,7 @@
 		FlowScore,
 		PickupPlutonium,
 		HatchEgg, ShakeEgg,
-		CollectPenguin
+		CollectPenguin,
+		CurrencyAdd, CurrencyFly
 	}
 }

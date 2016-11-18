@@ -120,7 +120,7 @@ namespace Assets.scripts.components.factory {
 
 		private string GetRandomAnimation(string type) {
 			FieldInfo[] fields = typeof(AnimationConstants).GetFields().Where(f => f.GetRawConstantValue().ToString().StartsWith(type)).Cast<FieldInfo>().ToArray();
-			return fields[(int)UnityEngine.Random.Range(0, fields.Length)].GetRawConstantValue().ToString();
+			return fields[UnityEngine.Random.Range(0, fields.Length)].GetRawConstantValue().ToString();
 		}
 
 		private Handler CreateStartJump() {
