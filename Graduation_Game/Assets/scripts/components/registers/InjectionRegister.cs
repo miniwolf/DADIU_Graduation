@@ -76,8 +76,9 @@ namespace Assets.scripts.components.registers {
 					new GameFactory(component.GetActionable<GameActions>()).BuildCanvas(handler);
 					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					new GameFactory(component.GetActionable<GameActions>()).BuildStar();
-				break;
+					print("hej");
+					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
+					break;
 				case TagConstants.TOOLBUTTON:
 					snap.SetCenter(levelSettings.GetSceneCenter());
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetSnap(snap);

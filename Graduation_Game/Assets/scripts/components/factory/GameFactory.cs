@@ -6,7 +6,6 @@ using Assets.scripts.controllers.handlers;
 namespace Assets.scripts.components.factory {
 	public class GameFactory {
 		private readonly Actionable<GameActions> actionable;
-		private static CouroutineDelegateHandler handler;
 
 		public GameFactory(Actionable<GameActions> actionable) {
 			this.actionable = actionable;
@@ -16,13 +15,13 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(GameActions.EndLevel, EndGame(handler));
 		}
 
-		public void BuildStar() {
-			actionable.AddAction(GameActions.TriggerStar, TriggerStar());
+		public void BuildStar(CouroutineDelegateHandler handler) {
+			actionable.AddAction(GameActions.TriggerStar, TriggerStar(handler));
 		}
 
-		private Handler TriggerStar() {
+		private Handler TriggerStar(CouroutineDelegateHandler handler) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new TriggerStar());
+			actionHandler.AddAction(new TriggerStar(handler));
 			return actionHandler;
 		}
 
