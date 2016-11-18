@@ -50,6 +50,9 @@ namespace Assets.scripts.traps {
 			if (collision.transform.tag == TagConstants.PENGUIN) {
 				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguinByExcavator);
 				collision.collider.enabled = false; // Disables the character controller on the dead penguins
+			}else if(collision.transform.tag == TagConstants.SEAL){
+				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.SealDeath);
+				collision.collider.enabled = false;
 			}
 		}
 
