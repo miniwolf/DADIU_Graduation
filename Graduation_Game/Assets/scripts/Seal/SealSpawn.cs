@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Assets.scripts.UI;
 using Assets.scripts.components.registers;
 using Assets.scripts.components;
+using Assets.scripts.controllers;
 
 public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 
@@ -16,7 +17,6 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	private GameObject theSeal;
 	private const int layermask = 1 << 8;
 	public AnimationCurve animCurve;
-	private Keyframe[] keys = new Keyframe[100];
 	private Vector3 midPoint;
 	private Vector3 moving;
 	public bool haveReactivatedPenguins = false, hasBeenActivated = false;
@@ -27,6 +27,9 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	private List<GameObject> penguins = new List<GameObject>();
 	private InputManager inputManager;
 	private Camera cam;
+	private Animator anim;
+	private Seal seal;
+	private bool hasLanded = false;
 
 	void Awake(){
 		InjectionRegister.Register(this);
@@ -37,15 +40,16 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 
 		startTime = Time.time;
 
-		theSeal = GetComponentInChildren<Penguin>().gameObject; //add how it moves here
+		seal = GetComponentInChildren<Seal>();
+		theSeal = seal.gameObject; //add how it moves here
 		theSeal.SetActive(true);
+
 
 		FindPath();
 
 		journeyLength = Vector3.Distance(path[0], path[1]);
 		chrController = theSeal.GetComponent<CharacterController>();
 		chrController.enabled = false;
-
 
 		penguinSpawnerGO = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
 		for(int i=0;i<penguinSpawnerGO.Length;i++){
@@ -55,7 +59,7 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 	}
 
 	void Update(){
-		if (theSeal.GetComponent<Penguin>().IsDead() && !haveReactivatedPenguins) {
+		if (theSeal.GetComponent<Seal>().GetIsDead() && !haveReactivatedPenguins) {
 			inputManager.UnblockCameraMovement();
 			StartPenguins();
 			haveReactivatedPenguins = true;
@@ -65,10 +69,11 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 
 	IEnumerator MoveTheSeal(){
 		StopPenguins();
-
+		
 		Vector3 moveTo = new Vector3(theSeal.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 		Vector3 startPosCam = cam.transform.position;
 
+		seal.ExecuteAction(ControllableActions.SealJump);
 
 		startTime = Time.time;
 		float distCovered = (Time.time - startTime)*speedFactor;
@@ -92,8 +97,12 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 			theSeal.transform.position = Vector3.Lerp(path[1], path[2], nfracJourney);
 			yield return new WaitForEndOfFrame();
 		}
+
+		seal.ExecuteAction(ControllableActions.SealLand);
+		yield return new WaitForSeconds(0.5f);
 		chrController.enabled = true;
-		theSeal.GetComponent<Penguin>().SetDirection(new Vector3(1, 0, 0));
+		theSeal.GetComponent<Seal>().SetDirection(new Vector3(1, 0, 0));
+		seal.SethasLanded(true);
 	}
 
 	private void FindPath(){
@@ -128,8 +137,7 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 			}
 		}
 	}
-
-
+		
 	protected void OnTriggerEnter(Collider other){
 		if (other.transform.tag != TagConstants.PENGUIN) {
 			return;
