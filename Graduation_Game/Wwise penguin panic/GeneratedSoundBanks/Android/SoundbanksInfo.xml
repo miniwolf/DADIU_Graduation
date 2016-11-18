@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="118">
+<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -38,7 +38,7 @@
 				<Event Id="1191246039" Name="penguin_edge_fall" ObjectPath="\Events\Default Work Unit\penguin\penguin_edge_fall" MaxAttenuation="35.000000"/>
 				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up" MaxAttenuation="35.000000"/>
 				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land" MaxAttenuation="35.000000"/>
-				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\penguin\penguin_move" MaxAttenuation="35.000000"/>
+				<Event Id="1087264086" Name="penguin_move1" ObjectPath="\Events\Default Work Unit\penguin\penguin_move1" MaxAttenuation="35.000000"/>
 				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\penguin\penguin_react" MaxAttenuation="35.000000"/>
 				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end" MaxAttenuation="35.000000"/>
 				<Event Id="823784186" Name="penguin_slide_loop" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_loop" MaxAttenuation="35.000000"/>

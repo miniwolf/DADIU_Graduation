@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}" SchemaVersion="72">
+<WwiseDocument Type="WorkUnit" ID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}" SchemaVersion="75">
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}" PersistMode="Standalone">
 			<ChildrenList>
@@ -68,9 +68,13 @@
 								<Folder Name="Pressure Plate" ID="{52B7D11A-A926-45C3-9313-63DA5D9D68E2}" ShortID="698965204">
 									<ChildrenList>
 										<Sound Name="step_onto_pressure_plate" ID="{335C5AE9-CFE0-478D-9E44-617BAC8DDD65}" ShortID="431552312" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -316,9 +320,13 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="speed boost" ID="{73BA2136-16A4-44EC-8DEE-C60109C1D4CB}" ShortID="82620791">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="speed_boost_picked_up_1" ID="{81B27A39-80D3-44E5-B93D-36F9D071A587}" ShortID="305582620" Type="SoundFX">
 											<PropertyList>
@@ -609,9 +617,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Folder Name="bridge" ID="{5E4AAB61-0994-4E2D-ABCE-F8053527AC92}" ShortID="449261124">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="bridge_place_2" ID="{26422AD3-95FF-4C5A-A2B4-01A03D663714}" ShortID="669508336" Type="SoundFX">
 											<PropertyList>
@@ -678,9 +690,13 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="enlarge" ID="{286DA38C-BD93-4947-802D-CEB0348C356D}" ShortID="910924522">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="enlarge picked up" ID="{27E0FA41-7833-4045-9818-B5924A6AB03F}" ShortID="1040720160" Type="SoundFX">
 											<ReferenceList>
@@ -723,9 +739,13 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="shrink" ID="{9B9CCC4F-E3E4-4A9E-A7EA-8BB2D34DE82E}" ShortID="1035698453">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="shrink picked up" ID="{0F9625BE-F3B6-4513-B578-1DBEB3B37C0A}" ShortID="210529831" Type="SoundFX">
 											<ReferenceList>
@@ -768,9 +788,13 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="stone" ID="{F2F57220-498C-4DB0-82E3-6D41595533AB}" ShortID="565775591">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="stone_place_1" ID="{95DEF1C8-A0E1-4E09-AE2B-16D243C37616}" ShortID="57348797" Type="SoundFX">
 											<PropertyList>
@@ -950,10 +974,12 @@
 									</ChildrenList>
 								</Folder>
 								<Sound Name="placement_click_feedback" ID="{AEF68B1B-01A5-400E-A316-7444A56756EB}" ShortID="444694357" Type="SoundFX">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>810</Value>
@@ -1552,9 +1578,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="pallet_boots_1" ID="{D57B8DBA-5632-4300-8123-2463DBE8451D}" ShortID="50691084" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -1657,9 +1687,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_5" ID="{6C79D0FA-C9ED-474C-BDDB-57DBDE60508D}" ShortID="123359195" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -1757,9 +1791,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_9" ID="{F7DFEC85-92D6-4A38-9099-7646AFF5E1B8}" ShortID="735120121" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -1784,9 +1822,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_10" ID="{DCF5CE93-B990-4ADD-B3CD-20EB25BFD65E}" ShortID="680163679" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -1941,9 +1983,13 @@
 													</ActiveSourceList>
 												</Sound>
 												<Sound Name="footstep_snow_4" ID="{BD6464AB-D2DC-46F9-909E-9ADB108B81BA}" ShortID="488888031" Type="SoundFX">
-													<ExcludedPlatformList>
-														<Platform>Android</Platform>
-													</ExcludedPlatformList>
+													<PropertyList>
+														<Property Name="Inclusion" Type="bool">
+															<ValueList>
+																<Value Platform="Android">False</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -2534,10 +2580,12 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="penguin_death_pit_spikes" ID="{8CAA148B-A8E7-428F-90B4-F9044E59A47C}" ShortID="163920596" Type="SoundFX">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>600</Value>
@@ -3027,10 +3075,12 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="seal_death_pit_spikes" ID="{19AE11FD-D3F1-4D78-BE5D-6A848C7FD0C4}" ShortID="522853371" Type="SoundFX">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
 									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>600</Value>
@@ -3245,9 +3295,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="pallet_boots_1" ID="{5C8391C2-8451-4292-A520-DCBAC386171F}" ShortID="790268790" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -3362,9 +3416,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_5" ID="{D85444FC-DE5D-42B0-B180-E7355BDC9B09}" ShortID="853659599" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -3474,9 +3532,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_9" ID="{FF64A69F-BD6C-4CF6-B6D6-4B90E38B9E78}" ShortID="969770170" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -3504,9 +3566,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="pallet_boots_10" ID="{B8A41663-2088-4AB2-9427-2195C6643461}" ShortID="109802741" Type="SoundFX">
-											<ExcludedPlatformList>
-												<Platform>Android</Platform>
-											</ExcludedPlatformList>
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -3673,9 +3739,13 @@
 													</ActiveSourceList>
 												</Sound>
 												<Sound Name="footstep_snow_4" ID="{67235FA4-7DE3-4B63-9649-1E8646351D21}" ShortID="794780873" Type="SoundFX">
-													<ExcludedPlatformList>
-														<Platform>Android</Platform>
-													</ExcludedPlatformList>
+													<PropertyList>
+														<Property Name="Inclusion" Type="bool">
+															<ValueList>
+																<Value Platform="Android">False</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" SchemaVersion="72">
+<WwiseDocument Type="WorkUnit" ID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" SchemaVersion="75">
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" PersistMode="Standalone">
 			<ChildrenList>
@@ -196,9 +196,13 @@
 									</ElementList>
 								</Action>
 								<Action Name="Play" ID="{A1453687-61BD-4E0B-81A4-096B76692874}" ShortID="143527408" Type="Play" Scope="One" Global="false">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value Platform="Android">False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ElementList>
 										<Element ID="{7EAC7ED7-A6EF-4961-81BC-C4C91112D270}" Global="false">
 											<ObjectRef Name="placement_click_feedback" ID="{AEF68B1B-01A5-400E-A316-7444A56756EB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
@@ -259,7 +263,7 @@
 				</Folder>
 				<Folder Name="penguin" ID="{FDB36A1D-2B7B-43AF-977A-C61FB1D135E7}" ShortID="1070696930">
 					<ChildrenList>
-						<Event Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}">
+						<Event Name="penguin_move1" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}">
 							<ChildrenList>
 								<Action Name="Play" ID="{1042F00A-115C-4A89-88CE-73488BEDA2F5}" ShortID="208580913" Type="Play" Scope="One" Global="false">
 									<ElementList>

@@ -60,7 +60,12 @@ namespace Assets.scripts.UI.mainmenu {
 				DisablePopup();
 				return;
 			}
+<<<<<<< HEAD
+			print(lvl.localizedText);
+			print(lvl.penguinsRequired);
+=======
 
+>>>>>>> develop
 			if(Inventory.penguinCount.GetValue() >= lvl.penguinsRequired) {
 				SceneManager.LoadScene(lvl.sceneFileName);
 			} else {
@@ -88,6 +93,8 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		private void EnablePopup() {
+			print(Inventory.penguinCount.GetValue());
+		
 			popup.transform.localScale = Vector3.one;
 			popup.enabled = true;
 //	        popup.gameObject.SetActive(true);
@@ -97,7 +104,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		public void OnTouch(Touch[] allTouches) {
-			DisablePopup();
+		//	DisablePopup(); //apparently it will activate and get removed super fast
 		}
 
 		public void OnMouseRightDown() {
