@@ -34,6 +34,7 @@ namespace Assets.scripts.character {
 	    private GameStateManager gameStateManager;
 		private bool isStopped = false;
 	    private NotifierSystem notifierSystem;
+	    private Camera deathCam;
 
 	    void Start() {
 			groundY = transform.position.y;
@@ -42,7 +43,9 @@ namespace Assets.scripts.character {
 			curveDict = new Dictionary<CurveType, AnimationCurve>();
 			initialTimeDict = new Dictionary<CurveType, float>();
 			weight = Weight.Normal;
-		}
+	        deathCam =  GetComponentInChildren<Camera>();
+	        deathCam.enabled = false;
+	    }
 
 		void Update() {
 			if (isStopped) {
@@ -242,6 +245,10 @@ namespace Assets.scripts.character {
 	    /// <param name="penguin"></param>
 	    public void Notify(GameObject penguin) {
 	        ExecuteAction(ControllableActions.OtherPenguinDied);
+	    }
+
+	    public Camera GetDeathCam() {
+	        return deathCam;
 	    }
 	}
 }

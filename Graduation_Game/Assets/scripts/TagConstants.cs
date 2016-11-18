@@ -45,6 +45,11 @@
 	    }
 
 	    public class UI {
+	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
+	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
+	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
+	        public const string POPUP_PENGUIN_REQUIRED = "PenguinRequiredPopup";
+
 	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
 	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";

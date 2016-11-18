@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Assets.scripts.character;
 using Assets.scripts.gamestate;
-using Assets.scripts.level;
+using Assets.scripts.sound;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
@@ -214,6 +211,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
+			AkSoundEngine.PostEvent(SoundConstants.TOOL_PICK_UP, currentObject);
 		}
 
 		private void ReleaseTool() {
@@ -226,6 +224,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				ChangeColor(notReturning);
 				doubleTap = false;
+				AkSoundEngine.PostEvent(SoundConstants.TOOL_RETURNED, currentObject);
 			} else {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
@@ -320,6 +319,14 @@ namespace Assets.scripts.UI.screen.ingame {
 
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
+			}
+			switch ( currentObject.tag ) {
+				case TagConstants.JUMPTEMPLATE:
+					AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
+					break;
+				case TagConstants.SWITCHTEMPLATE:
+					AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
+					break;
 			}
 		}
 
