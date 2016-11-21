@@ -12,7 +12,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		public Color returning, notReturning;
 		[Tooltip("How long the level will be frozen when freeze tool is used (seconds)")]
 		public int freezeToolTime = 5;
-		private int toolCount;
+		private string buttonText;
 
 		private SnappingToolInterface snapping;
 		private InputManager inputManager;
@@ -35,24 +35,15 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		protected void Start() {
 			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
-
 			img = GetComponent<Image>();
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 
-		    foreach (var key in tools.Keys) {
+			foreach (var key in tools.Keys) {
 		        UpdateUI(key);
 		    }
-		}
-
-		public void OnClicked(Button button) {
-			if (toolCount <= 0) button.gameObject.SetActive(false); // Remove button UI when no more tools are available
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -230,54 +221,46 @@ namespace Assets.scripts.UI.screen.ingame {
 				doubleTap = false;
 				AkSoundEngine.PostEvent(SoundConstants.TOOL_RETURNED, currentObject);
 			} else {
+				switch ( currentObject.tag ) {
+					case TagConstants.JUMPTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
+						break;
+					case TagConstants.SWITCHTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
+						break;
+				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
+
 			StartCoroutine(CameraHack());
 		}
 
+
 		void UpdateUI(string tag) {
-			print(tag);
 			var tool = tools[tag];
 		    string uiTag = "";
 		    string textValue = "";
 
-			switch(tag) {
+			switch (tag) {
 			    case TagConstants.SWITCHTEMPLATE:
 			        uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
 			        textValue = "Switch Lane: ";
-			        break;
+					break;
 				case TagConstants.JUMPTEMPLATE:
 			        uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
 			        textValue = "Jump: ";
-			        break;
-			    case TagConstants.BRIDGETEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_BRIDGE;
-			        textValue = "Bridge: ";
-			        break;
-			    case TagConstants.ENLARGETEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_ENLARGE;
-			        textValue = "Enlarge: ";
-			        break;
-			    case TagConstants.MINIMIZETEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_MINIMIZE;
-			        textValue = "Minimize: ";
-			        break;
-			    case TagConstants.SPEEDTEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_SPEED;
-			        textValue = "Speed: ";
 			        break;
 			    case TagConstants.Tool.FREEZE_TIME:
 			        uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
 			        textValue = "Freeze time: ";
 			        break;
 			}
-
+			
 		    var text = GetText(uiTag);
 		    if(text != null)
 		        text.text = textValue + tool.Count;
 			
-			toolCount = tool.Count;
 		}
 
 	    private Text GetText(string uiTag) {
@@ -326,14 +309,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
 			}
-			switch ( currentObject.tag ) {
-				case TagConstants.JUMPTEMPLATE:
-					AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
-					break;
-				case TagConstants.SWITCHTEMPLATE:
-					AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
-					break;
-			}
+
 		}
 
 		/*

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{E7B3D786-8B23-493A-8A53-F440654F9F9D}" SchemaVersion="72">
+<WwiseDocument Type="WorkUnit" ID="{E7B3D786-8B23-493A-8A53-F440654F9F9D}" SchemaVersion="75">
 	<SoundBanks>
 		<WorkUnit Name="Default Work Unit" ID="{E7B3D786-8B23-493A-8A53-F440654F9F9D}" PersistMode="Standalone">
 			<ChildrenList>
@@ -50,7 +50,7 @@
 						<ObjectRef Name="trap_wire_loop" ID="{E655113E-0C14-4BE0-BE13-F3D2CCF5C034}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_pit_spikes_triggered" ID="{828BEE91-960B-4C35-BE00-86AC53927BB8}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="button_pressed" ID="{5819BB17-80FF-4CAB-A86F-40199C2AB824}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="penguin_move1" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_edge_fall" ID="{3A7716E4-48B5-4D08-BC21-6332108C33C4}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="end_screen_spawn" ID="{3BF16F66-A3E8-4D08-B280-2C2A1AB99E3F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_slide_end" ID="{2E539E9D-D2CB-4D19-ADB5-B4FA15DC980F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>

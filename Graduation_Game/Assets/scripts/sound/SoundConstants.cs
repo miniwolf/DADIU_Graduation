@@ -6,5 +6,6 @@
 		public const string JUMP_TRIGGERED = "tool_jump_triggered";
 		public const string TOOL_RETURNED = "tool_returned_to_toolbar";
 		public const string TOOL_PICK_UP = "tool_picked_up";
+		public const string PICK_UP_ADD = "pickup_add_to_score";
 	}
 }
