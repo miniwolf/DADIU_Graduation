@@ -16,6 +16,9 @@ using Assets.scripts.components.registers;
 using UnityEngine.Networking.Types;
 using System.Reflection;
 using System.Linq;
+using Assets.scripts.controllers.actions.sound;
+using Assets.scripts.sound;
+using System.Collections;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
@@ -68,6 +71,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Stop, CreateStopAction());
 			actionable.AddAction(ControllableActions.Start, CreateStartAction());
 			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
+			actionable.AddAction(ControllableActions.Celebrate, CreateCelebrateAction());
 		}
 
 	    private Handler CreateOtherPenguinDeath()
@@ -76,6 +80,14 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
 			return actionHandler;
 	    }
+
+		private Handler CreateCelebrateAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.CELEBRATE));
+			//StartCoroutine(Wait());
+			//actionHandler.AddAction(new StopMoving(actionable));
+			return actionHandler;
+		}
 
 	    private Handler CreateFreezeAction(bool freeze) {
 			var actionHandler = new ActionHandler();
@@ -98,6 +110,7 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
+//		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.PenguinSounds.START_MOVING));
 			return actionHandler;
 		}
 

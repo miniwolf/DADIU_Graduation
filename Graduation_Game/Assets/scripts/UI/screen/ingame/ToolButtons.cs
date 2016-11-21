@@ -223,10 +223,10 @@ namespace Assets.scripts.UI.screen.ingame {
 			} else {
 				switch ( currentObject.tag ) {
 					case TagConstants.JUMPTEMPLATE:
-						AkSoundEngine.PostEvent(SoundConstants.JUMP_TRIGGERED, currentObject);
+						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.JUMP_TRIGGERED, currentObject);
 						break;
 					case TagConstants.SWITCHTEMPLATE:
-						AkSoundEngine.PostEvent(SoundConstants.CHANGE_LANE, currentObject);
+						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE, currentObject);
 						break;
 				}
 				dragging = false;
