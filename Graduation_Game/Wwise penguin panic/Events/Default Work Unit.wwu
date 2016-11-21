@@ -944,6 +944,11 @@
 						<Event Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}"/>
 						<Event Name="unmute_music" ID="{619FA60D-38FD-4389-875B-4E41A3C6FED9}"/>
 						<Event Name="unmute_master" ID="{E6EAF860-4244-4F01-9B1B-1002C582E699}"/>
+						<Event Name="stopAll" ID="{6399CB5D-DB1E-4FC6-956A-DC1EC2D404FF}">
+							<ChildrenList>
+								<Action Name="Stop All" ID="{2A707D05-986D-4B43-8F84-913B919B2FE2}" ShortID="842286865" Type="Stop" Scope="All" Global="true"/>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="TEST" ID="{579CEA88-1290-432D-A83B-090299EE6A2E}" ShortID="1065301387">
