@@ -41,9 +41,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 
-			foreach (var key in tools.Keys) {
-		        UpdateUI(key);
-		    }
+			foreach(var key in tools.Keys) {
+				UpdateUI(key);
+			}
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -65,7 +65,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			} catch(KeyNotFoundException) {
 //				Debug.Log("Did not add '" + objArray + "' for object '" + template.name + "'");
 			}
-			if (toolArray != null) {
+			if(toolArray != null) {
 				toolArray.Add(template);
 			}
 		}
@@ -92,21 +92,21 @@ namespace Assets.scripts.UI.screen.ingame {
 				break;
 			}
 
-		    UpdateUI(toolName);
+			UpdateUI(toolName);
 		}
 
 		public IEnumerator FreezeTime() {
-		    if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0)		    {
-                gameStateManager.SetGameFrozen(true);
-                yield return new WaitForSeconds(freezeToolTime);
-                gameStateManager.SetGameFrozen(false);
-		    }
+			if(tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+				gameStateManager.SetGameFrozen(true);
+				yield return new WaitForSeconds(freezeToolTime);
+				gameStateManager.SetGameFrozen(false);
+			}
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
-			if ( count <= 0 ) {
+			if(count <= 0) {
 				return;
 			}
 
@@ -119,48 +119,48 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		protected void Update() {
-			foreach ( var touch in Input.touches) {
-				if( touch.phase == TouchPhase.Began ) {
+			foreach(var touch in Input.touches) {
+				if(touch.phase == TouchPhase.Began) {
 					// first tap on tool
-					if ( !oneClick && IsATool(touch.position)) {
+					if(!oneClick && IsATool(touch.position)) {
 						oneClick = true;
 						timeFirstClick = Time.time;
-					} 
+					}
 					//second tap on tool
-					else if (oneClick && IsATool(touch.position)) { 
+					else if(oneClick && IsATool(touch.position)) {
 						oneClick = false;
-						if ( Time.time - timeFirstClick < 0.6f ) {
+						if(Time.time - timeFirstClick < 0.6f) {
 							doubleTap = true;
 						}
 					}
-				} 
-				if ( touch.phase == TouchPhase.Began ) {
+				}
+				if(touch.phase == TouchPhase.Began) {
 					IsAToolHit(touch.position);
-				} else if ( dragging ) {
-					switch (touch.phase) {
-						case TouchPhase.Moved:
+				} else if(dragging) {
+					switch(touch.phase) {
+					case TouchPhase.Moved:
 							//Debug.Log(currentObject);
 							// If Bridge PlaceBridgeObject
-							PlaceObject(currentObject, touch.position);
-							break;
-						case TouchPhase.Ended:
-							ReleaseTool();
-							break;
+						PlaceObject(currentObject, touch.position);
+						break;
+					case TouchPhase.Ended:
+						ReleaseTool();
+						break;
 					}
 				}
 			}
 
 			// check double click
-			if ( Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButtonDown(0)) {
 				// first click on tool
-				if ( !oneClick && IsATool(Input.mousePosition)) {
+				if(!oneClick && IsATool(Input.mousePosition)) {
 					oneClick = true;
 					timeFirstClick = Time.time;
-				} 
+				}
 				//second click on tool
-				else if (oneClick && IsATool(Input.mousePosition)) { 
+				else if(oneClick && IsATool(Input.mousePosition)) {
 					oneClick = false;
-					if ( Time.time - timeFirstClick < 0.6f ) {
+					if(Time.time - timeFirstClick < 0.6f) {
 						doubleTap = true;
 					}
 				}
@@ -172,21 +172,21 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 
 			// Place tool
-			if ( Input.GetMouseButton(0) && dragging ) {
+			if(Input.GetMouseButton(0) && dragging) {
 				PlaceObject(currentObject, Input.mousePosition);
 			}
 			// Release tool
-			if ( Input.GetMouseButtonUp(0) && dragging ) {
+			if(Input.GetMouseButtonUp(0) && dragging) {
 				ReleaseTool();
 			}
 		}
 
 		private bool IsATool(Vector3 pos) {
 			RaycastHit hit;
-			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
-				|| hit.transform == null
-				|| hit.transform.parent == null
-				|| hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			    || hit.transform == null
+			    || hit.transform.parent == null
+			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
 				return false;
 			}
 
@@ -195,10 +195,10 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if ( !Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
-				 || hit.transform == null
-				 || hit.transform.parent == null
-				 || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null ) {
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			    || hit.transform == null
+			    || hit.transform.parent == null
+			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
 				return;
 			}
 
@@ -210,7 +210,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void ReleaseTool() {
-			if ( doubleTap ) {
+			if(doubleTap) { // return tool back
 				PutObjectInPool(currentObject.transform);
 				UpdateUI(currentObject.tag);
 				currentObject.SetActive(false);
@@ -220,14 +220,14 @@ namespace Assets.scripts.UI.screen.ingame {
 				ChangeColor(notReturning);
 				doubleTap = false;
 				AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
-			} else {
-				switch ( currentObject.tag ) {
-					case TagConstants.JUMPTEMPLATE:
-//						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.JUMP_TRIGGERED, currentObject);
-						break;
-					case TagConstants.SWITCHTEMPLATE:
-//						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE, currentObject);
-						break;
+			} else { // place tool to the scene
+				switch(currentObject.tag) {
+				case TagConstants.JUMPTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.JUMP_PLACED, currentObject);
+					break;
+				case TagConstants.SWITCHTEMPLATE:
+						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE_PLACED, currentObject);
+					break;
 				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
@@ -239,52 +239,52 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
-		    string uiTag = "";
-		    string textValue = "";
+			string uiTag = "";
+			string textValue = "";
 
-			switch (tag) {
-			    case TagConstants.SWITCHTEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-			        textValue = "Switch Lane: ";
-					break;
-				case TagConstants.JUMPTEMPLATE:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-			        textValue = "Jump: ";
-			        break;
-			    case TagConstants.Tool.FREEZE_TIME:
-			        uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-			        textValue = "Freeze time: ";
-			        break;
+			switch(tag) {
+			case TagConstants.SWITCHTEMPLATE:
+				uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
+				textValue = "Switch Lane: ";
+				break;
+			case TagConstants.JUMPTEMPLATE:
+				uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
+				textValue = "Jump: ";
+				break;
+			case TagConstants.Tool.FREEZE_TIME:
+				uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
+				textValue = "Freeze time: ";
+				break;
 			}
-			
-		    var text = GetText(uiTag);
-		    if(text != null)
-		        text.text = textValue + tool.Count;
-			
+
+			var text = GetText(uiTag);
+			if(text != null)
+				text.text = textValue + tool.Count;
+
 		}
 
-	    private Text GetText(string uiTag) {
-	        GameObject go = GameObject.FindGameObjectWithTag(uiTag);
-	        if (go != null) // tool might be disabled in first levels
+		private Text GetText(string uiTag) {
+			GameObject go = GameObject.FindGameObjectWithTag(uiTag);
+			if(go != null) // tool might be disabled in first levels
 	            return go.GetComponentInChildren<Text>();
-	        return null;
-	    }
+			return null;
+		}
 
-	    private void PlaceObject(GameObject obj, Vector3 position) {
+		private void PlaceObject(GameObject obj, Vector3 position) {
 
 			// Special case when we have a bridge
 			if(obj.tag == TagConstants.BRIDGETEMPLATE) {
 				var ray = Camera.main.ScreenPointToRay(position);
 				RaycastHit hit;
 
-				if (Physics.Raycast(ray, out hit, 400f, layermask)) {
+				if(Physics.Raycast(ray, out hit, 400f, layermask)) {
 					//Debug.Log("Level height : " + hit.transform.position.y + ", Hit point height : " + hit.point.y);
 					float hitPointHeight = hit.point.y;
 					float currentLevelHeight = hit.transform.position.y + 1f; // 1f is added because of how the parent of the blocks is transformed
 
 					// Makes sure the placement of a bridge does not go
 					// below the height of the current block
-					if (hitPointHeight < currentLevelHeight) {
+					if(hitPointHeight < currentLevelHeight) {
 						return;
 					}
 
@@ -301,8 +301,8 @@ namespace Assets.scripts.UI.screen.ingame {
 				RaycastHit hit;
 
 
-				if (!Physics.Raycast(ray, out hit, 400f, layermask) ||
-					!hit.transform.tag.Equals(TagConstants.LANE)) {
+				if(!Physics.Raycast(ray, out hit, 400f, layermask) ||
+				    !hit.transform.tag.Equals(TagConstants.LANE)) {
 					return;
 				}
 
@@ -338,7 +338,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 		*/
 
-		private IEnumerator CameraHack(){
+		private IEnumerator CameraHack() {
 			yield return new WaitForSeconds(0.2f);
 			inputManager.UnblockCameraMovement();
 		}
@@ -355,18 +355,18 @@ namespace Assets.scripts.UI.screen.ingame {
 			snapping = snapTool;
 		}
 
-		public void SetInputManager(InputManager inputManage){
+		public void SetInputManager(InputManager inputManage) {
 			this.inputManager = inputManage;
 		}
 
-		public string GetTag () {
+		public string GetTag() {
 			return TagConstants.TOOLBUTTON;
 		}
 
-		public void SetupComponents () {
+		public void SetupComponents() {
 		}
 
-		public GameObject GetGameObject () {
+		public GameObject GetGameObject() {
 			return gameObject;
 		}
 
