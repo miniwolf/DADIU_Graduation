@@ -698,7 +698,7 @@
 										<Action Name="Stop" ID="{213AB16F-8295-4449-91EE-FF7E2717F6A3}" ShortID="749274220" Type="Stop" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{C21FB216-5C03-4EEB-8B99-8872487B62ED}" Global="false">
-													<ObjectRef Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
