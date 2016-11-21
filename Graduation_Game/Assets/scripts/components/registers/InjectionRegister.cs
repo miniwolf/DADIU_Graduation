@@ -76,6 +76,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.CANVAS:
 					new GameFactory(component.GetActionable<GameActions>()).BuildCanvas(handler);
 					break;
+				case TagConstants.CUTSCENE:
+					new GameFactory(component.GetActionable<GameActions>()).BuildCutScene(handler);
+					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
 					print("hej");
 					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);

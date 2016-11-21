@@ -41,6 +41,7 @@
 		public const string SEAL = "Seal";
 		public const string NEXTINTROBUTTON = "NextIntroButton";
 		public const string SKIPINTROTEXT = "SkipIntroText";
+		public const string CUTSCENE = "CutScene";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
