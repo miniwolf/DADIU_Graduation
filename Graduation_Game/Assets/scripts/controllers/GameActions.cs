@@ -1,5 +1,5 @@
 ﻿namespace Assets.scripts.controllers {
 	public enum GameActions {
-		EndLevel, FlowPlutonium, TriggerStar
+		EndLevel, FlowPlutonium, TriggerStar, TriggerCutScene
 	}
 }
