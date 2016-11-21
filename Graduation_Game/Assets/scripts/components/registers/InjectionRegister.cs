@@ -20,6 +20,7 @@ namespace Assets.scripts.components.registers {
 		private static GameStateManager gameStateManager;
 		private static PickupFactory pickupFactory;
 		private static NotifierSystem notifierSystem;
+		private static GameObject splat;
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -30,8 +31,8 @@ namespace Assets.scripts.components.registers {
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
-			//pickupFactory = new PickupFactory(handler);
 			notifierSystem = GetComponent<NotifierSystem>();
+			splat = (GameObject)Resources.Load("BloodSplatter/splatSpot");
 		}
 
 		protected void Start() {
@@ -58,13 +59,13 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch(component.GetTag()) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem, splat).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
 					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
 					break;
 				case TagConstants.PRESSURE_PLATE:
-					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
+					new  PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
 					break;
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
@@ -75,8 +76,10 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.CANVAS:
 					new GameFactory(component.GetActionable<GameActions>()).BuildCanvas(handler);
 					break;
+				case TagConstants.CUTSCENE:
+					new GameFactory(component.GetActionable<GameActions>()).BuildCutScene(handler);
+					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					print("hej");
 					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
 					break;
 				case TagConstants.TOOLBUTTON:
@@ -86,13 +89,13 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
+					new PickupFactory(handler, component.GetActionable<PickupActions>()).BuildEgg();
 					break;
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 					break;
 				case TagConstants.SEAL:
-					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject()).Build();
+					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), splat).Build();
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");

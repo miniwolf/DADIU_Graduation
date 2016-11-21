@@ -28,8 +28,9 @@ namespace Assets.scripts.components.factory {
 		private readonly Directionable directionable;
 		private readonly GameStateManager gameStateManager;
 	    private readonly NotifierSystem notifierSystem;
+		private GameObject splat;
 
-	    public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
@@ -39,12 +40,13 @@ namespace Assets.scripts.components.factory {
 		    Penguin p = penguin.GetComponent<Penguin>();
 		    p.SetGameStateManager(gameStateManager);
 		    p.SetNotifyManager(this.notifierSystem);
+			this.splat = splat;
 		}
 
 		public void Build() {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
-			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLeft());
-			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
+			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
+			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(AnimationConstants.SPIKEDEATH));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(AnimationConstants.PITDEATH));
 			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(AnimationConstants.SPIKEDEATH)); // TODO: There should be another
@@ -112,15 +114,10 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateSwitchLeft() {
+		private Handler CreateSwitchLane(LaneSwitch sw) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Left()));
-			return actionHandler;
-		}
-
-		private Handler CreateSwitchRight() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Right()));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, sw));
+		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
 			return actionHandler;
 		}
 
@@ -128,6 +125,7 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
 			actionHandler.AddAction(new SetTrigger(animator, GetRandomAnimation(constant)));
+			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			return actionHandler;
 		}
 
@@ -140,6 +138,7 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
 			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.JUMP));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 

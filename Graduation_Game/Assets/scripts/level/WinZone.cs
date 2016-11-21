@@ -13,20 +13,24 @@ namespace Assets.scripts.level {
 		private CanvasController canvas; 
 		private Text penguinCounter;
 		private bool win;
+		private CutSceneController cutSceneController;
 
 		void Start() {
 			penguins = 0;
 			canvas = GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>();
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			cutSceneController = GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>();
+
 		}
 
 		void Update() {
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
 				if ( penguins != 0 && penguins == alivePenguins ) {
-					canvas.EndLevel();
+					//canvas.EndLevel();			// this thing will be called inside the cutscene after the required time has passed (look in controllers/actions/game/CutScene.cs )
 					Inventory.UpdateCount();
 					win = true;
+					canvas.ExecuteAction(GameActions.EndLevel);
 				}
 			}
 		}

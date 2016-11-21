@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.level;
+using System;
 
 namespace Assets.scripts.UI.inventory {
 	public class Inventory : MonoBehaviour {
@@ -11,8 +12,10 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> cash = new PreferenceItem<int>(InventoryConstants.CASH);
 		public static readonly Item<int> hatchablePenguins = new PreferenceItem<int>(InventoryConstants.HATCHABLEPENGUINS);
 		public static readonly Item<string> eggHatchTime = new PreferenceItem<string>(InventoryConstants.EGGTIME);
+		public static readonly Item<int> key = new PreferenceItem<int>(InventoryConstants.KEY);
+		public static readonly Item<string> loginDate = new PreferenceItem<string>(InventoryConstants.LASTLOGIN);
 
-		public void Start() {
+		static Inventory() {
 			// SanityCheck
 			Debug.Assert(penguinCount.GetValue() <= penguinStorage.GetValue(), "It looks like you're trying to cheat "
 																			   + "the system and get more penguins "
@@ -21,7 +24,17 @@ namespace Assets.scripts.UI.inventory {
 				penguinStorage.SetValue(5);
 				penguinCount.SetValue(5);
 				hasInitialized.SetValue(1);
+				key.SetValue(1);
+				loginDate.SetValue(DateTime.Now.ToString());
 			}
+
+			var stringTime = loginDate.GetValue();
+			loginDate.SetValue(DateTime.Now.ToString());
+
+			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
+				key.SetValue(key.GetValue() + 1);
+			}
+
 		}
 
 		public static void UpdateCount() {

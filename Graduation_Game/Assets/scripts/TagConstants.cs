@@ -41,6 +41,7 @@
 		public const string SEAL = "Seal";
 		public const string NEXTINTROBUTTON = "NextIntroButton";
 		public const string SKIPINTROTEXT = "SkipIntroText";
+		public const string CUTSCENE = "CutScene";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
@@ -59,6 +60,11 @@
 	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
 	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
 	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
+
+			public const string GAME_OVER_PANEL = "GameOverPanel";
+			public const string RETRY_CIRCLE = "RetryCircle";
+			public const string RETRY_BUTTON = "RetryButton";
+			public const string RETRY_PRIZE = "RetryPrize";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
