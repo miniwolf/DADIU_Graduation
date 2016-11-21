@@ -23,19 +23,11 @@ namespace Assets.scripts.UI {
 		private Button retryButton; 
 		private Image retryPrize;
 		private GameObject gameOverPanel;
-
-<<<<<<< HEAD
 	
 		void Awake() {
 			base.Awake();
 			gameOverPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.GAME_OVER_PANEL);
 		}
-
-=======
-		void Awake() {
-			gameOverPanel = GameObject.FindGameObjectWithTag (TagConstants.UI.GAME_OVER_PANEL);
-		}
->>>>>>> develop
 
 		void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
