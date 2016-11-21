@@ -24,9 +24,10 @@ namespace Assets.scripts.level {
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
 				if ( penguins != 0 && penguins == alivePenguins ) {
-					canvas.EndLevel();
+					//canvas.EndLevel();			// this thing will be called inside the cutscene after the required time has passed (look in controllers/actions/game/CutScene.cs )
 					Inventory.UpdateCount();
 					win = true;
+					GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>().ShowCutScene();
 				}
 			}
 		}
