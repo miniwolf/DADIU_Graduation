@@ -6,7 +6,7 @@ using Assets.scripts.components.registers;
 using Assets.scripts.gamestate;
 using Assets.scripts.UI.screen.ingame;
 using JetBrains.Annotations;
-
+using System.Collections;
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
@@ -53,6 +53,7 @@ namespace Assets.scripts.character {
 			}
 			// TODO make a bool variable to disable (or not) the buttons in the UI
 			// so game designer can try and decide what option is better
+
 		    if (gameStateManager.IsGameFrozen()) {
 		        ExecuteAction(ControllableActions.Freeze);
 		        return;
@@ -62,6 +63,7 @@ namespace Assets.scripts.character {
 
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
+				/*
 				if ( isRunning ) {
 					ExecuteAction(ControllableActions.Speed);
 				}
@@ -70,7 +72,7 @@ namespace Assets.scripts.character {
 				}
 				if ( isMinimizing ) {
 					ExecuteAction(ControllableActions.Minimize);
-				}
+				}*/
 			} else {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
@@ -78,6 +80,14 @@ namespace Assets.scripts.character {
 					//TODO Instantiate a dead penguin mesh into the position of the penguin.
 					//characterController.enabled = false;
 				}
+			}
+		}
+
+		 IEnumerator OnTriggerEnter(Collider collider) {
+			if (collider.transform.tag == "WinZone") {
+				ExecuteAction(ControllableActions.Celebrate);
+				yield return new WaitForSeconds(4f);
+				ExecuteAction(ControllableActions.Stop);
 			}
 		}
 
