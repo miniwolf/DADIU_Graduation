@@ -16,6 +16,8 @@ using Assets.scripts.components.registers;
 using UnityEngine.Networking.Types;
 using System.Reflection;
 using System.Linq;
+using Assets.scripts.controllers.actions.sound;
+using Assets.scripts.sound;
 using System.Collections;
 
 namespace Assets.scripts.components.factory {
@@ -106,6 +108,7 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
+//		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.PenguinSounds.START_MOVING));
 			return actionHandler;
 		}
 

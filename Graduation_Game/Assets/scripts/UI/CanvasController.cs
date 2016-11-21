@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Assets.scripts.controllers;
 using Assets.scripts.components;
+using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.UI {
@@ -37,6 +38,12 @@ namespace Assets.scripts.UI {
 
 		public void EndLevel() {
 		}
+
+	    public void SoundButtonClick()
+	    {
+	        AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
+	    }
+
 
 	}
 }
