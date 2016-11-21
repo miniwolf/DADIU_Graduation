@@ -7,7 +7,7 @@ public class IntroScreenController : MonoBehaviour {
 
 	public Sprite[] introScreens;
 	private int currentScreen;
-	public Text skipIntro;
+	private Text skipIntro;
 
 	void Start() {
 		currentScreen = 0;
