@@ -36,6 +36,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		protected void Start() {
 			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
+		//	tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
+		/*	tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
+			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
+
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
 			cam = Camera.main;
