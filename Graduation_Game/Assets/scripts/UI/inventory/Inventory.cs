@@ -28,7 +28,13 @@ namespace Assets.scripts.UI.inventory {
 				loginDate.SetValue(DateTime.Now.ToString());
 			}
 
-			UpdateLastLogin();
+			var stringTime = loginDate.GetValue();
+			loginDate.SetValue(DateTime.Now.ToString());
+
+			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
+				key.SetValue(key.GetValue() + 1);
+			}
+
 		}
 
 		public static void UpdateCount() {
@@ -48,15 +54,6 @@ namespace Assets.scripts.UI.inventory {
 			// update the penguin counter in the inventory
 			int inventoryPenguins = Inventory.penguinCount.GetValue();
 			Inventory.penguinCount.SetValue(inventoryPenguins - deadPenguins);
-		}
-
-		private void UpdateLastLogin() {
-			var stringTime = loginDate.GetValue();
-			loginDate.SetValue(DateTime.Now.ToString());
-
-			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
-				key.SetValue(key.GetValue() + 1);
-			}
 		}
 	}
 }
