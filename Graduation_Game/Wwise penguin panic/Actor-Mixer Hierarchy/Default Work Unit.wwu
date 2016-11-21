@@ -1409,6 +1409,11 @@
 								</Sound>
 								<Sound Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" ShortID="630599895" Type="SoundFX">
 									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>0.5</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Lowpass" Type="int16">
 											<ValueList>
 												<Value>30</Value>
