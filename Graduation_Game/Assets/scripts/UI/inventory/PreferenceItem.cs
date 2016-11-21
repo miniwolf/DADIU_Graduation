@@ -21,7 +21,7 @@ namespace Assets.scripts.UI.inventory {
 			} else if ( value is string ) {
 				var s = (string) (object) value;
 				PlayerPrefs.SetString(name, s);
-			}
+			} 
 		}
 
 		public T GetValue() {
