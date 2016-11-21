@@ -64,7 +64,7 @@ namespace Assets.scripts.components.registers {
 					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
 					break;
 				case TagConstants.PRESSURE_PLATE:
-					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
+					new  PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
 					break;
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
@@ -86,7 +86,7 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
+					new PickupFactory(handler, component.GetActionable<PickupActions>()).BuildEgg();
 					break;
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);

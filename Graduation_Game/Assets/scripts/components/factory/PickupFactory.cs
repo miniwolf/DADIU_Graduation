@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.scripts.components.factory {
-	public class PickupFactory {
+	public class PickupFactory : Factory {
 	    private static CouroutineDelegateHandler coroutineDelegator;
 		private Camera c = Camera.main;
 		private readonly Actionable<PickupActions> actionable;
@@ -50,7 +50,7 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		public void BuildEgg(Actionable<PickupActions> actionable) {
+		public void BuildEgg() {
 			actionable.AddAction(PickupActions.HatchEgg, HatchEgg());
 			actionable.AddAction(PickupActions.ShakeEgg, ShakeEgg());
 		}
@@ -66,5 +66,8 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new HatchEgg());
 			return actionHandler;
 		}
+
+	    public void Build() {
+	    }
 	}
 }
