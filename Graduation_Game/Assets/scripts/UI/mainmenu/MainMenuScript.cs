@@ -7,6 +7,7 @@ using Assets.scripts.UI.translations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
@@ -22,12 +23,23 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-		    foreach (var lvlData in levels) {
-		        var c = lvlData;
-		        lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
-		    }
+			// Every level except the first is locked from the start
+			levels[1].btnFromScene.interactable = false;
+			levels[2].btnFromScene.interactable = false;
+			levels[3].btnFromScene.interactable = false;
+			levels[4].btnFromScene.interactable = false;
+			levels[5].btnFromScene.interactable = false;
+
+			// TODO in a loop this doesn't work, it doesn't load the correct level when you click a button
+			levels[0].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[0]));
+			levels[1].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[1]));
+			levels[2].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[2]));
+			levels[3].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[3]));
+			levels[4].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[4]));
+			levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
 
 		    languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
+
 			languageDropdown.onValueChanged.AddListener(delegate {
 				OnDropdownChanged();
 			});
@@ -35,6 +47,46 @@ namespace Assets.scripts.UI.mainmenu {
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 			DisablePopup();
 			UpdateTexts();
+		}
+
+		void Update() {
+			print(PlayerPrefs.GetInt("LevelUnlockIndex"));
+
+			if(PlayerPrefs.GetInt("LevelUnlockIndex") == 1) {
+				print("UNLOCK LEVEL 1");
+				levels[1].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 2) {
+				print("UNLOCK LEVEL 2");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 3) {
+				print("UNLOCK LEVEL 3");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 4) {
+				print("UNLOCK LEVEL 4");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+				levels[4].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 5) {
+				print("UNLOCK LEVEL 5");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+				levels[4].btnFromScene.interactable = true;
+				levels[5].btnFromScene.interactable = true;
+			}
+
 		}
 
 		void OnDestroy() {
