@@ -15,7 +15,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> key = new PreferenceItem<int>(InventoryConstants.KEY);
 		public static readonly Item<string> loginDate = new PreferenceItem<string>(InventoryConstants.LASTLOGIN);
 
-		public void Start() {
+		static Inventory() {
 			// SanityCheck
 			Debug.Assert(penguinCount.GetValue() <= penguinStorage.GetValue(), "It looks like you're trying to cheat "
 																			   + "the system and get more penguins "
@@ -25,7 +25,10 @@ namespace Assets.scripts.UI.inventory {
 				penguinCount.SetValue(5);
 				hasInitialized.SetValue(1);
 				key.SetValue(1);
+				loginDate.SetValue(DateTime.Now.ToString());
 			}
+
+			UpdateLastLogin();
 		}
 
 		public static void UpdateCount() {
@@ -45,6 +48,15 @@ namespace Assets.scripts.UI.inventory {
 			// update the penguin counter in the inventory
 			int inventoryPenguins = Inventory.penguinCount.GetValue();
 			Inventory.penguinCount.SetValue(inventoryPenguins - deadPenguins);
+		}
+
+		private void UpdateLastLogin() {
+			var stringTime = loginDate.GetValue();
+			loginDate.SetValue(DateTime.Now.ToString());
+
+			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
+				key.SetValue(key.GetValue() + 1);
+			}
 		}
 	}
 }
