@@ -248,18 +248,18 @@ namespace Assets.scripts.UI.screen.ingame {
 			string textValue = "";
 
 			switch(tag) {
-			case TagConstants.SWITCHTEMPLATE:
-				uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-				textValue = "Switch Lane: ";
-				break;
-			case TagConstants.JUMPTEMPLATE:
-				uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-				textValue = "Jump: ";
-				break;
-			case TagConstants.Tool.FREEZE_TIME:
-				uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-				textValue = "Freeze time: ";
-				break;
+				case TagConstants.SWITCHTEMPLATE:
+					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
+					textValue = "Switch Lane: ";
+					break;
+				case TagConstants.JUMPTEMPLATE:
+					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
+					textValue = "Jump: ";
+					break;
+				case TagConstants.Tool.FREEZE_TIME:
+					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
+					textValue = "Freeze time: ";
+					break;
 			}
 
 			var text = GetText(uiTag);
