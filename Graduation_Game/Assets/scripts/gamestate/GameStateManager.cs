@@ -6,15 +6,15 @@ namespace Assets.scripts.gamestate {
 	public class GameStateManager : MonoBehaviour {
 		private bool isGameFrozen;
 
-	    void Awake() {
-			SceneManager.sceneLoaded += NewLevelLoaded ;
-	    }
+		void Awake() {
+			SceneManager.sceneLoaded += NewLevelLoaded;
+		}
 
-	    void OnDestroy() {
-	        SceneManager.sceneLoaded -= NewLevelLoaded;
-	    }
+		void OnDestroy() {
+			SceneManager.sceneLoaded -= NewLevelLoaded;
+		}
 
-	    public void SetGameFrozen(bool frozen) {
+		public void SetGameFrozen(bool frozen) {
 			isGameFrozen = frozen;
 		}
 
@@ -22,15 +22,14 @@ namespace Assets.scripts.gamestate {
 			return isGameFrozen;
 		}
 
-        void NewLevelLoaded (Scene scene, LoadSceneMode mode)
-        {
-            string ev;
-            if (scene.name.Equals("MainMenuScene")){
-                ev = SoundConstants.Music.MAIN_MENU_MUSIC;
-            }else{
-                ev = SoundConstants.Music.IN_GAME_MUSIC;
-            }
-            AkSoundEngine.PostEvent(ev, Camera.main.gameObject);
-        }
-    }
+		void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
+			string ev;
+			if(scene.name.Equals("MainMenuScene")) {
+				ev = SoundConstants.Music.MAIN_MENU_MUSIC;
+			} else {
+				ev = SoundConstants.Music.IN_GAME_MUSIC;
+			}
+			AkSoundEngine.PostEvent(ev, Camera.main.gameObject);
+		}
+	}
 }
