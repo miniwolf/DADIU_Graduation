@@ -28,9 +28,9 @@
 						<ObjectRef Name="seal_death_electrocution" ID="{A581C09E-A51A-44B0-8E9A-5D0BB8B40BCD}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_slide_loop" ID="{15178CF6-BAA5-44DC-80ED-9028CDDEC295}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="penguin_death_pit_drowning" ID="{453603AE-32E4-4508-B5F6-C0F7CCB386BB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="penguin_death_drowning" ID="{453603AE-32E4-4508-B5F6-C0F7CCB386BB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_change_lane_placed" ID="{7978D418-4A75-454E-8153-8E49340E9FA3}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="seal_move" ID="{5BBE33CA-72D7-4567-9E88-2235B6E23BA9}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="seal_move_start" ID="{5BBE33CA-72D7-4567-9E88-2235B6E23BA9}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_state_change_footsteps_snow" ID="{5D5FFAF2-0560-4591-9B88-8B80EB54D173}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_move_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
