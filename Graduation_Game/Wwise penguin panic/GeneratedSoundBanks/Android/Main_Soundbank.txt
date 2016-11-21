@@ -38,6 +38,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2479484064	penguin_slide_takeoff			\Default Work Unit\penguin\slide\penguin_slide_takeoff	
 	2487352075	trap_excavator_loop			\Default Work Unit\SFXs\Traps\trap_excavator_loop	
 	2495070883	mute_master			\Default Work Unit\sound settings\mute_master	
+	2541183878	trap_excavator_loop_stop			\Default Work Unit\SFXs\Traps\trap_excavator_loop_stop	
 	2664374318	penguin_state_change_footsteps_snow			\Default Work Unit\penguin\footsteps switch state\penguin_state_change_footsteps_snow	
 	2674130862	seal_edge_fall			\Default Work Unit\seal\seal_edge_fall	
 	2677805925	tool_returned_to_toolbar			\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar	
@@ -46,12 +47,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	2741649490	mute_music			\Default Work Unit\sound settings\mute_music	
 	2948163585	penguin_tool_jump_used			\Default Work Unit\penguin\Interactions\penguin_tool_jump_used	
 	3054427212	pickup_add_to_score			\Default Work Unit\SFXs\Pickups\pickup_add_to_score	
+	3086540886	stopAll			\Default Work Unit\sound settings\stopAll	
 	3095703759	penguin_death_electrocution			\Default Work Unit\penguin\deaths\penguin_death_electrocution	
 	3165641387	penguin_spawn			\Default Work Unit\penguin\penguin_spawn	
 	3375059786	end_screen_pickup_count			\Default Work Unit\UI\end sreen\end_screen_pickup_count	
 	3430637553	egg_hatching			\Default Work Unit\SFXs\egg_hatching	
 	3443752665	trap_wall_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered	
 	3505549277	seal_death_spikes			\Default Work Unit\seal\deaths\seal_death_spikes	
+	3511714733	seal_move_stop			\Default Work Unit\seal\seal_move_stop	
 	3715428614	seal_death_electrocution			\Default Work Unit\seal\deaths\seal_death_electrocution	
 	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
 	3746285319	penguin_react			\Default Work Unit\penguin\penguin_react	

@@ -13,6 +13,7 @@ namespace Assets.scripts.components.factory {
 
 		public void BuildCanvas(CouroutineDelegateHandler handler) {
 			actionable.AddAction(GameActions.EndLevel, EndGame(handler));
+			actionable.AddAction(GameActions.TriggerCutScene, CutScene(handler));
 		}
 
 		public void BuildStar(CouroutineDelegateHandler handler) {
@@ -20,7 +21,6 @@ namespace Assets.scripts.components.factory {
 		}
 
 		public void BuildCutScene(CouroutineDelegateHandler handler) {
-			actionable.AddAction(GameActions.TriggerStar, CutScene(handler));
 		}
 
 		private Handler CutScene(CouroutineDelegateHandler handler) {
@@ -35,10 +35,14 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private static Handler EndGame(CouroutineDelegateHandler handler) {
+		private Handler EndGame(CouroutineDelegateHandler handler) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new EndGame(handler));
+			actionHandler.AddAction(new EndGame(handler, GetActionable()));
 			return actionHandler;
+		}
+
+		private Actionable<GameActions> GetActionable() {
+			return actionable;
 		}
 	}
 }

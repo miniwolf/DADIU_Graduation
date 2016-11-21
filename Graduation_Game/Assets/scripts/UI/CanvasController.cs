@@ -23,9 +23,10 @@ namespace Assets.scripts.UI {
 		private Button retryButton; 
 		private Image retryPrize;
 		private GameObject gameOverPanel;
-
+	
 		void Awake() {
-			gameOverPanel = GameObject.FindGameObjectWithTag (TagConstants.UI.GAME_OVER_PANEL);
+			base.Awake();
+			gameOverPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.GAME_OVER_PANEL);
 		}
 
 		void Start() {
