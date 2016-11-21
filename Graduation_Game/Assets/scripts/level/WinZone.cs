@@ -10,23 +10,28 @@ namespace Assets.scripts.level {
 	public class WinZone : MonoBehaviour {
 		private int penguins; //num of penguins in win zone
 		private int alivePenguins;
-		//private CanvasController canvas; 
+		private CanvasController canvas; 
 		private Text penguinCounter;
-		public bool win = false;
+
 		private string levelName;
+		private bool win;
+		private CutSceneController cutSceneController;
 
 		void Start() {
 			levelName = Application.loadedLevelName;
 			print(levelName);
 			penguins = 0;
-			//canvas = GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>();
+			canvas = GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>();
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			cutSceneController = GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>();
+
 		}
 
 		void Update() {
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
-				if ( penguins != 0 && penguins == alivePenguins && levelName == "Level1" ) {
+
+				if (penguins != 0 && penguins == alivePenguins && levelName == "Level1") {
 					SetPrefs(1);
 					return;
 				}
@@ -60,6 +65,7 @@ namespace Assets.scripts.level {
 			PlayerPrefs.SetInt("LevelUnlockIndex", level);
 			Inventory.UpdateCount();
 			win = true;
+			canvas.ExecuteAction(GameActions.EndLevel);
 			//GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>().ShowCutScene();
 		}
 

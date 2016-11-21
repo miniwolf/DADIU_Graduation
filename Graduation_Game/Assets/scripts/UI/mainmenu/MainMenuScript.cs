@@ -38,8 +38,8 @@ namespace Assets.scripts.UI.mainmenu {
 			levels[4].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[4]));
 			levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
 
+		    languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 
-			languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 			languageDropdown.onValueChanged.AddListener(delegate {
 				OnDropdownChanged();
 			});

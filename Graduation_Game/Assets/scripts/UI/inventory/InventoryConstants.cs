@@ -8,5 +8,7 @@
 		public const string PENGUINCOUNT = "PenguinCount";
 		public const string PENGUINSTORAGE = "PenguinStorage";
 		public const string LEVELINDEX = "LevelUnlockIndex";
+		public const string KEY = "Keys for retry";
+		public const string LASTLOGIN = "Last login";
 	}
 }

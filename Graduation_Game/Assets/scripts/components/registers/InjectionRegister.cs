@@ -65,7 +65,7 @@ namespace Assets.scripts.components.registers {
 					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
 					break;
 				case TagConstants.PRESSURE_PLATE:
-					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
+					new  PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
 					break;
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
@@ -80,7 +80,6 @@ namespace Assets.scripts.components.registers {
 					new GameFactory(component.GetActionable<GameActions>()).BuildCutScene(handler);
 					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					print("hej");
 					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
 					break;
 				case TagConstants.TOOLBUTTON:
@@ -90,13 +89,13 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
+					new PickupFactory(handler, component.GetActionable<PickupActions>()).BuildEgg();
 					break;
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 					break;
 				case TagConstants.SEAL:
-					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject()).Build();
+					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), splat).Build();
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");

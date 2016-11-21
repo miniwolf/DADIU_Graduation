@@ -1,8 +1,18 @@
-﻿using UnityEngine;
+﻿using Assets.scripts.sound;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.gamestate {
 	public class GameStateManager : MonoBehaviour {
 		private bool isGameFrozen;
+
+		void Awake() {
+			SceneManager.sceneLoaded += NewLevelLoaded;
+		}
+
+		void OnDestroy() {
+			SceneManager.sceneLoaded -= NewLevelLoaded;
+		}
 
 		public void SetGameFrozen(bool frozen) {
 			isGameFrozen = frozen;
@@ -10,6 +20,16 @@ namespace Assets.scripts.gamestate {
 
 		public bool IsGameFrozen() {
 			return isGameFrozen;
+		}
+
+		void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
+			string ev;
+			if(scene.name.Equals("MainMenuScene")) {
+				ev = SoundConstants.Music.MAIN_MENU_MUSIC;
+			} else {
+				ev = SoundConstants.Music.IN_GAME_MUSIC;
+			}
+			AkSoundEngine.PostEvent(ev, Camera.main.gameObject);
 		}
 	}
 }
