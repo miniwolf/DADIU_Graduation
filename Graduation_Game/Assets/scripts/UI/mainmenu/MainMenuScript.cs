@@ -88,6 +88,8 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		private void EnablePopup() {
+			print(Inventory.penguinCount.GetValue());
+		
 			popup.transform.localScale = Vector3.one;
 			popup.enabled = true;
 //	        popup.gameObject.SetActive(true);
@@ -97,7 +99,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		public void OnTouch(Touch[] allTouches) {
-			DisablePopup();
+		//	DisablePopup(); //apparently it will activate and get removed super fast
 		}
 
 		public void OnMouseRightDown() {

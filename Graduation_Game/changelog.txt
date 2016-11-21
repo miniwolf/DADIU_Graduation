@@ -52,3 +52,17 @@ Tools:
 Functionality in code:
 	Slope at the end of level
 	Metal Penguin
+
+v5.0
+	
+	Only available tools are jump and switch lane
+	6 levels in total
+	Added more sound
+	Tutorial seal implemented
+	Multiple different ways of placing objects
+	Pickup feedback, gold flying to the UI
+	End screen
+		- star logging, how many stars one gets in a level
+	Menu visuals added for most menus
+	Account (please fill out)
+	
