@@ -7,5 +7,6 @@
 		public const string HASINITIALIZED = "Has Initialized";
 		public const string PENGUINCOUNT = "PenguinCount";
 		public const string PENGUINSTORAGE = "PenguinStorage";
+		public const string LEVELINDEX = "LevelUnlockIndex";
 	}
 }

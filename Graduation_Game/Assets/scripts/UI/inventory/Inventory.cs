@@ -11,6 +11,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> cash = new PreferenceItem<int>(InventoryConstants.CASH);
 		public static readonly Item<int> hatchablePenguins = new PreferenceItem<int>(InventoryConstants.HATCHABLEPENGUINS);
 		public static readonly Item<string> eggHatchTime = new PreferenceItem<string>(InventoryConstants.EGGTIME);
+		public static readonly Item<int> levelUnlockIndex = new PreferenceItem<int>(InventoryConstants.LEVELINDEX);
 
 		public void Start() {
 			// SanityCheck
