@@ -12,7 +12,7 @@
 										<Action Name="Play" ID="{FCA147D6-FE36-48C5-ACC4-01A73C1CC808}" ShortID="19488816" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{6A0789DD-572F-4967-A515-3A29D15201BF}" Global="false">
-													<ObjectRef Name="pickup_currency" ID="{AE1051FB-6E04-47DF-B347-D0570DEB059F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="pickup_currency" ID="{3F1DDEAF-3C50-4914-9BEB-60705C24A5CA}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -23,7 +23,7 @@
 										<Action Name="Play" ID="{24FEE071-C120-4BEB-BD2B-12220893D7B0}" ShortID="428256885" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{1C8B6AC8-E37D-40AF-AE66-9C1EAF61D5E9}" Global="false">
-													<ObjectRef Name="pickup_add_to_score" ID="{F920F20F-ADEB-4C50-BFB2-FC4CAC274895}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="pickup_add_to_score" ID="{DC7E7E30-72B2-47CA-AF77-12B9265BAB56}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -34,7 +34,7 @@
 										<Action Name="Play" ID="{3CD81FA1-97B4-4BDD-9411-80F45B7D4FCE}" ShortID="464799807" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{27252772-CF56-4E7C-9BAD-A4A68EF9F9CA}" Global="false">
-													<ObjectRef Name="pickup_fly_to_score" ID="{D9ED2369-E145-47DF-9DFA-128CCC3DBC44}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -88,6 +88,76 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}">
+									<ChildrenList>
+										<Action Name="Play" ID="{728E9B73-A5F5-4C42-86AD-7510CCBAADEA}" ShortID="244431143" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{B70CBAF9-FF00-45A0-B02C-D42B4E8C823E}" Global="false">
+													<ObjectRef Name="mechanical_click_6" ID="{CC1C980F-132E-4CBE-869F-0C222D10C750}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Pitch" ID="{9B0354C9-FEBF-4A1C-ACCA-656732430572}" ShortID="493945938" Type="ChangePitch" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+												<Property Name="Pitch" Type="int32" Value="-1500"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{8F935402-63D7-4C8F-B3B1-0381E87622EE}" Global="true">
+													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Volume" ID="{AFEE7DD8-63BF-4269-AF2F-9F24B1AB601D}" ShortID="80384823" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="1"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64" Value="-96"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{CBCF5CEB-76E0-4A61-94FF-D14197AC0633}" Global="true">
+													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}">
+									<ChildrenList>
+										<Action Name="Play" ID="{1EAAD055-E4FF-47E1-9C0C-6D5B46272702}" ShortID="1006434921" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{C4E4E9D1-B87A-4607-B743-255B92E70559}" Global="false">
+													<ObjectRef Name="mechanical_click_6" ID="{CC1C980F-132E-4CBE-869F-0C222D10C750}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Volume" ID="{1CCF3D62-FECE-4390-B3EC-3E71BDCB31D6}" ShortID="124992054" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.2"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{09986682-C790-4AB7-A28C-10C6C0FF6C33}" Global="true">
+													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Pitch" ID="{54074BB4-CD68-4057-A19F-828D052FDC0E}" ShortID="1047415554" Type="ChangePitch" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{C2B4CEEC-6F71-4FD0-BCCE-FA20F80ABC42}" Global="true">
+													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Traps" ID="{C33B768A-7E9A-4144-9613-6D3ABC2549DC}" ShortID="969384721">
@@ -95,6 +165,13 @@
 								<Event Name="trap_pit_trash_triggered" ID="{BDA8CDE9-A81C-40C1-8135-7D0E0A588973}">
 									<ChildrenList>
 										<Action Name="Play" ID="{FA9AF506-7B5F-46DB-B343-38727ADD3F1C}" ShortID="254103644" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{29855242-B2E6-4FF8-90F2-5A4E71CFAEAB}" Global="false">
 													<ObjectRef Name="trap_pit_trash_triggered" ID="{2F4A2F77-2A93-46A8-8D69-FD46408D49B0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
@@ -106,6 +183,13 @@
 								<Event Name="trap_pit_spikes_triggered" ID="{828BEE91-960B-4C35-BE00-86AC53927BB8}">
 									<ChildrenList>
 										<Action Name="Play" ID="{940E4148-B9E4-4039-9DC4-8CC482D6EEA8}" ShortID="779019982" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{A7F7C422-4617-4D8B-A058-D794DF1F532B}" Global="false">
 													<ObjectRef Name="trap_pit_spikes_triggered" ID="{C711DAD8-272F-4144-8AAB-61A3A893116F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
@@ -152,7 +236,7 @@
 										<Action Name="Play" ID="{0921FE44-4C07-4B0F-AEA5-EB57ED23B386}" ShortID="709908324" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{20FA15D7-66DD-4C3F-A590-B0FF113BC4CE}" Global="false">
-													<ObjectRef Name="trap_wire_triggered" ID="{B92F965F-348A-44EA-8411-9BF6347967CB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="trap_wire_triggered" ID="{B311820F-7BAD-4956-AD78-E681BDBCFA23}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -161,6 +245,13 @@
 								<Event Name="trap_wall_spikes_triggered" ID="{934A26BC-B2B9-4A9C-9F57-43BE2D84FD2A}">
 									<ChildrenList>
 										<Action Name="Play" ID="{13D5DC00-BB5A-4318-966E-DB5C379B8A1E}" ShortID="954361721" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value Platform="Android">False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{3AB758A0-4282-46F6-863B-85DE15D70B64}" Global="false">
 													<ObjectRef Name="trap_wall_spikes_triggered" ID="{B1AA9523-C3A3-4BE0-8CF4-D5650BF27CDF}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
@@ -182,6 +273,24 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="3D objects" ID="{65073EDC-A107-4660-8D75-57E22E3DBD00}" ShortID="957170400">
+							<ChildrenList>
+								<Event Name="airplane_loop" ID="{1534CC05-5997-40E2-8048-7C2CD487D049}">
+									<ChildrenList>
+										<Action Name="Play" ID="{868A9185-7880-4333-A84D-363FD7B33AC0}" ShortID="954324712" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{424207C6-8E69-46E0-A065-6FED306AA2EF}" Global="false">
+													<ObjectRef Name="airplane_loop" ID="{83C81A5A-28F8-4734-8830-26CFB9B6CEA4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{348D0A83-11E6-46EC-B16B-A57F785CBE00}" ShortID="581531761">
@@ -263,17 +372,6 @@
 				</Folder>
 				<Folder Name="penguin" ID="{FDB36A1D-2B7B-43AF-977A-C61FB1D135E7}" ShortID="1070696930">
 					<ChildrenList>
-						<Event Name="penguin_move1" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}">
-							<ChildrenList>
-								<Action Name="Play" ID="{1042F00A-115C-4A89-88CE-73488BEDA2F5}" ShortID="208580913" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{C9E4A506-A2E6-4F74-A289-96CD7DFF1B71}" Global="false">
-											<ObjectRef Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Folder Name="Interactions" ID="{9A723251-C3DA-4D83-A25D-89D6CD7B6D8A}" ShortID="602865162">
 							<ChildrenList>
 								<Event Name="penguin_tool_jump_used" ID="{E63D0B90-BD3A-4664-B3BE-6547AFCFF451}">
@@ -281,13 +379,23 @@
 										<Action Name="Play" ID="{794745F8-3C51-44E9-83CB-FA52C39F58B2}" ShortID="653788258" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{C72A8CEF-6297-4C8E-9E3A-AA63F0CA2D51}" Global="false">
-													<ObjectRef Name="jump used" ID="{843D66B5-F1D7-4072-86DD-7E5CC5BF6350}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="penguin_jump_used" ID="{B592E696-2232-45B7-AA5D-E4BBCC9E5A28}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="penguin_tool_change_lane_used" ID="{F724DA30-80BA-4132-81D8-9B17F97D4907}"/>
+								<Event Name="penguin_tool_change_lane_used" ID="{F724DA30-80BA-4132-81D8-9B17F97D4907}">
+									<ChildrenList>
+										<Action Name="Play" ID="{EAB4FBE5-4878-4057-AD68-6D0327CC9577}" ShortID="740412081" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{6A96D660-399B-4056-BA88-1A2BC7CECB92}" Global="false">
+													<ObjectRef Name="penguin_change_lane_used" ID="{7E719EFD-63DD-40DC-A64A-F51279B0E3B9}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Event Name="penguin_react" ID="{925FFCBB-07F5-483A-B5A2-20D7402CC920}">
@@ -305,9 +413,34 @@
 							<ChildrenList>
 								<Event Name="penguin_death_pit_drowning" ID="{453603AE-32E4-4508-B5F6-C0F7CCB386BB}">
 									<ChildrenList>
+										<Action Name="Set Voice Low-pass Filter" ID="{A6985A79-6A0C-4AD4-A85D-886245C7C513}" ShortID="921685199" Type="ChangeLPF" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{038B152B-0AF5-4AD3-A664-BFBFBA036FCB}" Global="false">
+													<ObjectRef Name="penguin_death_pit_drowning" ID="{20062FA7-91A8-4644-96B1-170A3D3AB395}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
 										<Action Name="Play" ID="{DD68CA98-7739-477B-99AC-85B50210CDCE}" ShortID="303960703" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{2332D19B-EB4C-4E8A-BCB8-36CCEAF85159}" Global="false">
+													<ObjectRef Name="penguin_death_pit_drowning" ID="{20062FA7-91A8-4644-96B1-170A3D3AB395}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{C0DD2B64-D856-47EE-9037-CEA1407B78F2}" ShortID="189238677" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{45B49DB8-7A53-430E-B6CE-D96E81EFA840}" Global="false">
+													<ObjectRef Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Low-pass Filter" ID="{FA68B7C3-2060-4731-AAA4-98C5AE5FA23F}" ShortID="268684850" Type="ChangeLPF" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
+												<Property Name="Lowpass" Type="int16" Value="60"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{EFE3CED5-6244-4D69-8223-F480FFC91627}" Global="false">
 													<ObjectRef Name="penguin_death_pit_drowning" ID="{20062FA7-91A8-4644-96B1-170A3D3AB395}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
@@ -316,10 +449,17 @@
 								</Event>
 								<Event Name="penguin_death_excavator" ID="{AA1BFFAE-CCE8-4A4F-BB41-30B65D7B5EE6}">
 									<ChildrenList>
-										<Action Name="Play" ID="{9F02C6BF-04AA-4A5A-B219-CA2828D376DA}" ShortID="643883611" Type="Play" Scope="One" Global="false">
+										<Action Name="Play" ID="{1D8F94FF-973C-485B-9670-5C781A80DB6E}" ShortID="131192834" Type="Play" Scope="One" Global="false">
 											<ElementList>
-												<Element ID="{B640FF6F-61B7-4F52-BF49-ED6D74AC07F4}" Global="false">
-													<ObjectRef Name="penguin_death_excavator" ID="{A7BB01FD-EDED-4CD8-8466-10E204FD4667}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												<Element ID="{DA75D912-F80F-4BAB-A277-0FE1F9B3B16F}" Global="false">
+													<ObjectRef Name="penguin_placeholder_death_excavator_1" ID="{2C021778-7801-4F68-9CB3-6EF92C062B93}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{49AA09B4-FD1B-41FC-901F-F4E9C01421C6}" ShortID="1008827505" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{837025A5-5BEA-41FE-8666-AFB73E8AF89D}" Global="false">
+													<ObjectRef Name="splat_8" ID="{2C94698E-0FB2-4C6E-8A72-FDF7DAF0D6A5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -327,10 +467,10 @@
 								</Event>
 								<Event Name="penguin_death_electrocution" ID="{322CC1D4-84ED-435B-96AF-A16AD3331A35}">
 									<ChildrenList>
-										<Action Name="Play" ID="{9C739C92-5D88-4AC0-9E08-83D4E2B189A6}" ShortID="197241429" Type="Play" Scope="One" Global="false">
+										<Action Name="Play" ID="{479CCDDF-2118-4718-A56F-B41BCDF460C2}" ShortID="1032240260" Type="Play" Scope="One" Global="false">
 											<ElementList>
-												<Element ID="{87344BDB-3B18-425E-B5C6-69D4A09182C2}" Global="false">
-													<ObjectRef Name="penguin_death_electrocution" ID="{A563DE36-9164-4186-BD27-9EC1CA13EF19}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												<Element ID="{318A7504-3DBA-4CE5-AE15-4ACF47CAC37A}" Global="false">
+													<ObjectRef Name="voice" ID="{15B39A8B-9692-4C1F-83A1-B7065AA8CCAE}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -342,6 +482,13 @@
 											<ElementList>
 												<Element ID="{DCEF0AD3-6972-4443-81F1-976EFD993B2A}" Global="false">
 													<ObjectRef Name="penguin_death_spikes" ID="{4786A15B-C020-45E4-8DF1-DD10525AF7A5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{C46AE884-3C8E-4E5D-8853-7CA240B7F598}" ShortID="641952042" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{6582BD69-0DCF-48CE-9072-6ABB9D27315E}" Global="false">
+													<ObjectRef Name="voice" ID="{15B39A8B-9692-4C1F-83A1-B7065AA8CCAE}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -391,6 +538,13 @@
 											<ElementList>
 												<Element ID="{7CBDBB8E-CE92-447D-B19D-1DCB01945748}" Global="false">
 													<ObjectRef Name="snow" ID="{D4B8E969-78F7-4ED9-9F2E-32D7314A8033}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{87A353D4-F8C1-454F-96F7-85052A1C3594}" ShortID="30602036" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{E33DE207-D5A4-42EE-BFF8-A10614DD2D3A}" Global="false">
+													<ObjectRef Name="penguin_placeholder_jump_1" ID="{E93C3116-D13C-4BCF-A5C1-B624216F45D0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -474,10 +628,27 @@
 						</Event>
 						<Event Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}">
 							<ChildrenList>
-								<Action Name="Play" ID="{C0CA8796-731F-4C3F-91B9-9B2BA1F07534}" ShortID="351756795" Type="Play" Scope="One" Global="false">
+								<Action Name="Stop" ID="{D921784E-45BA-4EFE-8A6D-767939F56781}" ShortID="397685936" Type="Stop" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+									</PropertyList>
 									<ElementList>
-										<Element ID="{F60C84C3-5541-4670-AC42-C482CA8FAA05}" Global="false">
-											<ObjectRef Name="penguin_land" ID="{400C6210-96A4-4191-BD55-3F3A37261F6B}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										<Element ID="{62F9F142-661F-426C-95F5-07D12CC48B83}" Global="false">
+											<ObjectRef Name="penguin_edge_fall" ID="{FB0841DE-63A3-44F9-ADA7-2B88AEA25188}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{DBBD5027-9AA6-4E5C-9F44-A6F437E46341}" ShortID="690966786" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{778157F0-FB11-4E69-85A1-35C5B3BCD471}" Global="false">
+											<ObjectRef Name="fall_thump_1" ID="{BFC2C65A-9EF2-45CF-BE64-214F2B3A32A3}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{32A76744-3EDF-4392-BD88-8C09589D9B67}" ShortID="264655761" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5E74833E-31EB-4B43-800C-A449D42681D7}" Global="false">
+											<ObjectRef Name="penguin_edge_fall" ID="{B46AA1A5-E7E3-444A-8BE2-19F5C08AB169}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -505,10 +676,54 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="movement" ID="{9516D0E5-EFD1-4D18-961A-EFC0529023EE}" ShortID="743375049">
+							<ChildrenList>
+								<Event Name="penguin_move_voice_start" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}">
+									<ChildrenList>
+										<Action Name="Play" ID="{63B64291-2795-4AF3-B68B-EE54B3DCD9E1}" ShortID="753322288" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{153A6338-23D6-41DF-9E7D-3A3D68872CDB}" Global="false">
+													<ObjectRef Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="penguin_move_voice_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}">
+									<ChildrenList>
+										<Action Name="Stop" ID="{613C62FE-0F68-4BBC-9CB1-2171774601E2}" ShortID="141479369" Type="Stop" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{0DC77195-0154-4AE3-B941-77CF54B885EE}" Global="false">
+													<ObjectRef Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}">
+									<ChildrenList>
+										<Action Name="Play" ID="{1042F00A-115C-4A89-88CE-73488BEDA2F5}" ShortID="208580913" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{C9E4A506-A2E6-4F74-A289-96CD7DFF1B71}" Global="false">
+													<ObjectRef Name="footsteps" ID="{108C264C-9A8B-4010-A235-A928CE68DAC1}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Event Name="music_menu_play" ID="{5A521F74-4AC4-4AA5-A6FA-7415EFCC234D}">
 					<ChildrenList>
+						<Action Name="Set Voice Volume" ID="{1F499BB1-BEFA-4BFB-892A-4FEBCEB9CE67}" ShortID="796752575" Type="ChangeVolume" Scope="One" Global="true">
+							<ElementList>
+								<Element ID="{087B551B-B61D-4FBC-B149-53810ECF29FE}" Global="true">
+									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
 						<Action Name="Stop" ID="{3BF94C20-B418-459D-970C-155FE7130F16}" ShortID="649033223" Type="Stop" Scope="One" Global="true">
 							<ElementList>
 								<Element ID="{E8461457-9486-4D8D-A5D3-E66B3ABA1978}" Global="true">
@@ -516,12 +731,12 @@
 								</Element>
 							</ElementList>
 						</Action>
-						<Action Name="Set Voice Pitch" ID="{168540F9-1711-48E4-8B56-9586BB5F6FD9}" ShortID="671779635" Type="ChangePitch" Scope="One" Global="false">
+						<Action Name="Set Voice Pitch" ID="{168540F9-1711-48E4-8B56-9586BB5F6FD9}" ShortID="671779635" Type="ChangePitch" Scope="One" Global="true">
 							<PropertyList>
-								<Property Name="Pitch" Type="int32" Value="-400"/>
+								<Property Name="Pitch" Type="int32" Value="-200"/>
 							</PropertyList>
 							<ElementList>
-								<Element ID="{4F6EBC5D-CECC-4D82-8EB2-6958FBBC9819}" Global="false">
+								<Element ID="{4F6EBC5D-CECC-4D82-8EB2-6958FBBC9819}" Global="true">
 									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 								</Element>
 							</ElementList>
@@ -533,12 +748,12 @@
 								</Element>
 							</ElementList>
 						</Action>
-						<Action Name="Set Voice Low-pass Filter" ID="{BC9C7341-9426-480E-8EE0-3FEFABAFBAEC}" ShortID="228831364" Type="ChangeLPF" Scope="One" Global="false">
+						<Action Name="Set Voice Low-pass Filter" ID="{BC9C7341-9426-480E-8EE0-3FEFABAFBAEC}" ShortID="228831364" Type="ChangeLPF" Scope="One" Global="true">
 							<PropertyList>
 								<Property Name="Lowpass" Type="int16" Value="50"/>
 							</PropertyList>
 							<ElementList>
-								<Element ID="{4C935927-6EA1-40B1-8431-638B11FA35FE}" Global="false">
+								<Element ID="{4C935927-6EA1-40B1-8431-638B11FA35FE}" Global="true">
 									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 								</Element>
 							</ElementList>
@@ -554,7 +769,7 @@
 										<Action Name="Play" ID="{C9DF6428-A053-4783-B952-A169F0C7EDC2}" ShortID="951675649" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{D7BCEA5F-0E2F-4857-8D88-578E8CB0E801}" Global="false">
-													<ObjectRef Name="seal_death_excavator" ID="{6CBECA19-ECC3-4CA4-8E31-CA5FE0DD73F5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -565,7 +780,7 @@
 										<Action Name="Play" ID="{A6553363-612D-4599-B4EA-D7379F87D29F}" ShortID="903692944" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{4A0C3DDA-7A4C-4BAD-A7E6-37407912D5A7}" Global="false">
-													<ObjectRef Name="seal_death_pit_drowning" ID="{135F2D70-999F-4187-A2E3-7311A0BC4DEF}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -576,7 +791,7 @@
 										<Action Name="Play" ID="{66705DBF-7D87-48AB-B326-AF4784083D0C}" ShortID="874161684" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{66BFEF38-B825-4599-9FD6-253F490A4A20}" Global="false">
-													<ObjectRef Name="seal_death_electrocution" ID="{239A4E68-5703-473C-9220-A29B709F06DB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -587,7 +802,7 @@
 										<Action Name="Play" ID="{75BCD227-2A6B-426B-B10C-8AE6B5D1245B}" ShortID="246968528" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{05416BAA-9709-4469-88F9-11C4176CCFDA}" Global="false">
-													<ObjectRef Name="seal_death_spikes" ID="{E8805246-AD53-4053-99D3-BC3693A11519}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -611,7 +826,7 @@
 								<Action Name="Play" ID="{CAE7E617-DB45-47BC-8A81-C077FA72D28F}" ShortID="773884344" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{5C8848C7-C967-4950-BD05-9E98799A510C}" Global="false">
-											<ObjectRef Name="seal_jump" ID="{C56A07E6-0352-4F15-A4C6-657382EF51A1}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -622,7 +837,7 @@
 								<Action Name="Play" ID="{2AB1259A-A608-4BCC-BE54-D4A4781845AE}" ShortID="126863113" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{2703C7DD-64EB-486B-85CC-B21F12FB6334}" Global="false">
-											<ObjectRef Name="seal_edge_fall" ID="{20290AC6-A22A-488D-AACA-CEE72AD5F791}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -633,7 +848,7 @@
 								<Action Name="Play" ID="{8AE07170-902E-47A8-A0C7-6D629CB1C04F}" ShortID="400949072" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{EBC38215-0D93-490D-9CBF-6BAB6D3058DD}" Global="false">
-											<ObjectRef Name="seal_land" ID="{AB2E75FC-FE5C-48F4-B822-CC20C916DECB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -644,7 +859,17 @@
 								<Action Name="Play" ID="{887B217C-318D-49FD-83B7-37F38792AE0A}" ShortID="137642150" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{CE24A39F-6E8C-4994-8692-BDBCAEA2FBF1}" Global="false">
-											<ObjectRef Name="seal_spawn" ID="{6C244B99-C2F9-4E5A-A166-1D33E96B44F0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{B6B1B2AA-12DC-41B3-A437-01F189AD4163}" ShortID="171083136" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.2"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{71D4FCF2-02E1-4E99-92C8-D5E56747AB4C}" Global="false">
+											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -654,6 +879,13 @@
 				</Folder>
 				<Event Name="music_game_play" ID="{F756E8C6-A751-41A1-A794-089F12761F0D}">
 					<ChildrenList>
+						<Action Name="Set Voice Volume" ID="{064A3B17-742F-4940-8B76-7EC957A80D87}" ShortID="427938415" Type="ChangeVolume" Scope="One" Global="true">
+							<ElementList>
+								<Element ID="{6D8CB10E-F98E-4F2F-A81F-62D9798C117C}" Global="true">
+									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+								</Element>
+							</ElementList>
+						</Action>
 						<Action Name="Stop" ID="{D4EDEB81-10FE-42AE-A116-0F75FA3C0CAA}" ShortID="809686922" Type="Stop" Scope="One" Global="true">
 							<ElementList>
 								<Element ID="{19633877-52D8-4F4C-B3B3-CCEEECA0221B}" Global="true">
@@ -661,16 +893,16 @@
 								</Element>
 							</ElementList>
 						</Action>
-						<Action Name="Set Voice Low-pass Filter" ID="{BD3F096A-5B4D-40A8-8C72-E3785549967C}" ShortID="586046740" Type="ChangeLPF" Scope="One" Global="false">
+						<Action Name="Set Voice Low-pass Filter" ID="{BD3F096A-5B4D-40A8-8C72-E3785549967C}" ShortID="586046740" Type="ChangeLPF" Scope="One" Global="true">
 							<ElementList>
-								<Element ID="{48D7EFFC-8B0A-45E2-A72C-FF5DAA36A22F}" Global="false">
+								<Element ID="{48D7EFFC-8B0A-45E2-A72C-FF5DAA36A22F}" Global="true">
 									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 								</Element>
 							</ElementList>
 						</Action>
-						<Action Name="Set Voice Pitch" ID="{FC741C8B-170E-41A7-9950-17899D8316C9}" ShortID="362810038" Type="ChangePitch" Scope="One" Global="false">
+						<Action Name="Set Voice Pitch" ID="{FC741C8B-170E-41A7-9950-17899D8316C9}" ShortID="362810038" Type="ChangePitch" Scope="One" Global="true">
 							<ElementList>
-								<Element ID="{EE8A1EF4-98B1-4DB9-A74B-D0ED5EC95630}" Global="false">
+								<Element ID="{EE8A1EF4-98B1-4DB9-A74B-D0ED5EC95630}" Global="true">
 									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 								</Element>
 							</ElementList>
@@ -690,6 +922,64 @@
 						<Event Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}"/>
 						<Event Name="unmute_music" ID="{619FA60D-38FD-4389-875B-4E41A3C6FED9}"/>
 						<Event Name="unmute_master" ID="{E6EAF860-4244-4F01-9B1B-1002C582E699}"/>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="TEST" ID="{579CEA88-1290-432D-A83B-090299EE6A2E}" ShortID="1065301387">
+					<ChildrenList>
+						<Event Name="play_sawblade" ID="{9D7EC0A8-B7C6-4F24-975E-3CC70C9F9429}">
+							<ChildrenList>
+								<Action Name="Post Event" ID="{9AE415D3-E094-4CB0-AB5F-A7BF3E6E4982}" ShortID="332622245" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{845B5AE8-BDFC-417D-88FD-107952AE6ED5}" Global="false">
+											<ObjectRef Name="trap_excavator_triggered" ID="{5C80BEA3-B21D-413F-9ED6-FD581809BAB1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Post Event" ID="{A2BA043B-55E1-4612-9745-26506BC8C379}" ShortID="778728423" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{41CF7C97-0E46-48DE-A7F5-904AF988CB0D}" Global="false">
+											<ObjectRef Name="penguin_death_excavator" ID="{AA1BFFAE-CCE8-4A4F-BB41-30B65D7B5EE6}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="jump_test" ID="{AAECDB9F-235B-4207-9134-4EABB51C97BC}">
+							<ChildrenList>
+								<Action Name="Post Event" ID="{AC01B182-0B60-4D97-AF83-6649C076708B}" ShortID="859921566" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{D6F00093-0F07-462E-A5DC-523970463F23}" Global="false">
+											<ObjectRef Name="penguin_tool_jump_used" ID="{E63D0B90-BD3A-4664-B3BE-6547AFCFF451}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Post Event" ID="{1753E5EB-037C-4259-B45E-7293A965E857}" ShortID="502143943" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{1879185D-5C6E-4997-9CE1-AFA8DFB48CD1}" Global="false">
+											<ObjectRef Name="tool_jump_triggered" ID="{DABF1B46-9533-48C7-B947-A7D967F6D56B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="move_test" ID="{0BF5179F-1994-4D07-A222-9E781F3B7C96}">
+							<ChildrenList>
+								<Action Name="Post Event" ID="{2A70014F-7084-4D2F-B832-55367F5F3F45}" ShortID="48520771" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{C59003BF-BE5F-4189-BA21-A242CC8387CD}" Global="false">
+											<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Post Event" ID="{AF49B540-74C9-483E-B524-E27AE6FF3078}" ShortID="830346611" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{102A12C8-4322-4B9B-A92F-A6687E94A089}" Global="false">
+											<ObjectRef Name="penguin_move_voice_start" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
