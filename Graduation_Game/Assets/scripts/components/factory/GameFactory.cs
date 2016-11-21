@@ -19,6 +19,16 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(GameActions.TriggerStar, TriggerStar(handler));
 		}
 
+		public void BuildCutScene(CouroutineDelegateHandler handler) {
+			actionable.AddAction(GameActions.TriggerStar, CutScene(handler));
+		}
+
+		private Handler CutScene(CouroutineDelegateHandler handler) {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new CutScene(handler));
+			return actionHandler;
+		}
+
 		private Handler TriggerStar(CouroutineDelegateHandler handler) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new TriggerStar(handler));

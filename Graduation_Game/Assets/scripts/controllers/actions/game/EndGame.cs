@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Assets.scripts.UI;
 using Assets.scripts.components;
 using System.Collections;
+using Assets.scripts.sound;
 using Assets.scripts.tools;
 using UnityEngine.SceneManagement;
 
@@ -40,7 +41,6 @@ namespace Assets.scripts.controllers.actions.game {
 
 		public EndGame(CouroutineDelegateHandler handler) {
 			this.handler = handler;
-			
 		}
 
 		public void Execute() {
@@ -53,7 +53,9 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 		}
 
-		private void SetupEndScene() {
+		private void SetupEndScene()
+		{
+		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
 			plutoniumCounter.transform.parent = endScene.GetComponentInChildren<Image>().transform;
 			plutoniumCounter.alignment = TextAnchor.MiddleLeft;
 			plutoniumCounter.transform.localPosition = new Vector3(-106, -79, 0);
@@ -113,7 +115,8 @@ namespace Assets.scripts.controllers.actions.game {
 					if (int.Parse(penguinCounter.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
 						star[i].GetComponent<Star>().FlyIn();
 						starsSpawned++;
-						return true;
+					    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
+					    return true;
 					}
 				}
 			}

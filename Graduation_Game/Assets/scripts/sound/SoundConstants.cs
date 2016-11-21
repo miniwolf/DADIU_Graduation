@@ -15,13 +15,14 @@
         /// <summary>
         /// Sounds that penguins make
         /// </summary>
-        public class PenguinSounds
-        {
-            public const string START_MOVING = "penguin_move_voice_start";
-            public const string MOVE = "penguin_move1";
-            public const string STOP_MOVING = "penguin_move_voice_stop";
-            public const string SPAWN = "penguin_spawn";
-        }
+
+	    public class PenguinSounds
+	    {
+	        public const string START_MOVING = "penguin_move_voice_start";
+	        public const string MOVE = "penguin_move";
+	        public const string STOP_MOVING = "penguin_move_voice_stop";
+	        public const string SPAWN = "penguin_spawn";
+	    }
 
         /// <summary>
         /// Reacts to user touch/click action
@@ -31,6 +32,10 @@
             public const string JUMP_PLACED = "tool_jump_triggered";
             public const string CHANGE_LANE_PLACED = "penguin_tool_change_lane_used";
             public const string BUTTON_PRESS = "button_pressed";
+            public const string END_SCREEN_TRIGGER = "end_screen_spawn";
+            public const string END_SCREEN_SPAWN_STAR = "end_screen_star_spawn";
+
+
         }
 
         /// <summary>
