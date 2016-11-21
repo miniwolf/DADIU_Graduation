@@ -25,8 +25,9 @@ namespace Assets.scripts.components.factory {
 		private readonly Directionable directionable;
 		private readonly GameStateManager gameStateManager;
 	    private readonly NotifierSystem notifierSystem;
+		private GameObject splat;
 
-	    public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
@@ -36,6 +37,7 @@ namespace Assets.scripts.components.factory {
 		    Penguin p = penguin.GetComponent<Penguin>();
 		    p.SetGameStateManager(gameStateManager);
 		    p.SetNotifyManager(this.notifierSystem);
+			this.splat = splat;
 		}
 
 		public void Build() {
@@ -115,6 +117,7 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
 			actionHandler.AddAction(new SetTrigger(animator, GetRandomAnimation(constant)));
+			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			return actionHandler;
 		}
 
