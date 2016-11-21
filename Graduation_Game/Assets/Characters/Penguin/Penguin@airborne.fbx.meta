@@ -223,8 +223,8 @@ ModelImporter:
       - time: 0.036175728
         functionName: PlayPenguinEdgeFall
         data: 
-        objectReferenceParameter: {fileID: 100042, guid: 55533a2157a269144bf8fe86e7b10c6e,
-          type: 3}
+        objectReferenceParameter: {fileID: 1000010090149962, guid: 05b734c64854a2941917c1863c1e9dd3,
+          type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
