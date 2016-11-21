@@ -4,6 +4,7 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 using Assets.scripts.UI;
 using Assets.scripts.UI.inventory;
+using System;
 
 namespace Assets.scripts.level {
 	public class WinZone : MonoBehaviour {
