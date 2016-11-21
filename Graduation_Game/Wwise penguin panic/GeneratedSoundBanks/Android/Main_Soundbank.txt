@@ -2,8 +2,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	27047464	airplane_loop			\Default Work Unit\SFXs\3D objects\airplane_loop	
 	65816966	tool_picked_up			\Default Work Unit\SFXs\Tools\tool_picked_up	
 	254264362	seal_land			\Default Work Unit\seal\seal_land	
+	412914695	seal_move_start			\Default Work Unit\seal\seal_move_start	
 	516816362	penguin_death_excavator			\Default Work Unit\penguin\deaths\penguin_death_excavator	
-	540083679	penguin_death_pit_drowning			\Default Work Unit\penguin\deaths\penguin_death_pit_drowning	
 	554915610	penguin_get_up			\Default Work Unit\penguin\penguin_get_up	
 	585790082	seal_spawn			\Default Work Unit\seal\seal_spawn	
 	823784186	penguin_slide_loop			\Default Work Unit\penguin\slide\penguin_slide_loop	
@@ -31,13 +31,13 @@ Event	ID	Name			Wwise Object Path	Notes
 	2013246097	music_menu_play			\Default Work Unit\music_menu_play	
 	2088991191	end_screen_spawn			\Default Work Unit\UI\end sreen\end_screen_spawn	
 	2220048805	seal_jump			\Default Work Unit\seal\seal_jump	
+	2323319017	penguin_death_drowning			\Default Work Unit\penguin\deaths\penguin_death_drowning	
 	2334375280	penguin_move_stop			\Default Work Unit\penguin\movement\penguin_move_stop	
 	2338710940	penguin_move_start			\Default Work Unit\penguin\movement\penguin_move_start	
 	2376935833	trap_wire_loop			\Default Work Unit\SFXs\Traps\trap_wire_loop	
 	2479484064	penguin_slide_takeoff			\Default Work Unit\penguin\slide\penguin_slide_takeoff	
 	2487352075	trap_excavator_loop			\Default Work Unit\SFXs\Traps\trap_excavator_loop	
 	2495070883	mute_master			\Default Work Unit\sound settings\mute_master	
-	2620900526	seal_move			\Default Work Unit\seal\seal_move	
 	2664374318	penguin_state_change_footsteps_snow			\Default Work Unit\penguin\footsteps switch state\penguin_state_change_footsteps_snow	
 	2674130862	seal_edge_fall			\Default Work Unit\seal\seal_edge_fall	
 	2677805925	tool_returned_to_toolbar			\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar	

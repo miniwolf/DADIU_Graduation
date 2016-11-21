@@ -221,7 +221,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.06329114
-        functionName: NewEvent
+        functionName: PlayPenguinReact
         data: 
         objectReferenceParameter: {fileID: 100042, guid: 55533a2157a269144bf8fe86e7b10c6e,
           type: 3}

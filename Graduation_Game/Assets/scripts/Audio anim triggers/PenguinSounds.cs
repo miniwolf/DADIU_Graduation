@@ -6,59 +6,63 @@ public class PenguinSounds : MonoBehaviour {
 
 	//Deaths
 	public void PlayPenguinDeathElectrocution() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_death_electrocution", gameObject);
 	}
 
 	public void PlayPenguinDeathExcavator() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_death_excavator", gameObject);
 	}
 
 	public void PlayPenguinDeathDrowning() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_death_drowning", gameObject);
 	}
 
 	public void PlayPenguinDeathSpikes() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_death_spikes", gameObject);
 	}
 	//Deaths end
 
 	//Slide
 	public void PlayPenguinSlideTakeoff() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_slide_takeoff", gameObject);
 	}
 
 	public void PlayPenguinSlideLoop() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_slide_loop", gameObject);
 	}
 
 	public void PlayPenguinSlideEnd() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_slide_end", gameObject);
 	}
 	//Slide end
 
 	//Moves
+	public void PlayPenguinJump() {
+		AkSoundEngine.PostEvent ("penguin_tool_jump_used", gameObject);
+	}
+
 	public void PlayPenguinCelebrate() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_celebrate", gameObject);
 	}
 
 	public void PlayPenguinEdgeFall() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_edge_fall", gameObject);
 	}
 
 	public void PlayPenguinGetUp() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_get_up", gameObject);
 	}
 
 	public void PlayPenguinLand() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
-	}
-
-	public void PlayPenguinSpawn() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_land", gameObject);
 	}
 
 	public void PlayPenguinReact() {
-		AkSoundEngine.PostEvent (SoundConstants.PenguinSounds.MOVE, gameObject);
+		AkSoundEngine.PostEvent ("penguin_react", gameObject);
+	}
+
+	public void PlayPenguinSpawn() {
+		AkSoundEngine.PostEvent ("penguin_spawn", gameObject);
 	}
 	//Moves end
 }
