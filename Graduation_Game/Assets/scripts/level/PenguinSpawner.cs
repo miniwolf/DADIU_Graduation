@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Security.Policy;
 using System.Threading;
 using Assets.scripts.gamestate;
+using Assets.scripts.sound;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -80,6 +81,7 @@ namespace Assets.scripts.level {
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
+		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
 		}
 
 		public List<GameObject> GetAllPenguins(){
