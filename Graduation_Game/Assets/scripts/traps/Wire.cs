@@ -21,6 +21,8 @@ namespace Assets.scripts.traps {
 		protected void OnTriggerEnter(Collider other) {
 			if ( other.tag == TagConstants.PENGUIN ) {
 				other.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguinByElectricution);
+			}else if(other.tag == TagConstants.SEAL){
+				other.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.SealDeath);
 			}
 		}
 

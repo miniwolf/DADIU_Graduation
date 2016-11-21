@@ -11,5 +11,9 @@
 		public const string ENLARGE = "isEnlarged";
 		public const string MINIMIZE = "isShrinked";
 		public const string TRIGGER_REACT_TO_DEATH = "reactToDeath";
+		public const string CELEBRATE = "celebrateGoodTimes";
+		public const string SEAL_MOVE = "moveSeal";
+		public const string SEAL_JUMP = "isJumping";
+		public const string SEAL_FALL = "isFalling";
 	}
 }

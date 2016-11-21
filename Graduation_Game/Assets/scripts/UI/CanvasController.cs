@@ -2,8 +2,7 @@
 using UnityEngine.UI;
 using Assets.scripts.controllers;
 using Assets.scripts.components;
-using Assets.scripts.level;
-using Assets.scripts.UI;
+using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.UI {
@@ -15,7 +14,6 @@ namespace Assets.scripts.UI {
 		public int penguinsRequiredFor1Stars;
 		private Text penguinCounter;
 		private GameObject endScene;
-		private bool endLevel;
 		private bool over;
 
 		void Start() {
@@ -29,12 +27,8 @@ namespace Assets.scripts.UI {
 			// update inventory when game over
 			if(int.Parse(penguinCounter.text) < 1 && !over) {
 				Inventory.UpdateCount();
-				over = true;
-			}
-
-			// TODO fix and refactor this part
-			if (int.Parse(penguinCounter.text) < 1 || endLevel) {
 				ExecuteAction(GameActions.EndLevel);
+				over = true;
 			}
 		}		
 
@@ -43,8 +37,13 @@ namespace Assets.scripts.UI {
 		}
 
 		public void EndLevel() {
-			endLevel = true;
 		}
+
+	    public void SoundButtonClick()
+	    {
+	        AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
+	    }
+
 
 	}
 }
