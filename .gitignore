@@ -5,6 +5,8 @@ build/
 builds/
 Assets/AssetStoreTools*
 ProjectSettings
+Graduation_Game/Wwise penguin panic/.cache/
+Graduation_Game/Wwise penguin panic/.backup
 
 .idea
 
