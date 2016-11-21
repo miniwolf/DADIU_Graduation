@@ -80,7 +80,6 @@ namespace Assets.scripts.components.registers {
 					new GameFactory(component.GetActionable<GameActions>()).BuildCutScene(handler);
 					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					print("hej");
 					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
 					break;
 				case TagConstants.TOOLBUTTON:
@@ -96,7 +95,7 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
 					break;
 				case TagConstants.SEAL:
-					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject()).Build();
+					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), splat).Build();
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
