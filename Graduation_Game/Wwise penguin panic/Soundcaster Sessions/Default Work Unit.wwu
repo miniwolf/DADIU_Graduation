@@ -58,6 +58,10 @@
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="stopAll" ID="{6399CB5D-DB1E-4FC6-956A-DC1EC2D404FF}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="3" Y="4"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="4" Y="0"/>
 						</Module>
