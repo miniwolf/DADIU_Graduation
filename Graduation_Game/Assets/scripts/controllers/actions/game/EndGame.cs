@@ -23,6 +23,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private readonly CouroutineDelegateHandler handler;
 		private PlutoniumCounterController pcc;
 		private SceneManager scenes;
+		private Actionable<GameActions> actionable;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -39,8 +40,9 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 
-		public EndGame(CouroutineDelegateHandler handler) {
+		public EndGame(CouroutineDelegateHandler handler, Actionable<GameActions> actionable) {
 			this.handler = handler;
+			this.actionable = actionable;
 		}
 
 		public void Execute() {
@@ -106,6 +108,7 @@ namespace Assets.scripts.controllers.actions.game {
 				}
 			}
 			Debug.Log(PlayerPrefs.GetInt("TotalStars"));
+			actionable.ExecuteAction(GameActions.TriggerCutScene);
 			yield return null;
 		}
 		

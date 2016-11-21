@@ -9,6 +9,7 @@ namespace Assets.scripts.UI {
 	public class CutSceneController : ActionableGameEntityImpl<GameActions> {
 
 		public float triggerTime;
+		public bool displayCutscene = false;
 		// Use this for initialization
 		void Start() {
 
@@ -21,6 +22,9 @@ namespace Assets.scripts.UI {
 
 		public override string GetTag() {
 			return TagConstants.CUTSCENE;
+		}
+		public bool GetDisplayCutScene() {
+			return displayCutscene;
 		}
 	}
 }
