@@ -6,7 +6,7 @@ namespace Assets.scripts.gamestate {
 	public class GameStateManager : MonoBehaviour {
 		private bool isGameFrozen;
 
-		void Awake() {
+		void Start() {
 			SceneManager.sceneLoaded += NewLevelLoaded;
 		}
 

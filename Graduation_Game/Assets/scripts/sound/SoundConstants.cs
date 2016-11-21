@@ -23,9 +23,8 @@
 		/// </summary>
 
 		public class PenguinSounds {
-			public const string START_MOVING = "penguin_move_voice_start";
-			public const string MOVE = "penguin_move";
-			public const string STOP_MOVING = "penguin_move_voice_stop";
+			public const string START_MOVING = "penguin_move_start";
+			public const string STOP_MOVING = "penguin_move_stop";
 			public const string SPAWN = "penguin_spawn";
 		}
 
