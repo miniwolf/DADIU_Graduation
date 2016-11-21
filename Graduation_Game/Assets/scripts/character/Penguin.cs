@@ -53,6 +53,7 @@ namespace Assets.scripts.character {
 			}
 			// TODO make a bool variable to disable (or not) the buttons in the UI
 			// so game designer can try and decide what option is better
+
 		    if (gameStateManager.IsGameFrozen()) {
 		        ExecuteAction(ControllableActions.Freeze);
 		        return;
@@ -62,6 +63,7 @@ namespace Assets.scripts.character {
 
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
+				/*
 				if ( isRunning ) {
 					ExecuteAction(ControllableActions.Speed);
 				}
@@ -70,7 +72,7 @@ namespace Assets.scripts.character {
 				}
 				if ( isMinimizing ) {
 					ExecuteAction(ControllableActions.Minimize);
-				}
+				}*/
 			} else {
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
@@ -81,11 +83,11 @@ namespace Assets.scripts.character {
 			}
 		}
 
-		// TODO finish
-		IEnumerator OnTriggerEnter(Collider collider) {
+		 IEnumerator OnTriggerEnter(Collider collider) {
 			if (collider.transform.tag == "WinZone") {
-				yield return new WaitForSeconds(2.5f);
-				ExecuteAction(ControllableActions.Stop); // TODO stop and celebrate, stop when colliding with other penguin, this is for WinZone
+				ExecuteAction(ControllableActions.Celebrate);
+				yield return new WaitForSeconds(4f);
+				ExecuteAction(ControllableActions.Stop);
 			}
 		}
 
