@@ -13,11 +13,13 @@ namespace Assets.scripts.components.factory {
 		//private static CouroutineDelegateHandler handler;
 		private GameObject seal;
 		private Animator animator;
+		private GameObject splat;
 
-		public SealFactory ( Actionable<ControllableActions> actionable, GameObject seal) {
+		public SealFactory ( Actionable<ControllableActions> actionable, GameObject seal, GameObject splat) {
 			this.actionable = actionable;
 			this.seal = seal;
 			animator = seal.GetComponentInChildren<Animator>();
+			this.splat = splat;
 		}
 
 		public void Build(){
@@ -53,6 +55,7 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateSealDeath(){
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new SealDeathAction());
+			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			return actionHandler;
 		}
 

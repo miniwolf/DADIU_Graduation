@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Assets.scripts.controllers;
 using Assets.scripts.components;
+using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using UnityEngine.SceneManagement;
 
@@ -104,16 +105,8 @@ namespace Assets.scripts.UI {
 			gameOverPanel.transform.localScale = Vector3.one;
 		}
 
-		private bool isRetryArea(Vector3 pos) {
-			RaycastHit hit;
-			Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit, 400f);
-			if (hit.transform.tag == TagConstants.UI.RETRY_CIRCLE ||
-				hit.transform.tag == TagConstants.UI.RETRY_BUTTON ||
-				hit.transform.tag == TagConstants.UI.RETRY_PRIZE) {
-				return true;
-			}
-
-			return false;
-		}
+	    public void SoundButtonClick() {
+	        AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
+	    }
 	}
 }
