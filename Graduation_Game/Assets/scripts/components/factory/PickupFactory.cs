@@ -64,6 +64,7 @@ namespace Assets.scripts.components.factory {
 		private static Handler HatchEgg() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new HatchEgg());
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.StoreSounds.EGG_HATCH));
 			return actionHandler;
 		}
 

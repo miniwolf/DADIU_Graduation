@@ -265,7 +265,6 @@ namespace Assets.scripts.UI.screen.ingame {
 			var text = GetText(uiTag);
 			if(text != null)
 				text.text = textValue + tool.Count;
-
 		}
 
 		private Text GetText(string uiTag) {

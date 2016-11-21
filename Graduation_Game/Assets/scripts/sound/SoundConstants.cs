@@ -2,6 +2,16 @@
 {
     public class SoundConstants
     {
+
+    /// <summary>
+    /// Sounds for in-app purchases and currency/penguin interactions (outside of the main game)
+    /// </summary>
+        public class StoreSounds
+        {
+            public const string EGG_HATCH = "egg_hatching";
+        }
+
+
         /// <summary>
         /// Sounds that are triggered automatically when penguin picks up a specific item
         /// </summary>

@@ -6,7 +6,15 @@ namespace Assets.scripts.gamestate {
 	public class GameStateManager : MonoBehaviour {
 		private bool isGameFrozen;
 
-		public void SetGameFrozen(bool frozen) {
+	    void Awake() {
+			SceneManager.sceneLoaded += NewLevelLoaded ;
+	    }
+
+	    void OnDestroy() {
+	        SceneManager.sceneLoaded -= NewLevelLoaded;
+	    }
+
+	    public void SetGameFrozen(bool frozen) {
 			isGameFrozen = frozen;
 		}
 
@@ -14,10 +22,10 @@ namespace Assets.scripts.gamestate {
 			return isGameFrozen;
 		}
 
-        void OnLevelWasLoaded ()
+        void NewLevelLoaded (Scene scene, LoadSceneMode mode)
         {
             string ev;
-            if (SceneManager.GetActiveScene().name.Equals("MainMenuScene")){
+            if (scene.name.Equals("MainMenuScene")){
                 ev = SoundConstants.Music.MAIN_MENU_MUSIC;
             }else{
                 ev = SoundConstants.Music.IN_GAME_MUSIC;
