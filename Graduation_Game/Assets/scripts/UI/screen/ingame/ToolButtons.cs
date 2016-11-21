@@ -206,7 +206,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
-			AkSoundEngine.PostEvent(SoundConstants.TOOL_PICK_UP, currentObject);
+			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
 
 		private void ReleaseTool() {
@@ -219,14 +219,14 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				ChangeColor(notReturning);
 				doubleTap = false;
-				AkSoundEngine.PostEvent(SoundConstants.TOOL_RETURNED, currentObject);
+				AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
 			} else {
 				switch ( currentObject.tag ) {
 					case TagConstants.JUMPTEMPLATE:
-						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.JUMP_TRIGGERED, currentObject);
+//						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.JUMP_TRIGGERED, currentObject);
 						break;
 					case TagConstants.SWITCHTEMPLATE:
-						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE, currentObject);
+//						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE, currentObject);
 						break;
 				}
 				dragging = false;

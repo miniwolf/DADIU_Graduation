@@ -26,7 +26,7 @@ namespace Assets.scripts.components.factory {
 		private Handler PickupPlutonium() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>(), actionable));
-			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICKUP_CURRENCY));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PickUpSounds.PICKUP_CURRENCY));
 			return actionHandler;
 		}
 
@@ -34,19 +34,19 @@ namespace Assets.scripts.components.factory {
 			Text textTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>(), actionable, textTotal));
-			//actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICKUP_CURRENCY_FLY));
+			//actionHandler.AddAction(new PostSoundEvent(SoundConstants.CURRENCY_FLY));
 			return actionHandler;
 		}
 
 		private Handler AddToScore(){
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICK_UP_ADD,c));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PickUpSounds.PICK_UP_ADD, c));
 			return actionHandler;
 		}
 
 		private Handler FlyToScore(){
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PICKUP_CURRENCY_FLY,c));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PickUpSounds.CURRENCY_FLY, c));
 			return actionHandler;
 		}
 
