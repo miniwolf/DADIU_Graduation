@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -206,10 +206,6 @@
 					<ShortName>footstep_snow_6.wav</ShortName>
 					<Path>SFX\footstep_snow_6_762DA03C.wem</Path>
 				</File>
-				<File Id="407339339" Language="SFX">
-					<ShortName>penguin react.wav</ShortName>
-					<Path>SFX\penguin react_9E69E797.wem</Path>
-				</File>
 				<File Id="408013043" Language="SFX">
 					<ShortName>jump_picked_up_1.wav</ShortName>
 					<Path>SFX\jump_picked_up_1_9E69E797.wem</Path>
@@ -264,7 +260,7 @@
 				</File>
 				<File Id="639555924" Language="SFX">
 					<ShortName>penguin_placeholder_react_1.wav</ShortName>
-					<Path>SFX\penguin_placeholder_react_1_4881CABF.wem</Path>
+					<Path>SFX\penguin_placeholder_react_1_3A6525E3.wem</Path>
 				</File>
 				<File Id="651191199" Language="SFX">
 					<ShortName>footstep_snow_1.wav</ShortName>

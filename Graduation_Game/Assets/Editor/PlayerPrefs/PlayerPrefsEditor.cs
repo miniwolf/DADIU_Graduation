@@ -1,10 +1,12 @@
 ﻿using System;
 using Assets.scripts.UI.inventory;
 using UnityEditor;
+using UnityEngine;
 
 namespace Assets.Editor.PlayerPrefs {
 	public class PlayerPrefsEditor : EditorWindow {
 		private string value;
+		private readonly Item<int> levelIndex = Inventory.levelUnlockIndex;
 		private readonly Item<int> penguinCount = Inventory.penguinCount;
 		private readonly Item<int> hasInitialized = Inventory.hasInitialized;
 		private readonly Item<int> penguinStorage  = Inventory.penguinStorage;
@@ -24,12 +26,17 @@ namespace Assets.Editor.PlayerPrefs {
 
 		private void OnGUI() {
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
+			DrawEntry(InventoryConstants.LEVELINDEX, levelIndex);
 			DrawEntry(InventoryConstants.PENGUINCOUNT, penguinCount);
 			DrawEntry(InventoryConstants.PENGUINSTORAGE, penguinStorage);
 			eggTime.SetValue(EditorGUILayout.TextField(InventoryConstants.EGGTIME, eggTime.GetValue()));
 			DrawEntry(InventoryConstants.CASH, cash);
 			DrawEntry(InventoryConstants.KEY, key);
 			loginDate.SetValue(EditorGUILayout.TextField(InventoryConstants.LASTLOGIN, loginDate.GetValue()));
+			if (GUILayout.Button("Delete playerprefs for secretLevel")) {
+				UnityEngine.PlayerPrefs.DeleteKey("hasVisited");
+				UnityEngine.PlayerPrefs.DeleteKey("backFromSecret");
+			}
 		}
 
 		private void DrawEntry(string s, Item<int> item) {

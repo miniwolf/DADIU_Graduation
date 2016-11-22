@@ -29,6 +29,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
 
+		private bool tutorialShown = false;
+
 		protected void Awake() {
 			InjectionRegister.Register(this);
 		}
@@ -135,6 +137,7 @@ namespace Assets.scripts.UI.screen.ingame {
 					else if(oneClick && IsATool(touch.position)) {
 						oneClick = false;
 						if(Time.time - timeFirstClick < 0.6f) {
+							dragging = false;
 							doubleTap = true;
 						}
 					}
@@ -209,7 +212,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			dragging = true;
 			inputManager.BlockCameraMovement();
-			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+			hit.transform.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
@@ -218,6 +221,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if(doubleTap) { // return tool back
 				PutObjectInPool(currentObject.transform);
 				UpdateUI(currentObject.tag);
+
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
@@ -237,11 +241,31 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-
+			if (!tutorialShown) {
+				DismissTutorial(currentObject.tag);
+			}
 			StartCoroutine(CameraHack());
 		}
 
-
+		void DismissTutorial(string tag) {
+			tutorialShown = true;
+			GameObject go = null;
+			switch (tag) {
+				case TagConstants.SWITCHTEMPLATE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE);
+					break;
+				case TagConstants.JUMPTEMPLATE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP);
+					break;
+				case TagConstants.Tool.FREEZE_TIME:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
+					break;
+			}
+			foreach (Transform child in go.transform) {
+				if (child.CompareTag(TagConstants.TOOLTUTORIAL))
+					Destroy(child.gameObject);
+			}
+		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
 			string uiTag = "";
@@ -250,11 +274,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-					textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-					textValue = "Jump: ";
 					break;
 				case TagConstants.Tool.FREEZE_TIME:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
@@ -269,7 +291,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private Text GetText(string uiTag) {
 			GameObject go = GameObject.FindGameObjectWithTag(uiTag);
-			if(go != null) // tool might be disabled in first levels
+			if (go != null) // tool might be disabled in first levels
 	            return go.GetComponentInChildren<Text>();
 			return null;
 		}
@@ -313,7 +335,6 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
 			}
-
 		}
 
 		/*
