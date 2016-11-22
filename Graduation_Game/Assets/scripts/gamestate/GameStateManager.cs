@@ -6,7 +6,7 @@ namespace Assets.scripts.gamestate {
 	public class GameStateManager : MonoBehaviour {
 		private bool isGameFrozen;
 
-		void Awake() {
+		void Start() {
 			SceneManager.sceneLoaded += NewLevelLoaded;
 		}
 
@@ -23,7 +23,10 @@ namespace Assets.scripts.gamestate {
 		}
 
 		void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
+		    Debug.Log("New scene loaded: " + scene.name);
 			string ev;
+//		    AkSoundEngine.PostEvent(SoundConstants.Music.STOP_ALL, gameObject);
+//		    AkSoundEngine.StopAll();
 			if(scene.name.Equals("MainMenuScene")) {
 				ev = SoundConstants.Music.MAIN_MENU_MUSIC;
 			} else {
