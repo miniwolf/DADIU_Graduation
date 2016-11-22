@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.level;
+using Assets.scripts.sound;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
@@ -23,23 +24,40 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-		    int hotFix = 0; // we don't have level 6 in the main canvas right now, so skip it.
-		    foreach (var lvlData in levels) {
-		        hotFix++;
-		        if(hotFix == 5) continue;
-		        var c = lvlData;
-		        c.btnFromScene.interactable = false;
-		        lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
-		    }
+		    // todo when refactoring, use the code below please
+//		    foreach (var lvlData in levels) {
+//		        var c = lvlData;
+//		        c.btnFromScene.interactable = false;
+//		        lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
+//		    }
+//		    // Every level except the first is locked from the start
+//		    levels[0].btnFromScene.interactable = true;
+
+
 		    // Every level except the first is locked from the start
-		    levels[0].btnFromScene.interactable = true;
+		    levels[1].btnFromScene.interactable = false;
+		    levels[2].btnFromScene.interactable = false;
+		    levels[3].btnFromScene.interactable = false;
+		    levels[4].btnFromScene.interactable = false;
+		    //levels[5].btnFromScene.interactable = false;
 
-		   /* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
+		    // TODO in a loop this doesn't work, it doesn't load the correct level when you click a button
+		    levels[0].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[0]));
+		    levels[1].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[1]));
+		    levels[2].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[2]));
+		    levels[3].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[3]));
+		    levels[4].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[4]));
+		    //	levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
 
-			languageDropdown.onValueChanged.AddListener(delegate {
-				OnDropdownChanged();
-			});
-*/
+
+
+
+		    /* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
+
+             languageDropdown.onValueChanged.AddListener(delegate {
+                 OnDropdownChanged();
+             });
+ */
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 			DisablePopup();
 			//UpdateTexts();
@@ -101,6 +119,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		private void CheckLoadLevel(LvlData lvl) {
+		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, gameObject);
 			if(popup.enabled) {
 				DisablePopup();
 				return;
