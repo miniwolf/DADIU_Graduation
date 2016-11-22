@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.scripts.shop.item;
+using Assets.scripts.eggHatching;
 using UnityEngine;
 
 namespace Assets.scripts.UI.screen.ingame {
@@ -8,7 +8,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private TextMesh text;
 
 		protected void Start() {
-			var childObject = transform.GetChild(0);
+			var childObject = transform.GetChild(1);
 
 			text = childObject.GetComponent<TextMesh>();
 			childObject.GetComponent<MeshRenderer>().enabled = true;

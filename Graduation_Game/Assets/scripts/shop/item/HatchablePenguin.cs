@@ -1,5 +1,6 @@
 ﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
+using Assets.scripts.eggHatching;
 using UnityEngine;
 
 namespace Assets.scripts.shop.item {

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using Assets.scripts.shop.item;
 using Assets.scripts.UI.inventory;
 using Assets.scripts.UI.screen.ingame;
 using UnityEngine;

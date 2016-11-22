@@ -86,7 +86,7 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					pickupFactory.BuildEgg(component.GetActionable<PickupActions>());
+					pickupFactory.BuildEgg(component.GetActionable<PickupActions>(), component.GetGameObject());
 					break;
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);

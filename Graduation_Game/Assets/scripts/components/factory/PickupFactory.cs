@@ -1,4 +1,5 @@
 ﻿using Assets.scripts.controllers;
+using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.pickups;
 using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.controllers.handlers;
@@ -49,15 +50,15 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		public void BuildEgg(Actionable<PickupActions> actionable) {
+		public void BuildEgg(Actionable<PickupActions> actionable, GameObject go) {
 			actionable.AddAction(PickupActions.HatchEgg, HatchEgg());
-			actionable.AddAction(PickupActions.ShakeEgg, ShakeEgg());
+			actionable.AddAction(PickupActions.ShakeEgg, ShakeEgg(go));
 			actionable.AddAction(PickupActions.StartNewEgg, StartNewEgg());
 		}
 
-		private static Handler ShakeEgg() {
+		private static Handler ShakeEgg(GameObject go) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new ShakeEgg()); // TODO: Probably some animation
+			actionHandler.AddAction(new SetTrigger(go.GetComponent<Animator>(), AnimationConstants.SHAKE));
 			return actionHandler;
 		}
 

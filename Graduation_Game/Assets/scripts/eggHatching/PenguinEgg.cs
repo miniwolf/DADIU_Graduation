@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
+using Assets.scripts.shop.item;
 using Assets.scripts.UI.screen.ingame;
 using UnityEngine;
 
-namespace Assets.scripts.shop.item {
+namespace Assets.scripts.eggHatching {
 	[Serializable]
 	public class PenguinEgg : ActionableGameEntityImpl<PickupActions> {
 		public bool Hatchable { get; set; }
@@ -25,18 +25,11 @@ namespace Assets.scripts.shop.item {
 
 			Hatchable = true;
 			Destroy(Timer);
-			Destroy(transform.GetChild(0).gameObject);
+			Destroy(transform.GetChild(1).gameObject);
 			var penguin = gameObject.AddComponent<HatchablePenguin>();
 			penguin.SetEgg(this);
 			InjectionRegister.Redo();
-			StartCoroutine(Hatch());
-		}
-
-		private IEnumerator Hatch() {
-			while ( true ) {
-				ExecuteAction(PickupActions.ShakeEgg);
-				yield return new WaitForSeconds(shakeInterval);
-			}
+			ExecuteAction(PickupActions.ShakeEgg);
 		}
 
 		public void HatchEgg() {
