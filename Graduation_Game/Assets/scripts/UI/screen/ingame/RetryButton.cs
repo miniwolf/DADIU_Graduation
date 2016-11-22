@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Assets.scripts.UI.screen.ingame {
 	public class RetryButton : MonoBehaviour {
 		public void Retry() {
+			PlayerPrefs.DeleteKey("hasVisited");
 			//check if user has key to retry and if not update inventory
 			int numKeys = Inventory.key.GetValue();
 			if (numKeys > 0) {

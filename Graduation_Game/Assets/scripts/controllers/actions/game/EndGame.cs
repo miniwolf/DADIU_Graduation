@@ -109,6 +109,7 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 			Debug.Log(PlayerPrefs.GetInt("TotalStars"));
 			actionable.ExecuteAction(GameActions.TriggerCutScene);
+			PlayerPrefs.DeleteKey("hasVisited");
 			yield return null;
 		}
 		
