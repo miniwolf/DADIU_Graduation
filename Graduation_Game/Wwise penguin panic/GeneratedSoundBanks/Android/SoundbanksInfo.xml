@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -224,7 +224,7 @@
 				</File>
 				<File Id="639555924" Language="SFX">
 					<ShortName>penguin_placeholder_react_1.wav</ShortName>
-					<Path>SFX\penguin_placeholder_react_1_4881CABF.wem</Path>
+					<Path>SFX\penguin_placeholder_react_1_3A6525E3.wem</Path>
 				</File>
 				<File Id="651191199" Language="SFX">
 					<ShortName>footstep_snow_1.wav</ShortName>
