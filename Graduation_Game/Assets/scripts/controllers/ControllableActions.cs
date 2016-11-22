@@ -1,7 +1,7 @@
 ﻿namespace Assets.scripts.controllers {
 	public enum ControllableActions {
 		SwitchLeft, SwitchRight,
-		Move, Stop,
+		Move, Stop, Start,
 		KillPenguinBySpikes, KillPenguinByPit,
 		KillPenguinByExcavator,
 		KillPenguingByWeightBased,
@@ -12,5 +12,9 @@
 		KillPenguinByElectricution,
 		KillPenguinByOrca,
 	    StartSliding, StopSliding,
+	    Freeze, UnFreeze,
+	    OtherPenguinDied, // reactions to death of other penguin
+		SealJump, SealMove, SealFall, SealDeath, SealLand,
+		Celebrate
 	}
 }

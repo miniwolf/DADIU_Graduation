@@ -2,9 +2,15 @@
 using Assets.scripts.controllers;
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.scripts.components.registers;
+using Assets.scripts.gamestate;
+using Assets.scripts.UI.screen.ingame;
+using JetBrains.Annotations;
+using System.Collections;
+using Assets.scripts.sound;
 
 namespace Assets.scripts.character {
-	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable {
+	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
@@ -17,6 +23,7 @@ namespace Assets.scripts.character {
 		public Lane lane = Lane.Left;
 		public Lane goingToLane = Lane.Left;
 		private bool isDead;
+		private bool isFrozen;
 		private CharacterController characterController;
 		private float groundY;
 		private bool isRunning;
@@ -25,20 +32,39 @@ namespace Assets.scripts.character {
 		private Dictionary<CurveType, AnimationCurve> curveDict;
 		private Dictionary<CurveType, float> initialTimeDict;
 		private Weight weight;
+	    private GameStateManager gameStateManager;
+		private bool isStopped = false;
+	    private NotifierSystem notifierSystem;
+	    private Camera deathCam;
 
-		void Start() {
+	    void Start() {
 			groundY = transform.position.y;
-			direction = new Vector3(1,0,0);
 			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
 			curveDict = new Dictionary<CurveType, AnimationCurve>();
 			initialTimeDict = new Dictionary<CurveType, float>();
 			weight = Weight.Normal;
-		}
+	        deathCam =  GetComponentInChildren<Camera>();
+	        deathCam.enabled = false;
+	    }
 
 		void Update() {
+			if (isStopped) {
+				return;
+			}
+			// TODO make a bool variable to disable (or not) the buttons in the UI
+			// so game designer can try and decide what option is better
+
+		    if (gameStateManager.IsGameFrozen()) {
+		        ExecuteAction(ControllableActions.Freeze);
+		        return;
+		    } else {
+		        ExecuteAction(ControllableActions.UnFreeze);
+		    }
+
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
+				/*
 				if ( isRunning ) {
 					ExecuteAction(ControllableActions.Speed);
 				}
@@ -47,8 +73,9 @@ namespace Assets.scripts.character {
 				}
 				if ( isMinimizing ) {
 					ExecuteAction(ControllableActions.Minimize);
-				}
+				}*/
 			} else {
+			    StopSound();
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
@@ -57,7 +84,25 @@ namespace Assets.scripts.character {
 				}
 			}
 		}
-		public override string GetTag() {
+
+		 IEnumerator OnTriggerEnter(Collider collider) {
+			if (collider.transform.tag == "WinZone") {
+				ExecuteAction(ControllableActions.Celebrate);
+				yield return new WaitForSeconds(4f);
+				ExecuteAction(ControllableActions.Stop);
+			}
+		}
+
+	    void OnDestroy() {
+	        StopSound();
+	        gameStateManager = null;
+	    }
+
+	    private void StopSound()	    {
+	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
+	    }
+
+	    public override string GetTag() {
 			return TagConstants.PENGUIN;
 		}
 
@@ -196,5 +241,31 @@ namespace Assets.scripts.character {
 		public void SetWeight(Weight weight) {
 			this.weight = weight;
 		}
+
+	    public void SetGameStateManager(GameStateManager manager) {
+	        gameStateManager = manager;
+	    }
+
+	    public void SetNotifyManager(NotifierSystem s)
+	    {
+	        notifierSystem = s;
+	        notifierSystem.Register(NotifierSystem.Event.PenguinDied, this);
+	    }
+
+		public void SetStop(bool stop){
+			isStopped = stop;
+		}
+
+	    /// <summary>
+	    /// Triggered when some penguin dies
+	    /// </summary>
+	    /// <param name="penguin"></param>
+	    public void Notify(GameObject penguin) {
+	        ExecuteAction(ControllableActions.OtherPenguinDied);
+	    }
+
+	    public Camera GetDeathCam() {
+	        return deathCam;
+	    }
 	}
 }

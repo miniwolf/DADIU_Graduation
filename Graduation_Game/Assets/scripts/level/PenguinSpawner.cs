@@ -1,9 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.scripts.components.registers;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Diagnostics;
+using System.Security.Policy;
 using System.Threading;
+using Assets.scripts.gamestate;
+using Assets.scripts.sound;
+using Assets.scripts.character;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -20,10 +25,17 @@ namespace Assets.scripts.level {
 		private GameObject penguinObject;
 		private Text countDown;
 		private Text penguinCounter;
+	    private GameStateManager gameStateManager;
+		private List<GameObject> penguins = new List<GameObject>();
+		private int count;
 
 		public void Start() {
+			//PlayerPrefs.DeleteKey("hasVisited");
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			countDown = GameObject.FindGameObjectWithTag(TagConstants.COUNT_DOWN_TEXT).GetComponent<Text>();
+		    gameStateManager = FindObjectOfType<GameStateManager>();
+			count = penguinCount;
+
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -32,17 +44,23 @@ namespace Assets.scripts.level {
 				penguinObject = child.gameObject;
 				break;
 			}
-			StartCoroutine(Spawn());
+			if (PlayerPrefs.GetInt("backFromSecret") == 1) {
+				GetPreviousPositions();
+			} else {
+				StartCoroutine(Spawn());
+			}
 		}
 
 		private IEnumerator Spawn() {
 			// spawn first penguin and freeze time
 			SpawnPenguin();
+			count--;
 			yield return StartCoroutine(FreezeAndSpawnRest());
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {
-			int counter = numIntervals;
+
+		    int counter = numIntervals;
 			do {
 				// print in text UI
 				countDown.text = counter.ToString();
@@ -51,20 +69,58 @@ namespace Assets.scripts.level {
 				Time.timeScale = 1.0f;
 			} while ( --counter > 0 );
 			countDown.enabled = false;
-			while ( penguinCount > 0 ) {
+
+			while ( count > 0 ) {
 				yield return new WaitForSeconds(countTime);
-				SpawnPenguin();
+			    if (!gameStateManager.IsGameFrozen()) {
+			        SpawnPenguin();
+					count--;
+			    }
 			}
 		}
 
-		void SpawnPenguin() {
+		public void SpawnPenguin() {
 			// Create an instance of the penguin at the objects position
 			var go = (GameObject)Instantiate(penguinObject, transform.position, Quaternion.identity);
+		    penguins.Add(go);
+		    penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
+			go.SetActive(true);
+			go.tag = TagConstants.PENGUIN;
+			InjectionRegister.Redo();
+		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
+		}
+
+		public void SpawnPenguin(Vector3 pos) {
+			// Create an instance of the penguin at the objects position
+			var go = (GameObject)Instantiate(penguinObject, pos, Quaternion.identity);
+			penguins.Add(go);
 			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
-			penguinCount--;
+			AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
 		}
+
+		private void GetPreviousPositions(){
+			for (int i = 0; i < count; i++) {
+				if (PlayerPrefs.GetFloat("penguin_" + i + "_x") != null) {
+					Vector3 vec = new Vector3(PlayerPrefs.GetFloat("penguin_" + i + "_x"), PlayerPrefs.GetFloat("penguin_" + i + "_y"), PlayerPrefs.GetFloat("penguin_" + i + "_z"));
+					SpawnPenguin(vec);
+				}
+			}
+			PlayerPrefs.SetInt("backFromSecret", 0);
+		}
+
+		public List<GameObject> GetAllPenguins(){
+			return penguins;
+		}
+
+		public int GetInitialPenguinCount() {
+			return penguinCount;
+		}
+
+
+
 	}
+
 }

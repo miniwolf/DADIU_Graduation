@@ -1,4 +1,6 @@
-﻿using Assets.scripts.controllers;
+﻿using System;
+using Assets.scripts.character;
+using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
@@ -6,27 +8,45 @@ using Assets.scripts.controllers.actions.tools.lane;
 using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
+using Assets.scripts.gamestate;
 using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
+using AssemblyCSharp;
+using Assets.scripts.components.registers;
+using UnityEngine.Networking.Types;
+using System.Reflection;
+using System.Linq;
+using Assets.scripts.controllers.actions.sound;
+using Assets.scripts.sound;
+using System.Collections;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
-	    private readonly Actionable<ControllableActions> actionable;
+		private readonly Actionable<ControllableActions> actionable;
 		private readonly GameObject levelSettings;
 		private readonly Animator animator;
 		private readonly Directionable directionable;
+		private readonly GameStateManager gameStateManager;
+	    private readonly NotifierSystem notifierSystem;
+		private GameObject splat;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
+			gameStateManager = stateManager;
+		    this.notifierSystem = notifierSystem;
+		    Penguin p = penguin.GetComponent<Penguin>();
+		    p.SetGameStateManager(gameStateManager);
+		    p.SetNotifyManager(this.notifierSystem);
+			this.splat = splat;
 		}
 
 		public void Build() {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
-			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLeft());
-			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchRight());
+			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
+			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
 			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(AnimationConstants.SPIKEDEATH));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(AnimationConstants.PITDEATH));
 			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(AnimationConstants.SPIKEDEATH)); // TODO: There should be another
@@ -46,6 +66,33 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 			actionable.AddAction(ControllableActions.StartSliding, CreateSlideAction(true));
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
+			actionable.AddAction(ControllableActions.Freeze, CreateFreezeAction(true));
+			actionable.AddAction(ControllableActions.UnFreeze, CreateFreezeAction(false));
+			actionable.AddAction(ControllableActions.Stop, CreateStopAction());
+			actionable.AddAction(ControllableActions.Start, CreateStartAction());
+			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
+			actionable.AddAction(ControllableActions.Celebrate, CreateCelebrateAction());
+		}
+
+	    private Handler CreateOtherPenguinDeath()
+	    {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
+			return actionHandler;
+	    }
+
+		private Handler CreateCelebrateAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetTrigger(animator, AnimationConstants.CELEBRATE));
+			//StartCoroutine(Wait());
+			//actionHandler.AddAction(new StopMoving(actionable));
+			return actionHandler;
+		}
+
+	    private Handler CreateFreezeAction(bool freeze) {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new FreezeAction(animator, freeze));
+			return actionHandler;
 		}
 
 		private Handler CreateSlideAction(bool slide) {
@@ -63,32 +110,35 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateMove() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new MoveForward((Directionable) actionable, actionable));
+//		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.PenguinSounds.START_MOVING));
 			return actionHandler;
 		}
 
-		private Handler CreateSwitchLeft() {
+		private Handler CreateSwitchLane(LaneSwitch sw) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Left()));
-			return actionHandler;
-		}
-
-		private Handler CreateSwitchRight() {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, new Right()));
+			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, sw));
+		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
 			return actionHandler;
 		}
 
 		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable));
-			actionHandler.AddAction(new SetTrigger(animator, constant));
+			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
+			actionHandler.AddAction(new SetTrigger(animator, GetRandomAnimation(constant)));
+			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			return actionHandler;
+		}
+
+		private string GetRandomAnimation(string type) {
+			FieldInfo[] fields = typeof(AnimationConstants).GetFields().Where(f => f.GetRawConstantValue().ToString().StartsWith(type)).Cast<FieldInfo>().ToArray();
+			return fields[UnityEngine.Random.Range(0, fields.Length)].GetRawConstantValue().ToString();
 		}
 
 		private Handler CreateStartJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
 			actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.JUMP));
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 
@@ -157,6 +207,18 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StopMinimize((Directionable) actionable));
 			actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.MINIMIZE));
+			return actionHandler;
+		}
+
+		private Handler CreateStopAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StopMoving(actionable));
+			return actionHandler;
+		}
+
+		private Handler CreateStartAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new StartMoving(actionable));
 			return actionHandler;
 		}
 	}

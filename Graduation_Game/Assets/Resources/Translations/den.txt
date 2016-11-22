@@ -1,0 +1,9 @@
+level1;Level 1 DK
+level2;Level 2 DK
+level3;Level 3 DK
+level4;Level 4 DK
+level5;Level 5 DK
+level6;Level 6 DK
+popupNotEnoguhPenguins; Not enough penguins to play the level! DK
+backsettings; Tilbage
+settings; SETTINGS DK

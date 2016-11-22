@@ -22,7 +22,6 @@ namespace Assets.scripts.tools {
 
 		private static void ChangeLane(Component collision, ControllableActions action, Penguin.Lane lane) {
 			collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(action);
-			collision.gameObject.GetComponent<Penguin>().SetLane(lane);
 		}
 	}
 }

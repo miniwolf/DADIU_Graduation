@@ -10,6 +10,11 @@ namespace Assets.scripts.pickups {
 			}
 		}
 
+		public void TriggerFlow() {
+			gameObject.layer = LayerMask.NameToLayer("UI");
+			ExecuteAction(PickupActions.FlowScore);
+		}
+
 		public override string GetTag() {
 			return TagConstants.PLUTONIUM_PICKUP;
 		}

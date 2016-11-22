@@ -7,6 +7,7 @@ v1.0
 - Penguins die
 - Pickups
 	* Plutonium
+
 v2.0
 	- Switch lane tool
 	- Jump tool
@@ -15,12 +16,73 @@ v2.0
 	- UI counters
 		* Penguin count
 		* Plutonium
+
 v3.0
 Camera fix - not possible to move while dragging objects in the scene
 Tool fix - different tools work properly
 Reset button
-v4.0
-Features (for non-programmers):
 
-Tech (for programmers):
-    New input manager - get a reference to InputManager from Injector and use it for handling the input. Register for different input chanels (touch, keyboard, mouse).
+v4.0
+    	New input manager - get a reference to InputManager from Injector and use it for handling the input. Register for different input chanels (touch, keyboard, mouse).
+	5 levels
+	Level menu
+	Back to menu button
+	Countdown in start of level
+	Updated penguin animations
+Traps:
+	Pressure plate with activation bridge
+	Excavator
+	Weight based trap
+	Electrical wire
+	Orca
+Tools:
+	Bridge
+	Change lane - updated functionality
+	Enlarge
+	Minimize
+	Snapping - 
+		Proper centered in the world, now placable in upper and lower levels
+		X value snapping
+		Replacement of tools
+	Camera fix - can move when clicking on buttons with no tool
+	Limited amount of tools per level
+	Return tools to stash
+	Speed
+
+Functionality in code:
+	Slope at the end of level
+	Metal Penguin
+
+BETA v1.0
+	
+	Only available tools are jump and switch lane
+	6 levels in total
+	Added more sound
+	Tutorial seal implemented
+	Pickup feedback, gold flying to the UI
+	End screen
+		- star logging
+	Menu visuals added for most menus
+	Account (please fill out)
+	Secret level implemented
+	Settings menu (still in progress)
+	Tools tutorial
+	CutScene
+	Shop UI
+	Level unlock
+	Retry keys added
+	Egg hatching in progress
+	Deathcams added
+	Blood
+	Canvas updated
+	Mainmenu updated
+	Winzone
+	Language switching
+	Updates to camera
+	Return tool by double clicking
+	Tool counter
+		
+	
+	
+	
+	
