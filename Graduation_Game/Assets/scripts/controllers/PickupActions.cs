@@ -4,6 +4,7 @@
 		PickupPlutonium,
 		HatchEgg, ShakeEgg,
 		CollectPenguin,
-		CurrencyAdd, CurrencyFly
+		CurrencyAdd, CurrencyFly,
+		StartNewEgg
 	}
 }

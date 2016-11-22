@@ -1,37 +1,38 @@
 ﻿using System;
 using System.Collections;
 using Assets.scripts.components;
+using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
+using Assets.scripts.UI.screen.ingame;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.scripts.shop.item {
 	[Serializable]
 	public class PenguinEgg : ActionableGameEntityImpl<PickupActions> {
-		public bool hatchable;
+		public bool Hatchable { get; set; }
 		public bool IsReady { get; set; }
 		[SerializeField]
 		public DateTime HatchTime { get; set; }
 		public int shakeInterval = 2;
 
-		private GameObject button;
-
-		protected void Start() {
-			button = GetComponentInChildren<Button>().gameObject;
-			button.SetActive(false);
-		}
+		public int Idx { get; set; }
+		public EggTimer Timer { get; set; }
 
 		protected void Update() {
-			if ( hatchable || DateTime.Now < HatchTime ) {
+			if ( Hatchable || DateTime.Now < HatchTime ) {
 				return;
 			}
 
-			hatchable = true;
-			button.SetActive(true);
-			StartCoroutine(Hatchable());
+			Hatchable = true;
+			Destroy(Timer);
+			Destroy(transform.GetChild(0).gameObject);
+			var penguin = gameObject.AddComponent<HatchablePenguin>();
+			penguin.SetEgg(this);
+			InjectionRegister.Redo();
+			StartCoroutine(Hatch());
 		}
 
-		private IEnumerator Hatchable() {
+		private IEnumerator Hatch() {
 			while ( true ) {
 				ExecuteAction(PickupActions.ShakeEgg);
 				yield return new WaitForSeconds(shakeInterval);
@@ -44,10 +45,6 @@ namespace Assets.scripts.shop.item {
 
 		public override string GetTag() {
 			return TagConstants.PENGUINEGG;
-		}
-
-		public void HideButton() {
-			button.SetActive(false);
 		}
 	}
 }

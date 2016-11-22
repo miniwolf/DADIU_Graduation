@@ -4,7 +4,7 @@ using Assets.scripts.level;
 using System;
 
 namespace Assets.scripts.UI.inventory {
-	public class Inventory : MonoBehaviour {
+	public class Inventory {
 		public readonly Item<int> plutonium = new InventoryItem();
 		public static readonly Item<int> penguinStorage = new PreferenceItem<int>(InventoryConstants.PENGUINSTORAGE);
 		public static readonly Item<int> penguinCount = new PreferenceItem<int>(InventoryConstants.PENGUINCOUNT);
@@ -28,13 +28,16 @@ namespace Assets.scripts.UI.inventory {
 				loginDate.SetValue(DateTime.Now.ToString());
 			}
 
+			SetupLoginDate();
+		}
+
+		private static void SetupLoginDate() {
 			var stringTime = loginDate.GetValue();
 			loginDate.SetValue(DateTime.Now.ToString());
 
 			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
 				key.SetValue(key.GetValue() + 1);
 			}
-
 		}
 
 		public static void UpdateCount() {
