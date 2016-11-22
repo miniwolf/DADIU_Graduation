@@ -81,7 +81,11 @@ BETA v1.0
 	Updates to camera
 	Return tool by double clicking
 	Tool counter
-		
+
+Beta v1.1
+
+CutScene implemented after level 3
+Multiple UI updates for most items within the game
 	
 	
 	
