@@ -10,6 +10,7 @@ public class SecretLevelPortal : MonoBehaviour {
 
 	private PenguinSpawner pSpawner;
 	private List<GameObject> penguins = new List<GameObject>();
+	public string secretLevelLoad;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +31,7 @@ public class SecretLevelPortal : MonoBehaviour {
 		PlayerPrefs.SetString("thisCurrLvl", SceneManager.GetActiveScene().name);
 		penguins = pSpawner.GetAllPenguins();
 		SavePosOfPenguins();
-		SceneManager.LoadScene("secretLevel1");
+		SceneManager.LoadScene(secretLevelLoad);
 	}
 
 
