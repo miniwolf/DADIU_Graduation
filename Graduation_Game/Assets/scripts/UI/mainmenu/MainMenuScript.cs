@@ -45,6 +45,7 @@ namespace Assets.scripts.UI.mainmenu {
 			});
 */
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
+
 			DisablePopup();
 			//UpdateTexts();
 		}
@@ -126,6 +127,10 @@ namespace Assets.scripts.UI.mainmenu {
 				lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
 			}
 			popup.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.popupNotEnoguhPenguins);
+		}
+
+		public void SettingsButton() {
+			SceneManager.LoadScene("Settings");	
 		}
 
 		private void DisablePopup() {
