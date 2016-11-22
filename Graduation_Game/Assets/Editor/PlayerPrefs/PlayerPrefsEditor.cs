@@ -5,6 +5,7 @@ using UnityEditor;
 namespace Assets.Editor.PlayerPrefs {
 	public class PlayerPrefsEditor : EditorWindow {
 		private string value;
+		private readonly Item<int> levelIndex = Inventory.levelUnlockIndex;
 		private readonly Item<int> penguinCount = Inventory.penguinCount;
 		private readonly Item<int> hasInitialized = Inventory.hasInitialized;
 		private readonly Item<int> penguinStorage  = Inventory.penguinStorage;
@@ -24,6 +25,7 @@ namespace Assets.Editor.PlayerPrefs {
 
 		private void OnGUI() {
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
+			DrawEntry(InventoryConstants.LEVELINDEX, levelIndex);
 			DrawEntry(InventoryConstants.PENGUINCOUNT, penguinCount);
 			DrawEntry(InventoryConstants.PENGUINSTORAGE, penguinStorage);
 			eggTime.SetValue(EditorGUILayout.TextField(InventoryConstants.EGGTIME, eggTime.GetValue()));

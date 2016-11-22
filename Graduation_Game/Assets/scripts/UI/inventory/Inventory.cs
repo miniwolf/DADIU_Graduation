@@ -12,8 +12,10 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> cash = new PreferenceItem<int>(InventoryConstants.CASH);
 		public static readonly Item<int> hatchablePenguins = new PreferenceItem<int>(InventoryConstants.HATCHABLEPENGUINS);
 		public static readonly Item<string> eggHatchTime = new PreferenceItem<string>(InventoryConstants.EGGTIME);
+		public static readonly Item<int> levelUnlockIndex = new PreferenceItem<int>(InventoryConstants.LEVELINDEX);
 		public static readonly Item<int> key = new PreferenceItem<int>(InventoryConstants.KEY);
 		public static readonly Item<string> loginDate = new PreferenceItem<string>(InventoryConstants.LASTLOGIN);
+
 
 		static Inventory() {
 			// SanityCheck
@@ -28,7 +30,13 @@ namespace Assets.scripts.UI.inventory {
 				loginDate.SetValue(DateTime.Now.ToString());
 			}
 
-			UpdateLastLogin();
+			var stringTime = loginDate.GetValue();
+			loginDate.SetValue(DateTime.Now.ToString());
+
+			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
+				key.SetValue(key.GetValue() + 1);
+			}
+
 		}
 
 		public static void UpdateCount() {
@@ -48,15 +56,6 @@ namespace Assets.scripts.UI.inventory {
 			// update the penguin counter in the inventory
 			int inventoryPenguins = Inventory.penguinCount.GetValue();
 			Inventory.penguinCount.SetValue(inventoryPenguins - deadPenguins);
-		}
-
-		private void UpdateLastLogin() {
-			var stringTime = loginDate.GetValue();
-			loginDate.SetValue(DateTime.Now.ToString());
-
-			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
-				key.SetValue(key.GetValue() + 1);
-			}
 		}
 	}
 }
