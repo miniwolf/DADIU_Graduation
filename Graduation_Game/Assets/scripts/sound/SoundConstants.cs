@@ -61,6 +61,7 @@
 			public const string SOUND_UNMUTE = "unmute_master";
 			public const string MAIN_MENU_MUSIC = "music_menu_play";
 			public const string IN_GAME_MUSIC = "music_game_play";
+			public const string STOP_ALL = "stopAll";
 		}
 
 
@@ -75,7 +76,7 @@
 		//	        pickup_add_to_score
 		//	    egg_hatching
 		//	        button_pressed
-		//	    shop_get_currency
+		//	    shop_get_currency+
 		//	        end_screen_spawn
 		//	    end_screen_star_spawn
 		//	        end_screen_pickup_count

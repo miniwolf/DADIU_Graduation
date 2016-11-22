@@ -24,6 +24,7 @@ namespace Assets.scripts.gamestate {
 
 		void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
 			string ev;
+		    AkSoundEngine.PostEvent(SoundConstants.Music.STOP_ALL, gameObject);
 			if(scene.name.Equals("MainMenuScene")) {
 				ev = SoundConstants.Music.MAIN_MENU_MUSIC;
 			} else {
