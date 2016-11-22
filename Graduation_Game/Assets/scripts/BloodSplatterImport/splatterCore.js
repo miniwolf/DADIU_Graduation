@@ -22,6 +22,6 @@ function Awake ()
                 var rater = Random.Range (0, 359);
                 splatter.transform.RotateAround (hit.point, hit.normal, rater);
                 
-                Destroy (splatter, 5);            }        
+                //Destroy (splatter, 5);            }        
         }
 }
