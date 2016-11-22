@@ -218,6 +218,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if(doubleTap) { // return tool back
 				PutObjectInPool(currentObject.transform);
 				UpdateUI(currentObject.tag);
+
 				currentObject.SetActive(false);
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 				currentObject = null;
@@ -238,10 +239,28 @@ namespace Assets.scripts.UI.screen.ingame {
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 
+			DismissTutorial(currentObject.tag);
 			StartCoroutine(CameraHack());
 		}
 
-
+		void DismissTutorial(string tag) {
+			GameObject go = null;
+			switch (tag) {
+				case TagConstants.SWITCHTEMPLATE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE);
+					break;
+				case TagConstants.JUMPTEMPLATE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP);
+					break;
+				case TagConstants.Tool.FREEZE_TIME:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
+					break;
+			}
+			foreach (Transform child in go.transform) {
+				if (child.CompareTag(TagConstants.TOOLTUTORIAL))
+					Destroy(child.gameObject);
+			}
+		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
 			string uiTag = "";
@@ -269,7 +288,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private Text GetText(string uiTag) {
 			GameObject go = GameObject.FindGameObjectWithTag(uiTag);
-			if(go != null) // tool might be disabled in first levels
+			if (go != null) // tool might be disabled in first levels
 	            return go.GetComponentInChildren<Text>();
 			return null;
 		}
@@ -313,7 +332,6 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.position = hit.point;
 				snapping.Snap(hit.point, obj.transform);
 			}
-
 		}
 
 		/*
