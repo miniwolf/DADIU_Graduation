@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string EGG_COLLECTION = "Egg collection";
 		public const string HATCHABLE_PENGUIN = "Hatchable penguin";
 		public const string PENGUINEGG = "PenguinEgg";
 		public const string METALTEMPLATE = "MetalTemplate";
