@@ -53,16 +53,36 @@ Functionality in code:
 	Slope at the end of level
 	Metal Penguin
 
-v5.0
+BETA v1.0
 	
 	Only available tools are jump and switch lane
 	6 levels in total
 	Added more sound
 	Tutorial seal implemented
-	Multiple different ways of placing objects
 	Pickup feedback, gold flying to the UI
 	End screen
-		- star logging, how many stars one gets in a level
+		- star logging
 	Menu visuals added for most menus
 	Account (please fill out)
+	Secret level implemented
+	Settings menu (still in progress)
+	Tools tutorial
+	CutScene
+	Shop UI
+	Level unlock
+	Retry keys added
+	Egg hatching in progress
+	Deathcams added
+	Blood
+	Canvas updated
+	Mainmenu updated
+	Winzone
+	Language switching
+	Updates to camera
+	Return tool by double clicking
+	Tool counter
+		
+	
+	
+	
 	

@@ -8,6 +8,7 @@ using System.Security.Policy;
 using System.Threading;
 using Assets.scripts.gamestate;
 using Assets.scripts.sound;
+using Assets.scripts.character;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {

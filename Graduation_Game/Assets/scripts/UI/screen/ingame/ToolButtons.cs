@@ -29,6 +29,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
 
+		private bool tutorialShown = false;
+
 		protected void Awake() {
 			InjectionRegister.Register(this);
 		}
@@ -135,6 +137,7 @@ namespace Assets.scripts.UI.screen.ingame {
 					else if(oneClick && IsATool(touch.position)) {
 						oneClick = false;
 						if(Time.time - timeFirstClick < 0.6f) {
+							dragging = false;
 							doubleTap = true;
 						}
 					}
@@ -209,7 +212,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			dragging = true;
 			inputManager.BlockCameraMovement();
-			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+			hit.transform.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
@@ -238,12 +241,14 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-
-			DismissTutorial(currentObject.tag);
+			if (!tutorialShown) {
+				DismissTutorial(currentObject.tag);
+			}
 			StartCoroutine(CameraHack());
 		}
 
 		void DismissTutorial(string tag) {
+			tutorialShown = true;
 			GameObject go = null;
 			switch (tag) {
 				case TagConstants.SWITCHTEMPLATE:
