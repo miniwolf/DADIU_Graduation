@@ -1686,32 +1686,6 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="react_1" ID="{2DA91CCC-5A39-4B5D-902A-D05AEFB1F9A7}" ShortID="257127895" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value Platform="Android">False</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin react" ID="{03062FFB-4C85-4A7D-BFA2-01F364A03723}" ShortID="407339339">
-											<Language>SFX</Language>
-											<AudioFile>penguin react.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin react" ID="{03062FFB-4C85-4A7D-BFA2-01F364A03723}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="penguin_placeholder_react_1" ID="{3E4FA6FE-5FB9-4A9E-9BED-D1EB6A6AD42D}" ShortID="851930348" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1726,7 +1700,6 @@
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="7.12630208333333E-03"/>
 												<Property Name="FadeOutDuration" Type="Real64" Value="0.114020833333333"/>
-												<Property Name="TrimBegin" Type="Real64" Value="3.46134672619048E-02"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>penguin_placeholder_react_1.wav</AudioFile>

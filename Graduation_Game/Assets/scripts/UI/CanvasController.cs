@@ -72,6 +72,7 @@ namespace Assets.scripts.UI {
 		}
 
 		public void EndLevel() {
+			PlayerPrefs.DeleteKey("hasVisited");
 			endLevel = true;
 		}
 
