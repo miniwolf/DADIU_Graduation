@@ -26,11 +26,12 @@ public class SecretLevelPortal : MonoBehaviour {
 			return;
 		}
 		PlayerPrefs.SetInt("hasVisited", 1);
-		PlayerPrefs.SetInt("backFromSecret", 1);
+
 		PlayerPrefs.SetString("thisCurrLvl", SceneManager.GetActiveScene().name);
 		penguins = pSpawner.GetAllPenguins();
 		SavePosOfPenguins();
-		SceneManager.LoadScene("secretLevel1");
+		//SceneManager.UnloadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadSceneAsync("SecretLevel1");
 	}
 
 
