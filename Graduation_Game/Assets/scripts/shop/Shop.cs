@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.scripts.shop.item;
+using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using UnityEngine;
 
@@ -45,6 +46,7 @@ namespace Assets.scripts.shop {
 		}
 
 		public void Purchase(string item) {
+		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, gameObject);
 			var shopItem = items[item];
 			if ( shopItem.GetPrice() > cash.GetValue()) {
 				Debug.Log("You do not have enough cash");
