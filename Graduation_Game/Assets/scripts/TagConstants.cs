@@ -50,7 +50,12 @@
 	    }
 
 	    public class UI {
+			public const string LANGUAGE_IMAGE = "LanguageImage";
 	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
+			public const string UK_TEXT = "UKText";
+			public const string DK_TEXT = "DKText";
+			public const string ON_TEXT = "OnText";
+			public const string OFF_TEXT = "OffText";
 			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
 			public const string BACK_SETTINGS = "BackSettings";
 			public const string SETTINGS_TEXT = "SettingsText";
