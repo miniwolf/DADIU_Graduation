@@ -5,3 +5,5 @@ level4;Level 4 EN
 level5;Level 5 EN
 level6;Level 6 EN
 popupNotEnoguhPenguins; Not enough penguins to play the level!
+backsettings; Back
+settings; SETTINGS
