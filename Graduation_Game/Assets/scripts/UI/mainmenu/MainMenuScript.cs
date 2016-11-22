@@ -23,11 +23,6 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			levels[1].btnFromScene.interactable = false;
-			levels[2].btnFromScene.interactable = false;
-			levels[3].btnFromScene.interactable = false;
-			levels[4].btnFromScene.interactable = false;
-
 		    foreach (var lvlData in levels) {
 		        var c = lvlData;
 		        c.btnFromScene.interactable = false;
