@@ -30,7 +30,6 @@ namespace Assets.scripts.level {
 		private int count;
 
 		public void Start() {
-			//PlayerPrefs.DeleteKey("hasVisited");
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			countDown = GameObject.FindGameObjectWithTag(TagConstants.COUNT_DOWN_TEXT).GetComponent<Text>();
 		    gameStateManager = FindObjectOfType<GameStateManager>();
@@ -109,6 +108,7 @@ namespace Assets.scripts.level {
 				}
 			}
 			PlayerPrefs.SetInt("backFromSecret", 0);
+			countDown.enabled = false;
 		}
 
 		public List<GameObject> GetAllPenguins(){
