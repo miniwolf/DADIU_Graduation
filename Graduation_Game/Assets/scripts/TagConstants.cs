@@ -43,6 +43,7 @@
 		public const string SKIPINTROTEXT = "SkipIntroText";
 		public const string CUTSCENE = "CutScene";
 		public const string WINZONE = "WinZone";
+		public const string TOOLTUTORIAL = "ToolTutorial";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
@@ -50,10 +51,12 @@
 
 	    public class UI {
 	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
+			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
+			public const string BACK_SETTINGS = "BackSettings";
+			public const string SETTINGS_TEXT = "SettingsText";
 	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
 	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
 	        public const string POPUP_PENGUIN_REQUIRED = "PenguinRequiredPopup";
-
 	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
 	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
