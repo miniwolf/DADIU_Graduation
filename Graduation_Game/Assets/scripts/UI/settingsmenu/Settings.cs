@@ -79,7 +79,10 @@ namespace Assets.scripts.UI.settingsmenu {
 
 		private void Selection(GameObject text, Color col, bool isEnable) {
 			text.GetComponent<Text>().color = col; 
-			text.GetComponent<Outline>().enabled = isEnable;
+			Outline[] outlines = text.GetComponents<Outline>();
+			foreach(Outline outline in outlines) {
+				outline.enabled = isEnable;
+			}
 		}
 
 		public void ChangeMusic() {
