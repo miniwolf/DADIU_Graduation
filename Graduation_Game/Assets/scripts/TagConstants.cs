@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string EGG_COLLECTION = "Egg collection";
 		public const string HATCHABLE_PENGUIN = "Hatchable penguin";
 		public const string PENGUINEGG = "PenguinEgg";
 		public const string METALTEMPLATE = "MetalTemplate";
@@ -43,17 +44,25 @@
 		public const string SKIPINTROTEXT = "SkipIntroText";
 		public const string CUTSCENE = "CutScene";
 		public const string WINZONE = "WinZone";
+		public const string TOOLTUTORIAL = "ToolTutorial";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
 	    }
 
 	    public class UI {
+			public const string LANGUAGE_IMAGE = "LanguageImage";
 	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
+			public const string UK_TEXT = "UKText";
+			public const string DK_TEXT = "DKText";
+			public const string ON_TEXT = "OnText";
+			public const string OFF_TEXT = "OffText";
+			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
+			public const string BACK_SETTINGS = "BackSettings";
+			public const string SETTINGS_TEXT = "SettingsText";
 	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
 	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
 	        public const string POPUP_PENGUIN_REQUIRED = "PenguinRequiredPopup";
-
 	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
 	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
 	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";

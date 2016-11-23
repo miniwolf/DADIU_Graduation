@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.scripts.eggHatching;
 using Assets.scripts.shop.item;
 using Assets.scripts.UI.inventory;
 using UnityEngine;
@@ -15,8 +16,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 			Inventory.penguinCount.SetValue(Inventory.penguinCount.GetValue() + 1);
 			var penguinEgg = go.GetComponent<PenguinEgg>();
 			penguinEgg.HatchTime = DateTime.Now.AddMinutes(30);
-			penguinEgg.hatchable = false;
-			penguinEgg.HideButton();
+			penguinEgg.Hatchable = false;
 		}
 	}
 }

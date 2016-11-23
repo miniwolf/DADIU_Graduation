@@ -1,5 +1,8 @@
-﻿namespace Assets.scripts {
+﻿using UnityEngine;
+
+namespace Assets.scripts {
 	public class AnimationConstants {
+		public const string SHAKE = "Shake";
 		public const string DROWNING = "deathDrown";
 		public const string ORCADEATH = "deathSpike";
 		public const string ELECTRICUTION = "deathElectric";

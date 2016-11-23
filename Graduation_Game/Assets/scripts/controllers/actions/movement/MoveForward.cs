@@ -1,4 +1,5 @@
 ﻿using Assets.scripts.components;
+using Assets.scripts.sound;
 using UnityEngine;
 
 namespace Assets.scripts.controllers.actions.movement {
@@ -15,6 +16,7 @@ namespace Assets.scripts.controllers.actions.movement {
 
 		public void Setup(GameObject gameObject) {
 			characterController = gameObject.GetComponent<CharacterController>();
+		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.START_MOVING, gameObject);
 		}
 
 		public void Execute() {
