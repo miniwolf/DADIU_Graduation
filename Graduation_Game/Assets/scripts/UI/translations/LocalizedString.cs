@@ -8,6 +8,9 @@ public enum LocalizedString  {
 	level4,
 	level5,
 	level6,
+	level7,
+	level8,
+	level9,
 	popupNotEnoguhPenguins,
 	backsettings,
 	settings

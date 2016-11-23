@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
+		public float timeForScoreFlow;
+		public float timeBewteenStarSpawn;
 		public int timeForRetry;
 
 		// Use this for initialization
@@ -15,7 +17,6 @@ namespace Assets.scripts.UI {
 		public int penguinsRequiredFor2Stars;
 		public int penguinsRequiredFor1Stars;
 		private Text penguinCounter;
-		private GameObject endScene;
 		private bool over; //game over (0 penguins alive)
 		private bool endLevel; //game finished
 		private Button retryCircle;
@@ -38,10 +39,8 @@ namespace Assets.scripts.UI {
 			retryPrize = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_PRIZE).GetComponent<Image>();
 			// not enabled during game
 			DisableRetry();
+			
 
-			foreach (Transform g in gameObject.GetComponentsInChildren<Transform>(true))
-				if (g.tag == TagConstants.ENDSCENE)
-					endScene = g.gameObject;
 		}
 
 		void Update () {

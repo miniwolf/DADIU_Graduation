@@ -14,7 +14,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private GameObject endScene;
 		private Text plutoniumCounter;
 		private Text plutoniumThisLevel;
-		private GameObject plutoniumTotal;
+		private Text plutoniumTotal;
 		private GameObject penguinCounter;
 		private GameObject[] star = new GameObject[3];
 		private bool isSetUp = false;
@@ -22,15 +22,14 @@ namespace Assets.scripts.controllers.actions.game {
 		private int starsSpawned;
 		private bool scoreUpdated = false;
 		private readonly CouroutineDelegateHandler handler;
-		private PlutoniumCounterController pcc;
 		private SceneManager scenes;
+		private static int collectedStars;
 		private Actionable<GameActions> actionable;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
 			canvas = gameObject.GetComponent<CanvasController>();
-			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT);
-			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL);
+			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
 			endScene = GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE);
 			star[0] = GameObject.FindGameObjectWithTag(TagConstants.STAR1);
 			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2);
@@ -38,6 +37,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
+			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
 			starsSpawned = 0;
 		}
 
@@ -53,33 +53,30 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 
 			if (!scoreUpdated) {
-				handler.StartCoroutine(UpdateScore());
+				handler.StartCoroutine(EndLevel());
 			}
 		}
 
 		private void SetupEndScene()
 		{
 		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
-			plutoniumThisLevel.text = plutoniumCounter.text;
+			plutoniumThisLevel.GetComponent<Text>().text = plutoniumCounter.text;
 
-			endScene.GetComponent<Image>().enabled = true;
-			plutoniumTotal.GetComponent<Text>().enabled = true;
-			plutoniumThisLevel.GetComponent<Text>().enabled = true;
+			endScene.SetActive(true);
 			plutoniumTotal.GetComponent<Text>().text = PlayerPrefs.GetInt("Plutonium").ToString();
 
 			target = PlayerPrefs.GetInt("Plutonium") + int.Parse(plutoniumThisLevel.text);
-			pcc = plutoniumThisLevel.GetComponent<PlutoniumCounterController>();
-			pcc.SetupFlowing();
 			isSetUp = true;
 		}
 
-		private IEnumerator UpdateScore() {
+		private IEnumerator EndLevel() {
 			if (!PlayerPrefs.HasKey("Plutonium")) {
 				PlayerPrefs.SetInt("Plutonium", 0);
 				PlayerPrefs.Save();
 			}
-			while (pcc.FlowPlutonium()) {
-				yield return new WaitForSeconds(0.1f);
+			while (int.Parse(plutoniumThisLevel.text) > 0) {
+				UpdateScore(1);
+				yield return new WaitForSeconds(0.01f);
 			}
 			while (target != int.Parse(plutoniumTotal.GetComponent<Text>().text)) {
 				yield return new WaitForSeconds(0.5f);
@@ -89,7 +86,7 @@ namespace Assets.scripts.controllers.actions.game {
 			PlayerPrefs.Save();
 
 			while (SpawnNextStar()) {
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(canvas.timeBewteenStarSpawn);
 			}
 			int totalStars = 0;
 			if (PlayerPrefs.HasKey("TotalStars")) {
@@ -113,11 +110,16 @@ namespace Assets.scripts.controllers.actions.game {
 			PlayerPrefs.DeleteKey("hasVisited");
 			yield return null;
 		}
-		
+
+		private void UpdateScore(int portion) {
+			plutoniumTotal.text = (int.Parse(plutoniumTotal.text) + portion).ToString();
+			plutoniumThisLevel.text = (int.Parse(plutoniumThisLevel.text) - portion).ToString();
+		}
+
 		public bool SpawnNextStar() {
 			for (int i = 0; i < 3; i++) {
 				if (starsSpawned == i) {
-					if (int.Parse(plutoniumThisLevel.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
+					if (int.Parse(plutoniumCounter.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
 						star[i].GetComponent<Star>().FlyIn();
 						starsSpawned++;
 					    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
@@ -125,6 +127,8 @@ namespace Assets.scripts.controllers.actions.game {
 					}
 				}
 			}
+			collectedStars += starsSpawned;
+			PlayerPrefs.SetInt("CollectedStars", collectedStars);
 			return false;
 		}
 	}

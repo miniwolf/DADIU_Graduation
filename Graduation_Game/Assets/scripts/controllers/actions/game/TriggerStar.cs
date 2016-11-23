@@ -26,21 +26,6 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private IEnumerator FeedbackCoroutine() {
-			float fraction = 0;
-			float speed = 2f;
-			float distance = float.MaxValue;
-			
-			while (distance > 1) {
-				if (fraction < 1) {
-					fraction += Time.deltaTime * speed;
-					gameObject.transform.localPosition = Vector3.Lerp(initialPos, targetPos, fraction);
-				}
-
-				distance = Vector3.Distance(gameObject.transform.position, targetPos);
-				float scale = 1 + (gameObject.transform.localPosition.y - 13.5f) / 100;
-				gameObject.transform.localScale = new Vector3(scale, scale, scale);
-				yield return new WaitForEndOfFrame();
-			}
 			yield return null;
 		}
 	}

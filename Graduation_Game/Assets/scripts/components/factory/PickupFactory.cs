@@ -21,7 +21,6 @@ namespace Assets.scripts.components.factory {
 
 		public void BuildPlutonium(Actionable<PickupActions> actionable) {
 			actionable.AddAction(PickupActions.PickupPlutonium, PickupPlutonium(actionable));
-			actionable.AddAction(PickupActions.FlowScore, FlowScore(actionable));
 			actionable.AddAction(PickupActions.CurrencyFly, FlyToScore());
 			actionable.AddAction(PickupActions.CurrencyAdd, AddToScore());
 		}
@@ -30,14 +29,6 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>(), actionable));
 			actionHandler.AddAction(new PostSoundEvent(SoundConstants.PickUpSounds.PICKUP_CURRENCY));
-			return actionHandler;
-		}
-
-		private static Handler FlowScore(Actionable<PickupActions> actionable) {
-			var textTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new DespawnPlutonium(coroutineDelegator, GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>(), actionable, textTotal));
-			//actionHandler.AddAction(new PostSoundEvent(SoundConstants.CURRENCY_FLY));
 			return actionHandler;
 		}
 
