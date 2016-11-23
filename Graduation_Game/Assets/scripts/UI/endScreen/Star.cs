@@ -11,8 +11,7 @@ namespace Assets.scripts.tools {
 
 		public void FlyIn() {
 			gameObject.GetComponent<Image>().enabled = true;
-			gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/star");
-			ExecuteAction(GameActions.TriggerStar);
+			//ExecuteAction(GameActions.TriggerStar);
 		}
 
 		public override string GetTag() {

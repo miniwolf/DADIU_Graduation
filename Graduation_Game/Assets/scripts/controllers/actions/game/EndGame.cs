@@ -37,6 +37,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
+			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
 			starsSpawned = 0;
 		}
 
@@ -85,7 +86,7 @@ namespace Assets.scripts.controllers.actions.game {
 			PlayerPrefs.Save();
 
 			while (SpawnNextStar()) {
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(canvas.timeBewteenStarSpawn);
 			}
 			int totalStars = 0;
 			if (PlayerPrefs.HasKey("TotalStars")) {
@@ -118,7 +119,7 @@ namespace Assets.scripts.controllers.actions.game {
 		public bool SpawnNextStar() {
 			for (int i = 0; i < 3; i++) {
 				if (starsSpawned == i) {
-					if (int.Parse(plutoniumThisLevel.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
+					if (int.Parse(plutoniumCounter.GetComponent<Text>().text) >= (int)canvas.GetType().GetField("penguinsRequiredFor" + (i + 1).ToString() + "Stars").GetValue(canvas)) {
 						star[i].GetComponent<Star>().FlyIn();
 						starsSpawned++;
 					    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
