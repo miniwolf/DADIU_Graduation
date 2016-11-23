@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
-		public int timeForScoreFlow;
+		public float timeForScoreFlow;
+		public float timeBewteenStarSpawn;
 		public int timeForRetry;
 
 		// Use this for initialization
