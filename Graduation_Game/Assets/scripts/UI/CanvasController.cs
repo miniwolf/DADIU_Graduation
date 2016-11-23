@@ -8,10 +8,13 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
-		public float timeForScoreFlow;
+		public float timeBeforeStarSpawn;
+		public float timeBeforeScoreFlow;
 		public float timeBewteenStarSpawn;
-		public int timeForRetry;
+		public AnimationCurve scoreFlowTimeCurve;
+		public float amplitude = 50f;
 
+		public int timeForRetry;
 		// Use this for initialization
 		public int penguinsRequiredFor3Stars;
 		public int penguinsRequiredFor2Stars;
