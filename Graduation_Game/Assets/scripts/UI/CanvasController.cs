@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
+		public int timeForScoreFlow;
 		public int timeForRetry;
 
 		// Use this for initialization
@@ -15,7 +16,6 @@ namespace Assets.scripts.UI {
 		public int penguinsRequiredFor2Stars;
 		public int penguinsRequiredFor1Stars;
 		private Text penguinCounter;
-		private GameObject endScene;
 		private bool over; //game over (0 penguins alive)
 		private bool endLevel; //game finished
 		private Button retryCircle;
@@ -38,10 +38,8 @@ namespace Assets.scripts.UI {
 			retryPrize = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_PRIZE).GetComponent<Image>();
 			// not enabled during game
 			DisableRetry();
-
-			foreach (Transform g in gameObject.GetComponentsInChildren<Transform>(true))
-				if (g.tag == TagConstants.ENDSCENE)
-					endScene = g.gameObject;
+			
+			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
 		}
 
 		void Update () {
@@ -62,7 +60,7 @@ namespace Assets.scripts.UI {
 			}
 
 			// if penguins reached the win zone (the ones alive) show stars
-			if ( endLevel ) {
+			if (endLevel  || Input.GetKeyDown("c"))	 {
 				ExecuteAction(GameActions.EndLevel);
 			}
 		}		

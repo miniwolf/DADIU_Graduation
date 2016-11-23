@@ -22,14 +22,13 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Image img;
 		private GameStateManager gameStateManager;
 		private float timeFirstClick;
+		private bool tutorialShown = false;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
-
-		private bool tutorialShown = false;
 
 		protected void Awake() {
 			InjectionRegister.Register(this);
@@ -137,7 +136,6 @@ namespace Assets.scripts.UI.screen.ingame {
 					else if(oneClick && IsATool(touch.position)) {
 						oneClick = false;
 						if(Time.time - timeFirstClick < 0.6f) {
-							dragging = false;
 							doubleTap = true;
 						}
 					}
@@ -212,7 +210,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			dragging = true;
 			inputManager.BlockCameraMovement();
-			hit.transform.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
@@ -248,7 +246,6 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		void DismissTutorial(string tag) {
-			tutorialShown = true;
 			GameObject go = null;
 			switch (tag) {
 				case TagConstants.SWITCHTEMPLATE:
@@ -265,6 +262,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if (child.CompareTag(TagConstants.TOOLTUTORIAL))
 					Destroy(child.gameObject);
 			}
+			tutorialShown = true;
 		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
@@ -274,9 +272,11 @@ namespace Assets.scripts.UI.screen.ingame {
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
+					textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
+					textValue = "Jump: ";
 					break;
 				case TagConstants.Tool.FREEZE_TIME:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;

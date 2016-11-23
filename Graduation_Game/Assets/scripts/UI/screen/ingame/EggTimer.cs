@@ -1,37 +1,38 @@
 ﻿using System;
-using System.Globalization;
-using Assets.scripts.shop.item;
-using Assets.scripts.UI.inventory;
+using Assets.scripts.eggHatching;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class EggTimer : MonoBehaviour {
-		private readonly Item<string> eggHatchTime = Inventory.eggHatchTime;
-		public static PenguinEgg egg;
+		private PenguinEgg egg;
 		private Text text;
 
 		protected void Start() {
-			text = GetComponent<Text>();
-			if ( egg != null ) {
-				return;
-			}
+			//var childObject = transform.GetChild(1);
 
-			egg = GetComponentInChildren<PenguinEgg>();
-			egg.IsReady = false;
-			egg.hatchable = false;
-
-			var stringTime = eggHatchTime.GetValue();
-			egg.HatchTime = stringTime == null || "".Equals(stringTime)
-				? DateTime.Now.AddMinutes(1)
-				: Convert.ToDateTime(stringTime);
-
-			eggHatchTime.SetValue(egg.HatchTime.ToString(CultureInfo.CurrentCulture));
+			//text = childObject.GetComponent<TextMesh>();
+			text = GameObject.FindGameObjectWithTag("EggTimer").GetComponent<Text>();
+			//childObject.GetComponent<MeshRenderer>().enabled = true;
 		}
 
 		protected void Update() {
 			var span = egg.HatchTime.Subtract(DateTime.Now);
-			text.text = span.Minutes + " : " + span.Seconds;
+			text.text = "Next egg ready for hatching: " +span.Minutes + " : " + span.Seconds;
+		}
+
+		public void SetEgg(PenguinEgg egg) {
+			this.egg = egg;
+			egg.IsReady = false;
+			egg.Hatchable = false;
+		}
+
+		/// <summary>
+		/// Assumes SetEgg has been called before this
+		/// </summary>
+		/// <param name="hatchTime">string representation of a DateTime</param>
+		public void SetTimer(string hatchTime) {
+			egg.HatchTime = Convert.ToDateTime(hatchTime);
 		}
 	}
 }
