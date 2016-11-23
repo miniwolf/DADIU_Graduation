@@ -62,7 +62,7 @@ namespace Assets.scripts.UI {
 			}
 
 			// if penguins reached the win zone (the ones alive) show stars
-			if ( endLevel ) {
+			if (endLevel  || Input.GetKeyDown("c"))	 {
 				ExecuteAction(GameActions.EndLevel);
 			}
 		}		
