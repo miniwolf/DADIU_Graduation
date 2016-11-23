@@ -6,4 +6,4 @@ level5;Level 5 DK
 level6;Level 6 DK
 popupNotEnoguhPenguins; Not enough penguins to play the level! DK
 backsettings; Tilbage
-settings; SETTINGS DK
+settings; Indstillinger
