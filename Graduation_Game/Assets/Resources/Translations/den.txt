@@ -9,4 +9,4 @@ level8;Level 8 DK
 level9;Level 9 DK
 popupNotEnoguhPenguins; Not enough penguins to play the level! DK
 backsettings; Tilbage
-settings; SETTINGS DK
+settings; Indstillinger
