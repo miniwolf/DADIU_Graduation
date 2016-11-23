@@ -43,7 +43,7 @@ namespace Assets.scripts.UI {
 			// not enabled during game
 			DisableRetry();
 			
-			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
+
 		}
 
 		void Update () {
