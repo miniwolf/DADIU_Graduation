@@ -42,6 +42,10 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
 
+			if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
+				tutorialShown = true;
+			}
+
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
 			cam = Camera.main;
