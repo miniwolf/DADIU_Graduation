@@ -1,22 +1,24 @@
 ﻿using System;
 using Assets.scripts.eggHatching;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class EggTimer : MonoBehaviour {
 		private PenguinEgg egg;
-		private TextMesh text;
+		private Text text;
 
 		protected void Start() {
-			var childObject = transform.GetChild(1);
+			//var childObject = transform.GetChild(1);
 
-			text = childObject.GetComponent<TextMesh>();
-			childObject.GetComponent<MeshRenderer>().enabled = true;
+			//text = childObject.GetComponent<TextMesh>();
+			text = GameObject.FindGameObjectWithTag("EggTimer").GetComponent<Text>();
+			//childObject.GetComponent<MeshRenderer>().enabled = true;
 		}
 
 		protected void Update() {
 			var span = egg.HatchTime.Subtract(DateTime.Now);
-			text.text = span.Minutes + " : " + span.Seconds;
+			text.text = "Next egg ready for hatching: " +span.Minutes + " : " + span.Seconds;
 		}
 
 		public void SetEgg(PenguinEgg egg) {
