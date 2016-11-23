@@ -6,6 +6,7 @@ using System;
 namespace Assets.scripts.UI.inventory {
 	public class Inventory {
 		public readonly Item<int> plutonium = new InventoryItem();
+		public static readonly Item<int> collectedStars = new PreferenceItem<int>(InventoryConstants.COLLECTEDSTARS);
 		public static readonly Item<int> penguinStorage = new PreferenceItem<int>(InventoryConstants.PENGUINSTORAGE);
 		public static readonly Item<int> penguinCount = new PreferenceItem<int>(InventoryConstants.PENGUINCOUNT);
 		public static readonly Item<int> hasInitialized = new PreferenceItem<int>(InventoryConstants.HASINITIALIZED);
