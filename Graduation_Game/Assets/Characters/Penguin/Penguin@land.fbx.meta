@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: adda1f65b9e63be45882c27497115004
-timeCreated: 1479464564
+timeCreated: 1479814694
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -199,8 +199,8 @@ ModelImporter:
     - serializedVersion: 16
       name: land
       takeName: Take 001
-      firstFrame: 40
-      lastFrame: 70
+      firstFrame: 38
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
