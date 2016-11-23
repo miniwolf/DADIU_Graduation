@@ -39,7 +39,10 @@ namespace Assets.scripts.UI.mainmenu {
 		    levels[2].btnFromScene.interactable = false;
 		    levels[3].btnFromScene.interactable = false;
 		    levels[4].btnFromScene.interactable = false;
-		    //levels[5].btnFromScene.interactable = false;
+		    levels[5].btnFromScene.interactable = false;
+			levels[6].btnFromScene.interactable = false;
+			levels[7].btnFromScene.interactable = false;
+			levels[8].btnFromScene.interactable = false;
 
 		    // TODO in a loop this doesn't work, it doesn't load the correct level when you click a button
 		    levels[0].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[0]));
@@ -47,10 +50,10 @@ namespace Assets.scripts.UI.mainmenu {
 		    levels[2].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[2]));
 		    levels[3].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[3]));
 		    levels[4].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[4]));
-		    //	levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
-
-
-
+		    levels[5].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[5]));
+			levels[6].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[6]));
+			levels[7].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[7]));
+			levels[8].btnFromScene.onClick.AddListener(() => CheckLoadLevel(levels[8]));
 
 		    /* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 
@@ -66,6 +69,16 @@ namespace Assets.scripts.UI.mainmenu {
 
 		void Update() {
 //			print(PlayerPrefs.GetInt("LevelUnlockIndex"));
+
+			// for testing, all levels open
+			levels[1].btnFromScene.interactable = true;
+			levels[2].btnFromScene.interactable = true;
+			levels[3].btnFromScene.interactable = true;
+			levels[4].btnFromScene.interactable = true;
+			levels[5].btnFromScene.interactable = true;
+			levels[6].btnFromScene.interactable = true;
+			levels[7].btnFromScene.interactable = true;
+			levels[8].btnFromScene.interactable = true;
 
 			if(PlayerPrefs.GetInt("LevelUnlockIndex") == 1) {
 				//print("UNLOCK LEVEL 1");
@@ -100,6 +113,39 @@ namespace Assets.scripts.UI.mainmenu {
 				levels[3].btnFromScene.interactable = true;
 				levels[4].btnFromScene.interactable = true;
 				levels[5].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 6) {
+				//print("UNLOCK LEVEL 6");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+				levels[4].btnFromScene.interactable = true;
+				levels[5].btnFromScene.interactable = true;
+				levels[6].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 7) {
+				//print("UNLOCK LEVEL 7");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+				levels[4].btnFromScene.interactable = true;
+				levels[5].btnFromScene.interactable = true;
+				levels[6].btnFromScene.interactable = true;
+				levels[7].btnFromScene.interactable = true;
+			}
+
+			if (PlayerPrefs.GetInt("LevelUnlockIndex") == 8) {
+				//print("UNLOCK LEVEL 8");
+				levels[1].btnFromScene.interactable = true;
+				levels[2].btnFromScene.interactable = true;
+				levels[3].btnFromScene.interactable = true;
+				levels[4].btnFromScene.interactable = true;
+				levels[5].btnFromScene.interactable = true;
+				levels[6].btnFromScene.interactable = true;
+				levels[7].btnFromScene.interactable = true;
+				levels[8].btnFromScene.interactable = true;
 			}
 
 		}
