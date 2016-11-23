@@ -32,8 +32,9 @@ namespace Assets.scripts.shop.item {
 
 		private void Collect() {
 			ExecuteAction(PickupActions.CollectPenguin);
+			egg.ExecuteAction(PickupActions.HatchEgg);
 			egg.ExecuteAction(PickupActions.StartNewEgg);
-			Destroy(gameObject);
+			//Destroy(gameObject);
 		}
 
 		public void SetEgg(PenguinEgg egg) {
