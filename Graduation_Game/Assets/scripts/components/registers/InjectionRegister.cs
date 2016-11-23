@@ -22,6 +22,7 @@ namespace Assets.scripts.components.registers {
 		private static NotifierSystem notifierSystem;
 		private static GameObject splat;
 		private static GameFactory gameFactory;
+		public GameObject penguin;
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -31,7 +32,7 @@ namespace Assets.scripts.components.registers {
 			}
 
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
-			pickupFactory = new PickupFactory(handler);
+			pickupFactory = new PickupFactory(handler, penguin);
 			gameFactory = new GameFactory(handler);
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();

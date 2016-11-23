@@ -11,10 +11,12 @@ namespace Assets.scripts.components.factory {
 	public class PickupFactory {
 	    private static CouroutineDelegateHandler coroutineDelegator;
 		private static Camera c;
+		private GameObject penguin;
 
-		public PickupFactory(CouroutineDelegateHandler handler) {
+		public PickupFactory(CouroutineDelegateHandler handler, GameObject penguin) {
 	        coroutineDelegator = handler;
 			c = Camera.main;
+			this.penguin = penguin;
 	    }
 
 		public void BuildPlutonium(Actionable<PickupActions> actionable) {
@@ -63,9 +65,9 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private static Handler HatchEgg() {
+		private Handler HatchEgg() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new HatchEgg());
+			actionHandler.AddAction(new HatchEgg(penguin));
 			actionHandler.AddAction(new PostSoundEvent(SoundConstants.StoreSounds.EGG_HATCH));
 			return actionHandler;
 		}

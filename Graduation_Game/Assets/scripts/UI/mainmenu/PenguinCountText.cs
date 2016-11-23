@@ -4,8 +4,12 @@ using UnityEngine.UI;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class PenguinCountText : MonoBehaviour {
+		Text text;
 		protected void Start() {
-			var text = GetComponent<Text>();
+			text = GetComponent<Text>();
+			text.text = Inventory.penguinCount.GetValue() + "/" + Inventory.penguinStorage.GetValue();
+		}
+		void Update(){
 			text.text = Inventory.penguinCount.GetValue() + "/" + Inventory.penguinStorage.GetValue();
 		}
 	}

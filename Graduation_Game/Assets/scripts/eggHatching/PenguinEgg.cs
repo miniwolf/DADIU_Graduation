@@ -11,6 +11,7 @@ namespace Assets.scripts.eggHatching {
 	public class PenguinEgg : ActionableGameEntityImpl<PickupActions> {
 		public bool Hatchable { get; set; }
 		public bool IsReady { get; set; }
+		public GameObject penguin;
 		[SerializeField]
 		public DateTime HatchTime { get; set; }
 		public int shakeInterval = 2;
