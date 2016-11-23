@@ -22,6 +22,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Image img;
 		private GameStateManager gameStateManager;
 		private float timeFirstClick;
+		private bool tutorialShown = false;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -238,8 +239,9 @@ namespace Assets.scripts.UI.screen.ingame {
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
-
-			DismissTutorial(currentObject.tag);
+			if (!tutorialShown) {
+				DismissTutorial(currentObject.tag);
+			}
 			StartCoroutine(CameraHack());
 		}
 
@@ -260,6 +262,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if (child.CompareTag(TagConstants.TOOLTUTORIAL))
 					Destroy(child.gameObject);
 			}
+			tutorialShown = true;
 		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];

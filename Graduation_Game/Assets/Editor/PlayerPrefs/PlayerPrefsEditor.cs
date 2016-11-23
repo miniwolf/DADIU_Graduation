@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Assets.Editor.PlayerPrefs {
 	public class PlayerPrefsEditor : EditorWindow {
 		private string value;
+		private readonly Item<int> collectedStars = Inventory.collectedStars;
 		private readonly Item<int> levelIndex = Inventory.levelUnlockIndex;
 		private readonly Item<int> penguinCount = Inventory.penguinCount;
 		private readonly Item<int> hasInitialized = Inventory.hasInitialized;
@@ -25,6 +26,7 @@ namespace Assets.Editor.PlayerPrefs {
 		}
 
 		private void OnGUI() {
+			DrawEntry(InventoryConstants.COLLECTEDSTARS, collectedStars);
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
 			DrawEntry(InventoryConstants.LEVELINDEX, levelIndex);
 			DrawEntry(InventoryConstants.PENGUINCOUNT, penguinCount);

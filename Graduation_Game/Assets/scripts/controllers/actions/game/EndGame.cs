@@ -23,6 +23,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private bool scoreUpdated = false;
 		private readonly CouroutineDelegateHandler handler;
 		private SceneManager scenes;
+		private static int collectedStars;
 		private Actionable<GameActions> actionable;
 
 		public void Setup(GameObject gameObject) {
@@ -125,6 +126,8 @@ namespace Assets.scripts.controllers.actions.game {
 					}
 				}
 			}
+			collectedStars += starsSpawned;
+			PlayerPrefs.SetInt("CollectedStars", collectedStars);
 			return false;
 		}
 	}
