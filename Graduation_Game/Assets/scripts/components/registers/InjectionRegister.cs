@@ -97,6 +97,8 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.HATCHABLE_PENGUIN:
 					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
 					break;
+				case TagConstants.CUTSCENE:
+					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
