@@ -37,6 +37,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
+			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
 			starsSpawned = 0;
 		}
 
