@@ -11,6 +11,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 		private Text totalCounter;
 		private int pointsToAdd;
 		private Text plutoniumCounter;
+		private Text plutoniumThisLevel;
 		private Image counter; 
 		private RectTransform canvas;
 		private readonly CouroutineDelegateHandler delegator;
@@ -27,6 +28,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 			this.gameObject = gameObject;
 			pointsToAdd = 0;
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
 			counter = plutoniumCounter.transform.parent.GetComponent<Image>();
 			canvas = GameObject.Find(TagConstants.CANVAS).GetComponent<RectTransform>();
 		}
@@ -75,7 +77,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 			}
 
 			if (totalCounter == null) {
-				gameObject.transform.parent.parent = currencyCounter.transform;
+				gameObject.transform.parent.parent = plutoniumThisLevel.transform;
 			}
 			else {
 				gameObject.transform.parent.parent = totalCounter.transform;
@@ -97,7 +99,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 				currencyCounter.text = (int.Parse(currencyCounter.text) + portion).ToString();
 			}
 			else {
-				currencyCounter.text = (int.Parse(currencyCounter.text) - portion).ToString();
+				plutoniumThisLevel.text = (int.Parse(plutoniumThisLevel.text) - portion).ToString();
 				totalCounter.text = (int.Parse(totalCounter.text) + portion).ToString();
 			}
 			pointsToAdd -= portion;
