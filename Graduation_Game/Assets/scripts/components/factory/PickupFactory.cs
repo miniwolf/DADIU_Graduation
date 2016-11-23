@@ -10,10 +10,11 @@ using UnityEngine.UI;
 namespace Assets.scripts.components.factory {
 	public class PickupFactory {
 	    private static CouroutineDelegateHandler coroutineDelegator;
-		private static readonly Camera c = Camera.main;
+		private static Camera c;
 
 		public PickupFactory(CouroutineDelegateHandler handler) {
 	        coroutineDelegator = handler;
+			c = Camera.main;
 	    }
 
 		public void BuildPlutonium(Actionable<PickupActions> actionable) {
