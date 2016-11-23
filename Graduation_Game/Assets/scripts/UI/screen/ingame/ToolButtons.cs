@@ -113,6 +113,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
 			if(count <= 0) {
+				inputManager.UnblockCameraMovement();
 				return;
 			}
 
@@ -122,6 +123,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			currentObject.SetActive(true);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
+
 		}
 
 		protected void Update() {
