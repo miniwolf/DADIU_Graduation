@@ -26,7 +26,7 @@ namespace Assets.scripts.traps {
 
 		// The trigger event handles the activation event of the excavator
 		protected IEnumerator OnTriggerEnter(Collider other) {
-			if (other.transform.tag != TagConstants.PENGUIN
+			if ((other.transform.tag != TagConstants.PENGUIN && other.transform.tag != TagConstants.SEAL)
 			    || immune
 			    || other.GetComponent<Penguin>().GetWeight() == Penguin.Weight.Small) {
 				yield break;
