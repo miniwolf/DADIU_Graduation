@@ -13,6 +13,7 @@ namespace Assets.scripts.controllers.actions.tools {
 		private readonly LevelSettings levelSettings;
 		private const int layerMask = 1 << 8;
 		private readonly LaneSwitch laneSwitch;
+		private Penguin peng;
 
 		public Switch(Directionable direction, GameObject levelSettings, LaneSwitch laneSwitch) {
 			this.direction = direction;
@@ -26,6 +27,7 @@ namespace Assets.scripts.controllers.actions.tools {
 		public void Setup(GameObject gameObject) {
 			penguin = gameObject;
 			couroutineHandler = gameObject.GetComponent<MonoBehaviour>();
+			peng = penguin.GetComponent<Penguin>();
 		}
 
 		public void Execute() {
@@ -60,7 +62,7 @@ namespace Assets.scripts.controllers.actions.tools {
 			} while (laneSwitch.LaneSwitchCondition(penguin.transform.position.z, laneSwitch.GetDirection(zPos, levelSettings)) );
 
 			//when half lane reached, change direction to old one
-			direction.SetDirection(oldDirection);
+			direction.SetDirection(new Vector3(oldDirection.x,peng.direction.y,oldDirection.z));
 			penguin.transform.rotation = oldRotation;
 		}
 	}
