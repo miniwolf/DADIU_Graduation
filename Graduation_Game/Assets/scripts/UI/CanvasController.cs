@@ -4,7 +4,6 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
-using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {

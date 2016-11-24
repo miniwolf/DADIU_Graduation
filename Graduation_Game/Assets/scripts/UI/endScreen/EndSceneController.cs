@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts.UI.inventory;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
-using UnityEditor;
-using System;
-using System.IO;
 
 public class EndSceneController: MonoBehaviour {
 

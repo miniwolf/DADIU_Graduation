@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.scripts.UI.inventory;
+﻿using Assets.scripts.UI.inventory;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 

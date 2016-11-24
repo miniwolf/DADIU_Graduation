@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.scripts.character;
+﻿using Assets.scripts.character;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
@@ -13,12 +12,10 @@ using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
 using AssemblyCSharp;
 using Assets.scripts.components.registers;
-using UnityEngine.Networking.Types;
 using System.Reflection;
 using System.Linq;
 using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.sound;
-using System.Collections;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
