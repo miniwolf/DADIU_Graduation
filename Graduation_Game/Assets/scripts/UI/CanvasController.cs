@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
-		public float timeForScoreFlow;
+		public float timeBeforeStarSpawn;
+		public float timeBeforeScoreFlow;
 		public float timeBewteenStarSpawn;
-		public int timeForRetry;
+		public float scoreFlowScalingFactor;
 
+		public int timeForRetry;
 		// Use this for initialization
 		public int penguinsRequiredFor3Stars;
 		public int penguinsRequiredFor2Stars;
@@ -40,7 +42,7 @@ namespace Assets.scripts.UI {
 			// not enabled during game
 			DisableRetry();
 			
-			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
+
 		}
 
 		void Update () {
@@ -61,7 +63,7 @@ namespace Assets.scripts.UI {
 			}
 
 			// if penguins reached the win zone (the ones alive) show stars
-			if (endLevel  || Input.GetKeyDown("c"))	 {
+			if (endLevel)	 {
 				ExecuteAction(GameActions.EndLevel);
 			}
 		}		
