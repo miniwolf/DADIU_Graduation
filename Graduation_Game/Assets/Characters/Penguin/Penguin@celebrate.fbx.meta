@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7ac259b67cdf09c4091760ad244fc751
-timeCreated: 1479464563
+timeCreated: 1479976841
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: celebrate
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

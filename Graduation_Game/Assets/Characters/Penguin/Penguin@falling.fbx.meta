@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 024b5f6746949494b8ba64933450e18a
-timeCreated: 1479464562
+timeCreated: 1479976840
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -159,8 +159,8 @@ ModelImporter:
     - serializedVersion: 16
       name: falling
       takeName: Take 001
-      firstFrame: 7
-      lastFrame: 28
+      firstFrame: 1
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
