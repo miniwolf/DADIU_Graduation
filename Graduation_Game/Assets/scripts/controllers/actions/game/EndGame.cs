@@ -58,6 +58,7 @@ namespace Assets.scripts.controllers.actions.game {
 			if (!starsDoneSpawned) {
 				handler.StartCoroutine(SpawnStars());
 			}
+
 		}
 
 		private void SetupEndScene()
@@ -86,6 +87,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 			PlayerPrefs.SetInt("Plutonium", target);
 			PlayerPrefs.Save();
+			handler.StartCoroutine(LoadMainMenu());
 			yield return null;
 		}
 
@@ -133,6 +135,11 @@ namespace Assets.scripts.controllers.actions.game {
 
 		private void UpdateScore(float portion) {
 			plutoniumTotal.text = (int.Parse(plutoniumTotal.text) + portion).ToString();
+		}
+
+		private IEnumerator LoadMainMenu(){
+			yield return new WaitForSeconds(5);
+			SceneManager.LoadSceneAsync("MainMenuScene");
 		}
 
 		public bool SpawnNextStar() {
