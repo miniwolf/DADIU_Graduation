@@ -4,19 +4,14 @@ using Assets.scripts.components.registers;
 using Assets.scripts.controllers;
 using Assets.scripts.shop.item;
 using Assets.scripts.UI.screen.ingame;
-using UnityEngine;
 
 namespace Assets.scripts.eggHatching {
-	[Serializable]
 	public class PenguinEgg : ActionableGameEntityImpl<PickupActions> {
 		public bool Hatchable { get; set; }
 		public bool IsReady { get; set; }
-		public GameObject penguin;
-		[SerializeField]
-		public DateTime HatchTime { get; set; }
 		public int shakeInterval = 2;
-
 		public int Idx { get; set; }
+		public DateTime HatchTime { get; set; }
 		public EggTimer Timer { get; set; }
 
 		protected void Update() {
@@ -25,7 +20,7 @@ namespace Assets.scripts.eggHatching {
 			}
 
 			Hatchable = true;
-			Destroy(Timer);
+			Destroy(Timer); // TODO: Might not be needed as it should be deleted below
 			Destroy(transform.GetChild(1).gameObject);
 			var penguin = gameObject.AddComponent<HatchablePenguin>();
 			penguin.SetEgg(this);
