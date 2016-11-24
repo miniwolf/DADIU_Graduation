@@ -63,7 +63,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private void SetupEndScene()
 		{
 		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
-			plutoniumThisLevel.GetComponent<Text>().text = /*plutoniumCounter.text;*/ 5000.ToString();
+			plutoniumThisLevel.GetComponent<Text>().text = plutoniumCounter.text;;
 
 			endScene.SetActive(true);
 			plutoniumTotal.GetComponent<Text>().text = PlayerPrefs.GetInt("Plutonium").ToString();
@@ -80,12 +80,8 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 			
 			Debug.Log(plutoniumThisLevel.text);
-			float startTime = Time.time;
 			while (int.Parse(plutoniumThisLevel.text) > 0) {
-				UpdateScore(1);/*
-				timeIncrements += timeIncrements;
-				Debug.Log(timeIncrements);*/
-				yield return new WaitForSeconds(GetTimeFromCurve(Time.time - startTime));
+				yield return new WaitForSeconds(GetTimeFromCurve());
 			}
 
 			PlayerPrefs.SetInt("Plutonium", target);
@@ -93,9 +89,16 @@ namespace Assets.scripts.controllers.actions.game {
 			yield return null;
 		}
 
-		private float GetTimeFromCurve(float time) {
-			float t = 1 / ((canvas.scoreFlowTimeCurve.Evaluate(time/200) + 0.001f) * canvas.amplitude);
-			Debug.Log(t);
+		private float GetTimeFromCurve() {
+			float t = 1 / (0.015f * (canvas.scoreFlowScalingFactor * int.Parse(plutoniumThisLevel.text)));
+			if (int.Parse(plutoniumThisLevel.text) > 100) {
+				plutoniumThisLevel.text = (int.Parse(plutoniumThisLevel.text) - Mathf.Round(int.Parse(plutoniumThisLevel.text) / 50)).ToString();
+				UpdateScore(Mathf.Round(int.Parse(plutoniumThisLevel.text) / 50));
+			}
+			else {
+				plutoniumThisLevel.text = (int.Parse(plutoniumThisLevel.text)-1).ToString();
+				UpdateScore(1);
+			}
 			return t;
 		}
 
@@ -128,9 +131,8 @@ namespace Assets.scripts.controllers.actions.game {
 			yield return null;
 		}
 
-		private void UpdateScore(int portion) {
+		private void UpdateScore(float portion) {
 			plutoniumTotal.text = (int.Parse(plutoniumTotal.text) + portion).ToString();
-			plutoniumThisLevel.text = (int.Parse(plutoniumThisLevel.text) - portion).ToString();
 		}
 
 		public bool SpawnNextStar() {
