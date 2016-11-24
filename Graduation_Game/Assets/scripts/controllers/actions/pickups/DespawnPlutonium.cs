@@ -46,10 +46,11 @@ namespace Assets.scripts.controllers.actions.pickups {
 			Vector3 currencyCanvasPos = currencyGameObject.transform.position;
 
 			counterCanvasPos.z = currencyCanvasPos.z; // we don't want to change the z-axis of item picked up
-						
-			ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
-			p.startSpeed = 10f;
 
+			if (currencyGameObject.GetComponent<ParticleSystem>() == null) {
+				ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
+				p.startSpeed = 10f;
+			}
 			float fraction = 0;
 			float speed = 1f;
 			float distance = float.MaxValue;
