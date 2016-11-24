@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 374d53f42e897604eaa01f62adf1e80c
-timeCreated: 1479464563
+timeCreated: 1479976841
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: deathElectric
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 40
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
