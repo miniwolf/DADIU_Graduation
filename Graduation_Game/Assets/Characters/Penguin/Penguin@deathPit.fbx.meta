@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 67e4eec33ce68384fb4f2ef57e53cc0e
-timeCreated: 1479464563
+timeCreated: 1479976841
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: deathPit
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 18
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
