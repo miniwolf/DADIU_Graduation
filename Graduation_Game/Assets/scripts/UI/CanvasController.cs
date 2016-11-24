@@ -11,8 +11,7 @@ namespace Assets.scripts.UI {
 		public float timeBeforeStarSpawn;
 		public float timeBeforeScoreFlow;
 		public float timeBewteenStarSpawn;
-		public AnimationCurve scoreFlowTimeCurve;
-		public float amplitude = 50f;
+		public float scoreFlowScalingFactor;
 
 		public int timeForRetry;
 		// Use this for initialization
@@ -64,7 +63,7 @@ namespace Assets.scripts.UI {
 			}
 
 			// if penguins reached the win zone (the ones alive) show stars
-			if (endLevel  || Input.GetKeyDown("c"))	 {
+			if (endLevel)	 {
 				ExecuteAction(GameActions.EndLevel);
 			}
 		}		

@@ -17,7 +17,7 @@ namespace Assets.scripts.controllers.actions.tools {
 
 		public void Execute() {
 			var moveDirection = direction.GetDirection();
-			moveDirection.y += levelSettings.GetJumpHeight();
+			moveDirection.y = levelSettings.GetJumpHeight();
 			direction.SetSpeed(direction.GetJumpSpeed());
 			direction.SetDirection(moveDirection);
 		}
