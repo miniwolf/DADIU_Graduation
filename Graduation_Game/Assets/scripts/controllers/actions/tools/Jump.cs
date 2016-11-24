@@ -13,7 +13,6 @@ namespace Assets.scripts.controllers.actions.tools {
 		}
 
 		public void Setup(GameObject gameObject) {
-			return;
 		}
 
 		public void Execute() {
