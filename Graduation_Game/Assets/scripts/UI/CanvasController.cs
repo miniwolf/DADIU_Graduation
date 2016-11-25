@@ -25,6 +25,7 @@ namespace Assets.scripts.UI {
 		private Button retryButton; 
 		private Image retryPrize;
 		private GameObject gameOverPanel;
+		private bool retryIsLive = false;
 	
 		void Awake() {
 			base.Awake();
@@ -60,11 +61,6 @@ namespace Assets.scripts.UI {
 			if ( retryCircleImage.fillAmount == 0 ) {
 				DisableRetry();
 			}
-
-			// if penguins reached the win zone (the ones alive) show stars
-			if (endLevel)	 {
-				ExecuteAction(GameActions.EndLevel);
-			}
 		}		
 
 		public override string GetTag() {
@@ -73,10 +69,11 @@ namespace Assets.scripts.UI {
 
 		public void EndLevel() {
 			PlayerPrefs.DeleteKey("hasVisited");
-			endLevel = true;
+			ExecuteAction(GameActions.EndLevel);
 		}
 
 		private void DisableRetry() {
+			retryIsLive = false;
 			retryCircle.enabled = false;
 			retryButton.enabled = false;
 			retryPrize.enabled = false;
@@ -94,6 +91,7 @@ namespace Assets.scripts.UI {
 		}
 
 		private void EnableRetry() {
+			retryIsLive = true;
 			retryCircle.enabled = true;
 			retryButton.enabled = true;
 			retryPrize.enabled = true;
