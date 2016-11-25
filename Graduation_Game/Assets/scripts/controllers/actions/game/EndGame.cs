@@ -161,6 +161,9 @@ namespace Assets.scripts.controllers.actions.game {
 			}
 			collectedStars += starsSpawned;
 			PlayerPrefs.SetInt("CollectedStars", collectedStars);
+			PlayerPrefs.SetInt("LevelWonStars", starsSpawned);
+			string levelPlayedName = Application.loadedLevelName;
+			PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
 			return false;
 		}
 	}
