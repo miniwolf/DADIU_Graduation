@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Xml.Schema;
-using Assets.scripts.components.registers;
 using Assets.scripts.UI.inventory;
 using Assets.scripts.UI.screen;
 using Assets.scripts.UI.translations;
@@ -8,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.sound;
+using System.Collections;
+using System;
+using System.Collections.Generic;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
@@ -17,17 +18,38 @@ namespace Assets.scripts.UI.mainmenu {
 		private Image popup;
 		private InputManager inputManager;
 		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
+		private int starsWon = 0; // Stars gathered after last level played
+		private string levelPlayedName;
+		private string[] levelNames;
+		public Sprite stars1;
+		public Sprite stars2;
+		public Sprite stars3;
+
+		//Dictionary<string, int> starsAchieved; // Stars for each levels are stored here
 
 		protected void Start() {
 			TranslateApi.Register(this);
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
-			
+
+			levelNames = new string[10];
+			for(int i = 0; i < levelNames.Length; i++) {
+				levelNames[i] = "Level" + (i+1).ToString();
+			}
+
 			unlockIdx = PlayerPrefs.GetInt("LevelUnlockIndex");
 
 			InitilizeLevels();
 			UnlockLevels(unlockIdx);
+
+			starsWon = PlayerPrefs.GetInt("LevelWonStars");
+			levelPlayedName = PlayerPrefs.GetString("LevelPlayedName");
+
+
+			SetStarPrefsPerLevel(levelNames);
+
+			LoadStars();
 
 			/* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 
@@ -40,6 +62,44 @@ namespace Assets.scripts.UI.mainmenu {
 			DisablePopup();
 			//UpdateTexts();
 		}
+
+		// Saves preferences for how many stars are collected for each level
+		void SetStarPrefsPerLevel(string[] levelNames) {
+			for (int i = 0; i < levelNames.Length; i++) {
+
+				// Checks which level was won last time and sets the stars accordingly
+				if (levelPlayedName == levelNames[i]) {
+					PlayerPrefs.SetInt(levelNames[i], starsWon);
+				}
+			}
+		}
+
+		// Loads stars to view
+		void LoadStars() {
+			int starsWonForLevel = 0;
+			for (int i = 0; i < levelNames.Length; i++) {
+				starsWonForLevel = PlayerPrefs.GetInt(levelNames[i]);
+				SetStarSprite(i, starsWonForLevel);
+			}
+		}
+
+		// Replaces the sprite on a level button image according to how many stars were won
+		void SetStarSprite(int lvlIdx, int numOfStars) {
+			switch (numOfStars) {
+				case 1:
+					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars1;
+					break;
+				case 2:
+					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars2;
+					break;
+				case 3:
+					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars3;
+					break;
+				default:
+					break;
+			}
+		}
+ 
 
 		// Every level except the first is locked from the start
 		void InitilizeLevels() {
