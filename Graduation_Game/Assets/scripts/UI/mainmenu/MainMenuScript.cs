@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.sound;
-using System.Collections;
-using System;
-using System.Collections.Generic;
+using Assets.scripts.controllers.actions.game;
 
+
+// TODO needs heavy refactoring!!!
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
 
@@ -21,11 +21,28 @@ namespace Assets.scripts.UI.mainmenu {
 		private int starsWon = 0; // Stars gathered after last level played
 		private string levelPlayedName;
 		private string[] levelNames;
+		private int numberOfLevelsInCanvas = 5;
+
 		public Sprite stars1;
 		public Sprite stars2;
 		public Sprite stars3;
 
-		//Dictionary<string, int> starsAchieved; // Stars for each levels are stored here
+		public Sprite levelBtnCurrent;
+		public Sprite levelBtnCompleted;
+		public Sprite levelBtnLocked;
+		public Sprite levelBtnNotAccessable; // Coming soon...
+
+		private string level1Status = "Level1status";
+		private string completed = "completed";
+		private string current = "current";
+		private string locked = "locked";
+		private string statusPostfix = "status";
+		private string starsPostfix = "stars"; // TODO rename for star collection
+
+
+		protected void Awake() {
+			PlayerPrefs.SetString(level1Status, current); // Level 1 is by default the current level
+		}
 
 		protected void Start() {
 			TranslateApi.Register(this);
@@ -33,29 +50,65 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			levelNames = new string[10];
+			levelNames = new string[numberOfLevelsInCanvas];
 			for(int i = 0; i < levelNames.Length; i++) {
 				levelNames[i] = "Level" + (i+1).ToString();
 			}
 
 			unlockIdx = PlayerPrefs.GetInt("LevelUnlockIndex");
-
-			InitilizeLevels();
-			UnlockLevels(unlockIdx);
-
 			starsWon = PlayerPrefs.GetInt("LevelWonStars");
 			levelPlayedName = PlayerPrefs.GetString("LevelPlayedName");
 
-
+			InitilizeLevels();
+			UnlockLevels(unlockIdx);
 			SetStarPrefsPerLevel(levelNames);
 
 			LoadStars();
 
+
+			// Set prefs
+
+			// Cherry pick levels to a completed and current statuses
+			for (int i = 0; i < levelNames.Length; i++) {
+
+				// Find which level was won last time
+				if(levelPlayedName == levelNames[i] && EndGame.isLevelWon) {
+					PlayerPrefs.SetString(level1Status, completed); // Force level 1 to be completed after any level is won
+					PlayerPrefs.SetString(levelNames[i] + statusPostfix, completed);
+
+					if(i + 1 < levelNames.Length)
+						PlayerPrefs.SetString(levelNames[i + 1] + statusPostfix, current);
+				}
+			}
+
+
+			// Interpret level status
+			for (int i = 0; i < levelNames.Length; i++) {
+
+
+				if(PlayerPrefs.GetString(levelNames[i] + statusPostfix) == completed) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
+				}
+
+				else if (PlayerPrefs.GetString(levelNames[i] + statusPostfix) == current) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+				}
+
+
+				else {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
+				}
+				/*
+				if (PlayerPrefs.GetString(levelNames[i] + levelStatusPostFix) == locked) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
+				}*/
+			}
+
 			/* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 
-             languageDropdown.onValueChanged.AddListener(delegate {
-                 OnDropdownChanged();
-             });
+				languageDropdown.onValueChanged.AddListener(delegate {
+					OnDropdownChanged();
+				});
 			*/
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 
@@ -114,7 +167,6 @@ namespace Assets.scripts.UI.mainmenu {
 		// Makes levels available depending on how many levels to unlock
 		void MakeLevelsInteractable(int numOfLvlsToUnlock) {
 			for (int i = 0; i <= numOfLvlsToUnlock; i++) {
-				Debug.Log("Levels are interactable");
 				levels[i].btnFromScene.interactable = true;
 			}
 		}
