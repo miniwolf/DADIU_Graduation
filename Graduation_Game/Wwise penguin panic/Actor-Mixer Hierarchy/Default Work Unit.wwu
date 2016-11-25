@@ -3,59 +3,6 @@
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}" PersistMode="Standalone">
 			<ChildrenList>
-				<Folder Name="ambience" ID="{528A78BA-FA03-44F6-8576-E3BE2C1A92C2}" ShortID="782541736">
-					<ChildrenList>
-						<Sound Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" ShortID="908006912" Type="SoundFX">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="penguin_fail_music" ID="{9F34F14D-3F71-46A0-9F9C-E36934245E3D}" ShortID="136581044">
-									<Language>SFX</Language>
-									<AudioFile>penguin_fail_music.wav</AudioFile>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="penguin_fail_music" ID="{9F34F14D-3F71-46A0-9F9C-E36934245E3D}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="ambience placeholder" ID="{58E450D1-074F-4DAF-B739-292542853908}" ShortID="681561599" Type="SoundFX">
-							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-30</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="ambience" ID="{2DA833C1-718F-4813-AB98-789AA02977F5}" ShortID="1002454765">
-									<Language>SFX</Language>
-									<AudioFile>ambience.wav</AudioFile>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="ambience" ID="{2DA833C1-718F-4813-AB98-789AA02977F5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-					</ChildrenList>
-				</Folder>
 				<Folder Name="SFXs" ID="{3A2A1852-0010-4AF3-A35A-BEAF6FE72D76}" ShortID="37428461">
 					<ChildrenList>
 						<Folder Name="Interactables" ID="{174BDE6C-C7CA-4C68-8A43-7D17449BA434}" ShortID="38965328">
@@ -1623,6 +1570,14 @@
 										<Value>200</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
+								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{B2D0FA3E-AAF4-4296-9E11-CCFE4984FE1B}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
@@ -1637,33 +1592,23 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="react_1" ID="{2DA91CCC-5A39-4B5D-902A-D05AEFB1F9A7}" ShortID="257127895" Type="SoundFX">
+								<Sound Name="penguin_placeholder_react_1" ID="{3E4FA6FE-5FB9-4A9E-9BED-D1EB6A6AD42D}" ShortID="851930348" Type="SoundFX">
 									<PropertyList>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value Platform="Android">False</Value>
-											</ValueList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{36364E8E-B8E8-46C4-A395-CA61CD13E294}"/>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Lowpass" Type="int16">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{A6ABDF6C-D654-4593-9641-7CD30F7D62B1}"/>
+												</ModifierInfo>
+											</ModifierList>
 										</Property>
 									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin react" ID="{03062FFB-4C85-4A7D-BFA2-01F364A03723}" ShortID="407339339">
-											<Language>SFX</Language>
-											<AudioFile>penguin react.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin react" ID="{03062FFB-4C85-4A7D-BFA2-01F364A03723}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="penguin_placeholder_react_1" ID="{3E4FA6FE-5FB9-4A9E-9BED-D1EB6A6AD42D}" ShortID="851930348" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -2064,6 +2009,11 @@
 									</ValueList>
 								</Property>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -2077,15 +2027,11 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="penguin edge fall" ID="{6268CEAD-5115-4075-AEA3-FB6C12C5E78E}" ShortID="1070117013">
-									<Language>SFX</Language>
-									<AudioFile>penguin edge fall.wav</AudioFile>
-								</AudioFileSource>
 								<AudioFileSource Name="penguin_placeholder_fall_1" ID="{368AD98B-A4B7-4881-8465-1EE1DB1923BB}" ShortID="542419449">
 									<PropertyList>
 										<Property Name="FadeInDuration" Type="Real64" Value="7.00930989583333E-02"/>
 										<Property Name="FadeOutDuration" Type="Real64" Value="0.913713611421131"/>
-										<Property Name="TrimBegin" Type="Real64" Value="0.180239397321429"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.360478794642857"/>
 										<Property Name="TrimEnd" Type="Real64" Value="2.1052962937128"/>
 									</PropertyList>
 									<Language>SFX</Language>
@@ -2481,6 +2427,20 @@
 						</Folder>
 						<Sound Name="penguin_change_lane_used" ID="{7E719EFD-63DD-40DC-A64A-F51279B0E3B9}" ShortID="734529410" Type="SoundFX">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{2CD28EE0-5C26-4732-929B-4E0EC4C753F8}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="InitialDelay" Type="Real64">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{BC42C113-01B8-47F3-9444-1A2054491BA7}"/>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>35</Value>

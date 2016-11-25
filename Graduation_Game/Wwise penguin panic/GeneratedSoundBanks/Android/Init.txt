@@ -1,4 +1,16 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	3991942870	music			\Default Work Unit\music	
+
+State	ID	Name	State Group			Notes
+	748895195	None	music			
+	2005704188	main_menu	music			
+	2967546505	in_game	music			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1596647065	rtpc_music_volume			\Default Work Unit\rtpc_music_volume	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	805203703	Master Secondary Bus			\Default Work Unit\Master Secondary Bus	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	music			\Default Work Unit\Master Audio Bus\music	
 

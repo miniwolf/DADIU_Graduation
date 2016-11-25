@@ -14,11 +14,11 @@
 							<Position X="0" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="music_game_play" ID="{F756E8C6-A751-41A1-A794-089F12761F0D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="music_menu_play" ID="{5A521F74-4AC4-4AA5-A6FA-7415EFCC234D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="penguin_edge_fall" ID="{B0F4B0C9-D209-4858-85B6-C9B33B15C127}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="3"/>
 						</Module>
 						<Module>
@@ -30,8 +30,12 @@
 							<Position X="1" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="1" Y="3"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
@@ -42,24 +46,47 @@
 							<Position X="2" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="2" Y="2"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="pickup_add_to_score" ID="{968006F2-1F41-4E56-AC01-5D5D1981DC2B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="2" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="penguin_edge_fall" ID="{B0F4B0C9-D209-4858-85B6-C9B33B15C127}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="unmute_master" ID="{FF2F28F1-6647-455D-9766-0D6E256C0343}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="4" Y="0"/>
 						</Module>
+						<Module>
+							<ObjectRef Name="music_start" ID="{47884626-5C0B-4524-8C4E-429A8EA192E9}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="4" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="music_state_in_game" ID="{8A236C03-9C20-43E7-99F1-33E4B72261FB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="4" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="music_state_menu" ID="{F075CA52-4CD1-4F8B-A91F-8F2BA8FDB377}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="4" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="4" Y="5"/>
+						</Module>
 					</ModuleList>
-					<RTPCValueList ShowAll="true"/>
-					<CurrentStateList ShowAll="true"/>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
+							<Value>40</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true">
+						<CurrentStateRef Name="main_menu" ID="{E80893D3-AA5A-48DC-AF66-F474E4404B24}"/>
+					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true">
 						<CurrentSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
 					</CurrentSwitchList>
