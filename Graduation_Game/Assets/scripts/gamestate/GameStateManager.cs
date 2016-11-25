@@ -24,12 +24,13 @@ namespace Assets.scripts.gamestate {
 		}
 
 	    void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
+	        Debug.Log("New scene loaded: " + scene.name + " masterOn: " + Prefs.MasterOn());
 
-	        if (!Prefs.MasterOn()) return;
-
-	        Debug.Log("New scene loaded: " + scene.name);
+	        if (!Prefs.MasterOn())
+	            return;
 	        string ev;
-	        if(scene.name.Equals("MainMenuScene")) {
+
+	        if(scene.name.Equals("MainMenuScene") || scene.name.Equals("Settings")) {
 	            ev = SoundConstants.Master.MAIN_MENU_MUSIC;
 	        } else {
 	            ev = SoundConstants.Master.IN_GAME_MUSIC;
@@ -42,8 +43,9 @@ namespace Assets.scripts.gamestate {
 //		    AkSoundEngine.PostEvent(SoundConstants.Master.STOP_ALL, gameObject);
 //		    AkSoundEngine.StopAll();
 	        yield return new WaitForSeconds(0.1f);
-		    AkSoundEngine.PostEvent(SoundConstants.Master.STOP_ALL, gameObject);
+//		    AkSoundEngine.PostEvent(SoundConstants.Master.STOP_ALL, gameObject);
 		    AkSoundEngine.StopAll();
+	        AkSoundEngine.PostEvent(SoundConstants.Master.MUSIC_UNMUTE, Camera.main.gameObject);
 	        AkSoundEngine.PostEvent(ev, Camera.main.gameObject);
 	    }
 	}

@@ -43,7 +43,7 @@ namespace Assets.scripts.UI.settingsmenu {
 
 		private void GetMusicPanel() {
 			// music is on by default
-			musicOn = true;
+			musicOn = true; // todo Laura refactor this so it takes into consideration value stored in Prefs.MasterOn();
 			// music button and image on it
 			GameObject mus = GameObject.FindGameObjectWithTag(TagConstants.UI.TOGGLE_CHANGE_MUSIC);
 			music = mus.GetComponent<Button>();
@@ -68,7 +68,7 @@ namespace Assets.scripts.UI.settingsmenu {
 			lanButtonImage = lan.GetComponentInChildren<Image>();
 			// text language
 			ukText = GameObject.FindGameObjectWithTag(TagConstants.UI.UK_TEXT);
-			Selection(ukText, selected, true);  //uk is on
+			Selection(ukText, selected, true); //uk is on
 			dkText = GameObject.FindGameObjectWithTag(TagConstants.UI.DK_TEXT);
 			Selection(dkText, noSelected, false);
 			// functionality on click
@@ -78,7 +78,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		}
 
 		private void Selection(GameObject text, Color col, bool isEnable) {
-			text.GetComponent<Text>().color = col; 
+			text.GetComponent<Text>().color = col;
 			Outline[] outlines = text.GetComponents<Outline>();
 			foreach(Outline outline in outlines) {
 				outline.enabled = isEnable;
@@ -88,7 +88,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		public void ChangeMusic() {
 			ChangeButtons(musicOn, onText, offText, musButtonImage);
 			// music is on and we press button
-			if ( musicOn ) {
+			if(musicOn) {
 //				AkSoundEngine.PostEvent(SoundConstants.Master.MUSIC_MUTE, Camera.main.gameObject);
 				AkSoundEngine.PostEvent(SoundConstants.Master.MASTER_MUTE, Camera.main.gameObject);
 				musicOn = false;
@@ -97,7 +97,8 @@ namespace Assets.scripts.UI.settingsmenu {
 				AkSoundEngine.PostEvent(SoundConstants.Master.MASTER_UNMUTE, Camera.main.gameObject);
 				musicOn = true;
 			}
-            Prefs.SetMaster(musicOn);
+			// store the actual state to persistent storage
+			Prefs.SetMaster(musicOn);
 		}
 
 		public void ChangeLanguage() {
@@ -117,7 +118,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		}
 
 		private void UpdateTexts() {
-			settingsText.text =  TranslateApi.GetString(LocalizedString.settings);
+			settingsText.text = TranslateApi.GetString(LocalizedString.settings);
 			back.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.backsettings);
 		}
 
@@ -128,14 +129,13 @@ namespace Assets.scripts.UI.settingsmenu {
 		private void ChangeButtons(bool leftIsOn, GameObject leftText, GameObject rightText, Image buttonImage) {
 			FlipButtonImage(buttonImage);
 
-			if ( leftIsOn ) {
+			if(leftIsOn) {
 				Selection(leftText, noSelected, false);
 				Selection(rightText, selected, true);
 			} else {
 				Selection(leftText, selected, true);
 				Selection(rightText, noSelected, false);
 			}
-			
 		}
 
 		private void FlipButtonImage(Image buttonImage) {
@@ -145,7 +145,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		}
 
 		private void UpdateLanguageImage() {
-			if ( englishOn ) {
+			if(englishOn) {
 				// this is looking in the folder Assets/Resources so these two flags must be there
 				languageImage.sprite = (Sprite)Resources.Load<Sprite>("Flag - Dk");
 			} else {
@@ -156,7 +156,5 @@ namespace Assets.scripts.UI.settingsmenu {
 		void OnDestroy() {
 			TranslateApi.UnRegister(this);
 		}
-
 	}
 }
-
