@@ -42,6 +42,10 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
 
+			if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
+				tutorialShown = true;
+			}
+
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -113,6 +117,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
 			if(count <= 0) {
+				inputManager.UnblockCameraMovement();
 				return;
 			}
 
@@ -122,6 +127,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			currentObject.SetActive(true);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
+
 		}
 
 		protected void Update() {
@@ -272,15 +278,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-					textValue = "Switch Lane: ";
+					//textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-					textValue = "Jump: ";
+					//textValue = "Jump: ";
 					break;
 				case TagConstants.Tool.FREEZE_TIME:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-					textValue = "Freeze time: ";
+					//textValue = "Freeze time: ";
 					break;
 			}
 

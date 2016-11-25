@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using Assets.scripts.sound;
 
 namespace Assets.scripts.controllers.actions.pickups {
 	public class DespawnPlutonium : Action {
@@ -17,7 +16,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 
 		public DespawnPlutonium(CouroutineDelegateHandler d, Text counter, Actionable<PickupActions> actionable) {
 			delegator = d;
-			currencyCounter = counter; // GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			currencyCounter = counter; 
 			this.actionable = actionable;
 		}
 
@@ -36,7 +35,6 @@ namespace Assets.scripts.controllers.actions.pickups {
 
 		private IEnumerator FeedbackCoroutine() {
 			Camera c = Camera.main;
-			//plutoniumCounter.rectTransform
 			Vector3 worldPos;
 			GameObject currencyGameObject = gameObject.transform.parent.gameObject;
 			Vector3 counterCanvasPos;
@@ -46,10 +44,11 @@ namespace Assets.scripts.controllers.actions.pickups {
 			Vector3 currencyCanvasPos = currencyGameObject.transform.position;
 
 			counterCanvasPos.z = currencyCanvasPos.z; // we don't want to change the z-axis of item picked up
-						
-			ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
-			p.startSpeed = 10f;
 
+			if (currencyGameObject.GetComponent<ParticleSystem>() == null) {
+				ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
+				p.startSpeed = 10f;
+			}
 			float fraction = 0;
 			float speed = 1f;
 			float distance = float.MaxValue;
@@ -65,7 +64,6 @@ namespace Assets.scripts.controllers.actions.pickups {
 			}
 			
 			currencyGameObject.SetActive(false);
-			//plutoniumCounter.text = (int.Parse(plutoniumCounter.text) + 1).ToString();
 			actionable.ExecuteAction(PickupActions.CurrencyAdd);
 			pointsToAdd += 10;
 			while (pointsToAdd > 0) {
