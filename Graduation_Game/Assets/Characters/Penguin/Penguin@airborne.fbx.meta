@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cb00384d4a5dd5b45a6ceeb4a4e0f605
-timeCreated: 1479464564
+timeCreated: 1479976842
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -199,8 +199,8 @@ ModelImporter:
     - serializedVersion: 16
       name: airborne
       takeName: Take 001
-      firstFrame: 28
-      lastFrame: 40
+      firstFrame: 25
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

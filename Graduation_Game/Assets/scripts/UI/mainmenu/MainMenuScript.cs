@@ -166,7 +166,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		private void CheckLoadLevel(LvlData lvl) {
-			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, gameObject);
+			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
 			if(popup.enabled) {
 				DisablePopup();
 				return;
