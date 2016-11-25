@@ -46,8 +46,8 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			pos.x = Round(pos.x);
 
-			Debug.DrawRay(new Vector3(pos.x, hitPos.y+1f, pos.z), -Vector3.up * 1f);
-			if (Physics.Raycast(new Vector3(pos.x, hitPos.y+1f, pos.z), -Vector3.up, out hit, 2f, layerMask)) {
+			Debug.DrawRay(new Vector3(pos.x, hitPos.y+2f, pos.z), -Vector3.up * 1f);
+			if (Physics.Raycast(new Vector3(pos.x, hitPos.y+2f, pos.z), -Vector3.up, out hit, 2f, layerMask)) {
 				tool.position = new Vector3(pos.x, hit.point.y, pos.z);
 			}
 		}
