@@ -5,11 +5,7 @@ namespace Assets.scripts
 {
     public class Prefs {
 
-        public const string SOUND_MASTER = "pref_master_sound";
-
-        static Prefs() {
-//            PlayerPrefs.
-        }
+        private const string SOUND_MASTER = "pref_master_sound";
 
         public static void SetMaster(bool musicOn) {
             PlayerPrefs.SetString(SOUND_MASTER, musicOn ? SoundConstants.Master.MASTER_MUTE: SoundConstants.Master.MASTER_UNMUTE);
