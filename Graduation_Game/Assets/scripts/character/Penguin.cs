@@ -7,6 +7,7 @@ using Assets.scripts.gamestate;
 using Assets.scripts.UI.screen.ingame;
 using JetBrains.Annotations;
 using System.Collections;
+using Assets.scripts.sound;
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
@@ -47,7 +48,7 @@ namespace Assets.scripts.character {
 	        deathCam.enabled = false;
 	    }
 
-		void Update() {
+		void FixedUpdate() {
 			if (isStopped) {
 				return;
 			}
@@ -74,6 +75,7 @@ namespace Assets.scripts.character {
 					ExecuteAction(ControllableActions.Minimize);
 				}*/
 			} else {
+			    StopSound();
 				if ( !characterController.isGrounded ) {
 					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
@@ -92,10 +94,15 @@ namespace Assets.scripts.character {
 		}
 
 	    void OnDestroy() {
+	        StopSound();
 	        gameStateManager = null;
 	    }
 
-		public override string GetTag() {
+	    private void StopSound()	    {
+	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
+	    }
+
+	    public override string GetTag() {
 			return TagConstants.PENGUIN;
 		}
 

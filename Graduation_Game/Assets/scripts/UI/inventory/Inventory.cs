@@ -1,18 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.level;
+using System;
 
 namespace Assets.scripts.UI.inventory {
-	public class Inventory : MonoBehaviour {
+	public class Inventory {
 		public readonly Item<int> plutonium = new InventoryItem();
+		public static readonly Item<string> levelPlayed = new PreferenceItem<string>(InventoryConstants.LEVELPLAYED);
+		public static readonly Item<int> collectedStars = new PreferenceItem<int>(InventoryConstants.COLLECTEDSTARS);
 		public static readonly Item<int> penguinStorage = new PreferenceItem<int>(InventoryConstants.PENGUINSTORAGE);
 		public static readonly Item<int> penguinCount = new PreferenceItem<int>(InventoryConstants.PENGUINCOUNT);
 		public static readonly Item<int> hasInitialized = new PreferenceItem<int>(InventoryConstants.HASINITIALIZED);
 		public static readonly Item<int> cash = new PreferenceItem<int>(InventoryConstants.CASH);
 		public static readonly Item<int> hatchablePenguins = new PreferenceItem<int>(InventoryConstants.HATCHABLEPENGUINS);
 		public static readonly Item<string> eggHatchTime = new PreferenceItem<string>(InventoryConstants.EGGTIME);
+		public static readonly Item<int> levelUnlockIndex = new PreferenceItem<int>(InventoryConstants.LEVELINDEX);
+		public static readonly Item<int> key = new PreferenceItem<int>(InventoryConstants.KEY);
+		public static readonly Item<string> loginDate = new PreferenceItem<string>(InventoryConstants.LASTLOGIN);
+		public static readonly Item<int> level1 = new PreferenceItem<int>(InventoryConstants.LEVEL1);
+		public static readonly Item<int> level2 = new PreferenceItem<int>(InventoryConstants.LEVEL2);
+		public static readonly Item<int> level3 = new PreferenceItem<int>(InventoryConstants.LEVEL3);
+		public static readonly Item<int> level4 = new PreferenceItem<int>(InventoryConstants.LEVEL4);
+		public static readonly Item<int> level5 = new PreferenceItem<int>(InventoryConstants.LEVEL5);
+		public static readonly Item<int> level6 = new PreferenceItem<int>(InventoryConstants.LEVEL6);
+		public static readonly Item<int> level7 = new PreferenceItem<int>(InventoryConstants.LEVEL7);
+		public static readonly Item<int> level8 = new PreferenceItem<int>(InventoryConstants.LEVEL8);
+		public static readonly Item<int> level9 = new PreferenceItem<int>(InventoryConstants.LEVEL9);
+		public static readonly Item<int> level10 = new PreferenceItem<int>(InventoryConstants.LEVEL10);
 
-		public void Start() {
+
+
+		static Inventory() {
 			// SanityCheck
 			Debug.Assert(penguinCount.GetValue() <= penguinStorage.GetValue(), "It looks like you're trying to cheat "
 																			   + "the system and get more penguins "
@@ -21,6 +39,19 @@ namespace Assets.scripts.UI.inventory {
 				penguinStorage.SetValue(5);
 				penguinCount.SetValue(5);
 				hasInitialized.SetValue(1);
+				key.SetValue(1);
+				loginDate.SetValue(DateTime.Now.ToString());
+			}
+
+			SetupLoginDate();
+		}
+
+		private static void SetupLoginDate() {
+			var stringTime = loginDate.GetValue();
+			loginDate.SetValue(DateTime.Now.ToString());
+
+			if ( DateTime.Now.DayOfYear != Convert.ToDateTime(stringTime).DayOfYear ) {
+				key.SetValue(key.GetValue() + 1);
 			}
 		}
 

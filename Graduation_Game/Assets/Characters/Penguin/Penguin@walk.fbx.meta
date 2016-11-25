@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7ad772b7a760c12409dfdf5b6a74f243
-timeCreated: 1479464563
+timeCreated: 1479976841
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -219,15 +219,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: playMovingSound
-        data: 
-        objectReferenceParameter: {fileID: 1000011506794294, guid: 05b734c64854a2941917c1863c1e9dd3,
-          type: 2}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1

@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Security.Policy;
 using System.Threading;
 using Assets.scripts.gamestate;
+using Assets.scripts.sound;
+using Assets.scripts.character;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -41,7 +43,11 @@ namespace Assets.scripts.level {
 				penguinObject = child.gameObject;
 				break;
 			}
-			StartCoroutine(Spawn());
+			if (PlayerPrefs.GetInt("backFromSecret") == 1) {
+				GetPreviousPositions();
+			} else {
+				StartCoroutine(Spawn());
+			}
 		}
 
 		private IEnumerator Spawn() {
@@ -80,6 +86,29 @@ namespace Assets.scripts.level {
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
+		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
+		}
+
+		public void SpawnPenguin(Vector3 pos) {
+			// Create an instance of the penguin at the objects position
+			var go = (GameObject)Instantiate(penguinObject, pos, Quaternion.identity);
+			penguins.Add(go);
+			penguinCounter.text = (int.Parse(penguinCounter.text) + 1).ToString();
+			go.SetActive(true);
+			go.tag = TagConstants.PENGUIN;
+			InjectionRegister.Redo();
+			AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
+		}
+
+		private void GetPreviousPositions(){
+			for (int i = 0; i < count; i++) {
+				if (PlayerPrefs.GetFloat("penguin_" + i + "_x") != null) {
+					Vector3 vec = new Vector3(PlayerPrefs.GetFloat("penguin_" + i + "_x"), PlayerPrefs.GetFloat("penguin_" + i + "_y"), PlayerPrefs.GetFloat("penguin_" + i + "_z"));
+					SpawnPenguin(vec);
+				}
+			}
+			PlayerPrefs.SetInt("backFromSecret", 0);
+			countDown.enabled = false;
 		}
 
 		public List<GameObject> GetAllPenguins(){
@@ -89,6 +118,9 @@ namespace Assets.scripts.level {
 		public int GetInitialPenguinCount() {
 			return penguinCount;
 		}
+
+
+
 	}
 
 }

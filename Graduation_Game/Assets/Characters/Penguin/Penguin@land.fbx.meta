@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: adda1f65b9e63be45882c27497115004
-timeCreated: 1479464564
+timeCreated: 1479976842
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -199,8 +199,8 @@ ModelImporter:
     - serializedVersion: 16
       name: land
       takeName: Take 001
-      firstFrame: 40
-      lastFrame: 70
+      firstFrame: 38
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -219,7 +219,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.033591744
+        functionName: PlayPenguinLand
+        data: 
+        objectReferenceParameter: {fileID: 100042, guid: 55533a2157a269144bf8fe86e7b10c6e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

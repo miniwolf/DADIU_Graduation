@@ -12,9 +12,15 @@ public class IntroScreenController : MonoBehaviour {
 	void Start() {
 		currentScreen = 0;
 		skipIntro =	GameObject.FindGameObjectWithTag(TagConstants.SKIPINTROTEXT).GetComponent<Text>();
-		/*if (!PlayerPrefs.HasKey("NoIntroScreen")) {															      // Enable this $#!? when ready for release.
+		if (!PlayerPrefs.HasKey("NoIntroScreen")) {															      // Enable this $#!? when ready for release.
 			LoadIntro();
-		}*/
+		}
+	}
+
+	void Update(){
+		if (Input.GetMouseButtonDown(0)) {
+			LoadNextScreen();
+		}
 	}
 
 	public void LoadNextScreen() {
@@ -26,6 +32,9 @@ public class IntroScreenController : MonoBehaviour {
 			next.GetComponentInChildren<Text>().enabled = false;
 			skipIntro.text = "Go to Menu";
 		}
+		if (introScreens.Length == currentScreen) {
+			SkipIntro();
+		}
 	}
 
 	public void SkipIntro() {
@@ -34,7 +43,7 @@ public class IntroScreenController : MonoBehaviour {
 			i.enabled = false;
 			i.GetComponentInChildren<Text>().enabled = false;
 		}
-		//PlayerPrefs.SetInt("NoIntroScreen", 1);																// Enable this $#!? when ready for release.
+		PlayerPrefs.SetInt("NoIntroScreen", 1);																// Enable this $#!? when ready for release.
 	}
 
 	public void LoadIntro() {

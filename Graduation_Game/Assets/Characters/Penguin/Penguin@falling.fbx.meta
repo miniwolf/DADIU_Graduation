@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 024b5f6746949494b8ba64933450e18a
-timeCreated: 1479464562
+timeCreated: 1479976840
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -159,8 +159,8 @@ ModelImporter:
     - serializedVersion: 16
       name: falling
       takeName: Take 001
-      firstFrame: 7
-      lastFrame: 28
+      firstFrame: 1
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -179,7 +179,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.023255825
+        functionName: PlayPenguinEdgeFall
+        data: 
+        objectReferenceParameter: {fileID: 100042, guid: 55533a2157a269144bf8fe86e7b10c6e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
