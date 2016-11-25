@@ -853,11 +853,12 @@
 								</Event>
 								<Event Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}">
 									<ChildrenList>
-										<Action Name="Set State" ID="{A87F11D0-4EA1-42B4-8A1F-B2B5100E079B}" ShortID="410404471" Type="SetState" Scope="All" Global="true">
-											<SetItemParam>
-												<Group Name="music" ID="{31EFB71D-0E67-454B-8F9F-B2C835E7A49B}"/>
-												<GroupItem Name="None" ID="{59FD3DDF-0662-4D11-B5E5-737F80C771A3}"/>
-											</SetItemParam>
+										<Action Name="Stop" ID="{8104E09C-88F2-4B54-B57C-5DB4EA752106}" ShortID="613276537" Type="Stop" Scope="One" Global="true">
+											<ElementList>
+												<Element ID="{8E7BE27F-7A79-4E82-8364-5B451BEF90D3}" Global="true">
+													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
+												</Element>
+											</ElementList>
 										</Action>
 									</ChildrenList>
 								</Event>

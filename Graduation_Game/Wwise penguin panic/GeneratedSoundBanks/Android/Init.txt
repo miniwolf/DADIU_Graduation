@@ -8,6 +8,7 @@ State	ID	Name	State Group			Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1596647065	rtpc_music_volume			\Default Work Unit\rtpc_music_volume	
+	2564988978	rtpc_master_volume			\Default Work Unit\rtpc_master_volume	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	805203703	Master Secondary Bus			\Default Work Unit\Master Secondary Bus	

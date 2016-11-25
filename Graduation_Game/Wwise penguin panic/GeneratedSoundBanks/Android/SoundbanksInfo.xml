@@ -29,12 +29,11 @@
 				<Event Id="1995024202" Name="end_screen_star_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_star_spawn"/>
 				<Event Id="1883663240" Name="jump_test" ObjectPath="\Events\Default Work Unit\TEST\jump_test" MaxAttenuation="0.000000"/>
 				<Event Id="1511485381" Name="move_test" ObjectPath="\Events\Default Work Unit\TEST\move_test" MaxAttenuation="0.000000"/>
-				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\music\music_start"/>
-				<Event Id="1457793291" Name="music_state_in_game" ObjectPath="\Events\Default Work Unit\music\music_state_in_game" MaxAttenuation="0.000000"/>
-				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\music\music_state_menu" MaxAttenuation="0.000000"/>
-				<Event Id="3227181061" Name="music_stop" ObjectPath="\Events\Default Work Unit\music\music_stop" MaxAttenuation="0.000000"/>
+				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\settings\music\music_start"/>
+				<Event Id="1457793291" Name="music_state_in_game" ObjectPath="\Events\Default Work Unit\settings\music\music_state_in_game" MaxAttenuation="0.000000"/>
+				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\settings\music\music_state_menu" MaxAttenuation="0.000000"/>
 				<Event Id="2495070883" Name="mute_master" ObjectPath="\Events\Default Work Unit\settings\mute_master" MaxAttenuation="0.000000"/>
-				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\mute_music" MaxAttenuation="0.000000"/>
+				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\music\mute_music" MaxAttenuation="0.000000"/>
 				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="35.000000"/>
 				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution"/>
 				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator"/>
@@ -83,7 +82,6 @@
 				<Event Id="2376935833" Name="trap_wire_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_loop"/>
 				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered"/>
 				<Event Id="1242989296" Name="unmute_master" ObjectPath="\Events\Default Work Unit\settings\unmute_master" MaxAttenuation="0.000000"/>
-				<Event Id="1441918971" Name="unmute_music" ObjectPath="\Events\Default Work Unit\settings\unmute_music" MaxAttenuation="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="6671893" Language="SFX">
@@ -212,7 +210,7 @@
 				</File>
 				<File Id="542419449" Language="SFX">
 					<ShortName>penguin_placeholder_fall_1.wav</ShortName>
-					<Path>SFX\penguin_placeholder_fall_1_6B0F186D.wem</Path>
+					<Path>SFX\penguin_placeholder_fall_1_253B6A70.wem</Path>
 				</File>
 				<File Id="573858228" Language="SFX">
 					<ShortName>stone_place_1.wav</ShortName>

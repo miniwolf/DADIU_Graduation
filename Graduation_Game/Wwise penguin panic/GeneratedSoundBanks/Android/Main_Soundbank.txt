@@ -17,8 +17,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1250089922	button_pressed			\Default Work Unit\ui\button_pressed	
 	1336860092	trap_excavator_triggered			\Default Work Unit\SFXs\Traps\trap_excavator_triggered	
 	1345721513	tool_change_lane_placed			\Default Work Unit\SFXs\Tools\tool_change_lane_placed	
-	1441918971	unmute_music			\Default Work Unit\settings\unmute_music	
-	1457793291	music_state_in_game			\Default Work Unit\music\music_state_in_game	
+	1457793291	music_state_in_game			\Default Work Unit\settings\music\music_state_in_game	
 	1511485381	move_test			\Default Work Unit\TEST\move_test	
 	1548142744	tool_jump_triggered			\Default Work Unit\SFXs\Tools\tool_jump_triggered	
 	1577955597	penguin_celebrate			\Default Work Unit\penguin\penguin_celebrate	
@@ -42,22 +41,21 @@ Event	ID	Name			Wwise Object Path	Notes
 	2677805925	tool_returned_to_toolbar			\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar	
 	2713534190	pickup_fly_to_score			\Default Work Unit\SFXs\Pickups\pickup_fly_to_score	
 	2717875216	tool_global_freeze_time_stopping			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping	
-	2741649490	mute_music			\Default Work Unit\settings\mute_music	
+	2741649490	mute_music			\Default Work Unit\settings\music\mute_music	
 	2948163585	penguin_tool_jump_used			\Default Work Unit\penguin\Interactions\penguin_tool_jump_used	
 	3050359637	penguin_move_voice_stop			\Default Work Unit\penguin\movement\penguin_move_voice_stop	
 	3054427212	pickup_add_to_score			\Default Work Unit\SFXs\Pickups\pickup_add_to_score	
 	3095703759	penguin_death_electrocution			\Default Work Unit\penguin\deaths\penguin_death_electrocution	
 	3165641387	penguin_spawn			\Default Work Unit\penguin\penguin_spawn	
-	3227181061	music_stop			\Default Work Unit\music\music_stop	
 	3375059786	end_screen_pickup_count			\Default Work Unit\ui\end sreen\end_screen_pickup_count	
 	3430637553	egg_hatching			\Default Work Unit\SFXs\egg_hatching	
 	3443752665	trap_wall_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered	
 	3505549277	seal_death_spikes			\Default Work Unit\seal\deaths\seal_death_spikes	
 	3715428614	seal_death_electrocution			\Default Work Unit\seal\deaths\seal_death_electrocution	
-	3725903807	music_start			\Default Work Unit\music\music_start	
+	3725903807	music_start			\Default Work Unit\settings\music\music_start	
 	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
 	3746285319	penguin_react			\Default Work Unit\penguin\penguin_react	
-	3857193422	music_state_menu			\Default Work Unit\music\music_state_menu	
+	3857193422	music_state_menu			\Default Work Unit\settings\music\music_state_menu	
 	3876505889	penguin_land			\Default Work Unit\penguin\penguin_land	
 	3934525376	penguin_state_change_footsteps_wood			\Default Work Unit\penguin\footsteps switch state\penguin_state_change_footsteps_wood	
 	4165526132	tool_global_freeze_time_starting			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting	
@@ -102,7 +100,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	513194388	penguin_death_spikes	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_placeholder_splat_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\spikes\penguin_death_spikes		11291
 	537337564	coins_pickup_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\coins_pickup_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\coins_pickup_1		3302
 	537707058	main menu music	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\pp_menu_2_0CDD8189.wem		\Interactive Music Hierarchy\Default Work Unit\music\Main menu music\mmm\main menu music		313986
-	542419449	penguin_edge_fall	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_placeholder_fall_1_6B0F186D.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_edge_fall		26768
+	542419449	penguin_edge_fall	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_placeholder_fall_1_253B6A70.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_edge_fall		26768
 	573858228	stone_place_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\stone_place_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\stone_place_1		5744
 	620465349	penguin_spawn	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_placeholder_spawn_1_56958342.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn		7098
 	639555924	penguin_placeholder_react_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_placeholder_react_1_89D0BA43.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_react\penguin_placeholder_react_1		14021
