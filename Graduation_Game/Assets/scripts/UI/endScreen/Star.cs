@@ -1,6 +1,5 @@
 ﻿using Assets.scripts.components;
 using Assets.scripts.controllers;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.scripts.tools {
