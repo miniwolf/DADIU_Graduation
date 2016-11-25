@@ -43,13 +43,13 @@
 					</PropertyList>
 					<ConversionPluginInfoList>
 						<ConversionPluginInfo Platform="Android">
-							<ConversionPlugin Name="" ID="{C0DCC4EB-5050-4015-BA01-CE21BDB4FB27}" PluginName="PCM" CompanyID="0" PluginID="1"/>
+							<ConversionPlugin Name="" ID="{0274472C-244E-4372-B0FA-6D01B121A9CB}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
 						</ConversionPluginInfo>
 						<ConversionPluginInfo Platform="Windows">
-							<ConversionPlugin Name="" ID="{554F0C2D-B947-4CA0-A4D5-8734B3EA33B4}" PluginName="PCM" CompanyID="0" PluginID="1"/>
+							<ConversionPlugin Name="" ID="{68C4D1D3-DDE6-4F02-AAE3-59183EF03F7B}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
 						</ConversionPluginInfo>
 						<ConversionPluginInfo Platform="iOS">
-							<ConversionPlugin Name="" ID="{7A6067D1-6E15-4B57-B1A3-74178FC4DFA6}" PluginName="PCM" CompanyID="0" PluginID="1"/>
+							<ConversionPlugin Name="" ID="{604BA2C7-CF09-4C6A-966A-C39359DAAAD2}" PluginName="Vorbis" CompanyID="0" PluginID="4"/>
 						</ConversionPluginInfo>
 					</ConversionPluginInfoList>
 				</Conversion>
