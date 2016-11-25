@@ -26,6 +26,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private SceneManager scenes;
 		private static int collectedStars;
 		private Actionable<GameActions> actionable;
+		public static bool isLevelWon = false;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -70,6 +71,11 @@ namespace Assets.scripts.controllers.actions.game {
 			plutoniumTotal.GetComponent<Text>().text = PlayerPrefs.GetInt("Plutonium").ToString();
 
 			target = PlayerPrefs.GetInt("Plutonium") + int.Parse(plutoniumThisLevel.text);
+
+			string levelPlayedName = Application.loadedLevelName;
+			PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
+			isLevelWon = true;
+
 			isSetUp = true;
 		}
 
@@ -153,11 +159,11 @@ namespace Assets.scripts.controllers.actions.game {
 					}
 				}
 			}
+			// TODO refactor this
 			collectedStars += starsSpawned;
 			PlayerPrefs.SetInt("CollectedStars", collectedStars);
 			PlayerPrefs.SetInt("LevelWonStars", starsSpawned);
-			string levelPlayedName = Application.loadedLevelName;
-			PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
+
 			return false;
 		}
 	}
