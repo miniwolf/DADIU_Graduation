@@ -31,6 +31,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private const int layermask = 1 << 8;
 		Color[] origColors;
 		MeshRenderer[] meshes;
+		private bool touchUsed = false;
 
 		public float closessToCam = 10f;
 		public float toolOffSetWhileMoving = 20f;
@@ -138,6 +139,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		protected void Update() {
 			foreach(var touch in Input.touches) {
+				touchUsed = true;
 				if(touch.phase == TouchPhase.Began) {
 					// first tap on tool
 					if(!oneClick && IsATool(touch.position)) {
@@ -167,7 +169,9 @@ namespace Assets.scripts.UI.screen.ingame {
 					}
 				}
 			}
-
+			if (touchUsed) {
+				return;
+			}
 			// check double click
 			if(Input.GetMouseButtonDown(0)) {
 				// first click on tool
@@ -392,7 +396,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.localScale = origScale * (1f - fracJourney);
 				yield return new WaitForEndOfFrame();
 			}
-			obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			obj.transform.localScale = origScale;
 			PutObjectInPool(currentObject.transform);
 			UpdateUI(currentObject.tag);
 			currentObject.SetActive(false);
