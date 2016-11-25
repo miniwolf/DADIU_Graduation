@@ -89,14 +89,15 @@ namespace Assets.scripts.UI.settingsmenu {
 			ChangeButtons(musicOn, onText, offText, musButtonImage);
 			// music is on and we press button
 			if ( musicOn ) {
-				AkSoundEngine.PostEvent(SoundConstants.Music.MUSIC_MUTE, Camera.main.gameObject);
-				AkSoundEngine.PostEvent(SoundConstants.Music.SOUND_MUTE, Camera.main.gameObject);
+//				AkSoundEngine.PostEvent(SoundConstants.Master.MUSIC_MUTE, Camera.main.gameObject);
+				AkSoundEngine.PostEvent(SoundConstants.Master.MASTER_MUTE, Camera.main.gameObject);
 				musicOn = false;
 			} else {
-				AkSoundEngine.PostEvent(SoundConstants.Music.MUSIC_UNMUTE, Camera.main.gameObject);
-				AkSoundEngine.PostEvent(SoundConstants.Music.SOUND_UNMUTE, Camera.main.gameObject);
+//				AkSoundEngine.PostEvent(SoundConstants.Master.MUSIC_UNMUTE, Camera.main.gameObject);
+				AkSoundEngine.PostEvent(SoundConstants.Master.MASTER_UNMUTE, Camera.main.gameObject);
 				musicOn = true;
 			}
+            Prefs.SetMaster(musicOn);
 		}
 
 		public void ChangeLanguage() {
