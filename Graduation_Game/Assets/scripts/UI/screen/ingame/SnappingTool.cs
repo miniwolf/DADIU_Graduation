@@ -25,6 +25,14 @@ namespace Assets.scripts.UI.screen.ingame {
 					Material mat = tool.gameObject.GetComponentInChildren<MeshRenderer>().material;
 					if ( mat.name != "LeftArrow" ) {
 						tool.gameObject.GetComponentInChildren<MeshRenderer>().material = Resources.Load("LeftArrow", typeof(Material)) as Material;
+						Transform[] trans;
+						trans = tool.gameObject.GetComponentsInChildren<Transform>();
+						for (int i = 0; i < trans.Length; i++) {
+							if (trans[i].tag == TagConstants.LANECHANGEARROW) {
+								trans[i].rotation = Quaternion.Euler(new Vector3(180f, 180f, 0f));
+								break;
+							}
+						}
 					}
 					/*Vector3 scale = tool.transform.localScale;
 					if ( scale.x < 0 ) {
@@ -36,7 +44,15 @@ namespace Assets.scripts.UI.screen.ingame {
 				if ( tool.tag == TagConstants.SWITCHTEMPLATE ) {
 					Material mat = tool.gameObject.GetComponentInChildren<MeshRenderer>().material;
 					if ( mat.name != "RightArrow" ) {
+						Transform[] trans;
+						trans = tool.gameObject.GetComponentsInChildren<Transform>();
 						tool.gameObject.GetComponentInChildren<MeshRenderer>().material = Resources.Load("RightArrow", typeof(Material)) as Material;
+						for (int i = 0; i < trans.Length; i++) {
+							if (trans[i].tag == TagConstants.LANECHANGEARROW) {
+								trans[i].rotation = Quaternion.Euler(new Vector3(0, 180f, 0f));
+								break;
+							}
+						}
 					}
 					/*Vector3 scale = tool.transform.localScale;
 					if ( scale.x > 0 ) {
