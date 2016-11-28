@@ -26,8 +26,10 @@ namespace Assets.scripts.components.factory {
 		private readonly GameStateManager gameStateManager;
 	    private readonly NotifierSystem notifierSystem;
 		private GameObject splat;
+	    private CouroutineDelegateHandler delegator;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings,
+		    GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
@@ -38,6 +40,7 @@ namespace Assets.scripts.components.factory {
 		    p.SetGameStateManager(gameStateManager);
 		    p.SetNotifyManager(this.notifierSystem);
 			this.splat = splat;
+		    this.delegator = delegator;
 		}
 
 		public void Build() {
@@ -97,9 +100,9 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 
 			if ( slide ) {
-				actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+				actionHandler.AddAction(new StartSlidingAction(delegator, animator, directionable));
 			} else {
-				actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			    actionHandler.AddAction(new StopSlidingAction(directionable));
 			}
 
 			return actionHandler;

@@ -60,7 +60,7 @@ namespace Assets.scripts.components.registers {
 		private static void InitializeComponent(GameEntity component) {
 			switch ( component.GetTag() ) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem, splat).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem, splat, handler).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
 					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
