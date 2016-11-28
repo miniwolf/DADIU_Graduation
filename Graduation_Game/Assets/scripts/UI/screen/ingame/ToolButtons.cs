@@ -227,6 +227,13 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
+			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+				if (t.tag == TagConstants.LANECHANGEARROW) {
+					t.localScale = new Vector3(1, 1, 1);
+				} else if (t.tag == TagConstants.JUMPARROW) {
+					t.localScale = new Vector3(2, 2, 2);
+				}
+			}
 			SaveOrigColors(currentObject);
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
@@ -245,13 +252,18 @@ namespace Assets.scripts.UI.screen.ingame {
 						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE_PLACED, currentObject);
 					break;
 				}
-
+				foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+					if (t.tag == TagConstants.LANECHANGEARROW || t.tag == TagConstants.JUMPARROW) {
+						t.gameObject.transform.localScale = Vector3.zero;
+					}
+				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 			if (!tutorialShown) {
 				DismissTutorial(currentObject.tag);
 			}
+
 			ChangeObjColotToOriginal(currentObject);
 			StartCoroutine(CameraHack());
 		}
