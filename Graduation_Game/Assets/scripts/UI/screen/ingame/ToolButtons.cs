@@ -31,6 +31,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private const int layermask = 1 << 8;
 		Color[] origColors;
 		MeshRenderer[] meshes;
+		private bool touchUsed = false;
 
 		public float closessToCam = 10f;
 		public float toolOffSetWhileMoving = 20f;
@@ -138,6 +139,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		protected void Update() {
 			foreach(var touch in Input.touches) {
+				touchUsed = true;
 				if(touch.phase == TouchPhase.Began) {
 					// first tap on tool
 					if(!oneClick && IsATool(touch.position)) {
@@ -167,7 +169,9 @@ namespace Assets.scripts.UI.screen.ingame {
 					}
 				}
 			}
-
+			if (touchUsed) {
+				return;
+			}
 			// check double click
 			if(Input.GetMouseButtonDown(0)) {
 				// first click on tool
@@ -229,15 +233,9 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void ReleaseTool(bool doubleTap) {
 			if(doubleTap) { // return tool back
-				PutObjectInPool(currentObject.transform);
-				UpdateUI(currentObject.tag);
-				currentObject.SetActive(false);
-				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
-				currentObject = null;
 				dragging = false;
-				ChangeColor(notReturning);
-				doubleTap = false;
-				AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+				FlyGOToButton(currentObject);
+
 			} else { // place tool to the scene
 				switch(currentObject.tag) {
 				case TagConstants.JUMPTEMPLATE:
@@ -336,32 +334,82 @@ namespace Assets.scripts.UI.screen.ingame {
 			ChangeObjColorToGreen(obj);
 		}
 
-		void SaveOrigColors(GameObject obj){
-			meshes = new MeshRenderer[obj.GetComponentsInChildren<MeshRenderer>().Length];
-			meshes = obj.GetComponentsInChildren<MeshRenderer>();
+		private void SaveOrigColors(GameObject obj){
+			foreach (Transform go in obj.GetComponentsInChildren<Transform>()) {
+				if (go.gameObject.tag == obj.tag) {
+					meshes = new MeshRenderer[go.gameObject.GetComponentsInChildren<MeshRenderer>().Length];
+					meshes = go.gameObject.GetComponentsInChildren<MeshRenderer>();
+				}
+			}
+
 			origColors = new Color[meshes.Length];
 			for (int i = 0; i < meshes.Length; i++) {
 				origColors[i] = meshes[i].material.color;
 			}
 		}
 
-		void ChangeObjColorToRed(GameObject obj){
+		private void ChangeObjColorToRed(GameObject obj){
 			for (int i = 0; i < meshes.Length; i++) {
 				meshes[i].material.color = Color.red;
 			}
-
 		}
 
-		void ChangeObjColorToGreen(GameObject obj){
+		private void ChangeObjColorToGreen(GameObject obj){
 			for (int i = 0; i < meshes.Length; i++) {
 				meshes[i].material.color = Color.green;
 			}
 		}
 
-		void ChangeObjColotToOriginal(GameObject obj){
+		private void ChangeObjColotToOriginal(GameObject obj){
 			for (int i = 0; i < meshes.Length; i++) {
 				meshes[i].material.color = origColors[i];
 			}
+		}
+
+		private void FlyGOToButton(GameObject obj){
+			Vector3 flyTo;
+			GameObject go;
+			switch (obj.transform.tag) {
+				case TagConstants.JUMPTEMPLATE:
+				case TagConstants.JUMP:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP);
+					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
+					StartCoroutine(FlyingObjToButton(obj, flyTo));
+					break;
+				case TagConstants.SWITCHTEMPLATE:
+				case TagConstants.SWITCHLANE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE);
+					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
+					StartCoroutine(FlyingObjToButton(obj, flyTo));
+					break;
+			
+			}
+		}
+
+		private IEnumerator FlyingObjToButton(GameObject obj, Vector3 destination){
+			Vector3 startPos = obj.transform.position;
+			Vector3 origScale = obj.transform.localScale;
+			float startTime = Time.time;
+			float speedFactor = 10f, journeyLength = Vector3.Distance(startPos, destination);
+			float distCovered = (Time.time - startTime)*speedFactor;
+			float fracJourney = distCovered / journeyLength;
+			//print(path[0] + " " + path[1]);
+			while(fracJourney<1f){
+				distCovered = (Time.time - startTime)*speedFactor;
+				fracJourney = distCovered / journeyLength;
+				obj.transform.position = Vector3.Lerp(startPos, destination, fracJourney);
+				obj.transform.localScale = origScale * (1f - fracJourney);
+				yield return new WaitForEndOfFrame();
+			}
+			obj.transform.localScale = origScale;
+			PutObjectInPool(currentObject.transform);
+			UpdateUI(currentObject.tag);
+			currentObject.SetActive(false);
+			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
+			currentObject = null;
+			ChangeColor(notReturning);
+			doubleTap = false;
+			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
 		}
 
 		/*

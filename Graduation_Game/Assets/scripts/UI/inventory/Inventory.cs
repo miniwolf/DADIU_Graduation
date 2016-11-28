@@ -28,6 +28,16 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> level9 = new PreferenceItem<int>(InventoryConstants.LEVEL9);
 		public static readonly Item<int> level10 = new PreferenceItem<int>(InventoryConstants.LEVEL10);
 
+		public static readonly Item<string> level1status = new PreferenceItem<string>(InventoryConstants.LEVEL1STATUS);
+		public static readonly Item<string> level2status = new PreferenceItem<string>(InventoryConstants.LEVEL2STATUS);
+		public static readonly Item<string> level3status = new PreferenceItem<string>(InventoryConstants.LEVEL3STATUS);
+		public static readonly Item<string> level4status = new PreferenceItem<string>(InventoryConstants.LEVEL4STATUS);
+		public static readonly Item<string> level5status = new PreferenceItem<string>(InventoryConstants.LEVEL5STATUS);
+		public static readonly Item<string> level6status = new PreferenceItem<string>(InventoryConstants.LEVEL6STATUS);
+		public static readonly Item<string> level7status = new PreferenceItem<string>(InventoryConstants.LEVEL7STATUS);
+		public static readonly Item<string> level8status = new PreferenceItem<string>(InventoryConstants.LEVEL8STATUS);
+		public static readonly Item<string> level9status = new PreferenceItem<string>(InventoryConstants.LEVEL9STATUS);
+		public static readonly Item<string> level10status = new PreferenceItem<string>(InventoryConstants.LEVEL10STATUS);
 
 
 		static Inventory() {

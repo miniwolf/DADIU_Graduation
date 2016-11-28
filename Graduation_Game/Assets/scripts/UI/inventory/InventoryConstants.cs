@@ -22,5 +22,16 @@
 		public const string LEVEL8 = "Level8";
 		public const string LEVEL9 = "Level9";
 		public const string LEVEL10 = "Level10";
+
+		public const string LEVEL1STATUS = "Level1status";
+		public const string LEVEL2STATUS = "Level2status";
+		public const string LEVEL3STATUS = "Level3status";
+		public const string LEVEL4STATUS = "Level4status";
+		public const string LEVEL5STATUS = "Level5status";
+		public const string LEVEL6STATUS = "Level6status";
+		public const string LEVEL7STATUS = "Level7status";
+		public const string LEVEL8STATUS = "Level8status";
+		public const string LEVEL9STATUS = "Level9status";
+		public const string LEVEL10STATUS = "Level10status";
 	}
 }
