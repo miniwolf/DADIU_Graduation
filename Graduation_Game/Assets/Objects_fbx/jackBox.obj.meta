@@ -8,15 +8,25 @@ ModelImporter:
     100000: jack_top_jackBox
     100002: //RootNode
     100004: jackBox_jack_under
+    100006: textureBakeSet1_jack_top_jackBox
+    100008: textureBakeSet1_jackBox_jack_under
     400000: jack_top_jackBox
     400002: //RootNode
     400004: jackBox_jack_under
+    400006: textureBakeSet1_jack_top_jackBox
+    400008: textureBakeSet1_jackBox_jack_under
     2300000: jack_top_jackBox
     2300002: jackBox_jack_under
+    2300004: textureBakeSet1_jack_top_jackBox
+    2300006: textureBakeSet1_jackBox_jack_under
     3300000: jack_top_jackBox
     3300002: jackBox_jack_under
+    3300004: textureBakeSet1_jack_top_jackBox
+    3300006: textureBakeSet1_jackBox_jack_under
     4300000: jack_top_jackBox
     4300002: jackBox_jack_under
+    4300004: textureBakeSet1_jack_top_jackBox
+    4300006: textureBakeSet1_jackBox_jack_under
   materials:
     importMaterials: 1
     materialName: 0

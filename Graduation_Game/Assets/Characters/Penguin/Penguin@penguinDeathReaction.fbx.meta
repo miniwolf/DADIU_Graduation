@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1bbcbbbf0e10d9540924a7316286a076
-timeCreated: 1479464562
+timeCreated: 1479976840
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: penguinDeathReaction
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 20
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

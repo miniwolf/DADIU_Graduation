@@ -54,13 +54,13 @@
 		/// <summary>
 		/// In game/main menu music, sound settings, etc...
 		/// </summary>
-		public class Music {
+		public class Master {
 			public const string MUSIC_MUTE = "mute_music";
-			public const string MUSIC_UNMUTE = "unmute_music";
-			public const string SOUND_MUTE = "mute_master";
-			public const string SOUND_UNMUTE = "unmute_master";
-			public const string MAIN_MENU_MUSIC = "music_menu_play";
-			public const string IN_GAME_MUSIC = "music_game_play";
+			public const string MUSIC_UNMUTE = "music_start";
+			public const string MASTER_MUTE = "mute_master";
+			public const string MASTER_UNMUTE = "unmute_master";
+			public const string MAIN_MENU_MUSIC = "music_state_menu";
+			public const string IN_GAME_MUSIC = "music_state_in_game";
 			public const string STOP_ALL = "stopAll";
 		}
 

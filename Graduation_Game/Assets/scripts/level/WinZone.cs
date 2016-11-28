@@ -65,7 +65,7 @@ namespace Assets.scripts.level {
 			PlayerPrefs.SetInt("LevelUnlockIndex", level);
 			Inventory.UpdateCount();
 			win = true;
-			canvas.ExecuteAction(GameActions.EndLevel);
+			canvas.EndLevel();
 			//GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>().ShowCutScene();
 		}
 

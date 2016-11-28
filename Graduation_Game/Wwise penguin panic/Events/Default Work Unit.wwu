@@ -97,31 +97,14 @@
 												</Element>
 											</ElementList>
 										</Action>
-										<Action Name="Set Voice Pitch" ID="{9B0354C9-FEBF-4A1C-ACCA-656732430572}" ShortID="493945938" Type="ChangePitch" Scope="One" Global="true">
+										<Action Name="Set Voice Volume" ID="{2759E3A7-377A-44D5-8B1A-284D473E0E66}" ShortID="547495400" Type="ChangeVolume" Scope="One" Global="false">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="1.5"/>
-												<Property Name="Pitch" Type="int32" Value="-1500"/>
-											</PropertyList>
-											<ElementList>
-												<Element ID="{8F935402-63D7-4C8F-B3B1-0381E87622EE}" Global="true">
-													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-										<Action Name="Set Voice Volume" ID="{AFEE7DD8-63BF-4269-AF2F-9F24B1AB601D}" ShortID="80384823" Type="ChangeVolume" Scope="One" Global="true">
-											<PropertyList>
-												<Property Name="Delay" Type="Real64" Value="1"/>
 												<Property Name="FadeTime" Type="Real64" Value="1"/>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
 												<Property Name="Volume" Type="Real64" Value="-96"/>
 											</PropertyList>
 											<ElementList>
-												<Element ID="{CBCF5CEB-76E0-4A61-94FF-D14197AC0633}" Global="true">
-													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												<Element ID="{04A1C758-5219-4D82-8226-AAFBB39EF92E}" Global="false">
+													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -136,23 +119,13 @@
 												</Element>
 											</ElementList>
 										</Action>
-										<Action Name="Set Voice Volume" ID="{1CCF3D62-FECE-4390-B3EC-3E71BDCB31D6}" ShortID="124992054" Type="ChangeVolume" Scope="One" Global="true">
+										<Action Name="Set Voice Volume" ID="{98EA29B6-82FE-4FD7-921B-06262152CEA9}" ShortID="932292955" Type="ChangeVolume" Scope="One" Global="false">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="0.2"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
 											</PropertyList>
 											<ElementList>
-												<Element ID="{09986682-C790-4AB7-A28C-10C6C0FF6C33}" Global="true">
-													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-										<Action Name="Set Voice Pitch" ID="{54074BB4-CD68-4057-A19F-828D052FDC0E}" ShortID="1047415554" Type="ChangePitch" Scope="One" Global="true">
-											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
-											</PropertyList>
-											<ElementList>
-												<Element ID="{C2B4CEEC-6F71-4FD0-BCCE-FA20F80ABC42}" Global="true">
-													<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												<Element ID="{D10E162D-F9FB-419E-A806-DC9D927B5A5C}" Global="false">
+													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -304,7 +277,7 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="UI" ID="{348D0A83-11E6-46EC-B16B-A57F785CBE00}" ShortID="581531761">
+				<Folder Name="ui" ID="{348D0A83-11E6-46EC-B16B-A57F785CBE00}" ShortID="581531761">
 					<ChildrenList>
 						<Event Name="button_pressed" ID="{5819BB17-80FF-4CAB-A86F-40199C2AB824}">
 							<ChildrenList>
@@ -726,51 +699,6 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
-				<Event Name="music_menu_play" ID="{5A521F74-4AC4-4AA5-A6FA-7415EFCC234D}">
-					<ChildrenList>
-						<Action Name="Set Voice Volume" ID="{1F499BB1-BEFA-4BFB-892A-4FEBCEB9CE67}" ShortID="796752575" Type="ChangeVolume" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{087B551B-B61D-4FBC-B149-53810ECF29FE}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Stop" ID="{3BF94C20-B418-459D-970C-155FE7130F16}" ShortID="649033223" Type="Stop" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{E8461457-9486-4D8D-A5D3-E66B3ABA1978}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Set Voice Pitch" ID="{168540F9-1711-48E4-8B56-9586BB5F6FD9}" ShortID="671779635" Type="ChangePitch" Scope="One" Global="true">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32" Value="-200"/>
-							</PropertyList>
-							<ElementList>
-								<Element ID="{4F6EBC5D-CECC-4D82-8EB2-6958FBBC9819}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Play" ID="{ADCCBC60-55A7-4C4F-A80A-E8201ACE9154}" ShortID="843772801" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{CF509A92-83D3-4CCC-BB50-006CC29310AE}" Global="false">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Set Voice Low-pass Filter" ID="{BC9C7341-9426-480E-8EE0-3FEFABAFBAEC}" ShortID="228831364" Type="ChangeLPF" Scope="One" Global="true">
-							<PropertyList>
-								<Property Name="Lowpass" Type="int16" Value="50"/>
-							</PropertyList>
-							<ElementList>
-								<Element ID="{4C935927-6EA1-40B1-8431-638B11FA35FE}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Folder Name="seal" ID="{C416748B-1D2B-4EAE-BD78-26D164DBC012}" ShortID="507328225">
 					<ChildrenList>
 						<Folder Name="deaths" ID="{5298FD46-CB85-43F2-9FCB-D5B0C793574F}" ShortID="1015717390">
@@ -899,54 +827,77 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Event Name="music_game_play" ID="{F756E8C6-A751-41A1-A794-089F12761F0D}">
+				<Folder Name="settings" ID="{B41A691A-76BB-4F79-B673-E898375A6A49}" ShortID="1069235155">
 					<ChildrenList>
-						<Action Name="Set Voice Volume" ID="{064A3B17-742F-4940-8B76-7EC957A80D87}" ShortID="427938415" Type="ChangeVolume" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{6D8CB10E-F98E-4F2F-A81F-62D9798C117C}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Stop" ID="{D4EDEB81-10FE-42AE-A116-0F75FA3C0CAA}" ShortID="809686922" Type="Stop" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{19633877-52D8-4F4C-B3B3-CCEEECA0221B}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Set Voice Low-pass Filter" ID="{BD3F096A-5B4D-40A8-8C72-E3785549967C}" ShortID="586046740" Type="ChangeLPF" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{48D7EFFC-8B0A-45E2-A72C-FF5DAA36A22F}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Set Voice Pitch" ID="{FC741C8B-170E-41A7-9950-17899D8316C9}" ShortID="362810038" Type="ChangePitch" Scope="One" Global="true">
-							<ElementList>
-								<Element ID="{EE8A1EF4-98B1-4DB9-A74B-D0ED5EC95630}" Global="true">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-						<Action Name="Play" ID="{B7A74839-0F05-4215-A4F8-5E4B17F2B1C6}" ShortID="395504410" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{0699955B-D040-457D-80C1-D0B3E9BD5FE5}" Global="false">
-									<ObjectRef Name="music placeholder" ID="{5B0693CD-3DBA-45FD-A4DB-96E8D90A756F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Folder Name="sound settings" ID="{B41A691A-76BB-4F79-B673-E898375A6A49}" ShortID="1069235155">
-					<ChildrenList>
-						<Event Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}"/>
-						<Event Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}"/>
-						<Event Name="unmute_music" ID="{619FA60D-38FD-4389-875B-4E41A3C6FED9}"/>
-						<Event Name="unmute_master" ID="{E6EAF860-4244-4F01-9B1B-1002C582E699}"/>
-						<Event Name="stopAll" ID="{6399CB5D-DB1E-4FC6-956A-DC1EC2D404FF}">
+						<Event Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}">
 							<ChildrenList>
-								<Action Name="Stop All" ID="{2A707D05-986D-4B43-8F84-913B919B2FE2}" ShortID="842286865" Type="Stop" Scope="All" Global="true"/>
+								<Action Name="Set Game Parameter" ID="{6F453A1E-1561-45E2-AA9B-808175BA0F2D}" ShortID="675635179" Type="SetGameParameter" Scope="One" Global="true">
+									<ElementList>
+										<Element ID="{0C381843-9EA2-4460-AD72-14A39AA3821F}" Global="true">
+											<ObjectRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}" WorkUnitID="{B35BB35A-8FEF-4B4E-A805-5B5BDF02EAD4}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="music" ID="{C0AD91D1-F9A5-4801-9AD4-B43C9F97D229}" ShortID="146580852">
+							<ChildrenList>
+								<Event Name="music_start" ID="{47884626-5C0B-4524-8C4E-429A8EA192E9}">
+									<ChildrenList>
+										<Action Name="Play" ID="{F82E72BE-43AF-49DB-A3C5-DD31FDFABCC2}" ShortID="1049917778" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{0E28D2B9-C904-4610-B616-1EE812C6F2BF}" Global="false">
+													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="music_state_menu" ID="{F075CA52-4CD1-4F8B-A91F-8F2BA8FDB377}">
+									<ChildrenList>
+										<Action Name="Set State" ID="{36CE9428-5C8E-49CF-9FB2-986CE03E9544}" ShortID="1024725815" Type="SetState" Scope="All" Global="true">
+											<SetItemParam>
+												<Group Name="music" ID="{31EFB71D-0E67-454B-8F9F-B2C835E7A49B}"/>
+												<GroupItem Name="main_menu" ID="{E80893D3-AA5A-48DC-AF66-F474E4404B24}"/>
+											</SetItemParam>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="music_state_in_game" ID="{8A236C03-9C20-43E7-99F1-33E4B72261FB}">
+									<ChildrenList>
+										<Action Name="Set State" ID="{48EFDD5E-3807-43CE-9094-DD7898330C1C}" ShortID="129846797" Type="SetState" Scope="All" Global="true">
+											<SetItemParam>
+												<Group Name="music" ID="{31EFB71D-0E67-454B-8F9F-B2C835E7A49B}"/>
+												<GroupItem Name="in_game" ID="{7F1C5A79-24DB-4E47-AD1A-BB6CDF110C66}"/>
+											</SetItemParam>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}">
+									<ChildrenList>
+										<Action Name="Stop" ID="{8104E09C-88F2-4B54-B57C-5DB4EA752106}" ShortID="613276537" Type="Stop" Scope="One" Global="true">
+											<ElementList>
+												<Element ID="{8E7BE27F-7A79-4E82-8364-5B451BEF90D3}" Global="true">
+													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Event Name="unmute_master" ID="{FF2F28F1-6647-455D-9766-0D6E256C0343}">
+							<ChildrenList>
+								<Action Name="Set Game Parameter" ID="{E6705472-07A1-4210-A753-1C92D34F777C}" ShortID="971404642" Type="SetGameParameter" Scope="One" Global="true">
+									<PropertyList>
+										<Property Name="GameParameterValue" Type="Real64" Value="100"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{8D9D23FC-2403-4CB9-9BF9-F112C929E637}" Global="true">
+											<ObjectRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}" WorkUnitID="{B35BB35A-8FEF-4B4E-A805-5B5BDF02EAD4}"/>
+										</Element>
+									</ElementList>
+								</Action>
 							</ChildrenList>
 						</Event>
 					</ChildrenList>

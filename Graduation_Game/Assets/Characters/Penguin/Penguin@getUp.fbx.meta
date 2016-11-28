@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 21fa57ab2175694439575398f04fb57e
-timeCreated: 1479464562
+timeCreated: 1479976840
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: getUp
       takeName: Take 001
       firstFrame: 30
-      lastFrame: 45
+      lastFrame: 56
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

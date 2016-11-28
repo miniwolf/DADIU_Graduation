@@ -4,14 +4,15 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
-using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
-		public float timeForScoreFlow;
+		public float timeBeforeStarSpawn;
+		public float timeBeforeScoreFlow;
 		public float timeBewteenStarSpawn;
-		public int timeForRetry;
+		public float scoreFlowScalingFactor;
 
+		public int timeForRetry;
 		// Use this for initialization
 		public int penguinsRequiredFor3Stars;
 		public int penguinsRequiredFor2Stars;
@@ -24,6 +25,7 @@ namespace Assets.scripts.UI {
 		private Button retryButton; 
 		private Image retryPrize;
 		private GameObject gameOverPanel;
+		private bool retryIsLive = false;
 	
 		void Awake() {
 			base.Awake();
@@ -59,11 +61,6 @@ namespace Assets.scripts.UI {
 			if ( retryCircleImage.fillAmount == 0 ) {
 				DisableRetry();
 			}
-
-			// if penguins reached the win zone (the ones alive) show stars
-			if (endLevel  || Input.GetKeyDown("c"))	 {
-				ExecuteAction(GameActions.EndLevel);
-			}
 		}		
 
 		public override string GetTag() {
@@ -72,10 +69,11 @@ namespace Assets.scripts.UI {
 
 		public void EndLevel() {
 			PlayerPrefs.DeleteKey("hasVisited");
-			endLevel = true;
+			ExecuteAction(GameActions.EndLevel);
 		}
 
 		private void DisableRetry() {
+			retryIsLive = false;
 			retryCircle.enabled = false;
 			retryButton.enabled = false;
 			retryPrize.enabled = false;
@@ -93,6 +91,7 @@ namespace Assets.scripts.UI {
 		}
 
 		private void EnableRetry() {
+			retryIsLive = true;
 			retryCircle.enabled = true;
 			retryButton.enabled = true;
 			retryPrize.enabled = true;

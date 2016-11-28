@@ -49,7 +49,7 @@ namespace Assets.scripts.character {
 	        deathCam.enabled = false;
 	    }
 
-		void Update() {
+		void FixedUpdate() {
 			if (isStopped) {
 				return;
 			}

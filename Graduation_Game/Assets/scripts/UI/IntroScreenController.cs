@@ -17,6 +17,12 @@ public class IntroScreenController : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if (Input.GetMouseButtonDown(0)) {
+			LoadNextScreen();
+		}
+	}
+
 	public void LoadNextScreen() {
 		if (introScreens.Length > ++currentScreen)
 			gameObject.GetComponent<Image>().sprite = introScreens[currentScreen];
@@ -25,6 +31,9 @@ public class IntroScreenController : MonoBehaviour {
 			next.enabled = false;
 			next.GetComponentInChildren<Text>().enabled = false;
 			skipIntro.text = "Go to Menu";
+		}
+		if (introScreens.Length == currentScreen) {
+			SkipIntro();
 		}
 	}
 
