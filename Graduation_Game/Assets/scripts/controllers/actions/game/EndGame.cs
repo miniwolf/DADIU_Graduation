@@ -93,12 +93,14 @@ namespace Assets.scripts.controllers.actions.game {
 				int portion = Mathf.RoundToInt(plutoniumThisLevelint / 50);
 				plutoniumThisLevelint -= portion;
 				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
+				plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			else {
 				int portion = 1;
 				plutoniumThisLevelint -= portion;
 				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
+				plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			return t;
