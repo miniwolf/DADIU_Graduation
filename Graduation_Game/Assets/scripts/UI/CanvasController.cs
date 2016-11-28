@@ -40,6 +40,7 @@ namespace Assets.scripts.UI {
 			retryButton = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_BUTTON).GetComponent<Button>();
 			retryPrize = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_PRIZE).GetComponent<Image>();
 			// not enabled during game
+			//gameOverPanel.SetActive(true);
 			DisableRetry();
 			
 
@@ -88,6 +89,14 @@ namespace Assets.scripts.UI {
 				retryPrize.GetComponentInChildren<Text>().text = "10";
 			}
 
+		}
+
+		public int[] GetAmountOfPenguinsForStars(){
+			int[] temp = new int[3];
+			temp[0] = penguinsRequiredFor1Stars;
+			temp[1] = penguinsRequiredFor2Stars;
+			temp[2] = penguinsRequiredFor3Stars;
+			return temp;
 		}
 
 		private void EnableRetry() {
