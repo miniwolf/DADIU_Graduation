@@ -11,7 +11,6 @@ namespace Assets.scripts.UI{
 			gameObject.SetActive(false);
 			transform.localScale = Vector3.zero;
 		}
-
 		public void Finish() {
 			Inventory.UpdateCount();
 			SceneManager.LoadScene("MainMenuScene");
