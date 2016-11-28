@@ -335,8 +335,13 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void SaveOrigColors(GameObject obj){
-			meshes = new MeshRenderer[obj.GetComponentsInChildren<MeshRenderer>().Length];
-			meshes = obj.GetComponentsInChildren<MeshRenderer>();
+			foreach (Transform go in obj.GetComponentsInChildren<Transform>()) {
+				if (go.gameObject.tag == obj.tag) {
+					meshes = new MeshRenderer[go.gameObject.GetComponentsInChildren<MeshRenderer>().Length];
+					meshes = go.gameObject.GetComponentsInChildren<MeshRenderer>();
+				}
+			}
+
 			origColors = new Color[meshes.Length];
 			for (int i = 0; i < meshes.Length; i++) {
 				origColors[i] = meshes[i].material.color;

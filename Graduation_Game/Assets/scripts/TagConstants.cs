@@ -46,6 +46,8 @@
 		public const string CUTSCENE = "CutScene";
 		public const string WINZONE = "WinZone";
 		public const string TOOLTUTORIAL = "ToolTutorial";
+		public const string LANECHANGEARROW = "LaneChangeArrow";
+		public const string JUMPARROW = "JumpArrow";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
@@ -76,6 +78,8 @@
 			public const string RETRY_CIRCLE = "RetryCircle";
 			public const string RETRY_BUTTON = "RetryButton";
 			public const string RETRY_PRIZE = "RetryPrize";
+			public const string INTRO_BUTTON = "IntroButton";
+			public const string INTRO_IMAGE = "IntroImage";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
