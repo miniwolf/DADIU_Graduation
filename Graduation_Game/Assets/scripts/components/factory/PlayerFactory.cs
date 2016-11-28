@@ -69,6 +69,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Start, CreateStartAction());
 			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
 			actionable.AddAction(ControllableActions.Celebrate, CreateCelebrateAction());
+			actionable.AddAction(ControllableActions.Win, CreateWinAction());
 		}
 
 	    private Handler CreateOtherPenguinDeath()
@@ -216,6 +217,12 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateStartAction() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StartMoving(actionable));
+			return actionHandler;
+		}
+
+		private Handler CreateWinAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Win(directionable, actionable));
 			return actionHandler;
 		}
 	}
