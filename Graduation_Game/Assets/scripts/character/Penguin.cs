@@ -75,9 +75,9 @@ namespace Assets.scripts.character {
 					ExecuteAction(ControllableActions.Minimize);
 				}*/
 			} else {
-			    StopSound();
+			    
 				if ( !characterController.isGrounded ) {
-					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
+					//characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
 					//TODO Instantiate a dead penguin mesh into the position of the penguin.
 					//characterController.enabled = false;
@@ -195,6 +195,7 @@ namespace Assets.scripts.character {
 		}
 
 		public void Kill() {
+			StopSound();
 			isDead = true;
 		}
 
