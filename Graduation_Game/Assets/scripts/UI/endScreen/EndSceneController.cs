@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Assets.scripts;
 using Assets.scripts.UI.inventory;
 using Assets.scripts.level;
+using System.Collections;
 
 public class EndSceneController: MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class EndSceneController: MonoBehaviour {
 			DisablePopup();
 		}
 	}
-
+		
 	public void GoToShop() {
 		SceneManager.LoadScene("Store");
 	}

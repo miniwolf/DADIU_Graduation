@@ -25,7 +25,8 @@ namespace Assets.scripts.controllers.actions.movement {
 				direction.SetDirection(new Vector3(dir.x, dir.y - GRAVITY * Time.deltaTime, dir.z));
 				direction.SetJump(true);
 			} else if ( characterController.isGrounded && direction.GetJump() ) {
-				direction.SetSpeed(direction.GetWalkSpeed());
+				if(!direction.IsSliding())
+			        direction.SetSpeed(direction.GetWalkSpeed());
 				var dir = direction.GetDirection();
 				direction.SetDirection(new Vector3(dir.x, -0.2f, dir.z));
 				direction.SetJump(false);
