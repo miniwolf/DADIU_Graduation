@@ -4,7 +4,7 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Editor.buildserver {
+//namespace Assets.Editor.buildserver {
 	public class AutoBuild : MonoBehaviour {
 		static string[] SCENES = FindEnabledEditorScenes();
 
@@ -46,4 +46,4 @@ namespace Assets.Editor.buildserver {
 			}
 		}
 	}
-}
+//}
