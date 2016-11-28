@@ -46,6 +46,8 @@
 		public const string CUTSCENE = "CutScene";
 		public const string WINZONE = "WinZone";
 		public const string TOOLTUTORIAL = "ToolTutorial";
+		public const string LANECHANGEARROW = "LaneChangeArrow";
+		public const string JUMPARROW = "JumpArrow";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
