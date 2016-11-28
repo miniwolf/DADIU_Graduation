@@ -6,6 +6,7 @@ using System.Collections;
 using Assets.scripts.sound;
 using Assets.scripts.tools;
 using UnityEngine.SceneManagement;
+using Assets.scripts;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -66,8 +67,13 @@ namespace Assets.scripts.controllers.actions.game {
 			target = totalPlutonium + int.Parse(plutoniumThisLevel.text);
 
 			string levelPlayedName = SceneManager.GetActiveScene().name;
-			PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
+			//PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
+
+			Prefs.SetLevelLastPlayedName(levelPlayedName);
+
 			isLevelWon = true;
+
+			Prefs.SetLevelWonStars(levelPlayedName, starsSpawned);
 
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
