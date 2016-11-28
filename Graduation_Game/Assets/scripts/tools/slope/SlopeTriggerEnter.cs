@@ -9,9 +9,6 @@ using Assets.scripts.tools.slope;
 public class SlopeTriggerEnter : MonoBehaviour {
     void OnTriggerEnter(Collider collision) {
         if (TagConstants.PENGUIN.Equals(collision.tag)) {
-
-
-
 //			SlopeScript slope = GetComponentInParent<SlopeScript>();
 //			slope.addPenguin(collision.gameObject);
 
@@ -19,5 +16,4 @@ public class SlopeTriggerEnter : MonoBehaviour {
             penguin.ExecuteAction(ControllableActions.StartSliding);
         }
     }
-
 }

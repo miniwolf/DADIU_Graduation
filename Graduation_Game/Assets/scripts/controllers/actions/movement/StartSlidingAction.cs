@@ -2,10 +2,8 @@
 using Assets.scripts.components;
 using UnityEngine;
 
-namespace Assets.scripts.controllers.actions.movement
-{
-    public class StartSlidingAction : Action
-    {
+namespace Assets.scripts.controllers.actions.movement {
+    public class StartSlidingAction : Action {
         private Directionable directionable;
         private Animator animator;
         private CouroutineDelegateHandler delegator;
@@ -13,7 +11,7 @@ namespace Assets.scripts.controllers.actions.movement
         public StartSlidingAction(CouroutineDelegateHandler delegator, Animator anim, Directionable directionable) {
             this.directionable = directionable;
             this.animator = anim;
-           this. delegator = delegator;
+            this. delegator = delegator;
         }
 
         public void Setup(GameObject gameObject) {
@@ -29,9 +27,8 @@ namespace Assets.scripts.controllers.actions.movement
             float originalSpeed = p.GetWalkSpeed();
 
             p.SetSlide(true);
-            while (p.IsSliding())
-            {
-                p.SetSpeed(p.GetSpeed() + 0.1f);
+            while (p.IsSliding()) {
+                p.SetSpeed(p.GetSpeed() + p.GetSlideSpeedupIncrement());
                 yield return new WaitForFixedUpdate();
             }
 

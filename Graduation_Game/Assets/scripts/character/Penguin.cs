@@ -19,7 +19,7 @@ namespace Assets.scripts.character {
 		public Vector3 direction;
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
-		public float slideSpeed = 12;
+		public float slideSpeedupIncrement = 0.1f;
 		public float speed;
 		public bool jump;
 		public Lane lane = Lane.Left;
@@ -170,16 +170,16 @@ namespace Assets.scripts.character {
 			return jumpSpeed;
 		}
 
-	    public float GetSlideSpeed()
-	    {
-	        return slideSpeed;
-	    }
-
 	    public float GetWalkSpeed() {
 			return walkSpeed;
 		}
 
-		public void SetSpeed(float speed) {
+	    public float GetSlideSpeedupIncrement()
+	    {
+	        return slideSpeedupIncrement;
+	    }
+
+	    public void SetSpeed(float speed) {
 			this.speed = speed;
 		}
 

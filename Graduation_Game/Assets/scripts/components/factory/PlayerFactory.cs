@@ -75,8 +75,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Win, CreateWinAction());
 		}
 
-	    private Handler CreateOtherPenguinDeath()
-	    {
+	    private Handler CreateOtherPenguinDeath() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
 			return actionHandler;

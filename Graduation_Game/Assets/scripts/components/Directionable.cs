@@ -6,8 +6,8 @@ namespace Assets.scripts.components {
 		Vector3 GetDirection();
 		void SetDirection(Vector3 direction);
 		float GetJumpSpeed();
-		float GetSlideSpeed();
 		float GetWalkSpeed();
+		float GetSlideSpeedupIncrement();
 		void SetSpeed(float speed);
 		float GetSpeed();
 		void SetScale(Vector3 scale);
