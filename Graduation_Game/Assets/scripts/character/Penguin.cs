@@ -19,11 +19,13 @@ namespace Assets.scripts.character {
 		public Vector3 direction;
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
+		public float slideSpeed = 12;
 		public float speed;
 		public bool jump;
 		public Lane lane = Lane.Left;
 		public Lane goingToLane = Lane.Left;
-		private bool isDead;
+	    public bool isSliding;
+	    private bool isDead;
 		private bool isFrozen;
 		private CharacterController characterController;
 		private float groundY;
@@ -87,7 +89,7 @@ namespace Assets.scripts.character {
 		}
 
 		 IEnumerator OnTriggerEnter(Collider collider) {
-			if (collider.transform.tag == "WinZone") {
+			if (collider.transform.tag == TagConstants.WINZONE) {
 				ExecuteAction(ControllableActions.Celebrate);
 				ExecuteAction(ControllableActions.Win);
 				yield return new WaitForSeconds(timeOnWinPlatform);
@@ -168,7 +170,12 @@ namespace Assets.scripts.character {
 			return jumpSpeed;
 		}
 
-		public float GetWalkSpeed() {
+	    public float GetSlideSpeed()
+	    {
+	        return slideSpeed;
+	    }
+
+	    public float GetWalkSpeed() {
 			return walkSpeed;
 		}
 
@@ -184,7 +191,12 @@ namespace Assets.scripts.character {
 			this.jump = jump;
 		}
 
-		public bool GetJump() {
+	    public void SetSlide(bool sliding)
+	    {
+	        isSliding = sliding;
+	    }
+
+	    public bool GetJump() {
 			return jump;
 		}
 
@@ -209,7 +221,11 @@ namespace Assets.scripts.character {
 			return isRunning;
 		}
 
-		public void SetRunning(bool running) {
+	    public bool IsSliding() {
+	        return isSliding;
+	    }
+
+	    public void SetRunning(bool running) {
 			isRunning = running;
 		}
 
