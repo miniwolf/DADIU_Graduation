@@ -41,7 +41,9 @@ namespace Assets.scripts.UI.mainmenu {
 
 
 		protected void Awake() {
-			PlayerPrefs.SetString(level1Status, current); // Level 1 is by default the current level
+			if(PlayerPrefs.GetString(level1Status) != completed) {
+				PlayerPrefs.SetString(level1Status, current); // Level 1 is by default the current level
+			}
 		}
 
 		protected void Start() {
@@ -73,7 +75,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 				// Find which level was won last time
 				if(levelPlayedName == levelNames[i] && EndGame.isLevelWon) {
-					PlayerPrefs.SetString(level1Status, completed); // Force level 1 to be completed after any level is won
+					//PlayerPrefs.SetString(level1Status, completed); // Force level 1 to be completed after any level is won
 					PlayerPrefs.SetString(levelNames[i] + statusPostfix, completed);
 
 					if(i + 1 < levelNames.Length)
