@@ -18,6 +18,7 @@ namespace Assets.scripts {
 		public const string SEAL_MOVE = "moveSeal";
 		public const string SEAL_JUMP = "isJumping";
 		public const string SEAL_FALL = "isFalling";
+		public const string SLIDE = "ifSliding";
 		public const string PANELIN = "PanelIn";
 		public const string PANELOUT = "PanelOut";
 	}

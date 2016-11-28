@@ -7,11 +7,13 @@ namespace Assets.scripts.components {
 		void SetDirection(Vector3 direction);
 		float GetJumpSpeed();
 		float GetWalkSpeed();
+		float GetSlideSpeedupIncrement();
 		void SetSpeed(float speed);
 		float GetSpeed();
 		void SetScale(Vector3 scale);
 		Vector3 GetInitialScale();
 		void SetJump(bool jump);
+		void SetSlide(bool jump);
 		bool GetJump();
 
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);
@@ -22,6 +24,7 @@ namespace Assets.scripts.components {
 		void removeCurve(Penguin.CurveType type);
 		void removeInitialTime(Penguin.CurveType type);
 		bool IsRunning();
+		bool IsSliding();
 		void SetRunning(bool running);
 		bool IsEnlarging();
 		void SetEnlarging(bool enlarging);
