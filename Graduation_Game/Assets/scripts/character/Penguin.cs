@@ -14,6 +14,7 @@ namespace Assets.scripts.character {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
+		public float timeOnWinPlatform = 3.5f;
 
 		public Vector3 direction;
 		public float jumpSpeed = 7;
@@ -88,7 +89,8 @@ namespace Assets.scripts.character {
 		 IEnumerator OnTriggerEnter(Collider collider) {
 			if (collider.transform.tag == "WinZone") {
 				ExecuteAction(ControllableActions.Celebrate);
-				yield return new WaitForSeconds(4f);
+				ExecuteAction(ControllableActions.Win);
+				yield return new WaitForSeconds(timeOnWinPlatform);
 				ExecuteAction(ControllableActions.Stop);
 			}
 		}
