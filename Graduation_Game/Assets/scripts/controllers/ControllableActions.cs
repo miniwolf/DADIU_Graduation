@@ -15,6 +15,6 @@
 	    Freeze, UnFreeze,
 	    OtherPenguinDied, // reactions to death of other penguin
 		SealJump, SealMove, SealFall, SealDeath, SealLand,
-		Celebrate
+		Celebrate, Win
 	}
 }
