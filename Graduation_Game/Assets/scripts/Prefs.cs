@@ -1,5 +1,7 @@
 ﻿using Assets.scripts.sound;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.scripts {
     public class Prefs {
@@ -22,7 +24,7 @@ namespace Assets.scripts {
 		public const string LANGUAGE = "language"; //0 English, 1 Danish
         private const int TRUE = 1;
         private const int FALSE = 0;
-		public const string TOTALSTARS = "TotalStars";
+		private const string TOTALSTARS = "TotalStars";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -87,6 +89,30 @@ namespace Assets.scripts {
 
         public static bool MasterOn() {
             return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
+        }
+
+        public static int GetTotalStars() {
+            return PlayerPrefs.GetInt(TOTALSTARS);
+        }
+
+        public static void UpdateTotalStars(int totalStars) {
+             PlayerPrefs.SetInt(TOTALSTARS, totalStars);
+        }
+
+        public static int GetStarsForLevel(string lvlName) {
+            return PlayerPrefs.GetInt(lvlName);
+        }
+
+        public static void SetStarsForLevel(string lvlName, int value) {
+            PlayerPrefs.SetInt(lvlName, value);
+        }
+
+        public static int GetStarsForCurrentLevel() {
+            return PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+        }
+
+        public static void SetStarsForCurrentLevel(int value) {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, value);
         }
     }
 }

@@ -93,22 +93,20 @@ namespace Assets.scripts.controllers.actions.game {
 		private void SaveStars(){
 			int totalStars = 0;
 			if (PlayerPrefs.HasKey("TotalStars")) {
-				totalStars = PlayerPrefs.GetInt("TotalStars");
+				totalStars = Prefs.GetTotalStars();
 			}
 			if (!PlayerPrefs.HasKey(SceneManager.GetActiveScene().name)) {
 				PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, collectedStars);
-				PlayerPrefs.SetInt(Prefs.TOTALSTARS, totalStars + collectedStars);
+			    Prefs.UpdateTotalStars(totalStars + collectedStars);
 			}
 			else {
-				int starsThisLevel = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+				int starsThisLevel = Prefs.GetStarsForCurrentLevel();
 				if (collectedStars > starsThisLevel) {
 					PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, collectedStars);
-					PlayerPrefs.SetInt(Prefs.TOTALSTARS, totalStars - starsThisLevel + collectedStars);
+				    Prefs.UpdateTotalStars(totalStars - starsThisLevel + collectedStars);
 				}
 			}
 		}
-
-
 
 		private IEnumerator LoadMainMenu(){
 			yield return new WaitForSeconds(12);

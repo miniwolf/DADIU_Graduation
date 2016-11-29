@@ -15,6 +15,7 @@ public enum LocalizedString  {
 	backsettings,
 	settings,
 	jump,
+	thisWorldIsLocked,
 	switchlane
 
 }
