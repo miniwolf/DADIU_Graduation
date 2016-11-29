@@ -83,6 +83,20 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
 			actionable.AddAction(ControllableActions.Celebrate, CreateCelebrateAction());
 			actionable.AddAction(ControllableActions.Win, CreateWinAction());
+			actionable.AddAction(ControllableActions.PenguinFall, CreateFall());
+			actionable.AddAction(ControllableActions.PenguinStopFall, CreateStopFall());
+		}
+
+		private Handler CreateStopFall() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetBoolFalse(animator,AnimationConstants.PENGUIN_FALL));
+			return actionHandler;
+		}
+
+		private Handler CreateFall() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetBoolTrue(animator,AnimationConstants.PENGUIN_FALL));
+			return actionHandler;
 		}
 
 	    private Handler CreateOtherPenguinDeath() {

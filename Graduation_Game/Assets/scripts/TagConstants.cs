@@ -48,6 +48,7 @@
 		public const string TOOLTUTORIAL = "ToolTutorial";
 		public const string LANECHANGEARROW = "LaneChangeArrow";
 		public const string JUMPARROW = "JumpArrow";
+		public const string TOOLTIP = "Tooltip";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
@@ -60,7 +61,10 @@
 			public const string DK_TEXT = "DKText";
 			public const string ON_TEXT = "OnText";
 			public const string OFF_TEXT = "OffText";
+			public const string ON_TTEXT = "OnTText";
+			public const string OFF_TTEXT = "OffTText";
 			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
+			public const string TOGGLE_CHANGE_TOOLTIPS = "ChangeTooltips";
 			public const string BACK_SETTINGS = "BackSettings";
 			public const string SETTINGS_TEXT = "SettingsText";
 	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
@@ -80,6 +84,8 @@
 			public const string RETRY_PRIZE = "RetryPrize";
 			public const string INTRO_BUTTON = "IntroButton";
 			public const string INTRO_IMAGE = "IntroImage";
+			public const string TOOLTIP_PANEL = "TooltipPanel";
+			public const string TOOLTIPS_BUTTON = "TooltipsButton";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
