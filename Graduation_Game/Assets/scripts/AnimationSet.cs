@@ -9,5 +9,6 @@
 		public string deathDrownAnimation;
 		public string deathPitAnimation;
 		public string deathSpikeAnimation;
+		public string reactionToDeath;
 	}
 }
