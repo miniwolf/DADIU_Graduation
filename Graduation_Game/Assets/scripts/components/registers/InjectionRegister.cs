@@ -77,6 +77,9 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.CANVAS:
 					gameFactory.BuildCanvas(component.GetActionable<GameActions>());
 					break;
+				case TagConstants.TOOLTIP:
+					component.GetGameObject().GetComponent<Tooltip>().SetGameStateManager(gameStateManager);
+					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
 					gameFactory.BuildStar(component.GetActionable<GameActions>());
 					break;
