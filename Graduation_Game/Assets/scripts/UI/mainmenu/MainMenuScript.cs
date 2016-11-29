@@ -14,7 +14,7 @@ namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
 
 		public LvlData[] levels;
-		public LvlMarkers[] markers;
+		public LvlUnlockMarkers[] worldUnlockMarkers;
 		private Dropdown languageDropdown;
 		private Image popup;
 		private InputManager inputManager;
@@ -89,8 +89,8 @@ namespace Assets.scripts.UI.mainmenu {
 			DisablePopup();
 
 		    // init texts at the beginning
-		    foreach (var marker in markers) {
-		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText);
+		    foreach (var marker in worldUnlockMarkers) {
+		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText) + " " +   PlayerPrefs.GetInt(Prefs.TOTALSTARS) + "/" + marker.starsNeeded; // maxstars
 		    }
 		}
 
@@ -104,7 +104,7 @@ namespace Assets.scripts.UI.mainmenu {
 	        foreach (var lvl in levels) {
 	            lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
 	        }
-	        foreach (var marker in markers) {
+	        foreach (var marker in worldUnlockMarkers) {
 	            marker.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(marker.btnAnchor.transform.position);
 	        }
 	    }
@@ -234,6 +234,7 @@ namespace Assets.scripts.UI.mainmenu {
 //					break;
 //				default:
 //					break;
+//					break;
 //			}
 		}
 
@@ -307,13 +308,15 @@ namespace Assets.scripts.UI.mainmenu {
 			public GameObject levelAnchor;
 		}
 
-	    [Serializable] public class LvlMarkers {
+	    [Serializable] public class LvlUnlockMarkers {
 	        [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
 	        public LocalizedString localizedText;
 	        [Tooltip("Specify the button from the scene that represents the anchor")]
 	        public Button btnFromScene;
 	        [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
 	        public GameObject btnAnchor;
+	        [Tooltip("Specify how many stars player needs to have to unlock the world")]
+	        public GameObject starsNeeded;
 	    }
 
 	    //
