@@ -9,7 +9,7 @@ namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
 		public float timeBeforeStarSpawn;
 		public float timeBeforeScoreFlow;
-		public float timeBewteenStarSpawn;
+		public float timeBewteenStarSpawn = 2f;
 		public float scoreFlowScalingFactor;
 
 		public int timeForRetry;
@@ -26,6 +26,7 @@ namespace Assets.scripts.UI {
 		private Image retryPrize;
 		private GameObject gameOverPanel;
 		private bool retryIsLive = false;
+		private Text plutoniumCounter, plutoniumThisLevel, plutoniumTotal;
 	
 		void Awake() {
 			base.Awake();
@@ -33,6 +34,10 @@ namespace Assets.scripts.UI {
 		}
 
 		void Start() {
+			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
+			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
+
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			// retry button/images
 			retryCircle = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_CIRCLE).GetComponent<Button>();
@@ -117,5 +122,17 @@ namespace Assets.scripts.UI {
 	    public void SoundButtonClick() {
 	        AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
 	    }
+
+		public Text GetPlutoniumCounter(){
+			return plutoniumCounter;
+		}
+
+		public Text GetPlutoniumTotal(){
+			return plutoniumTotal;
+		}
+
+		public Text GetPlutoniumThisLevel(){
+			return plutoniumThisLevel;
+		}
 	}
 }
