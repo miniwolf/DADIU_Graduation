@@ -36,6 +36,8 @@ namespace Assets.scripts.components.factory {
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
+			animator.SetFloat("WalkBlend", Random.Range(0.0f, 1.0f));
+			animator.SetTime(Random.Range(0.0f, 1.0f));
 			gameStateManager = stateManager;
 		    this.notifierSystem = notifierSystem;
 		    Penguin p = penguin.GetComponent<Penguin>();
@@ -46,15 +48,15 @@ namespace Assets.scripts.components.factory {
 		}
 
 		public void Build() {
-			animationSet.fallAnimation += GetRandomAnimation(AnimationConstants.PENGUIN_FALL);
-			animationSet.jumpAnimation += GetRandomAnimation(AnimationConstants.JUMP);
-			animationSet.slidingAnimation += GetRandomAnimation(AnimationConstants.SLIDE);
-			animationSet.celebrateAnimation += GetRandomAnimation(AnimationConstants.CELEBRATE);
-			animationSet.deathElectricAnimation += GetRandomAnimation(AnimationConstants.ELECTRICUTION);
-			animationSet.deathDrownAnimation += GetRandomAnimation(AnimationConstants.DROWNDEATH);
-			animationSet.deathPitAnimation += GetRandomAnimation(AnimationConstants.PITDEATH);
-			animationSet.deathSpikeAnimation += GetRandomAnimation(AnimationConstants.SPIKEDEATH);
-			animationSet.reactionToDeath += GetRandomAnimation(AnimationConstants.TRIGGER_REACT_TO_DEATH);
+			animationSet.fallAnimation = GetRandomAnimation(AnimationConstants.PENGUIN_FALL);
+			animationSet.jumpAnimation = GetRandomAnimation(AnimationConstants.JUMP);
+			animationSet.slidingAnimation = GetRandomAnimation(AnimationConstants.SLIDE);
+			animationSet.celebrateAnimation = GetRandomAnimation(AnimationConstants.CELEBRATE);
+			animationSet.deathElectricAnimation = GetRandomAnimation(AnimationConstants.ELECTRICUTION);
+			animationSet.deathDrownAnimation = GetRandomAnimation(AnimationConstants.DROWNDEATH);
+			animationSet.deathPitAnimation = GetRandomAnimation(AnimationConstants.PITDEATH);
+			animationSet.deathSpikeAnimation = GetRandomAnimation(AnimationConstants.SPIKEDEATH);
+			animationSet.reactionToDeath = GetRandomAnimation(AnimationConstants.TRIGGER_REACT_TO_DEATH);
 			actionable.AddAction(ControllableActions.Move, CreateMove());
 			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
