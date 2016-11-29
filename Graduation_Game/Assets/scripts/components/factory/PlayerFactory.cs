@@ -46,7 +46,7 @@ namespace Assets.scripts.components.factory {
 		}
 
 		public void Build() {
-			animationSet.fallAnimation += GetRandomAnimation(AnimationConstants.SHAKE);
+			animationSet.fallAnimation += GetRandomAnimation(AnimationConstants.PENGUIN_FALL);
 			animationSet.jumpAnimation += GetRandomAnimation(AnimationConstants.JUMP);
 			animationSet.slidingAnimation += GetRandomAnimation(AnimationConstants.SLIDE);
 			animationSet.celebrateAnimation += GetRandomAnimation(AnimationConstants.CELEBRATE);
@@ -54,6 +54,7 @@ namespace Assets.scripts.components.factory {
 			animationSet.deathDrownAnimation += GetRandomAnimation(AnimationConstants.DROWNDEATH);
 			animationSet.deathPitAnimation += GetRandomAnimation(AnimationConstants.PITDEATH);
 			animationSet.deathSpikeAnimation += GetRandomAnimation(AnimationConstants.SPIKEDEATH);
+			animationSet.reactionToDeath += GetRandomAnimation(AnimationConstants.TRIGGER_REACT_TO_DEATH);
 			actionable.AddAction(ControllableActions.Move, CreateMove());
 			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
@@ -89,19 +90,19 @@ namespace Assets.scripts.components.factory {
 
 		private Handler CreateStopFall() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SetBoolFalse(animator,AnimationConstants.PENGUIN_FALL));
+			actionHandler.AddAction(new SetBoolFalse(animator, animationSet.fallAnimation));
 			return actionHandler;
 		}
 
 		private Handler CreateFall() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new SetBoolTrue(animator,AnimationConstants.PENGUIN_FALL));
+			actionHandler.AddAction(new SetBoolTrue(animator, animationSet.fallAnimation));
 			return actionHandler;
 		}
 
 	    private Handler CreateOtherPenguinDeath() {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
+			actionHandler.AddAction(new OtherPenguinDiedAction(animator, animationSet.reactionToDeath));
 			return actionHandler;
 	    }
 
@@ -124,7 +125,7 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 
 			if ( slide ) {
-				actionHandler.AddAction(new StartSlidingAction(delegator, animator, directionable));					//todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				actionHandler.AddAction(new StartSlidingAction(delegator, animator, animationSet.slidingAnimation, directionable));
 			} else {
 			    actionHandler.AddAction(new StopSlidingAction(directionable));
 			}
