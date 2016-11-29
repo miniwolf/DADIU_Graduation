@@ -21,14 +21,14 @@ namespace Assets.scripts.tools.slope {
 
 		public void addPenguin(GameObject penguin) {
 //			penguin.GetComponentInChildren<Rigidbody>().isKinematic = false;
-			managedPenguins.Add(penguin, penguin.transform.position.x);
-			penguin.GetComponent<ActionableGameEntityImpl<ControllableActions>>().ExecuteAction(ControllableActions.StartSliding);
+//			managedPenguins.Add(penguin, penguin.transform.position.x);
+//			penguin.GetComponent<ActionableGameEntityImpl<ControllableActions>>().ExecuteAction(ControllableActions.StartSliding);
 		}
 
 		public void removePenguin(GameObject penguin) {
-			managedPenguins.Remove(penguin);
+//			managedPenguins.Remove(penguin);
 
-			penguin.GetComponent<ActionableGameEntityImpl<ControllableActions>>().ExecuteAction(ControllableActions.StopSliding);
+//			penguin.GetComponent<ActionableGameEntityImpl<ControllableActions>>().ExecuteAction(ControllableActions.StopSliding);
 		}
 
 		void Update() {

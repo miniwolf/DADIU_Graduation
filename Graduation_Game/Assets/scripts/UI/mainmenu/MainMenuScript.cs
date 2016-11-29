@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.sound;
 using Assets.scripts.controllers.actions.game;
+using Assets.scripts.UI;
+using System.Collections;
 
-
-// TODO needs heavy refactoring!!!
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
 
@@ -18,10 +18,9 @@ namespace Assets.scripts.UI.mainmenu {
 		private Image popup;
 		private InputManager inputManager;
 		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
-		private int starsWon = 0; // Stars gathered after last level played
-		private string levelPlayedName;
 		private string[] levelNames;
 		private int numberOfLevelsInCanvas = 5;
+		private FillImage fillImageScript;
 
 		public Sprite stars1;
 		public Sprite stars2;
@@ -32,16 +31,10 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnLocked;
 		public Sprite levelBtnNotAccessable; // Coming soon...
 
-		private string level1Status = "Level1status";
-		private string completed = "completed";
-		private string current = "current";
-		private string locked = "locked";
-		private string statusPostfix = "status";
-		private string starsPostfix = "stars"; // TODO rename for star collection
-
-
 		protected void Awake() {
-			PlayerPrefs.SetString(level1Status, current); // Level 1 is by default the current level
+			if(!Prefs.IsLevelStatusComplete(Prefs.LEVEL1STATUS)) {
+				Prefs.SetLevelStatus(Prefs.LEVEL1STATUS, Prefs.CURRENT); // Level 1 is by default the current level
+			}
 		}
 
 		protected void Start() {
@@ -49,61 +42,30 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
+					
+			fillImageScript = GetComponent<FillImage>();
 
 			levelNames = new string[numberOfLevelsInCanvas];
 			for(int i = 0; i < levelNames.Length; i++) {
 				levelNames[i] = "Level" + (i+1).ToString();
 			}
-
-			unlockIdx = PlayerPrefs.GetInt("LevelUnlockIndex");
-			starsWon = PlayerPrefs.GetInt("LevelWonStars");
-			levelPlayedName = PlayerPrefs.GetString("LevelPlayedName");
-
+			
 			InitilizeLevels();
-			UnlockLevels(unlockIdx);
+
+			UnlockLevels(Prefs.GetLevelUnlockIndex());
+
 			SetStarPrefsPerLevel(levelNames);
 
 			LoadStars();
 
+			UpdateLevelsStatusOnLoad();
 
-			// Set prefs
-
-			// Cherry pick levels to a completed and current statuses
-			for (int i = 0; i < levelNames.Length; i++) {
-
-				// Find which level was won last time
-				if(levelPlayedName == levelNames[i] && EndGame.isLevelWon) {
-					PlayerPrefs.SetString(level1Status, completed); // Force level 1 to be completed after any level is won
-					PlayerPrefs.SetString(levelNames[i] + statusPostfix, completed);
-
-					if(i + 1 < levelNames.Length)
-						PlayerPrefs.SetString(levelNames[i + 1] + statusPostfix, current);
-				}
+			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1STATUS)) {
+				levels[0].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+			} else {
+				StartCoroutine(WaitForFill());
 			}
-
-
-			// Interpret level status
-			for (int i = 0; i < levelNames.Length; i++) {
-
-
-				if(PlayerPrefs.GetString(levelNames[i] + statusPostfix) == completed) {
-					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
-				}
-
-				else if (PlayerPrefs.GetString(levelNames[i] + statusPostfix) == current) {
-					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
-				}
-
-
-				else {
-					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
-				}
-				/*
-				if (PlayerPrefs.GetString(levelNames[i] + levelStatusPostFix) == locked) {
-					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
-				}*/
-			}
-
+			
 			/* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
 
 				languageDropdown.onValueChanged.AddListener(delegate {
@@ -116,23 +78,59 @@ namespace Assets.scripts.UI.mainmenu {
 			//UpdateTexts();
 		}
 
+		// Waits for level line to finish filling up and then changes the next available level to green
+		IEnumerator WaitForFill() {
+			yield return new WaitForSeconds(FillImage.fillAmountTime);
+			for (int i = 0; i < levelNames.Length; i++) {
+				if (Prefs.IsLevelStatusCurrent(levelNames[i] + Prefs.STATUS)) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+				}
+			}
+		}
+
+		void UpdateLevelsStatusOnLoad() {
+			for (int i = 0; i < levelNames.Length; i++) {
+
+				// Find which level was won last time
+				if (Prefs.GetLevelLastPlayedName() == levelNames[i] && EndGame.isLevelWon) {
+					Prefs.SetLevelStatus(levelNames[i] + Prefs.STATUS, Prefs.COMPLETED);
+
+					// Sets the next available level as the current level
+					if (i + 1 < levelNames.Length) 
+						Prefs.SetLevelStatus(levelNames[i + 1] + Prefs.STATUS, Prefs.CURRENT);
+				}
+			}
+
+			// Interpret level status
+			for (int i = 0; i < levelNames.Length; i++) {
+
+				if (Prefs.IsLevelStatusComplete(levelNames[i] + Prefs.STATUS)) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
+				}
+
+				else {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
+				}
+			}
+		}
+
+
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel(string[] levelNames) {
 			for (int i = 0; i < levelNames.Length; i++) {
 
 				// Checks which level was won last time and sets the stars accordingly
-				if (levelPlayedName == levelNames[i]) {
-					PlayerPrefs.SetInt(levelNames[i], starsWon);
+				if (Prefs.GetLevelLastPlayedName() == levelNames[i]) {
+					Prefs.SetLevelWonStars(levelNames[i], Prefs.GetLevelWonStars(levelNames[i]));
 				}
 			}
 		}
 
 		// Loads stars to view
 		void LoadStars() {
-			int starsWonForLevel = 0;
+			//int starsWonForLevel = 0;
 			for (int i = 0; i < levelNames.Length; i++) {
-				starsWonForLevel = PlayerPrefs.GetInt(levelNames[i]);
-				SetStarSprite(i, starsWonForLevel);
+				SetStarSprite(i, Prefs.GetLevelWonStars(levelNames[i]));
 			}
 		}
 
@@ -153,7 +151,6 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
  
-
 		// Every level except the first is locked from the start
 		void InitilizeLevels() {
 			foreach (var lvlData in levels) {
@@ -232,6 +229,7 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 
 			if(Inventory.penguinCount.GetValue() >= lvl.penguinsRequired) {
+				print(lvl.sceneFileName);
 				SceneManager.LoadSceneAsync(lvl.sceneFileName);
 			} else {
 				EnablePopup();
