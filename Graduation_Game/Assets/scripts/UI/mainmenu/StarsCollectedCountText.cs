@@ -6,7 +6,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 		protected void Start() {
 			var text = GetComponent<Text>();
-			text.text = PlayerPrefs.GetInt("CollectedStars").ToString();
+			text.text = PlayerPrefs.GetInt(Prefs.TOTALSTARS).ToString();
 		}
 	}
 }

@@ -37,8 +37,6 @@ namespace Assets.scripts.UI {
 		}
 
 		void Start() {
-
-
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			// retry button/images
 			retryCircle = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_CIRCLE).GetComponent<Button>();
@@ -53,7 +51,7 @@ namespace Assets.scripts.UI {
 		}
 
 		void Update () {
-			if(int.Parse(penguinCounter.text) < 1 && !over) {
+			if(int.Parse(penguinCounter.text) < 0 && !over) {
 				EnableRetry();
 				EnableGameOverPanel();
 				over = true;

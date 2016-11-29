@@ -7,7 +7,7 @@ using System.Collections;
 namespace Assets.scripts.tools {
 	public class Star : ActionableGameEntityImpl<GameActions> {
 		private Vector3 currScale;
-		public Vector3 targetScale;
+		private Vector3 targetScale = new Vector3(0.2f, 0.2f, 0.2f);
 
 		void Start(){
 			gameObject.GetComponent<Image>().enabled = false;
