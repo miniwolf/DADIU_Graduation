@@ -46,10 +46,13 @@ namespace Assets.scripts.UI.mainmenu {
 			fillImageScript = GetComponent<FillImage>();
 
 			levelNames = new string[numberOfLevelsInCanvas];
-			for(int i = 0; i < levelNames.Length; i++) {
-				levelNames[i] = "Level" + (i+1).ToString();
+			for(int i = 0; i < 3; i++) {
+				levelNames[i] = "W0Level" + (i).ToString();
 			}
-			
+			for(int i = 3; i < levelNames.Length; i++) {
+				levelNames[i] = "W1Level" + (i+1).ToString();
+			}
+
 			InitilizeLevels();
 
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
@@ -130,7 +133,7 @@ namespace Assets.scripts.UI.mainmenu {
 		void LoadStars() {
 			//int starsWonForLevel = 0;
 			for (int i = 0; i < levelNames.Length; i++) {
-				SetStarSprite(i, Prefs.GetLevelWonStars(levelNames[i]));
+				SetStarSprite(i, PlayerPrefs.GetInt(levelNames[i]));
 			}
 		}
 

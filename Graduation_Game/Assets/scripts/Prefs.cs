@@ -21,6 +21,7 @@ namespace Assets.scripts {
 		public const string TOOLTIPS = "tooltips";
         private const int TRUE = 1;
         private const int FALSE = 0;
+		public const string TOTALSTARS = "TotalStars";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -43,6 +44,7 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelUnlockIndex(int levelIndexToUnlock) {
+			Debug.Log("douche");
 			PlayerPrefs.SetInt(LEVEL_UNLOCK_INDEX, levelIndexToUnlock);
 		}
 
