@@ -19,8 +19,8 @@ namespace Assets.scripts.UI.mainmenu {
 		private Image popup;
 		private InputManager inputManager;
 		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
-		private string[] levelNames;
-		private int numberOfLevelsInCanvas = 5; // todo why not user levels.Count instead?
+		private string[] levelNames; // todo why not use levels[i].sceneFileName instead?
+	    private int numberOfLevelsInCanvas = 5; // todo why not user levels.Count instead?
 		private FillImage fillImageScript;
 
 		public Sprite stars1;
@@ -84,7 +84,11 @@ namespace Assets.scripts.UI.mainmenu {
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 
 			DisablePopup();
-			//UpdateTexts();
+
+		    // init texts at the beginning
+		    foreach (var marker in markers) {
+		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText);
+		    }
 		}
 
 	    void Update() {
@@ -137,7 +141,6 @@ namespace Assets.scripts.UI.mainmenu {
 				}
 			}
 		}
-
 
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel(string[] levelNames) {
