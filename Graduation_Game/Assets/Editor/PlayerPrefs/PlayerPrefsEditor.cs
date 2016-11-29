@@ -38,6 +38,8 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<string> level9status = Inventory.level9status;
 		private readonly Item<string> level10status = Inventory.level10status;
 
+		private readonly Item<int> totalStars = Inventory.totalStars;
+
 		[MenuItem("Window/Player Prefs Editor")]
 		private static void Init() {
 			var editor = (PlayerPrefsEditor) GetWindow(typeof(PlayerPrefsEditor));
@@ -68,6 +70,9 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.LEVEL8, level8);
 			DrawEntry(InventoryConstants.LEVEL9, level9);
 			DrawEntry(InventoryConstants.LEVEL10, level10);
+			DrawEntry(InventoryConstants.LEVEL10, level10);
+
+			DrawEntry(InventoryConstants.TOTALSTARS, totalStars);
 
 			level1status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL1STATUS, level1status.GetValue()));
 			level2status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL2STATUS, level2status.GetValue()));
@@ -79,6 +84,7 @@ namespace Assets.Editor.PlayerPrefs {
 			level8status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL8STATUS, level8status.GetValue()));
 			level9status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL9STATUS, level9status.GetValue()));
 			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL10STATUS, level10status.GetValue()));
+
 		
 			if (GUILayout.Button("Delete playerprefs for secretLevel")) {
 				UnityEngine.PlayerPrefs.DeleteKey("hasVisited");
