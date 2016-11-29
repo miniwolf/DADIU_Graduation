@@ -100,7 +100,7 @@ namespace Assets.scripts.controllers.actions.game {
 			    Prefs.UpdateTotalStars(totalStars + collectedStars);
 			}
 			else {
-				int starsThisLevel = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+				int starsThisLevel = Prefs.GetStarsForCurrentLevel();
 				if (collectedStars > starsThisLevel) {
 					PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, collectedStars);
 				    Prefs.UpdateTotalStars(totalStars - starsThisLevel + collectedStars);

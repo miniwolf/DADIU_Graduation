@@ -44,23 +44,20 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForTouch(this);
 					
 			fillImageScript = GetComponent<FillImage>();
-
 			levelNames = new string[numberOfLevelsInCanvas];
-			for(int i = 0; i < 3; i++) {
+
+		    for(int i = 0; i < 3; i++) {
 				levelNames[i] = "W0Level" + (i).ToString();
 			}
-			for(int i = 3; i < levelNames.Length; i++) {
+
+		    for(int i = 3; i < levelNames.Length; i++) {
 				levelNames[i] = "W1Level" + (i+1).ToString();
 			}
 
-			InitilizeLevels();
-
+		    InitilizeLevels();
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
-
 			SetStarPrefsPerLevel(levelNames);
-
 			LoadStars();
-
 			UpdateLevelsStatusOnLoad();
 
 			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1STATUS)) {
@@ -68,13 +65,6 @@ namespace Assets.scripts.UI.mainmenu {
 			} else {
 				StartCoroutine(WaitForFill());
 			}
-			
-			/* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
-
-				languageDropdown.onValueChanged.AddListener(delegate {
-					OnDropdownChanged();
-				});
-			*/
 
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {															    

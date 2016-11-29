@@ -1,5 +1,7 @@
 ﻿using Assets.scripts.sound;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.scripts {
     public class Prefs {
@@ -95,6 +97,22 @@ namespace Assets.scripts {
 
         public static void UpdateTotalStars(int totalStars) {
              PlayerPrefs.SetInt(TOTALSTARS, totalStars);
+        }
+
+        public static int GetStarsForLevel(string lvlName) {
+            return PlayerPrefs.GetInt(lvlName);
+        }
+
+        public static void SetStarsForLevel(string lvlName, int value) {
+            PlayerPrefs.SetInt(lvlName, value);
+        }
+
+        public static int GetStarsForCurrentLevel() {
+            return PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+        }
+
+        public static void SetStarsForCurrentLevel(int value) {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, value);
         }
     }
 }
