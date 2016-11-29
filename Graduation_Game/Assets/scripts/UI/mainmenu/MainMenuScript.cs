@@ -90,7 +90,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 		    // init texts at the beginning
 		    foreach (var marker in worldUnlockMarkers) {
-		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText) + " " +   PlayerPrefs.GetInt(Prefs.TOTALSTARS) + "/" + marker.starsNeeded; // maxstars
+		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText) + " " +   Prefs.GetTotalStars() + "/" + marker.starsNeeded; // maxstars
 		    }
 		}
 
@@ -316,7 +316,7 @@ namespace Assets.scripts.UI.mainmenu {
 	        [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
 	        public GameObject btnAnchor;
 	        [Tooltip("Specify how many stars player needs to have to unlock the world")]
-	        public GameObject starsNeeded;
+	        public int starsNeeded;
 	    }
 
 	    //

@@ -22,7 +22,7 @@ namespace Assets.scripts {
 		public const string LANGUAGE = "language"; //0 English, 1 Danish
         private const int TRUE = 1;
         private const int FALSE = 0;
-		public const string TOTALSTARS = "TotalStars";
+		private const string TOTALSTARS = "TotalStars";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -87,6 +87,14 @@ namespace Assets.scripts {
 
         public static bool MasterOn() {
             return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
+        }
+
+        public static int GetTotalStars() {
+            return PlayerPrefs.GetInt(TOTALSTARS);
+        }
+
+        public static void UpdateTotalStars(int totalStars) {
+             PlayerPrefs.SetInt(TOTALSTARS, totalStars);
         }
     }
 }
