@@ -30,7 +30,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 			penguin = (GameObject)MonoBehaviour.Instantiate(penguin, go.transform.position, Quaternion.identity);
 			penguin.transform.Rotate(new Vector3(0,90f,0));
 			penguin.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
-			penguin.GetComponentInChildren<Animator>().SetBool(AnimationConstants.CELEBRATE,true);
+			penguin.GetComponentInChildren<Animator>().SetBool(AnimationConstants.CELEBRATE[UnityEngine.Random.Range(0, AnimationConstants.CELEBRATE.Length)], true);
 
 			var penguinEgg = go.GetComponent<PenguinEgg>();
 			penguinEgg.HatchTime = DateTime.Now.AddMinutes(30);

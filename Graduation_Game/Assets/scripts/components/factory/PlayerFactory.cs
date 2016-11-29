@@ -156,9 +156,12 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 		
-		private string GetRandomAnimation(string type) {
-			FieldInfo[] fields = typeof(AnimationConstants).GetFields().Where(f => f.GetRawConstantValue().ToString().StartsWith(type)).Cast<FieldInfo>().ToArray();
-			return fields[UnityEngine.Random.Range(0, fields.Length)].GetRawConstantValue().ToString();
+		private string GetRandomAnimation(string[] type) {
+			/*
+				FieldInfo[] fields = typeof(AnimationConstants).GetFields().Where(f => f.GetRawConstantValue().ToString().StartsWith(type)).Cast<FieldInfo>().ToArray();
+				return fields[UnityEngine.Random.Range(0, fields.Length)].GetRawConstantValue().ToString();
+			*/
+			return type[Random.Range(0, type.Length)];
 		}
 		
 		private Handler CreateStartJump() {
@@ -176,7 +179,7 @@ namespace Assets.scripts.components.factory {
 				actionHandler.AddAction(new SetBoolFalse(animator, animationSet.jumpAnimation));
 			return actionHandler;
 		}
-/*
+		/*
 		private Handler CreateStartSpeed() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StartSpeed(directionable));
