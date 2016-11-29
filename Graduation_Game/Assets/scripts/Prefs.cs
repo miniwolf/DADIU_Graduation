@@ -1,8 +1,7 @@
 ﻿using Assets.scripts.sound;
 using UnityEngine;
 
-namespace Assets.scripts
-{
+namespace Assets.scripts {
     public class Prefs {
 
         private const string SOUND_MASTER = "pref_master_sound";
@@ -19,7 +18,10 @@ namespace Assets.scripts
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
-
+		public const string TOOLTIPS = "tooltips";
+		public const string LANGUAGE = "language"; //0 English, 1 Danish
+        private const int TRUE = 1;
+        private const int FALSE = 0;
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -57,24 +59,32 @@ namespace Assets.scripts
 			return PlayerPrefs.GetString(levelName) == COMPLETED;
 		}
 
-
 		public static bool IsLevelStatusCurrent(string levelName) {
 			return PlayerPrefs.GetString(levelName) == CURRENT;
 		}
+
+		public static bool IsTooltipsOn() {
+			return PlayerPrefs.GetInt(TOOLTIPS) == TRUE;
+		}
 			 
+		public static void SetTooltips(int active) {
+			PlayerPrefs.SetInt(TOOLTIPS, active);
+		}
+
+		public static bool IsEnglishOn() {
+			return PlayerPrefs.GetInt(LANGUAGE) == 0;
+		}
+
+		public static void SetLanguage(int language) {
+			PlayerPrefs.SetInt(LANGUAGE, language);
+		}
 
 		public static void SetMaster(bool musicOn) {
-            PlayerPrefs.SetString(SOUND_MASTER, musicOn ? SoundConstants.Master.MASTER_MUTE: SoundConstants.Master.MASTER_UNMUTE);
+            PlayerPrefs.SetInt(SOUND_MASTER, musicOn ? TRUE: FALSE);
         }
 
         public static bool MasterOn() {
-            return SoundConstants.Master.MASTER_UNMUTE.Equals(PlayerPrefs.GetString(SOUND_MASTER, SoundConstants.Master.MASTER_UNMUTE));
+            return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
         }
-
-
-
-
-
-
     }
 }

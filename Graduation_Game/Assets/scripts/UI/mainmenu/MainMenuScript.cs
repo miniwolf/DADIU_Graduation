@@ -72,6 +72,14 @@ namespace Assets.scripts.UI.mainmenu {
 					OnDropdownChanged();
 				});
 			*/
+
+			// first time we set up the language as English, tooltips and music on 
+			if (!PlayerPrefs.HasKey("NoIntroScreen")) {															    
+				Prefs.SetTooltips(1);
+				Prefs.SetLanguage(0);
+				Prefs.SetMaster(true);
+			}
+
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 
 			DisablePopup();
