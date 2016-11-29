@@ -82,6 +82,7 @@
 			public const string INTRO_BUTTON = "IntroButton";
 			public const string INTRO_IMAGE = "IntroImage";
 			public const string TOOLTIP_PANEL = "TooltipPanel";
+			public const string TOOLTIPS_BUTTON = "TooltipsButton";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";

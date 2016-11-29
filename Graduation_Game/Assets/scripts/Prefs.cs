@@ -19,7 +19,7 @@ namespace Assets.scripts
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
-
+		public const string TOOLTIPS = "tooltips";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -61,7 +61,14 @@ namespace Assets.scripts
 		public static bool IsLevelStatusCurrent(string levelName) {
 			return PlayerPrefs.GetString(levelName) == CURRENT;
 		}
+
+		public static bool IsTooltipsOn() {
+			return PlayerPrefs.GetInt(TOOLTIPS) == 1;
+		}
 			 
+		public static void SetTooltips(int active) {
+			PlayerPrefs.SetInt(TOOLTIPS, active);
+		}
 
 		public static void SetMaster(bool musicOn) {
             PlayerPrefs.SetString(SOUND_MASTER, musicOn ? SoundConstants.Master.MASTER_MUTE: SoundConstants.Master.MASTER_UNMUTE);

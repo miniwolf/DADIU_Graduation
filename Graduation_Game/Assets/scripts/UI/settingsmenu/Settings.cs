@@ -23,6 +23,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		private bool englishOn;
 		public Color selected;
 		public Color noSelected;
+		private Toggle tooltips;
 
 		void Start() {
 			TranslateApi.Register(this);
@@ -34,12 +35,23 @@ namespace Assets.scripts.UI.settingsmenu {
 			// back button
 			back = GameObject.FindGameObjectWithTag(TagConstants.UI.BACK_SETTINGS).GetComponent<Button>();
 			back.onClick.AddListener(() => Back());
-
+			StartTooltips();
 			settingsText = GameObject.FindGameObjectWithTag(TagConstants.UI.SETTINGS_TEXT).GetComponent<Text>();
 
 			UpdateTexts();
 		}
 
+		private void StartTooltips() {
+			tooltips = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIPS_BUTTON).GetComponent<Toggle>();
+			tooltips.onValueChanged.AddListener(delegate {
+				OnTooltipsChanged();
+			});
+			if ( Prefs.IsTooltipsOn() ) {
+				tooltips.isOn = true;
+			} else {
+				tooltips.isOn = false;
+			}
+		}
 
 		private void GetMusicPanel() {
 			// music is on by default
@@ -150,6 +162,14 @@ namespace Assets.scripts.UI.settingsmenu {
 				languageImage.sprite = (Sprite)Resources.Load<Sprite>("Flag - Dk");
 			} else {
 				languageImage.sprite = (Sprite)Resources.Load<Sprite>("Flag - Uk");
+			}
+		}
+
+		private void OnTooltipsChanged() {
+			if ( tooltips.isOn ) {
+				Prefs.SetTooltips(1);
+			} else {
+				Prefs.SetTooltips(0);
 			}
 		}
 
