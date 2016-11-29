@@ -22,14 +22,19 @@ namespace Assets.scripts.UI.screen.ingame {
 		private Image img;
 		private GameStateManager gameStateManager;
 		private float timeFirstClick;
+		private bool tutorialShown = false;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
+		Color[] origColors;
+		MeshRenderer[] meshes;
+		private bool touchUsed = false;
 
-		private bool tutorialShown = false;
+		public float closessToCam = 10f;
+		public float toolOffSetWhileMoving = 20f;
 
 		protected void Awake() {
 			InjectionRegister.Register(this);
@@ -42,6 +47,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		/*	tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
+
+			if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
+				tutorialShown = true;
+			}
 
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
@@ -114,6 +123,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			var count = tools.Count;
 			if(count <= 0) {
+				inputManager.UnblockCameraMovement();
 				return;
 			}
 
@@ -121,12 +131,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			currentObject = tools[count - 1];
 			currentObject.SetActive(true);
+			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
+
 		}
 
 		protected void Update() {
 			foreach(var touch in Input.touches) {
+				touchUsed = true;
 				if(touch.phase == TouchPhase.Began) {
 					// first tap on tool
 					if(!oneClick && IsATool(touch.position)) {
@@ -137,7 +150,6 @@ namespace Assets.scripts.UI.screen.ingame {
 					else if(oneClick && IsATool(touch.position)) {
 						oneClick = false;
 						if(Time.time - timeFirstClick < 0.6f) {
-							dragging = false;
 							doubleTap = true;
 						}
 					}
@@ -152,12 +164,14 @@ namespace Assets.scripts.UI.screen.ingame {
 						PlaceObject(currentObject, touch.position);
 						break;
 					case TouchPhase.Ended:
-						ReleaseTool();
+							ReleaseTool(doubleTap);
 						break;
 					}
 				}
 			}
-
+			if (touchUsed) {
+				return;
+			}
 			// check double click
 			if(Input.GetMouseButtonDown(0)) {
 				// first click on tool
@@ -185,7 +199,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			// Release tool
 			if(Input.GetMouseButtonUp(0) && dragging) {
-				ReleaseTool();
+				ReleaseTool(doubleTap);
 			}
 		}
 
@@ -209,26 +223,26 @@ namespace Assets.scripts.UI.screen.ingame {
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
 				return;
 			}
-
 			dragging = true;
 			inputManager.BlockCameraMovement();
-			hit.transform.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
 			currentObject = hit.transform.parent.gameObject;
+			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+				if (t.tag == TagConstants.LANECHANGEARROW) {
+					t.localScale = new Vector3(1, 1, 1);
+				} else if (t.tag == TagConstants.JUMPARROW) {
+					t.localScale = new Vector3(2, 2, 2);
+				}
+			}
+			SaveOrigColors(currentObject);
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_PICK_UP, currentObject);
 		}
 
-		private void ReleaseTool() {
+		private void ReleaseTool(bool doubleTap) {
 			if(doubleTap) { // return tool back
-				PutObjectInPool(currentObject.transform);
-				UpdateUI(currentObject.tag);
-
-				currentObject.SetActive(false);
-				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
-				currentObject = null;
 				dragging = false;
-				ChangeColor(notReturning);
-				doubleTap = false;
-				AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+				FlyGOToButton(currentObject);
+
 			} else { // place tool to the scene
 				switch(currentObject.tag) {
 				case TagConstants.JUMPTEMPLATE:
@@ -238,17 +252,23 @@ namespace Assets.scripts.UI.screen.ingame {
 						AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.CHANGE_LANE_PLACED, currentObject);
 					break;
 				}
+				foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+					if (t.tag == TagConstants.LANECHANGEARROW || t.tag == TagConstants.JUMPARROW) {
+						t.gameObject.transform.localScale = Vector3.zero;
+					}
+				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 			if (!tutorialShown) {
 				DismissTutorial(currentObject.tag);
 			}
+
+			ChangeObjColotToOriginal(currentObject);
 			StartCoroutine(CameraHack());
 		}
 
 		void DismissTutorial(string tag) {
-			tutorialShown = true;
 			GameObject go = null;
 			switch (tag) {
 				case TagConstants.SWITCHTEMPLATE:
@@ -265,6 +285,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				if (child.CompareTag(TagConstants.TOOLTUTORIAL))
 					Destroy(child.gameObject);
 			}
+			tutorialShown = true;
 		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
@@ -274,13 +295,15 @@ namespace Assets.scripts.UI.screen.ingame {
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
+					//textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
+					//textValue = "Jump: ";
 					break;
 				case TagConstants.Tool.FREEZE_TIME:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-					textValue = "Freeze time: ";
+					//textValue = "Freeze time: ";
 					break;
 			}
 
@@ -297,44 +320,108 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private void PlaceObject(GameObject obj, Vector3 position) {
+			
+			var newPos = new Vector3(position.x, position.y + toolOffSetWhileMoving, position.z);
+			var ray = Camera.main.ScreenPointToRay(newPos);
+			RaycastHit hit;
+			RaycastHit hit2;
 
-			// Special case when we have a bridge
-			if(obj.tag == TagConstants.BRIDGETEMPLATE) {
-				var ray = Camera.main.ScreenPointToRay(position);
-				RaycastHit hit;
+			if(!Physics.Raycast(ray, out hit, 400f, layermask) ||
+				!hit.transform.tag.Equals(TagConstants.LANE)) {
+				obj.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(position.x, position.y, closessToCam));
+				doubleTap = true;
+				ChangeObjColorToRed(obj);
+				return;
+			}
 
-				if(Physics.Raycast(ray, out hit, 400f, layermask)) {
-					//Debug.Log("Level height : " + hit.transform.position.y + ", Hit point height : " + hit.point.y);
-					float hitPointHeight = hit.point.y;
-					float currentLevelHeight = hit.transform.position.y + 1f; // 1f is added because of how the parent of the blocks is transformed
+			if (Physics.Raycast(hit.transform.position, Vector3.up, out hit2, 1f, layermask)) {
+				obj.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(position.x, position.y, closessToCam));
+				doubleTap = true;
+				ChangeObjColorToRed(obj);
+				return;
+			}
+			doubleTap = false;
+			obj.transform.position = hit.point;
+			snapping.Snap(hit.transform.position, obj.transform);
+			ChangeObjColorToGreen(obj);
+		}
 
-					// Makes sure the placement of a bridge does not go
-					// below the height of the current block
-					if(hitPointHeight < currentLevelHeight) {
-						return;
-					}
-
-					Vector3 hitWithFixedLevelHeight = new Vector3(hit.point.x, currentLevelHeight, hit.point.z);
-
-					obj.transform.position = hitWithFixedLevelHeight;
-					snapping.Snap(hitWithFixedLevelHeight, obj.transform);
+		private void SaveOrigColors(GameObject obj){
+			foreach (Transform go in obj.GetComponentsInChildren<Transform>()) {
+				if (go.gameObject.tag == obj.tag) {
+					meshes = new MeshRenderer[go.gameObject.GetComponentsInChildren<MeshRenderer>().Length];
+					meshes = go.gameObject.GetComponentsInChildren<MeshRenderer>();
 				}
 			}
 
-			// All other tools
-			else {
-				var ray = Camera.main.ScreenPointToRay(position);
-				RaycastHit hit;
-
-
-				if(!Physics.Raycast(ray, out hit, 400f, layermask) ||
-				    !hit.transform.tag.Equals(TagConstants.LANE)) {
-					return;
-				}
-
-				obj.transform.position = hit.point;
-				snapping.Snap(hit.point, obj.transform);
+			origColors = new Color[meshes.Length];
+			for (int i = 0; i < meshes.Length; i++) {
+				origColors[i] = meshes[i].material.color;
 			}
+		}
+
+		private void ChangeObjColorToRed(GameObject obj){
+			for (int i = 0; i < meshes.Length; i++) {
+				meshes[i].material.color = Color.red;
+			}
+		}
+
+		private void ChangeObjColorToGreen(GameObject obj){
+			for (int i = 0; i < meshes.Length; i++) {
+				meshes[i].material.color = Color.green;
+			}
+		}
+
+		private void ChangeObjColotToOriginal(GameObject obj){
+			for (int i = 0; i < meshes.Length; i++) {
+				meshes[i].material.color = origColors[i];
+			}
+		}
+
+		private void FlyGOToButton(GameObject obj){
+			Vector3 flyTo;
+			GameObject go;
+			switch (obj.transform.tag) {
+				case TagConstants.JUMPTEMPLATE:
+				case TagConstants.JUMP:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP);
+					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
+					StartCoroutine(FlyingObjToButton(obj, flyTo));
+					break;
+				case TagConstants.SWITCHTEMPLATE:
+				case TagConstants.SWITCHLANE:
+					go = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE);
+					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
+					StartCoroutine(FlyingObjToButton(obj, flyTo));
+					break;
+			
+			}
+		}
+
+		private IEnumerator FlyingObjToButton(GameObject obj, Vector3 destination){
+			Vector3 startPos = obj.transform.position;
+			Vector3 origScale = obj.transform.localScale;
+			float startTime = Time.time;
+			float speedFactor = 10f, journeyLength = Vector3.Distance(startPos, destination);
+			float distCovered = (Time.time - startTime)*speedFactor;
+			float fracJourney = distCovered / journeyLength;
+			//print(path[0] + " " + path[1]);
+			while(fracJourney<1f){
+				distCovered = (Time.time - startTime)*speedFactor;
+				fracJourney = distCovered / journeyLength;
+				obj.transform.position = Vector3.Lerp(startPos, destination, fracJourney);
+				obj.transform.localScale = origScale * (1f - fracJourney);
+				yield return new WaitForEndOfFrame();
+			}
+			obj.transform.localScale = origScale;
+			PutObjectInPool(currentObject.transform);
+			UpdateUI(currentObject.tag);
+			currentObject.SetActive(false);
+			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
+			currentObject = null;
+			ChangeColor(notReturning);
+			doubleTap = false;
+			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
 		}
 
 		/*

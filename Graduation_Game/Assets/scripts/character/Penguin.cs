@@ -14,15 +14,18 @@ namespace Assets.scripts.character {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
+		public float timeOnWinPlatform = 3.5f;
 
 		public Vector3 direction;
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
+		public float slideSpeedupIncrement = 0.1f;
 		public float speed;
 		public bool jump;
 		public Lane lane = Lane.Left;
 		public Lane goingToLane = Lane.Left;
-		private bool isDead;
+	    public bool isSliding;
+	    private bool isDead;
 		private bool isFrozen;
 		private CharacterController characterController;
 		private float groundY;
@@ -48,7 +51,7 @@ namespace Assets.scripts.character {
 	        deathCam.enabled = false;
 	    }
 
-		void Update() {
+		void FixedUpdate() {
 			if (isStopped) {
 				return;
 			}
@@ -75,9 +78,9 @@ namespace Assets.scripts.character {
 					ExecuteAction(ControllableActions.Minimize);
 				}*/
 			} else {
-			    StopSound();
+			    
 				if ( !characterController.isGrounded ) {
-					characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
+					//characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
 					//TODO Instantiate a dead penguin mesh into the position of the penguin.
 					//characterController.enabled = false;
@@ -86,9 +89,10 @@ namespace Assets.scripts.character {
 		}
 
 		 IEnumerator OnTriggerEnter(Collider collider) {
-			if (collider.transform.tag == "WinZone") {
+			if (collider.transform.tag == TagConstants.WINZONE) {
 				ExecuteAction(ControllableActions.Celebrate);
-				yield return new WaitForSeconds(4f);
+				ExecuteAction(ControllableActions.Win);
+				yield return new WaitForSeconds(timeOnWinPlatform);
 				ExecuteAction(ControllableActions.Stop);
 			}
 		}
@@ -166,11 +170,16 @@ namespace Assets.scripts.character {
 			return jumpSpeed;
 		}
 
-		public float GetWalkSpeed() {
+	    public float GetWalkSpeed() {
 			return walkSpeed;
 		}
 
-		public void SetSpeed(float speed) {
+	    public float GetSlideSpeedupIncrement()
+	    {
+	        return slideSpeedupIncrement;
+	    }
+
+	    public void SetSpeed(float speed) {
 			this.speed = speed;
 		}
 
@@ -182,7 +191,12 @@ namespace Assets.scripts.character {
 			this.jump = jump;
 		}
 
-		public bool GetJump() {
+	    public void SetSlide(bool sliding)
+	    {
+	        isSliding = sliding;
+	    }
+
+	    public bool GetJump() {
 			return jump;
 		}
 
@@ -195,6 +209,7 @@ namespace Assets.scripts.character {
 		}
 
 		public void Kill() {
+			StopSound();
 			isDead = true;
 		}
 
@@ -206,7 +221,11 @@ namespace Assets.scripts.character {
 			return isRunning;
 		}
 
-		public void SetRunning(bool running) {
+	    public bool IsSliding() {
+	        return isSliding;
+	    }
+
+	    public void SetRunning(bool running) {
 			isRunning = running;
 		}
 

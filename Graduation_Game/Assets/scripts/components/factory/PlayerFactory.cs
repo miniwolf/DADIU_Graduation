@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.scripts.character;
+﻿using Assets.scripts.character;
 using Assets.scripts.controllers;
 using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
@@ -13,12 +12,10 @@ using UnityEngine;
 using Resize = Assets.scripts.controllers.actions.tools.Resize;
 using AssemblyCSharp;
 using Assets.scripts.components.registers;
-using UnityEngine.Networking.Types;
 using System.Reflection;
 using System.Linq;
 using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.sound;
-using System.Collections;
 
 namespace Assets.scripts.components.factory {
 	public class PlayerFactory : Factory {
@@ -29,8 +26,10 @@ namespace Assets.scripts.components.factory {
 		private readonly GameStateManager gameStateManager;
 	    private readonly NotifierSystem notifierSystem;
 		private GameObject splat;
+	    private CouroutineDelegateHandler delegator;
 
-		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings, GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat){
+		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings,
+		    GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
@@ -41,6 +40,7 @@ namespace Assets.scripts.components.factory {
 		    p.SetGameStateManager(gameStateManager);
 		    p.SetNotifyManager(this.notifierSystem);
 			this.splat = splat;
+		    this.delegator = delegator;
 		}
 
 		public void Build() {
@@ -72,10 +72,24 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.Start, CreateStartAction());
 			actionable.AddAction(ControllableActions.OtherPenguinDied, CreateOtherPenguinDeath());
 			actionable.AddAction(ControllableActions.Celebrate, CreateCelebrateAction());
+			actionable.AddAction(ControllableActions.Win, CreateWinAction());
+			actionable.AddAction(ControllableActions.PenguinFall, CreateFall());
+			actionable.AddAction(ControllableActions.PenguinStopFall, CreateStopFall());
 		}
 
-	    private Handler CreateOtherPenguinDeath()
-	    {
+		private Handler CreateStopFall() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetBoolFalse(animator,AnimationConstants.PENGUIN_FALL));
+			return actionHandler;
+		}
+
+		private Handler CreateFall() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SetBoolTrue(animator,AnimationConstants.PENGUIN_FALL));
+			return actionHandler;
+		}
+
+	    private Handler CreateOtherPenguinDeath() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new OtherPenguinDiedAction(animator));
 			return actionHandler;
@@ -99,9 +113,9 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 
 			if ( slide ) {
-				actionHandler.AddAction(new SetBoolTrue(animator, AnimationConstants.SPEED));
+				actionHandler.AddAction(new StartSlidingAction(delegator, animator, directionable));
 			} else {
-				actionHandler.AddAction(new SetBoolFalse(animator, AnimationConstants.SPEED));
+			    actionHandler.AddAction(new StopSlidingAction(directionable));
 			}
 
 			return actionHandler;
@@ -219,6 +233,12 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateStartAction() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new StartMoving(actionable));
+			return actionHandler;
+		}
+
+		private Handler CreateWinAction() {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new Win(directionable, actionable));
 			return actionHandler;
 		}
 	}

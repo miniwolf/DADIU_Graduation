@@ -5,8 +5,7 @@ namespace Assets.scripts.controllers.actions.animation {
 		private readonly Animator animator;
 		private readonly string anmationName;
 
-		public SetTrigger(Animator animator, string anmationName)
-		{
+		public SetTrigger(Animator animator, string anmationName) {
 			this.animator = animator;
 			this.anmationName = anmationName;
 		}

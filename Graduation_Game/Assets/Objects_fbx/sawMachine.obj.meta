@@ -9,19 +9,44 @@ ModelImporter:
     100002: //RootNode
     100004: sawMachine_sawHolder
     100006: sawMachine_sawMachine
+    100008: sawBlade01_sawMachine
+    100010: sawMachine_saw
+    100012: sawMachine_saw1
+    100014: sawMachine_saw2
+    100016: sawMachine_sawBlade02
     400000: saw_sawMachine
     400002: //RootNode
     400004: sawMachine_sawHolder
     400006: sawMachine_sawMachine
+    400008: sawBlade01_sawMachine
+    400010: sawMachine_saw
+    400012: sawMachine_saw1
+    400014: sawMachine_saw2
+    400016: sawMachine_sawBlade02
     2300000: saw_sawMachine
     2300002: sawMachine_sawHolder
     2300004: sawMachine_sawMachine
+    2300006: sawBlade01_sawMachine
+    2300008: sawMachine_saw
+    2300010: sawMachine_saw1
+    2300012: sawMachine_saw2
+    2300014: sawMachine_sawBlade02
     3300000: saw_sawMachine
     3300002: sawMachine_sawHolder
     3300004: sawMachine_sawMachine
+    3300006: sawBlade01_sawMachine
+    3300008: sawMachine_saw
+    3300010: sawMachine_saw1
+    3300012: sawMachine_saw2
+    3300014: sawMachine_sawBlade02
     4300000: saw_sawMachine
     4300002: sawMachine_sawHolder
     4300004: sawMachine_sawMachine
+    4300006: sawBlade01_sawMachine
+    4300008: sawMachine_saw
+    4300010: sawMachine_saw1
+    4300012: sawMachine_saw2
+    4300014: sawMachine_sawBlade02
   materials:
     importMaterials: 1
     materialName: 0

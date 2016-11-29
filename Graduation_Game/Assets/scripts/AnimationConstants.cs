@@ -1,5 +1,8 @@
-﻿namespace Assets.scripts {
+﻿using UnityEngine;
+
+namespace Assets.scripts {
 	public class AnimationConstants {
+		public const string SHAKE = "Shake";
 		public const string DROWNING = "deathDrown";
 		public const string ORCADEATH = "deathSpike";
 		public const string ELECTRICUTION = "deathElectric";
@@ -15,5 +18,9 @@
 		public const string SEAL_MOVE = "moveSeal";
 		public const string SEAL_JUMP = "isJumping";
 		public const string SEAL_FALL = "isFalling";
+		public const string PENGUIN_FALL = "isFalling";
+		public const string SLIDE = "ifSliding";
+		public const string PANELIN = "PanelIn";
+		public const string PANELOUT = "PanelOut";
 	}
 }

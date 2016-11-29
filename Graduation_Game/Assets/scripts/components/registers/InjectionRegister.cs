@@ -21,6 +21,8 @@ namespace Assets.scripts.components.registers {
 		private static PickupFactory pickupFactory;
 		private static NotifierSystem notifierSystem;
 		private static GameObject splat;
+		private static GameFactory gameFactory;
+		public GameObject penguin;
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -28,7 +30,10 @@ namespace Assets.scripts.components.registers {
 			if ( levelObj != null ) {
 				levelSettings = levelObj.GetComponent<LevelSettings>();
 			}
+
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
+			pickupFactory = new PickupFactory(handler, penguin);
+			gameFactory = new GameFactory(handler);
 			inputManager = GetComponent<InputManager>();
 			gameStateManager = GetComponent<GameStateManager>();
 			notifierSystem = GetComponent<NotifierSystem>();
@@ -45,10 +50,6 @@ namespace Assets.scripts.components.registers {
 			components.Clear();
 		}
 
-		public static void Register(GameEntity component) {
-			components.Add(component);
-		}
-
 		private static void InitializeComponents() {
 			foreach(var component in components) {
 				InitializeComponent(component);
@@ -57,15 +58,15 @@ namespace Assets.scripts.components.registers {
 		}
 
 		private static void InitializeComponent(GameEntity component) {
-			switch(component.GetTag()) {
+			switch ( component.GetTag() ) {
 				case TagConstants.PENGUIN:
-					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem, splat).Build();
+					new PlayerFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), levelSettings.gameObject, gameStateManager, notifierSystem, splat, handler).Build();
 					break;
 				case TagConstants.PLUTONIUM_PICKUP:
-					new PickupFactory(handler,component.GetActionable<PickupActions>()).BuildPlutonium();
+					pickupFactory.BuildPlutonium(component.GetActionable<PickupActions>());
 					break;
 				case TagConstants.PRESSURE_PLATE:
-					new  PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
+					new PressurePlateFactory(component.GetActionable<PressurePlateActions>()).BuildActionOnLinkingObject((LinkingComponent)component);
 					break;
 				case TagConstants.WIRE:
 					TrapFactory.BuildWire(component.GetActionable<TrapActions>(), component.GetGameObject().GetComponent<Wire>(), handler);
@@ -74,13 +75,13 @@ namespace Assets.scripts.components.registers {
 					TrapFactory.BuildWeightBasedTrap(component.GetActionable<TrapActions>(), component.GetGameObject());
 					break;
 				case TagConstants.CANVAS:
-					new GameFactory(component.GetActionable<GameActions>()).BuildCanvas(handler);
+					gameFactory.BuildCanvas(component.GetActionable<GameActions>());
 					break;
-				case TagConstants.CUTSCENE:
-					new GameFactory(component.GetActionable<GameActions>()).BuildCutScene(handler);
+				case TagConstants.TOOLTIP:
+					component.GetGameObject().GetComponent<Tooltip>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
-					new GameFactory(component.GetActionable<GameActions>()).BuildStar(handler);
+					gameFactory.BuildStar(component.GetActionable<GameActions>());
 					break;
 				case TagConstants.TOOLBUTTON:
 					snap.SetCenter(levelSettings.GetSceneCenter());
@@ -89,7 +90,7 @@ namespace Assets.scripts.components.registers {
 					component.GetGameObject().GetComponent<GameFrozenChecker>().SetGameStateManager(gameStateManager);
 					break;
 				case TagConstants.PENGUINEGG:
-					new PickupFactory(handler, component.GetActionable<PickupActions>()).BuildEgg();
+					pickupFactory.BuildEgg(component.GetActionable<PickupActions>(), component.GetGameObject());
 					break;
 				case TagConstants.SEAL_SPAWN:
 					component.GetGameObject().GetComponent<SetSnappingTool>().SetInputManager(inputManager);
@@ -97,15 +98,25 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.SEAL:
 					new SealFactory(component.GetActionable<ControllableActions>(), component.GetGameObject(), splat).Build();
 					break;
+				case TagConstants.HATCHABLE_PENGUIN:
+					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
+					break;
+				case TagConstants.CUTSCENE:
+					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
 			}
+		}
+
+		public static void Register(GameEntity component) {
+			components.Add(component);
 		}
 
 		public static void Redo() {
 			if ( !finished ) {
 				return;
 			}
+
 			InitializeComponents();
 			components.Clear();
 		}

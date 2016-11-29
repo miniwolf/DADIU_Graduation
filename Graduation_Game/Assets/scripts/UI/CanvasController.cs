@@ -4,18 +4,20 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
-using UnityEngine.SceneManagement;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
-		public int timeForRetry;
+		public float timeBeforeStarSpawn;
+		public float timeBeforeScoreFlow;
+		public float timeBewteenStarSpawn = 2f;
+		public float scoreFlowScalingFactor;
 
+		public int timeForRetry;
 		// Use this for initialization
 		public int penguinsRequiredFor3Stars;
 		public int penguinsRequiredFor2Stars;
 		public int penguinsRequiredFor1Stars;
 		private Text penguinCounter;
-		private GameObject endScene;
 		private bool over; //game over (0 penguins alive)
 		private bool endLevel; //game finished
 		private Button retryCircle;
@@ -23,13 +25,20 @@ namespace Assets.scripts.UI {
 		private Button retryButton; 
 		private Image retryPrize;
 		private GameObject gameOverPanel;
+		private bool retryIsLive = false;
+		private Text plutoniumCounter, plutoniumThisLevel, plutoniumTotal;
 	
 		void Awake() {
 			base.Awake();
 			gameOverPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.GAME_OVER_PANEL);
+			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
+			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
+			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
 		}
 
 		void Start() {
+			
+
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			// retry button/images
 			retryCircle = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_CIRCLE).GetComponent<Button>();
@@ -37,15 +46,14 @@ namespace Assets.scripts.UI {
 			retryButton = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_BUTTON).GetComponent<Button>();
 			retryPrize = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_PRIZE).GetComponent<Image>();
 			// not enabled during game
+			//gameOverPanel.SetActive(true);
 			DisableRetry();
+			
 
-			foreach (Transform g in gameObject.GetComponentsInChildren<Transform>(true))
-				if (g.tag == TagConstants.ENDSCENE)
-					endScene = g.gameObject;
 		}
 
 		void Update () {
-			if(int.Parse(penguinCounter.text) < 1 && !over) {
+			if(int.Parse(penguinCounter.text) < 0 && !over) {
 				EnableRetry();
 				EnableGameOverPanel();
 				over = true;
@@ -60,11 +68,6 @@ namespace Assets.scripts.UI {
 			if ( retryCircleImage.fillAmount == 0 ) {
 				DisableRetry();
 			}
-
-			// if penguins reached the win zone (the ones alive) show stars
-			if ( endLevel ) {
-				ExecuteAction(GameActions.EndLevel);
-			}
 		}		
 
 		public override string GetTag() {
@@ -73,10 +76,11 @@ namespace Assets.scripts.UI {
 
 		public void EndLevel() {
 			PlayerPrefs.DeleteKey("hasVisited");
-			endLevel = true;
+			ExecuteAction(GameActions.EndLevel);
 		}
 
 		private void DisableRetry() {
+			retryIsLive = false;
 			retryCircle.enabled = false;
 			retryButton.enabled = false;
 			retryPrize.enabled = false;
@@ -93,7 +97,16 @@ namespace Assets.scripts.UI {
 
 		}
 
+		public int[] GetAmountOfPenguinsForStars(){
+			int[] temp = new int[3];
+			temp[0] = penguinsRequiredFor1Stars;
+			temp[1] = penguinsRequiredFor2Stars;
+			temp[2] = penguinsRequiredFor3Stars;
+			return temp;
+		}
+
 		private void EnableRetry() {
+			retryIsLive = true;
 			retryCircle.enabled = true;
 			retryButton.enabled = true;
 			retryPrize.enabled = true;
@@ -110,5 +123,17 @@ namespace Assets.scripts.UI {
 	    public void SoundButtonClick() {
 	        AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, Camera.main.gameObject);
 	    }
+
+		public Text GetPlutoniumCounter(){
+			return plutoniumCounter;
+		}
+
+		public Text GetPlutoniumTotal(){
+			return plutoniumTotal;
+		}
+
+		public Text GetPlutoniumThisLevel(){
+			return plutoniumThisLevel;
+		}
 	}
 }

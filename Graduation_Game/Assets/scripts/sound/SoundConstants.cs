@@ -8,7 +8,6 @@
 			public const string EGG_HATCH = "egg_hatching";
 		}
 
-
 		/// <summary>
 		/// Sounds that are triggered automatically when penguin picks up a specific item
 		/// </summary>
@@ -21,11 +20,16 @@
 		/// <summary>
 		/// Sounds that penguins make
 		/// </summary>
-
 		public class PenguinSounds {
 			public const string START_MOVING = "penguin_move_start";
 			public const string STOP_MOVING = "penguin_move_stop";
 			public const string SPAWN = "penguin_spawn";
+		}
+
+		public class SealSounds {
+			public const string START_MOVING = "seal_move_start";
+			public const string STOP_MOVING = "seal_move_stop";
+			public const string SPAWN = "seal_spawn";
 		}
 
 		/// <summary>
@@ -37,8 +41,6 @@
 			public const string BUTTON_PRESS = "button_pressed";
 			public const string END_SCREEN_TRIGGER = "end_screen_spawn";
 			public const string END_SCREEN_SPAWN_STAR = "end_screen_star_spawn";
-
-
 		}
 
 		/// <summary>
@@ -54,37 +56,14 @@
 		/// <summary>
 		/// In game/main menu music, sound settings, etc...
 		/// </summary>
-		public class Music {
+		public class Master {
 			public const string MUSIC_MUTE = "mute_music";
-			public const string MUSIC_UNMUTE = "unmute_music";
-			public const string SOUND_MUTE = "mute_master";
-			public const string SOUND_UNMUTE = "unmute_master";
-			public const string MAIN_MENU_MUSIC = "music_menu_play";
-			public const string IN_GAME_MUSIC = "music_game_play";
+			public const string MUSIC_UNMUTE = "music_start";
+			public const string MASTER_MUTE = "mute_master";
+			public const string MASTER_UNMUTE = "unmute_master";
+			public const string MAIN_MENU_MUSIC = "music_state_menu";
+			public const string IN_GAME_MUSIC = "music_state_in_game";
 			public const string STOP_ALL = "stopAll";
 		}
-
-
-		//
-		//	    tool_jump_triggered
-		//	        tool_jump_triggered
-		//	    tool_change_lane_placed
-		//	        tool_returned_to_toolbar
-		//	    tool_picked_up
-		//	        pickup_currency
-		//	    pickup_fly_to_score
-		//	        pickup_add_to_score
-		//	    egg_hatching
-		//	        button_pressed
-		//	    shop_get_currency+
-		//	        end_screen_spawn
-		//	    end_screen_star_spawn
-		//	        end_screen_pickup_count
-		//	    penguin_tool_change_lane_used
-		//	        penguin_spawn
-		//	    penguin_move_voice_start
-		//	        penguin_move_voice_stop
-		//	    music_menu_play
-		//	        music_game_play
 	}
 }

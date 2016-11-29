@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Assets.scripts.shop {
 	public class Shop : MonoBehaviour {
 		private readonly Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
-		private readonly Item<int> cash = Inventory.cash;
+	    private Item<int> cash;
 
 		public enum Items {
 			Penguin, PenguinStock, RetryKey
@@ -23,7 +23,8 @@ namespace Assets.scripts.shop {
 		public Item[] storeItems;
 
 		protected void Start() {
-			foreach ( var storeItem in storeItems ) {
+		    cash = Inventory.cash;
+		    foreach ( var storeItem in storeItems ) {
 				ShopItem buy;
 				switch (storeItem.item) {
 					case Items.Penguin:

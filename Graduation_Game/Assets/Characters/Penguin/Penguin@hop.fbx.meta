@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aa39e4014e5e8344e917b23c71b62a1d
-timeCreated: 1479464563
+timeCreated: 1479976841
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -200,7 +200,7 @@ ModelImporter:
       name: hop
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 17
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: laneSign
     100002: //RootNode
+    100004: textureBakeSet1_laneSign02:laneSign
     400000: laneSign
     400002: //RootNode
+    400004: textureBakeSet1_laneSign02:laneSign
     2300000: laneSign
+    2300002: textureBakeSet1_laneSign02:laneSign
     3300000: laneSign
+    3300002: textureBakeSet1_laneSign02:laneSign
     4300000: laneSign
+    4300002: textureBakeSet1_laneSign02:laneSign
   materials:
     importMaterials: 1
     materialName: 0

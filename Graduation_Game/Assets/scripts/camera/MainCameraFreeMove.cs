@@ -104,7 +104,7 @@ namespace Assets.scripts.camera {
 					case TouchPhase.Ended:
 						lastTouch = touch;
 						break;
-					defualt:
+					default:
 						break;
 				}
 			}

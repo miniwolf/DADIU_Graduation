@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts {
 	public class TagConstants {
+		public const string EGG_COLLECTION = "Egg collection";
 		public const string HATCHABLE_PENGUIN = "Hatchable penguin";
 		public const string PENGUINEGG = "PenguinEgg";
 		public const string METALTEMPLATE = "MetalTemplate";
@@ -16,6 +17,7 @@
 		public const string PRESSURE_PLATE = "Pressure_Plate";
 		public const string FALLING_BRIDGE_CONTROLLER = "Falling_Bridge_Controller";
 		public const string PLUTONIUM_COUNTER_TEXT = "PlutoniumCounterText";
+		public const string PLUTONIUM_THIS_LEVEL = "PlutoniumThisLevel";
 		public const string PENGUIN_COUNTER_TEXT = "PenguinCounterText";
 		public const string COUNT_DOWN_TEXT = "CountDownText";
 		public const string SPIKETRAP = "SpikeTrap";
@@ -44,13 +46,21 @@
 		public const string CUTSCENE = "CutScene";
 		public const string WINZONE = "WinZone";
 		public const string TOOLTUTORIAL = "ToolTutorial";
+		public const string LANECHANGEARROW = "LaneChangeArrow";
+		public const string JUMPARROW = "JumpArrow";
+		public const string TOOLTIP = "Tooltip";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
 	    }
 
 	    public class UI {
+			public const string LANGUAGE_IMAGE = "LanguageImage";
 	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
+			public const string UK_TEXT = "UKText";
+			public const string DK_TEXT = "DKText";
+			public const string ON_TEXT = "OnText";
+			public const string OFF_TEXT = "OffText";
 			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
 			public const string BACK_SETTINGS = "BackSettings";
 			public const string SETTINGS_TEXT = "SettingsText";
@@ -69,6 +79,10 @@
 			public const string RETRY_CIRCLE = "RetryCircle";
 			public const string RETRY_BUTTON = "RetryButton";
 			public const string RETRY_PRIZE = "RetryPrize";
+			public const string INTRO_BUTTON = "IntroButton";
+			public const string INTRO_IMAGE = "IntroImage";
+			public const string TOOLTIP_PANEL = "TooltipPanel";
+			public const string TOOLTIPS_BUTTON = "TooltipsButton";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
