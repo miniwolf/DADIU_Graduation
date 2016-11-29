@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using Assets.scripts.UI.translations;
+using Assets.scripts;
+
 
 public class TranslateApi {
 	private static readonly object syncLock = new object();
-	private static SupportedLanguage languageLoaded = SupportedLanguage.ENG;
+	private static SupportedLanguage languageLoaded;
 	// todo if LocalizedString.Parse is slow, just change to plain strings and instead of translationLookupTable[key] call translationLookupTable[Key.toString()]
 	private static Dictionary<LocalizedString, string> translationLookupTable = new Dictionary<LocalizedString, string>();
 	private static TextAsset txtFile;
@@ -14,6 +16,7 @@ public class TranslateApi {
 	public static string GetString(LocalizedString key) {
 		lock(syncLock) {
 			if (translationLookupTable.Count == 0) {
+				languageLoaded = Prefs.IsEnglishOn() == true ? SupportedLanguage.ENG : SupportedLanguage.DEN;
 				LoadLanguage(languageLoaded);
 			}
 		}
