@@ -86,7 +86,19 @@ namespace Assets.scripts.UI.mainmenu {
 			//UpdateTexts();
 		}
 
-		// Waits for level line to finish filling up and then changes the next available level to green
+	    void Update() {
+	        UpdateLevelPositions();
+	    }
+        /// <summary>
+        /// On each update update level buttons so they are in the correct positions
+        /// </summary>
+	    private void UpdateLevelPositions() {
+	        foreach (var lvl in levels) {
+	            lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
+	        }
+	    }
+
+	    // Waits for level line to finish filling up and then changes the next available level to green
 		IEnumerator WaitForFill() {
 			yield return new WaitForSeconds(FillImage.fillAmountTime);
 			for (int i = 0; i < levelNames.Length; i++) {
@@ -178,40 +190,41 @@ namespace Assets.scripts.UI.mainmenu {
 
 		// Unlocks numOfLvlsToUnlock + 1 levels
 		void UnlockLevels(int numOfLvlsToUnlock) {
-			switch (numOfLvlsToUnlock) {
-				case 1:
-					MakeLevelsInteractable(1);
-					break;
-				case 2:
-					MakeLevelsInteractable(2);
-					break;
-				case 3:
-					MakeLevelsInteractable(3);
-					break;
-				case 4:
-					MakeLevelsInteractable(4);
-					break;
-				case 5:
-					MakeLevelsInteractable(5);
-					break;
-				case 6:
-					MakeLevelsInteractable(6);
-					break;
-				case 7:
-					MakeLevelsInteractable(7);
-					break;
-				case 8:
-					MakeLevelsInteractable(8);
-					break;
-				case 9:
-					MakeLevelsInteractable(9);
-					break;
-				case 10:
-					MakeLevelsInteractable(10);
-					break;
-				default:
-					break;
-			}
+		    MakeLevelsInteractable(numOfLvlsToUnlock);
+//		    switch (numOfLvlsToUnlock) {
+//				case 1:
+//					MakeLevelsInteractable(1);
+//					break;
+//				case 2:
+//					MakeLevelsInteractable(2);
+//					break;
+//				case 3:
+//					MakeLevelsInteractable(3);
+//					break;
+//				case 4:
+//					MakeLevelsInteractable(4);
+//					break;
+//				case 5:
+//					MakeLevelsInteractable(5);
+//					break;
+//				case 6:
+//					MakeLevelsInteractable(6);
+//					break;
+//				case 7:
+//					MakeLevelsInteractable(7);
+//					break;
+//				case 8:
+//					MakeLevelsInteractable(8);
+//					break;
+//				case 9:
+//					MakeLevelsInteractable(9);
+//					break;
+//				case 10:
+//					MakeLevelsInteractable(10);
+//					break;
+//				default:
+//					break;
+//			}
 		}
 
 		void OnDestroy() {
@@ -278,6 +291,7 @@ namespace Assets.scripts.UI.mainmenu {
 			public Button btnFromScene;
 			public LocalizedString localizedText;
 			public int penguinsRequired;
+			public GameObject levelAnchor;
 		}
 
 
