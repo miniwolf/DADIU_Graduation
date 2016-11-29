@@ -8,6 +8,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		private readonly Directionable direction;
 		private const float GRAVITY = 9.8f;
 		private readonly Actionable<ControllableActions> actionable;
+		private bool isFalling = false;
 
 		public MoveForward(Directionable direction, Actionable<ControllableActions> actionable){
 			this.actionable = actionable;
@@ -32,6 +33,17 @@ namespace Assets.scripts.controllers.actions.movement {
 				direction.SetJump(false);
 				actionable.ExecuteAction(ControllableActions.StopJump);
 			}
+
+			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 2f)) {
+				isFalling = true;
+				actionable.ExecuteAction(ControllableActions.PenguinFall);
+			} else {
+				if (isFalling) {
+					actionable.ExecuteAction(ControllableActions.PenguinStopFall);
+					isFalling = false;
+				}
+			}
+
 
 			characterController.Move(direction.GetDirection() * direction.GetSpeed() * Time.deltaTime);
 		}
