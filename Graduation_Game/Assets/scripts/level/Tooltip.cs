@@ -21,11 +21,9 @@ namespace Assets.scripts.level {
 		void Start() {
 			panel = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIP_PANEL);	
 			panel.SetActive(false);
-
-		}
-
-		void Update() {
-			
+			if ( !Prefs.IsTooltipsOn() ) {
+				gameObject.SetActive(false);
+			}
 		}
 
 		void OnTriggerEnter(Collider collider) {

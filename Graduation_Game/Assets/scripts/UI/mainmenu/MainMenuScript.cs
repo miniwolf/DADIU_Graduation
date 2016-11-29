@@ -46,10 +46,13 @@ namespace Assets.scripts.UI.mainmenu {
 			fillImageScript = GetComponent<FillImage>();
 
 			levelNames = new string[numberOfLevelsInCanvas];
-			for(int i = 0; i < levelNames.Length; i++) {
-				levelNames[i] = "Level" + (i+1).ToString();
+			for(int i = 0; i < 3; i++) {
+				levelNames[i] = "W0Level" + (i).ToString();
 			}
-			
+			for(int i = 3; i < levelNames.Length; i++) {
+				levelNames[i] = "W1Level" + (i+1).ToString();
+			}
+
 			InitilizeLevels();
 
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
@@ -72,6 +75,14 @@ namespace Assets.scripts.UI.mainmenu {
 					OnDropdownChanged();
 				});
 			*/
+
+			// first time we set up the language as English, tooltips and music on 
+			if (!PlayerPrefs.HasKey("NoIntroScreen")) {															    
+				Prefs.SetTooltips(1);
+				Prefs.SetLanguage(0);
+				Prefs.SetMaster(true);
+			}
+
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 
 			DisablePopup();
@@ -130,7 +141,7 @@ namespace Assets.scripts.UI.mainmenu {
 		void LoadStars() {
 			//int starsWonForLevel = 0;
 			for (int i = 0; i < levelNames.Length; i++) {
-				SetStarSprite(i, Prefs.GetLevelWonStars(levelNames[i]));
+				SetStarSprite(i, PlayerPrefs.GetInt(levelNames[i]));
 			}
 		}
 

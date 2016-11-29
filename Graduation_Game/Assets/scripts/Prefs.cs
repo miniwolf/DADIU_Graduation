@@ -18,9 +18,11 @@ namespace Assets.scripts {
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
-
+		public const string TOOLTIPS = "tooltips";
+		public const string LANGUAGE = "language"; //0 English, 1 Danish
         private const int TRUE = 1;
         private const int FALSE = 0;
+		public const string TOTALSTARS = "TotalStars";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -43,6 +45,7 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelUnlockIndex(int levelIndexToUnlock) {
+			Debug.Log("douche");
 			PlayerPrefs.SetInt(LEVEL_UNLOCK_INDEX, levelIndexToUnlock);
 		}
 
@@ -58,9 +61,24 @@ namespace Assets.scripts {
 			return PlayerPrefs.GetString(levelName) == COMPLETED;
 		}
 
-
 		public static bool IsLevelStatusCurrent(string levelName) {
 			return PlayerPrefs.GetString(levelName) == CURRENT;
+		}
+
+		public static bool IsTooltipsOn() {
+			return PlayerPrefs.GetInt(TOOLTIPS) == TRUE;
+		}
+			 
+		public static void SetTooltips(int active) {
+			PlayerPrefs.SetInt(TOOLTIPS, active);
+		}
+
+		public static bool IsEnglishOn() {
+			return PlayerPrefs.GetInt(LANGUAGE) == 0;
+		}
+
+		public static void SetLanguage(int language) {
+			PlayerPrefs.SetInt(LANGUAGE, language);
 		}
 
 		public static void SetMaster(bool musicOn) {

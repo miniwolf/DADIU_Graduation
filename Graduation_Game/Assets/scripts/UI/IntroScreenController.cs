@@ -9,12 +9,12 @@ namespace Assets.scripts.UI {
 		public Sprite[] introScreens;
 		private int currentScreen;
 		private Text skipIntro;
-		private Image tvImage;
+		private GameObject tvImage;
 		private Button intro;
 
 		void Start() {
-			tvImage = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_IMAGE).GetComponent<Image>();
-			tvImage.enabled = false;
+			tvImage = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_IMAGE);
+			tvImage.SetActive(false);
 			intro = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_BUTTON).GetComponent<Button>();
 			intro.onClick.AddListener(() => LoadIntro());
 			currentScreen = 0;
@@ -51,13 +51,13 @@ namespace Assets.scripts.UI {
 				i.enabled = false;
 				i.GetComponentInChildren<Text>().enabled = false;
 			}
-			tvImage.enabled = false;
+			tvImage.SetActive(false);
 			currentScreen = 0;
 			PlayerPrefs.SetInt("NoIntroScreen", 1);																// Enable this $#!? when ready for release.
 		}
 
 		public void LoadIntro() {
-			tvImage.enabled = true;
+			tvImage.SetActive(true);
 			gameObject.GetComponent<Image>().enabled = true;
 			skipIntro.text = "Skip Intro";
 			if (introScreens.Length > 0)
