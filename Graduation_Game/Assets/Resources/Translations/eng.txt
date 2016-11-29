@@ -10,3 +10,5 @@ level9;Level 9 EN
 popupNotEnoguhPenguins; Not enough penguins to play the level!
 backsettings; Back
 settings; SETTINGS
+jump; Write here tooltip for jump EN
+switchlane; Write here tooltip for switch lane EN
