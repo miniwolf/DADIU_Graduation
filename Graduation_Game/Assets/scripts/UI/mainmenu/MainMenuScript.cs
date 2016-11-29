@@ -14,12 +14,13 @@ namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
 
 		public LvlData[] levels;
+		public LvlMarkers[] markers;
 		private Dropdown languageDropdown;
 		private Image popup;
 		private InputManager inputManager;
 		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
 		private string[] levelNames;
-		private int numberOfLevelsInCanvas = 5;
+		private int numberOfLevelsInCanvas = 5; // todo why not user levels.Count instead?
 		private FillImage fillImageScript;
 
 		public Sprite stars1;
@@ -90,11 +91,14 @@ namespace Assets.scripts.UI.mainmenu {
 	        UpdateLevelPositions();
 	    }
         /// <summary>
-        /// On each update update level buttons so they are in the correct positions
+        /// On each update update level buttons so they are in the correct position
         /// </summary>
 	    private void UpdateLevelPositions() {
 	        foreach (var lvl in levels) {
 	            lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
+	        }
+	        foreach (var marker in markers) {
+	            marker.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(marker.btnAnchor.transform.position);
 	        }
 	    }
 
@@ -261,12 +265,12 @@ namespace Assets.scripts.UI.mainmenu {
 			//UpdateTexts();
 		}
 
-		private void UpdateTexts() {
-			foreach(var lvl in levels) {
-				lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
-			}
-			popup.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.popupNotEnoguhPenguins);
-		}
+//		private void UpdateTexts() {
+//			foreach(var lvl in levels) {
+//				lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
+//			}
+//			popup.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.popupNotEnoguhPenguins);
+//		}
 
 		public void SettingsButton() {
 			SceneManager.LoadScene("Settings");	
@@ -291,18 +295,22 @@ namespace Assets.scripts.UI.mainmenu {
 			public string sceneFileName;
 		    [Tooltip("Specify the button from the scene that will open the level")]
 			public Button btnFromScene;
-		    [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
-			public LocalizedString localizedText;
 		    [Tooltip("How many penguins are needed to access the level")]
 			public int penguinsRequired;
 		    [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
 			public GameObject levelAnchor;
-		    [Tooltip("Some buttons are used as markers that show some information and not lead to any level")]
-		    public bool isLevelButton = true;
 		}
 
+	    [Serializable] public class LvlMarkers {
+	        [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
+	        public LocalizedString localizedText;
+	        [Tooltip("Specify the button from the scene that represents the anchor")]
+	        public Button btnFromScene;
+	        [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
+	        public GameObject btnAnchor;
+	    }
 
-		//
+	    //
 		// UNUSED LISTENERS
 		//
 

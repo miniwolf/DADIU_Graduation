@@ -12,3 +12,4 @@ backsettings; Tilbage
 settings; Indstillinger
 jump; Write here tooltip for jump DK
 switchlane; Write here tooltip for switch lane DK
+thisWorldIsLocked; This world is locked DK!
