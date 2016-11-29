@@ -11,7 +11,7 @@ using Assets.scripts.UI;
 using System.Collections;
 
 namespace Assets.scripts.UI.mainmenu {
-	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
+	public class MainMenuScript : UIController, TouchInputListener, MouseInputListener {
 
 		public LvlData[] levels;
 		public LvlUnlockMarkers[] worldUnlockMarkers;
@@ -39,7 +39,6 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		protected void Start() {
-			TranslateApi.Register(this);
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
@@ -148,7 +147,6 @@ namespace Assets.scripts.UI.mainmenu {
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel(string[] levelNames) {
 			for (int i = 0; i < levelNames.Length; i++) {
-
 				// Checks which level was won last time and sets the stars accordingly
 				if (Prefs.GetLevelLastPlayedName() == levelNames[i]) {
 					Prefs.SetLevelWonStars(levelNames[i], Prefs.GetLevelWonStars(levelNames[i]));
@@ -176,8 +174,6 @@ namespace Assets.scripts.UI.mainmenu {
 				case 3:
 					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars3;
 					break;
-				default:
-					break;
 			}
 		}
  
@@ -201,56 +197,11 @@ namespace Assets.scripts.UI.mainmenu {
 		// Unlocks numOfLvlsToUnlock + 1 levels
 		void UnlockLevels(int numOfLvlsToUnlock) {
 		    MakeLevelsInteractable(numOfLvlsToUnlock);
-//		    switch (numOfLvlsToUnlock) {
-//				case 1:
-//					MakeLevelsInteractable(1);
-//					break;
-//				case 2:
-//					MakeLevelsInteractable(2);
-//					break;
-//				case 3:
-//					MakeLevelsInteractable(3);
-//					break;
-//				case 4:
-//					MakeLevelsInteractable(4);
-//					break;
-//				case 5:
-//					MakeLevelsInteractable(5);
-//					break;
-//				case 6:
-//					MakeLevelsInteractable(6);
-//					break;
-//				case 7:
-//					MakeLevelsInteractable(7);
-//					break;
-//				case 8:
-//					MakeLevelsInteractable(8);
-//					break;
-//				case 9:
-//					MakeLevelsInteractable(9);
-//					break;
-//				case 10:
-//					MakeLevelsInteractable(10);
-//					break;
-//				default:
-//					break;
-//					break;
-//			}
 		}
 
 		void OnDestroy() {
-			TranslateApi.UnRegister(this);
 			inputManager.UnsubscribeForMouse(this);
 			inputManager.UnsubscribeForTouch(this);
-		}
-
-		private void OnDropdownChanged() {
-			SupportedLanguage newLanguage = ResolveLangauge();
-			TranslateApi.ChangeLanguage(newLanguage);
-		}
-
-		private SupportedLanguage ResolveLangauge() {
-			return languageDropdown.value == 0 ? SupportedLanguage.ENG : SupportedLanguage.DEN;
 		}
 
 		private void CheckLoadLevel(LvlData lvl) {
@@ -268,18 +219,7 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		public void OnLanguageChange(SupportedLanguage newLanguage) {
-			//UpdateTexts();
-		}
-
-//		private void UpdateTexts() {
-//			foreach(var lvl in levels) {
-//				lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
-//			}
-//			popup.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.popupNotEnoguhPenguins);
-//		}
-
-		public void SettingsButton() {
+	    public void SettingsButton() {
 			SceneManager.LoadScene("Settings");	
 		}
 
@@ -322,7 +262,6 @@ namespace Assets.scripts.UI.mainmenu {
 	    //
 		// UNUSED LISTENERS
 		//
-
 		public void OnMouseRightDown() {
 			DisablePopup();
 		}
@@ -340,10 +279,11 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		public void OnMouseLeftUp() {
+
 		}
 
 		public void OnMouseLeftPressed() {
-		}
 
+		}
 	}
 }
