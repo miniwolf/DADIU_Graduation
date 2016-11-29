@@ -13,6 +13,8 @@ public enum LocalizedString  {
 	level9,
 	popupNotEnoguhPenguins,
 	backsettings,
-	settings
+	settings,
+	jump,
+	switchlane
 
 }
