@@ -286,12 +286,19 @@ namespace Assets.scripts.UI.mainmenu {
 		//	DisablePopup(); //apparently it will activate and get removed super fast
 		}
 
-		[Serializable] public struct LvlData {
+		[Serializable] public class LvlData {
+		    [Tooltip("Name of the scene file that should be loaded. If project contains multiple levels with the same name, you have to specify the full path")]
 			public string sceneFileName;
+		    [Tooltip("Specify the button from the scene that will open the level")]
 			public Button btnFromScene;
+		    [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
 			public LocalizedString localizedText;
+		    [Tooltip("How many penguins are needed to access the level")]
 			public int penguinsRequired;
+		    [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
 			public GameObject levelAnchor;
+		    [Tooltip("Some buttons are used as markers that show some information and not lead to any level")]
+		    public bool isLevelButton = true;
 		}
 
 
