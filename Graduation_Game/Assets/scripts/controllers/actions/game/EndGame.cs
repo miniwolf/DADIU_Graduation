@@ -8,6 +8,8 @@ using Assets.scripts.tools;
 using UnityEngine.SceneManagement;
 using Assets.scripts;
 using Assets.scripts.UI.inventory;
+using System.Collections.Generic;
+using Assets.scripts.level;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -22,8 +24,11 @@ namespace Assets.scripts.controllers.actions.game {
 		private SceneManager scenes;
 		private Actionable<GameActions> actionable;
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
-		private int endedWithPenguins = 0;
+		private int endedWithPenguins = 0, reqPenguins = 0;
 		private int[] requiredPenguins = new int[3];
+
+		private bool shouldShowRetry = true;
+		private GameObject[] penguinIcons;
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -33,10 +38,10 @@ namespace Assets.scripts.controllers.actions.game {
 			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2);
 			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
-
-			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
+			penguinIcons = GameObject.FindGameObjectsWithTag(TagConstants.UI.PENGUINICON);
 
 			starsSpawned = 0;
+			reqPenguins = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_SPAWNER).GetComponent<PenguinSpawner>().GetInitialPenguinCount();
 		}
 
 		public EndGame(CouroutineDelegateHandler handler, Actionable<GameActions> actionable) {
@@ -45,15 +50,25 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
+			endedWithPenguins = int.Parse(penguinCounter.text);
+			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
 
-			Prefs.SetLevelLastPlayedName(SceneManager.GetActiveScene().name);
-			SetupEndScene();
-			handler.StartCoroutine(SpawnStars());
-
+			if (endedWithPenguins >= reqPenguins) {
+				actionable.ExecuteAction(GameActions.DisableRetryWin);
+				shouldShowRetry = false;
+			}
+			PenguinIcons();
 			EnableWin();
 		}
 
 		private void SetupEndScene() {
+
+			Prefs.SetLevelLastPlayedName(SceneManager.GetActiveScene().name);
+
+			if (shouldShowRetry) {
+				actionable.ExecuteAction(GameActions.RetryButtonWin);
+			}
+
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
 			endScene.SetActive(true);
 			endedWithPenguins = int.Parse(penguinCounter.text);
@@ -61,7 +76,6 @@ namespace Assets.scripts.controllers.actions.game {
 
 			actionable.ExecuteAction(GameActions.FlowScore);
 			handler.StartCoroutine(LoadMainMenu());
-			actionable.ExecuteAction(GameActions.RetryButtonWin);
 			handler.StartCoroutine(SpawnStars());
 		}
 
@@ -76,15 +90,12 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private IEnumerator ShowWin(){
-			Debug.Log("hej");
 			Animator anim = canvas.endSceneObject.GetComponentInChildren<Animator>();
 			anim.Play("PanelIn");
 			yield return new WaitForSeconds(1f);
 			canvas.SetActiveClickBlocker(false);
 			SetupEndScene();
 		}
-
-
 
 		private IEnumerator SpawnStars() {
 			yield return new WaitForSeconds(canvas.timeBeforeStarSpawn);//Seems strange atm
@@ -120,6 +131,25 @@ namespace Assets.scripts.controllers.actions.game {
 			Prefs.SetStarsForCurrentLevel(starsSpawned);
 
 			return true;
+		}
+
+		private void PenguinIcons(){
+			DeactivatePenguinIcons();
+			for (int i = 0; i < reqPenguins; i++) {
+				if (endedWithPenguins > i) {
+				} else {
+					penguinIcons[i].GetComponent<Image>().sprite = canvas.penguinIsDead;
+				}
+			}
+		}
+
+		private void DeactivatePenguinIcons(){
+			for (int i = 0; i < penguinIcons.Length; i++) {
+				penguinIcons[i].SetActive(false);
+			}
+			for (int i = 0; i < reqPenguins; i++) {
+				penguinIcons[i].SetActive(true);
+			}
 		}
 	}
 }
