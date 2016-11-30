@@ -6,6 +6,7 @@ using Assets.scripts.controllers;
 using Assets.scripts.UI;
 using UnityEngine.UI;
 using Assets.scripts;
+using Assets.scripts.UI.inventory;
 
 namespace AssemblyCSharp {
 	public class DisableRetryAction : Action {
@@ -41,6 +42,7 @@ namespace AssemblyCSharp {
 		}
 
 		public void Execute () {
+			Inventory.UpdateCount();
 			DisableRetry();
 		}
 		private void DisableRetry(){

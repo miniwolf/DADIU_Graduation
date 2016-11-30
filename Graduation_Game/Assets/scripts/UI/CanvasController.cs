@@ -30,7 +30,7 @@ namespace Assets.scripts.UI {
 		private GameObject[] holderThisLevel, holderTotal;
 		private Text plutoniumCounter;
 		private Text[] plutoniumThisLevel, plutoniumTotal;
-		public Sprite penguinIsDead;
+		public Sprite penguinIsDead, key;
 
 
 		void Awake() {
