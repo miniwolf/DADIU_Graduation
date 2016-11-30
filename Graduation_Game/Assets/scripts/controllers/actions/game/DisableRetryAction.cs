@@ -1,30 +1,24 @@
-﻿using Assets.scripts.components;
-using Assets.scripts.controllers;
-using Assets.scripts.controllers.actions;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Assets.scripts.controllers.actions;
+using Assets.scripts.components;
+using Assets.scripts.controllers;
+using Assets.scripts.UI;
 using UnityEngine.UI;
 using Assets.scripts;
-using Assets.scripts.UI;
 
 namespace AssemblyCSharp {
-	public class RetryAction : Action {
-		private readonly Actionable<GameActions> actionable;
-		private readonly CouroutineDelegateHandler handler;
+	public class DisableRetryAction : Action {
 		private Button retryCircle, retryButton;
 		private Image retryCircleImage;
 		private Text retryPrize;
 		private string toFind;
 		private CanvasController canvas;
-		private int[] requiredPenguins;
-		private int amountOfPenguins;
 
-		public RetryAction (CouroutineDelegateHandler handler, Actionable<GameActions> actionable, string toFind) {
-			this.handler = handler;
-			this.actionable = actionable;
+		public DisableRetryAction (string toFind) {
 			this.toFind = toFind;
 		}
-
+			
 		public void Setup (GameObject gameObject) {
 			canvas = gameObject.GetComponent<CanvasController>();
 			Transform[] trans = GameObject.FindGameObjectWithTag(toFind).GetComponentsInChildren<Transform>();
@@ -40,29 +34,19 @@ namespace AssemblyCSharp {
 					case TagConstants.UI.RETRY_PRIZE:
 						retryPrize = trans[i].gameObject.GetComponent<Text>();
 						break;
-					
 					default:
 						break;
 				}
 			}
-			canvas.SetActiveClickBlocker(false);
 		}
 
 		public void Execute () {
-			handler.StartCoroutine(RetryCircle());
-		}
-
-		IEnumerator RetryCircle(){
-			while(retryCircleImage.fillAmount > 0){
-				retryCircleImage.fillAmount -= 1.0f/canvas.timeForRetry * Time.deltaTime;
-				yield return new WaitForEndOfFrame();
-			}
 			DisableRetry();
 		}
-
 		private void DisableRetry(){
 			retryButton.gameObject.SetActive(false);
 		}
+
 	}
 }
 
