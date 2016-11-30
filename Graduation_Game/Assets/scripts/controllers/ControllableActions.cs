@@ -2,7 +2,7 @@
 	public enum ControllableActions {
 		SwitchLeft, SwitchRight,
 		Move, Stop, Start,
-		KillPenguinBySpikes, KillPenguinByPit,
+		KillPenguinByWallSpikes, KillPenguinByGroundSpikes, KillPenguinByPit,
 		KillPenguinByExcavator,
 		KillPenguingByWeightBased,
 		StartJump, StopJump,

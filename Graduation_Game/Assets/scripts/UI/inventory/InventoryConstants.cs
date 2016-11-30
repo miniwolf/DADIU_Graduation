@@ -23,6 +23,8 @@
 		public const string LEVEL9 = "Level9";
 		public const string LEVEL10 = "Level10";
 
+		public const string TOTALSTARS = "TotalStars";
+
 		public const string LEVEL1STATUS = "Level1status";
 		public const string LEVEL2STATUS = "Level2status";
 		public const string LEVEL3STATUS = "Level3status";

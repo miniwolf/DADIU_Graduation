@@ -8,7 +8,7 @@ public class ToolsTutorial : MonoBehaviour {
 	public GameObject DespawnTrigger;
 
 	void Start () {
-		GameObject toolTutorial = new GameObject("toolTutorial");
+		GameObject toolTutorial = gameObject; //new GameObject("toolTutorial");
 		toolTutorial.transform.SetParent(DespawnTrigger.transform);
 		toolTutorial.tag = TagConstants.TOOLTUTORIAL;
 		Text label = DespawnTrigger.GetComponentInChildren<Text>();

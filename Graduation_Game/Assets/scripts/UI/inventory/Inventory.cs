@@ -39,6 +39,8 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<string> level9status = new PreferenceItem<string>(InventoryConstants.LEVEL9STATUS);
 		public static readonly Item<string> level10status = new PreferenceItem<string>(InventoryConstants.LEVEL10STATUS);
 
+		public static readonly Item<int> totalStars = new PreferenceItem<int>(InventoryConstants.TOTALSTARS);
+
 
 		static Inventory() {
 			// SanityCheck

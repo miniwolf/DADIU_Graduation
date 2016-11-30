@@ -15,9 +15,12 @@ namespace Assets.scripts.components.factory {
 		}
 
 		public void BuildCanvas(Actionable<GameActions> actionable) {
-			actionable.AddAction(GameActions.EndLevel, EndGame(actionable));
+			actionable.AddAction(GameActions.EndLevel, EndGameWin(actionable));
 			actionable.AddAction(GameActions.TriggerCutScene, CutScene());
 			actionable.AddAction(GameActions.FlowScore, FlowScore());
+			actionable.AddAction(GameActions.EndLevelLoss, EndGameLoss(actionable));
+			actionable.AddAction(GameActions.RetryButtonLoss, RetryButtonLogicLoss(actionable));
+			actionable.AddAction(GameActions.RetryButtonWin, RetryButtonLogicWin(actionable));
 		}
 
 		public void BuildStar(Actionable<GameActions> actionable) {
@@ -42,10 +45,30 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler EndGame(Actionable<GameActions> actionable) {
+		private Handler EndGameWin(Actionable<GameActions> actionable) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new EndGame(handler, actionable));
 			return actionHandler;
+		}
+
+		private Handler EndGameLoss(Actionable<GameActions> actionable) {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new EndGameLoss(handler, actionable));
+			return actionHandler;
+		}
+
+		private Handler RetryButtonLogicLoss(Actionable<GameActions> actionable){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new RetryAction(handler, actionable, TagConstants.UI.FAILSCENEOBJECT));
+			return actionHandler;
+
+		}
+
+		private Handler RetryButtonLogicWin(Actionable<GameActions> actionable){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new RetryAction(handler, actionable, TagConstants.UI.ENDSCENEOBJECT));
+			return actionHandler;
+
 		}
 	}
 }

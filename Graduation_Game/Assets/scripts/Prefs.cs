@@ -1,5 +1,7 @@
 ﻿using Assets.scripts.sound;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.scripts {
     public class Prefs {
@@ -19,8 +21,10 @@ namespace Assets.scripts {
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
 		public const string TOOLTIPS = "tooltips";
+		public const string LANGUAGE = "language"; //0 English, 1 Danish
         private const int TRUE = 1;
         private const int FALSE = 0;
+		private const string TOTALSTARS = "TotalStars";
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -43,6 +47,7 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelUnlockIndex(int levelIndexToUnlock) {
+			Debug.Log("douche");
 			PlayerPrefs.SetInt(LEVEL_UNLOCK_INDEX, levelIndexToUnlock);
 		}
 
@@ -58,7 +63,6 @@ namespace Assets.scripts {
 			return PlayerPrefs.GetString(levelName) == COMPLETED;
 		}
 
-
 		public static bool IsLevelStatusCurrent(string levelName) {
 			return PlayerPrefs.GetString(levelName) == CURRENT;
 		}
@@ -71,12 +75,44 @@ namespace Assets.scripts {
 			PlayerPrefs.SetInt(TOOLTIPS, active);
 		}
 
+		public static bool IsEnglishOn() {
+			return PlayerPrefs.GetInt(LANGUAGE) == 0;
+		}
+
+		public static void SetLanguage(int language) {
+			PlayerPrefs.SetInt(LANGUAGE, language);
+		}
+
 		public static void SetMaster(bool musicOn) {
             PlayerPrefs.SetInt(SOUND_MASTER, musicOn ? TRUE: FALSE);
         }
 
         public static bool MasterOn() {
             return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
+        }
+
+        public static int GetTotalStars() {
+            return PlayerPrefs.GetInt(TOTALSTARS);
+        }
+
+        public static void UpdateTotalStars(int totalStars) {
+             PlayerPrefs.SetInt(TOTALSTARS, totalStars);
+        }
+
+        public static int GetStarsForLevel(string lvlName) {
+            return PlayerPrefs.GetInt(lvlName);
+        }
+
+        public static void SetStarsForLevel(string lvlName, int value) {
+            PlayerPrefs.SetInt(lvlName, value);
+        }
+
+        public static int GetStarsForCurrentLevel() {
+            return PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+        }
+
+        public static void SetStarsForCurrentLevel(int value) {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, value);
         }
     }
 }

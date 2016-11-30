@@ -20,7 +20,8 @@
 		public const string PLUTONIUM_THIS_LEVEL = "PlutoniumThisLevel";
 		public const string PENGUIN_COUNTER_TEXT = "PenguinCounterText";
 		public const string COUNT_DOWN_TEXT = "CountDownText";
-		public const string SPIKETRAP = "SpikeTrap";
+		public const string SPIKETRAPGROUND = "SpikeTrapGround";
+		public const string SPIKETRAPWALL = "SpikeTrapWall";
 		public const string PITTRAP = "PitTrap";
 		public const string LEVELSETTINGS = "LevelSettings";
 		public const string SWITCHLANE = "SwitchLane";
@@ -61,7 +62,10 @@
 			public const string DK_TEXT = "DKText";
 			public const string ON_TEXT = "OnText";
 			public const string OFF_TEXT = "OffText";
+			public const string ON_TTEXT = "OnTText";
+			public const string OFF_TTEXT = "OffTText";
 			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
+			public const string TOGGLE_CHANGE_TOOLTIPS = "ChangeTooltips";
 			public const string BACK_SETTINGS = "BackSettings";
 			public const string SETTINGS_TEXT = "SettingsText";
 	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
@@ -90,6 +94,10 @@
 	        public const string LVL_4 = "BtnLevel4";
 	        public const string LVL_5 = "BtnLevel5";
 	        public const string LVL_6 = "BtnLevel6";
+
+			public const string BLOCKCLICKS = "BlockClicks";
+			public const string FAILSCENEOBJECT = "FailSceneObject";
+			public const string ENDSCENEOBJECT = "EndSceneObject";
 	    }
 	}
 }

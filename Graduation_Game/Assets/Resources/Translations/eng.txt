@@ -12,3 +12,4 @@ backsettings; Back
 settings; SETTINGS
 jump; Write here tooltip for jump EN
 switchlane; Write here tooltip for switch lane EN
+thisWorldIsLocked; This world is locked!
