@@ -20,7 +20,8 @@
 		public const string PLUTONIUM_THIS_LEVEL = "PlutoniumThisLevel";
 		public const string PENGUIN_COUNTER_TEXT = "PenguinCounterText";
 		public const string COUNT_DOWN_TEXT = "CountDownText";
-		public const string SPIKETRAP = "SpikeTrap";
+		public const string SPIKETRAPGROUND = "SpikeTrapGround";
+		public const string SPIKETRAPWALL = "SpikeTrapWall";
 		public const string PITTRAP = "PitTrap";
 		public const string LEVELSETTINGS = "LevelSettings";
 		public const string SWITCHLANE = "SwitchLane";
