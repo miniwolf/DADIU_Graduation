@@ -89,6 +89,13 @@ namespace Assets.scripts.UI.mainmenu {
 			//UpdateTexts();
 		}
 
+
+		void Update(){
+			if (Input.GetMouseButtonDown(0)) {
+				DisablePopup();
+			}
+		}
+
 		// Waits for level line to finish filling up and then changes the next available level to green
 		IEnumerator WaitForFill() {
 			yield return new WaitForSeconds(FillImage.fillAmountTime);

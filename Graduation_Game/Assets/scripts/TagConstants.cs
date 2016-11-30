@@ -93,6 +93,10 @@
 	        public const string LVL_4 = "BtnLevel4";
 	        public const string LVL_5 = "BtnLevel5";
 	        public const string LVL_6 = "BtnLevel6";
+
+			public const string BLOCKCLICKS = "BlockClicks";
+			public const string FAILSCENEOBJECT = "FailSceneObject";
+			public const string ENDSCENEOBJECT = "EndSceneObject";
 	    }
 	}
 }
