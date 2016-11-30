@@ -49,8 +49,7 @@ namespace Assets.scripts.components.factory {
 
 		public void Build() {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
-			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
-			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
+		    CreateSwitchLane();
 			actionable.AddAction(ControllableActions.KillPenguinByWallSpikes, KillPenguinBy(animationSet.deathSpikeWallAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByGroundSpikes, KillPenguinBy(animationSet.deathSpikeGroundAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(animationSet.deathPitAnimation));
@@ -134,11 +133,22 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateSwitchLane(LaneSwitch sw) {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, sw));
+		private void CreateSwitchLane() {
+		    var leftSwitch = new Switch((Directionable) actionable, levelSettings, new Left());
+		    var rightSwitch = new Switch((Directionable) actionable, levelSettings, new Right());
+
+		    leftSwitch.SetOther(rightSwitch);
+		    rightSwitch.SetOther(leftSwitch);
+
+		    var actionHandler = new ActionHandler();
+			actionHandler.AddAction(leftSwitch);
 		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
-			return actionHandler;
+		    actionable.AddAction(ControllableActions.SwitchLeft, actionHandler);
+
+		    actionHandler = new ActionHandler();
+		    actionHandler.AddAction(rightSwitch);
+		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
+		    actionable.AddAction(ControllableActions.SwitchRight, actionHandler);
 		}
 
 		private Handler KillPenguinBy(string constant) {
