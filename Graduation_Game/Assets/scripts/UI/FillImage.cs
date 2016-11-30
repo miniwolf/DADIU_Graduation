@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.scripts;
+using Assets.scripts.UI.mainmenu;
 
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
@@ -11,32 +13,22 @@ namespace Assets.scripts.UI {
 		public Image[] fillImages = new Image[numOfLvls - 1];
 		public ParticleSystem[] particleSystems = new ParticleSystem[numOfLvls - 1];
 		private string[] levelStatusNames = new string[numOfLvls];
-		private string status = "status";
-		private string completed = "completed";
 		private int fillOverTimeIdx;
+		private MainMenuScript.LvlData[] levels;
 
 		void Start() {
-			levelStatusNames = InitilizeLevelStatusNames(levelStatusNames);
+			levels = GetComponent<MainMenuScript>().levels;
 		}
 
 		// Update is called once per frame
 		void LateUpdate() {
-
-			fillOverTimeIdx = GetLastLevelIndexToFill(levelStatusNames);
+			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
 
 			FillLevelLines(fillOverTimeIdx);
 
 			if (fillOverTimeIdx > -1) {
 				FillOverTime(fillImages[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
-		}
-
-		// levelStatusNames will include the PlayerPrefs level status names
-		private string[] InitilizeLevelStatusNames(string[] levelStatusNames) {
-			for (int i = 0; i < levelStatusNames.Length; i++) {
-				levelStatusNames[i] = "Level" + (i + 1).ToString() + status;
-			}
-			return levelStatusNames;
 		}
 
 		// Fills previously completed level lines instantly
@@ -60,9 +52,9 @@ namespace Assets.scripts.UI {
 
 		// Returns the index of the last level that was completed,
 		// and -1 if no level was completed
-		private int GetLastLevelIndexToFill(string[] levelStatusNames) {
-			for (int i = levelStatusNames.Length - 1; i > -1; i--) {
-				if (PlayerPrefs.GetString(levelStatusNames[i]) == completed) {
+		private int GetLastLevelIndexToFill(MainMenuScript.LvlData[] levels) {
+			for (int i = levels.Length - 1; i > -1; i--) {
+				if(Prefs.IsLevelStatusComplete(levels[i].sceneFileName)) {
 					fillOverTimeIdx = i;
 					return fillOverTimeIdx;
 				}
