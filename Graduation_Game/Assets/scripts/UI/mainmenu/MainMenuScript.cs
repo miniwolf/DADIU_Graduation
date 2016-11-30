@@ -11,15 +11,16 @@ using Assets.scripts.UI;
 using System.Collections;
 
 namespace Assets.scripts.UI.mainmenu {
-	public class MainMenuScript : UIController, LanguageChangeListener, TouchInputListener, MouseInputListener {
+	public class MainMenuScript : UIController, TouchInputListener, MouseInputListener {
 
 		public LvlData[] levels;
+		public LvlUnlockMarkers[] worldUnlockMarkers;
 		private Dropdown languageDropdown;
 		private Image popup;
 		private InputManager inputManager;
 		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
-		private string[] levelNames;
-		private int numberOfLevelsInCanvas = 5;
+		private string[] levelNames; // todo why not use levels[i].sceneFileName instead?
+	    private int numberOfLevelsInCanvas = 5; // todo why not user levels.Count instead?
 		private FillImage fillImageScript;
 
 		public Sprite stars1;
@@ -38,29 +39,25 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		protected void Start() {
-			TranslateApi.Register(this);
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 					
 			fillImageScript = GetComponent<FillImage>();
-
 			levelNames = new string[numberOfLevelsInCanvas];
-			for(int i = 0; i < 3; i++) {
+
+		    for(int i = 0; i < 3; i++) {
 				levelNames[i] = "W0Level" + (i).ToString();
 			}
-			for(int i = 3; i < levelNames.Length; i++) {
+
+		    for(int i = 3; i < levelNames.Length; i++) {
 				levelNames[i] = "W1Level" + (i+1).ToString();
 			}
 
-			InitilizeLevels();
-
+		    InitilizeLevels();
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
-
 			SetStarPrefsPerLevel(levelNames);
-
 			LoadStars();
-
 			UpdateLevelsStatusOnLoad();
 
 			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1STATUS)) {
@@ -68,13 +65,6 @@ namespace Assets.scripts.UI.mainmenu {
 			} else {
 				StartCoroutine(WaitForFill());
 			}
-			
-			/* languageDropdown = GameObject.FindGameObjectWithTag(TagConstants.UI.DROPDOWN_CHANGE_LANGUAGE).GetComponent<Dropdown>();
-
-				languageDropdown.onValueChanged.AddListener(delegate {
-					OnDropdownChanged();
-				});
-			*/
 
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {															    
@@ -86,18 +76,34 @@ namespace Assets.scripts.UI.mainmenu {
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
 
 			DisablePopup();
-			//UpdateTexts();
+
+		    // init texts at the beginning
+		    foreach (var marker in worldUnlockMarkers) {
+		        marker.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(marker.localizedText) + " " +   Prefs.GetTotalStars() + "/" + marker.starsNeeded; // maxstars
+		    }
 		}
 
+	    // Waits for level line to finish filling up and then changes the next available level to green
+	    void Update() {
+	        if (Input.GetMouseButtonDown(0)) {
+	            DisablePopup();
+	        }
+	        UpdateLevelPositions();
+	    }
+        /// <summary>
+        /// On each update update level buttons so they are in the correct position
+        /// </summary>
+	    private void UpdateLevelPositions() {
+	        foreach (var lvl in levels) {
+	            lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
+	        }
+	        foreach (var marker in worldUnlockMarkers) {
+	            marker.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(marker.btnAnchor.transform.position);
+	        }
+	    }
 
-		void Update(){
-			if (Input.GetMouseButtonDown(0)) {
-				DisablePopup();
-			}
-		}
-
-		// Waits for level line to finish filling up and then changes the next available level to green
-		IEnumerator WaitForFill() {
+	    // Waits for level line to finish filling up and then changes the next available level to green
+	    IEnumerator WaitForFill() {
 			yield return new WaitForSeconds(FillImage.fillAmountTime);
 			for (int i = 0; i < levelNames.Length; i++) {
 				if (Prefs.IsLevelStatusCurrent(levelNames[i] + Prefs.STATUS)) {
@@ -132,11 +138,9 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel(string[] levelNames) {
 			for (int i = 0; i < levelNames.Length; i++) {
-
 				// Checks which level was won last time and sets the stars accordingly
 				if (Prefs.GetLevelLastPlayedName() == levelNames[i]) {
 					Prefs.SetLevelWonStars(levelNames[i], Prefs.GetLevelWonStars(levelNames[i]));
@@ -164,8 +168,6 @@ namespace Assets.scripts.UI.mainmenu {
 				case 3:
 					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars3;
 					break;
-				default:
-					break;
 			}
 		}
  
@@ -188,55 +190,12 @@ namespace Assets.scripts.UI.mainmenu {
 
 		// Unlocks numOfLvlsToUnlock + 1 levels
 		void UnlockLevels(int numOfLvlsToUnlock) {
-			switch (numOfLvlsToUnlock) {
-				case 1:
-					MakeLevelsInteractable(1);
-					break;
-				case 2:
-					MakeLevelsInteractable(2);
-					break;
-				case 3:
-					MakeLevelsInteractable(3);
-					break;
-				case 4:
-					MakeLevelsInteractable(4);
-					break;
-				case 5:
-					MakeLevelsInteractable(5);
-					break;
-				case 6:
-					MakeLevelsInteractable(6);
-					break;
-				case 7:
-					MakeLevelsInteractable(7);
-					break;
-				case 8:
-					MakeLevelsInteractable(8);
-					break;
-				case 9:
-					MakeLevelsInteractable(9);
-					break;
-				case 10:
-					MakeLevelsInteractable(10);
-					break;
-				default:
-					break;
-			}
+		    MakeLevelsInteractable(numOfLvlsToUnlock);
 		}
 
 		void OnDestroy() {
-			TranslateApi.UnRegister(this);
 			inputManager.UnsubscribeForMouse(this);
 			inputManager.UnsubscribeForTouch(this);
-		}
-
-		private void OnDropdownChanged() {
-			SupportedLanguage newLanguage = ResolveLangauge();
-			TranslateApi.ChangeLanguage(newLanguage);
-		}
-
-		private SupportedLanguage ResolveLangauge() {
-			return languageDropdown.value == 0 ? SupportedLanguage.ENG : SupportedLanguage.DEN;
 		}
 
 		private void CheckLoadLevel(LvlData lvl) {
@@ -254,18 +213,7 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		public void OnLanguageChange(SupportedLanguage newLanguage) {
-			//UpdateTexts();
-		}
-
-		private void UpdateTexts() {
-			foreach(var lvl in levels) {
-				lvl.btnFromScene.GetComponentInChildren<Text>().text = TranslateApi.GetString(lvl.localizedText);
-			}
-			popup.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.popupNotEnoguhPenguins);
-		}
-
-		public void SettingsButton() {
+	    public void SettingsButton() {
 			SceneManager.LoadScene("Settings");	
 		}
 
@@ -283,18 +231,31 @@ namespace Assets.scripts.UI.mainmenu {
 		//	DisablePopup(); //apparently it will activate and get removed super fast
 		}
 
-		[Serializable] public struct LvlData {
+		[Serializable] public class LvlData {
+		    [Tooltip("Name of the scene file that should be loaded. If project contains multiple levels with the same name, you have to specify the full path")]
 			public string sceneFileName;
+		    [Tooltip("Specify the button from the scene that will open the level")]
 			public Button btnFromScene;
-			public LocalizedString localizedText;
+		    [Tooltip("How many penguins are needed to access the level")]
 			public int penguinsRequired;
+		    [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
+			public GameObject levelAnchor;
 		}
 
+	    [Serializable] public class LvlUnlockMarkers {
+	        [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
+	        public LocalizedString localizedText;
+	        [Tooltip("Specify the button from the scene that represents the anchor")]
+	        public Button btnFromScene;
+	        [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
+	        public GameObject btnAnchor;
+	        [Tooltip("Specify how many stars player needs to have to unlock the world")]
+	        public int starsNeeded;
+	    }
 
-		//
+	    //
 		// UNUSED LISTENERS
 		//
-
 		public void OnMouseRightDown() {
 			DisablePopup();
 		}
@@ -312,10 +273,11 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		public void OnMouseLeftUp() {
+
 		}
 
 		public void OnMouseLeftPressed() {
-		}
 
+		}
 	}
 }

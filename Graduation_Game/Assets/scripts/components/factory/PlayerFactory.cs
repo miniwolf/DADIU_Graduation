@@ -55,14 +55,16 @@ namespace Assets.scripts.components.factory {
 			animationSet.deathElectricAnimation = GetRandomAnimation(AnimationConstants.ELECTRICUTION);
 			animationSet.deathDrownAnimation = GetRandomAnimation(AnimationConstants.DROWNDEATH);
 			animationSet.deathPitAnimation = GetRandomAnimation(AnimationConstants.PITDEATH);
-			animationSet.deathSpikeAnimation = GetRandomAnimation(AnimationConstants.SPIKEDEATH);
+			animationSet.deathSpikeWallAnimation = GetRandomAnimation(AnimationConstants.SPIKEDEATHWALL);
+			animationSet.deathSpikeGroundAnimation = GetRandomAnimation(AnimationConstants.SPIKEDEATHGROUND);
 			animationSet.reactionToDeath = GetRandomAnimation(AnimationConstants.TRIGGER_REACT_TO_DEATH);
 			actionable.AddAction(ControllableActions.Move, CreateMove());
 			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
 			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
-			actionable.AddAction(ControllableActions.KillPenguinBySpikes, KillPenguinBy(animationSet.deathSpikeAnimation));
+			actionable.AddAction(ControllableActions.KillPenguinByWallSpikes, KillPenguinBy(animationSet.deathSpikeWallAnimation));
+			actionable.AddAction(ControllableActions.KillPenguinByGroundSpikes, KillPenguinBy(animationSet.deathSpikeGroundAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(animationSet.deathPitAnimation));
-			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(animationSet.deathSpikeAnimation)); // TODO: There should be another
+			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(animationSet.deathSpikeGroundAnimation)); // TODO: There should be another
 			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(animationSet.deathDrownAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(animationSet.deathElectricAnimation));
 		//	actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(deathSpikeAnimation != null ? deathSpikeAnimation() : null));			// inexistent

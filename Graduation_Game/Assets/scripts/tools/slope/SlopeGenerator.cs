@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using Assets.scripts;
 using Assets.scripts.tools.slope;
 
-
 public class SlopeGenerator : MonoBehaviour {
 	public AnimationCurve slopeCurve;
 	public int length = 100;

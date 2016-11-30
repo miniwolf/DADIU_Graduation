@@ -16,7 +16,7 @@ public class TranslateApi {
 	public static string GetString(LocalizedString key) {
 		lock(syncLock) {
 			if (translationLookupTable.Count == 0) {
-				languageLoaded = Prefs.IsEnglishOn() == true ? SupportedLanguage.ENG : SupportedLanguage.DEN;
+				languageLoaded = Prefs.IsEnglishOn() ? SupportedLanguage.ENG : SupportedLanguage.DEN;
 				LoadLanguage(languageLoaded);
 			}
 		}
