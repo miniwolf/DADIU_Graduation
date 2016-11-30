@@ -21,11 +21,9 @@ namespace Assets.scripts.controllers.actions.game {
 		private readonly CouroutineDelegateHandler handler;
 		private SceneManager scenes;
 		private Actionable<GameActions> actionable;
-		public static bool isLevelWon = false;
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
 		private int endedWithPenguins = 0;
 		private int[] requiredPenguins = new int[3];
-
 
 		public void Setup(GameObject gameObject) {
 			this.gameObject = gameObject;
@@ -56,7 +54,6 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private void SetupEndScene() {
-			isLevelWon = true;
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
 			endScene.SetActive(true);
 			endedWithPenguins = int.Parse(penguinCounter.text);
@@ -70,6 +67,9 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
+			Debug.Log(SceneManager.GetActiveScene().name);
+			Prefs.SetLevelStatus(SceneManager.GetActiveScene().name, Prefs.COMPLETED);
+
 			canvas.SetActiveClickBlocker(true);
 			//canvas.failSceneObject.SetActive(true);
 			handler.StartCoroutine(ShowWin());
