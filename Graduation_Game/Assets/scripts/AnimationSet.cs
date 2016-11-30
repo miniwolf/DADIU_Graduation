@@ -8,7 +8,8 @@
 		public string deathElectricAnimation;
 		public string deathDrownAnimation;
 		public string deathPitAnimation;
-		public string deathSpikeAnimation;
+		public string deathSpikeWallAnimation;
+		public string deathSpikeGroundAnimation;
 		public string reactionToDeath;
 	}
 }
