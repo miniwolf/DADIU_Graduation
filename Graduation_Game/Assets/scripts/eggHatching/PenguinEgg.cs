@@ -22,8 +22,8 @@ namespace Assets.scripts.eggHatching {
 			Hatchable = true;
 			Destroy(Timer); // TODO: Might not be needed as it should be deleted below
 			Destroy(transform.GetChild(1).gameObject);
-			var penguin = gameObject.AddComponent<HatchablePenguin>();
-			penguin.SetEgg(this);
+			//var penguin = gameObject.AddComponent<HatchablePenguin>();
+			//penguin.SetEgg(this);
 			InjectionRegister.Redo();
 			ExecuteAction(PickupActions.ShakeEgg);
 		}
