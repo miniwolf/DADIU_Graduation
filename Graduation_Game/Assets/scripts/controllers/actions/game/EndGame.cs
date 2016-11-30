@@ -61,32 +61,20 @@ namespace Assets.scripts.controllers.actions.game {
 			EnableWin();
 		}
 
-		private void SetupEndScene()
-		{
-		    AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
-
-			endScene.SetActive(true);
-
-			string levelPlayedName = SceneManager.GetActiveScene().name;
-			//PlayerPrefs.SetString("LevelPlayedName", levelPlayedName);
-		}
-
 		private void SetupEndScene() {
 			isLevelWon = true;
-<<<<<<< HEAD
 
 			Prefs.SetLevelLastPlayedName(SceneManager.GetActiveScene().name);
 
 			if (shouldShowRetry) {
 				actionable.ExecuteAction(GameActions.RetryButtonWin);
 			}
-=======
+
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_TRIGGER, Camera.main.gameObject);
 			endScene.SetActive(true);
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
 
->>>>>>> develop
 			actionable.ExecuteAction(GameActions.FlowScore);
 			handler.StartCoroutine(LoadMainMenu());
 			handler.StartCoroutine(SpawnStars());
