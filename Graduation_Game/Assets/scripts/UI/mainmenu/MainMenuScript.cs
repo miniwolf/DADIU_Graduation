@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.sound;
 using Assets.scripts.controllers.actions.game;
-using Assets.scripts.UI;
 using System.Collections;
 
 namespace Assets.scripts.UI.mainmenu {
@@ -18,9 +17,6 @@ namespace Assets.scripts.UI.mainmenu {
 		private Dropdown languageDropdown;
 		private Image popup;
 		private InputManager inputManager;
-		private int unlockIdx = 0; // unlockIdx 0 : level 1, unlockIdx 1 : level 2 and so on
-		private string[] levelNames; // todo why not use levels[i].sceneFileName instead?
-	    private int numberOfLevelsInCanvas = 5; // todo why not user levels.Count instead?
 		private FillImage fillImageScript;
 
 		public Sprite stars1;
@@ -33,8 +29,8 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnNotAccessable; // Coming soon...
 
 		protected void Awake() {
-			if(!Prefs.IsLevelStatusComplete(Prefs.LEVEL1STATUS)) {
-				Prefs.SetLevelStatus(Prefs.LEVEL1STATUS, Prefs.CURRENT); // Level 1 is by default the current level
+			if(!Prefs.IsLevelStatusComplete(Prefs.LEVEL1)) {
+				Prefs.SetLevelStatus(Prefs.LEVEL1, Prefs.CURRENT); // Level 1 is by default the current level
 			}
 		}
 
@@ -42,32 +38,23 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
-					
+
 			fillImageScript = GetComponent<FillImage>();
-			levelNames = new string[numberOfLevelsInCanvas];
-
-		    for(int i = 0; i < 3; i++) {
-				levelNames[i] = "W0Level" + (i).ToString();
-			}
-
-		    for(int i = 3; i < levelNames.Length; i++) {
-				levelNames[i] = "W1Level" + (i+1).ToString();
-			}
 
 		    InitilizeLevels();
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
-			SetStarPrefsPerLevel(levelNames);
+			SetStarPrefsPerLevel();
 			LoadStars();
 			UpdateLevelsStatusOnLoad();
 
-			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1STATUS)) {
+			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1)) {
 				levels[0].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 			} else {
 				StartCoroutine(WaitForFill());
 			}
 
 			// first time we set up the language as English, tooltips and music on 
-			if (!PlayerPrefs.HasKey("NoIntroScreen")) {															    
+			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
 				Prefs.SetTooltips(1);
 				Prefs.SetLanguage(0);
 				Prefs.SetMaster(true);
@@ -98,33 +85,29 @@ namespace Assets.scripts.UI.mainmenu {
 	        }
 	    }
 
-	    // Waits for level line to finish filling up and then changes the next available level to green
+		// Waits for level line to finish filling up and then changes the next available level to green
 		IEnumerator WaitForFill() {
 			yield return new WaitForSeconds(FillImage.fillAmountTime);
-			for (int i = 0; i < levelNames.Length; i++) {
-				if (Prefs.IsLevelStatusCurrent(levelNames[i] + Prefs.STATUS)) {
+			for (int i = 0; i < levels.Length; i++) {
+				if (Prefs.IsLevelStatusCurrent(levels[i].sceneFileName)) {
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 				}
 			}
 		}
 
 		void UpdateLevelsStatusOnLoad() {
-			for (int i = 0; i < levelNames.Length; i++) {
-
-				// Find which level was won last time
-				if (Prefs.GetLevelLastPlayedName() == levelNames[i] && EndGame.isLevelWon) {
-					Prefs.SetLevelStatus(levelNames[i] + Prefs.STATUS, Prefs.COMPLETED);
-
-					// Sets the next available level as the current level
-					if (i + 1 < levelNames.Length) 
-						Prefs.SetLevelStatus(levelNames[i + 1] + Prefs.STATUS, Prefs.CURRENT);
+			for (int i = 0; i < levels.Length; i++) {
+				if (Prefs.GetLevelLastPlayedName() == levels[i].sceneFileName && EndGame.isLevelWon) { // Find which level was won last time
+					Prefs.SetLevelStatus(levels[i].sceneFileName, Prefs.COMPLETED);
+					
+					if (i + 1 < levels.Length)
+						Prefs.SetLevelStatus(levels[i + 1].sceneFileName, Prefs.CURRENT); // Sets the next available level as the current level
 				}
 			}
 
 			// Interpret level status
-			for (int i = 0; i < levelNames.Length; i++) {
-
-				if (Prefs.IsLevelStatusComplete(levelNames[i] + Prefs.STATUS)) {
+			for (int i = 0; i < levels.Length; i++) {
+				if (Prefs.IsLevelStatusComplete(levels[i].sceneFileName)) {
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
 				}
 
@@ -135,20 +118,19 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		// Saves preferences for how many stars are collected for each level
-		void SetStarPrefsPerLevel(string[] levelNames) {
-			for (int i = 0; i < levelNames.Length; i++) {
+		void SetStarPrefsPerLevel() {
+			for (int i = 0; i < levels.Length; i++) {
 				// Checks which level was won last time and sets the stars accordingly
-				if (Prefs.GetLevelLastPlayedName() == levelNames[i]) {
-					Prefs.SetLevelWonStars(levelNames[i], Prefs.GetLevelWonStars(levelNames[i]));
+				if (Prefs.GetLevelLastPlayedName() == levels[i].sceneFileName) {
+					Prefs.SetLevelWonStars(levels[i].sceneFileName, Prefs.GetLevelWonStars(levels[i].sceneFileName));
 				}
 			}
 		}
 
 		// Loads stars to view
 		void LoadStars() {
-			//int starsWonForLevel = 0;
-			for (int i = 0; i < levelNames.Length; i++) {
-				SetStarSprite(i, PlayerPrefs.GetInt(levelNames[i]));
+			for (int i = 0; i < levels.Length; i++) {
+				SetStarSprite(i, Prefs.GetLevelWonStars(levels[i].sceneFileName));
 			}
 		}
 
@@ -179,7 +161,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 		// Makes levels available depending on how many levels to unlock
 		void MakeLevelsInteractable(int numOfLvlsToUnlock) {
-			for (int i = 0; i <= numOfLvlsToUnlock; i++) {
+			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
 				levels[i].btnFromScene.interactable = true;
 			}
 		}
