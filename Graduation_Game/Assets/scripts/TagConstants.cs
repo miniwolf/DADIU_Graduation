@@ -98,6 +98,8 @@
 			public const string BLOCKCLICKS = "BlockClicks";
 			public const string FAILSCENEOBJECT = "FailSceneObject";
 			public const string ENDSCENEOBJECT = "EndSceneObject";
+
+			public const string PENGUINICON = "PenguinIcon";
 	    }
 	}
 }

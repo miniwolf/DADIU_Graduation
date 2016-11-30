@@ -47,7 +47,6 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelUnlockIndex(int levelIndexToUnlock) {
-			Debug.Log("douche");
 			PlayerPrefs.SetInt(LEVEL_UNLOCK_INDEX, levelIndexToUnlock);
 		}
 

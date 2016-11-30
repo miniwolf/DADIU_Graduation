@@ -21,6 +21,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(GameActions.EndLevelLoss, EndGameLoss(actionable));
 			actionable.AddAction(GameActions.RetryButtonLoss, RetryButtonLogicLoss(actionable));
 			actionable.AddAction(GameActions.RetryButtonWin, RetryButtonLogicWin(actionable));
+			actionable.AddAction(GameActions.DisableRetryWin, DisableRetryWin());
 		}
 
 		public void BuildStar(Actionable<GameActions> actionable) {
@@ -68,7 +69,12 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new RetryAction(handler, actionable, TagConstants.UI.ENDSCENEOBJECT));
 			return actionHandler;
+		}
 
+		private Handler DisableRetryWin(){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new DisableRetryAction(TagConstants.UI.ENDSCENEOBJECT));
+			return actionHandler;
 		}
 	}
 }
