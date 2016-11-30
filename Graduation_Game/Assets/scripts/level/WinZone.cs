@@ -32,47 +32,47 @@ namespace Assets.scripts.level {
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
 
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W0Level0") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL1) {
 					SetPrefs(1);
 					return;
 				}
 
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W0Level1") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL2) {
 					SetPrefs(2);
 					return;
 				}
 
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W0Level2") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL3) {
 					SetPrefs(3);
 					return;
 				}
 
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level1") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL4) {
 					SetPrefs(4);
 					return;
 				}
 
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level2") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL5) {
 					SetPrefs(5);
 					return;
 				}
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level3") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL6) {
 					SetPrefs(6);
 					return;
 				}
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level4") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL7) {
 					SetPrefs(7);
 					return;
 				}
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level5") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL8) {
 					SetPrefs(8);
 					return;
 				}
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level6") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL9) {
 					SetPrefs(9);
 					return;
 				}
-				if (penguins != 0 && penguins == alivePenguins && levelName == "W1Level7") {
+				if (penguins != 0 && penguins == alivePenguins && levelName == Prefs.LEVEL10) {
 					SetPrefs(10);
 					return;
 				}
