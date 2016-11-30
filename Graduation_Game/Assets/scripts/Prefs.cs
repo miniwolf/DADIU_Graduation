@@ -6,17 +6,6 @@ using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts {
     public class Prefs {
-		public const string LEVEL1 = "W0Level0";
-		public const string LEVEL2 = "W0Level1";
-		public const string LEVEL3 = "W0Level2";
-		public const string LEVEL4 = "W1Level1";
-		public const string LEVEL5 = "W1Level2";
-		public const string LEVEL6 = "W1Level3";
-		public const string LEVEL7 = "W1Level4";
-		public const string LEVEL8 = "W1Level5";
-		public const string LEVEL9 = "W1Level6";
-		public const string LEVEL10 = "W1Level7";
-
 		public const string STATUS = "status";
 		public const string STARS = "stars";
 		public const string SOUND_MASTER = "pref_master_sound";
@@ -25,7 +14,6 @@ namespace Assets.scripts {
 		public const string COMPLETED = "completed";
 		public const string LOCKED = "locked";
 
-		//public const string LEVEL1STATUS = InventoryConstants.LEVEL1STATUS;
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
@@ -114,5 +102,9 @@ namespace Assets.scripts {
         public static void SetStarsForCurrentLevel(int value) {
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + STARS, value);
         }
+
+		public static void DeleteKey(string key) {
+			PlayerPrefs.DeleteKey(key);
+		}
     }
 }
