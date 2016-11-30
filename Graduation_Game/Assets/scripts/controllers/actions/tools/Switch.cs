@@ -55,8 +55,12 @@ namespace Assets.scripts.controllers.actions.tools {
 	        var tempDir = new Vector3(newDirection.x, penguin.transform.position.y, newDirection.z);
 	        // make sure that penguin can change lane
 	        RaycastHit hit;
-	        Debug.DrawRay(penguin.transform.position, newDirection, Color.red, 10000);
-	        if ( !Physics.Raycast(new Ray(penguin.transform.position, newDirection), out hit, 2f, layerMask) ) {
+
+//	        var checkObstacleDirection = newDirection; // todo if penguin is walking uphill, this code works. If it's not walking uphill, set checkObstacleDirection.y and check the obstacle
+//	        checkObstacleDirection.y = 0;
+
+	        Debug.DrawRay(penguin.transform.position, newDirection * 100, Color.red, 10000);
+	        if ( !Physics.Raycast(new Ray(penguin.transform.position, newDirection * 100), out hit, 1000f, layerMask) ) { // check if there's any obstacle in the direction of a switchlane
                 directionable.SetDirection(newDirection); //change penguin's direction
                 penguin.transform.rotation = newRotation; //rotate penguin
                 // change lane of the penguin
