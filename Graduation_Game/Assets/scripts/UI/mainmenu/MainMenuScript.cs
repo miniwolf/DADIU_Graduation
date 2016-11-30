@@ -83,7 +83,11 @@ namespace Assets.scripts.UI.mainmenu {
 		    }
 		}
 
+	    // Waits for level line to finish filling up and then changes the next available level to green
 	    void Update() {
+	        if (Input.GetMouseButtonDown(0)) {
+	            DisablePopup();
+	        }
 	        UpdateLevelPositions();
 	    }
         /// <summary>
@@ -99,7 +103,7 @@ namespace Assets.scripts.UI.mainmenu {
 	    }
 
 	    // Waits for level line to finish filling up and then changes the next available level to green
-		IEnumerator WaitForFill() {
+	    IEnumerator WaitForFill() {
 			yield return new WaitForSeconds(FillImage.fillAmountTime);
 			for (int i = 0; i < levelNames.Length; i++) {
 				if (Prefs.IsLevelStatusCurrent(levelNames[i] + Prefs.STATUS)) {

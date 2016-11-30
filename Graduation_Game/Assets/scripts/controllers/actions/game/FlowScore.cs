@@ -12,7 +12,8 @@ namespace AssemblyCSharp {
 		private CanvasController canvasController;
 		private CouroutineDelegateHandler handler;
 		private int plutoniumThisLevelint, totalPlutonium, target;
-		private Text plutoniumCounter, plutoniumThisLevel, plutoniumTotal;
+		private Text plutoniumCounter; 
+		private Text[] plutoniumThisLevel, plutoniumTotal;
 
 
 		public FlowScore (CouroutineDelegateHandler handler) {
@@ -29,13 +30,26 @@ namespace AssemblyCSharp {
 		}
 
 		public void Execute () {
-			target = totalPlutonium + int.Parse(plutoniumThisLevel.text);
-			plutoniumTotal.GetComponent<Text>().text = totalPlutonium.ToString();
-			plutoniumThisLevel.GetComponent<Text>().text = plutoniumCounter.text;
+			AssignTotalPlutonium();
+			AssignThisLevelPlutonium();
 			plutoniumThisLevelint = int.Parse(plutoniumCounter.text);
+			target = totalPlutonium + plutoniumThisLevelint;
 
 			handler.StartCoroutine(FlowTheScore());
 		}
+
+		private void AssignTotalPlutonium(){
+			for (int i = 0; i < plutoniumTotal.Length; i++) {
+				plutoniumTotal[i].text = totalPlutonium.ToString();
+			}
+		}
+		
+		private void AssignThisLevelPlutonium(){
+			for (int i = 0; i < plutoniumThisLevel.Length; i++) {
+				plutoniumThisLevel[i].text = plutoniumThisLevelint.ToString();
+			}
+		}
+
 
 		private IEnumerator FlowTheScore() {
 			yield return new WaitForSeconds(canvasController.timeBeforeScoreFlow); //Seems strange atm
@@ -54,14 +68,14 @@ namespace AssemblyCSharp {
 			if (plutoniumThisLevelint > 100) {
 				int portion = Mathf.RoundToInt(plutoniumThisLevelint / 50);
 				plutoniumThisLevelint -= portion;
-				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
+				AssignThisLevelPlutonium();
 				plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			else {
 				int portion = 1;
 				plutoniumThisLevelint -= portion;
-				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
+				AssignThisLevelPlutonium();
 				plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
@@ -69,7 +83,7 @@ namespace AssemblyCSharp {
 		}
 		private void UpdateScore(float portion) {
 			totalPlutonium += (int)portion;
-			plutoniumTotal.text = totalPlutonium.ToString();
+			AssignTotalPlutonium();
 		}
 	}
 }
