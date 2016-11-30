@@ -29,8 +29,8 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnNotAccessable; // Coming soon...
 
 		protected void Awake() {
-			if(!Prefs.IsLevelStatusComplete(Prefs.LEVEL1)) {
-				Prefs.SetLevelStatus(Prefs.LEVEL1, Prefs.CURRENT); // Level 1 is by default the current level
+			if(!Prefs.IsLevelStatusComplete(PrefsConstants.LEVEL1)) {
+				Prefs.SetLevelStatus(PrefsConstants.LEVEL1, Prefs.CURRENT); // Level 1 is by default the current level
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace Assets.scripts.UI.mainmenu {
 			LoadStars();
 			UpdateLevelsStatusOnLoad();
 
-			if(Prefs.IsLevelStatusCurrent(Prefs.LEVEL1)) {
+			if(Prefs.IsLevelStatusCurrent(PrefsConstants.LEVEL1)) {
 				levels[0].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 			} else {
 				StartCoroutine(WaitForFill());
@@ -197,7 +197,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 	    public void SettingsButton() {
-			SceneManager.LoadScene("Settings");	
+			SceneManager.LoadScene(PrefsConstants.SETTINGS);	
 		}
 
 		private void DisablePopup() {
