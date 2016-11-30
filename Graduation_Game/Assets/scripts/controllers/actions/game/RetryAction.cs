@@ -6,13 +6,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts;
 using Assets.scripts.UI;
+using Assets.scripts.UI.inventory;
 
 namespace AssemblyCSharp {
 	public class RetryAction : Action {
 		private readonly Actionable<GameActions> actionable;
 		private readonly CouroutineDelegateHandler handler;
 		private Button retryCircle, retryButton;
-		private Image retryCircleImage;
+		private Image retryCircleImage, retryImage;
 		private Text retryPrize;
 		private string toFind;
 		private CanvasController canvas;
@@ -40,10 +41,19 @@ namespace AssemblyCSharp {
 					case TagConstants.UI.RETRY_PRIZE:
 						retryPrize = trans[i].gameObject.GetComponent<Text>();
 						break;
-					
+					case TagConstants.UI.RETRYCURRENCYIMAGE:
+						retryImage = trans[i].gameObject.GetComponent<Image>();
+						break;
 					default:
 						break;
 				}
+			}
+			if (Inventory.key.GetValue() > 0) {
+				retryPrize.text = "1";
+				retryImage.sprite = canvas.key;
+			} else {
+				//TODO get prize for a key through shop
+				retryPrize.text = "1000";
 			}
 			canvas.SetActiveClickBlocker(false);
 		}
@@ -61,6 +71,7 @@ namespace AssemblyCSharp {
 		}
 
 		private void DisableRetry(){
+			Inventory.UpdateCount();
 			retryButton.gameObject.SetActive(false);
 		}
 	}
