@@ -4,6 +4,7 @@ using Assets.scripts.controllers;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
+using System.Collections;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions> {
@@ -24,49 +25,62 @@ namespace Assets.scripts.UI {
 		private Image retryCircleImage;
 		private Button retryButton; 
 		private Image retryPrize;
-		private GameObject gameOverPanel;
-		private bool retryIsLive = false;
-		private Text plutoniumCounter, plutoniumThisLevel, plutoniumTotal;
-	
+		[HideInInspector]
+		public GameObject gameOverPanel, clickBlocker, failSceneObject, endSceneObject;
+		private GameObject[] holderThisLevel, holderTotal;
+		private Text plutoniumCounter;
+		private Text[] plutoniumThisLevel, plutoniumTotal;
+
+
 		void Awake() {
 			base.Awake();
 			gameOverPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.GAME_OVER_PANEL);
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
-			plutoniumThisLevel = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_THIS_LEVEL).GetComponent<Text>();
-			plutoniumTotal = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_TOTAL).GetComponent<Text>();
+			holderThisLevel = GameObject.FindGameObjectsWithTag(TagConstants.PLUTONIUM_THIS_LEVEL);
+			holderTotal = GameObject.FindGameObjectsWithTag(TagConstants.PLUTONIUM_TOTAL);
+
+			AssignTotalPlutonium(holderTotal);
+			AssignPlutoniumThisLevel(holderThisLevel);
+
+			clickBlocker = GameObject.FindGameObjectWithTag(TagConstants.UI.BLOCKCLICKS);
+			failSceneObject = GameObject.FindGameObjectWithTag(TagConstants.UI.FAILSCENEOBJECT);
+			endSceneObject = GameObject.FindGameObjectWithTag(TagConstants.UI.ENDSCENEOBJECT);
 		}
 
 		void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
-			// retry button/images
-			retryCircle = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_CIRCLE).GetComponent<Button>();
-			retryCircleImage = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_CIRCLE).GetComponent<Image>();
-			retryButton = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_BUTTON).GetComponent<Button>();
-			retryPrize = GameObject.FindGameObjectWithTag(TagConstants.UI.RETRY_PRIZE).GetComponent<Image>();
-			// not enabled during game
-			//gameOverPanel.SetActive(true);
-			DisableRetry();
-			
-
 		}
 
 		void Update () {
-			if(int.Parse(penguinCounter.text) < 0 && !over) {
-				EnableRetry();
-				EnableGameOverPanel();
+			if(Input.GetKeyDown(KeyCode.U)){
+				ExecuteAction(GameActions.EndLevel);
+			}
+			if(Input.GetKeyDown(KeyCode.A)){
+				ExecuteAction(GameActions.EndLevelLoss);
+			}
+
+			if(int.Parse(penguinCounter.text) <= 0 && !over) {
+				ExecuteAction(GameActions.EndLevelLoss);
 				over = true;
 			}
+		}
 
-			// image being filled for timeForRetry seconds
-			if ( over ) {
-				retryCircleImage.fillAmount -= 1.0f/timeForRetry * Time.deltaTime;
+		private void AssignTotalPlutonium(GameObject[] holder){
+			plutoniumTotal = new Text[holder.Length];
+			for (int i = 0; i < plutoniumTotal.Length; i++) {
+				plutoniumTotal[i] = holder[i].GetComponent<Text>();
+				plutoniumTotal[i].text = PlayerPrefs.GetInt("Plutonium").ToString();
 			}
+		}
 
-			// when it disappears, disable retry buttons
-			if ( retryCircleImage.fillAmount == 0 ) {
-				DisableRetry();
+		private void AssignPlutoniumThisLevel(GameObject[] holder){
+			plutoniumThisLevel = new Text[holder.Length];
+			for (int i = 0; i < plutoniumTotal.Length; i++) {
+				plutoniumThisLevel[i] = holder[i].GetComponent<Text>();
 			}
-		}		
+		}
+
+
 
 		public override string GetTag() {
 			return TagConstants.CANVAS;
@@ -77,40 +91,12 @@ namespace Assets.scripts.UI {
 			ExecuteAction(GameActions.EndLevel);
 		}
 
-		private void DisableRetry() {
-			retryIsLive = false;
-			retryCircle.enabled = false;
-			retryButton.enabled = false;
-			retryPrize.enabled = false;
-			retryCircle.transform.localScale = Vector3.zero;
-			retryButton.transform.localScale = Vector3.zero;
-			retryPrize.transform.localScale = Vector3.zero;
-			int numKeys = Inventory.key.GetValue();
-			if ( numKeys > 0 ) {
-				retryPrize.GetComponentInChildren<Text> ().text = "0";
-			} else {
-				// TODO take the prize from the store
-				retryPrize.GetComponentInChildren<Text>().text = "10";
-			}
-
-		}
-
 		public int[] GetAmountOfPenguinsForStars(){
 			int[] temp = new int[3];
 			temp[0] = penguinsRequiredFor1Stars;
 			temp[1] = penguinsRequiredFor2Stars;
 			temp[2] = penguinsRequiredFor3Stars;
 			return temp;
-		}
-
-		private void EnableRetry() {
-			retryIsLive = true;
-			retryCircle.enabled = true;
-			retryButton.enabled = true;
-			retryPrize.enabled = true;
-			retryCircle.transform.localScale = Vector3.one;
-			retryButton.transform.localScale = Vector3.one;
-			retryPrize.transform.localScale = Vector3.one;
 		}
 
 		private void EnableGameOverPanel() {
@@ -126,12 +112,20 @@ namespace Assets.scripts.UI {
 			return plutoniumCounter;
 		}
 
-		public Text GetPlutoniumTotal(){
+		public Text[] GetPlutoniumTotal(){
 			return plutoniumTotal;
 		}
 
-		public Text GetPlutoniumThisLevel(){
+		public Text[] GetPlutoniumThisLevel(){
 			return plutoniumThisLevel;
 		}
+
+		public bool GetActiveClickBlocker(){
+			return clickBlocker.activeInHierarchy;
+		}
+		public void SetActiveClickBlocker(bool active){
+			clickBlocker.SetActive(active);
+		}
+
 	}
 }

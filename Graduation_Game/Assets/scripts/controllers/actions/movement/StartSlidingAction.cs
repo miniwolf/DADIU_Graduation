@@ -30,7 +30,9 @@ namespace Assets.scripts.controllers.actions.movement {
 
             p.SetSlide(true);
             while (p.IsSliding()) {
-                p.SetSpeed(p.GetSpeed() + p.GetSlideSpeedupIncrement());
+                if(p.GetSpeed() <= p.GetSlideMaxSpeedMult())
+                    p.SetSpeed(p.GetSpeed() + p.GetSlideSpeedupIncrement());
+                Debug.Log("Current speed: " + p.GetSpeed());
                 yield return new WaitForFixedUpdate();
             }
 

@@ -35,7 +35,10 @@ namespace Assets.scripts.controllers.actions.game {
 			star[1] = GameObject.FindGameObjectWithTag(TagConstants.STAR2);
 			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+
 			GameObject.FindGameObjectWithTag(TagConstants.ENDSCENE).SetActive(false);
+
+			starsSpawned = 0;
 		}
 
 		public EndGame(CouroutineDelegateHandler handler, Actionable<GameActions> actionable) {
@@ -44,9 +47,12 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
+
 			Prefs.SetLevelLastPlayedName(SceneManager.GetActiveScene().name);
 			SetupEndScene();
 			handler.StartCoroutine(SpawnStars());
+
+			EnableWin();
 		}
 
 		private void SetupEndScene() {
@@ -58,7 +64,26 @@ namespace Assets.scripts.controllers.actions.game {
 
 			actionable.ExecuteAction(GameActions.FlowScore);
 			handler.StartCoroutine(LoadMainMenu());
+			actionable.ExecuteAction(GameActions.RetryButtonWin);
+			handler.StartCoroutine(SpawnStars());
 		}
+
+
+		private void EnableWin(){
+			canvas.SetActiveClickBlocker(true);
+			//canvas.failSceneObject.SetActive(true);
+			handler.StartCoroutine(ShowWin());
+		}
+
+		private IEnumerator ShowWin(){
+			Debug.Log("hej");
+			Animator anim = canvas.endSceneObject.GetComponentInChildren<Animator>();
+			anim.Play("PanelIn");
+			yield return new WaitForSeconds(1f);
+			canvas.SetActiveClickBlocker(false);
+			SetupEndScene();
+		}
+
 
 
 		private IEnumerator SpawnStars() {

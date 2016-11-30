@@ -20,6 +20,8 @@ namespace Assets.scripts.character {
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
 		public float slideSpeedupIncrement = 0.1f;
+		//[Tooltip("")]
+	    public float slideMaxSpeedMult = 2;
 		public float speed;
 		public bool jump;
 		public Lane lane = Lane.Left;
@@ -177,6 +179,10 @@ namespace Assets.scripts.character {
 	    public float GetSlideSpeedupIncrement()
 	    {
 	        return slideSpeedupIncrement;
+	    }
+
+	    public float GetSlideMaxSpeedMult() {
+	        return slideMaxSpeedMult;
 	    }
 
 	    public void SetSpeed(float speed) {
