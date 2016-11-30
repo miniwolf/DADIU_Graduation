@@ -8,6 +8,7 @@ namespace Assets.scripts.components {
 		float GetJumpSpeed();
 		float GetWalkSpeed();
 		float GetSlideSpeedupIncrement();
+		float GetSlideMaxSpeedMult();
 		void SetSpeed(float speed);
 		float GetSpeed();
 		void SetScale(Vector3 scale);
