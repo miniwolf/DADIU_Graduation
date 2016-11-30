@@ -1,5 +1,6 @@
 ﻿namespace Assets.scripts.UI.inventory {
 	public class InventoryConstants {
+		public const string FREEZECOUNT = "Freeze count";
 		public const string COLLECTEDSTARS = "CollectedStars";
 		public const string EGGTIME = "Egg Time";
 		public const string PENGUINEGG = "Penguin Egg";

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Assets.scripts.level;
 using System;
+using Assets.scripts.eggHatching;
 
 namespace Assets.scripts.UI.inventory {
 	public class Inventory {
@@ -41,7 +42,8 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<string> level10status = new PreferenceItem<string>(InventoryConstants.LEVEL10STATUS);
 
 		public static readonly Item<int> totalStars = new PreferenceItem<int>(InventoryConstants.TOTALSTARS);
-
+		public static readonly Item<int> eggCount = new PreferenceItem<int>(InventoryConstants.PENGUINEGG);
+		public static readonly Item<int> numberOfFreezeTime = new PreferenceItem<int>(InventoryConstants.FREEZECOUNT);
 
 		static Inventory() {
 			// SanityCheck
@@ -52,6 +54,7 @@ namespace Assets.scripts.UI.inventory {
 				penguinStorage.SetValue(5);
 				penguinCount.SetValue(5);
 				hasInitialized.SetValue(1);
+				eggCount.SetValue(1);
 				key.SetValue(1);
 				loginDate.SetValue(DateTime.Now.ToString());
 			}
