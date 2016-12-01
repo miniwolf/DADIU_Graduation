@@ -13,5 +13,6 @@ settings; Indstillinger
 place; Write here tooltip for placing tool DK
 move; Write here tooltip for moving tool DK
 remove; Write here tooltip for removing tool DK
-newtool; Write here tooltip for explaining new tool DK
-thisWorldIsLocked; This world is locked DK!
+jump; Write here tooltip for explaining jump DK
+switchlane; Write here tooltip for explaining switchlane DK
+thisWorldIsLocked; This world is locked! DK
