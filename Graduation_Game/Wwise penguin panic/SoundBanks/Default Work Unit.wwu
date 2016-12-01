@@ -52,6 +52,7 @@
 						<ObjectRef Name="trap_wall_spikes_triggered" ID="{934A26BC-B2B9-4A9C-9F57-43BE2D84FD2A}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_celebrate" ID="{84D93E7A-05F0-4B54-8FDF-784EE1EFCB65}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_wire_loop" ID="{E655113E-0C14-4BE0-BE13-F3D2CCF5C034}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="end_screen_count_up" ID="{7AF618E7-7A63-4C16-9C84-33FAAD1FBBCA}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="trap_pit_spikes_triggered" ID="{828BEE91-960B-4C35-BE00-86AC53927BB8}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="button_pressed" ID="{5819BB17-80FF-4CAB-A86F-40199C2AB824}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>

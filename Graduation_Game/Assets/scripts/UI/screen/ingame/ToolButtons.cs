@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.gamestate;
 using Assets.scripts.sound;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
@@ -23,6 +24,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameStateManager gameStateManager;
 		private float timeFirstClick;
 		private bool tutorialShown = false;
+		private GameObject[] tooltips;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -32,7 +34,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		Color[] origColors;
 		MeshRenderer[] meshes;
 		private bool touchUsed = false;
-
+		private bool wasToolHit = false;
 		public float closessToCam = 10f;
 		public float toolOffSetWhileMoving = 20f;
 
@@ -52,6 +54,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				tutorialShown = true;
 			}
 
+			tooltips = GameObject.FindGameObjectsWithTag(TagConstants.TOOLTIP);
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
 			cam = Camera.main;
@@ -223,6 +226,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
 				return;
 			}
+			wasToolHit = true;
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -241,6 +245,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void ReleaseTool(bool doubleTap) {
 			if(doubleTap) { // return tool back
 				dragging = false;
+				// tooltip for remove tool finishes
+				TooltipsRemove();
 				FlyGOToButton(currentObject);
 
 			} else { // place tool to the scene
@@ -259,6 +265,14 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
+				if ( wasToolHit ) {
+					//tooltip for move tool finishes
+					TooltipsMove(); 
+					wasToolHit = false;
+				} else {
+					//tooltip for place tool finishes
+					TooltipsPlace(); 
+				}
 			}
 			if (!tutorialShown) {
 				DismissTutorial(currentObject.tag);
@@ -424,31 +438,35 @@ namespace Assets.scripts.UI.screen.ingame {
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
 		}
 
-		/*
-		public void OnPointerEnter(PointerEventData data){
-			if ( !dragging ) {
-				return;
+		private void TooltipsPlace() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Place && tooltip.IsActive()) {
+					tooltip.SetPlace(true);
+					return;
+				}
 			}
-
-			ChangeColor(returning);
-			shouldReturn = true;
 		}
 
-		public void OnPointerExit(PointerEventData data){
-			if ( !dragging ) {
-				return;
+		private void TooltipsMove() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Move && tooltip.IsActive()) {
+					tooltip.SetMove(true);
+					return;
+				}
 			}
-
-			ChangeColor(notReturning);
-			StartCoroutine(CheckIfItemShouldBeDestroyedUsingTouch());
 		}
 
-		private IEnumerator CheckIfItemShouldBeDestroyedUsingTouch(){
-			yield return new WaitForSeconds(0.2f);
-			shouldReturn = false;
-			ChangeColor(notReturning);
+		private void TooltipsRemove() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Remove && tooltip.IsActive()) {
+					tooltip.SetRemove(true);
+					return;
+				}
+			}
 		}
-		*/
 
 		private IEnumerator CameraHack() {
 			yield return new WaitForSeconds(0.2f);

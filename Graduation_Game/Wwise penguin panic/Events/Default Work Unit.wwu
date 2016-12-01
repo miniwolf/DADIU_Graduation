@@ -40,6 +40,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="end_screen_count_up" ID="{7AF618E7-7A63-4C16-9C84-33FAAD1FBBCA}">
+									<ChildrenList>
+										<Action Name="Play" ID="{752E80F9-EFA4-4500-81B2-1328A1189BEA}" ShortID="67434628" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{4814FCFD-4AA2-4C2E-BE98-328C227B2670}" Global="false">
+													<ObjectRef Name="end_screen_count_up" ID="{52D37F87-AC18-47E5-BA80-227823211EB7}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Tools" ID="{D42AE7F8-9345-4DB6-956D-050649D9ED19}" ShortID="459820436">

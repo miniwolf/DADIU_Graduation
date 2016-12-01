@@ -6,64 +6,138 @@ using System.Collections;
 using Assets.scripts.UI.translations;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
+using Assets.scripts.character;
+using System.Collections.Generic;
 
 namespace Assets.scripts.level {
-	public class Tooltip : ActionableGameEntityImpl<ControllableActions> {
-		[Tooltip("type of tooltip: jump, switchlane")]
-		public string type;
-		[Tooltip("time to be frozen")]
-		public float time; 
+	public class Tooltip : ActionableGameEntityImpl<ControllableActions>  {
+		public enum Type {Place, Move, Remove, Newtool};
+
+		[Tooltip("type of tooltip: place, move, remove or newtool")]
+		public Type type = Type.Place;
 
 		private bool triggered;
 		private GameObject panel;
-		private GameStateManager gameStateManager;
+		private bool isPlaced;
+		private bool isMoved;
+		private bool isRemoved;
+		private bool isNewtool;
+		private bool active;
+		private List<PenguinSpawner> penguinSpawner = new List<PenguinSpawner>();
+		private List<GameObject> penguins = new List<GameObject>();
 
 		void Start() {
-			panel = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIP_PANEL);	
-			panel.SetActive(false);
+			Prefs.SetTooltips(1); // DELETE THIS, ONLY FOR TESTING
 			if ( !Prefs.IsTooltipsOn() ) {
 				gameObject.SetActive(false);
+			}
+
+			GameObject[] penguinSpawners = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
+			for( int i=0; i < penguinSpawners.Length; i++ ) {
+				penguinSpawner.Add(penguinSpawners[i].GetComponent<PenguinSpawner>());
+			}
+		}
+
+		void Update() {
+			//check if the user finished with the tooltip
+			if ( active && (isPlaced || isMoved || isRemoved || isNewtool )) {
+				UnFreeze();
 			}
 		}
 
 		void OnTriggerEnter(Collider collider) {
 			if ( !triggered && collider.transform.tag == TagConstants.PENGUIN ) {
-				// show tooltipPanel with corresponding text and freeze time for x seconds 
-				ShowText();
-				StartCoroutine(Freeze());
-				triggered = true; //only for the first penguin
+				active = true;
+				StopPenguins(); 
+				TooltipAction();
+				triggered = true; //only for first penguin colliding
 			}
 		}
 
-		private void ShowText() {
+		private void TooltipAction() {
 			panel.SetActive(true);
 			switch(type) {
-				case "jump":
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.jump);
+				case Type.Place:
+					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.place);
 				break;
-				case "lane":
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.switchlane);
+				case Type.Move:
+					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.move);
+					break;
+				case Type.Remove:
+					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.remove);
+					break;
+				case Type.Newtool:
+					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.newtool);
 					break;
 				default:
 					throw new Exception("Incorrect tooltip type");
 			}
 		}
+			
 
-		private IEnumerator Freeze() {
-			gameStateManager.SetGameFrozen(true);
-			yield return new WaitForSeconds(time);
-			panel.SetActive(false);
-			gameStateManager.SetGameFrozen(false);
-		}
-
-		public void SetGameStateManager(GameStateManager manager) {
-			gameStateManager = manager;
+		public Type GetType() {
+			return type;	
 		}
 
 		public override string GetTag() {
 			return TagConstants.TOOLTIP;
 		}
 
+		public void SetPanel(GameObject panel) {
+			this.panel = panel;
+		}
+
+		private void StopPenguins(){
+			for (int u = 0; u < penguinSpawner.Count; u++) {
+				penguins = penguinSpawner[u].GetAllPenguins();
+				for (int i = 0; i < penguins.Count; i++) {
+					penguins[i].GetComponent<Penguin>().ExecuteAction(Assets.scripts.controllers.ControllableActions.Stop);
+				}
+			}
+		}
+
+		private void StartPenguins(){
+			for (int u = 0; u < penguinSpawner.Count; u++) {
+				penguins = penguinSpawner[u].GetAllPenguins();
+				for (int i = 0; i < penguins.Count; i++) {
+					penguins[i].GetComponent<Penguin>().ExecuteAction(Assets.scripts.controllers.ControllableActions.Start);
+				}
+			}
+		}
+
+		private void UnFreeze() {
+			active = false; 
+			StartPenguins();
+			panel.SetActive(false);
+		}
+
+		public void SetPlace(bool place) {
+			isPlaced = place;
+		}
+
+		public bool IsPlaced() {
+			return isPlaced;
+		}
+
+		public void SetMove(bool move) {
+			isMoved = move;
+		}
+
+		public bool IsMoved() {
+			return isMoved;
+		}
+
+		public void SetRemove(bool remove) {
+			isRemoved = remove;
+		}
+
+		public bool IsRemoved() {
+			return isRemoved;
+		}
+
+		public bool IsActive() {
+			return active;
+		}
 	}
 }
 
