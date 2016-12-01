@@ -55,6 +55,10 @@ namespace AssemblyCSharp {
 			yield return new WaitForSeconds(canvasController.timeBeforeScoreFlow); //Seems strange atm
 
 			while (plutoniumThisLevelint > 0) {
+				// place sound for score flow tick	
+				float score = 100 - (plutoniumThisLevelint / float.Parse(plutoniumCounter.text) * 100);
+				AkSoundEngine.SetRTPCValue("count_up_pitch", score);
+				AkSoundEngine.PostEvent("end_screen_count_up", Camera.main.gameObject);
 				yield return new WaitForSeconds(GetTimeFromCurve());
 			}
 
@@ -69,14 +73,14 @@ namespace AssemblyCSharp {
 				int portion = Mathf.RoundToInt(plutoniumThisLevelint / 50);
 				plutoniumThisLevelint -= portion;
 				AssignThisLevelPlutonium();
-				plutoniumCounter.text = plutoniumThisLevelint.ToString();
+				//plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			else {
 				int portion = 1;
 				plutoniumThisLevelint -= portion;
 				AssignThisLevelPlutonium();
-				plutoniumCounter.text = plutoniumThisLevelint.ToString();
+				//plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			return t;

@@ -13,6 +13,7 @@
 						<Property Name="InitialValue" Type="Real64" Value="100"/>
 					</PropertyList>
 				</GameParameter>
+				<GameParameter Name="count_up_pitch" ID="{EF07FB1D-BB91-403E-A789-2DF9D5163370}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>
