@@ -13,5 +13,6 @@ settings; SETTINGS
 place; Write here tooltip for placing tool EN
 move; Write here tooltip for moving tool EN
 remove; Write here tooltip for removing tool EN
-newtool; Write here tooltip for explaining new tool EN
+jump; Write here tooltip for explaining jump EN
+switchlane; Write here tooltip for explaining switchlane EN
 thisWorldIsLocked; This world is locked!
