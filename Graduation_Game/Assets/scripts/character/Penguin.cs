@@ -100,7 +100,7 @@ namespace Assets.scripts.character {
 		}
 
 	    void OnDestroy() {
-	        StopSound();
+	        //StopSound();
 	        gameStateManager = null;
 	    }
 
