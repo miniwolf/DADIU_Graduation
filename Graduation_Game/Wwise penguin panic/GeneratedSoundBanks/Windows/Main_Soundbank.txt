@@ -34,7 +34,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	2479484064	penguin_slide_takeoff			\Default Work Unit\penguin\slide\penguin_slide_takeoff	
 	2487352075	trap_excavator_loop			\Default Work Unit\SFXs\Traps\trap_excavator_loop	
 	2495070883	mute_master			\Default Work Unit\settings\mute_master	
-	2528420815	penguin_move_voice_start			\Default Work Unit\penguin\movement\penguin_move_voice_start	
 	2620900526	seal_move			\Default Work Unit\seal\seal_move	
 	2674130862	seal_edge_fall			\Default Work Unit\seal\seal_edge_fall	
 	2677805925	tool_returned_to_toolbar			\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar	
@@ -42,7 +41,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	2717875216	tool_global_freeze_time_stopping			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping	
 	2741649490	mute_music			\Default Work Unit\settings\music\mute_music	
 	2948163585	penguin_tool_jump_used			\Default Work Unit\penguin\Interactions\penguin_tool_jump_used	
-	3050359637	penguin_move_voice_stop			\Default Work Unit\penguin\movement\penguin_move_voice_stop	
 	3054427212	pickup_add_to_score			\Default Work Unit\SFXs\Pickups\pickup_add_to_score	
 	3095703759	penguin_death_electrocution			\Default Work Unit\penguin\deaths\penguin_death_electrocution	
 	3165641387	penguin_spawn			\Default Work Unit\penguin\penguin_spawn	
@@ -55,6 +53,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3725903807	music_start			\Default Work Unit\settings\music\music_start	
 	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
 	3746285319	penguin_react			\Default Work Unit\penguin\penguin_react	
+	3766366598	penguin_move_voice			\Default Work Unit\penguin\movement\penguin_move_voice	
 	3857193422	music_state_menu			\Default Work Unit\settings\music\music_state_menu	
 	3876505889	penguin_land			\Default Work Unit\penguin\penguin_land	
 	4165526132	tool_global_freeze_time_starting			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting	
@@ -66,13 +65,12 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	6671893	footstep_snow_10	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_10_6466CEE7.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_10		6886
 	9698731	penguin_1-26	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-26_70A67862.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_get_up\penguin_1-26		6304
-	11513722	penguin_34	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_34_36CD6F1E.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_34		5764
 	25802924	footsteps_sandy_7	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footsteps_sandy_7_0B77C92B.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_7		4718
 	27554006	end_screen_star_spawn	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\star spawn_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_star_spawn		6505
 	41600899	takeoff_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\takeoff_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\takeoff_1		4097
+	49555082	pickup_fly_to_score	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\metal_hit_1_3DA171AB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\count_up\pickup_fly_to_score		14075
 	52665981	penguin_1-32	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-32_3359461A.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_get_up\penguin_1-32		7336
 	54736795	penguin_1-55	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-55_EE539584.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\penguin_1-55		11050
-	55462416	penguin_33	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_33_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_33		7708
 	65922487	fall_thump_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\fall_thump_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\fall_thump_1		3619
 	74584646	penguin_1-70	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-70_BE257E1A.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn\penguin_1-70		5596
 	103571485	footstep_snow_2	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_2_A5823369.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_2		5856
@@ -87,20 +85,22 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	233783225	penguin_1-92	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-92_9E047421.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-92		7735
 	237716567	coin_hit_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\coin_hit_1_44EC6330.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\coin_hit_1		2233
 	245969063	footsteps_sandy_2	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footsteps_sandy_2_AB7F3BA4.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_2		4323
-	265097741	end_screen_count_up	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\coins_pickup_1_0EEECE5B.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\end_screen_count_up		2846
+	252903507	penguin_1-06	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-06_C9F26BBB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-06		2836
+	265097741	end_screen_count_up	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\coins_pickup_1_FC1E1682.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\count_up\end_screen_count_up		1701
 	268160669	footstep_snow_9	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_9_C16BB148.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_9		4863
 	271193230	end_screen_spawn	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\end screen spawn_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_spawn		7731
 	281520412	penguin_death_drowning_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-82_5FF7E33C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_react_to_death\penguin_death_drowning_1		13786
 	282876768	penguin_1-73	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-73_216CD1F5.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\penguin_1-73		15451
-	290686294	penguin_31	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_31_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_31		7400
 	293884826	penguin_1-24	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-24_706A9764.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_jump_used\penguin_1-24		3569
 	303912625	footstep_snow_4	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_4_549A00CE.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_4		6121
+	326441011	penguin_1-84	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-84_BDF1D4A2.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-84		3620
 	329966517	penguin_1-57	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-57_B5255A9A.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn\penguin_1-57		8418
 	340551335	footsteps_sandy_8	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footsteps_sandy_8_31F75936.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_8		4513
 	356380210	penguin_1-20	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-20_4738D64C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-20		2153
 	361774416	end_screen_pickups_count	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\count_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_pickups_count		3391
 	362420559	footstep_snow_6	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_6_16351958.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_6		5152
 	408013043	jump_picked_up_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\jump_picked_up_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\jump\jump_picked_up_1		12804
+	410439018	penguin_1-93	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-93_B4FF6E64.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-93		2860
 	413066254	penguin_1-69	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-69_92896016.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn\penguin_1-69		5968
 	426444008	trap_excavator_loop	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\machine_loop_1_0CDD8189.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_excavator_loop		8977
 	438721072	penguin_1-79	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-79_52EE09EC.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn\penguin_1-79		5663
@@ -118,12 +118,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	573858228	stone_place_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\stone_place_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\stone_place_1		5744
 	576674518	penguin_1-34	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-34_88CAC0B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\electrocution\penguin_elec_death_voice\penguin_1-34		8654
 	590505010	penguin_1-03	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-03_3EA513B1.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_jump_used\penguin_1-03		6261
-	595649065	celebrate 1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin celebrate_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\celebrate 1		7717
 	605879954	penguin_death_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-56_EECB0EF6.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\death voice\penguin_death_1		5982
 	625430449	penguin_1-74	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-74_1A6646C4.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_spawn\penguin_1-74		5791
 	651191199	footstep_snow_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_1_96A6D7CC.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_1		6147
 	654747720	splat_8	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\splat_8_FFB9B7BC.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\excavator\splat_8		22810
-	680360679	penguin_32	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_32_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_32		7368
 	685779834	footsteps_sandy_9	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footsteps_sandy_9_4731DC33.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_9		5068
 	691344409	penguin_1-09	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-09_8B09CF22.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-09		4449
 	723586134	slide_loop_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\slide_loop_1_0CDD8189.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\slide_loop_1		47985
@@ -143,11 +141,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	831917530	seal_placeholder_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\seal_placeholder_1_8476A630.wem		\Actor-Mixer Hierarchy\Default Work Unit\seal\deaths\seal_placeholder_1		4107
 	851894782	penguin_1-67	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-67_72AEF416.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\penguin_1-67		8238
 	853971576	penguin_1-13	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-13_BBAD6558.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-13		4339
-	866084732	penguin_30	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_30_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_30		6414
 	887882462	trap_wall_spikes_triggered	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\spikes triggered_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered		6639
 	923487966	penguin_death_drowning_2	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-85_7B2B6009.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\pit\drowning_voice\penguin_death_drowning_2		11783
 	936568890	penguin_death_5	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-45_3B671162.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\death voice\penguin_death_5		2758
-	964987848	slide_end_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\slide_end_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\slide_end_1		4678
+	946178386	penguin_1-08	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-08_ED68FAAF.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-08		2376
 	967158891	shop_get_currency	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\bought currency_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\shop_get_currency		5455
 	972240149	footstep_snow_3	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footstep_snow_3_6A2893F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_3		5258
 	985916953	penguin_1-18	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-18_9120D873.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-18		1819

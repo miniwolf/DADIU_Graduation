@@ -35,7 +35,7 @@
 				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\settings\music\music_state_menu" MaxAttenuation="0.000000"/>
 				<Event Id="2495070883" Name="mute_master" ObjectPath="\Events\Default Work Unit\settings\mute_master" MaxAttenuation="0.000000"/>
 				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\music\mute_music" MaxAttenuation="0.000000"/>
-				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="25.000000"/>
+				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="20.000000"/>
 				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution"/>
 				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator"/>
 				<Event Id="540083679" Name="penguin_death_pit_drowning" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_pit_drowning"/>
@@ -43,13 +43,12 @@
 				<Event Id="1191246039" Name="penguin_edge_fall" ObjectPath="\Events\Default Work Unit\penguin\penguin_edge_fall" MaxAttenuation="0.000000"/>
 				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up"/>
 				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land"/>
-				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move" MaxAttenuation="25.000000"/>
-				<Event Id="2528420815" Name="penguin_move_voice_start" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice_start" MaxAttenuation="25.000000"/>
-				<Event Id="3050359637" Name="penguin_move_voice_stop" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice_stop" MaxAttenuation="0.000000"/>
-				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\penguin\penguin_react" MaxAttenuation="25.000000"/>
-				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end" MaxAttenuation="25.000000"/>
-				<Event Id="823784186" Name="penguin_slide_loop" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_loop" MaxAttenuation="25.000000"/>
-				<Event Id="2479484064" Name="penguin_slide_takeoff" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_takeoff" MaxAttenuation="25.000000"/>
+				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move" MaxAttenuation="20.000000"/>
+				<Event Id="3766366598" Name="penguin_move_voice" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice" MaxAttenuation="20.000000"/>
+				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\penguin\penguin_react" MaxAttenuation="20.000000"/>
+				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end"/>
+				<Event Id="823784186" Name="penguin_slide_loop" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_loop" MaxAttenuation="20.000000"/>
+				<Event Id="2479484064" Name="penguin_slide_takeoff" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_takeoff" MaxAttenuation="20.000000"/>
 				<Event Id="3165641387" Name="penguin_spawn" ObjectPath="\Events\Default Work Unit\penguin\penguin_spawn"/>
 				<Event Id="1037802744" Name="penguin_tool_change_lane_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used"/>
 				<Event Id="2948163585" Name="penguin_tool_jump_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_jump_used"/>
@@ -64,14 +63,14 @@
 				<Event Id="2674130862" Name="seal_edge_fall" ObjectPath="\Events\Default Work Unit\seal\seal_edge_fall"/>
 				<Event Id="2220048805" Name="seal_jump" ObjectPath="\Events\Default Work Unit\seal\seal_jump"/>
 				<Event Id="254264362" Name="seal_land" ObjectPath="\Events\Default Work Unit\seal\seal_land"/>
-				<Event Id="2620900526" Name="seal_move" ObjectPath="\Events\Default Work Unit\seal\seal_move" MaxAttenuation="25.000000"/>
+				<Event Id="2620900526" Name="seal_move" ObjectPath="\Events\Default Work Unit\seal\seal_move" MaxAttenuation="20.000000"/>
 				<Event Id="585790082" Name="seal_spawn" ObjectPath="\Events\Default Work Unit\seal\seal_spawn"/>
 				<Event Id="1049400906" Name="shop_get_currency" ObjectPath="\Events\Default Work Unit\ui\shop_get_currency"/>
-				<Event Id="1345721513" Name="tool_change_lane_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_change_lane_placed" MaxAttenuation="25.000000"/>
+				<Event Id="1345721513" Name="tool_change_lane_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_change_lane_placed" MaxAttenuation="20.000000"/>
 				<Event Id="4165526132" Name="tool_global_freeze_time_starting" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting"/>
 				<Event Id="2717875216" Name="tool_global_freeze_time_stopping" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping"/>
-				<Event Id="1548142744" Name="tool_jump_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_jump_triggered" MaxAttenuation="25.000000"/>
-				<Event Id="65816966" Name="tool_picked_up" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_picked_up" MaxAttenuation="25.000000"/>
+				<Event Id="1548142744" Name="tool_jump_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_jump_triggered" MaxAttenuation="20.000000"/>
+				<Event Id="65816966" Name="tool_picked_up" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_picked_up" MaxAttenuation="20.000000"/>
 				<Event Id="2677805925" Name="tool_returned_to_toolbar" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar"/>
 				<Event Id="2487352075" Name="trap_excavator_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_loop"/>
 				<Event Id="1336860092" Name="trap_excavator_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_triggered"/>
@@ -102,6 +101,10 @@
 				<File Id="41600899" Language="SFX">
 					<ShortName>takeoff_1.wav</ShortName>
 					<Path>SFX\takeoff_1_50DB02DB.wem</Path>
+				</File>
+				<File Id="49555082" Language="SFX">
+					<ShortName>metal_hit_1.wav</ShortName>
+					<Path>SFX\metal_hit_1_3DA171AB.wem</Path>
 				</File>
 				<File Id="52665981" Language="SFX">
 					<ShortName>penguin_1-32.wav</ShortName>
@@ -163,9 +166,13 @@
 					<ShortName>footsteps_sandy_2.wav</ShortName>
 					<Path>SFX\footsteps_sandy_2_AB7F3BA4.wem</Path>
 				</File>
+				<File Id="252903507" Language="SFX">
+					<ShortName>penguin_1-06.wav</ShortName>
+					<Path>SFX\penguin_1-06_C9F26BBB.wem</Path>
+				</File>
 				<File Id="265097741" Language="SFX">
 					<ShortName>coins_pickup_1.wav</ShortName>
-					<Path>SFX\coins_pickup_1_0EEECE5B.wem</Path>
+					<Path>SFX\coins_pickup_1_FC1E1682.wem</Path>
 				</File>
 				<File Id="268160669" Language="SFX">
 					<ShortName>footstep_snow_9.wav</ShortName>
@@ -186,6 +193,10 @@
 				<File Id="293884826" Language="SFX">
 					<ShortName>penguin_1-24.wav</ShortName>
 					<Path>SFX\penguin_1-24_706A9764.wem</Path>
+				</File>
+				<File Id="326441011" Language="SFX">
+					<ShortName>penguin_1-84.wav</ShortName>
+					<Path>SFX\penguin_1-84_BDF1D4A2.wem</Path>
 				</File>
 				<File Id="329966517" Language="SFX">
 					<ShortName>penguin_1-57.wav</ShortName>
@@ -210,6 +221,10 @@
 				<File Id="408013043" Language="SFX">
 					<ShortName>jump_picked_up_1.wav</ShortName>
 					<Path>SFX\jump_picked_up_1_50DB02DB.wem</Path>
+				</File>
+				<File Id="410439018" Language="SFX">
+					<ShortName>penguin_1-93.wav</ShortName>
+					<Path>SFX\penguin_1-93_B4FF6E64.wem</Path>
 				</File>
 				<File Id="413066254" Language="SFX">
 					<ShortName>penguin_1-69.wav</ShortName>
@@ -371,9 +386,9 @@
 					<ShortName>penguin_1-45.wav</ShortName>
 					<Path>SFX\penguin_1-45_3B671162.wem</Path>
 				</File>
-				<File Id="964987848" Language="SFX">
-					<ShortName>slide_end_1.wav</ShortName>
-					<Path>SFX\slide_end_1_50DB02DB.wem</Path>
+				<File Id="946178386" Language="SFX">
+					<ShortName>penguin_1-08.wav</ShortName>
+					<Path>SFX\penguin_1-08_ED68FAAF.wem</Path>
 				</File>
 				<File Id="967158891" Language="SFX">
 					<ShortName>bought currency.wav</ShortName>
