@@ -50,6 +50,7 @@
 		public const string LANECHANGEARROW = "LaneChangeArrow";
 		public const string JUMPARROW = "JumpArrow";
 		public const string TOOLTIP = "Tooltip";
+		public const string TOOLTIP_PANEL = "TooltipPanel";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
