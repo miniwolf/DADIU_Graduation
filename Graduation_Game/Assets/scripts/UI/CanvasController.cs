@@ -30,6 +30,7 @@ namespace Assets.scripts.UI {
 		private GameObject[] holderThisLevel, holderTotal;
 		private Text plutoniumCounter;
 		private Text[] plutoniumThisLevel, plutoniumTotal;
+		public Sprite penguinIsDead, key;
 
 
 		void Awake() {
@@ -97,6 +98,14 @@ namespace Assets.scripts.UI {
 			temp[1] = penguinsRequiredFor2Stars;
 			temp[2] = penguinsRequiredFor3Stars;
 			return temp;
+		}
+
+		/// <summary>
+		/// Should only be used during end screen
+		/// </summary>
+		/// <returns>The survived penguins. Should only be used during end screen</returns>
+		public int GetSurvivedPenguins(){
+			return int.Parse(penguinCounter.text);
 		}
 
 		private void EnableGameOverPanel() {

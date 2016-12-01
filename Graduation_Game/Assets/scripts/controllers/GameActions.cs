@@ -1,7 +1,7 @@
 ﻿namespace Assets.scripts.controllers {
 	public enum GameActions {
 		EndLevel, FlowPlutonium, TriggerStar, TriggerCutScene, FlowScore, EndLevelLoss,
-		RetryButtonLoss, RetryButtonWin
+		RetryButtonLoss, RetryButtonWin, DisableRetryWin
 
 	}
 }

@@ -83,6 +83,7 @@
 			public const string RETRY_CIRCLE = "RetryCircle";
 			public const string RETRY_BUTTON = "RetryButton";
 			public const string RETRY_PRIZE = "RetryPrize";
+			public const string RETRYCURRENCYIMAGE = "RetryImage";
 			public const string INTRO_BUTTON = "IntroButton";
 			public const string INTRO_IMAGE = "IntroImage";
 			public const string TOOLTIP_PANEL = "TooltipPanel";
@@ -98,6 +99,8 @@
 			public const string BLOCKCLICKS = "BlockClicks";
 			public const string FAILSCENEOBJECT = "FailSceneObject";
 			public const string ENDSCENEOBJECT = "EndSceneObject";
+
+			public const string PENGUINICON = "PenguinIcon";
 	    }
 	}
 }

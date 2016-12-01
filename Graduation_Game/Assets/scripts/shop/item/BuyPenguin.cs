@@ -10,7 +10,7 @@ namespace Assets.scripts.shop.item {
 				return false; // Cannot buy more penguins than there is stock
 			}
 
-			// TODO: Set all timers to now
+			penguinCount.SetValue(penguinCount.GetValue() + 1);
 			return true;
 		}
 	}

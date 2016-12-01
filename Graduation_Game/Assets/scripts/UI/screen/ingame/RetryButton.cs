@@ -13,11 +13,13 @@ namespace Assets.scripts.UI.screen.ingame {
 				// reload level
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			} else {
+				print("KEY SHOULD BE BOUGHT NOW!!!!");
+				//TODO Should pay for a new key? Should ask if they want to buy a key and use it
 				//TODO show popup letting user know 
 				// update inventory
-				Inventory.UpdateCount();
+			//	Inventory.UpdateCount();
 				//go to main menu
-				SceneManager.LoadScene("MainMenuScene");
+			//	SceneManager.LoadScene("MainMenuScene");
 			}
 		}
 	}

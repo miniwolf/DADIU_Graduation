@@ -2,21 +2,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts {
     public class Prefs {
-
-        private const string SOUND_MASTER = "pref_master_sound";
-		public const string LEVEL1STATUS = "Level1status";
-		public const string LEVEL2STATUS = "Level2status";
-		public const string LEVEL3STATUS = "Level3status";
-		public const string LEVEL4STATUS = "Level4status";
-		public const string LEVEL5STATUS = "Level5status";
-		public const string COMPLETED = "completed";
-		public const string CURRENT = "current";
-		public const string LOCKED = "locked";
 		public const string STATUS = "status";
 		public const string STARS = "stars";
+		public const string SOUND_MASTER = "pref_master_sound";
+
+		public const string CURRENT = "current";
+		public const string COMPLETED = "completed";
+		public const string LOCKED = "locked";
+
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
 		public const string LEVEL_LAST_PLAYED_NAME = "LevelPlayedName";
@@ -35,11 +32,11 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelWonStars(string levelName, int stars) {
-			PlayerPrefs.SetInt(levelName, stars);
+			PlayerPrefs.SetInt(levelName + STARS, stars);
 		}
 
 		public static int GetLevelWonStars(string levelName) {
-			return PlayerPrefs.GetInt(levelName);
+			return PlayerPrefs.GetInt(levelName + STARS);
 		}
 
 		public static int GetLevelUnlockIndex() {
@@ -47,24 +44,23 @@ namespace Assets.scripts {
 		}
 
 		public static void SetLevelUnlockIndex(int levelIndexToUnlock) {
-			Debug.Log("douche");
 			PlayerPrefs.SetInt(LEVEL_UNLOCK_INDEX, levelIndexToUnlock);
 		}
 
 		public static void SetLevelStatus(string levelName, string status) {
-			PlayerPrefs.SetString(levelName, status);
+			PlayerPrefs.SetString(levelName + STATUS, status);
 		}
 
 		public static string GetLevelStatus(string levelName) {
-			return PlayerPrefs.GetString(levelName);
+			return PlayerPrefs.GetString(levelName + STATUS);
 		}
 
 		public static bool IsLevelStatusComplete(string levelName) {
-			return PlayerPrefs.GetString(levelName) == COMPLETED;
+			return PlayerPrefs.GetString(levelName + STATUS) == COMPLETED;
 		}
 
 		public static bool IsLevelStatusCurrent(string levelName) {
-			return PlayerPrefs.GetString(levelName) == CURRENT;
+			return PlayerPrefs.GetString(levelName + STATUS) == CURRENT;
 		}
 
 		public static bool IsTooltipsOn() {
@@ -91,28 +87,24 @@ namespace Assets.scripts {
             return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
         }
 
-        public static int GetTotalStars() {
-            return PlayerPrefs.GetInt(TOTALSTARS);
-        }
-
-        public static void UpdateTotalStars(int totalStars) {
+        public static void SetTotalStars(int totalStars) {
              PlayerPrefs.SetInt(TOTALSTARS, totalStars);
         }
 
-        public static int GetStarsForLevel(string lvlName) {
-            return PlayerPrefs.GetInt(lvlName);
-        }
+		public static int GetTotalStars() {
+			return PlayerPrefs.GetInt(TOTALSTARS);
+		}
 
-        public static void SetStarsForLevel(string lvlName, int value) {
-            PlayerPrefs.SetInt(lvlName, value);
-        }
-
-        public static int GetStarsForCurrentLevel() {
-            return PlayerPrefs.GetInt(SceneManager.GetActiveScene().name);
+		public static int GetStarsForCurrentLevel() {
+            return PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + STARS);
         }
 
         public static void SetStarsForCurrentLevel(int value) {
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, value);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + STARS, value);
         }
+
+		public static void DeleteKey(string key) {
+			PlayerPrefs.DeleteKey(key);
+		}
     }
 }

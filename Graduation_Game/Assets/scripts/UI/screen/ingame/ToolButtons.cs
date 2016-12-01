@@ -342,7 +342,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			}
 			doubleTap = false;
 			obj.transform.position = hit.point;
-			snapping.Snap(hit.transform.position, obj.transform);
+			snapping.Snap(new Vector3(hit.point.x,hit.transform.position.y,hit.transform.position.z), obj.transform);
 			ChangeObjColorToGreen(obj);
 		}
 
