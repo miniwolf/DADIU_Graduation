@@ -58,6 +58,7 @@ namespace AssemblyCSharp {
 				// place sound for score flow tick	
 				float score = 100 - (plutoniumThisLevelint / float.Parse(plutoniumCounter.text) * 100);
 				AkSoundEngine.SetRTPCValue("count_up_pitch", score);
+				AkSoundEngine.PostEvent("end_screen_count_up", Camera.main.gameObject);
 				yield return new WaitForSeconds(GetTimeFromCurve());
 			}
 
