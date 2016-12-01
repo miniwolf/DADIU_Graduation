@@ -23,6 +23,7 @@ namespace Assets.scripts.components.registers {
 		private static GameObject splat;
 		private static GameFactory gameFactory;
 		public GameObject penguin;
+		private static GameObject tooltipPanel;
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -30,7 +31,7 @@ namespace Assets.scripts.components.registers {
 			if ( levelObj != null ) {
 				levelSettings = levelObj.GetComponent<LevelSettings>();
 			}
-
+			tooltipPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIP_PANEL);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			pickupFactory = new PickupFactory(handler, penguin);
 			gameFactory = new GameFactory(handler);
@@ -77,9 +78,6 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.CANVAS:
 					gameFactory.BuildCanvas(component.GetActionable<GameActions>());
 					break;
-				case TagConstants.TOOLTIP:
-					component.GetGameObject().GetComponent<Tooltip>().SetGameStateManager(gameStateManager);
-					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
 					gameFactory.BuildStar(component.GetActionable<GameActions>());
 					break;
@@ -102,6 +100,9 @@ namespace Assets.scripts.components.registers {
 					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
 					break;
 				case TagConstants.CUTSCENE:
+					break;
+				case TagConstants.TOOLTIP:
+					component.GetGameObject().GetComponent<Tooltip>().SetPanel(tooltipPanel);
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
