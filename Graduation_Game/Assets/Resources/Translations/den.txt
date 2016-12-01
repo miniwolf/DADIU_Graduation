@@ -4,4 +4,12 @@ level3;Level 3 DK
 level4;Level 4 DK
 level5;Level 5 DK
 level6;Level 6 DK
+level7;Level 7 DK
+level8;Level 8 DK
+level9;Level 9 DK
 popupNotEnoguhPenguins; Not enough penguins to play the level! DK
+backsettings; Tilbage
+settings; Indstillinger
+jump; Write here tooltip for jump DK
+switchlane; Write here tooltip for switch lane DK
+thisWorldIsLocked; This world is locked DK!

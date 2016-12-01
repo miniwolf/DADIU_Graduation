@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.scripts.UI.inventory;
+﻿using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.shop.item {
 	public class BuyPenguin : ShopItemImpl {
@@ -11,8 +10,7 @@ namespace Assets.scripts.shop.item {
 				return false; // Cannot buy more penguins than there is stock
 			}
 
-			var penguin = new HatchablePenguin();
-			PenguinCollection.penguinsReady.Add(penguin);
+			penguinCount.SetValue(penguinCount.GetValue() + 1);
 			return true;
 		}
 	}

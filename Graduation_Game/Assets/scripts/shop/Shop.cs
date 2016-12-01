@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.scripts.shop.item;
+using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using UnityEngine;
 
 namespace Assets.scripts.shop {
 	public class Shop : MonoBehaviour {
 		private readonly Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
-		private readonly Item<int> cash = Inventory.cash;
+		private Item<int> cash;
 
 		public enum Items {
-			Penguin, PenguinStock
+			Penguin, PenguinStock, RetryKey
 		}
 
 		[Serializable]
@@ -22,6 +23,7 @@ namespace Assets.scripts.shop {
 		public Item[] storeItems;
 
 		protected void Start() {
+			cash = Inventory.cash;
 			foreach ( var storeItem in storeItems ) {
 				ShopItem buy;
 				switch (storeItem.item) {
@@ -33,6 +35,10 @@ namespace Assets.scripts.shop {
 						buy = new BuyPenguinStock();
 						items.Add("Stock", buy);
 						break;
+					case Items.RetryKey:
+						buy = new BuyRetryKey();
+						items.Add("Key", buy);
+						break;
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
@@ -41,6 +47,7 @@ namespace Assets.scripts.shop {
 		}
 
 		public void Purchase(string item) {
+			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.BUTTON_PRESS, gameObject);
 			var shopItem = items[item];
 			if ( shopItem.GetPrice() > cash.GetValue()) {
 				Debug.Log("You do not have enough cash");

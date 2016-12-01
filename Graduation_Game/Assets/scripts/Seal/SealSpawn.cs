@@ -8,6 +8,7 @@ using Assets.scripts.UI;
 using Assets.scripts.components.registers;
 using Assets.scripts.components;
 using Assets.scripts.controllers;
+using Assets.scripts.sound;
 
 public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 
@@ -44,7 +45,6 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 		theSeal = seal.gameObject; //add how it moves here
 		theSeal.SetActive(true);
 
-
 		FindPath();
 
 		journeyLength = Vector3.Distance(path[0], path[1]);
@@ -63,13 +63,16 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 			inputManager.UnblockCameraMovement();
 			StartPenguins();
 			haveReactivatedPenguins = true;
+		    AkSoundEngine.PostEvent(SoundConstants.SealSounds.STOP_MOVING, seal.gameObject);
 		}
 	}
 
-
 	IEnumerator MoveTheSeal(){
 		StopPenguins();
-		
+
+	    AkSoundEngine.PostEvent(SoundConstants.SealSounds.SPAWN, seal.gameObject);
+	    StartCoroutine(PlayStartMovingSealSound());
+
 		Vector3 moveTo = new Vector3(theSeal.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 		Vector3 startPosCam = cam.transform.position;
 
@@ -79,19 +82,21 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 		float distCovered = (Time.time - startTime)*speedFactor;
 		float fracJourney = distCovered / journeyLength;
 		//print(path[0] + " " + path[1]);
-		while(fracJourney<0.85f){
+		while(fracJourney < 0.85f){
 			distCovered = (Time.time - startTime)*speedFactor;
 			fracJourney = distCovered / journeyLength;
 			theSeal.transform.position = Vector3.Lerp(path[0], path[1], fracJourney);
 			cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 			yield return new WaitForEndOfFrame();
 		}
+
 		path[1] = theSeal.transform.position;
 		startTime = Time.time;
 		float ndistCovered = (Time.time - startTime)*speedFactor;
 		journeyLength = Vector3.Distance(path[1], path[2]);
 		float nfracJourney = ndistCovered / journeyLength;
-		while(nfracJourney<1){
+
+	    while(nfracJourney < 1){
 			ndistCovered = (Time.time - startTime)*speedFactor;
 			nfracJourney = ndistCovered / journeyLength;
 			theSeal.transform.position = Vector3.Lerp(path[1], path[2], nfracJourney);
@@ -104,6 +109,11 @@ public class SealSpawn : MonoBehaviour, GameEntity, SetSnappingTool {
 		theSeal.GetComponent<Seal>().SetDirection(new Vector3(1, 0, 0));
 		seal.SethasLanded(true);
 	}
+
+    private IEnumerator PlayStartMovingSealSound() {
+        yield return new WaitForSeconds(1);
+        AkSoundEngine.PostEvent(SoundConstants.SealSounds.START_MOVING, seal.gameObject);
+    }
 
 	private void FindPath(){
 		RaycastHit hit;

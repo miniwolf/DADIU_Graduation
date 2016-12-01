@@ -2,7 +2,7 @@
 	public enum ControllableActions {
 		SwitchLeft, SwitchRight,
 		Move, Stop, Start,
-		KillPenguinBySpikes, KillPenguinByPit,
+		KillPenguinByWallSpikes, KillPenguinByGroundSpikes, KillPenguinByPit,
 		KillPenguinByExcavator,
 		KillPenguingByWeightBased,
 		StartJump, StopJump,
@@ -15,6 +15,7 @@
 	    Freeze, UnFreeze,
 	    OtherPenguinDied, // reactions to death of other penguin
 		SealJump, SealMove, SealFall, SealDeath, SealLand,
-		Celebrate
+		Celebrate, Win,
+		PenguinFall, PenguinStopFall
 	}
 }
