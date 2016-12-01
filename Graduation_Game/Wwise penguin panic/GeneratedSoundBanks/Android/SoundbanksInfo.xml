@@ -24,6 +24,7 @@
 				<Event Id="27047464" Name="airplane_loop" ObjectPath="\Events\Default Work Unit\SFXs\3D objects\airplane_loop"/>
 				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\ui\button_pressed"/>
 				<Event Id="3430637553" Name="egg_hatching" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatching"/>
+				<Event Id="3508380305" Name="end_screen_count_up" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\end_screen_count_up"/>
 				<Event Id="3375059786" Name="end_screen_pickup_count" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_pickup_count"/>
 				<Event Id="2088991191" Name="end_screen_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_spawn"/>
 				<Event Id="1995024202" Name="end_screen_star_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_star_spawn"/>
@@ -161,6 +162,10 @@
 				<File Id="245969063" Language="SFX">
 					<ShortName>footsteps_sandy_2.wav</ShortName>
 					<Path>SFX\footsteps_sandy_2_AB7F3BA4.wem</Path>
+				</File>
+				<File Id="265097741" Language="SFX">
+					<ShortName>coins_pickup_1.wav</ShortName>
+					<Path>SFX\coins_pickup_1_0EEECE5B.wem</Path>
 				</File>
 				<File Id="268160669" Language="SFX">
 					<ShortName>footstep_snow_9.wav</ShortName>

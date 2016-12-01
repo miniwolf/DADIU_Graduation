@@ -50,6 +50,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3430637553	egg_hatching			\Default Work Unit\SFXs\egg_hatching	
 	3443752665	trap_wall_spikes_triggered			\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered	
 	3505549277	seal_death_spikes			\Default Work Unit\seal\deaths\seal_death_spikes	
+	3508380305	end_screen_count_up			\Default Work Unit\SFXs\Pickups\end_screen_count_up	
 	3715428614	seal_death_electrocution			\Default Work Unit\seal\deaths\seal_death_electrocution	
 	3725903807	music_start			\Default Work Unit\settings\music\music_start	
 	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
@@ -58,6 +59,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3876505889	penguin_land			\Default Work Unit\penguin\penguin_land	
 	4165526132	tool_global_freeze_time_starting			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting	
 	4274899430	trap_wire_triggered			\Default Work Unit\SFXs\Traps\trap_wire_triggered	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3855315365	count_up_pitch			\Default Work Unit\count_up_pitch	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	6671893	footstep_snow_10	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_10_6466CEE7.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_10		6886
@@ -80,6 +84,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	219864817	change_lane_placed_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\bridge_place_1_BC297485.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\change lane\change_lane_placed_1		11343
 	233783225	penguin_1-92	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_1-92_9E047421.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-92		7735
 	245969063	footsteps_sandy_2	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footsteps_sandy_2_AB7F3BA4.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_2		4323
+	265097741	end_screen_count_up	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\coins_pickup_1_0EEECE5B.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\end_screen_count_up		2846
 	268160669	footstep_snow_9	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\footstep_snow_9_C16BB148.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_9		4863
 	271193230	end_screen_spawn	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\end screen spawn_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_spawn		7731
 	281520412	penguin_death_drowning_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\SFX\penguin_1-82_5FF7E33C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_react_to_death\penguin_death_drowning_1		13786
