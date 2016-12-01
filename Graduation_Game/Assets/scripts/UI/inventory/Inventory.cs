@@ -51,11 +51,12 @@ namespace Assets.scripts.UI.inventory {
 																			   + "the system and get more penguins "
 																			   + "than you can.");
 			if ( hasInitialized.GetValue() == 0 ) {
-				penguinStorage.SetValue(5);
-				penguinCount.SetValue(5);
+				penguinStorage.SetValue(10);
+				penguinCount.SetValue(7);
 				hasInitialized.SetValue(1);
 				eggCount.SetValue(1);
-				key.SetValue(1);
+				key.SetValue(10);
+				cash.SetValue(100);
 				loginDate.SetValue(DateTime.Now.ToString());
 			}
 
