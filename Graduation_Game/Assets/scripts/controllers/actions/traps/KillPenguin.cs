@@ -8,6 +8,7 @@ namespace Assets.scripts.controllers.actions.traps {
 		private readonly Killable killable;
 	    private readonly NotifierSystem notifierSystem;
 	    private GameObject penguin;
+		private ParticleSystem ps;
 
 	    public KillPenguin(Killable killable, NotifierSystem s) {
 			this.killable = killable;
@@ -16,13 +17,19 @@ namespace Assets.scripts.controllers.actions.traps {
 
 		public void Setup(GameObject gameObject) {
 			penguin = gameObject;
+			ps = penguin.GetComponent<ParticleSystem>();
 		}
 
 		public void Execute() {
+			ps.Play();
+
+			Debug.Log("DEBUG ps is Playing? : " + ps.isPlaying);
+
 			var penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinCounter.text = (int.Parse(penguinCounter.text) - 1).ToString();
 			killable.Kill();
 			notifierSystem.PenguinDied(penguin);
+			
 			penguin.GetComponent<Collider>().enabled = false;
 		}
 	}
