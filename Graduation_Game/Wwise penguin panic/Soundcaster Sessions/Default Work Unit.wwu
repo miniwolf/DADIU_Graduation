@@ -6,7 +6,7 @@
 				<SoundcasterSession Name="New Soundcaster Session" ID="{89B39B03-1493-4BF0-A077-3E40A056F895}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="penguin_move_start" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
@@ -26,7 +26,7 @@
 							<Position X="0" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="penguin_move_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="penguin_move_voice_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="1" Y="0"/>
 						</Module>
 						<Module>
