@@ -19,6 +19,17 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> key = new PreferenceItem<int>(InventoryConstants.KEY);
 		public static readonly Item<string> loginDate = new PreferenceItem<string>(InventoryConstants.LASTLOGIN);
 
+		public static readonly Item<int> level1won = new PreferenceItem<int>(InventoryConstants.LEVEL1WON);
+		public static readonly Item<int> level2won = new PreferenceItem<int>(InventoryConstants.LEVEL2WON);
+		public static readonly Item<int> level3won = new PreferenceItem<int>(InventoryConstants.LEVEL3WON);
+		public static readonly Item<int> level4won = new PreferenceItem<int>(InventoryConstants.LEVEL4WON);
+		public static readonly Item<int> level5won = new PreferenceItem<int>(InventoryConstants.LEVEL5WON);
+		public static readonly Item<int> level6won = new PreferenceItem<int>(InventoryConstants.LEVEL6WON);
+		public static readonly Item<int> level7won = new PreferenceItem<int>(InventoryConstants.LEVEL7WON);
+		public static readonly Item<int> level8won = new PreferenceItem<int>(InventoryConstants.LEVEL8WON);
+		public static readonly Item<int> level9won = new PreferenceItem<int>(InventoryConstants.LEVEL9WON);
+		public static readonly Item<int> level10won = new PreferenceItem<int>(InventoryConstants.LEVEL10WON);
+
 		public static readonly Item<int> level1stars = new PreferenceItem<int>(InventoryConstants.LEVEL1STARS);
 		public static readonly Item<int> level2stars = new PreferenceItem<int>(InventoryConstants.LEVEL2STARS);
 		public static readonly Item<int> level3stars = new PreferenceItem<int>(InventoryConstants.LEVEL3STARS);
