@@ -3,7 +3,7 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{1B28396D-01CA-4F58-85C7-FB2FD6C793BE}">
 			<PropertyList>
-				<Property Name="AudioFilesImporter\Path" Type="string" Value="C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\SOUNDS\placeholders"/>
+				<Property Name="AudioFilesImporter\Path" Type="string" Value="C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\SOUNDS\edited"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Android"></Value>
@@ -63,8 +63,8 @@
 				<Property Name="ProjectExplorer\x64_Expanded_19_1" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\x64_Expanded_1_1" Type="string" Value="2KQUFaYdKkGhfnXKDCFJ8+Az7bZeAYBJuLbtkz/WrFs="/>
 				<Property Name="ProjectExplorer\x64_Expanded_20_1" Type="string" Value=""/>
-				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="bKgvrfWMhkG/Esm/TSUBZW8JWZnO1aVDmJtUckUHkUhSGCo6EADzSqNavq9v5y12UvtLluETQU6eGiz4NtndFRXeY3EAcXBOhWS0f/xmDOvAYQNM7JjpT7Xvi64PvGfn"/>
-				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="iOqcV5ASLUOoOwkCme5qLh1qs/17K69Dl3rGH7HRNedt/49a92NARbK9y92zJJOBVnfO7aS2K0mwmD3vA/wrcxppGrS7dnlPtnPomDdaakk="/>
+				<Property Name="ProjectExplorer\x64_Expanded_2_1" Type="string" Value="bKgvrfWMhkG/Esm/TSUBZW8JWZnO1aVDmJtUckUHkUjiHa/6TywARZDYR/DyL5zXdN5dpdmyW0qk0aISFnImulIYKjoQAPNKo1q+r2/nLXbqk6F+s7gZTaKQtJ1kEjpgUvtLluETQU6eGiz4NtndFRXeY3EAcXBOhWS0f/xmDOvAYQNM7JjpT7Xvi64PvGfn"/>
+				<Property Name="ProjectExplorer\x64_Expanded_3_1" Type="string" Value="VnfO7aS2K0mwmD3vA/wrcw=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_4_1" Type="string" Value="iSretEBtx0uu1sG1iIZ7gA=="/>
 				<Property Name="ProjectExplorer\x64_Expanded_5_1" Type="string" Value="HbfvMWcOS0WPn7LINeekm+es5t+4Pc9Jnx5z9pFPifs="/>
 				<Property Name="ProjectExplorer\x64_Expanded_6_1" Type="string" Value=""/>
@@ -72,6 +72,7 @@
 				<Property Name="ProjectExplorer\x64_Expanded_8_1" Type="string" Value=""/>
 				<Property Name="RTPC\GameParameterSimValue\{753BE8E8-2177-4C05-BAE1-C235E263135F}" Type="Real64" Value="65"/>
 				<Property Name="RTPC\GameParameterSimValue\{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}" Type="Real64" Value="100"/>
+				<Property Name="RTPC\GameParameterSimValue\{EF07FB1D-BB91-403E-A789-2DF9D5163370}" Type="Real64" Value="99.1623036649214"/>
 				<Property Name="SoundBank Manager\x64_Expand States" Type="string" Value="htez5yOLOkmKU/RAZU+fnQ=="/>
 				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
 				<Property Name="SoundBankPaths" Type="string">
