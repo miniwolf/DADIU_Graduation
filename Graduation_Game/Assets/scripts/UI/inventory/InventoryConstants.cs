@@ -16,6 +16,17 @@
 
 		public const string TOTALSTARS = "TotalStars";
 
+		public const string LEVEL1WON = "W0Level0won";
+		public const string LEVEL2WON = "W0Level1won";
+		public const string LEVEL3WON = "W0Level2won";
+		public const string LEVEL4WON = "W1Level1won";
+		public const string LEVEL5WON = "W1Level2won";
+		public const string LEVEL6WON = "W1Level3won";
+		public const string LEVEL7WON = "W1Level4won";
+		public const string LEVEL8WON = "W1Level5won";
+		public const string LEVEL9WON = "W1Level6won";
+		public const string LEVEL10WON = "W1Level7won";
+
 		public const string LEVEL1STATUS = "W0Level0status";
 		public const string LEVEL2STATUS = "W0Level1status";
 		public const string LEVEL3STATUS = "W0Level2status";

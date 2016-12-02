@@ -43,16 +43,10 @@
 									<ChildrenList>
 										<MusicTrack Name="ingame" ID="{D1F2DE21-6DF9-4D82-A8F0-5419667BE3FA}" ShortID="428536845">
 											<PropertyList>
-												<Property Name="IgnoreParentMaxSoundInstance" Type="bool" Value="True"/>
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
 														<Value>1</Value>
-													</ValueList>
-												</Property>
-												<Property Name="UseMaxSoundPerInstance" Type="bool">
-													<ValueList>
-														<Value>True</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>

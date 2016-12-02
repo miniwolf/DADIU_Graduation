@@ -12,9 +12,12 @@ using System.Collections.Generic;
 namespace Assets.scripts.level {
 	public class Tooltip : ActionableGameEntityImpl<ControllableActions>  {
 		public enum Type {Place, Move, Remove, Newtool};
+		public enum TypeTool {Jump, Switchlane};
 
 		[Tooltip("type of tooltip: place, move, remove or newtool")]
 		public Type type = Type.Place;
+		[Tooltip("type of tool for newtool tooltip: jump or switchlane")]
+		public TypeTool typeNewtool = TypeTool.Jump;
 
 		private bool triggered;
 		private GameObject panel;
@@ -67,10 +70,16 @@ namespace Assets.scripts.level {
 					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.remove);
 					break;
 				case Type.Newtool:
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.newtool);
+					switch ( typeNewtool ) {
+						case TypeTool.Jump: 
+							panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.jump);
+							break;
+						case TypeTool.Switchlane: 
+							panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.switchlane);
+							break;
+					}
+
 					break;
-				default:
-					throw new Exception("Incorrect tooltip type");
 			}
 		}
 			
@@ -129,6 +138,14 @@ namespace Assets.scripts.level {
 
 		public void SetRemove(bool remove) {
 			isRemoved = remove;
+		}
+
+		public void SetNewtool(bool newtool) {
+			isNewtool = newtool;
+		}
+
+		public bool IsNewtool() {
+			return isNewtool;
 		}
 
 		public bool IsRemoved() {

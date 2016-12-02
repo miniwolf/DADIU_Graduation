@@ -18,6 +18,7 @@ public enum LocalizedString  {
 	place,
 	move,
 	remove,
-	newtool
+	jump,
+	switchlane
 
 }

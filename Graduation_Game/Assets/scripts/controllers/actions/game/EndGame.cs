@@ -81,7 +81,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
-			Debug.Log(SceneManager.GetActiveScene().name);
+			Prefs.SetCurrentLevelToWon();
 			Prefs.SetLevelStatus(SceneManager.GetActiveScene().name, Prefs.COMPLETED);
 
 			canvas.SetActiveClickBlocker(true);
@@ -128,7 +128,7 @@ namespace Assets.scripts.controllers.actions.game {
 			star[starsSpawned].GetComponent<Star>().FlyIn();
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
 			starsSpawned++;
-			Prefs.SetStarsForCurrentLevel(starsSpawned);
+			if(Prefs.GetStarsForCurrentLevel() < starsSpawned) Prefs.SetStarsForCurrentLevel(starsSpawned);
 
 			return true;
 		}
@@ -147,7 +147,7 @@ namespace Assets.scripts.controllers.actions.game {
 			for (int i = 0; i < penguinIcons.Length; i++) {
 				penguinIcons[i].SetActive(false);
 			}
-			for (int i = 0; i < reqPenguins; i++) {
+			for (int i = 0; i < reqPenguins && i<penguinIcons.Length; i++) {
 				penguinIcons[i].SetActive(true);
 			}
 		}

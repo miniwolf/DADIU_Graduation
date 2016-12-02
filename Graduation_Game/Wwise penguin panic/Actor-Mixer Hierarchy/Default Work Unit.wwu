@@ -72,6 +72,11 @@
 													</ModifierList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-3</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -117,6 +122,11 @@
 													</ValueList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-4</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -172,6 +182,11 @@
 													</ModifierList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -207,6 +222,11 @@
 													</ValueList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -248,11 +268,6 @@
 													</ModifierList>
 												</Property>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-2</Value>
-													</ValueList>
-												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -1174,7 +1189,18 @@
 						<Folder Name="Pickups" ID="{E16311E8-1270-4EBA-B3FA-2EAF9247B88E}" ShortID="98000116">
 							<ChildrenList>
 								<BlendContainer Name="pickup_currency" ID="{3F1DDEAF-3C50-4914-9BEB-60705C24A5CA}" ShortID="915163284">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1323,8 +1349,12 @@
 												<Value>30</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1347,23 +1377,17 @@
 										<ActiveSource Name="metal_hit_1" ID="{674DB4F1-3C13-4F4A-8B6E-076DB3BC3FD9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="end_screen_count_up" ID="{52D37F87-AC18-47E5-BA80-227823211EB7}" ShortID="893371122" Type="SoundFX">
+								<BlendContainer Name="count_up" ID="{5CE55FF7-A5BE-428C-BF98-3A964C086E75}" ShortID="521970395">
 									<PropertyList>
-										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-										<Property Name="MaxSoundPerInstance" Type="int16">
-											<ValueList>
-												<Value>3</Value>
-											</ValueList>
-										</Property>
 										<Property Name="Pitch" Type="int32">
 											<RTPCList>
-												<RTPC Name="" ID="{25BA64DD-FA1F-4C17-A8BF-8FEF9E1EB262}" ShortID="996582596">
+												<RTPC Name="" ID="{84CB771A-83BE-4D29-BFBC-827FDE934F08}" ShortID="194150589">
 													<ReferenceList>
 														<Reference Name="ControlInput">
 															<ObjectRef Name="count_up_pitch" ID="{EF07FB1D-BB91-403E-A789-2DF9D5163370}" WorkUnitID="{B35BB35A-8FEF-4B4E-A805-5B5BDF02EAD4}"/>
 														</Reference>
 													</ReferenceList>
-													<Curve Name="" ID="{A9E2C669-AA20-4C7D-80D3-D4F974B711C5}">
+													<Curve Name="" ID="{1BB31656-91EE-4882-BFCD-9F8E7D60BE45}">
 														<PropertyList>
 															<Property Name="Flags" Type="int32" Value="65537"/>
 														</PropertyList>
@@ -1375,18 +1399,13 @@
 															</Point>
 															<Point>
 																<XPos>100</XPos>
-																<YPos>700</YPos>
+																<YPos>200</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>
 													</Curve>
 												</RTPC>
 											</RTPCList>
-										</Property>
-										<Property Name="UseMaxSoundPerInstance" Type="bool">
-											<ValueList>
-												<Value>True</Value>
-											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -1398,20 +1417,81 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" ShortID="265097741">
+										<Sound Name="end_screen_count_up" ID="{52D37F87-AC18-47E5-BA80-227823211EB7}" ShortID="893371122" Type="SoundFX">
+											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" ShortID="265097741">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.072625"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.119"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
+														</Reference>
+													</ReferenceList>
+													<Language>SFX</Language>
+													<AudioFile>coins_pickup_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pickup_fly_to_score" ID="{330A9374-1C86-419D-9096-916D07592483}" ShortID="522378790" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
 											</ReferenceList>
-											<Language>SFX</Language>
-											<AudioFile>coins_pickup_1.wav</AudioFile>
-										</AudioFileSource>
+											<ChildrenList>
+												<AudioFileSource Name="metal_hit_1" ID="{74C42A2D-605F-4716-95E9-F300824B7DE2}" ShortID="49555082">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.452457179300292"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.253558217930029"/>
+														<Property Name="TrimBegin" Type="Real64" Value="2.73296282798834E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>metal_hit_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="metal_hit_1" ID="{74C42A2D-605F-4716-95E9-F300824B7DE2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="coins_pickup_1" ID="{84E4EB40-4B27-4A46-B336-5084FCAA0FDA}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</BlendContainer>
 							</ChildrenList>
 						</Folder>
 						<Sound Name="egg hatching" ID="{B2C13BE8-EB15-4658-AAE9-EC752955BB2C}" ShortID="99585826" Type="SoundFX">
@@ -1771,8 +1851,12 @@
 														</ModifierInfo>
 													</ModifierList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -1850,7 +1934,7 @@
 												<ActiveSource Name="penguin_placeholder_drowning_1" ID="{B39966A1-FB65-4AE1-AD57-CC2887CA4250}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" ShortID="207753465" Type="SoundFX">
+										<Sound Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" ShortID="207753465" Type="SoundFX">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
@@ -1883,8 +1967,12 @@
 														<Value>200</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 												</Reference>
@@ -1954,7 +2042,13 @@
 								<Folder Name="electrocution" ID="{4B90DE1C-B09B-46B9-BC45-1258AA23F4EB}" ShortID="752264552">
 									<ChildrenList>
 										<Sound Name="trap_wire_triggered" ID="{B311820F-7BAD-4956-AD78-E681BDBCFA23}" ShortID="381498684" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -1985,8 +2079,12 @@
 														<Value>600</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 												</Reference>
@@ -2097,7 +2195,13 @@
 									</ChildrenList>
 								</Folder>
 								<RandomSequenceContainer Name="death voice" ID="{15B39A8B-9692-4C1F-83A1-B7065AA8CCAE}" ShortID="166066420">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2258,32 +2362,6 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="celebrate 1" ID="{EF015FAB-0647-48BC-8974-F8BEB43DF8E4}" ShortID="417684619" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value Platform="Android">False</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin celebrate" ID="{4B16FAB5-A82A-4697-B0AC-A3BBD5835A29}" ShortID="595649065">
-											<Language>SFX</Language>
-											<AudioFile>penguin celebrate.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin celebrate" ID="{4B16FAB5-A82A-4697-B0AC-A3BBD5835A29}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="penguin_placeholder_celebrate_1" ID="{859E8472-6AC5-4E5F-9017-0665D987914A}" ShortID="202078708" Type="SoundFX">
 									<PropertyList>
 										<Property Name="Inclusion" Type="bool">
@@ -2680,6 +2758,7 @@
 												<Value>35</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-3</Value>
@@ -2687,6 +2766,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2712,7 +2794,23 @@
 						<Folder Name="fall + land" ID="{75BCCA92-4706-4619-8891-48B97ADB1F8E}" ShortID="761546221">
 							<ChildrenList>
 								<Sound Name="fall_thump_1" ID="{31C08FD5-DECA-4F17-894B-78C2B4A27535}" ShortID="1046655199" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>25</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2733,44 +2831,14 @@
 										<ActiveSource Name="fall_thump_1" ID="{15C1E2AE-E81E-45BA-B3AC-FE016203C241}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="land" ID="{B46AA1A5-E7E3-444A-8BE2-19F5C08AB169}" ShortID="664504589" Type="SoundFX">
+								<RandomSequenceContainer Name="penguin_edge_fall" ID="{BCF639F2-FAF3-4A8D-B2E9-42BA695DCE22}" ShortID="220759295">
 									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>200</Value>
-											</ValueList>
-										</Property>
 										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Attenuation">
 											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
 										</Reference>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="penguin_placeholder_fall_1" ID="{37EBCA56-DD20-41FE-81E2-D2D6317198FD}" ShortID="180278603">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="3.00398995535713E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.182742722284226"/>
-												<Property Name="TrimBegin" Type="Real64" Value="1.76734742373512"/>
-												<Property Name="TrimEnd" Type="Real64" Value="2.1052962937128"/>
-											</PropertyList>
-											<Language>SFX</Language>
-											<AudioFile>penguin_placeholder_fall_1.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="penguin_placeholder_fall_1" ID="{37EBCA56-DD20-41FE-81E2-D2D6317198FD}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<RandomSequenceContainer Name="penguin_edge_fall" ID="{BCF639F2-FAF3-4A8D-B2E9-42BA695DCE22}" ShortID="220759295">
-									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 										</Reference>
@@ -2791,8 +2859,12 @@
 												<Value>400</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 										</Reference>
@@ -2826,6 +2898,11 @@
 												<Value>45</Value>
 											</ValueList>
 										</Property>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>500</Value>
@@ -2857,8 +2934,12 @@
 												</ModifierInfo>
 											</ModifierList>
 										</Property>
-										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-5</Value>
@@ -2877,205 +2958,7 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="penguin_30" ID="{A4185B4A-1A82-4BC5-9B30-95EE76ABE55A}" ShortID="1067124781" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ModifierList>
-														<ModifierInfo>
-															<Modifier Name="" ID="{A8B0F0BB-DD10-43A8-9FBF-88568DDC0EF1}">
-																<PropertyList>
-																	<Property Name="Enabled" Type="bool" Value="True"/>
-																	<Property Name="Max" Type="Real64" Value="100"/>
-																	<Property Name="Min" Type="Real64" Value="-100"/>
-																</PropertyList>
-															</Modifier>
-														</ModifierInfo>
-													</ModifierList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_30" ID="{09A22A16-9F62-4DB3-81C3-F3A9DDBD69CD}" ShortID="866084732">
-													<Language>SFX</Language>
-													<AudioFile>penguin_30.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_30" ID="{09A22A16-9F62-4DB3-81C3-F3A9DDBD69CD}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="penguin_31" ID="{846FB178-4998-4DF0-B7D9-E2D204065B00}" ShortID="786466690" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_31" ID="{0433382A-01F7-46F9-8667-F0166639C2CE}" ShortID="290686294">
-													<Language>SFX</Language>
-													<AudioFile>penguin_31.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_31" ID="{0433382A-01F7-46F9-8667-F0166639C2CE}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="penguin_33" ID="{ECD54C28-4CA9-4067-A1C3-E4F119456219}" ShortID="639766439" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_33" ID="{83BEF622-00C7-4555-AB02-D0B18C88B22F}" ShortID="55462416">
-													<Language>SFX</Language>
-													<AudioFile>penguin_33.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_33" ID="{83BEF622-00C7-4555-AB02-D0B18C88B22F}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="penguin_32" ID="{6D2BEA84-8810-4EA7-8A02-AA638B038EE1}" ShortID="169069616" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_32" ID="{03ECEC58-9196-42E8-948E-1783AD5EC885}" ShortID="680360679">
-													<Language>SFX</Language>
-													<AudioFile>penguin_32.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_32" ID="{03ECEC58-9196-42E8-948E-1783AD5EC885}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="penguin_34" ID="{7F808A53-5B43-4E3B-BD3A-741177BFF2A4}" ShortID="315192379" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value Platform="Android">False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_34" ID="{0C5D14A7-497D-4E40-B62C-C7F891A08AA0}" ShortID="11513722">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0094970703125"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.066099609375"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>penguin_34.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_34" ID="{0C5D14A7-497D-4E40-B62C-C7F891A08AA0}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="penguin_spawn" ID="{E92CC8DC-673A-4E46-A8A5-D555FB8BD67B}" ShortID="845897895" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="penguin_placeholder_spawn_1" ID="{F48798B8-8629-48D9-83E8-8B7810FFAE56}" ShortID="618426641">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="5.06481352306548E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="6.63030133928571E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.286392182849703"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.5801513671875"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>penguin_placeholder_spawn_1.wav</AudioFile>
-													<ConvertedFileIDList>
-														<File ID="620465349"/>
-													</ConvertedFileIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="penguin_placeholder_spawn_1" ID="{F48798B8-8629-48D9-83E8-8B7810FFAE56}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="penguin_1-06" ID="{EE59383F-70AE-4A46-821C-9A45BD2A89F7}" ShortID="995753112" Type="SoundFX">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
@@ -3105,11 +2988,6 @@
 												<Property Name="Highpass" Type="int16">
 													<ValueList>
 														<Value>45</Value>
-													</ValueList>
-												</Property>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
 													</ValueList>
 												</Property>
 												<Property Name="OverrideAnalysis" Type="bool" Value="True"/>
@@ -3187,11 +3065,6 @@
 										<Sound Name="penguin_1-84" ID="{9D43F886-8B7F-414E-8639-9E1745C4E6DE}" ShortID="310322023" Type="SoundFX">
 											<PropertyList>
 												<Property Name="EnableLoudnessNormalization" Type="bool" Value="True"/>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
 												<Property Name="OverrideAnalysis" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
@@ -3224,11 +3097,6 @@
 										</Sound>
 										<Sound Name="penguin_1-93" ID="{A5D7393F-BB4B-4ED9-9968-E5E65EE0C3F5}" ShortID="728180373" Type="SoundFX">
 											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>5</Value>
@@ -3376,7 +3244,6 @@
 												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
 												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
-												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 												<Property Name="PositioningType" Type="int16" Value="1"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
@@ -3678,7 +3545,6 @@
 												<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
 												<Property Name="PlayMechanismSpecialTransitionsType" Type="int16" Value="3"/>
 												<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.4"/>
-												<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5368,8 +5234,12 @@
 										<Value>500</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5509,8 +5379,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5644,8 +5518,12 @@
 										<Value>400</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5728,8 +5606,12 @@
 										<Value>500</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>

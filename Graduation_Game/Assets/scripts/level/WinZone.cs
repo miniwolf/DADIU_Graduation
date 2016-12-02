@@ -29,6 +29,8 @@ namespace Assets.scripts.level {
 		}
 
 		void Update() {
+
+			// TODO refactor this...
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
 
@@ -83,7 +85,8 @@ namespace Assets.scripts.level {
 
 		private void SetPrefs(int level) {
 			//canvas.EndLevel();			// this thing will be called inside the cutscene after the required time has passed (look in controllers/actions/game/CutScene.cs )
-			Prefs.SetLevelUnlockIndex(level);
+
+			if(Prefs.GetLevelUnlockIndex() < level) Prefs.SetLevelUnlockIndex(level);
 			Inventory.UpdateCount();
 			win = true;
 			canvas.EndLevel();

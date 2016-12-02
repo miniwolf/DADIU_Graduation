@@ -42,10 +42,10 @@
 								</Event>
 								<Event Name="end_screen_count_up" ID="{7AF618E7-7A63-4C16-9C84-33FAAD1FBBCA}">
 									<ChildrenList>
-										<Action Name="Play" ID="{752E80F9-EFA4-4500-81B2-1328A1189BEA}" ShortID="67434628" Type="Play" Scope="One" Global="false">
+										<Action Name="Play" ID="{942A41C8-E607-4E86-822B-4997FB0C2093}" ShortID="656044426" Type="Play" Scope="One" Global="false">
 											<ElementList>
-												<Element ID="{4814FCFD-4AA2-4C2E-BE98-328C227B2670}" Global="false">
-													<ObjectRef Name="end_screen_count_up" ID="{52D37F87-AC18-47E5-BA80-227823211EB7}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												<Element ID="{E53E7B94-E590-47B8-BBF7-6393603C6012}" Global="false">
+													<ObjectRef Name="count_up" ID="{5CE55FF7-A5BE-428C-BF98-3A964C086E75}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -452,7 +452,7 @@
 										<Action Name="Play" ID="{C0DD2B64-D856-47EE-9037-CEA1407B78F2}" ShortID="189238677" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{45B49DB8-7A53-430E-B6CE-D96E81EFA840}" Global="false">
-													<ObjectRef Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -611,10 +611,22 @@
 										<Action Name="Play" ID="{C7EAC3E7-131E-498E-855B-34E36B1009B1}" ShortID="835400336" Type="Play" Scope="One" Global="false">
 											<PropertyList>
 												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{7382C7C8-C90B-49D9-96CA-4E6CFBB12AE3}" Global="false">
 													<ObjectRef Name="slide_end_1" ID="{6952C864-8995-45CC-993C-7249BD7C285B}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{66B3756D-A5B5-4A83-ADD4-6A4DCDBB4C2F}" ShortID="514654458" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{37E5C689-C4AB-4F5B-9CC1-EAAF64CE749E}" Global="false">
+													<ObjectRef Name="penguin_get_up" ID="{327F41EE-714E-4600-BC68-124F652779BE}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -732,22 +744,11 @@
 						</Event>
 						<Folder Name="movement" ID="{9516D0E5-EFD1-4D18-961A-EFC0529023EE}" ShortID="743375049">
 							<ChildrenList>
-								<Event Name="penguin_move_voice_start" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}">
+								<Event Name="penguin_move_voice" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}">
 									<ChildrenList>
 										<Action Name="Play" ID="{63B64291-2795-4AF3-B68B-EE54B3DCD9E1}" ShortID="753322288" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{153A6338-23D6-41DF-9E7D-3A3D68872CDB}" Global="false">
-													<ObjectRef Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="penguin_move_voice_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}">
-									<ChildrenList>
-										<Action Name="Stop" ID="{613C62FE-0F68-4BBC-9CB1-2171774601E2}" ShortID="141479369" Type="Stop" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{0DC77195-0154-4AE3-B941-77CF54B885EE}" Global="false">
 													<ObjectRef Name="voice" ID="{1F855B17-BABA-4984-9A15-9F74CD35E763}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
@@ -803,7 +804,7 @@
 										<Action Name="Play" ID="{BEB34DFB-66D3-440D-BB1E-F7224ECF2B9F}" ShortID="684163466" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{F71FBAF4-7777-49DB-8B70-99DD783D9DD5}" Global="false">
-													<ObjectRef Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -1032,7 +1033,25 @@
 								<Action Name="Post Event" ID="{AF49B540-74C9-483E-B524-E27AE6FF3078}" ShortID="830346611" Type="PlayEvent" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{102A12C8-4322-4B9B-A92F-A6687E94A089}" Global="false">
-											<ObjectRef Name="penguin_move_voice_start" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+											<ObjectRef Name="penguin_move_voice" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="New_Event" ID="{27A2DA7A-D329-4949-85EF-F15AF06B0787}">
+							<ChildrenList>
+								<Action Name="Post Event" ID="{FEDD70A0-4A4B-4105-9ACF-D6AA69166355}" ShortID="431080665" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{24CADD98-708E-4360-9337-F9416DE0020C}" Global="false">
+											<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Post Event" ID="{28B1A8E4-2020-460D-AA39-530E2467CAB7}" ShortID="660393404" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{B07BC043-D24F-4280-99C6-825DB00A8956}" Global="false">
+											<ObjectRef Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 										</Element>
 									</ElementList>
 								</Action>

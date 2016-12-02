@@ -6,7 +6,7 @@ namespace Assets.scripts.UI.mainmenu {
 	public class StarsCollectedCountText : MonoBehaviour {
 		private MainMenuScript.LvlData[] levels;
 
-		private int totalStars;
+		public static int totalStars;
 
 		void Start() {
 			SetAllWonStars();
@@ -15,6 +15,7 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		void SetAllWonStars() {
+			totalStars = 0;
 			levels = GetComponentInParent<MainMenuScript>().levels;
 			for (int i = 0; i < levels.Length; i++) {
 				totalStars += Prefs.GetLevelWonStars(levels[i].sceneFileName);
