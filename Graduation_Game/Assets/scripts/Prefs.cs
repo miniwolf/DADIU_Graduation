@@ -135,6 +135,7 @@ namespace Assets.scripts {
             return PlayerPrefs.GetInt(HATCH_DURATION, DEFAULT_HATCH_DURATION);
         }
 
+        // todo use this method when user buys 2x speed hatching increase
         public static void HatchDurationDecrease() {
             var i = GetHatchDuration() / 2;
             PlayerPrefs.SetInt(HATCH_DURATION, i > 1 ? i : 1);
