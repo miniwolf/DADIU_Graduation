@@ -8,16 +8,19 @@ using Assets.scripts.UI.mainmenu;
 	public class FillImage : MonoBehaviour {
 		public float fillAmountTime = 5f;
 		public static int numOfLvls;
-		public Slider[] sliders = new Slider[numOfLvls - 1];
-		public ParticleSystem[] particleSystems = new ParticleSystem[numOfLvls - 1];
+	    public Slider[] sliders;
+		public ParticleSystem[] particleSystems;
 
 		private float fillAmount;
-		private string[] levelStatusNames = new string[numOfLvls];
+		private string[] levelStatusNames ;
 		private int fillOverTimeIdx;
 		private MainMenuScript.LvlData[] levels;
 
 		void Start() {
 			levels = GetComponent<MainMenuScript>().levels;
+		    sliders = new Slider[numOfLvls - 1];
+		    particleSystems = new ParticleSystem[numOfLvls - 1];
+		    levelStatusNames = new string[numOfLvls];
 		}
 
 		public float GetFillAmountTime() {
@@ -28,7 +31,7 @@ using Assets.scripts.UI.mainmenu;
 		void LateUpdate() {
 			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
 
-			//FillLevelLines(fillOverTimeIdx);
+			FillLevelLines(fillOverTimeIdx);
 
 			if (fillOverTimeIdx > -1) {
 				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
@@ -47,8 +50,8 @@ using Assets.scripts.UI.mainmenu;
 		// Fills the last completed level line over time
 		private void FillOverTime(Slider slider, ParticleSystem ps, float fillTime) {
 			if (Time.timeSinceLevelLoad < fillTime) {
-				float fillAmountChange = Time.deltaTime / fillTime;
-				slider.value += fillAmountChange;
+//				float fillAmountChange = Time.deltaTime / fillTime;
+//				slider.value += fillAmountChange;
 			}
 			else {
 				ps.Play();
