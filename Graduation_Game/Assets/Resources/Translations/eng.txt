@@ -9,7 +9,12 @@ level8;Level 8 EN
 level9;Level 9 EN
 popupNotEnoguhPenguins; Not enough penguins to play the level!
 backsettings; Back
-settings; SETTINGS
+settings; settings
+credits; credits
+sound; sound
+tooltips; help?
+info; info
+language; language
 place; Write here tooltip for placing tool EN
 move; Write here tooltip for moving tool EN
 remove; Write here tooltip for removing tool EN
