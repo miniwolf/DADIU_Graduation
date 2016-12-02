@@ -50,9 +50,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
 
-			if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
+		/*	if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
 				tutorialShown = true;
-			}
+			}*/
 
 			tooltips = GameObject.FindGameObjectsWithTag(TagConstants.TOOLTIP);
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
@@ -274,9 +274,9 @@ namespace Assets.scripts.UI.screen.ingame {
 					TooltipsPlace(); 
 				}
 			}
-			if (!tutorialShown) {
+		/*	if (!tutorialShown) {
 				DismissTutorial(currentObject.tag);
-			}
+			}*/
 
 			ChangeObjColotToOriginal(currentObject);
 			StartCoroutine(CameraHack());
