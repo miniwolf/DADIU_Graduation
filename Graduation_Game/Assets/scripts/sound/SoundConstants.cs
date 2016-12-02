@@ -37,7 +37,7 @@
 		/// </summary>
 		public class FeedbackSounds {
 			public const string JUMP_PLACED = "tool_jump_triggered";
-			public const string CHANGE_LANE_PLACED = "penguin_tool_change_lane_used";
+			public const string CHANGE_LANE_PLACED = "tool_change_lane_placed";
 			public const string BUTTON_PRESS = "button_pressed";
 			public const string END_SCREEN_TRIGGER = "end_screen_spawn";
 			public const string END_SCREEN_SPAWN_STAR = "end_screen_star_spawn";

@@ -5,9 +5,10 @@ using Assets.scripts.components;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using System.Collections;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI {
-	public class CanvasController : ActionableGameEntityImpl<GameActions> {
+	public class CanvasController : ActionableGameEntityImpl<GameActions>, TouchInputListener, MouseInputListener {
 		public float timeBeforeStarSpawn;
 		public float timeBeforeScoreFlow;
 		public float timeBewteenStarSpawn = 2f;
@@ -31,7 +32,8 @@ namespace Assets.scripts.UI {
 		private Text plutoniumCounter;
 		private Text[] plutoniumThisLevel, plutoniumTotal;
 		public Sprite penguinIsDead, key;
-
+		private InputManager inputManager;
+		private GameObject[] tooltips;
 
 		void Awake() {
 			base.Awake();
@@ -50,6 +52,10 @@ namespace Assets.scripts.UI {
 
 		void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
+			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
+			inputManager.SubscribeForMouse(this);
+			inputManager.SubscribeForTouch(this);
+			tooltips = GameObject.FindGameObjectsWithTag(TagConstants.TOOLTIP);
 		}
 
 		void Update () {
@@ -134,6 +140,40 @@ namespace Assets.scripts.UI {
 		}
 		public void SetActiveClickBlocker(bool active){
 			clickBlocker.SetActive(active);
+		}
+			
+		public void CheckTooltips() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Newtool && tooltip.IsActive()) {
+					tooltip.SetNewtool(true);
+					return;
+				}
+			}
+		}
+
+		public void OnTouch(Touch[] allTouches) {
+			CheckTooltips();
+		}
+
+		public void OnMouseRightDown() {
+			CheckTooltips();
+		}
+
+		public void OnMouseRightUp() {
+		}
+
+		public void OnMouseRightPressed() {
+		}
+
+		public void OnMouseLeftDown() {
+			CheckTooltips();
+		}
+
+		public void OnMouseLeftUp() {
+		}
+
+		public void OnMouseLeftPressed() {
 		}
 
 	}

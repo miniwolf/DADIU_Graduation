@@ -6,6 +6,7 @@ using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts {
     public class Prefs {
+		// TODO save status is level has been beat before
 		public const string STATUS = "status";
 		public const string STARS = "stars";
 		public const string SOUND_MASTER = "pref_master_sound";
@@ -13,6 +14,7 @@ namespace Assets.scripts {
 		public const string CURRENT = "current";
 		public const string COMPLETED = "completed";
 		public const string LOCKED = "locked";
+		private const string WON = "won";
 
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
@@ -22,6 +24,14 @@ namespace Assets.scripts {
         private const int TRUE = 1;
         private const int FALSE = 0;
 		private const string TOTALSTARS = "TotalStars";
+		
+		public static void SetCurrentLevelToWon() {
+			PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + WON, 1);
+		}
+
+		public static int GetLevelWonStatus(string levelName) {
+			return PlayerPrefs.GetInt(levelName + WON);
+		}
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
