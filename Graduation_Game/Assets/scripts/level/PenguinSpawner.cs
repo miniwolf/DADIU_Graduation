@@ -107,9 +107,6 @@ namespace Assets.scripts.level {
 				//cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 				yield return new WaitForEndOfFrame();
 			}
-
-
-
 			StartCoroutine(Spawn());
 		}
 
