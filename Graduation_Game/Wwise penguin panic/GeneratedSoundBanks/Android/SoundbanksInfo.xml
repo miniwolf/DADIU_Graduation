@@ -35,26 +35,27 @@
 				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\settings\music\music_state_menu" MaxAttenuation="0.000000"/>
 				<Event Id="2495070883" Name="mute_master" ObjectPath="\Events\Default Work Unit\settings\mute_master" MaxAttenuation="0.000000"/>
 				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\music\mute_music" MaxAttenuation="0.000000"/>
+				<Event Id="3050945240" Name="New_Event" ObjectPath="\Events\Default Work Unit\TEST\New_Event" MaxAttenuation="0.000000"/>
 				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="20.000000"/>
-				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution"/>
-				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator"/>
+				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution" MaxAttenuation="20.000000"/>
+				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator" MaxAttenuation="20.000000"/>
 				<Event Id="540083679" Name="penguin_death_pit_drowning" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_pit_drowning"/>
-				<Event Id="2001381670" Name="penguin_death_spikes" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_spikes"/>
+				<Event Id="2001381670" Name="penguin_death_spikes" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_spikes" MaxAttenuation="20.000000"/>
 				<Event Id="1191246039" Name="penguin_edge_fall" ObjectPath="\Events\Default Work Unit\penguin\penguin_edge_fall" MaxAttenuation="0.000000"/>
-				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up"/>
-				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land"/>
+				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up" MaxAttenuation="20.000000"/>
+				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land" MaxAttenuation="20.000000"/>
 				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move" MaxAttenuation="20.000000"/>
 				<Event Id="3766366598" Name="penguin_move_voice" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice" MaxAttenuation="20.000000"/>
 				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\penguin\penguin_react" MaxAttenuation="20.000000"/>
-				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end"/>
+				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end" MaxAttenuation="20.000000"/>
 				<Event Id="823784186" Name="penguin_slide_loop" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_loop" MaxAttenuation="20.000000"/>
 				<Event Id="2479484064" Name="penguin_slide_takeoff" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_takeoff" MaxAttenuation="20.000000"/>
-				<Event Id="3165641387" Name="penguin_spawn" ObjectPath="\Events\Default Work Unit\penguin\penguin_spawn"/>
-				<Event Id="1037802744" Name="penguin_tool_change_lane_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used"/>
-				<Event Id="2948163585" Name="penguin_tool_jump_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_jump_used"/>
+				<Event Id="3165641387" Name="penguin_spawn" ObjectPath="\Events\Default Work Unit\penguin\penguin_spawn" MaxAttenuation="20.000000"/>
+				<Event Id="1037802744" Name="penguin_tool_change_lane_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used" MaxAttenuation="20.000000"/>
+				<Event Id="2948163585" Name="penguin_tool_jump_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_jump_used" MaxAttenuation="20.000000"/>
 				<Event Id="3054427212" Name="pickup_add_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_add_to_score"/>
-				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency"/>
-				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score"/>
+				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency" MaxAttenuation="20.000000"/>
+				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score" MaxAttenuation="20.000000"/>
 				<Event Id="926172193" Name="play_sawblade" ObjectPath="\Events\Default Work Unit\TEST\play_sawblade" MaxAttenuation="0.000000"/>
 				<Event Id="3715428614" Name="seal_death_electrocution" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_electrocution"/>
 				<Event Id="913448855" Name="seal_death_excavator" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_excavator"/>
@@ -78,7 +79,7 @@
 				<Event Id="1822983891" Name="trap_pit_trash_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_pit_trash_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="3443752665" Name="trap_wall_spikes_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="2376935833" Name="trap_wire_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_loop"/>
-				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered"/>
+				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered" MaxAttenuation="20.000000"/>
 				<Event Id="1242989296" Name="unmute_master" ObjectPath="\Events\Default Work Unit\settings\unmute_master" MaxAttenuation="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
@@ -172,7 +173,7 @@
 				</File>
 				<File Id="265097741" Language="SFX">
 					<ShortName>coins_pickup_1.wav</ShortName>
-					<Path>SFX\coins_pickup_1_FC1E1682.wem</Path>
+					<Path>SFX\coins_pickup_1_671A49FC.wem</Path>
 				</File>
 				<File Id="268160669" Language="SFX">
 					<ShortName>footstep_snow_9.wav</ShortName>

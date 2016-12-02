@@ -44,6 +44,7 @@
 						<ObjectRef Name="tool_jump_triggered" ID="{DABF1B46-9533-48C7-B947-A7D967F6D56B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="New_Event" ID="{27A2DA7A-D329-4949-85EF-F15AF06B0787}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_death_pit_drowning" ID="{25F0AB86-ED92-498D-BCCD-8BA43586102D}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_death_excavator" ID="{AA1BFFAE-CCE8-4A4F-BB41-30B65D7B5EE6}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_death_spikes" ID="{D12A20EE-E9D9-4A7E-AB32-9DA13952D5CF}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>

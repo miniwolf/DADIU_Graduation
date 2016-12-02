@@ -12,6 +12,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		private bool isFalling;
 	    private CouroutineDelegateHandler delegator;
 	    private bool movementBlocked;
+		private const int layerMask = 1 << 8;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -40,14 +41,20 @@ namespace Assets.scripts.controllers.actions.movement {
 				actionable.ExecuteAction(ControllableActions.StopJump);
 			}
 
-			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 0.5f)) {
-				isFalling = true;
-				actionable.ExecuteAction(ControllableActions.PenguinFall);
+			//Debug.DrawRay(characterController.gameObject.transform.position, -Vector3.up * 0.45f, Color.red, 10000);
+			// if penguin is not hitting the ground (i.e. penguin is in the air) and it wasn't falling before,
+			// is it falling now
+			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 0.45f, layerMask)) {
+				if ( !isFalling ) {
+					actionable.ExecuteAction(ControllableActions.PenguinFall);
+					isFalling = true;
+				}
 			} else {
 				if (isFalling) {
+					movementBlocked = true;
 					actionable.ExecuteAction(ControllableActions.PenguinStopFall);
 					isFalling = false;
-//				    delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+				    delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
 				}
 			}
 
@@ -62,8 +69,6 @@ namespace Assets.scripts.controllers.actions.movement {
         /// </summary>
         /// <returns></returns>
 	    IEnumerator BlockMovementWhileFallAnimationFinishes() {
-	        yield return new WaitForSeconds(0.3f);
-	        movementBlocked = true;
 	        yield return new WaitForSeconds(1f);
 	        movementBlocked = false;
 	    }
