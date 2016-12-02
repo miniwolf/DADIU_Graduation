@@ -9,7 +9,7 @@ public class WeightBasedKilling : MonoBehaviour {
 		if (other.tag != TagConstants.PENGUIN) {
 			return;
 		}
-		other.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguingByWeightBased);
+		other.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.KillPenguinByWater);
 		other.transform.position = new Vector3(other.transform.position.x, other.transform.position.y - 4f, other.transform.position.z);
 		//other.gameObject.SetActive(false);
 		//other.gameObject.GetComponent<CharacterController>().center = new Vector3(other.transform.position.x, other.transform.position.y - 4f, other.transform.position.z);
