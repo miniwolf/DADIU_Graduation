@@ -24,6 +24,7 @@
 				<Event Id="27047464" Name="airplane_loop" ObjectPath="\Events\Default Work Unit\SFXs\3D objects\airplane_loop"/>
 				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\ui\button_pressed"/>
 				<Event Id="3430637553" Name="egg_hatching" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatching"/>
+				<Event Id="3508380305" Name="end_screen_count_up" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\end_screen_count_up"/>
 				<Event Id="3375059786" Name="end_screen_pickup_count" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_pickup_count"/>
 				<Event Id="2088991191" Name="end_screen_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_spawn"/>
 				<Event Id="1995024202" Name="end_screen_star_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_star_spawn"/>
@@ -34,27 +35,27 @@
 				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\settings\music\music_state_menu" MaxAttenuation="0.000000"/>
 				<Event Id="2495070883" Name="mute_master" ObjectPath="\Events\Default Work Unit\settings\mute_master" MaxAttenuation="0.000000"/>
 				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\music\mute_music" MaxAttenuation="0.000000"/>
+				<Event Id="3050945240" Name="New_Event" ObjectPath="\Events\Default Work Unit\TEST\New_Event" MaxAttenuation="0.000000"/>
 				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="25.000000"/>
-				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution"/>
+				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution" MaxAttenuation="25.000000"/>
 				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator"/>
-				<Event Id="540083679" Name="penguin_death_pit_drowning" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_pit_drowning"/>
-				<Event Id="2001381670" Name="penguin_death_spikes" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_spikes"/>
+				<Event Id="540083679" Name="penguin_death_pit_drowning" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_pit_drowning" MaxAttenuation="25.000000"/>
+				<Event Id="2001381670" Name="penguin_death_spikes" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_spikes" MaxAttenuation="25.000000"/>
 				<Event Id="1191246039" Name="penguin_edge_fall" ObjectPath="\Events\Default Work Unit\penguin\penguin_edge_fall" MaxAttenuation="0.000000"/>
-				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up"/>
-				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land"/>
+				<Event Id="554915610" Name="penguin_get_up" ObjectPath="\Events\Default Work Unit\penguin\penguin_get_up" MaxAttenuation="25.000000"/>
+				<Event Id="3876505889" Name="penguin_land" ObjectPath="\Events\Default Work Unit\penguin\penguin_land" MaxAttenuation="25.000000"/>
 				<Event Id="1767969117" Name="penguin_move" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move" MaxAttenuation="25.000000"/>
-				<Event Id="2528420815" Name="penguin_move_voice_start" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice_start" MaxAttenuation="25.000000"/>
-				<Event Id="3050359637" Name="penguin_move_voice_stop" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice_stop" MaxAttenuation="0.000000"/>
+				<Event Id="3766366598" Name="penguin_move_voice" ObjectPath="\Events\Default Work Unit\penguin\movement\penguin_move_voice" MaxAttenuation="25.000000"/>
 				<Event Id="3746285319" Name="penguin_react" ObjectPath="\Events\Default Work Unit\penguin\penguin_react" MaxAttenuation="25.000000"/>
 				<Event Id="3727230871" Name="penguin_slide_end" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_end" MaxAttenuation="25.000000"/>
 				<Event Id="823784186" Name="penguin_slide_loop" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_loop" MaxAttenuation="25.000000"/>
 				<Event Id="2479484064" Name="penguin_slide_takeoff" ObjectPath="\Events\Default Work Unit\penguin\slide\penguin_slide_takeoff" MaxAttenuation="25.000000"/>
-				<Event Id="3165641387" Name="penguin_spawn" ObjectPath="\Events\Default Work Unit\penguin\penguin_spawn"/>
-				<Event Id="1037802744" Name="penguin_tool_change_lane_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used"/>
-				<Event Id="2948163585" Name="penguin_tool_jump_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_jump_used"/>
+				<Event Id="3165641387" Name="penguin_spawn" ObjectPath="\Events\Default Work Unit\penguin\penguin_spawn" MaxAttenuation="25.000000"/>
+				<Event Id="1037802744" Name="penguin_tool_change_lane_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used" MaxAttenuation="25.000000"/>
+				<Event Id="2948163585" Name="penguin_tool_jump_used" ObjectPath="\Events\Default Work Unit\penguin\Interactions\penguin_tool_jump_used" MaxAttenuation="25.000000"/>
 				<Event Id="3054427212" Name="pickup_add_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_add_to_score"/>
-				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency"/>
-				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score"/>
+				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency" MaxAttenuation="25.000000"/>
+				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score" MaxAttenuation="25.000000"/>
 				<Event Id="926172193" Name="play_sawblade" ObjectPath="\Events\Default Work Unit\TEST\play_sawblade" MaxAttenuation="0.000000"/>
 				<Event Id="3715428614" Name="seal_death_electrocution" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_electrocution"/>
 				<Event Id="913448855" Name="seal_death_excavator" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_excavator"/>
@@ -73,26 +74,22 @@
 				<Event Id="65816966" Name="tool_picked_up" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_picked_up" MaxAttenuation="25.000000"/>
 				<Event Id="2677805925" Name="tool_returned_to_toolbar" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar"/>
 				<Event Id="2487352075" Name="trap_excavator_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_loop"/>
-				<Event Id="1336860092" Name="trap_excavator_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_triggered"/>
+				<Event Id="1336860092" Name="trap_excavator_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="959070942" Name="trap_pit_spikes_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_pit_spikes_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="1822983891" Name="trap_pit_trash_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_pit_trash_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="3443752665" Name="trap_wall_spikes_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wall_spikes_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="2376935833" Name="trap_wire_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_loop"/>
-				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered"/>
+				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered" MaxAttenuation="25.000000"/>
 				<Event Id="1242989296" Name="unmute_master" ObjectPath="\Events\Default Work Unit\settings\unmute_master" MaxAttenuation="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="6671893" Language="SFX">
-					<ShortName>footstep_snow_10.wav</ShortName>
-					<Path>SFX\footstep_snow_10_6466CEE7.wem</Path>
-				</File>
 				<File Id="9698731" Language="SFX">
 					<ShortName>penguin_1-26.wav</ShortName>
 					<Path>SFX\penguin_1-26_70A67862.wem</Path>
 				</File>
-				<File Id="25802924" Language="SFX">
-					<ShortName>footsteps_sandy_7.wav</ShortName>
-					<Path>SFX\footsteps_sandy_7_0B77C92B.wem</Path>
+				<File Id="9925069" Language="SFX">
+					<ShortName>footstep_snow_10.wav</ShortName>
+					<Path>SFX\footstep_snow_10_2B0D3A67.wem</Path>
 				</File>
 				<File Id="27554006" Language="SFX">
 					<ShortName>star spawn.wav</ShortName>
@@ -100,7 +97,11 @@
 				</File>
 				<File Id="41600899" Language="SFX">
 					<ShortName>takeoff_1.wav</ShortName>
-					<Path>SFX\takeoff_1_50DB02DB.wem</Path>
+					<Path>SFX\takeoff_1_0EEECE5B.wem</Path>
+				</File>
+				<File Id="49555082" Language="SFX">
+					<ShortName>metal_hit_1.wav</ShortName>
+					<Path>SFX\metal_hit_1_3DA171AB.wem</Path>
 				</File>
 				<File Id="52665981" Language="SFX">
 					<ShortName>penguin_1-32.wav</ShortName>
@@ -108,23 +109,19 @@
 				</File>
 				<File Id="54736795" Language="SFX">
 					<ShortName>penguin_1-55.wav</ShortName>
-					<Path>SFX\penguin_1-55_EE539584.wem</Path>
-				</File>
-				<File Id="65922487" Language="SFX">
-					<ShortName>fall_thump_1.wav</ShortName>
-					<Path>SFX\fall_thump_1_50DB02DB.wem</Path>
+					<Path>SFX\penguin_1-55_4B1ED904.wem</Path>
 				</File>
 				<File Id="74584646" Language="SFX">
 					<ShortName>penguin_1-70.wav</ShortName>
 					<Path>SFX\penguin_1-70_BE257E1A.wem</Path>
 				</File>
-				<File Id="103571485" Language="SFX">
-					<ShortName>footstep_snow_2.wav</ShortName>
-					<Path>SFX\footstep_snow_2_A5823369.wem</Path>
+				<File Id="111271082" Language="SFX">
+					<ShortName>footstep_snow_3.wav</ShortName>
+					<Path>SFX\footstep_snow_3_02CFDC72.wem</Path>
 				</File>
-				<File Id="111494442" Language="SFX">
-					<ShortName>footstep_snow_5.wav</ShortName>
-					<Path>SFX\footstep_snow_5_ECF9BDE7.wem</Path>
+				<File Id="119830766" Language="SFX">
+					<ShortName>footsteps_sandy_11.wav</ShortName>
+					<Path>SFX\footsteps_sandy_11_562DB1BB.wem</Path>
 				</File>
 				<File Id="137583611" Language="SFX">
 					<ShortName>penguin_1-95.wav</ShortName>
@@ -132,19 +129,11 @@
 				</File>
 				<File Id="139452654" Language="SFX">
 					<ShortName>penguin_1-01.wav</ShortName>
-					<Path>SFX\penguin_1-01_50DB02DB.wem</Path>
+					<Path>SFX\penguin_1-01_0EEECE5B.wem</Path>
 				</File>
 				<File Id="152403861" Language="SFX">
 					<ShortName>penguin_1-94.wav</ShortName>
-					<Path>SFX\penguin_1-94_6D096DC9.wem</Path>
-				</File>
-				<File Id="197931819" Language="SFX">
-					<ShortName>footsteps_sandy_6.wav</ShortName>
-					<Path>SFX\footsteps_sandy_6_26875E4F.wem</Path>
-				</File>
-				<File Id="202733313" Language="SFX">
-					<ShortName>footsteps_sandy_5.wav</ShortName>
-					<Path>SFX\footsteps_sandy_5_0140617D.wem</Path>
+					<Path>SFX\penguin_1-94_4CE1BC49.wem</Path>
 				</File>
 				<File Id="203007558" Language="SFX">
 					<ShortName>68969__abel-k__tumble-dryer.wav</ShortName>
@@ -158,53 +147,61 @@
 					<ShortName>penguin_1-92.wav</ShortName>
 					<Path>SFX\penguin_1-92_9E047421.wem</Path>
 				</File>
-				<File Id="245969063" Language="SFX">
-					<ShortName>footsteps_sandy_2.wav</ShortName>
-					<Path>SFX\footsteps_sandy_2_AB7F3BA4.wem</Path>
+				<File Id="252903507" Language="SFX">
+					<ShortName>penguin_1-06.wav</ShortName>
+					<Path>SFX\penguin_1-06_3A6C073B.wem</Path>
 				</File>
-				<File Id="268160669" Language="SFX">
-					<ShortName>footstep_snow_9.wav</ShortName>
-					<Path>SFX\footstep_snow_9_C16BB148.wem</Path>
+				<File Id="265097741" Language="SFX">
+					<ShortName>coins_pickup_1.wav</ShortName>
+					<Path>SFX\coins_pickup_1_671A49FC.wem</Path>
 				</File>
 				<File Id="271193230" Language="SFX">
 					<ShortName>end screen spawn.wav</ShortName>
 					<Path>SFX\end screen spawn_50DB02DB.wem</Path>
 				</File>
-				<File Id="281520412" Language="SFX">
-					<ShortName>penguin_1-82.wav</ShortName>
-					<Path>SFX\penguin_1-82_5FF7E33C.wem</Path>
-				</File>
 				<File Id="282876768" Language="SFX">
 					<ShortName>penguin_1-73.wav</ShortName>
-					<Path>SFX\penguin_1-73_216CD1F5.wem</Path>
+					<Path>SFX\penguin_1-73_9EEB4575.wem</Path>
 				</File>
 				<File Id="293884826" Language="SFX">
 					<ShortName>penguin_1-24.wav</ShortName>
 					<Path>SFX\penguin_1-24_706A9764.wem</Path>
 				</File>
+				<File Id="311395350" Language="SFX">
+					<ShortName>footsteps_sandy_7.wav</ShortName>
+					<Path>SFX\footsteps_sandy_7_A6495CAB.wem</Path>
+				</File>
+				<File Id="320698882" Language="SFX">
+					<ShortName>footsteps_sandy_3.wav</ShortName>
+					<Path>SFX\footsteps_sandy_3_0BAF1E3E.wem</Path>
+				</File>
+				<File Id="326441011" Language="SFX">
+					<ShortName>penguin_1-84.wav</ShortName>
+					<Path>SFX\penguin_1-84_37C9A822.wem</Path>
+				</File>
 				<File Id="329966517" Language="SFX">
 					<ShortName>penguin_1-57.wav</ShortName>
 					<Path>SFX\penguin_1-57_B5255A9A.wem</Path>
 				</File>
-				<File Id="340551335" Language="SFX">
-					<ShortName>footsteps_sandy_8.wav</ShortName>
-					<Path>SFX\footsteps_sandy_8_31F75936.wem</Path>
-				</File>
 				<File Id="356380210" Language="SFX">
 					<ShortName>penguin_1-20.wav</ShortName>
-					<Path>SFX\penguin_1-20_4738D64C.wem</Path>
+					<Path>SFX\penguin_1-20_2350A0CC.wem</Path>
 				</File>
 				<File Id="361774416" Language="SFX">
 					<ShortName>count.wav</ShortName>
 					<Path>SFX\count_50DB02DB.wem</Path>
 				</File>
-				<File Id="362420559" Language="SFX">
+				<File Id="405912414" Language="SFX">
 					<ShortName>footstep_snow_6.wav</ShortName>
-					<Path>SFX\footstep_snow_6_16351958.wem</Path>
+					<Path>SFX\footstep_snow_6_24E3B4D8.wem</Path>
 				</File>
 				<File Id="408013043" Language="SFX">
 					<ShortName>jump_picked_up_1.wav</ShortName>
 					<Path>SFX\jump_picked_up_1_50DB02DB.wem</Path>
+				</File>
+				<File Id="410439018" Language="SFX">
+					<ShortName>penguin_1-93.wav</ShortName>
+					<Path>SFX\penguin_1-93_EE9AABE4.wem</Path>
 				</File>
 				<File Id="413066254" Language="SFX">
 					<ShortName>penguin_1-69.wav</ShortName>
@@ -214,21 +211,37 @@
 					<ShortName>machine_loop_1.wav</ShortName>
 					<Path>SFX\machine_loop_1_0CDD8189.wem</Path>
 				</File>
+				<File Id="438116259" Language="SFX">
+					<ShortName>footstep_snow_9.wav</ShortName>
+					<Path>SFX\footstep_snow_9_6F701BC8.wem</Path>
+				</File>
 				<File Id="438721072" Language="SFX">
 					<ShortName>penguin_1-79.wav</ShortName>
 					<Path>SFX\penguin_1-79_52EE09EC.wem</Path>
-				</File>
-				<File Id="445560858" Language="SFX">
-					<ShortName>footsteps_sandy_3.wav</ShortName>
-					<Path>SFX\footsteps_sandy_3_5A789CBE.wem</Path>
 				</File>
 				<File Id="455439121" Language="SFX">
 					<ShortName>penguin_1-47.wav</ShortName>
 					<Path>SFX\penguin_1-47_3E575407.wem</Path>
 				</File>
+				<File Id="463976203" Language="SFX">
+					<ShortName>footstep_snow_5.wav</ShortName>
+					<Path>SFX\footstep_snow_5_45DA9D67.wem</Path>
+				</File>
+				<File Id="475400443" Language="SFX">
+					<ShortName>fall_thump_1.wav</ShortName>
+					<Path>SFX\fall_thump_1_0EEECE5B.wem</Path>
+				</File>
 				<File Id="478417502" Language="SFX">
 					<ShortName>penguin_1-90.wav</ShortName>
 					<Path>SFX\penguin_1-90_A8C67BCB.wem</Path>
+				</File>
+				<File Id="479214609" Language="SFX">
+					<ShortName>footsteps_sandy_4.wav</ShortName>
+					<Path>SFX\footsteps_sandy_4_966F077F.wem</Path>
+				</File>
+				<File Id="484274912" Language="SFX">
+					<ShortName>footsteps_sandy_8.wav</ShortName>
+					<Path>SFX\footsteps_sandy_8_F6B946B6.wem</Path>
 				</File>
 				<File Id="511891279" Language="SFX">
 					<ShortName>362993__outdoor-recordings__saw-a-branch.wav</ShortName>
@@ -236,7 +249,7 @@
 				</File>
 				<File Id="513194388" Language="SFX">
 					<ShortName>penguin_placeholder_splat_1.wav</ShortName>
-					<Path>SFX\penguin_placeholder_splat_1_50DB02DB.wem</Path>
+					<Path>SFX\penguin_placeholder_splat_1_0EEECE5B.wem</Path>
 				</File>
 				<File Id="516475863" Language="SFX">
 					<ShortName>penguin_1-82.wav</ShortName>
@@ -254,9 +267,13 @@
 					<ShortName>penguin_1-23.wav</ShortName>
 					<Path>SFX\penguin_1-23_08814749.wem</Path>
 				</File>
+				<File Id="562139762" Language="SFX">
+					<ShortName>footsteps_sandy_2.wav</ShortName>
+					<Path>SFX\footsteps_sandy_2_7B261624.wem</Path>
+				</File>
 				<File Id="566192766" Language="SFX">
 					<ShortName>penguin_1-29.wav</ShortName>
-					<Path>SFX\penguin_1-29_772BEC85.wem</Path>
+					<Path>SFX\penguin_1-29_CD245205.wem</Path>
 				</File>
 				<File Id="573858228" Language="SFX">
 					<ShortName>stone_place_1.wav</ShortName>
@@ -272,47 +289,63 @@
 				</File>
 				<File Id="605879954" Language="SFX">
 					<ShortName>penguin_1-56.wav</ShortName>
-					<Path>SFX\penguin_1-56_EECB0EF6.wem</Path>
+					<Path>SFX\penguin_1-56_B2CD2E76.wem</Path>
+				</File>
+				<File Id="613300534" Language="SFX">
+					<ShortName>footsteps_sandy_10.wav</ShortName>
+					<Path>SFX\footsteps_sandy_10_13FCDB32.wem</Path>
 				</File>
 				<File Id="625430449" Language="SFX">
 					<ShortName>penguin_1-74.wav</ShortName>
 					<Path>SFX\penguin_1-74_1A6646C4.wem</Path>
 				</File>
-				<File Id="651191199" Language="SFX">
-					<ShortName>footstep_snow_1.wav</ShortName>
-					<Path>SFX\footstep_snow_1_96A6D7CC.wem</Path>
+				<File Id="636535367" Language="SFX">
+					<ShortName>footstep_snow_7.wav</ShortName>
+					<Path>SFX\footstep_snow_7_B17E8171.wem</Path>
+				</File>
+				<File Id="652108364" Language="SFX">
+					<ShortName>footsteps_sandy_9.wav</ShortName>
+					<Path>SFX\footsteps_sandy_9_2EE1A9B3.wem</Path>
 				</File>
 				<File Id="654747720" Language="SFX">
 					<ShortName>splat_8.wav</ShortName>
-					<Path>SFX\splat_8_FFB9B7BC.wem</Path>
-				</File>
-				<File Id="685779834" Language="SFX">
-					<ShortName>footsteps_sandy_9.wav</ShortName>
-					<Path>SFX\footsteps_sandy_9_4731DC33.wem</Path>
+					<Path>SFX\splat_8_DA78823C.wem</Path>
 				</File>
 				<File Id="691344409" Language="SFX">
 					<ShortName>penguin_1-09.wav</ShortName>
 					<Path>SFX\penguin_1-09_8B09CF22.wem</Path>
 				</File>
+				<File Id="715128773" Language="SFX">
+					<ShortName>footstep_snow_1.wav</ShortName>
+					<Path>SFX\footstep_snow_1_7842934C.wem</Path>
+				</File>
 				<File Id="723586134" Language="SFX">
 					<ShortName>slide_loop_1.wav</ShortName>
-					<Path>SFX\slide_loop_1_0CDD8189.wem</Path>
+					<Path>SFX\slide_loop_1_BA19D509.wem</Path>
 				</File>
 				<File Id="727100169" Language="SFX">
 					<ShortName>jump_triggered_3.wav</ShortName>
 					<Path>SFX\jump_triggered_3_C848D418.wem</Path>
 				</File>
-				<File Id="731587138" Language="SFX">
-					<ShortName>footstep_snow_7.wav</ShortName>
-					<Path>SFX\footstep_snow_7_3BF1E8F1.wem</Path>
+				<File Id="729270959" Language="SFX">
+					<ShortName>footstep_snow_8.wav</ShortName>
+					<Path>SFX\footstep_snow_8_44907DFE.wem</Path>
 				</File>
 				<File Id="732152079" Language="SFX">
 					<ShortName>egg hatch.wav</ShortName>
 					<Path>SFX\egg hatch_50DB02DB.wem</Path>
 				</File>
+				<File Id="756548192" Language="SFX">
+					<ShortName>footstep_snow_2.wav</ShortName>
+					<Path>SFX\footstep_snow_2_2FEAB0E9.wem</Path>
+				</File>
 				<File Id="760545146" Language="SFX">
 					<ShortName>electrocution_placeholder_1.wav</ShortName>
-					<Path>SFX\electrocution_placeholder_1_A5BFB527.wem</Path>
+					<Path>SFX\electrocution_placeholder_1_3C0AB9A7.wem</Path>
+				</File>
+				<File Id="760949728" Language="SFX">
+					<ShortName>footsteps_sandy_1.wav</ShortName>
+					<Path>SFX\footsteps_sandy_1_7859E10A.wem</Path>
 				</File>
 				<File Id="779633413" Language="SFX">
 					<ShortName>electricity_loop_1.wav</ShortName>
@@ -321,10 +354,6 @@
 				<File Id="792893285" Language="SFX">
 					<ShortName>penguin_1-25.wav</ShortName>
 					<Path>SFX\penguin_1-25_FCB57E95.wem</Path>
-				</File>
-				<File Id="798404511" Language="SFX">
-					<ShortName>footsteps_sandy_4.wav</ShortName>
-					<Path>SFX\footsteps_sandy_4_D263E3FF.wem</Path>
 				</File>
 				<File Id="801272023" Language="SFX">
 					<ShortName>menu_click_1.wav</ShortName>
@@ -342,9 +371,9 @@
 					<ShortName>pp_2.wav</ShortName>
 					<Path>SFX\pp_2_0CDD8189.wem</Path>
 				</File>
-				<File Id="830153551" Language="SFX">
-					<ShortName>footsteps_sandy_11.wav</ShortName>
-					<Path>SFX\footsteps_sandy_11_BFCE6E3B.wem</Path>
+				<File Id="824157448" Language="SFX">
+					<ShortName>footsteps_sandy_6.wav</ShortName>
+					<Path>SFX\footsteps_sandy_6_2B541CCF.wem</Path>
 				</File>
 				<File Id="831917530" Language="SFX">
 					<ShortName>seal_placeholder_1.wav</ShortName>
@@ -352,7 +381,7 @@
 				</File>
 				<File Id="851894782" Language="SFX">
 					<ShortName>penguin_1-67.wav</ShortName>
-					<Path>SFX\penguin_1-67_72AEF416.wem</Path>
+					<Path>SFX\penguin_1-67_A9C80496.wem</Path>
 				</File>
 				<File Id="853971576" Language="SFX">
 					<ShortName>penguin_1-13.wav</ShortName>
@@ -364,55 +393,39 @@
 				</File>
 				<File Id="936568890" Language="SFX">
 					<ShortName>penguin_1-45.wav</ShortName>
-					<Path>SFX\penguin_1-45_3B671162.wem</Path>
+					<Path>SFX\penguin_1-45_17D806E2.wem</Path>
 				</File>
-				<File Id="964987848" Language="SFX">
-					<ShortName>slide_end_1.wav</ShortName>
-					<Path>SFX\slide_end_1_50DB02DB.wem</Path>
+				<File Id="946178386" Language="SFX">
+					<ShortName>penguin_1-08.wav</ShortName>
+					<Path>SFX\penguin_1-08_B078762F.wem</Path>
 				</File>
 				<File Id="967158891" Language="SFX">
 					<ShortName>bought currency.wav</ShortName>
 					<Path>SFX\bought currency_50DB02DB.wem</Path>
 				</File>
-				<File Id="972240149" Language="SFX">
-					<ShortName>footstep_snow_3.wav</ShortName>
-					<Path>SFX\footstep_snow_3_6A2893F2.wem</Path>
+				<File Id="982877978" Language="SFX">
+					<ShortName>footsteps_sandy_5.wav</ShortName>
+					<Path>SFX\footsteps_sandy_5_A1FB01FD.wem</Path>
 				</File>
 				<File Id="985916953" Language="SFX">
 					<ShortName>penguin_1-18.wav</ShortName>
-					<Path>SFX\penguin_1-18_9120D873.wem</Path>
-				</File>
-				<File Id="994106824" Language="SFX">
-					<ShortName>footsteps_sandy_10.wav</ShortName>
-					<Path>SFX\footsteps_sandy_10_7B92F8B2.wem</Path>
+					<Path>SFX\penguin_1-18_9839C9F3.wem</Path>
 				</File>
 				<File Id="1011777235" Language="SFX">
 					<ShortName>penguin_1-12.wav</ShortName>
-					<Path>SFX\penguin_1-12_6E56EDE2.wem</Path>
-				</File>
-				<File Id="1019648337" Language="SFX">
-					<ShortName>footsteps_sandy_1.wav</ShortName>
-					<Path>SFX\footsteps_sandy_1_C4FDFA8A.wem</Path>
+					<Path>SFX\penguin_1-12_45676C62.wem</Path>
 				</File>
 				<File Id="1020207197" Language="SFX">
 					<ShortName>metal_hit_1.wav</ShortName>
 					<Path>SFX\metal_hit_1_B9C3832B.wem</Path>
 				</File>
-				<File Id="1031592355" Language="SFX">
-					<ShortName>penguin_1-85.wav</ShortName>
-					<Path>SFX\penguin_1-85_5F011289.wem</Path>
-				</File>
 				<File Id="1044733289" Language="SFX">
 					<ShortName>penguin_1-27.wav</ShortName>
-					<Path>SFX\penguin_1-27_756DEFF0.wem</Path>
+					<Path>SFX\penguin_1-27_537E8D70.wem</Path>
 				</File>
 				<File Id="1052706332" Language="SFX">
 					<ShortName>penguin_placeholder_drowning_bubble_1.wav</ShortName>
-					<Path>SFX\penguin_placeholder_drowning_bubble_1_50DB02DB.wem</Path>
-				</File>
-				<File Id="1060082749" Language="SFX">
-					<ShortName>footstep_snow_8.wav</ShortName>
-					<Path>SFX\footstep_snow_8_ADDD427E.wem</Path>
+					<Path>SFX\penguin_placeholder_drowning_bubble_1_0EEECE5B.wem</Path>
 				</File>
 				<File Id="1067271198" Language="SFX">
 					<ShortName>penguin_1-83.wav</ShortName>

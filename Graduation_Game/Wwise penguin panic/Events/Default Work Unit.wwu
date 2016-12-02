@@ -234,6 +234,13 @@
 								<Event Name="trap_excavator_triggered" ID="{5C80BEA3-B21D-413F-9ED6-FD581809BAB1}">
 									<ChildrenList>
 										<Action Name="Play" ID="{EB88D0E8-ABD3-4495-ADED-93849E99C65C}" ShortID="249654247" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{460765C3-73F2-4613-88ED-DD951F541E7E}" Global="false">
 													<ObjectRef Name="trap_excavator_triggered" ID="{05BAA935-0D6E-47FB-BCC8-278AFF7BF0B0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
@@ -486,6 +493,13 @@
 												</Element>
 											</ElementList>
 										</Action>
+										<Action Name="Play" ID="{13907F29-A23D-49EA-83AB-B8559CB75A80}" ShortID="423386788" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{41155E37-1954-4893-90A8-4D0CEEF056AB}" Global="false">
+													<ObjectRef Name="trap_excavator_triggered" ID="{05BAA935-0D6E-47FB-BCC8-278AFF7BF0B0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
 									</ChildrenList>
 								</Event>
 								<Event Name="penguin_death_electrocution" ID="{322CC1D4-84ED-435B-96AF-A16AD3331A35}">
@@ -681,16 +695,6 @@
 						</Event>
 						<Event Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}">
 							<ChildrenList>
-								<Action Name="Stop" ID="{D921784E-45BA-4EFE-8A6D-767939F56781}" ShortID="397685936" Type="Stop" Scope="One" Global="false">
-									<PropertyList>
-										<Property Name="FadeTime" Type="Real64" Value="0.1"/>
-									</PropertyList>
-									<ElementList>
-										<Element ID="{62F9F142-661F-426C-95F5-07D12CC48B83}" Global="false">
-											<ObjectRef Name="penguin_edge_fall1" ID="{FB0841DE-63A3-44F9-ADA7-2B88AEA25188}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
 								<Action Name="Play" ID="{DBBD5027-9AA6-4E5C-9F44-A6F437E46341}" ShortID="690966786" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{778157F0-FB11-4E69-85A1-35C5B3BCD471}" Global="false">
