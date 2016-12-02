@@ -42,6 +42,7 @@ namespace Assets.scripts.character {
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
 		Vector3 screenPoint;
+		private bool doubleJump = false;
 
 	    void Start() {
 			groundY = transform.position.y;
@@ -208,6 +209,14 @@ namespace Assets.scripts.character {
 
 	    public bool GetJump() {
 			return jump;
+		}
+
+		public bool GetDoubleJump(){
+			return doubleJump;
+		}
+
+		public void SetDoubleJump(bool doubleJump){
+			this.doubleJump = doubleJump;
 		}
 
 		public float GetGroundY() {

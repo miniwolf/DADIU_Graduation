@@ -7,6 +7,7 @@ namespace Assets.scripts.tools {
 		protected void OnTriggerStay(Collider collision) {
 			if ( collision.tag == TagConstants.PENGUIN ) {
 				collision.gameObject.GetComponent<Actionable<ControllableActions>>().ExecuteAction(ControllableActions.StartJump);
+				transform.parent.GetComponentInChildren<Animator>().SetBool("spring", true);
 			}
 		}
 	}
