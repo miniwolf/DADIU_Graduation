@@ -18,6 +18,7 @@ using Assets.scripts.UI.mainmenu;
 
 		void Start() {
 			levels = GetComponent<MainMenuScript>().levels;
+			print(numOfLvls);
 		    sliders = new Slider[numOfLvls - 1];
 		    particleSystems = new ParticleSystem[numOfLvls - 1];
 		    levelStatusNames = new string[numOfLvls];
@@ -34,7 +35,7 @@ using Assets.scripts.UI.mainmenu;
 			FillLevelLines(fillOverTimeIdx);
 
 			if (fillOverTimeIdx > -1) {
-				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+			//	FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 
