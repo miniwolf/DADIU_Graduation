@@ -30,7 +30,7 @@ namespace Assets.scripts.level {
 		private List<GameObject> penguins = new List<GameObject>();
 
 		void Start() {
-			Prefs.SetTooltips(1); // DELETE THIS, ONLY FOR TESTING
+			//Prefs.SetTooltips(1); // DELETE THIS, ONLY FOR TESTING
 			if ( !Prefs.IsTooltipsOn() ) {
 				gameObject.SetActive(false);
 			}
