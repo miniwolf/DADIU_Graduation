@@ -89,7 +89,7 @@
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
 							<GameParameterRef Name="count_up_pitch" ID="{EF07FB1D-BB91-403E-A789-2DF9D5163370}"/>
-							<Value>6.21593000790252E-316</Value>
+							<Value>0</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>
