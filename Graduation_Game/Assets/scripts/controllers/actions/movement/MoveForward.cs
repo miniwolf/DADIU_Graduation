@@ -50,16 +50,25 @@ namespace Assets.scripts.controllers.actions.movement {
 					isFalling = true;
 				}
 			} else {
-				if (isFalling) {
+				if (isFalling && !directionable.GetDoubleJump()) {
 					movementBlocked = true;
 					actionable.ExecuteAction(ControllableActions.PenguinStopFall);
 					isFalling = false;
-				    delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+					delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+				} else if(isFalling && directionable.GetDoubleJump()) {
+					delegator.StartCoroutine(RemoveDoubleJump());
 				}
+
 			}
 
 			characterController.Move(directionable.GetDirection() * directionable.GetSpeed() * Time.deltaTime);
 		}
+
+		private IEnumerator RemoveDoubleJump(){
+			yield return new WaitForSeconds(0.3f);
+			directionable.SetDoubleJump(false);
+		}
+
         /// <summary>
         /// This function will block penguins from moving while stop fall animation is being played.
         /// It doesn't work properly because "isFailing" is not being detected properly
