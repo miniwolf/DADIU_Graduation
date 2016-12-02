@@ -147,7 +147,7 @@ namespace Assets.scripts.controllers.actions.game {
 			for (int i = 0; i < penguinIcons.Length; i++) {
 				penguinIcons[i].SetActive(false);
 			}
-			for (int i = 0; i < reqPenguins; i++) {
+			for (int i = 0; i < reqPenguins && i<penguinIcons.Length; i++) {
 				penguinIcons[i].SetActive(true);
 			}
 		}
