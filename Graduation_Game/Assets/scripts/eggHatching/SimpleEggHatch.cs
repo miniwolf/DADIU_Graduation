@@ -1,6 +1,4 @@
-﻿using System;
-using Assets.scripts.UI.inventory;
-using UnityEditor;
+﻿using Assets.scripts.UI.inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
