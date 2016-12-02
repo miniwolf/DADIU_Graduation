@@ -6,12 +6,12 @@ namespace Assets.scripts {
 		//	public const string ORCADEATH = "deathSpike";
 		//	public const string DROWNING = "deathDrown";
 		public static readonly string[] ELECTRICUTION = { "deathElectric" };
-		public static readonly string[] SPIKEDEATHWALL = { "deathSpike" };
-		public static readonly string[] SPIKEDEATHGROUND = { "deathPit" };
+		public static readonly string[] SPIKEDEATHWALL = { "deathSpike", "deathSpike2", "deathSpike3" };
+		public static readonly string[] SPIKEDEATHGROUND = { "deathPit", "deathPit2", "deathPit3" };
 		public static readonly string[] PITDEATH = { "deathPit" };
 		public static readonly string[] JUMP = { "ifJumping", "ifJumping2", "ifJumping3" };
-		public static readonly string[] DROWNDEATH = { "deathDrown" };
-		public static readonly string[] CELEBRATE = { "celebrateGoodTimes"};
+		public static readonly string[] DROWNDEATH = { "deathDrown", "deathDrown2" };
+		public static readonly string[] CELEBRATE = { "celebrateGoodTimes",  "celebrateGoodTimes2",  "celebrateGoodTimes3"};
 		public static readonly string[] SLIDE = { "ifSliding" };
 		public static readonly string[] PENGUIN_FALL = { "isFalling" };
 		public static readonly string[] TRIGGER_REACT_TO_DEATH = { "reactToDeath" };

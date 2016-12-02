@@ -35,7 +35,7 @@ using Assets.scripts.UI.mainmenu;
 			FillLevelLines(fillOverTimeIdx);
 
 			if (fillOverTimeIdx > -1) {
-				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+			//	FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 

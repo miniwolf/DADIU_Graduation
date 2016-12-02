@@ -41,6 +41,7 @@ namespace Assets.scripts.character {
 		private bool isStopped = false;
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
+		Vector3 screenPoint;
 
 	    void Start() {
 			groundY = transform.position.y;
@@ -89,6 +90,9 @@ namespace Assets.scripts.character {
 				}
 			}
 		}
+
+
+
 
 		 IEnumerator OnTriggerEnter(Collider collider) {
 			if (collider.transform.tag == TagConstants.WINZONE) {
