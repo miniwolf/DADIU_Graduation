@@ -54,7 +54,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.KillPenguinByGroundSpikes, KillPenguinBy(animationSet.deathSpikeGroundAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(animationSet.deathPitAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(animationSet.deathSpikeGroundAnimation)); // TODO: There should be another
-			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(animationSet.deathDrownAnimation));
+			actionable.AddAction(ControllableActions.KillPenguinByWater, KillPenguinBy(animationSet.deathDrownAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(animationSet.deathElectricAnimation));
 		//	actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(deathSpikeAnimation != null ? deathSpikeAnimation() : null));			// inexistent
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
@@ -156,7 +156,9 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
 			if (constant != "")
 				actionHandler.AddAction(new SetTrigger(animator, constant));
-			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
+			if ( !constant.Equals(animationSet.deathDrownAnimation) ) {
+				actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
+			}
 			return actionHandler;
 		}
 		
