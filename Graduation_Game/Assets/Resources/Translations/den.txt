@@ -10,6 +10,11 @@ level9;Level 9 DK
 popupNotEnoguhPenguins; Not enough penguins to play the level! DK
 backsettings; Tilbage
 settings; Indstillinger
+credits; creditsDK
+sound; lyd
+language; sprog
+tooltips; hjælp?
+info; info
 place; Write here tooltip for placing tool DK
 move; Write here tooltip for moving tool DK
 remove; Write here tooltip for removing tool DK
