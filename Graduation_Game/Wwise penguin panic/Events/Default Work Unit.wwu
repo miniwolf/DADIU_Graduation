@@ -452,7 +452,7 @@
 										<Action Name="Play" ID="{C0DD2B64-D856-47EE-9037-CEA1407B78F2}" ShortID="189238677" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{45B49DB8-7A53-430E-B6CE-D96E81EFA840}" Global="false">
-													<ObjectRef Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -804,7 +804,7 @@
 										<Action Name="Play" ID="{BEB34DFB-66D3-440D-BB1E-F7224ECF2B9F}" ShortID="684163466" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{F71FBAF4-7777-49DB-8B70-99DD783D9DD5}" Global="false">
-													<ObjectRef Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>

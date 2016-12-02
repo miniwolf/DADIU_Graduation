@@ -1190,6 +1190,7 @@
 							<ChildrenList>
 								<BlendContainer Name="pickup_currency" ID="{3F1DDEAF-3C50-4914-9BEB-60705C24A5CA}" ShortID="915163284">
 									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-4</Value>
@@ -1197,6 +1198,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1345,8 +1349,12 @@
 												<Value>30</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -1843,8 +1851,12 @@
 														</ModifierInfo>
 													</ModifierList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -1922,7 +1934,7 @@
 												<ActiveSource Name="penguin_placeholder_drowning_1" ID="{B39966A1-FB65-4AE1-AD57-CC2887CA4250}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="penguin_placeholder_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" ShortID="207753465" Type="SoundFX">
+										<Sound Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" ShortID="207753465" Type="SoundFX">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
@@ -1955,8 +1967,12 @@
 														<Value>200</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 												</Reference>
@@ -2026,7 +2042,13 @@
 								<Folder Name="electrocution" ID="{4B90DE1C-B09B-46B9-BC45-1258AA23F4EB}" ShortID="752264552">
 									<ChildrenList>
 										<Sound Name="trap_wire_triggered" ID="{B311820F-7BAD-4956-AD78-E681BDBCFA23}" ShortID="381498684" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 												</Reference>
@@ -2057,8 +2079,12 @@
 														<Value>600</Value>
 													</ValueList>
 												</Property>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
 											</PropertyList>
 											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 												</Reference>
@@ -2169,7 +2195,13 @@
 									</ChildrenList>
 								</Folder>
 								<RandomSequenceContainer Name="death voice" ID="{15B39A8B-9692-4C1F-83A1-B7065AA8CCAE}" ShortID="166066420">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2726,6 +2758,7 @@
 												<Value>35</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-3</Value>
@@ -2733,6 +2766,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2764,6 +2800,7 @@
 												<Value>25</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>3</Value>
@@ -2771,6 +2808,9 @@
 										</Property>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
 										</Reference>
@@ -2792,7 +2832,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<RandomSequenceContainer Name="penguin_edge_fall" ID="{BCF639F2-FAF3-4A8D-B2E9-42BA695DCE22}" ShortID="220759295">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 										</Reference>
@@ -2813,8 +2859,12 @@
 												<Value>400</Value>
 											</ValueList>
 										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 										</Reference>
@@ -2846,6 +2896,11 @@
 										<Property Name="Lowpass" Type="int16">
 											<ValueList>
 												<Value>45</Value>
+											</ValueList>
+										</Property>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
 											</ValueList>
 										</Property>
 										<Property Name="Pitch" Type="int32">
@@ -2880,6 +2935,11 @@
 											</ModifierList>
 										</Property>
 										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>-5</Value>
@@ -5174,8 +5234,12 @@
 										<Value>500</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5315,8 +5379,12 @@
 										<Value>600</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5450,8 +5518,12 @@
 										<Value>400</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
@@ -5534,8 +5606,12 @@
 										<Value>500</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 								</Reference>
