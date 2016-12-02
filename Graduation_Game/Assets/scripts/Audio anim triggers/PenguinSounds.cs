@@ -64,5 +64,13 @@ public class PenguinSounds : MonoBehaviour {
 	public void PlayPenguinSpawn() {
 		AkSoundEngine.PostEvent ("penguin_spawn", gameObject);
 	}
+
+	public void PlayPenguinMove() {
+		AkSoundEngine.PostEvent ("penguin_move", gameObject);
+	}
+
+	public void PlayPenguinMoveVoice() {
+		AkSoundEngine.PostEvent ("penguin_move_voice", gameObject);
+	}
 	//Moves end
 }

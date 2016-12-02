@@ -24,7 +24,6 @@ namespace Assets.scripts.controllers.actions.movement{
 			double rDouble;
 			do {
 				rDouble = rnd.NextDouble()* range;
-				Debug.Log(rDouble);
 			} while(rDouble - 5 < 2 && rDouble - 5 > -2);
 			var dir = direction.GetDirection();
 			Vector3 newDir = new Vector3(dir.x, dir.y,dir.z + (float)rDouble-5);

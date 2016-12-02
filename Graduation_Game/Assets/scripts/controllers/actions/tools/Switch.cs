@@ -43,7 +43,7 @@ namespace Assets.scripts.controllers.actions.tools {
 	            yield return new WaitForSeconds(0.05f);
 	        }
 
-	        Debug.Log("Starting " + laneSwitch.GetType());
+	      //  Debug.Log("Starting " + laneSwitch.GetType());
 	        isSwitchingLane = true;
 
 	        var oldDirection = directionable.GetDirection();
