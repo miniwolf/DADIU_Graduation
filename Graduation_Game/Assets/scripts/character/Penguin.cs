@@ -41,6 +41,7 @@ namespace Assets.scripts.character {
 		private bool isStopped = false;
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
+		Vector3 screenPoint;
 
 	    void Start() {
 			groundY = transform.position.y;
@@ -90,6 +91,9 @@ namespace Assets.scripts.character {
 			}
 		}
 
+
+
+
 		 IEnumerator OnTriggerEnter(Collider collider) {
 			if (collider.transform.tag == TagConstants.WINZONE) {
 				ExecuteAction(ControllableActions.Celebrate);
@@ -105,7 +109,7 @@ namespace Assets.scripts.character {
 	    }
 
 	    private void StopSound()	    {
-	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
+//	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
 	    }
 
 	    public override string GetTag() {

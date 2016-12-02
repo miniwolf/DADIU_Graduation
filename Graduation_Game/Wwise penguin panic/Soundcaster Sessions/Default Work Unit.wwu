@@ -46,10 +46,6 @@
 							<Position X="2" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="end_screen_count_up" ID="{7AF618E7-7A63-4C16-9C84-33FAAD1FBBCA}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="2" Y="2"/>
-						</Module>
-						<Module>
 							<ObjectRef Name="pickup_add_to_score" ID="{968006F2-1F41-4E56-AC01-5D5D1981DC2B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="2" Y="4"/>
 						</Module>
@@ -89,7 +85,7 @@
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
 							<GameParameterRef Name="count_up_pitch" ID="{EF07FB1D-BB91-403E-A789-2DF9D5163370}"/>
-							<Value>6.21593000790252E-316</Value>
+							<Value>99.1623036649214</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>

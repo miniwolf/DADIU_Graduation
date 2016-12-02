@@ -7,7 +7,7 @@ using Assets.scripts.UI.mainmenu;
 	namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
 		public float fillAmountTime = 5f;
-		public static int numOfLvls;
+		private static int numOfLvls;
 	    public Slider[] sliders;
 		public ParticleSystem[] particleSystems;
 
@@ -18,6 +18,7 @@ using Assets.scripts.UI.mainmenu;
 
 		void Start() {
 			levels = GetComponent<MainMenuScript>().levels;
+		    numOfLvls = levels.Length;
 		    sliders = new Slider[numOfLvls - 1];
 		    particleSystems = new ParticleSystem[numOfLvls - 1];
 		    levelStatusNames = new string[numOfLvls];
@@ -34,7 +35,7 @@ using Assets.scripts.UI.mainmenu;
 			FillLevelLines(fillOverTimeIdx);
 
 			if (fillOverTimeIdx > -1) {
-				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+			//	FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 
