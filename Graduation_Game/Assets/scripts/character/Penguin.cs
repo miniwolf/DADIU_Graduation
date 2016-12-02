@@ -110,7 +110,7 @@ namespace Assets.scripts.character {
 	    }
 
 	    private void StopSound()	    {
-	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
+//	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
 	    }
 
 	    public override string GetTag() {
