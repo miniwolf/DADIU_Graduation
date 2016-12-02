@@ -68,13 +68,14 @@ namespace Assets.scripts.level {
 			path[0].position = new Vector3(path[0].transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
 			path[1].position = new Vector3(path[1].transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
 			Camera.main.transform.position = path[1].position;
-			float startTime = Time.time;;
+			float startTime = Time.time;
 			float speedFactor = cameraPanSpeed;
 			float journeyLength = Vector3.Distance(path[1].position, path[0].position);
 			float distCovered = (Time.time - startTime)*speedFactor;
 			float fracJourney = distCovered / journeyLength;
 			//print(path[0] + " " + path[1]);
-			while(fracJourney < 0.85f){
+			yield return new WaitForSeconds(0.5f);
+			while(fracJourney < 1f){
 				distCovered = (Time.time - startTime)*speedFactor;
 				fracJourney = distCovered / journeyLength;
 				Camera.main.transform.position = Vector3.Lerp(path[1].position, path[0].position, fracJourney);
