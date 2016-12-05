@@ -31,6 +31,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
+		private int plutLatermask;
 		Color[] origColors;
 		MeshRenderer[] meshes;
 		private bool touchUsed = false;
@@ -63,6 +64,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			foreach(var key in tools.Keys) {
 				UpdateUI(key);
 			}
+			plutLatermask = ~(1 << LayerMask.NameToLayer("PlutoniumLayer"));
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -218,9 +220,11 @@ namespace Assets.scripts.UI.screen.ingame {
 			return true;
 		}
 
+
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, plutLatermask) //ignore plutonium layer
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
