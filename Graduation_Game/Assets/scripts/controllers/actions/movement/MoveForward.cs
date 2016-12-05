@@ -14,6 +14,7 @@ namespace Assets.scripts.controllers.actions.movement {
 	    private bool movementBlocked;
 		private const int layerMask = 1 << 8;
 		private float speed;
+		private float raycastLength = 0.45f;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -48,10 +49,16 @@ namespace Assets.scripts.controllers.actions.movement {
 				actionable.ExecuteAction(ControllableActions.StopJump);
 			}
 
+			if (directionable.IsSliding()) {
+				raycastLength = 1f;
+			} else {
+				raycastLength = 0.45f;
+			}
+
 			//Debug.DrawRay(characterController.gameObject.transform.position, -Vector3.up * 0.45f, Color.red, 10000);
 			// if penguin is not hitting the ground (i.e. penguin is in the air) and it wasn't falling before,
 			// is it falling now
-			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 0.45f, layerMask)) {
+			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, raycastLength, layerMask)) {
 				if ( !isFalling ) {
 					actionable.ExecuteAction(ControllableActions.PenguinFall);
 					isFalling = true;
