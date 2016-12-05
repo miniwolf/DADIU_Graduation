@@ -19,7 +19,6 @@ namespace Assets.scripts.level {
 		[Tooltip("type of tool for newtool tooltip: jump or switchlane")]
 		public TypeTool typeNewtool = TypeTool.Jump;
 
-		private bool triggered;
 		private GameObject panel;
 		private bool isPlaced;
 		private bool isMoved;
@@ -30,10 +29,11 @@ namespace Assets.scripts.level {
 		private List<GameObject> penguins = new List<GameObject>();
 
 		void Start() {
-			Prefs.SetTooltips(1); // DELETE THIS, ONLY FOR TESTING
+			//Prefs.SetTooltips(1); // ONLY FOR TESTING
 			if ( !Prefs.IsTooltipsOn() ) {
 				gameObject.SetActive(false);
 			}
+			active = true;
 
 			GameObject[] penguinSpawners = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
 			for( int i=0; i < penguinSpawners.Length; i++ ) {
@@ -49,11 +49,9 @@ namespace Assets.scripts.level {
 		}
 
 		void OnTriggerEnter(Collider collider) {
-			if ( !triggered && collider.transform.tag == TagConstants.PENGUIN ) {
-				active = true;
+			if ( active && collider.transform.tag == TagConstants.PENGUIN ) {
 				StopPenguins(); 
 				TooltipAction();
-				triggered = true; //only for first penguin colliding
 			}
 		}
 

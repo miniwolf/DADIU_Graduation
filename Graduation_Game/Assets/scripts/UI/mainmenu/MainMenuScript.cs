@@ -31,32 +31,31 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnLocked;
 		public Sprite levelBtnNotAccessable; // Coming soon...
 
-		// TODO this needs heavy refactoring when everything is working as intended!
 		protected void Start() {
 
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			fillImageScript = GetComponent<FillImage>();
+			string lastLevelName = Prefs.GetLevelLastPlayedName();
 
-		    InitilizeLevels();
+			InitilizeLevels();
 			UnlockLevels(Prefs.GetLevelUnlockIndex());
 
-			SetStarPrefsPerLevel();
+			// Checks if the newest available level has been beat
+			if (EndGame.isNewLevelWon) {
+				fillImageScript = GetComponent<FillImage>();
+				SetStarPrefsPerLevel();
+				if (isLastLevelIdx())
+					LoadLevelButtonsStatusColors();
+				else
+					StartCoroutine(WaitForFill());
+			} else {
+				// LOAD latest progression
+				LoadLevelButtonsStatusColors();
+			}
 			LoadStars();
 
-
-			int wonStatus = Prefs.GetLevelWonStatus(Prefs.GetLevelLastPlayedName());
-
-			// TODO fix this I must (update level colors if player exits level without winning)
-			if(wonStatus == 1) {
-				StartCoroutine(WaitForFill());
-			} else {
-				UpdateButtonColors();
-			}
-			
-			
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
 				Prefs.SetTooltips(1);
@@ -65,7 +64,6 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
-
 			DisablePopup();
 		}
 
@@ -99,6 +97,21 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
+		void LoadLevelButtonsStatusColors() {
+			bool currentLvl = false;
+
+			for (int i = levels.Length - 1; i >= 0; i--) {
+				string levelName = levels[i].sceneFileName;
+				if (Prefs.IsLevelStatusComplete(levelName)) {
+					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
+					if (!currentLvl && i < levels.Length - 1) {
+						levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+						currentLvl = true; // Current level has been set
+					}
+				}
+			}
+		}
+
 
 		// Waits for level line to finish filling up and then changes the next available level to green
 		IEnumerator WaitForFill() {
@@ -119,10 +132,10 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			yield return new WaitForSeconds(fillImageScript.GetFillAmountTime());
 
-			UpdateButtonColors();
+			LoadLevelButtonsStatusColors();
 		}
 
-
+/*
 		void UpdateButtonColors() {
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
@@ -134,7 +147,7 @@ namespace Assets.scripts.UI.mainmenu {
 				}
 			}
 		}
-
+*/
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel() {
 			for (int i = 0; i < levels.Length; i++) {
@@ -188,7 +201,6 @@ namespace Assets.scripts.UI.mainmenu {
 
 		void MakeLevelsNotAccessible(int fromLevelIdx) {
 			for(int i = fromLevelIdx; i < levels.Length; i++) {
-				Debug.Log("NOTE: FOR " + levels[i].sceneFileName + " LEVEL BUTTON [NOT ACCESSIBLE] ART IS NOT AVAILABLE AT THE MOMENT GOOD SIR.");
 				//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
 				levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
 			}
@@ -204,16 +216,18 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		// Makes levels available depending on how many levels to unlock
-		void MakeLevelsInteractable(int numOfLvlsToUnlock) {
-			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
-				levels[i].btnFromScene.interactable = true;
-			}
+		private bool isLastLevelIdx() {
+			if (levels.Length - 1 < Prefs.GetLevelUnlockIndex()) return true;
+			return false;
 		}
 
 		// Unlocks numOfLvlsToUnlock + 1 levels
 		void UnlockLevels(int numOfLvlsToUnlock) {
-		    MakeLevelsInteractable(numOfLvlsToUnlock);
+			if (isLastLevelIdx()) return;
+
+			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
+				levels[i].btnFromScene.interactable = true;
+			}
 		}
 
 		void OnDestroy() {

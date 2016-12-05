@@ -65,6 +65,9 @@
 			public const string OFF_TEXT = "OffText";
 			public const string ON_TTEXT = "OnTText";
 			public const string OFF_TTEXT = "OffTText";
+			public const string LANGUAGE_TEXT = "LanguageText";
+			public const string SOUND_TEXT = "SoundText";
+			public const string TOOLTIPS_TEXT = "TooltipsText";
 			public const string TOGGLE_CHANGE_MUSIC = "ChangeMusic";
 			public const string TOGGLE_CHANGE_TOOLTIPS = "ChangeTooltips";
 			public const string BACK_SETTINGS = "BackSettings";
@@ -89,6 +92,8 @@
 			public const string INTRO_IMAGE = "IntroImage";
 			public const string TOOLTIP_PANEL = "TooltipPanel";
 			public const string TOOLTIPS_BUTTON = "TooltipsButton";
+			public const string CREDITS_BUTTON = "CreditsButton";
+			public const string BACK_CREDITS = "BackCredits";
 
 	        public const string LVL_1 = "BtnLevel1";
 	        public const string LVL_2 = "BtnLevel2";
@@ -102,6 +107,9 @@
 			public const string ENDSCENEOBJECT = "EndSceneObject";
 
 			public const string PENGUINICON = "PenguinIcon";
+
+			public const string PENGUINSPEEDUPBUTTON = "PenguinSpeedButton";
+			public const string RESETPENGUINSPEEDUPBUTTON = "ResetPenguinSpeedButton";
 	    }
 	}
 }

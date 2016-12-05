@@ -42,6 +42,7 @@ namespace Assets.scripts.character {
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
 		Vector3 screenPoint;
+		private bool doubleJump = false, speedUp = false;
 
 	    void Start() {
 			groundY = transform.position.y;
@@ -109,7 +110,7 @@ namespace Assets.scripts.character {
 	    }
 
 	    private void StopSound()	    {
-	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
+//	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
 	    }
 
 	    public override string GetTag() {
@@ -180,6 +181,10 @@ namespace Assets.scripts.character {
 			return walkSpeed;
 		}
 
+		public void SetWalkSpeed(float walkSpeed) {
+			this.walkSpeed = walkSpeed;
+		}
+
 	    public float GetSlideSpeedupIncrement()
 	    {
 	        return slideSpeedupIncrement;
@@ -208,6 +213,22 @@ namespace Assets.scripts.character {
 
 	    public bool GetJump() {
 			return jump;
+		}
+
+		public bool GetDoubleJump(){
+			return doubleJump;
+		}
+
+		public void SetDoubleJump(bool doubleJump){
+			this.doubleJump = doubleJump;
+		}
+
+		public bool GetSpeedUp(){
+			return speedUp;
+		}
+
+		public void SetSpeedUp(bool speedUp){
+			this.speedUp = speedUp;
 		}
 
 		public float GetGroundY() {

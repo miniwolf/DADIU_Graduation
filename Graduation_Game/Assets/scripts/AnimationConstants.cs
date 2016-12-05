@@ -9,7 +9,8 @@ namespace Assets.scripts {
 		public static readonly string[] SPIKEDEATHWALL = { "deathSpike", "deathSpike2", "deathSpike3" };
 		public static readonly string[] SPIKEDEATHGROUND = { "deathPit", "deathPit2", "deathPit3" };
 		public static readonly string[] PITDEATH = { "deathPit" };
-		public static readonly string[] JUMP = { "ifJumping", "ifJumping2", "ifJumping3" };
+		public static readonly string[] JUMP = { "jumping", "jumping2", "jumping3" };
+		public static readonly string[] LANDING = {"land", "land2"};
 		public static readonly string[] DROWNDEATH = { "deathDrown", "deathDrown2" };
 		public static readonly string[] CELEBRATE = { "celebrateGoodTimes",  "celebrateGoodTimes2",  "celebrateGoodTimes3"};
 		public static readonly string[] SLIDE = { "ifSliding" };
@@ -23,5 +24,9 @@ namespace Assets.scripts {
 		public const string SEAL_FALL = "isFalling";
 		public const string PANELIN = "PanelIn";
 		public const string PANELOUT = "PanelOut";
+
+		public class Tools {
+			public const string SPRING = "spring";
+		}
 	}
 }

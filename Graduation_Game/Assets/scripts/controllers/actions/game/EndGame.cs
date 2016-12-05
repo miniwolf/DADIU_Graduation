@@ -10,6 +10,7 @@ using Assets.scripts;
 using Assets.scripts.UI.inventory;
 using System.Collections.Generic;
 using Assets.scripts.level;
+using System;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -26,6 +27,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
 		private int endedWithPenguins = 0, reqPenguins = 0;
 		private int[] requiredPenguins = new int[3];
+		public static bool isNewLevelWon = false;
 
 		private bool shouldShowRetry = true;
 		private GameObject[] penguinIcons;
@@ -39,7 +41,8 @@ namespace Assets.scripts.controllers.actions.game {
 			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinIcons = GameObject.FindGameObjectsWithTag(TagConstants.UI.PENGUINICON);
-
+			Array.Sort(penguinIcons, CompareObNames);
+			isNewLevelWon = false;
 			starsSpawned = 0;
 			reqPenguins = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_SPAWNER).GetComponent<PenguinSpawner>().GetInitialPenguinCount();
 		}
@@ -47,6 +50,10 @@ namespace Assets.scripts.controllers.actions.game {
 		public EndGame(CouroutineDelegateHandler handler, Actionable<GameActions> actionable) {
 			this.handler = handler;
 			this.actionable = actionable;
+		}
+
+		private int CompareObNames(GameObject x, GameObject y) {
+			return x.name.CompareTo(y.name);
 		}
 
 		public void Execute() {
@@ -81,8 +88,14 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
-			Prefs.SetCurrentLevelToWon();
-			Prefs.SetLevelStatus(SceneManager.GetActiveScene().name, Prefs.COMPLETED);
+			string currentLevel = SceneManager.GetActiveScene().name;
+
+			// Set prefs only if the level has not been beat before
+			if (!Prefs.IsLevelStatusComplete(currentLevel)) {
+				isNewLevelWon = true;
+				Prefs.SetCurrentLevelToWon();
+				Prefs.SetLevelStatus(currentLevel, Prefs.COMPLETED);
+			}
 
 			canvas.SetActiveClickBlocker(true);
 			//canvas.failSceneObject.SetActive(true);
@@ -121,7 +134,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 		public bool SpawnNextStar() {
 			if (starsSpawned > 2 || endedWithPenguins < requiredPenguins[starsSpawned]) {
-				Inventory.UpdateCount();
+				//Inventory.UpdateCount();
 				return false;
 			}
 

@@ -25,6 +25,8 @@ namespace Assets.scripts.UI.settingsmenu {
 		private Text settingsText;
 		public Color selected;
 		public Color noSelected;
+		private Button credits;
+		private Text soundText, languageText, tooltipsText;
 
 		void Start() {
 			TranslateApi.Register(this);
@@ -39,7 +41,10 @@ namespace Assets.scripts.UI.settingsmenu {
 			back.onClick.AddListener(() => Back());
 
 			settingsText = GameObject.FindGameObjectWithTag(TagConstants.UI.SETTINGS_TEXT).GetComponent<Text>();
-
+			languageText = GameObject.FindGameObjectWithTag(TagConstants.UI.LANGUAGE_TEXT).GetComponent<Text>();
+			soundText = GameObject.FindGameObjectWithTag(TagConstants.UI.SOUND_TEXT).GetComponent<Text>();
+			tooltipsText = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIPS_TEXT).GetComponent<Text>();
+			credits = GameObject.FindGameObjectWithTag(TagConstants.UI.CREDITS_BUTTON).GetComponent<Button>();
 			UpdateTexts();
 		}
 
@@ -173,6 +178,12 @@ namespace Assets.scripts.UI.settingsmenu {
 		private void UpdateTexts() {
 			settingsText.text = TranslateApi.GetString(LocalizedString.settings);
 			back.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.backsettings);
+			Text[] creditsText = credits.GetComponentsInChildren<Text>();
+			creditsText[0].text = TranslateApi.GetString(LocalizedString.credits);
+			creditsText[1].text = TranslateApi.GetString(LocalizedString.info);
+			soundText.text = TranslateApi.GetString(LocalizedString.sound);
+			languageText.text = TranslateApi.GetString(LocalizedString.language);
+			tooltipsText.text = TranslateApi.GetString(LocalizedString.tooltips);
 		}
 
 		private void Back() {

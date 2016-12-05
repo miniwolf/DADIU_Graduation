@@ -6,6 +6,7 @@ namespace Assets.scripts.controllers.actions.tools {
 	public class Jump : Action {
 		private readonly Directionable direction;
 		private readonly LevelSettings levelSettings;
+		private GameObject go;
 
 		public Jump(Directionable direction, GameObject levelSettings) {
 			this.direction = direction;
@@ -20,6 +21,9 @@ namespace Assets.scripts.controllers.actions.tools {
 			moveDirection.y = levelSettings.GetJumpHeight();
 			direction.SetSpeed(direction.GetJumpSpeed());
 			direction.SetDirection(moveDirection);
+			if (direction.GetJump()) {
+				direction.SetDoubleJump(true);
+			}
 		}
 	}
 }
