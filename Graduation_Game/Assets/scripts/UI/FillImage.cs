@@ -8,17 +8,19 @@ using Assets.scripts.controllers.actions.game;
 // TODO rename this file to represent sliders and particle systems, not images
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
-		public float fillAmountTime = 5f;
-		private static int numOfLvls;
-	    public Slider[] sliders;
+		public Slider[] sliders;
 		public ParticleSystem[] particleSystems;
+		public float fillAmountTime = 5f;
 
+		private MainMenuScript mainMenuScript;
+		private static int numOfLvls;
 		private float fillAmount;
 		private string[] levelStatusNames ;
 		private int fillOverTimeIdx;
 		private MainMenuScript.LvlData[] levels;
 
 		void Start() {
+			mainMenuScript = GetComponent<MainMenuScript>();
 			levels = GetComponent<MainMenuScript>().levels;
 		    numOfLvls = levels.Length;
 		    levelStatusNames = new string[numOfLvls];
@@ -29,7 +31,7 @@ namespace Assets.scripts.UI {
 		
 		// Update is called once per frame
 		void LateUpdate() {			
-			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon) {
+			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon && !mainMenuScript.isLastLevelIdx()) {
 				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
