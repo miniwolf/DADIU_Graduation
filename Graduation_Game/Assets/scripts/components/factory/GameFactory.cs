@@ -22,10 +22,28 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(GameActions.RetryButtonLoss, RetryButtonLogicLoss(actionable));
 			actionable.AddAction(GameActions.RetryButtonWin, RetryButtonLogicWin(actionable));
 			actionable.AddAction(GameActions.DisableRetryWin, DisableRetryWin());
+
+		}
+
+		public void BuildSpeedButton(Actionable<GameActions> actionable){
+			actionable.AddAction(GameActions.SpeedUpPenguins, SpeedPenguins());
+			actionable.AddAction(GameActions.ResetPenguinSpeed, ResetPenguinsSpeed());
 		}
 
 		public void BuildStar(Actionable<GameActions> actionable) {
 			actionable.AddAction(GameActions.TriggerStar, TriggerStar());
+		}
+
+		private Handler SpeedPenguins(){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new SpeedUpPenguins());
+			return actionHandler;
+		}
+
+		private Handler ResetPenguinsSpeed(){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new ResetPenguinSpeed());
+			return actionHandler;
 		}
 
 		private Handler CutScene() {

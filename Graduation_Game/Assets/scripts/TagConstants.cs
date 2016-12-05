@@ -107,6 +107,9 @@
 			public const string ENDSCENEOBJECT = "EndSceneObject";
 
 			public const string PENGUINICON = "PenguinIcon";
+
+			public const string PENGUINSPEEDUPBUTTON = "PenguinSpeedButton";
+			public const string RESETPENGUINSPEEDUPBUTTON = "ResetPenguinSpeedButton";
 	    }
 	}
 }

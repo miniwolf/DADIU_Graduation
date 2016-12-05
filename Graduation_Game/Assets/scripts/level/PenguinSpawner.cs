@@ -23,6 +23,8 @@ namespace Assets.scripts.level {
 		public int waitTimeMilisecondsInterval = 1000; //the waiting time would be waitTimeMilisecondsInterval * numIntervals
 		public int numIntervals = 3;
 
+		public float speedUpFactor = 1.5f;
+
 		public float speedForPlatform = 3f, cameraPanSpeed = 5f;
 
 		private GameObject penguinObject;
@@ -198,6 +200,10 @@ namespace Assets.scripts.level {
 
 		public int GetInitialPenguinCount() {
 			return penguinCount;
+		}
+
+		public float GetSpeedUp(){
+			return speedUpFactor;
 		}
 
 

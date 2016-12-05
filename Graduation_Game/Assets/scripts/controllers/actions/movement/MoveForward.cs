@@ -13,6 +13,7 @@ namespace Assets.scripts.controllers.actions.movement {
 	    private CouroutineDelegateHandler delegator;
 	    private bool movementBlocked;
 		private const int layerMask = 1 << 8;
+		private float speed;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -26,15 +27,21 @@ namespace Assets.scripts.controllers.actions.movement {
 		}
 
 		public void Execute() {
-		    if (movementBlocked) return;
+			speed = directionable.GetWalkSpeed();
+
+			if (movementBlocked) return;
 
 		    if ( !characterController.isGrounded ) {
 				var dir = directionable.GetDirection();
 				directionable.SetDirection(new Vector3(dir.x, dir.y - GRAVITY * Time.deltaTime, dir.z));
+				speed = directionable.GetSpeed();
+				characterController.gameObject.GetComponentInChildren<Animator>().speed = 1.0f;
 				directionable.SetJump(true);
 			} else if ( characterController.isGrounded && directionable.GetJump() ) {
-				if(!directionable.IsSliding())
-			        directionable.SetSpeed(directionable.GetWalkSpeed());
+				if (!directionable.IsSliding()) {
+					directionable.SetSpeed(directionable.GetWalkSpeed());
+				}
+				//directionable.SetSpeed(directionable.GetWalkSpeed());
 				var dir = directionable.GetDirection();
 				directionable.SetDirection(new Vector3(dir.x, -0.2f, dir.z));
 				directionable.SetJump(false);
@@ -60,8 +67,10 @@ namespace Assets.scripts.controllers.actions.movement {
 				}
 
 			}
-
-			characterController.Move(directionable.GetDirection() * directionable.GetSpeed() * Time.deltaTime);
+			if (!directionable.GetJump()&&directionable.GetSpeedUp()) {
+				characterController.gameObject.GetComponentInChildren<Animator>().speed = 1.5f;
+			}
+			characterController.Move(directionable.GetDirection() * speed * Time.deltaTime);
 		}
 
 		private IEnumerator RemoveDoubleJump(){
