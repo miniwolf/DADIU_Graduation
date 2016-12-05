@@ -4,16 +4,12 @@ using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.tools.lane;
-using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using Assets.scripts.gamestate;
 using UnityEngine;
-using Resize = Assets.scripts.controllers.actions.tools.Resize;
 using AssemblyCSharp;
 using Assets.scripts.components.registers;
-using System.Reflection;
-using System.Linq;
 using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.sound;
 
@@ -165,16 +161,18 @@ namespace Assets.scripts.components.factory {
 		private Handler CreateStartJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
-			if (animationSet.jumpAnimation != "")
+			if ( animationSet.jumpAnimation != "" ) {
 				actionHandler.AddAction(new SetTrigger(animator, animationSet.jumpAnimation));
+			}
 			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 
 		private Handler CreateStopJump() {
 			var actionHandler = new ActionHandler();
-			if (animationSet.landAnimation != "")
+			if ( animationSet.landAnimation != "" ) {
 				actionHandler.AddAction(new SetTrigger(animator, animationSet.landAnimation));
+			}
 			return actionHandler;
 		}
 		/*

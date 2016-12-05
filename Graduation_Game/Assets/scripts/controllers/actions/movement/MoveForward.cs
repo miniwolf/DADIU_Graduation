@@ -87,17 +87,17 @@ namespace Assets.scripts.controllers.actions.movement {
 			directionable.SetDoubleJump(false);
 		}
 
-        /// <summary>
-        /// This function will block penguins from moving while stop fall animation is being played.
-        /// It doesn't work properly because "isFailing" is not being detected properly
-        /// (sometimes it's triggered during when falling and collecting currency) and because
-        /// different fall animations have different durations
-        ///
-        /// </summary>
-        /// <returns></returns>
-	    IEnumerator BlockMovementWhileFallAnimationFinishes() {
-	        yield return new WaitForSeconds(1f);
-	        movementBlocked = false;
-	    }
+		/// <summary>
+		/// This function will block penguins from moving while stop fall animation is being played.
+		/// It doesn't work properly because "isFailing" is not being detected properly
+		/// (sometimes it's triggered during when falling and collecting currency) and because
+		/// different fall animations have different durations
+		///
+		/// </summary>
+		/// <returns></returns>
+		IEnumerator BlockMovementWhileFallAnimationFinishes() {
+			yield return new WaitForSeconds(1f);
+			movementBlocked = false;
+		}
 	}
 }
