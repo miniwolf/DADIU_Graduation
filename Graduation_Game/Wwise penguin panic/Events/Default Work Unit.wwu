@@ -23,7 +23,7 @@
 										<Action Name="Play" ID="{24FEE071-C120-4BEB-BD2B-12220893D7B0}" ShortID="428256885" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{1C8B6AC8-E37D-40AF-AE66-9C1EAF61D5E9}" Global="false">
-													<ObjectRef Name="pickup_add_to_score" ID="{DC7E7E30-72B2-47CA-AF77-12B9265BAB56}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+													<ObjectRef Name="pickup_add_to_score" ID="{C7C3E655-DE9C-465C-A12A-B02B8E7FD53D}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -31,9 +31,54 @@
 								</Event>
 								<Event Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}">
 									<ChildrenList>
+										<Action Name="Set Voice Pitch" ID="{92863E04-AC91-409E-8E6F-5A75CDD77417}" ShortID="600956079" Type="ChangePitch" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{02BF9E04-99AB-4EBD-925B-D3C021962E4E}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="100"/>
+																	<Property Name="Min" Type="Real64" Value="-100"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{A603A37E-406F-4FC7-8DC0-6F005ABDFBFD}" Global="false">
+													<ObjectRef Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
 										<Action Name="Play" ID="{3CD81FA1-97B4-4BDD-9411-80F45B7D4FCE}" ShortID="464799807" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{27252772-CF56-4E7C-9BAD-A4A68EF9F9CA}" Global="false">
+													<ObjectRef Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Pitch" ID="{74CCC799-2ED4-4C8B-975A-670767B45FF2}" ShortID="74391970" Type="ChangePitch" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.4"/>
+												<Property Name="Pitch" Type="int32" Value="1000">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{9D635B5B-1DF3-43BC-927E-367ACB683672}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Max" Type="Real64" Value="200"/>
+																	<Property Name="Min" Type="Real64" Value="-500"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{33946EE9-A0F9-4AAA-B1C9-E724E7C5E96E}" Global="false">
 													<ObjectRef Name="pickup_fly_to_score" ID="{8BC4F13F-D88F-4C3F-8C69-FC63D03C1E41}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
@@ -329,7 +374,7 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="end_screen_score_count" ID="{0FDFCFD5-680A-4382-9AD7-5CDBDE556390}">
+								<Event Name="end_screen_count_up" ID="{0FDFCFD5-680A-4382-9AD7-5CDBDE556390}">
 									<ChildrenList>
 										<Action Name="Play" ID="{6D875B3C-30A3-4D42-B6C7-549DE7FE1F21}" ShortID="379304587" Type="Play" Scope="One" Global="false">
 											<ElementList>
