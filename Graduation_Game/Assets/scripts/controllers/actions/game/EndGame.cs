@@ -14,6 +14,7 @@ using System;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
+		public static bool isNewLevelWon = false;
 		private CanvasController canvas;
 		private GameObject endScene, gameObject;
 		private Text plutoniumCounter, penguinCounter, plutoniumThisLevel, plutoniumTotal;
@@ -27,7 +28,10 @@ namespace Assets.scripts.controllers.actions.game {
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
 		private int endedWithPenguins = 0, reqPenguins = 0;
 		private int[] requiredPenguins = new int[3];
-		public static bool isNewLevelWon = false;
+		private int MAX_NUM_OF_STARS_IDX = 2;
+		private int PENGUINS_REQUIRED_FOR_1_STAR;
+		private int PENGUINS_REQUIRED_FOR_2_STAR;
+		private int PENGUINS_REQUIRED_FOR_3_STAR;
 
 		private bool shouldShowRetry = true;
 		private GameObject[] penguinIcons;
@@ -60,6 +64,10 @@ namespace Assets.scripts.controllers.actions.game {
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
 
+			PENGUINS_REQUIRED_FOR_1_STAR = requiredPenguins[0];
+			PENGUINS_REQUIRED_FOR_2_STAR = requiredPenguins[1];
+			PENGUINS_REQUIRED_FOR_3_STAR = requiredPenguins[2];
+
 			if (endedWithPenguins >= reqPenguins) {
 				actionable.ExecuteAction(GameActions.DisableRetryWin);
 				shouldShowRetry = false;
@@ -88,9 +96,12 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
+			SetStarsWonPrefs();
+
 			string currentLevel = SceneManager.GetActiveScene().name;
 
-			// Set prefs only if the level has not been beat before
+			// Prefs set to indicate a winning condition 
+			// is set only if the level has not been beat before
 			if (!Prefs.IsLevelStatusComplete(currentLevel)) {
 				isNewLevelWon = true;
 				Prefs.SetCurrentLevelToWon();
@@ -123,26 +134,26 @@ namespace Assets.scripts.controllers.actions.game {
 			yield return null;
 		}
 
-		private void GetAllStars() {
-			
-		}
-
 		private IEnumerator LoadMainMenu(){
 			yield return new WaitForSeconds(12);
 			SceneManager.LoadSceneAsync("MainMenuScene");
 		}
 
+		private void SetStarsWonPrefs() {
+			if (endedWithPenguins <= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
+			else if (endedWithPenguins == PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
+			else if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
+		}
+			 
 		public bool SpawnNextStar() {
-			if (starsSpawned > 2 || endedWithPenguins < requiredPenguins[starsSpawned]) {
-				//Inventory.UpdateCount();
+			if (starsSpawned > MAX_NUM_OF_STARS_IDX || endedWithPenguins < requiredPenguins[starsSpawned]) {
+				Inventory.UpdateCount();
 				return false;
 			}
 
 			star[starsSpawned].GetComponent<Star>().FlyIn();
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
 			starsSpawned++;
-			if(Prefs.GetStarsForCurrentLevel() < starsSpawned) Prefs.SetStarsForCurrentLevel(starsSpawned);
-
 			return true;
 		}
 
