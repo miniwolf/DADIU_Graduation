@@ -50,11 +50,13 @@ namespace Assets.scripts.controllers.actions.movement {
 					isFalling = true;
 				}
 			} else {
-				if (isFalling && !directionable.GetDoubleJump()) {
-					movementBlocked = true;
-					actionable.ExecuteAction(ControllableActions.PenguinStopFall);
-					isFalling = false;
-					delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+				if ( isFalling && !directionable.GetDoubleJump() ) {
+					if ( !directionable.IsSliding() ) {
+						movementBlocked = true;
+						actionable.ExecuteAction(ControllableActions.PenguinStopFall);
+						isFalling = false;
+						delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+					}
 				} else if(isFalling && directionable.GetDoubleJump()) {
 					delegator.StartCoroutine(RemoveDoubleJump());
 				}
