@@ -166,15 +166,15 @@ namespace Assets.scripts.components.factory {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
 			if (animationSet.jumpAnimation != "")
-				actionHandler.AddAction(new SetBoolTrue(animator, animationSet.jumpAnimation));
+				actionHandler.AddAction(new SetTrigger(animator, animationSet.jumpAnimation));
 			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 
 		private Handler CreateStopJump() {
 			var actionHandler = new ActionHandler();
-			if (animationSet.jumpAnimation != "")
-				actionHandler.AddAction(new SetBoolFalse(animator, animationSet.jumpAnimation));
+			if (animationSet.landAnimation != "")
+				actionHandler.AddAction(new SetTrigger(animator, animationSet.landAnimation));
 			return actionHandler;
 		}
 		/*
