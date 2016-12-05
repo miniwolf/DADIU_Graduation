@@ -19,6 +19,11 @@ public enum LocalizedString  {
 	move,
 	remove,
 	jump,
-	switchlane
+	switchlane,
+	credits,
+	language,
+	sound,
+	tooltips,
+	info
 
 }

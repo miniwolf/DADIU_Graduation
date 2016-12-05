@@ -17,6 +17,10 @@ namespace Assets.scripts.components {
 		void SetSlide(bool jump);
 		bool GetJump();
 
+		bool GetDoubleJump ();
+
+		void SetDoubleJump (bool b);
+
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);
 		AnimationCurve GetCurve(Penguin.CurveType type);
 		void SetInitialTime(Penguin.CurveType type, float time);

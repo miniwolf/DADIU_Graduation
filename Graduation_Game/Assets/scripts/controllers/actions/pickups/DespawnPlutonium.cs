@@ -51,6 +51,9 @@ namespace Assets.scripts.controllers.actions.pickups {
 			if (currencyGameObject.GetComponent<ParticleSystem>() == null) {
 				ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
 				p.startSpeed = 10f;
+			} else {
+				gameObject.transform.parent.GetComponent<ParticleSystem>().Play();
+				gameObject.transform.parent.GetComponent<ParticleSystem>().startSpeed = 10;
 			}
 			float fraction = 0;
 			float speed = 1f;
