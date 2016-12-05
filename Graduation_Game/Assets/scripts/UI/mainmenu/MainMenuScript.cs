@@ -28,7 +28,7 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnCurrent;
 		public Sprite levelBtnCompleted;
 		public Sprite levelBtnLocked;
-		public Sprite levelBtnNotAccessable; // Coming soon...
+		public Sprite levelBtnNotAccessable;
 
 		protected void Start() {
 
@@ -41,9 +41,8 @@ namespace Assets.scripts.UI.mainmenu {
 			InitilizeLevels();
 			LockNonInteractableLevels();
 			UnlockLevels();
-			MakeLevelsNotAccessible();
-
 			StartCoroutine(UpdateWorldStarCounterText());
+			MakeLevelsNotAccessible();
 
 			// Checks if the newest available level has been beat
 			if (EndGame.isNewLevelWon) {
@@ -103,10 +102,8 @@ namespace Assets.scripts.UI.mainmenu {
 		void MakeLevelsNotAccessible() {
 			foreach (var marker in worldUnlockMarkers) {
 				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
-
 					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
-						//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
-						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
+						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessable;
 						levels[i].btnFromScene.interactable = false;
 					}
 				}
@@ -178,8 +175,10 @@ namespace Assets.scripts.UI.mainmenu {
 				if (Prefs.IsLevelStatusComplete(levelName)) {
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
 					if (!currentLvl && i < levels.Length - 1) {
-						levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
-						currentLvl = true; // Current level has been set
+						if(levels[i + 1].btnFromScene.GetComponent<Image>().sprite != levelBtnNotAccessable) {
+							levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+							currentLvl = true; // Current level has been set
+						}
 					}
 				}
 			}
