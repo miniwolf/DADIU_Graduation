@@ -102,6 +102,7 @@ namespace Assets.scripts.level {
 			if ( collider.transform.tag == TagConstants.PENGUIN ) {
 				penguins++;
 				collider.transform.parent = transform;
+				collider.GetComponentInChildren<Animator>().speed = 1.0f;
 			}
 		}
 
