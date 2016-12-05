@@ -421,7 +421,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		private IEnumerator FlyingObjToButton(GameObject obj, Vector3 destination){
-			Vector3 startPos = obj.transform.position;
+		    Vector3 startPos = obj.transform.position;
 			Vector3 origScale = obj.transform.localScale;
 			float startTime = Time.time;
 			float speedFactor = 10f, journeyLength = Vector3.Distance(startPos, destination);
@@ -435,15 +435,15 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.localScale = origScale * (1f - fracJourney);
 				yield return new WaitForEndOfFrame();
 			}
-			obj.transform.localScale = origScale;
+		    AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+		    obj.transform.localScale = origScale;
 			PutObjectInPool(currentObject.transform);
 			UpdateUI(currentObject.tag);
 			currentObject.SetActive(false);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
-			currentObject = null;
+		    currentObject = null;
 			ChangeColor(notReturning);
 			doubleTap = false;
-			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
 		    clickBlocked = false;
 		}
 
