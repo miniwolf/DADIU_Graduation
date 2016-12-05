@@ -129,7 +129,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 		public bool SpawnNextStar() {
 			if (starsSpawned > 2 || endedWithPenguins < requiredPenguins[starsSpawned]) {
-				Inventory.UpdateCount();
+				//Inventory.UpdateCount();
 				return false;
 			}
 
