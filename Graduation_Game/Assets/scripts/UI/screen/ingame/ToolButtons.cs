@@ -31,12 +31,15 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
+		private int plutLatermask;
+	    private bool clickBlocked; // prevents clicking button if the previous click action was not yet finished
 		Color[] origColors;
 		MeshRenderer[] meshes;
 		private bool touchUsed = false;
 		private bool wasToolHit = false;
 		public float closessToCam = 10f;
 		public float toolOffSetWhileMoving = 20f;
+
 
 		protected void Awake() {
 			InjectionRegister.Register(this);
@@ -63,6 +66,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			foreach(var key in tools.Keys) {
 				UpdateUI(key);
 			}
+			plutLatermask = ~(1 << LayerMask.NameToLayer("PlutoniumLayer"));
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -92,6 +96,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		public void PlaceTool(string toolName) {
 			if(gameStateManager.IsGameFrozen())
 				return;
+
+		    if (clickBlocked) return;
 
 			switch(toolName) {
 			case TagConstants.JUMPTEMPLATE:
@@ -218,9 +224,11 @@ namespace Assets.scripts.UI.screen.ingame {
 			return true;
 		}
 
+
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, plutLatermask) //ignore plutonium layer
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
@@ -395,6 +403,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void FlyGOToButton(GameObject obj){
 			Vector3 flyTo;
 			GameObject go;
+		    clickBlocked = true;
 			switch (obj.transform.tag) {
 				case TagConstants.JUMPTEMPLATE:
 				case TagConstants.JUMP:
@@ -408,7 +417,6 @@ namespace Assets.scripts.UI.screen.ingame {
 					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
 					StartCoroutine(FlyingObjToButton(obj, flyTo));
 					break;
-			
 			}
 		}
 
@@ -436,6 +444,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			ChangeColor(notReturning);
 			doubleTap = false;
 			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+		    clickBlocked = false;
 		}
 
 		private void TooltipsPlace() {
