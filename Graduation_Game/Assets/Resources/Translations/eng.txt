@@ -9,7 +9,15 @@ level8;Level 8 EN
 level9;Level 9 EN
 popupNotEnoguhPenguins; Not enough penguins to play the level!
 backsettings; Back
-settings; SETTINGS
-jump; Write here tooltip for jump EN
-switchlane; Write here tooltip for switch lane EN
+settings; settings
+credits; credits
+sound; sound
+tooltips; help?
+info; info
+language; language
+place; Write here tooltip for placing tool EN
+move; Write here tooltip for moving tool EN
+remove; Write here tooltip for removing tool EN
+jump; Write here tooltip for explaining jump EN
+switchlane; Write here tooltip for explaining switchlane EN
 thisWorldIsLocked; This world is locked!

@@ -1,4 +1,5 @@
-﻿using Assets.scripts.sound;
+﻿using Assets.scripts.eggHatching;
+using Assets.scripts.sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts {
     public class Prefs {
+		// TODO save status is level has been beat before
 		public const string STATUS = "status";
 		public const string STARS = "stars";
 		public const string SOUND_MASTER = "pref_master_sound";
@@ -13,6 +15,7 @@ namespace Assets.scripts {
 		public const string CURRENT = "current";
 		public const string COMPLETED = "completed";
 		public const string LOCKED = "locked";
+		private const string WON = "won";
 
 		public const string LEVEL_UNLOCK_INDEX = "LevelUnlockIndex";
 		public const string LEVEL_WON_STARS = "LevelWonStars";
@@ -22,6 +25,18 @@ namespace Assets.scripts {
         private const int TRUE = 1;
         private const int FALSE = 0;
 		private const string TOTALSTARS = "TotalStars";
+        private const string LAST_HATCH_TIME = "pref_last_hatch_time";
+        private const int DEFAULT_HATCH_DURATION = 15;
+        private const string HATCH_DURATION = "pref_hatch_duration";
+
+		
+		public static void SetCurrentLevelToWon() {
+			PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + WON, 1);
+		}
+
+		public static int GetLevelWonStatus(string levelName) {
+			return PlayerPrefs.GetInt(levelName + WON);
+		}
 
 		public static void SetLevelLastPlayedName(string levelPlayedLastName) {
 			PlayerPrefs.SetString(LEVEL_LAST_PLAYED_NAME, levelPlayedLastName);
@@ -106,5 +121,24 @@ namespace Assets.scripts {
 		public static void DeleteKey(string key) {
 			PlayerPrefs.DeleteKey(key);
 		}
+
+        public static int GetLastHatchTime() {
+            return PlayerPrefs.GetInt(LAST_HATCH_TIME, DateTimeUtil.Seconds());
+        }
+
+        public static int UpdateLastHatchTime() {
+            PlayerPrefs.SetInt(LAST_HATCH_TIME, DateTimeUtil.Seconds());
+            return GetLastHatchTime();
+        }
+
+        public static int GetHatchDuration() {
+            return PlayerPrefs.GetInt(HATCH_DURATION, DEFAULT_HATCH_DURATION);
+        }
+
+        // todo use this method when user buys 2x speed hatching increase
+        public static void HatchDurationDecrease() {
+            var i = GetHatchDuration() / 2;
+            PlayerPrefs.SetInt(HATCH_DURATION, i > 1 ? i : 1);
+        }
     }
 }

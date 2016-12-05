@@ -3,50 +3,51 @@ using System.Collections;
 using UnityEngine.UI;
 using Assets.scripts;
 using Assets.scripts.UI.mainmenu;
+using Assets.scripts.controllers.actions.game;
 
+// TODO MainMenuCanvas.prefab card: add rest of the particle systems
+// And rename this file to represent sliders and particle systems, not images
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
-		public static float fillAmountTime = 1f;
+		public float fillAmountTime = 5f;
+		private static int numOfLvls;
+	    public Slider[] sliders;
+		public ParticleSystem[] particleSystems;
 
 		private float fillAmount;
-		public static int numOfLvls = 5;
-		public Image[] fillImages = new Image[numOfLvls - 1];
-		public ParticleSystem[] particleSystems = new ParticleSystem[numOfLvls - 1];
-		private string[] levelStatusNames = new string[numOfLvls];
+		private string[] levelStatusNames ;
 		private int fillOverTimeIdx;
 		private MainMenuScript.LvlData[] levels;
 
 		void Start() {
 			levels = GetComponent<MainMenuScript>().levels;
+		    numOfLvls = levels.Length;
+		    levelStatusNames = new string[numOfLvls];
+		}
+
+		// Time it takes to fill the slider
+		// used in MainMenuScript
+		public float GetFillAmountTime() {
+			return fillAmountTime;
 		}
 
 		// Update is called once per frame
 		void LateUpdate() {
 			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
-
-			FillLevelLines(fillOverTimeIdx);
-
-			if (fillOverTimeIdx > -1) {
-				FillOverTime(fillImages[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
-			}
-		}
-
-		// Fills previously completed level lines instantly
-		private void FillLevelLines(int fillOverTimeIdx) {
-			for (int i = 0; i < fillOverTimeIdx; i++) {
-				Fill(fillImages[i]);
+			
+			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon) {
+				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 
 		// Fills the last completed level line over time
-		private void FillOverTime(Image image, ParticleSystem ps, float fillTime) {
+		private void FillOverTime(Slider slider, ParticleSystem ps, float fillTime) {
 			if (Time.timeSinceLevelLoad < fillTime) {
 				float fillAmountChange = Time.deltaTime / fillTime;
-				image.fillAmount += fillAmountChange;
+				slider.value += fillAmountChange;
 			}
 			else {
-				ps.Play();
-
+				ps.Play(); // Particle system played when slider has been filled
 			}
 		}
 
@@ -60,11 +61,6 @@ namespace Assets.scripts.UI {
 				}
 			}
 			return -1;
-		}
-
-		// Instantly fills an image
-		private void Fill(Image image) {
-			image.fillAmount = 1f;
 		}
 	}
 }

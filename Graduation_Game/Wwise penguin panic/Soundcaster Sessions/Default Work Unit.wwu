@@ -6,7 +6,7 @@
 				<SoundcasterSession Name="New Soundcaster Session" ID="{89B39B03-1493-4BF0-A077-3E40A056F895}">
 					<ModuleList>
 						<Module>
-							<ObjectRef Name="penguin_move_start" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="0"/>
 						</Module>
 						<Module>
@@ -24,10 +24,6 @@
 						<Module>
 							<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="0" Y="4"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="penguin_move_stop" ID="{FC334083-6660-45EB-A797-B9B7C8DAE940}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-							<Position X="1" Y="0"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="penguin_slide_loop" ID="{15178CF6-BAA5-44DC-80ED-9028CDDEC295}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
@@ -58,6 +54,14 @@
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="3" Y="3"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="unmute_master" ID="{FF2F28F1-6647-455D-9766-0D6E256C0343}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="4" Y="0"/>
 						</Module>
@@ -80,20 +84,22 @@
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
+							<GameParameterRef Name="count_up_pitch" ID="{EF07FB1D-BB91-403E-A789-2DF9D5163370}"/>
+							<Value>96.3350785340314</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>
 							<Value>100</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
-							<Value>40</Value>
+							<Value>50</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="in_game" ID="{7F1C5A79-24DB-4E47-AD1A-BB6CDF110C66}"/>
 					</CurrentStateList>
-					<CurrentSwitchList ShowAll="true">
-						<CurrentSwitchRef Name="snow" ID="{AE175351-B3B7-43F1-96B8-F1E571FA818B}"/>
-					</CurrentSwitchList>
+					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>

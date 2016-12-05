@@ -4,16 +4,12 @@ using Assets.scripts.controllers.actions.animation;
 using Assets.scripts.controllers.actions.movement;
 using Assets.scripts.controllers.actions.tools;
 using Assets.scripts.controllers.actions.tools.lane;
-using Assets.scripts.controllers.actions.tools.resize;
 using Assets.scripts.controllers.actions.traps;
 using Assets.scripts.controllers.handlers;
 using Assets.scripts.gamestate;
 using UnityEngine;
-using Resize = Assets.scripts.controllers.actions.tools.Resize;
 using AssemblyCSharp;
 using Assets.scripts.components.registers;
-using System.Reflection;
-using System.Linq;
 using Assets.scripts.controllers.actions.sound;
 using Assets.scripts.sound;
 
@@ -49,13 +45,12 @@ namespace Assets.scripts.components.factory {
 
 		public void Build() {
 			actionable.AddAction(ControllableActions.Move, CreateMove());
-			actionable.AddAction(ControllableActions.SwitchLeft, CreateSwitchLane(new Left()));
-			actionable.AddAction(ControllableActions.SwitchRight, CreateSwitchLane(new Right()));
+		    CreateSwitchLane();
 			actionable.AddAction(ControllableActions.KillPenguinByWallSpikes, KillPenguinBy(animationSet.deathSpikeWallAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByGroundSpikes, KillPenguinBy(animationSet.deathSpikeGroundAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(animationSet.deathPitAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(animationSet.deathSpikeGroundAnimation)); // TODO: There should be another
-			actionable.AddAction(ControllableActions.KillPenguingByWeightBased, KillPenguinBy(animationSet.deathDrownAnimation));
+			actionable.AddAction(ControllableActions.KillPenguinByWater, KillPenguinBy(animationSet.deathDrownAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(animationSet.deathElectricAnimation));
 		//	actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(deathSpikeAnimation != null ? deathSpikeAnimation() : null));			// inexistent
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
@@ -134,11 +129,22 @@ namespace Assets.scripts.components.factory {
 			return actionHandler;
 		}
 
-		private Handler CreateSwitchLane(LaneSwitch sw) {
-			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new Switch((Directionable) actionable, levelSettings, sw));
+		private void CreateSwitchLane() {
+		    var leftSwitch = new Switch((Directionable) actionable, levelSettings, new Left());
+		    var rightSwitch = new Switch((Directionable) actionable, levelSettings, new Right());
+
+		    leftSwitch.SetOther(rightSwitch);
+		    rightSwitch.SetOther(leftSwitch);
+
+		    var actionHandler = new ActionHandler();
+			actionHandler.AddAction(leftSwitch);
 		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
-			return actionHandler;
+		    actionable.AddAction(ControllableActions.SwitchLeft, actionHandler);
+
+		    actionHandler = new ActionHandler();
+		    actionHandler.AddAction(rightSwitch);
+		    actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.CHANGE_LANE_TRIGGERED));
+		    actionable.AddAction(ControllableActions.SwitchRight, actionHandler);
 		}
 
 		private Handler KillPenguinBy(string constant) {
@@ -146,22 +152,27 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
 			if (constant != "")
 				actionHandler.AddAction(new SetTrigger(animator, constant));
-			actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
+			if ( !constant.Equals(animationSet.deathDrownAnimation) ) {
+				actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
+			}
 			return actionHandler;
 		}
 		
 		private Handler CreateStartJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
-			if (animationSet.jumpAnimation != "")
-				actionHandler.AddAction(new SetBoolTrue(animator, animationSet.jumpAnimation));
+			if ( animationSet.jumpAnimation != "" ) {
+				actionHandler.AddAction(new SetTrigger(animator, animationSet.jumpAnimation));
+			}
+			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 
 		private Handler CreateStopJump() {
 			var actionHandler = new ActionHandler();
-			if (animationSet.jumpAnimation != "")
-				actionHandler.AddAction(new SetBoolFalse(animator, animationSet.jumpAnimation));
+			if ( animationSet.landAnimation != "" ) {
+				actionHandler.AddAction(new SetTrigger(animator, animationSet.landAnimation));
+			}
 			return actionHandler;
 		}
 		/*

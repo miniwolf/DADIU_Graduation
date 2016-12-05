@@ -4,7 +4,7 @@
 		Move, Stop, Start,
 		KillPenguinByWallSpikes, KillPenguinByGroundSpikes, KillPenguinByPit,
 		KillPenguinByExcavator,
-		KillPenguingByWeightBased,
+		KillPenguinByWater,
 		StartJump, StopJump,
 		StartSpeed, Speed, StopSpeed,
 		StartEnlarge, Enlarge, StopEnlarge,

@@ -14,8 +14,16 @@ public enum LocalizedString  {
 	popupNotEnoguhPenguins,
 	backsettings,
 	settings,
-	jump,
 	thisWorldIsLocked,
-	switchlane
+	place,
+	move,
+	remove,
+	jump,
+	switchlane,
+	credits,
+	language,
+	sound,
+	tooltips,
+	info
 
 }

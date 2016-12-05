@@ -10,6 +10,14 @@ level9;Level 9 DK
 popupNotEnoguhPenguins; Not enough penguins to play the level! DK
 backsettings; Tilbage
 settings; Indstillinger
-jump; Write here tooltip for jump DK
-switchlane; Write here tooltip for switch lane DK
-thisWorldIsLocked; This world is locked DK!
+credits; creditsDK
+sound; lyd
+language; sprog
+tooltips; hjælp?
+info; info
+place; Write here tooltip for placing tool DK
+move; Write here tooltip for moving tool DK
+remove; Write here tooltip for removing tool DK
+jump; Write here tooltip for explaining jump DK
+switchlane; Write here tooltip for explaining switchlane DK
+thisWorldIsLocked; This world is locked! DK

@@ -42,6 +42,14 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="ingame" ID="{D1F2DE21-6DF9-4D82-A8F0-5419667BE3FA}" ShortID="428536845">
+											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
@@ -101,6 +109,19 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="trnstn" ID="{484B984B-0E4A-4D8F-98E3-25D097EBA7D1}" ShortID="274433852">
+											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
@@ -204,6 +225,19 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="main menu music" ID="{271C94EA-1177-4273-B6D6-C8515880750D}" ShortID="1009358865">
+											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>

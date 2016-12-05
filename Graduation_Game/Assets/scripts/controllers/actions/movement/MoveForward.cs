@@ -12,6 +12,8 @@ namespace Assets.scripts.controllers.actions.movement {
 		private bool isFalling;
 	    private CouroutineDelegateHandler delegator;
 	    private bool movementBlocked;
+		private const int layerMask = 1 << 8;
+		private float speed;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -21,38 +23,63 @@ namespace Assets.scripts.controllers.actions.movement {
 
 		public void Setup(GameObject gameObject) {
 			characterController = gameObject.GetComponent<CharacterController>();
-		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.START_MOVING, gameObject);
+		    //AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.START_MOVING, gameObject);
 		}
 
 		public void Execute() {
-		    if (movementBlocked) return;
+			speed = directionable.GetWalkSpeed();
+
+			if (movementBlocked) return;
 
 		    if ( !characterController.isGrounded ) {
 				var dir = directionable.GetDirection();
 				directionable.SetDirection(new Vector3(dir.x, dir.y - GRAVITY * Time.deltaTime, dir.z));
+				speed = directionable.GetSpeed();
+				characterController.gameObject.GetComponentInChildren<Animator>().speed = 1.0f;
 				directionable.SetJump(true);
 			} else if ( characterController.isGrounded && directionable.GetJump() ) {
-				if(!directionable.IsSliding())
-			        directionable.SetSpeed(directionable.GetWalkSpeed());
+				if (!directionable.IsSliding()) {
+					directionable.SetSpeed(directionable.GetWalkSpeed());
+				}
+				//directionable.SetSpeed(directionable.GetWalkSpeed());
 				var dir = directionable.GetDirection();
 				directionable.SetDirection(new Vector3(dir.x, -0.2f, dir.z));
 				directionable.SetJump(false);
 				actionable.ExecuteAction(ControllableActions.StopJump);
 			}
 
-			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 0.5f)) {
-				isFalling = true;
-				actionable.ExecuteAction(ControllableActions.PenguinFall);
-			} else {
-				if (isFalling) {
-					actionable.ExecuteAction(ControllableActions.PenguinStopFall);
-					isFalling = false;
-//				    delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+			//Debug.DrawRay(characterController.gameObject.transform.position, -Vector3.up * 0.45f, Color.red, 10000);
+			// if penguin is not hitting the ground (i.e. penguin is in the air) and it wasn't falling before,
+			// is it falling now
+			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, 0.45f, layerMask)) {
+				if ( !isFalling ) {
+					actionable.ExecuteAction(ControllableActions.PenguinFall);
+					isFalling = true;
 				}
-			}
+			} else {
+				if ( isFalling && !directionable.GetDoubleJump() ) {
+					if ( !directionable.IsSliding() ) {
+						movementBlocked = true;
+						actionable.ExecuteAction(ControllableActions.PenguinStopFall);
+						isFalling = false;
+						delegator.StartCoroutine(BlockMovementWhileFallAnimationFinishes());
+					}
+				} else if(isFalling && directionable.GetDoubleJump()) {
+					delegator.StartCoroutine(RemoveDoubleJump());
+				}
 
-			characterController.Move(directionable.GetDirection() * directionable.GetSpeed() * Time.deltaTime);
+			}
+			if (!directionable.GetJump()&&directionable.GetSpeedUp()) {
+				characterController.gameObject.GetComponentInChildren<Animator>().speed = 1.5f;
+			}
+			characterController.Move(directionable.GetDirection() * speed * Time.deltaTime);
 		}
+
+		private IEnumerator RemoveDoubleJump(){
+			yield return new WaitForSeconds(0.3f);
+			directionable.SetDoubleJump(false);
+		}
+
         /// <summary>
         /// This function will block penguins from moving while stop fall animation is being played.
         /// It doesn't work properly because "isFailing" is not being detected properly
@@ -62,8 +89,6 @@ namespace Assets.scripts.controllers.actions.movement {
         /// </summary>
         /// <returns></returns>
 	    IEnumerator BlockMovementWhileFallAnimationFinishes() {
-	        yield return new WaitForSeconds(0.3f);
-	        movementBlocked = true;
 	        yield return new WaitForSeconds(1f);
 	        movementBlocked = false;
 	    }
