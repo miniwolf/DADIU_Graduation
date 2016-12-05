@@ -5,8 +5,7 @@ using Assets.scripts;
 using Assets.scripts.UI.mainmenu;
 using Assets.scripts.controllers.actions.game;
 
-// TODO MainMenuCanvas.prefab card: add rest of the particle systems
-// And rename this file to represent sliders and particle systems, not images
+// TODO rename this file to represent sliders and particle systems, not images
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
 		public float fillAmountTime = 5f;
@@ -23,6 +22,16 @@ namespace Assets.scripts.UI {
 			levels = GetComponent<MainMenuScript>().levels;
 		    numOfLvls = levels.Length;
 		    levelStatusNames = new string[numOfLvls];
+			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
+
+			LoadPreviouslyFilledSliders();
+		}
+		
+		// Update is called once per frame
+		void LateUpdate() {			
+			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon) {
+				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+			}
 		}
 
 		// Time it takes to fill the slider
@@ -31,12 +40,15 @@ namespace Assets.scripts.UI {
 			return fillAmountTime;
 		}
 
-		// Update is called once per frame
-		void LateUpdate() {
-			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
-			
-			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon) {
-				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+		private void LoadPreviouslyFilledSliders() {
+			int fillIndex = fillOverTimeIdx;
+
+			// We want to use the last index to load the slider over time
+			// whenever a fresh level is won
+			if (EndGame.isNewLevelWon) fillIndex = fillIndex - 1; 
+
+			for (int i = 0; i <= fillIndex; i++) {
+				Fill(sliders[i]);
 			}
 		}
 
@@ -61,6 +73,11 @@ namespace Assets.scripts.UI {
 				}
 			}
 			return -1;
+		}
+
+		// Instantly fills a slider
+		private void Fill(Slider slider) {
+			slider.value = 1f;
 		}
 	}
 }
