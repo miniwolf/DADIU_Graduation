@@ -25,6 +25,8 @@ namespace Assets.scripts.level {
 
 		public float speedUpFactor = 1.5f;
 
+		public float waitForCameraToPan = 0.5f;
+
 		public float speedForPlatform = 3f, cameraPanSpeed = 5f;
 
 		private GameObject penguinObject;
@@ -76,7 +78,7 @@ namespace Assets.scripts.level {
 			float distCovered = (Time.time - startTime)*speedFactor;
 			float fracJourney = distCovered / journeyLength;
 			//print(path[0] + " " + path[1]);
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(waitForCameraToPan);
 			while(fracJourney < 1f){
 				distCovered = (Time.time - startTime)*speedFactor;
 				fracJourney = distCovered / journeyLength;
