@@ -19,6 +19,8 @@ namespace Assets.scripts.components {
 
 		bool GetDoubleJump ();
 
+		bool GetSpeedUp();
+
 		void SetDoubleJump (bool b);
 
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);

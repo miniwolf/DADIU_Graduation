@@ -3,8 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 using Assets.scripts;
 using Assets.scripts.UI.mainmenu;
+using Assets.scripts.controllers.actions.game;
 
-	namespace Assets.scripts.UI {
+// TODO MainMenuCanvas.prefab card: add rest of the particle systems
+// And rename this file to represent sliders and particle systems, not images
+namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
 		public float fillAmountTime = 5f;
 		private static int numOfLvls;
@@ -19,11 +22,11 @@ using Assets.scripts.UI.mainmenu;
 		void Start() {
 			levels = GetComponent<MainMenuScript>().levels;
 		    numOfLvls = levels.Length;
-		    sliders = new Slider[numOfLvls - 1];
-		    particleSystems = new ParticleSystem[numOfLvls - 1];
 		    levelStatusNames = new string[numOfLvls];
 		}
 
+		// Time it takes to fill the slider
+		// used in MainMenuScript
 		public float GetFillAmountTime() {
 			return fillAmountTime;
 		}
@@ -31,35 +34,23 @@ using Assets.scripts.UI.mainmenu;
 		// Update is called once per frame
 		void LateUpdate() {
 			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
-
-			FillLevelLines(fillOverTimeIdx);
-
-			if (fillOverTimeIdx > -1) {
-			//	FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
-			}
-		}
-
-		
-		// TODO is this function really needed anymore?
-		// Fills previously completed level lines instantly
-		private void FillLevelLines(int fillOverTimeIdx) {
-			for (int i = 0; i < fillOverTimeIdx; i++) {
-				//Fill(fillImages[i]); 
+			
+			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon) {
+				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 
 		// Fills the last completed level line over time
 		private void FillOverTime(Slider slider, ParticleSystem ps, float fillTime) {
 			if (Time.timeSinceLevelLoad < fillTime) {
-//				float fillAmountChange = Time.deltaTime / fillTime;
-//				slider.value += fillAmountChange;
+				float fillAmountChange = Time.deltaTime / fillTime;
+				slider.value += fillAmountChange;
 			}
 			else {
-				ps.Play();
+				ps.Play(); // Particle system played when slider has been filled
 			}
 		}
 
-		
 		// Returns the index of the last level that was completed,
 		// and -1 if no level was completed
 		private int GetLastLevelIndexToFill(MainMenuScript.LvlData[] levels) {
@@ -70,11 +61,6 @@ using Assets.scripts.UI.mainmenu;
 				}
 			}
 			return -1;
-		}
-
-		// Instantly fills an image
-		private void Fill(Image image) {
-			image.fillAmount = 1f;
 		}
 	}
 }
