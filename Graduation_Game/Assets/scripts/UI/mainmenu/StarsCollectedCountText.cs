@@ -8,7 +8,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 		public static int totalStars;
 
-		void Start() {
+		void Awake() {
 			SetAllWonStars();
 			var text = GetComponent<Text>();
 			text.text = Prefs.GetTotalStars().ToString();

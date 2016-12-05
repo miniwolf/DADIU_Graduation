@@ -9,7 +9,6 @@ using Assets.scripts.controllers.actions.game;
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
 		public Slider[] sliders;
-		public ParticleSystem[] particleSystems;
 		public float fillAmountTime = 5f;
 
 		private MainMenuScript mainMenuScript;
@@ -32,7 +31,7 @@ namespace Assets.scripts.UI {
 		// Update is called once per frame
 		void LateUpdate() {			
 			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon && !mainMenuScript.isLastLevelIdx()) {
-				FillOverTime(sliders[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+				FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
 			}
 		}
 
@@ -55,13 +54,10 @@ namespace Assets.scripts.UI {
 		}
 
 		// Fills the last completed level line over time
-		private void FillOverTime(Slider slider, ParticleSystem ps, float fillTime) {
+		private void FillOverTime(Slider slider, float fillTime) {
 			if (Time.timeSinceLevelLoad < fillTime) {
 				float fillAmountChange = Time.deltaTime / fillTime;
 				slider.value += fillAmountChange;
-			}
-			else {
-				ps.Play(); // Particle system played when slider has been filled
 			}
 		}
 
