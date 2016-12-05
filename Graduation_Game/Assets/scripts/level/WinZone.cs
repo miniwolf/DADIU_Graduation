@@ -91,7 +91,7 @@ namespace Assets.scripts.level {
 			//canvas.EndLevel();			// this thing will be called inside the cutscene after the required time has passed (look in controllers/actions/game/CutScene.cs )
 
 			if(Prefs.GetLevelUnlockIndex() < level) Prefs.SetLevelUnlockIndex(level);
-			Inventory.UpdateCount();
+			//Inventory.UpdateCount();
 			win = true;
 			StartCoroutine(ForceCameraToWin());
 			canvas.EndLevel();
