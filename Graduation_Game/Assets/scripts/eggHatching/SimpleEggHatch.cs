@@ -67,10 +67,6 @@ namespace Assets.scripts.eggHatching {
             if (hatchableEggs > maxHatchableEggs) hatchableEggs = maxHatchableEggs;
         }
 
-        private void OnDestroy() {
-
-        }
-
         private IEnumerator VisualFeedback() {
             hatchEggsPanel.SetActive(false);
             pendingFeedback = Instantiate(template);
