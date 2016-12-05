@@ -19,7 +19,7 @@ namespace Assets.scripts.UI.mainmenu {
 		private InputManager inputManager;
 		private FillImage fillImageScript;
 
-		public int firstLvlIdxInNextWorld = 5;
+		public int firstLvlIdxInNextWorld = 5; // The first level index into a new world
 
 		public Sprite stars1;
 		public Sprite stars2;
@@ -39,18 +39,24 @@ namespace Assets.scripts.UI.mainmenu {
 			string lastLevelName = Prefs.GetLevelLastPlayedName();
 
 			InitilizeLevels();
+			LockNonInteractableLevels();
 			UnlockLevels();
+			MakeLevelsNotAccessible();
+
+			StartCoroutine(UpdateWorldStarCounterText());
 
 			// Checks if the newest available level has been beat
 			if (EndGame.isNewLevelWon) {
 				fillImageScript = GetComponent<FillImage>();
 				UpdateStarsForLevels();
-				if (isLastLevelIdx())
+
+				if (isLastLevelIdx()) // Special case when the last level is beat
 					LoadLevelButtonsStatusColors();
 				else
-					StartCoroutine(WaitForFill());
+					StartCoroutine(WaitForFillSlider());
 			} else {
 				// LOAD latest progression
+				// Note: Sliders are handled in FillImage.cs
 				LoadLevelButtonsStatusColors();
 			}
 			LoadStars();
@@ -76,15 +82,6 @@ namespace Assets.scripts.UI.mainmenu {
 				lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
 			}
 			levels[0].btnFromScene.interactable = true;
-
-			LockNonInteractableLevels();
-
-			// Makes the next world accessible if totalStars >= starsNeeded
-			foreach (var marker in worldUnlockMarkers) {
-				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
-					MakeLevelsNotAccessible(firstLvlIdxInNextWorld);
-				}
-			}
 		}
 
 		/// <summary>
@@ -102,19 +99,22 @@ namespace Assets.scripts.UI.mainmenu {
 		/// <summary>
 		/// Uses sprite "Not Accessible" on all levels from index "fromLevelIdx" param
 		/// </summary>
-		/// <param name="fromLevelIdx"></param>
-		void MakeLevelsNotAccessible(int fromLevelIdx) {
-			for (int i = fromLevelIdx; i < levels.Length; i++) {
-				//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
-				levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
+		/// <param name="fromLevelIdx"></para>
+		void MakeLevelsNotAccessible() {
+			foreach (var marker in worldUnlockMarkers) {
+				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
+
+					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+						//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
+						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
+						levels[i].btnFromScene.interactable = false;
+					}
+				}
 			}
 		}
 
 		// Waits for level line to finish filling up and then changes the next available level to green
 		protected void Update() {
-			UpdateWorldStarCounterText();
-
-
 			if (Input.GetMouseButtonDown(0)) {
 				DisablePopup();
 			}
@@ -133,13 +133,11 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		/// <summary>
-		/// Updates the total star count vs. stars needed to unlock the next world
-		/// </summary>
-		void UpdateWorldStarCounterText() {
+		IEnumerator UpdateWorldStarCounterText() {
+			yield return new WaitForSeconds(0.5f);
 			// init texts at the beginning
 			foreach (var marker in worldUnlockMarkers) {
-				marker.btnFromScene.GetComponentInChildren<Text>().text = 
+				marker.btnFromScene.GetComponentInChildren<Text>().text =
 					TranslateApi.GetString(marker.localizedText) + " " + StarsCollectedCountText.totalStars + "/" + marker.starsNeeded; // maxstars
 			}
 		}
@@ -148,7 +146,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Waits for level line to finish filling up and then changes the next available level to green
 		/// </summary>
 		/// <returns>Waits for fillAmountTime seconds before loading the status of the level buttons</returns>
-		IEnumerator WaitForFill() {
+		IEnumerator WaitForFillSlider() {
 			bool tmpCurrent = true;
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
@@ -226,7 +224,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Checks if the last level has been reached
 		/// </summary>
 		/// <returns>True if last level has been unlocked</returns>
-		private bool isLastLevelIdx() {
+		public bool isLastLevelIdx() {
 			if (levels.Length - 1 < Prefs.GetLevelUnlockIndex()) return true;
 			return false;
 		}

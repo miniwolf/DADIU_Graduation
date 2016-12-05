@@ -1,6 +1,7 @@
 Event	ID	Name			Wwise Object Path	Notes
 	27047464	airplane_loop			\Default Work Unit\SFXs\3D objects\airplane_loop	
 	65816966	tool_picked_up			\Default Work Unit\SFXs\Tools\tool_picked_up	
+	200119273	music_state_none			\Default Work Unit\settings\music\music_state_none	
 	254264362	seal_land			\Default Work Unit\seal\seal_land	
 	516816362	penguin_death_excavator			\Default Work Unit\penguin\deaths\penguin_death_excavator	
 	540083679	penguin_death_pit_drowning			\Default Work Unit\penguin\deaths\penguin_death_pit_drowning	
@@ -8,20 +9,17 @@ Event	ID	Name			Wwise Object Path	Notes
 	585790082	seal_spawn			\Default Work Unit\seal\seal_spawn	
 	823784186	penguin_slide_loop			\Default Work Unit\penguin\slide\penguin_slide_loop	
 	913448855	seal_death_excavator			\Default Work Unit\seal\deaths\seal_death_excavator	
-	926172193	play_sawblade			\Default Work Unit\TEST\play_sawblade	
 	1037802744	penguin_tool_change_lane_used			\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used	
 	1191246039	penguin_edge_fall			\Default Work Unit\penguin\penguin_edge_fall	
 	1242989296	unmute_master			\Default Work Unit\settings\unmute_master	
 	1250089922	button_pressed			\Default Work Unit\ui\button_pressed	
-	1336860092	trap_excavator_triggered			\Default Work Unit\SFXs\Traps\trap_excavator_triggered	
 	1345721513	tool_change_lane_placed			\Default Work Unit\SFXs\Tools\tool_change_lane_placed	
+	1353137192	music_state_freeze_transition			\Default Work Unit\settings\music\music_state_freeze_transition	
 	1457793291	music_state_in_game			\Default Work Unit\settings\music\music_state_in_game	
-	1511485381	move_test			\Default Work Unit\TEST\move_test	
 	1548142744	tool_jump_triggered			\Default Work Unit\SFXs\Tools\tool_jump_triggered	
 	1577955597	penguin_celebrate			\Default Work Unit\penguin\penguin_celebrate	
 	1649917113	pickup_currency			\Default Work Unit\SFXs\Pickups\pickup_currency	
 	1767969117	penguin_move			\Default Work Unit\penguin\movement\penguin_move	
-	1883663240	jump_test			\Default Work Unit\TEST\jump_test	
 	1943522492	seal_death_pit_drowning			\Default Work Unit\seal\deaths\seal_death_pit_drowning	
 	1995024202	end_screen_star_spawn			\Default Work Unit\ui\end sreen\end_screen_star_spawn	
 	2001381670	penguin_death_spikes			\Default Work Unit\penguin\deaths\penguin_death_spikes	
@@ -38,13 +36,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	2717875216	tool_global_freeze_time_stopping			\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping	
 	2741649490	mute_music			\Default Work Unit\settings\music\mute_music	
 	2948163585	penguin_tool_jump_used			\Default Work Unit\penguin\Interactions\penguin_tool_jump_used	
-	3050945240	New_Event			\Default Work Unit\TEST\New_Event	
 	3054427212	pickup_add_to_score			\Default Work Unit\SFXs\Pickups\pickup_add_to_score	
 	3095703759	penguin_death_electrocution			\Default Work Unit\penguin\deaths\penguin_death_electrocution	
 	3165641387	penguin_spawn			\Default Work Unit\penguin\penguin_spawn	
+	3419717617	music_low_pass_on			\Default Work Unit\settings\music\music_low_pass_on	
 	3430637553	egg_hatching			\Default Work Unit\SFXs\egg_hatching	
 	3505549277	seal_death_spikes			\Default Work Unit\seal\deaths\seal_death_spikes	
 	3508380305	end_screen_count_up			\Default Work Unit\ui\end sreen\end_screen_count_up	
+	3639227549	music_low_pass_off			\Default Work Unit\settings\music\music_low_pass_off	
 	3715428614	seal_death_electrocution			\Default Work Unit\seal\deaths\seal_death_electrocution	
 	3725903807	music_start			\Default Work Unit\settings\music\music_start	
 	3727230871	penguin_slide_end			\Default Work Unit\penguin\slide\penguin_slide_end	
@@ -118,7 +117,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	654747720	splat_8	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\splat_8_DA78823C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\excavator\splat_8		17559
 	656756479	end_screen_spawned	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\fish picked up_087222D8.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_spawn\end_screen_spawned		1826
 	691344409	penguin_1-09	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-09_8B09CF22.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-09		4449
-	698703371	pickup_fly_to_score	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\metal_hit_1_46C0B8E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\pickup_fly_to_score		18980
+	698703371	pickup_fly_to_score	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\metal_hit_1_9344ACE8.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_currency\pickup_fly_to_score		18980
 	702425713	end_screen_count_up	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\coins_pickup_1_671A49FC.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Pickups\pickup_add_to_score\end_screen_count_up		1701
 	715128773	footstep_snow_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\footstep_snow_1_7842934C.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow2\footstep_snow_1		4591
 	723586134	slide_loop_1	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\slide_loop_1_BA19D509.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\slide\slide_loop_1		41839
@@ -134,11 +133,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	792893285	penguin_1-25	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-25_FCB57E95.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_jump_used\penguin_1-25		4324
 	801272023	tool_returned_to_ui	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\menu_click_1_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\tool_returned_to_ui		1955
 	804564895	trnstn	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\pp_transition_1_0CDD8189.wem		\Interactive Music Hierarchy\Default Work Unit\music\ingame music\transition\trnstn		83489
+	806008759	mechanical_click_6	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\mechanical_click_6_50DB02DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\Tools\freeze time\mechanical_click_6		7668
 	819820494	ingame	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\pp_2_0CDD8189.wem		\Interactive Music Hierarchy\Default Work Unit\music\ingame music\igm\ingame		892446
 	824157448	footsteps_sandy_6	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\footsteps_sandy_6_2B541CCF.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_6		4203
 	851894782	penguin_1-67	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-67_A9C80496.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_celebrate\penguin_1-67		6847
 	853971576	penguin_1-13	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-13_BBAD6558.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_change_lane_used\penguin_1-13		4339
-	874724407	pickup_add_to_score	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\fish added to score_98653433.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_score_count\pickup_add_to_score		1277
+	874724407	pickup_add_to_score	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\fish added to score_54B5AFDF.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\end_screen_score_count\pickup_add_to_score		1277
 	923487966	penguin_death_drowning_2	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-85_7B2B6009.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\pit\drowning_voice\penguin_death_drowning_2		11783
 	936568890	penguin_death_5	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-45_17D806E2.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\death voice\penguin_death_5		2509
 	946178386	penguin_1-08	C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\SFX\penguin_1-08_B078762F.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-08		1890
