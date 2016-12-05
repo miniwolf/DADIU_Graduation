@@ -27,17 +27,18 @@
 				<Event Id="3508380305" Name="end_screen_count_up" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_count_up"/>
 				<Event Id="2088991191" Name="end_screen_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_spawn"/>
 				<Event Id="1995024202" Name="end_screen_star_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_star_spawn"/>
-				<Event Id="1883663240" Name="jump_test" ObjectPath="\Events\Default Work Unit\TEST\jump_test" MaxAttenuation="0.000000"/>
-				<Event Id="1511485381" Name="move_test" ObjectPath="\Events\Default Work Unit\TEST\move_test" MaxAttenuation="0.000000"/>
+				<Event Id="3639227549" Name="music_low_pass_off" ObjectPath="\Events\Default Work Unit\settings\music\music_low_pass_off" MaxAttenuation="0.000000"/>
+				<Event Id="3419717617" Name="music_low_pass_on" ObjectPath="\Events\Default Work Unit\settings\music\music_low_pass_on" MaxAttenuation="0.000000"/>
 				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\settings\music\music_start"/>
+				<Event Id="1353137192" Name="music_state_freeze_transition" ObjectPath="\Events\Default Work Unit\settings\music\music_state_freeze_transition" MaxAttenuation="0.000000"/>
 				<Event Id="1457793291" Name="music_state_in_game" ObjectPath="\Events\Default Work Unit\settings\music\music_state_in_game" MaxAttenuation="0.000000"/>
 				<Event Id="3857193422" Name="music_state_menu" ObjectPath="\Events\Default Work Unit\settings\music\music_state_menu" MaxAttenuation="0.000000"/>
+				<Event Id="200119273" Name="music_state_none" ObjectPath="\Events\Default Work Unit\settings\music\music_state_none" MaxAttenuation="0.000000"/>
 				<Event Id="2495070883" Name="mute_master" ObjectPath="\Events\Default Work Unit\settings\mute_master" MaxAttenuation="0.000000"/>
 				<Event Id="2741649490" Name="mute_music" ObjectPath="\Events\Default Work Unit\settings\music\mute_music" MaxAttenuation="0.000000"/>
-				<Event Id="3050945240" Name="New_Event" ObjectPath="\Events\Default Work Unit\TEST\New_Event" MaxAttenuation="0.000000"/>
 				<Event Id="1577955597" Name="penguin_celebrate" ObjectPath="\Events\Default Work Unit\penguin\penguin_celebrate" MaxAttenuation="25.000000"/>
 				<Event Id="3095703759" Name="penguin_death_electrocution" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_electrocution" MaxAttenuation="25.000000"/>
-				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator"/>
+				<Event Id="516816362" Name="penguin_death_excavator" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_excavator" MaxAttenuation="25.000000"/>
 				<Event Id="540083679" Name="penguin_death_pit_drowning" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_pit_drowning" MaxAttenuation="25.000000"/>
 				<Event Id="2001381670" Name="penguin_death_spikes" ObjectPath="\Events\Default Work Unit\penguin\deaths\penguin_death_spikes" MaxAttenuation="25.000000"/>
 				<Event Id="1191246039" Name="penguin_edge_fall" ObjectPath="\Events\Default Work Unit\penguin\penguin_edge_fall" MaxAttenuation="25.000000"/>
@@ -55,7 +56,6 @@
 				<Event Id="3054427212" Name="pickup_add_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_add_to_score"/>
 				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency" MaxAttenuation="25.000000"/>
 				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score" MaxAttenuation="25.000000"/>
-				<Event Id="926172193" Name="play_sawblade" ObjectPath="\Events\Default Work Unit\TEST\play_sawblade" MaxAttenuation="0.000000"/>
 				<Event Id="3715428614" Name="seal_death_electrocution" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_electrocution"/>
 				<Event Id="913448855" Name="seal_death_excavator" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_excavator"/>
 				<Event Id="1943522492" Name="seal_death_pit_drowning" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_pit_drowning"/>
@@ -72,7 +72,6 @@
 				<Event Id="65816966" Name="tool_picked_up" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_picked_up" MaxAttenuation="25.000000"/>
 				<Event Id="2677805925" Name="tool_returned_to_toolbar" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_returned_to_toolbar"/>
 				<Event Id="2487352075" Name="trap_excavator_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_loop"/>
-				<Event Id="1336860092" Name="trap_excavator_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_excavator_triggered" MaxAttenuation="0.000000"/>
 				<Event Id="2376935833" Name="trap_wire_loop" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_loop"/>
 				<Event Id="4274899430" Name="trap_wire_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Traps\trap_wire_triggered" MaxAttenuation="25.000000"/>
 				<Event Id="1242989296" Name="unmute_master" ObjectPath="\Events\Default Work Unit\settings\unmute_master" MaxAttenuation="0.000000"/>
@@ -316,7 +315,7 @@
 				</File>
 				<File Id="698703371" Language="SFX">
 					<ShortName>metal_hit_1.wav</ShortName>
-					<Path>SFX\metal_hit_1_46C0B8E0.wem</Path>
+					<Path>SFX\metal_hit_1_9344ACE8.wem</Path>
 				</File>
 				<File Id="702425713" Language="SFX">
 					<ShortName>coins_pickup_1.wav</ShortName>
@@ -378,6 +377,10 @@
 					<ShortName>pp_transition_1.wav</ShortName>
 					<Path>SFX\pp_transition_1_0CDD8189.wem</Path>
 				</File>
+				<File Id="806008759" Language="SFX">
+					<ShortName>mechanical_click_6.wav</ShortName>
+					<Path>SFX\mechanical_click_6_50DB02DB.wem</Path>
+				</File>
 				<File Id="819820494" Language="SFX">
 					<ShortName>pp_2.wav</ShortName>
 					<Path>SFX\pp_2_0CDD8189.wem</Path>
@@ -396,7 +399,7 @@
 				</File>
 				<File Id="874724407" Language="SFX">
 					<ShortName>fish added to score.wav</ShortName>
-					<Path>SFX\fish added to score_98653433.wem</Path>
+					<Path>SFX\fish added to score_54B5AFDF.wem</Path>
 				</File>
 				<File Id="923487966" Language="SFX">
 					<ShortName>penguin_1-85.wav</ShortName>
