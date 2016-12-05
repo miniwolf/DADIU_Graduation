@@ -39,14 +39,18 @@ namespace Assets.scripts.UI.mainmenu {
 			string lastLevelName = Prefs.GetLevelLastPlayedName();
 
 			InitilizeLevels();
+			LockNonInteractableLevels();
 			UnlockLevels();
+			MakeLevelsNotAccessible();
+
 			StartCoroutine(UpdateWorldStarCounterText());
 
 			// Checks if the newest available level has been beat
 			if (EndGame.isNewLevelWon) {
 				fillImageScript = GetComponent<FillImage>();
 				UpdateStarsForLevels();
-				if (isLastLevelIdx())
+
+				if (isLastLevelIdx()) // Special case when the last level is beat
 					LoadLevelButtonsStatusColors();
 				else
 					StartCoroutine(WaitForFillSlider());
@@ -78,15 +82,6 @@ namespace Assets.scripts.UI.mainmenu {
 				lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
 			}
 			levels[0].btnFromScene.interactable = true;
-
-			LockNonInteractableLevels();
-
-			// Makes the next world accessible if totalStars >= starsNeeded
-			foreach (var marker in worldUnlockMarkers) {
-				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
-					MakeLevelsNotAccessible(firstLvlIdxInNextWorld);
-				}
-			}
 		}
 
 		/// <summary>
@@ -104,11 +99,17 @@ namespace Assets.scripts.UI.mainmenu {
 		/// <summary>
 		/// Uses sprite "Not Accessible" on all levels from index "fromLevelIdx" param
 		/// </summary>
-		/// <param name="fromLevelIdx"></param>
-		void MakeLevelsNotAccessible(int fromLevelIdx) {
-			for (int i = fromLevelIdx; i < levels.Length; i++) {
-				//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
-				levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
+		/// <param name="fromLevelIdx"></para>
+		void MakeLevelsNotAccessible() {
+			foreach (var marker in worldUnlockMarkers) {
+				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
+
+					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+						//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
+						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
+						levels[i].btnFromScene.interactable = false;
+					}
+				}
 			}
 		}
 
@@ -223,7 +224,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Checks if the last level has been reached
 		/// </summary>
 		/// <returns>True if last level has been unlocked</returns>
-		private bool isLastLevelIdx() {
+		public bool isLastLevelIdx() {
 			if (levels.Length - 1 < Prefs.GetLevelUnlockIndex()) return true;
 			return false;
 		}
