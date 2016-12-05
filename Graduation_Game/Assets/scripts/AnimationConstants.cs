@@ -23,5 +23,9 @@ namespace Assets.scripts {
 		public const string SEAL_FALL = "isFalling";
 		public const string PANELIN = "PanelIn";
 		public const string PANELOUT = "PanelOut";
+
+		public class Tools {
+			public const string SPRING = "spring";
+		}
 	}
 }

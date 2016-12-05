@@ -155,7 +155,6 @@ namespace Assets.scripts.components.factory {
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
 			if (animationSet.jumpAnimation != "")
 				actionHandler.AddAction(new SetBoolTrue(animator, animationSet.jumpAnimation));
-			actionHandler.AddAction(new PostSoundEvent(SoundConstants.ToolSounds.JUMP_TRIGGERED));
 			return actionHandler;
 		}
 

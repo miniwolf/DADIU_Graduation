@@ -101,6 +101,10 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.HATCHABLE_PENGUIN:
 					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
 					break;
+				case TagConstants.JUMP:
+					ToolFactory.BuildJump(component.GetActionable<ToolActions>(),
+						component.GetGameObject().transform.parent.gameObject.GetComponentInChildren<Animator>());
+					break;
 				case TagConstants.CUTSCENE:
 					break;
 				default:
