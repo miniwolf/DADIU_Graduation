@@ -10,6 +10,7 @@ using Assets.scripts;
 using Assets.scripts.UI.inventory;
 using System.Collections.Generic;
 using Assets.scripts.level;
+using System;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
@@ -44,7 +45,7 @@ namespace Assets.scripts.controllers.actions.game {
 			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinIcons = GameObject.FindGameObjectsWithTag(TagConstants.UI.PENGUINICON);
-
+			Array.Sort(penguinIcons, CompareObNames);
 			isNewLevelWon = false;
 			starsSpawned = 0;
 			reqPenguins = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_SPAWNER).GetComponent<PenguinSpawner>().GetInitialPenguinCount();
@@ -53,6 +54,10 @@ namespace Assets.scripts.controllers.actions.game {
 		public EndGame(CouroutineDelegateHandler handler, Actionable<GameActions> actionable) {
 			this.handler = handler;
 			this.actionable = actionable;
+		}
+
+		private int CompareObNames(GameObject x, GameObject y) {
+			return x.name.CompareTo(y.name);
 		}
 
 		public void Execute() {
@@ -149,9 +154,6 @@ namespace Assets.scripts.controllers.actions.game {
 			star[starsSpawned].GetComponent<Star>().FlyIn();
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
 			starsSpawned++;
-			// TODO
-			//if(Prefs.GetStarsForCurrentLevel() < starsSpawned) Prefs.SetStarsForCurrentLevel(starsSpawned);
-
 			return true;
 		}
 
