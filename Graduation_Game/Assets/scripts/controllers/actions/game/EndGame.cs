@@ -26,6 +26,7 @@ namespace Assets.scripts.controllers.actions.game {
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
 		private int endedWithPenguins = 0, reqPenguins = 0;
 		private int[] requiredPenguins = new int[3];
+		public static bool isNewLevelWon = false;
 
 		private bool shouldShowRetry = true;
 		private GameObject[] penguinIcons;
@@ -40,6 +41,7 @@ namespace Assets.scripts.controllers.actions.game {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinIcons = GameObject.FindGameObjectsWithTag(TagConstants.UI.PENGUINICON);
 
+			isNewLevelWon = false;
 			starsSpawned = 0;
 			reqPenguins = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_SPAWNER).GetComponent<PenguinSpawner>().GetInitialPenguinCount();
 		}
@@ -81,8 +83,14 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
-			Prefs.SetCurrentLevelToWon();
-			Prefs.SetLevelStatus(SceneManager.GetActiveScene().name, Prefs.COMPLETED);
+			string currentLevel = SceneManager.GetActiveScene().name;
+
+			// Set prefs only if the level has not been beat before
+			if (!Prefs.IsLevelStatusComplete(currentLevel)) {
+				isNewLevelWon = true;
+				Prefs.SetCurrentLevelToWon();
+				Prefs.SetLevelStatus(currentLevel, Prefs.COMPLETED);
+			}
 
 			canvas.SetActiveClickBlocker(true);
 			//canvas.failSceneObject.SetActive(true);
