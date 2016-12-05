@@ -19,7 +19,7 @@ namespace Assets.scripts.UI.mainmenu {
 		private InputManager inputManager;
 		private FillImage fillImageScript;
 
-		public int firstLvlIdxInNextWorld = 5;
+		public int firstLvlIdxInNextWorld = 5; // The first level index into a new world
 
 		public Sprite stars1;
 		public Sprite stars2;
@@ -40,6 +40,7 @@ namespace Assets.scripts.UI.mainmenu {
 
 			InitilizeLevels();
 			UnlockLevels();
+			StartCoroutine(UpdateWorldStarCounterText());
 
 			// Checks if the newest available level has been beat
 			if (EndGame.isNewLevelWon) {
@@ -48,9 +49,10 @@ namespace Assets.scripts.UI.mainmenu {
 				if (isLastLevelIdx())
 					LoadLevelButtonsStatusColors();
 				else
-					StartCoroutine(WaitForFill());
+					StartCoroutine(WaitForFillSlider());
 			} else {
 				// LOAD latest progression
+				// Note: Sliders are handled in FillImage.cs
 				LoadLevelButtonsStatusColors();
 			}
 			LoadStars();
@@ -112,9 +114,6 @@ namespace Assets.scripts.UI.mainmenu {
 
 		// Waits for level line to finish filling up and then changes the next available level to green
 		protected void Update() {
-			UpdateWorldStarCounterText();
-
-
 			if (Input.GetMouseButtonDown(0)) {
 				DisablePopup();
 			}
@@ -133,13 +132,11 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		/// <summary>
-		/// Updates the total star count vs. stars needed to unlock the next world
-		/// </summary>
-		void UpdateWorldStarCounterText() {
+		IEnumerator UpdateWorldStarCounterText() {
+			yield return new WaitForSeconds(0.5f);
 			// init texts at the beginning
 			foreach (var marker in worldUnlockMarkers) {
-				marker.btnFromScene.GetComponentInChildren<Text>().text = 
+				marker.btnFromScene.GetComponentInChildren<Text>().text =
 					TranslateApi.GetString(marker.localizedText) + " " + StarsCollectedCountText.totalStars + "/" + marker.starsNeeded; // maxstars
 			}
 		}
@@ -148,7 +145,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Waits for level line to finish filling up and then changes the next available level to green
 		/// </summary>
 		/// <returns>Waits for fillAmountTime seconds before loading the status of the level buttons</returns>
-		IEnumerator WaitForFill() {
+		IEnumerator WaitForFillSlider() {
 			bool tmpCurrent = true;
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
