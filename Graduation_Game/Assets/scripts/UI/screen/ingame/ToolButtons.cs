@@ -252,6 +252,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void ReleaseTool(bool doubleTap) {
 			if(doubleTap) { // return tool back
+				wasToolHit=false;
 				dragging = false;
 				// tooltip for remove tool finishes
 				TooltipsRemove();
