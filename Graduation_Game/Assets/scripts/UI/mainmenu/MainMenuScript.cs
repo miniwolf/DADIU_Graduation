@@ -31,8 +31,6 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnLocked;
 		public Sprite levelBtnNotAccessable; // Coming soon...
 
-
-		// TODO this needs heavy refactoring when everything is working as intended!
 		protected void Start() {
 
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
@@ -48,9 +46,10 @@ namespace Assets.scripts.UI.mainmenu {
 			if (EndGame.isNewLevelWon) {
 				fillImageScript = GetComponent<FillImage>();
 				SetStarPrefsPerLevel();
-				if (isLastLevelIdx()) LoadLevelButtonsStatusColors();
-				else StartCoroutine(WaitForFill());
-
+				if (isLastLevelIdx())
+					LoadLevelButtonsStatusColors();
+				else
+					StartCoroutine(WaitForFill());
 			} else {
 				// LOAD latest progression
 				LoadLevelButtonsStatusColors();
@@ -133,10 +132,10 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			yield return new WaitForSeconds(fillImageScript.GetFillAmountTime());
 
-			UpdateButtonColors();
+			LoadLevelButtonsStatusColors();
 		}
 
-
+/*
 		void UpdateButtonColors() {
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
@@ -148,7 +147,7 @@ namespace Assets.scripts.UI.mainmenu {
 				}
 			}
 		}
-
+*/
 		// Saves preferences for how many stars are collected for each level
 		void SetStarPrefsPerLevel() {
 			for (int i = 0; i < levels.Length; i++) {
