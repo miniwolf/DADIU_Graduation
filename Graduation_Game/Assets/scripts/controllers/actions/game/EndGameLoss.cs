@@ -64,7 +64,6 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		void EnableFail(){
-			AkSoundEngine.PostEvent("level_fail", gameObject);
 			canvas.SetActiveClickBlocker(true);
 			canvas.failSceneObject.SetActive(true);
 			handler.StartCoroutine(ShowFail());
@@ -74,6 +73,7 @@ namespace Assets.scripts.controllers.actions.game {
 			Animator anim = canvas.failSceneObject.GetComponentInChildren<Animator>();
 			anim.Play("PanelIn");
 			yield return new WaitForSeconds(0.8f);
+			AkSoundEngine.PostEvent("level_fail", Camera.main.gameObject);
 			canvas.SetActiveClickBlocker(false);
 			SetupEndScene();
 		}
