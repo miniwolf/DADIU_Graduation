@@ -135,13 +135,6 @@
 								</Event>
 								<Event Name="tool_global_freeze_time_starting" ID="{1060FD8E-4B8F-48C9-9833-5B2A9BD7527B}">
 									<ChildrenList>
-										<Action Name="Set Voice Pitch" ID="{4FC00498-AB79-4D12-AF10-0E6299AEF1DA}" ShortID="554444229" Type="ChangePitch" Scope="One" Global="true">
-											<ElementList>
-												<Element ID="{C6A5BC57-FFC1-4382-8980-9DBBB38D9B6B}" Global="true">
-													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-												</Element>
-											</ElementList>
-										</Action>
 										<Action Name="Play" ID="{728E9B73-A5F5-4C42-86AD-7510CCBAADEA}" ShortID="244431143" Type="Play" Scope="One" Global="false">
 											<ElementList>
 												<Element ID="{B70CBAF9-FF00-45A0-B02C-D42B4E8C823E}" Global="false">
@@ -149,24 +142,54 @@
 												</Element>
 											</ElementList>
 										</Action>
-										<Action Name="Set Voice Volume" ID="{2759E3A7-377A-44D5-8B1A-284D473E0E66}" ShortID="547495400" Type="ChangeVolume" Scope="One" Global="false">
-											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="2"/>
-												<Property Name="Volume" Type="Real64" Value="-96"/>
-											</PropertyList>
-											<ElementList>
-												<Element ID="{04A1C758-5219-4D82-8226-AAFBB39EF92E}" Global="false">
-													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
-												</Element>
-											</ElementList>
-										</Action>
 										<Action Name="Set Voice Pitch" ID="{2B3DF3A4-D98C-456B-B2D2-FD806028A082}" ShortID="285166514" Type="ChangePitch" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="1"/>
-												<Property Name="Pitch" Type="int32" Value="-1000"/>
+												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="Pitch" Type="int32" Value="-1200"/>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{B7D742BF-CE9F-4A3F-85F0-D8A732BD13DC}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Volume" ID="{FDFEF34E-C4B2-42D2-8AE1-CFB53C8DCFD3}" ShortID="719330815" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="2.8"/>
+												<Property Name="Volume" Type="Real64" Value="-96"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{955CE30D-8D00-453E-801C-EBCEE528E94B}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Pitch" ID="{29539941-6BA6-47ED-87B7-0AD7BCCB7320}" ShortID="309722496" Type="ChangePitch" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="3"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{9A415CE9-8971-4CE2-8779-60723379AEDC}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Post Event" ID="{E2217735-8014-48AE-B4BD-E42B72BB9EC6}" ShortID="504295923" Type="PlayEvent" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="2.8"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{88A73A73-DA7D-4FFA-ABF7-5D50B0417951}" Global="false">
+													<ObjectRef Name="music_state_none" ID="{7082357E-A226-4B61-9360-C4D07B890CAE}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Volume" ID="{27660C05-2647-4926-93C4-B25DBA874989}" ShortID="177615661" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="3"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{616933F9-5E50-4BDA-9569-950D42319150}" Global="true">
 													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
 												</Element>
 											</ElementList>
@@ -175,13 +198,10 @@
 								</Event>
 								<Event Name="tool_global_freeze_time_stopping" ID="{85629A54-F10D-46B3-951C-3713FE9F96BD}">
 									<ChildrenList>
-										<Action Name="Set Voice Pitch" ID="{1F59C229-4163-4351-8E51-FFC68A3A549A}" ShortID="509675936" Type="ChangePitch" Scope="One" Global="true">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32" Value="-1000"/>
-											</PropertyList>
+										<Action Name="Post Event" ID="{031DF754-AF6B-4FBC-8DF3-BD1C4C67F121}" ShortID="458798753" Type="PlayEvent" Scope="One" Global="false">
 											<ElementList>
-												<Element ID="{C94D2089-CF7D-4B08-9BBA-FB7BA34117D8}" Global="true">
-													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												<Element ID="{B8B1D3FC-28BE-48D3-A2FD-A48DECE76904}" Global="false">
+													<ObjectRef Name="music_state_freeze_transition" ID="{E6FB9796-FED3-4BCC-A6FF-64FB797FAD58}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -192,22 +212,19 @@
 												</Element>
 											</ElementList>
 										</Action>
-										<Action Name="Set Voice Volume" ID="{98EA29B6-82FE-4FD7-921B-06262152CEA9}" ShortID="932292955" Type="ChangeVolume" Scope="One" Global="false">
+										<Action Name="Set Voice Volume" ID="{98EA29B6-82FE-4FD7-921B-06262152CEA9}" ShortID="932292955" Type="ChangeVolume" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.2"/>
 											</PropertyList>
 											<ElementList>
-												<Element ID="{D10E162D-F9FB-419E-A806-DC9D927B5A5C}" Global="false">
-													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
+												<Element ID="{D10E162D-F9FB-419E-A806-DC9D927B5A5C}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
 												</Element>
 											</ElementList>
 										</Action>
-										<Action Name="Set Voice Pitch" ID="{DD286EEA-DA22-46DA-99DD-3E0D5B223960}" ShortID="34627566" Type="ChangePitch" Scope="One" Global="true">
-											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="0.7"/>
-											</PropertyList>
+										<Action Name="Set Voice Pitch" ID="{F0F2D1DC-C96A-4D4A-AE71-B5F5A773B637}" ShortID="174618176" Type="ChangePitch" Scope="One" Global="true">
 											<ElementList>
-												<Element ID="{FBAE1067-D2FC-47C3-83ED-63315B309BFE}" Global="true">
+												<Element ID="{6527C104-038C-464B-8048-71A1EA711221}" Global="true">
 													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
 												</Element>
 											</ElementList>
@@ -224,24 +241,6 @@
 											<ElementList>
 												<Element ID="{2F6DD0A1-BC33-4879-A981-9F0F328B5813}" Global="false">
 													<ObjectRef Name="trap_excavator_loop" ID="{E44F1853-8F87-457D-96D3-6BC320499017}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="trap_excavator_triggered" ID="{5C80BEA3-B21D-413F-9ED6-FD581809BAB1}">
-									<ChildrenList>
-										<Action Name="Play" ID="{EB88D0E8-ABD3-4495-ADED-93849E99C65C}" ShortID="249654247" Type="Play" Scope="One" Global="false">
-											<PropertyList>
-												<Property Name="Inclusion" Type="bool">
-													<ValueList>
-														<Value>False</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ElementList>
-												<Element ID="{460765C3-73F2-4613-88ED-DD951F541E7E}" Global="false">
-													<ObjectRef Name="trap_excavator_triggered" ID="{05BAA935-0D6E-47FB-BCC8-278AFF7BF0B0}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -358,6 +357,13 @@
 											<ElementList>
 												<Element ID="{EACDBC9D-A3AB-469C-A772-30ABF6401FDE}" Global="false">
 													<ObjectRef Name="end_screen_spawn" ID="{B6EFBFE3-CF86-49E4-A8B6-28674913E200}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Post Event" ID="{2294E83C-B698-4AFC-A5D2-3F0692612247}" ShortID="708370942" Type="PlayEvent" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{DA0235B1-317C-4516-B216-68586AE6C885}" Global="false">
+													<ObjectRef Name="music_low_pass_on" ID="{E5F3BF57-F1B9-4F78-95AA-1FDA844D0287}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -502,8 +508,8 @@
 										</Action>
 										<Action Name="Set Voice Pitch" ID="{D16DC03F-AB36-4D26-AD1C-73E4DCB3D182}" ShortID="1070749606" Type="ChangePitch" Scope="One" Global="false">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="0.2"/>
-												<Property Name="Pitch" Type="int32" Value="600"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.3"/>
+												<Property Name="Pitch" Type="int32" Value="300"/>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{54D1A69A-D6A4-4F8E-8931-D030605A2ED2}" Global="false">
@@ -513,7 +519,7 @@
 										</Action>
 										<Action Name="Set Voice Pitch" ID="{50E434FF-EE33-4798-AA6C-97C5627DD484}" ShortID="54901045" Type="ChangePitch" Scope="One" Global="false">
 											<PropertyList>
-												<Property Name="Delay" Type="Real64" Value="0.5"/>
+												<Property Name="Delay" Type="Real64" Value="0.6"/>
 												<Property Name="FadeTime" Type="Real64" Value="0.3"/>
 												<Property Name="Pitch" Type="int32" Value="1000"/>
 											</PropertyList>
@@ -928,6 +934,13 @@
 												</Element>
 											</ElementList>
 										</Action>
+										<Action Name="Post Event" ID="{00716F41-2994-4E9E-8F76-FC66891C2EED}" ShortID="282538681" Type="PlayEvent" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{B4ECF644-072C-4B3A-A5EA-3DF23C198CAE}" Global="false">
+													<ObjectRef Name="music_low_pass_off" ID="{D49B6DB9-4E30-481F-B629-F4F92BA47C18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+												</Element>
+											</ElementList>
+										</Action>
 									</ChildrenList>
 								</Event>
 								<Event Name="music_state_menu" ID="{F075CA52-4CD1-4F8B-A91F-8F2BA8FDB377}">
@@ -961,6 +974,95 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="music_state_freeze_transition" ID="{E6FB9796-FED3-4BCC-A6FF-64FB797FAD58}">
+									<ChildrenList>
+										<Action Name="Set State" ID="{710A9FB1-93E8-4E99-A2E3-D0A36673CDD3}" ShortID="404269687" Type="SetState" Scope="All" Global="true">
+											<SetItemParam>
+												<Group Name="music" ID="{31EFB71D-0E67-454B-8F9F-B2C835E7A49B}"/>
+												<GroupItem Name="freeze_transition" ID="{19795D63-2784-4C46-8D55-847BB29C5688}"/>
+											</SetItemParam>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="music_state_none" ID="{7082357E-A226-4B61-9360-C4D07B890CAE}">
+									<ChildrenList>
+										<Action Name="Set State" ID="{AB8FB67A-C6B9-4CEE-BDEE-FBE5209D7B21}" ShortID="129740007" Type="SetState" Scope="All" Global="true">
+											<SetItemParam>
+												<Group Name="music" ID="{31EFB71D-0E67-454B-8F9F-B2C835E7A49B}"/>
+												<GroupItem Name="None" ID="{59FD3DDF-0662-4D11-B5E5-737F80C771A3}"/>
+											</SetItemParam>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="music_low_pass_on" ID="{E5F3BF57-F1B9-4F78-95AA-1FDA844D0287}">
+									<ChildrenList>
+										<Action Name="Set Voice Low-pass Filter" ID="{E4765460-AC95-45B6-AD05-B00282AA0641}" ShortID="50152105" Type="ChangeLPF" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.4"/>
+												<Property Name="Lowpass" Type="int16" Value="70"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{2FD0AEFE-12CF-4143-A0C6-786971257D62}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice High-pass Filter" ID="{FE24DCAC-DF64-4E0E-A5D6-AAFC88D530D9}" ShortID="361100457" Type="ChangeHPF" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.4"/>
+												<Property Name="Highpass" Type="int16" Value="40"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{5538EFD0-A9EC-4DB5-B7B0-89B8DF39127B}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Low-pass Filter" ID="{95BDE354-3901-4A7F-83AF-C26EC63F3570}" ShortID="529183591" Type="ChangeLPF" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.4"/>
+												<Property Name="FadeTime" Type="Real64" Value="6"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{6A02C449-7E4F-4065-9FCE-9954218DA3AD}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice High-pass Filter" ID="{6C910DCB-52E1-4BD4-82B5-F18B7D7224B3}" ShortID="807042122" Type="ChangeHPF" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.4"/>
+												<Property Name="FadeTime" Type="Real64" Value="6"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{C2FEAF6E-B428-479B-A491-FA460BFD562B}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="music_low_pass_off" ID="{D49B6DB9-4E30-481F-B629-F4F92BA47C18}">
+									<ChildrenList>
+										<Action Name="Set Voice Low-pass Filter" ID="{2626B540-426F-4C52-AE89-8A1FA879023E}" ShortID="452218448" Type="ChangeLPF" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{59838AE6-5AFB-4DD4-B6AC-6CDF0FCB9437}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice High-pass Filter" ID="{F2F20199-61F2-4EED-9733-090578AE0A14}" ShortID="336007202" Type="ChangeHPF" Scope="One" Global="true">
+											<ElementList>
+												<Element ID="{B527FCB1-FB0C-4E6D-B2A1-6336793013E3}" Global="true">
+													<ObjectRef Name="music" ID="{99C2FCA5-3DEF-40ED-8347-2B4581B51B7E}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Event Name="unmute_master" ID="{FF2F28F1-6647-455D-9766-0D6E256C0343}">
@@ -979,82 +1081,7 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="TEST" ID="{579CEA88-1290-432D-A83B-090299EE6A2E}" ShortID="1065301387">
-					<ChildrenList>
-						<Event Name="play_sawblade" ID="{9D7EC0A8-B7C6-4F24-975E-3CC70C9F9429}">
-							<ChildrenList>
-								<Action Name="Post Event" ID="{9AE415D3-E094-4CB0-AB5F-A7BF3E6E4982}" ShortID="332622245" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{845B5AE8-BDFC-417D-88FD-107952AE6ED5}" Global="false">
-											<ObjectRef Name="trap_excavator_triggered" ID="{5C80BEA3-B21D-413F-9ED6-FD581809BAB1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Post Event" ID="{A2BA043B-55E1-4612-9745-26506BC8C379}" ShortID="778728423" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{41CF7C97-0E46-48DE-A7F5-904AF988CB0D}" Global="false">
-											<ObjectRef Name="penguin_death_excavator" ID="{AA1BFFAE-CCE8-4A4F-BB41-30B65D7B5EE6}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="jump_test" ID="{AAECDB9F-235B-4207-9134-4EABB51C97BC}">
-							<ChildrenList>
-								<Action Name="Post Event" ID="{AC01B182-0B60-4D97-AF83-6649C076708B}" ShortID="859921566" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{D6F00093-0F07-462E-A5DC-523970463F23}" Global="false">
-											<ObjectRef Name="penguin_tool_jump_used" ID="{E63D0B90-BD3A-4664-B3BE-6547AFCFF451}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Post Event" ID="{1753E5EB-037C-4259-B45E-7293A965E857}" ShortID="502143943" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{1879185D-5C6E-4997-9CE1-AFA8DFB48CD1}" Global="false">
-											<ObjectRef Name="tool_jump_triggered" ID="{DABF1B46-9533-48C7-B947-A7D967F6D56B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="move_test" ID="{0BF5179F-1994-4D07-A222-9E781F3B7C96}">
-							<ChildrenList>
-								<Action Name="Post Event" ID="{2A70014F-7084-4D2F-B832-55367F5F3F45}" ShortID="48520771" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{C59003BF-BE5F-4189-BA21-A242CC8387CD}" Global="false">
-											<ObjectRef Name="penguin_move" ID="{843A4D0F-70D9-4CBD-A8C8-C1083CF8CA18}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Post Event" ID="{AF49B540-74C9-483E-B524-E27AE6FF3078}" ShortID="830346611" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{102A12C8-4322-4B9B-A92F-A6687E94A089}" Global="false">
-											<ObjectRef Name="penguin_move_voice" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="New_Event" ID="{27A2DA7A-D329-4949-85EF-F15AF06B0787}">
-							<ChildrenList>
-								<Action Name="Post Event" ID="{FEDD70A0-4A4B-4105-9ACF-D6AA69166355}" ShortID="431080665" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{24CADD98-708E-4360-9337-F9416DE0020C}" Global="false">
-											<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Post Event" ID="{28B1A8E4-2020-460D-AA39-530E2467CAB7}" ShortID="660393404" Type="PlayEvent" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{B07BC043-D24F-4280-99C6-825DB00A8956}" Global="false">
-											<ObjectRef Name="pickup_fly_to_score" ID="{81DC254A-595A-4936-8C6D-438239BDDF4C}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
+				<Folder Name="TEST" ID="{579CEA88-1290-432D-A83B-090299EE6A2E}" ShortID="1065301387"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

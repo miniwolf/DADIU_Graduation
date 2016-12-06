@@ -22,9 +22,6 @@ namespace Assets.scripts.controllers.actions.traps {
 
 		public void Execute() {
 			ps.Play();
-
-			Debug.Log("DEBUG ps is Playing? : " + ps.isPlaying);
-
 			var penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinCounter.text = (int.Parse(penguinCounter.text) - 1).ToString();
 			killable.Kill();
