@@ -24,6 +24,7 @@ ModelImporter:
     100032: 2___1___single_lane
     100034: 2___single_lane
     100036: safe
+    100038: 7
     400000: 1___1
     400002: 1___2
     400004: 2___1
@@ -43,6 +44,7 @@ ModelImporter:
     400032: 2___1___single_lane
     400034: 2___single_lane
     400036: safe
+    400038: 7
     2300000: 1___1
     2300002: 1___2
     2300004: 2___1
@@ -61,6 +63,7 @@ ModelImporter:
     2300030: 2___1___single_lane
     2300032: 2___single_lane
     2300034: safe
+    2300036: 7
     3300000: 1___1
     3300002: 1___2
     3300004: 2___1
@@ -79,6 +82,7 @@ ModelImporter:
     3300030: 2___1___single_lane
     3300032: 2___single_lane
     3300034: safe
+    3300036: 7
     4300000: 1___1
     4300002: 1___2
     4300004: 2___1
@@ -97,6 +101,7 @@ ModelImporter:
     4300030: 2___1___single_lane
     4300032: 2___single_lane
     4300034: safe
+    4300036: 7
   materials:
     importMaterials: 1
     materialName: 0
