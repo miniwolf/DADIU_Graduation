@@ -6,6 +6,7 @@ using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using System.Collections;
 using Assets.scripts.level;
+using Assets.scripts.UI.input;
 
 namespace Assets.scripts.UI {
 	public class CanvasController : ActionableGameEntityImpl<GameActions>, TouchInputListener, MouseInputListener {
