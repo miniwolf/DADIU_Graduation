@@ -3,7 +3,11 @@ using System.Diagnostics;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using UnityEngine;
+<<<<<<< HEAD
 using Debug = UnityEngine.Debug;
+=======
+using Assets.scripts.character;
+>>>>>>> develop
 
 namespace Assets.scripts.controllers.actions.movement {
 	public class MoveForward : Action {
@@ -18,6 +22,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		private float speed;
 		private float raycastLength = 0.45f;
 	    private float jumpStartMillis;
+		private Penguin penguin;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -26,6 +31,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		}
 
 		public void Setup(GameObject gameObject) {
+			penguin = gameObject.GetComponent<Penguin>();
 			characterController = gameObject.GetComponent<CharacterController>();
 		    //AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.START_MOVING, gameObject);
 		}
@@ -68,7 +74,7 @@ namespace Assets.scripts.controllers.actions.movement {
 			// if penguin is not hitting the ground (i.e. penguin is in the air) and it wasn't falling before,
 			// is it falling now
 			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, raycastLength, layerMask)) {
-				if ( !isFalling ) {
+				if ( !isFalling && penguin.notWalkingOnSolidSurface) {
 					actionable.ExecuteAction(ControllableActions.PenguinFall);
 					isFalling = true;
 				}
