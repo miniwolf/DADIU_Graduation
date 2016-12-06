@@ -40,12 +40,19 @@ namespace Assets.scripts.eggHatching {
         }
 
         public void OpenEggHatchingPanel() {
-            if(hatchableEggs > 0)
+			AkSoundEngine.PostEvent("button_pressed", gameObject);
+			if (hatchableEggs > 0)
                 hatchEggsPanel.SetActive(true);
         }
 
         public void HatchEggs() {
-            StartCoroutine(VisualFeedback());
+			if (hatchableEggs > 1) {
+				AkSoundEngine.PostEvent("egg_hatch_multiple", gameObject);
+			}
+			else {
+				AkSoundEngine.PostEvent("egg_hatch_single", gameObject);
+			}
+			StartCoroutine(VisualFeedback());
         }
 
         private void UpdateScreen() {
@@ -89,8 +96,7 @@ namespace Assets.scripts.eggHatching {
         }
 
         private IEnumerator VisualFeedback() {
-
-            CloseDialog();
+			CloseDialog();
             lastHatchTime = Prefs.UpdateLastHatchTime();
             penguinCount += hatchableEggs;
             maxHatchableEggs -= hatchableEggs;
