@@ -7,6 +7,8 @@ public class NewBlood : MonoBehaviour {
 	List<ParticleCollisionEvent> list;
 	public ParticleSystem part;
 
+	public Texture[] materials;
+
 
 	void Start(){
 		list = new List<ParticleCollisionEvent>();
@@ -18,7 +20,11 @@ public class NewBlood : MonoBehaviour {
 		int i = 0;
 		print(numCol);
 		while(i<numCol){
-			Blood(list[i].intersection,list[i].normal);
+			Blood(list[i].intersection,list[i].normal,list[i].colliderComponent);
+			/*if (list[i].intersection != null) {
+				//Destroy(list[i].);
+				list.Remove(list[i]);
+			}*/
 			i++;
 		}
 
@@ -32,8 +38,11 @@ public class NewBlood : MonoBehaviour {
 	GameObject splatter;
 
 
-	void Blood(Vector3 point, Vector3 normal){
+	void Blood(Vector3 point, Vector3 normal, Component col){
+		
 		splatter = Instantiate (drip, point + (normal * 0.1f), Quaternion.FromToRotation (Vector3.up, normal));
+		splatter.transform.parent = col.transform;
+		splatter.GetComponent<MeshRenderer>().material.mainTexture = materials[Random.Range(0, materials.Length)];
 
 	var scaler = Random.value;
 	splatter.transform.localScale *= scaler;
