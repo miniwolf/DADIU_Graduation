@@ -32,7 +32,7 @@ namespace Assets.DecalSystem{
 				return;
 			}
 
-			affectedObjects = GetAffectedObjects(decal);
+			affectedObjects = GetAffectedObjects(decal.GetBounds(),decal.affectedLayers);
 			foreach(GameObject go in affectedObjects) {
 				DecalBuilder.BuildDecalForObject( decal, go );
 			}
@@ -44,11 +44,14 @@ namespace Assets.DecalSystem{
 				filter.mesh = mesh;
 			}
 		}
-		private static GameObject[] GetAffectedObjects(Decal decal) {
-			Bounds bounds = decal.GetBounds();
-			MeshRenderer[] renderers = decal.GetAffectedObjects();
+		private static GameObject[] GetAffectedObjects(Bounds bounds, LayerMask affectedLayers) {
+			MeshRenderer[] renderers = (MeshRenderer[]) GameObject.FindObjectsOfType<MeshRenderer>();
 			List<GameObject> objects = new List<GameObject>();
 			foreach(Renderer r in renderers) {
+				if( !r.enabled ) continue;
+				if( !IsLayerContains(affectedLayers, r.gameObject.layer) ) continue;
+				if( r.GetComponent<Decal>() != null ) continue;
+
 				if( bounds.Intersects(r.bounds) ) {
 					objects.Add(r.gameObject);
 				}
