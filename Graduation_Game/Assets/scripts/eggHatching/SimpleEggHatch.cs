@@ -57,10 +57,12 @@ namespace Assets.scripts.eggHatching {
                 hatchCountTextInPanel.text = hatchableEggs + "/" + maxHatchableEggs;
             }
 
-            if (maxHatchableEggs <= 0) {
+            if (maxHatchableEggs <= 0 || hatchableEggs >= maxHatchableEggs) {
                 timerText.gameObject.SetActive(false);
+                timerPopupText.gameObject.SetActive(false);
             } else {
                 timerText.gameObject.SetActive(true);
+                timerPopupText.gameObject.SetActive(true);
             }
 
             if (hatchCountTextInMainCanvas != null) {
