@@ -9,6 +9,7 @@ namespace Assets.scripts.eggHatching {
         public Text penguinsCountText, hatchCountText, timerText;
         public GameObject hatchEggsPanel;
         public GameObject template;
+        public float hatchFeedbackSpeed = .5f;
 
         private int penguinCount, penguinMaxCount;
         private int lastHatchTime; // when user hatched, but when hatchable egg is created
@@ -67,31 +68,32 @@ namespace Assets.scripts.eggHatching {
         }
 
         private IEnumerator VisualFeedback() {
-            hatchEggsPanel.SetActive(false);
-            pendingFeedback = Instantiate(template);
-            pendingFeedback.gameObject.SetActive(true);
-            pendingFeedback.transform.parent = transform;
+            if(hatchEggsPanel != null) { // this check is here until EggHatching prefab is added to the main screne
+                hatchEggsPanel.SetActive(false);
+                pendingFeedback = Instantiate(template);
+                pendingFeedback.gameObject.SetActive(true);
+                pendingFeedback.transform.parent = transform;
 
-            Vector3 targetLocation = penguinsCountText.gameObject.transform.position;
-            pendingFeedback.transform.position = hatchCountText.transform.position;
+                Vector3 targetLocation = penguinsCountText.gameObject.transform.position;
+                pendingFeedback.transform.position = hatchCountText.transform.position;
 
-            float distance = float.MaxValue;
-            float fraction = 0;
-            float speed = .5f;
-            Debug.DrawRay(hatchCountText.transform.position, targetLocation, Color.red, 10000);
-            while(distance > 1) {
-                if(fraction < 1) {
-                    fraction += Time.deltaTime * speed;
-                    pendingFeedback.transform.position = Vector3.Lerp(hatchCountText.transform.position, targetLocation, fraction);
+                float distance = float.MaxValue;
+                float fraction = 0;
+                Debug.DrawRay(hatchCountText.transform.position, targetLocation, Color.red, 10000);
+                while(distance > 1) {
+                    if(fraction < 1) {
+                        fraction += Time.deltaTime * hatchFeedbackSpeed;
+                        pendingFeedback.transform.position = Vector3.Lerp(hatchCountText.transform.position, targetLocation, fraction);
+                    }
+                    Debug.Log(
+                        "Fraction: " + fraction +
+                        ", Start position: " + hatchCountText.transform.position +
+                        ", Current position: " + pendingFeedback.transform.position +
+                        ", Target position: " + targetLocation);
+
+                    distance = Vector3.Distance(pendingFeedback.transform.position, targetLocation);
+                    yield return new WaitForEndOfFrame();
                 }
-                Debug.Log(
-                    "Fraction: " + fraction +
-                    ", Start position: " + hatchCountText.transform.position +
-                    ", Current position: " + pendingFeedback.transform.position +
-                    ", Target position: " + targetLocation);
-
-                distance = Vector3.Distance(pendingFeedback.transform.position, targetLocation);
-                yield return new WaitForEndOfFrame();
             }
 
             pendingFeedback = null;
