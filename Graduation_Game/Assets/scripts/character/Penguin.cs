@@ -42,6 +42,7 @@ namespace Assets.scripts.character {
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
 		Vector3 screenPoint;
+		public bool notWalkingOnSolidSurface = false;
 		private bool doubleJump = false, speedUp = false;
 
 	    void Start() {
@@ -92,10 +93,18 @@ namespace Assets.scripts.character {
 			}
 		}
 
+		void OnCollisionEnter(Collision collision) {
+			if (collision.transform.tag == TagConstants.LANE) {
+				notWalkingOnSolidSurface = true;
+			}
+			else {
+				notWalkingOnSolidSurface = false;
+			}
+		}
 
 
-
-		 IEnumerator OnTriggerEnter(Collider collider) {
+		IEnumerator OnTriggerEnter(Collider collider) {
+			
 			if (collider.transform.tag == TagConstants.WINZONE) {
 				ExecuteAction(ControllableActions.Celebrate);
 				ExecuteAction(ControllableActions.Win);
