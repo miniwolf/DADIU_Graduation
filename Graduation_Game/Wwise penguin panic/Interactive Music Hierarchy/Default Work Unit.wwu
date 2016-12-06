@@ -88,7 +88,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
@@ -107,7 +107,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
@@ -126,7 +126,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
@@ -266,6 +266,13 @@
 							</Playlist>
 						</MusicPlaylistContainer>
 						<MusicPlaylistContainer Name="Main menu music" ID="{E90B2D5F-4E1B-4A30-B917-6E696534957E}" ShortID="534067156">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
@@ -653,7 +660,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
@@ -672,7 +679,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
@@ -691,7 +698,7 @@
 																		</PropertyList>
 																		<PointList>
 																			<Point>
-																				<XPos>-0</XPos>
+																				<XPos>0</XPos>
 																				<YPos>0</YPos>
 																				<Flags>5</Flags>
 																			</Point>
