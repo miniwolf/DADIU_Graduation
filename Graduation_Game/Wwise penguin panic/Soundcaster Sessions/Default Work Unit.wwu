@@ -62,8 +62,16 @@
 							<Position X="3" Y="3"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="music_state_none" ID="{7082357E-A226-4B61-9360-C4D07B890CAE}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="3" Y="4"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="unmute_master" ID="{FF2F28F1-6647-455D-9766-0D6E256C0343}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="4" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="4" Y="1"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="music_start" ID="{47884626-5C0B-4524-8C4E-429A8EA192E9}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
@@ -78,7 +86,7 @@
 							<Position X="4" Y="4"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<ObjectRef Name="music_state_freeze_transition" ID="{E6FB9796-FED3-4BCC-A6FF-64FB797FAD58}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="4" Y="5"/>
 						</Module>
 					</ModuleList>
@@ -93,11 +101,11 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
-							<Value>50</Value>
+							<Value>45</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="in_game" ID="{7F1C5A79-24DB-4E47-AD1A-BB6CDF110C66}"/>
+						<CurrentStateRef Name="freeze_transition" ID="{19795D63-2784-4C46-8D55-847BB29C5688}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

@@ -2,6 +2,7 @@ State Group	ID	Name			Wwise Object Path	Notes
 	3991942870	music			\Default Work Unit\music	
 
 State	ID	Name	State Group			Notes
+	318310270	freeze_transition	music			
 	748895195	None	music			
 	2005704188	main_menu	music			
 	2967546505	in_game	music			
