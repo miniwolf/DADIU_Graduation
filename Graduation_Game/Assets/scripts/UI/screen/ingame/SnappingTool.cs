@@ -14,11 +14,6 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		// Handles snapping on left or right lane
 		public void Snap(Vector3 hitPos, Transform tool) {
-			/*pos = Mathf.Abs(leftLaneOffset - hitPos.z) < Mathf.Abs(rightLaneOffset - hitPos.z)
-					? new Vector3(hitPos.x, tool.position.y, leftLaneOffset)
-					: new Vector3(hitPos.x, tool.position.y, rightLaneOffset);
-			pos.x = Round(pos.x);*/
-
 			if ( Mathf.Abs(leftLaneOffset - hitPos.z) < Mathf.Abs(rightLaneOffset - hitPos.z) ) {
 				pos = new Vector3(hitPos.x, tool.position.y, leftLaneOffset);
 				if ( tool.tag == TagConstants.SWITCHTEMPLATE ) {
@@ -28,16 +23,14 @@ namespace Assets.scripts.UI.screen.ingame {
 						Transform[] trans;
 						trans = tool.gameObject.GetComponentsInChildren<Transform>();
 						for (int i = 0; i < trans.Length; i++) {
-							if (trans[i].tag == TagConstants.LANECHANGEARROW) {
-								trans[i].rotation = Quaternion.Euler(new Vector3(180f, 180f, 0f));
+							if (trans[i].tag == TagConstants.LANECHANGEARROW && trans[i].localScale.x < 0) {
+								//trans[i].rotation = Quaternion.Euler(new Vector3(180f, 180f, 0f));
+								Vector3 scale = trans[i].localScale;
+								trans[i].localScale = new Vector3(-scale.x, scale.y, scale.z);
 								break;
 							}
 						}
 					}
-					/*Vector3 scale = tool.transform.localScale;
-					if ( scale.x < 0 ) {
-						tool.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
-					}*/
 				}
 			} else {
 				pos = new Vector3(hitPos.x, tool.position.y, rightLaneOffset);
@@ -48,16 +41,14 @@ namespace Assets.scripts.UI.screen.ingame {
 						trans = tool.gameObject.GetComponentsInChildren<Transform>();
 						tool.gameObject.GetComponentInChildren<MeshRenderer>().material = Resources.Load("RightArrow", typeof(Material)) as Material;
 						for (int i = 0; i < trans.Length; i++) {
-							if (trans[i].tag == TagConstants.LANECHANGEARROW) {
-								trans[i].rotation = Quaternion.Euler(new Vector3(0, 180f, 0f));
+							if (trans[i].tag == TagConstants.LANECHANGEARROW && trans[i].localScale.x > 0) {
+								//trans[i].rotation = Quaternion.Euler(new Vector3(0, 180f, 0f));
+								Vector3 scale = trans[i].localScale;
+								trans[i].localScale = new Vector3(-scale.x, scale.y, scale.z);
 								break;
 							}
 						}
 					}
-					/*Vector3 scale = tool.transform.localScale;
-					if ( scale.x > 0 ) {
-						tool.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
-					}*/
 				}
 			}
 			pos.x = Round(pos.x);

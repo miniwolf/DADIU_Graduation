@@ -17,6 +17,13 @@ ModelImporter:
     100018: 5___3
     100020: 6
     100022: //RootNode
+    100024: 0
+    100026: 1___1___2
+    100028: 1___single_lane
+    100030: 2___1___2
+    100032: 2___1___single_lane
+    100034: 2___single_lane
+    100036: safe
     400000: 1___1
     400002: 1___2
     400004: 2___1
@@ -29,6 +36,13 @@ ModelImporter:
     400018: 5___3
     400020: 6
     400022: //RootNode
+    400024: 0
+    400026: 1___1___2
+    400028: 1___single_lane
+    400030: 2___1___2
+    400032: 2___1___single_lane
+    400034: 2___single_lane
+    400036: safe
     2300000: 1___1
     2300002: 1___2
     2300004: 2___1
@@ -40,6 +54,13 @@ ModelImporter:
     2300016: 5___2
     2300018: 5___3
     2300020: 6
+    2300022: 0
+    2300024: 1___1___2
+    2300026: 1___single_lane
+    2300028: 2___1___2
+    2300030: 2___1___single_lane
+    2300032: 2___single_lane
+    2300034: safe
     3300000: 1___1
     3300002: 1___2
     3300004: 2___1
@@ -51,6 +72,13 @@ ModelImporter:
     3300016: 5___2
     3300018: 5___3
     3300020: 6
+    3300022: 0
+    3300024: 1___1___2
+    3300026: 1___single_lane
+    3300028: 2___1___2
+    3300030: 2___1___single_lane
+    3300032: 2___single_lane
+    3300034: safe
     4300000: 1___1
     4300002: 1___2
     4300004: 2___1
@@ -62,6 +90,13 @@ ModelImporter:
     4300016: 5___2
     4300018: 5___3
     4300020: 6
+    4300022: 0
+    4300024: 1___1___2
+    4300026: 1___single_lane
+    4300028: 2___1___2
+    4300030: 2___1___single_lane
+    4300032: 2___single_lane
+    4300034: safe
   materials:
     importMaterials: 1
     materialName: 0
@@ -108,6 +143,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -118,7 +154,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
