@@ -57,7 +57,7 @@ namespace Assets.scripts.eggHatching {
                 hatchCountTextInPanel.text = hatchableEggs + "/" + maxHatchableEggs;
             }
 
-            if (maxHatchableEggs <= 0) {
+            if (maxHatchableEggs <= 0 || hatchableEggs >= maxHatchableEggs) {
                 timerText.gameObject.SetActive(false);
             } else {
                 timerText.gameObject.SetActive(true);
