@@ -8,6 +8,7 @@ namespace Assets.scripts.eggHatching {
 
         public Text penguinsCountText, hatchCountText, timerText;
         public GameObject hatchEggsPanel;
+        public GameObject template;
 
         private int penguinCount, penguinMaxCount;
         private int lastHatchTime; // when user hatched, but when hatchable egg is created
@@ -15,8 +16,7 @@ namespace Assets.scripts.eggHatching {
         private int timeCount;
         private int hatchableEggs;
         private int maxHatchableEggs;
-        private ParticleSystem template;
-        private ParticleSystem pendingFeedback;
+        private GameObject pendingFeedback;
 
         void Start() {
             penguinCount = Inventory.penguinCount.GetValue();
@@ -25,7 +25,6 @@ namespace Assets.scripts.eggHatching {
             lastHatchTime = Prefs.GetLastHatchTime();
 			maxHatchableEggs = penguinMaxCount - penguinCount;
 
-            template = GetComponentInChildren<ParticleSystem>();
             template.gameObject.SetActive(false);
             hatchEggsPanel.SetActive(false);
         }
@@ -71,26 +70,27 @@ namespace Assets.scripts.eggHatching {
             hatchEggsPanel.SetActive(false);
             pendingFeedback = Instantiate(template);
             pendingFeedback.gameObject.SetActive(true);
+            pendingFeedback.transform.parent = transform;
 
-            GameObject targetLocation = penguinsCountText.gameObject;
+            Vector3 targetLocation = penguinsCountText.gameObject.transform.position;
             pendingFeedback.transform.position = hatchCountText.transform.position;
 
             float distance = float.MaxValue;
             float fraction = 0;
-            float speed = .3f;
-//            Debug.DrawRay(hatchCountText.transform.position, targetLocation.transform.position, Color.red, 10000);
+            float speed = .5f;
+            Debug.DrawRay(hatchCountText.transform.position, targetLocation, Color.red, 10000);
             while(distance > 1) {
                 if(fraction < 1) {
                     fraction += Time.deltaTime * speed;
-                    pendingFeedback.transform.position = Vector3.Lerp(hatchCountText.transform.position, targetLocation.transform.position, fraction);
+                    pendingFeedback.transform.position = Vector3.Lerp(hatchCountText.transform.position, targetLocation, fraction);
                 }
-//                Debug.Log(
-//                    "Fraction: " + fraction +
-//                    ", Start position: " + Camera.main.ScreenToWorldPoint(hatchCountText.transform.position) +
-//                    ", Current position: " + pendingFeedback.transform.position +
-//                    ", Target position: " + targetLocation.transform.position);
+                Debug.Log(
+                    "Fraction: " + fraction +
+                    ", Start position: " + hatchCountText.transform.position +
+                    ", Current position: " + pendingFeedback.transform.position +
+                    ", Target position: " + targetLocation);
 
-                distance = Vector3.Distance(pendingFeedback.transform.position, targetLocation.transform.position);
+                distance = Vector3.Distance(pendingFeedback.transform.position, targetLocation);
                 yield return new WaitForEndOfFrame();
             }
 
