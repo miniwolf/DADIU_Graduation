@@ -14,14 +14,14 @@ namespace Assets.scripts.character {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
-		public float timeOnWinPlatform = 3.5f;
+		public float timeOnWinPlatform = 2.75f;
 
 		public Vector3 direction;
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
-		public float slideSpeedupIncrement = 0.1f;
+		public float slideSpeedupIncrement = 0.01f;
 		//[Tooltip("")]
-	    public float slideMaxSpeedMult = 2;
+	    public float slideMaxSpeedMult = 20;
 		public float speed;
 		public bool jump;
 		public Lane lane = Lane.Left;
@@ -42,6 +42,7 @@ namespace Assets.scripts.character {
 	    private NotifierSystem notifierSystem;
 	    private Camera deathCam;
 		Vector3 screenPoint;
+		public bool notWalkingOnSolidSurface = false;
 		private bool doubleJump = false, speedUp = false;
 
 	    void Start() {
@@ -92,10 +93,18 @@ namespace Assets.scripts.character {
 			}
 		}
 
+		void OnCollisionEnter(Collision collision) {
+			if (collision.transform.tag == TagConstants.LANE) {
+				notWalkingOnSolidSurface = true;
+			}
+			else {
+				notWalkingOnSolidSurface = false;
+			}
+		}
 
 
-
-		 IEnumerator OnTriggerEnter(Collider collider) {
+		IEnumerator OnTriggerEnter(Collider collider) {
+			
 			if (collider.transform.tag == TagConstants.WINZONE) {
 				ExecuteAction(ControllableActions.Celebrate);
 				ExecuteAction(ControllableActions.Win);
