@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.Reflection;
 namespace Assets.DecalSystem{
-[CustomEditor(typeof(Decal))]
+//[CustomEditor(typeof(Decal))]
 public class DecalEditor : UnityEditor.Editor {	
 
 	private List<Material> materials;
@@ -194,7 +194,7 @@ public class DecalEditor : UnityEditor.Editor {
 	}
 	
 	
-	private void BuildDecal(Decal decal) {
+	public void BuildDecal(Decal decal) {
 		MeshFilter filter = decal.GetComponent<MeshFilter>();
 		if(filter == null) filter = decal.gameObject.AddComponent<MeshFilter>();
 		if(decal.GetComponent<Renderer>() == null) decal.gameObject.AddComponent<MeshRenderer>();

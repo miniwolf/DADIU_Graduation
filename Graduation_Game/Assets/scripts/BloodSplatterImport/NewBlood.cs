@@ -18,7 +18,6 @@ public class NewBlood : MonoBehaviour {
 	void OnParticleCollision(GameObject other){
 		int numCol = part.GetCollisionEvents(other, list);
 		int i = 0;
-		print(numCol);
 		while(i<numCol){
 			Blood(list[i].intersection,list[i].normal,list[i].colliderComponent);
 			/*if (list[i].intersection != null) {
@@ -30,10 +29,6 @@ public class NewBlood : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other){
-		print(other.name);
-	}
-
 	public GameObject drip;
 	GameObject splatter;
 
@@ -42,13 +37,16 @@ public class NewBlood : MonoBehaviour {
 		
 		splatter = Instantiate (drip, point + (normal * 0.1f), Quaternion.FromToRotation (Vector3.up, normal));
 		splatter.transform.parent = col.transform;
-		splatter.GetComponent<MeshRenderer>().material.mainTexture = materials[Random.Range(0, materials.Length)];
+		//splatter.GetComponent<MeshRenderer>().material.mainTexture = materials[Random.Range(0, materials.Length)];
+		splatter.transform.localRotation = Quaternion.Euler(new Vector3(90f, 0, 0));
+
 
 	var scaler = Random.value;
 	splatter.transform.localScale *= scaler;
 	//splatter.transform.localScale.z *= scaler;
 
-	var rater = Random.Range (0, 359);
-		splatter.transform.RotateAround (point, normal, rater);
+	//var rater = Random.Range (0, 359);
+		//splatter.transform.RotateAround (point, normal, rater);
+		splatter.transform.localRotation = Quaternion.Euler(new Vector3(90f, 0, 0));
 	}
 }
