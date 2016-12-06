@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -23,10 +23,14 @@
 			<IncludedEvents>
 				<Event Id="27047464" Name="airplane_loop" ObjectPath="\Events\Default Work Unit\SFXs\3D objects\airplane_loop"/>
 				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\ui\button_pressed"/>
-				<Event Id="3430637553" Name="egg_hatching" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatching"/>
+				<Event Id="987154840" Name="death_fail" ObjectPath="\Events\Default Work Unit\penguin\deaths\death_fail"/>
+				<Event Id="1940248758" Name="egg_hatch_multiple" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatch_multiple"/>
+				<Event Id="3137128474" Name="egg_hatch_single" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatch_single"/>
 				<Event Id="3508380305" Name="end_screen_count_up" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_count_up"/>
 				<Event Id="2088991191" Name="end_screen_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_spawn"/>
 				<Event Id="1995024202" Name="end_screen_star_spawn" ObjectPath="\Events\Default Work Unit\ui\end sreen\end_screen_star_spawn"/>
+				<Event Id="2757408716" Name="level_fail" ObjectPath="\Events\Default Work Unit\ui\end sreen\level_fail" MaxAttenuation="25.000000"/>
+				<Event Id="2036647991" Name="level_failed" ObjectPath="\Events\Default Work Unit\TEST\level_failed" MaxAttenuation="0.000000"/>
 				<Event Id="3639227549" Name="music_low_pass_off" ObjectPath="\Events\Default Work Unit\settings\music\music_low_pass_off" MaxAttenuation="0.000000"/>
 				<Event Id="3419717617" Name="music_low_pass_on" ObjectPath="\Events\Default Work Unit\settings\music\music_low_pass_on" MaxAttenuation="0.000000"/>
 				<Event Id="3725903807" Name="music_start" ObjectPath="\Events\Default Work Unit\settings\music\music_start"/>
@@ -133,6 +137,10 @@
 					<ShortName>footstep_snow_4.wav</ShortName>
 					<Path>SFX\footstep_snow_4_74BCEB4E.wem</Path>
 				</File>
+				<File Id="172410508" Language="SFX">
+					<ShortName>penguin_death_fail.wav</ShortName>
+					<Path>SFX\penguin_death_fail_7E6A080A.wem</Path>
+				</File>
 				<File Id="203007558" Language="SFX">
 					<ShortName>68969__abel-k__tumble-dryer.wav</ShortName>
 					<Path>SFX\68969__abel-k__tumble-dryer_ED46B2C6.wem</Path>
@@ -221,6 +229,10 @@
 					<ShortName>footstep_snow_5.wav</ShortName>
 					<Path>SFX\footstep_snow_5_45DA9D67.wem</Path>
 				</File>
+				<File Id="469283400" Language="SFX">
+					<ShortName>penguin_death_fail 2.wav</ShortName>
+					<Path>SFX\penguin_death_fail 2_7564D39E.wem</Path>
+				</File>
 				<File Id="475400443" Language="SFX">
 					<ShortName>fall_thump_1.wav</ShortName>
 					<Path>SFX\fall_thump_1_0EEECE5B.wem</Path>
@@ -260,6 +272,10 @@
 				<File Id="550593779" Language="SFX">
 					<ShortName>excavator_trap_loop.wav</ShortName>
 					<Path>SFX\excavator_trap_loop_0CDD8189.wem</Path>
+				</File>
+				<File Id="561233549" Language="SFX">
+					<ShortName>fish picked up.wav</ShortName>
+					<Path>SFX\fish picked up_190D4858.wem</Path>
 				</File>
 				<File Id="562139762" Language="SFX">
 					<ShortName>footsteps_sandy_2.wav</ShortName>
@@ -337,10 +353,6 @@
 					<ShortName>footstep_snow_8.wav</ShortName>
 					<Path>SFX\footstep_snow_8_44907DFE.wem</Path>
 				</File>
-				<File Id="732152079" Language="SFX">
-					<ShortName>egg hatch.wav</ShortName>
-					<Path>SFX\egg hatch_50DB02DB.wem</Path>
-				</File>
 				<File Id="756397478" Language="SFX">
 					<ShortName>penguin_1-63.wav</ShortName>
 					<Path>SFX\penguin_1-63_F7CC7A7E.wem</Path>
@@ -352,6 +364,10 @@
 				<File Id="756548192" Language="SFX">
 					<ShortName>footstep_snow_2.wav</ShortName>
 					<Path>SFX\footstep_snow_2_2FEAB0E9.wem</Path>
+				</File>
+				<File Id="756988840" Language="SFX">
+					<ShortName>fish added to score.wav</ShortName>
+					<Path>SFX\fish added to score_42CF590B.wem</Path>
 				</File>
 				<File Id="760545146" Language="SFX">
 					<ShortName>electrocution_placeholder_1.wav</ShortName>
@@ -389,10 +405,6 @@
 					<ShortName>footsteps_sandy_6.wav</ShortName>
 					<Path>SFX\footsteps_sandy_6_2B541CCF.wem</Path>
 				</File>
-				<File Id="851894782" Language="SFX">
-					<ShortName>penguin_1-67.wav</ShortName>
-					<Path>SFX\penguin_1-67_A9C80496.wem</Path>
-				</File>
 				<File Id="853971576" Language="SFX">
 					<ShortName>penguin_1-13.wav</ShortName>
 					<Path>SFX\penguin_1-13_BBAD6558.wem</Path>
@@ -400,6 +412,10 @@
 				<File Id="874724407" Language="SFX">
 					<ShortName>fish added to score.wav</ShortName>
 					<Path>SFX\fish added to score_54B5AFDF.wem</Path>
+				</File>
+				<File Id="920378295" Language="SFX">
+					<ShortName>penguin_hatch_reward.wav</ShortName>
+					<Path>SFX\penguin_hatch_reward_0EEECE5B.wem</Path>
 				</File>
 				<File Id="923487966" Language="SFX">
 					<ShortName>penguin_1-85.wav</ShortName>
@@ -416,6 +432,10 @@
 				<File Id="946397493" Language="SFX">
 					<ShortName>fish picked up.wav</ShortName>
 					<Path>SFX\fish picked up_0489E1D8.wem</Path>
+				</File>
+				<File Id="957033884" Language="SFX">
+					<ShortName>egg_crack_1.wav</ShortName>
+					<Path>SFX\egg_crack_1_6B7A15B9.wem</Path>
 				</File>
 				<File Id="964987848" Language="SFX">
 					<ShortName>slide_end_1.wav</ShortName>
@@ -435,7 +455,7 @@
 				</File>
 				<File Id="1020207197" Language="SFX">
 					<ShortName>metal_hit_1.wav</ShortName>
-					<Path>SFX\metal_hit_1_24B44A82.wem</Path>
+					<Path>SFX\metal_hit_1_1639AE48.wem</Path>
 				</File>
 				<File Id="1044733289" Language="SFX">
 					<ShortName>penguin_1-27.wav</ShortName>
