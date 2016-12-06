@@ -22,15 +22,15 @@ namespace Assets.DecalSystem{
 		public LayerMask affectedLayers = -1;
 
 		void Start(){
-			texja = Resources.LoadAll<Sprite>("blood.psd");
+			//texja = Resources.LoadAll<Sprite>("blood.psd");
 			GameObject.FindGameObjectWithTag("Seal").GetComponent<DecalHolder>().StartBuilding(this);
 
 		}
 
-		void OnDrawGizmosSelected() {
+		/*void OnDrawGizmosSelected() {
 			Gizmos.matrix = transform.localToWorldMatrix;
 			Gizmos.DrawWireCube( Vector3.zero, Vector3.one );
-		}
+		}*/
 
 		public Bounds GetBounds() {
 			Vector3 size = transform.lossyScale;

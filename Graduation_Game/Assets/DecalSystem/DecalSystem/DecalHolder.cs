@@ -9,6 +9,32 @@ namespace Assets.DecalSystem{
 		private GameObject[] affectedObjects;
 		private List<Decal> decals = new List<Decal>();
 		public Material material;
+		public MeshRenderer[] test;
+		private GameObject[] go;
+
+		MeshRenderer[] renderers, renders;
+		List<MeshRenderer> rend = new List<MeshRenderer>();
+
+		void Start(){
+			
+			renderers = (MeshRenderer[])GameObject.FindObjectsOfType<MeshRenderer>();
+			for (int i = 0; i < renderers.Length; i++) {
+				if (renderers[i].enabled) {
+					rend.Add(renderers[i]);
+				}
+			}
+			print(renderers.Length);
+
+			renders = rend.ToArray();
+
+			go = GameObject.FindGameObjectsWithTag("ReceiveBlood");
+			test = new MeshRenderer[go.Length];
+			for(int i=0;i<go.Length;i++){
+				test[i] = go[i].GetComponent<MeshRenderer>();
+			}
+
+			print(renders.Length);
+		}
 
 		public void StartBuilding(Decal decal){
 
@@ -44,16 +70,15 @@ namespace Assets.DecalSystem{
 				filter.mesh = mesh;
 			}
 		}
-		private static GameObject[] GetAffectedObjects(Bounds bounds, LayerMask affectedLayers) {
-			MeshRenderer[] renderers = (MeshRenderer[]) GameObject.FindObjectsOfType<MeshRenderer>();
+		private GameObject[] GetAffectedObjects(Bounds bounds, LayerMask affectedLayers) {
 			List<GameObject> objects = new List<GameObject>();
-			foreach(Renderer r in renderers) {
-				if( !r.enabled ) continue;
-				if( !IsLayerContains(affectedLayers, r.gameObject.layer) ) continue;
-				if( r.GetComponent<Decal>() != null ) continue;
-
-				if( bounds.Intersects(r.bounds) ) {
-					objects.Add(r.gameObject);
+			//foreach(Renderer r in renders) {
+			//	if( !r.enabled ) continue;
+			//	if( !IsLayerContains(affectedLayers, r.gameObject.layer) ) continue;
+			//	if( r.GetComponent<Decal>() != null ) continue;
+			for(int i=0;i<test.Length;i++){
+				if( bounds.Intersects(test[i].bounds) ) {
+					objects.Add(test[i].gameObject);
 				}
 			}
 			return objects.ToArray();
