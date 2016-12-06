@@ -1,7 +1,10 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+using Assets.scripts.character;
 
 namespace Assets.scripts.controllers.actions.movement {
 	public class MoveForward : Action {
@@ -15,6 +18,8 @@ namespace Assets.scripts.controllers.actions.movement {
 		private const int layerMask = 1 << 8;
 		private float speed;
 		private float raycastLength = 0.45f;
+	    private float jumpStartMillis;
+		private Penguin penguin;
 
 		public MoveForward(Directionable directionable, Actionable<ControllableActions> actionable, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
@@ -23,6 +28,7 @@ namespace Assets.scripts.controllers.actions.movement {
 		}
 
 		public void Setup(GameObject gameObject) {
+			penguin = gameObject.GetComponent<Penguin>();
 			characterController = gameObject.GetComponent<CharacterController>();
 		    //AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.START_MOVING, gameObject);
 		}
@@ -38,7 +44,11 @@ namespace Assets.scripts.controllers.actions.movement {
 				speed = directionable.GetSpeed();
 				characterController.gameObject.GetComponentInChildren<Animator>().speed = 1.0f;
 				directionable.SetJump(true);
-			} else if ( characterController.isGrounded && directionable.GetJump() ) {
+		        if (jumpStartMillis < 0.0000001f) {
+		            jumpStartMillis = Time.time;
+//		            Debug.Log("Start time " + jumpStartMillis);
+		        }
+		    } else if ( characterController.isGrounded && directionable.GetJump() ) {
 				if (!directionable.IsSliding()) {
 					directionable.SetSpeed(directionable.GetWalkSpeed());
 				}
@@ -46,6 +56,8 @@ namespace Assets.scripts.controllers.actions.movement {
 				var dir = directionable.GetDirection();
 				directionable.SetDirection(new Vector3(dir.x, -0.2f, dir.z));
 				directionable.SetJump(false);
+//		        Debug.Log("End jump time:" + Time.time);
+		        jumpStartMillis = 0;
 				actionable.ExecuteAction(ControllableActions.StopJump);
 			}
 
@@ -59,7 +71,7 @@ namespace Assets.scripts.controllers.actions.movement {
 			// if penguin is not hitting the ground (i.e. penguin is in the air) and it wasn't falling before,
 			// is it falling now
 			if (!Physics.Raycast(characterController.gameObject.transform.position, -Vector3.up, raycastLength, layerMask)) {
-				if ( !isFalling ) {
+				if ( !isFalling && penguin.notWalkingOnSolidSurface) {
 					actionable.ExecuteAction(ControllableActions.PenguinFall);
 					isFalling = true;
 				}
@@ -96,7 +108,11 @@ namespace Assets.scripts.controllers.actions.movement {
 		/// </summary>
 		/// <returns></returns>
 		IEnumerator BlockMovementWhileFallAnimationFinishes() {
-			yield return new WaitForSeconds(1f);
+		    float jumpDuration = (Time.time - jumpStartMillis);
+//		    Debug.Log("Penguin jumping: " + directionable.GetJump() + " isFalling: " + isFalling + " jump duration: " + jumpDuration );
+		    jumpStartMillis = 0;
+		    if(jumpDuration >= 0.6f) // hot fix for w0lvl1 penguin stopping when falling from the small cliff
+		    yield return new WaitForSeconds(1f);
 			movementBlocked = false;
 		}
 	}
