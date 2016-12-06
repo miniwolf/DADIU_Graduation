@@ -21,3 +21,4 @@ remove; Write here tooltip for removing tool EN
 jump; Write here tooltip for explaining jump EN
 switchlane; Write here tooltip for explaining switchlane EN
 thisWorldIsLocked; This world is locked!
+seconds; sec
