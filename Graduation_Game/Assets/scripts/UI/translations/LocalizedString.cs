@@ -24,6 +24,6 @@ public enum LocalizedString  {
 	language,
 	sound,
 	tooltips,
-	info
-
+	info,
+	seconds
 }

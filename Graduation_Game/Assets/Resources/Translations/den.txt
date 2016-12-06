@@ -21,3 +21,4 @@ remove; Write here tooltip for removing tool DK
 jump; Write here tooltip for explaining jump DK
 switchlane; Write here tooltip for explaining switchlane DK
 thisWorldIsLocked; This world is locked! DK
+seconds; sek
