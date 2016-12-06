@@ -8,11 +8,13 @@
 						<ObjectRef Name="penguin_land" ID="{85D24FD2-CF88-4002-A029-4EF05F17934F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="pickup_currency" ID="{5434DD9C-AFC3-405A-A35F-405EE9D72F34}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_slide_takeoff" ID="{8CB0A57D-2B63-40A1-B217-51AD25D7EED1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
-						<ObjectRef Name="egg_hatching" ID="{238B304B-8380-40A5-86B4-31E6A4E5400B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="egg_hatch_multiple" ID="{238B304B-8380-40A5-86B4-31E6A4E5400B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="airplane_loop" ID="{1534CC05-5997-40E2-8048-7C2CD487D049}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_tool_change_lane_used" ID="{F724DA30-80BA-4132-81D8-9B17F97D4907}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_death_spikes" ID="{43A699B9-6DD0-417E-A30A-AC5AB401EAE2}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="death_fail" ID="{57D9DDA1-B204-41D7-9D46-D85DADA6A3BC}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_land" ID="{6C5313AA-7C5C-4248-82C2-646CCC8D19C7}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="egg_hatch_single" ID="{17D3C33E-E5BF-42A8-8B2F-56D44FAEC45F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_spawn" ID="{25DB45B7-622E-430F-85D8-42F62E1FE322}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_get_up" ID="{8B454CA4-917F-4340-B15C-F46065C62E51}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_move_voice" ID="{3CD74B41-7FE8-4346-B22F-4A8D8EA5C6D1}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
@@ -54,6 +56,8 @@
 						<ObjectRef Name="seal_edge_fall" ID="{3A7716E4-48B5-4D08-BC21-6332108C33C4}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="end_screen_spawn" ID="{3BF16F66-A3E8-4D08-B280-2C2A1AB99E3F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="penguin_slide_end" ID="{2E539E9D-D2CB-4D19-ADB5-B4FA15DC980F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="level_fail" ID="{09B884BB-17C5-4D50-9CCA-C8764A1FD094}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="level_failed" ID="{19364F0A-2B78-4D6C-BE77-220927B88ABE}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="seal_spawn" ID="{EDA5839E-9401-4E1C-92A9-ED7B758B4C91}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="pickup_add_to_score" ID="{968006F2-1F41-4E56-AC01-5D5D1981DC2B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="music_low_pass_on" ID="{E5F3BF57-F1B9-4F78-95AA-1FDA844D0287}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}" Filter="7" Origin="Manual"/>
