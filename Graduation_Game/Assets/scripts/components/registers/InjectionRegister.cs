@@ -11,7 +11,7 @@ using Assets.scripts.level;
 
 namespace Assets.scripts.components.registers {
 	public class InjectionRegister : MonoBehaviour {
-		private static readonly List<GameEntity> components = new List<GameEntity>();
+		private static readonly Queue<GameEntity> components = new Queue<GameEntity>();
 		private static bool finished;
 		private static LevelSettings levelSettings;
 		private static CouroutineDelegateHandler handler;
@@ -24,6 +24,8 @@ namespace Assets.scripts.components.registers {
 		private static GameFactory gameFactory;
 		public GameObject penguin;
 		private static GameObject tooltipPanel;
+
+		private static System.Object locc = new System.Object();
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -43,18 +45,22 @@ namespace Assets.scripts.components.registers {
 
 		protected void Start() {
 			InitializeComponents();
-			components.Clear();
 			finished = true;
 		}
 
 		protected void OnDestroy() {
-			components.Clear();
+			lock ( locc ) {
+				components.Clear();
+			}
 		}
 
 		private static void InitializeComponents() {
-			foreach(var component in components) {
-				InitializeComponent(component);
-				component.SetupComponents();
+			lock ( locc ) {
+				while ( components.Count != 0 ) {
+					var component = components.Dequeue();
+					InitializeComponent(component);
+					component.SetupComponents();
+				}
 			}
 		}
 
@@ -117,16 +123,15 @@ namespace Assets.scripts.components.registers {
 		}
 
 		public static void Register(GameEntity component) {
-			components.Add(component);
+			lock ( locc ) {
+				components.Enqueue(component);
+			}
 		}
 
 		public static void Redo() {
-			if ( !finished ) {
-				return;
+			lock ( locc ) {
+				InitializeComponents();
 			}
-
-			InitializeComponents();
-			components.Clear();
 		}
 	}
 }
