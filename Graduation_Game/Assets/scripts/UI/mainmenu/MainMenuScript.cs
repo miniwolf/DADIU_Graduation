@@ -8,7 +8,6 @@ using UnityEngine.UI;
 using Assets.scripts.sound;
 using Assets.scripts.controllers.actions.game;
 using System.Collections;
-using Assets.scripts.UI.mainmenu;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, TouchInputListener, MouseInputListener {
@@ -20,7 +19,7 @@ namespace Assets.scripts.UI.mainmenu {
 		private InputManager inputManager;
 		private FillImage fillImageScript;
 
-		public int firstLvlIdxInNextWorld = 5;
+		public int firstLvlIdxInNextWorld = 5; // The first level index into a new world
 
 		public Sprite stars1;
 		public Sprite stars2;
@@ -29,34 +28,38 @@ namespace Assets.scripts.UI.mainmenu {
 		public Sprite levelBtnCurrent;
 		public Sprite levelBtnCompleted;
 		public Sprite levelBtnLocked;
-		public Sprite levelBtnNotAccessable; // Coming soon...
+		public Sprite levelBtnNotAccessable;
 
-		// TODO this needs heavy refactoring when everything is working as intended!
 		protected void Start() {
 
 			inputManager = FindObjectOfType<InputManagerImpl>(); // not registering in injection system yet
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			fillImageScript = GetComponent<FillImage>();
+			string lastLevelName = Prefs.GetLevelLastPlayedName();
 
-		    InitilizeLevels();
-			UnlockLevels(Prefs.GetLevelUnlockIndex());
+			InitilizeLevels();
+			LockNonInteractableLevels();
+			UnlockLevels();
+			StartCoroutine(UpdateWorldStarCounterText());
+			MakeLevelsNotAccessible();
 
-			SetStarPrefsPerLevel();
+			// Checks if the newest available level has been beat
+			if (EndGame.isNewLevelWon) {
+				fillImageScript = GetComponent<FillImage>();
+				UpdateStarsForLevels();
+
+				if (isLastLevelIdx()) // Special case when the last level is beat
+					LoadLevelButtonsStatusColors();
+				else
+					StartCoroutine(WaitForFillSlider());
+			} else {
+				// LOAD latest progression
+				// Note: Sliders are handled in FillImage.cs
+				LoadLevelButtonsStatusColors();
+			}
 			LoadStars();
 
-
-			int wonStatus = Prefs.GetLevelWonStatus(Prefs.GetLevelLastPlayedName());
-
-			// TODO fix this I must (update level colors if player exits level without winning)
-			if(wonStatus == 1) {
-				StartCoroutine(WaitForFill());
-			} else {
-				UpdateButtonColors();
-			}
-			
-			
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
 				Prefs.SetTooltips(1);
@@ -65,50 +68,89 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 
 			popup = GameObject.FindGameObjectWithTag(TagConstants.UI.POPUP_PENGUIN_REQUIRED).GetComponent<Image>();
-
 			DisablePopup();
 		}
 
-	    // Waits for level line to finish filling up and then changes the next available level to green
-	    void Update() {
-			UpdateWorldStarCounterText();
+		/// <summary>
+		/// Every level except the first is locked from the start
+		/// </summary>
+		void InitilizeLevels() {
+			foreach (var lvlData in levels) {
+				var c = lvlData;
+				c.btnFromScene.interactable = false;
+				lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
+			}
+			levels[0].btnFromScene.interactable = true;
+		}
 
+		/// <summary>
+		/// Buttons that are not interactable are marked as locked (gray)
+		/// </summary>
+		void LockNonInteractableLevels() {
+			foreach (var lvlData in levels) {
+				var c = lvlData;
+				if (!c.btnFromScene.IsInteractable()) {
+					lvlData.btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
+				}
+			}
+		}
 
+		/// <summary>
+		/// Uses sprite "Not Accessible" on all levels from index "fromLevelIdx" param
+		/// </summary>
+		/// <param name="fromLevelIdx"></para>
+		void MakeLevelsNotAccessible() {
+			foreach (var marker in worldUnlockMarkers) {
+				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
+					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessable;
+						levels[i].btnFromScene.interactable = false;
+					}
+				}
+			}
+		}
+
+		// Waits for level line to finish filling up and then changes the next available level to green
+		protected void Update() {
 			if (Input.GetMouseButtonDown(0)) {
-	            DisablePopup();
-	        }
-	        UpdateLevelPositions();
-	    }
-        /// <summary>
-        /// On each update update level buttons so they are in the correct position
-        /// </summary>
-	    private void UpdateLevelPositions() {
-	        foreach (var lvl in levels) {
-	            lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
-	        }
-	        foreach (var marker in worldUnlockMarkers) {
-	            marker.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(marker.btnAnchor.transform.position);
-	        }
-	    }
+				DisablePopup();
+			}
+			UpdateLevelPositions();
+		}
 
-		void UpdateWorldStarCounterText() {
+		/// <summary>
+		/// On each update update level buttons so they are in the correct position
+		/// </summary>
+		private void UpdateLevelPositions() {
+			foreach (var lvl in levels) {
+				lvl.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(lvl.levelAnchor.transform.position);
+			}
+			foreach (var marker in worldUnlockMarkers) {
+				marker.btnFromScene.transform.position = Camera.main.WorldToScreenPoint(marker.btnAnchor.transform.position);
+			}
+		}
+
+		IEnumerator UpdateWorldStarCounterText() {
+			yield return new WaitForSeconds(0.5f);
 			// init texts at the beginning
 			foreach (var marker in worldUnlockMarkers) {
-				marker.btnFromScene.GetComponentInChildren<Text>().text = 
+				marker.btnFromScene.GetComponentInChildren<Text>().text =
 					TranslateApi.GetString(marker.localizedText) + " " + StarsCollectedCountText.totalStars + "/" + marker.starsNeeded; // maxstars
 			}
 		}
 
-
-		// Waits for level line to finish filling up and then changes the next available level to green
-		IEnumerator WaitForFill() {
+		/// <summary>
+		/// Waits for level line to finish filling up and then changes the next available level to green
+		/// </summary>
+		/// <returns>Waits for fillAmountTime seconds before loading the status of the level buttons</returns>
+		IEnumerator WaitForFillSlider() {
 			bool tmpCurrent = true;
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
 				if (Prefs.IsLevelStatusComplete(levelName)) {
 					if(tmpCurrent) {
 						// Stores the level won last time temporarily as the current level 
-						// while waiting for the 
+						// before waiting for the slider to fill
 						levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 						tmpCurrent = false;
 					} else {
@@ -119,24 +161,33 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			yield return new WaitForSeconds(fillImageScript.GetFillAmountTime());
 
-			UpdateButtonColors();
+			LoadLevelButtonsStatusColors();
 		}
 
+		/// <summary>
+		/// Loads the sprites for all completed levels and the current level (if the latest completed level is not the last)
+		/// </summary>
+		void LoadLevelButtonsStatusColors() {
+			bool currentLvl = false;
 
-		void UpdateButtonColors() {
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
-
 				if (Prefs.IsLevelStatusComplete(levelName)) {
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
-					levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
-					break;
+					if (!currentLvl && i < levels.Length - 1) {
+						if(levels[i + 1].btnFromScene.GetComponent<Image>().sprite != levelBtnNotAccessable) {
+							levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
+							currentLvl = true; // Current level has been set
+						}
+					}
 				}
 			}
 		}
 
-		// Saves preferences for how many stars are collected for each level
-		void SetStarPrefsPerLevel() {
+		/// <summary>
+		/// Updates PlayerPrefs for how many stars are collected for all levels
+		/// </summary>
+		void UpdateStarsForLevels() {
 			for (int i = 0; i < levels.Length; i++) {
 				// Checks which level was won last time and sets the stars accordingly
 				if (Prefs.GetLevelLastPlayedName() == levels[i].sceneFileName) {
@@ -145,78 +196,52 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-		// Loads stars to view
+		/// <summary>
+		/// Loads star sprites accordingly for every level
+		/// </summary>
 		void LoadStars() {
 			for (int i = 0; i < levels.Length; i++) {
-				SetStarSprite(i, Prefs.GetLevelWonStars(levels[i].sceneFileName));
-			}
-		}
+				string levelName = levels[i].sceneFileName;
+				int numOfStars = Prefs.GetLevelWonStars(levelName);
 
-		// Replaces the sprite on a level button image according to how many stars were won
-		void SetStarSprite(int lvlIdx, int numOfStars) {
-			switch (numOfStars) {
-				case 1:
-					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars1;
-					break;
-				case 2:
-					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars2;
-					break;
-				case 3:
-					levels[lvlIdx].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars3;
-					break;
-			}
-		}
- 
-		// Every level except the first is locked from the start
-		void InitilizeLevels() {
-			foreach (var lvlData in levels) {
-				var c = lvlData;
-				c.btnFromScene.interactable = false;
-				lvlData.btnFromScene.onClick.AddListener(() => CheckLoadLevel(c));
-			}
-			levels[0].btnFromScene.interactable = true;
-
-			LockNonInteractableLevels();
-
-			// Makes the next world accessible if totalStars >= starsNeeded
-			foreach (var marker in worldUnlockMarkers) {
-				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
-					MakeLevelsNotAccessible(firstLvlIdxInNextWorld);
+				switch (numOfStars) {
+					case 1:
+						levels[i].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars1;
+						break;
+					case 2:
+						levels[i].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars2;
+						break;
+					case 3:
+						levels[i].btnFromScene.transform.GetChild(1).GetComponent<Image>().sprite = stars3;
+						break;
 				}
+
 			}
 		}
 
-		void MakeLevelsNotAccessible(int fromLevelIdx) {
-			for(int i = fromLevelIdx; i < levels.Length; i++) {
-				Debug.Log("NOTE: FOR " + levels[i].sceneFileName + " LEVEL BUTTON [NOT ACCESSIBLE] ART IS NOT AVAILABLE AT THE MOMENT GOOD SIR.");
-				//levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnNotAccessible; // Use levelBtnNotAccessible when available
-				levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent; // GREEN FOR TESTING ONRY
-			}
+		/// <summary>
+		/// Checks if the last level has been reached
+		/// </summary>
+		/// <returns>True if last level has been unlocked</returns>
+		public bool isLastLevelIdx() {
+			if (levels.Length - 1 < Prefs.GetLevelUnlockIndex()) return true;
+			return false;
 		}
 
-		// Buttons that are not interactable are marked as locked (gray)
-		void LockNonInteractableLevels() {
-			foreach(var lvlData in levels) {
-				var c = lvlData;
-				if(!c.btnFromScene.IsInteractable()) {
-					lvlData.btnFromScene.GetComponent<Image>().sprite = levelBtnLocked;
-				}
-			}
-		}
+		/// <summary>
+		/// Unlocks numOfLvlsToUnlock + 1 levels by making them interactable
+		/// </summary>
+		private void UnlockLevels() {
+			int numOfLvlsToUnlock = Prefs.GetLevelUnlockIndex();
 
-		// Makes levels available depending on how many levels to unlock
-		void MakeLevelsInteractable(int numOfLvlsToUnlock) {
+			if (isLastLevelIdx()) return;
+
 			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
 				levels[i].btnFromScene.interactable = true;
 			}
 		}
 
-		// Unlocks numOfLvlsToUnlock + 1 levels
-		void UnlockLevels(int numOfLvlsToUnlock) {
-		    MakeLevelsInteractable(numOfLvlsToUnlock);
-		}
-
-		void OnDestroy() {
+		private void OnDestroy() {
 			inputManager.UnsubscribeForMouse(this);
 			inputManager.UnsubscribeForTouch(this);
 		}
@@ -236,7 +261,7 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 		}
 
-	    public void SettingsButton() {
+		public void SettingsButton() {
 			SceneManager.LoadScene(PrefsConstants.SETTINGS);	
 		}
 
@@ -255,28 +280,28 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		[Serializable] public class LvlData {
-		    [Tooltip("Name of the scene file that should be loaded. If project contains multiple levels with the same name, you have to specify the full path")]
+			[Tooltip("Name of the scene file that should be loaded. If project contains multiple levels with the same name, you have to specify the full path")]
 			public string sceneFileName;
-		    [Tooltip("Specify the button from the scene that will open the level")]
+			[Tooltip("Specify the button from the scene that will open the level")]
 			public Button btnFromScene;
-		    [Tooltip("How many penguins are needed to access the level")]
+			[Tooltip("How many penguins are needed to access the level")]
 			public int penguinsRequired;
-		    [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
+			[Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
 			public GameObject levelAnchor;
 		}
 
-	    [Serializable] public class LvlUnlockMarkers {
-	        [Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
-	        public LocalizedString localizedText;
-	        [Tooltip("Specify the button from the scene that represents the anchor")]
-	        public Button btnFromScene;
-	        [Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
-	        public GameObject btnAnchor;
-	        [Tooltip("Specify how many stars player needs to have to unlock the world")]
-	        public int starsNeeded;
-	    }
+		[Serializable] public class LvlUnlockMarkers {
+			[Tooltip("Specify the key for text displayed here. All keys are defined in Resources/Translations. Text is already translated.")]
+			public LocalizedString localizedText;
+			[Tooltip("Specify the button from the scene that represents the anchor")]
+			public Button btnFromScene;
+			[Tooltip("Specify where in the world the \"Btn from scene\" should be placed")]
+			public GameObject btnAnchor;
+			[Tooltip("Specify how many stars player needs to have to unlock the world")]
+			public int starsNeeded;
+		}
 
-	    //
+		//
 		// UNUSED LISTENERS
 		//
 		public void OnMouseRightDown() {

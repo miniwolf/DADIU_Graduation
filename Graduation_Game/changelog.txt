@@ -86,7 +86,22 @@ Beta v1.1
 
 CutScene implemented after level 3
 Multiple UI updates for most items within the game
-	
+
+
+Beta v2.0
+Removed seal
+Main menu updated
+Winzone - penguins run out on the platform
+added Updates for tool placments
+UI end game updated
+Stars added above the levels in menu select
+Connections between the levels added
+no more secret levels
+Added tutorial levels, and refined other levels 10 levels in total
+Settings menu cheat buttons added
+Shop menu cheat buttons added
+Canvas updated
+
 	
 	
 	

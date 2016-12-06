@@ -99,10 +99,17 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.HATCHABLE_PENGUIN:
 					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
 					break;
+				case TagConstants.JUMP:
+					ToolFactory.BuildJump(component.GetActionable<ToolActions>(),
+						component.GetGameObject().transform.parent.gameObject.GetComponentInChildren<Animator>());
+					break;
 				case TagConstants.CUTSCENE:
 					break;
 				case TagConstants.TOOLTIP:
 					component.GetGameObject().GetComponent<Tooltip>().SetPanel(tooltipPanel);
+					break;
+				case TagConstants.UI.PENGUINSPEEDUPBUTTON:
+					gameFactory.BuildSpeedButton(component.GetActionable<GameActions>());
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");

@@ -10,9 +10,11 @@ using Assets.scripts;
 using Assets.scripts.UI.inventory;
 using System.Collections.Generic;
 using Assets.scripts.level;
+using System;
 
 namespace Assets.scripts.controllers.actions.game {
 	class EndGame : Action {
+		public static bool isNewLevelWon = false;
 		private CanvasController canvas;
 		private GameObject endScene, gameObject;
 		private Text plutoniumCounter, penguinCounter, plutoniumThisLevel, plutoniumTotal;
@@ -26,6 +28,10 @@ namespace Assets.scripts.controllers.actions.game {
 		private int totalPlutonium = 0, plutoniumThisLevelint = 0;
 		private int endedWithPenguins = 0, reqPenguins = 0;
 		private int[] requiredPenguins = new int[3];
+		private int MAX_NUM_OF_STARS_IDX = 2;
+		private int PENGUINS_REQUIRED_FOR_1_STAR;
+		private int PENGUINS_REQUIRED_FOR_2_STAR;
+		private int PENGUINS_REQUIRED_FOR_3_STAR;
 
 		private bool shouldShowRetry = true;
 		private GameObject[] penguinIcons;
@@ -39,7 +45,8 @@ namespace Assets.scripts.controllers.actions.game {
 			star[2] = GameObject.FindGameObjectWithTag(TagConstants.STAR3);
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			penguinIcons = GameObject.FindGameObjectsWithTag(TagConstants.UI.PENGUINICON);
-
+			Array.Sort(penguinIcons, CompareObNames);
+			isNewLevelWon = false;
 			starsSpawned = 0;
 			reqPenguins = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_SPAWNER).GetComponent<PenguinSpawner>().GetInitialPenguinCount();
 		}
@@ -49,9 +56,17 @@ namespace Assets.scripts.controllers.actions.game {
 			this.actionable = actionable;
 		}
 
+		private int CompareObNames(GameObject x, GameObject y) {
+			return x.name.CompareTo(y.name);
+		}
+
 		public void Execute() {
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
+
+			PENGUINS_REQUIRED_FOR_1_STAR = requiredPenguins[0];
+			PENGUINS_REQUIRED_FOR_2_STAR = requiredPenguins[1];
+			PENGUINS_REQUIRED_FOR_3_STAR = requiredPenguins[2];
 
 			if (endedWithPenguins >= reqPenguins) {
 				actionable.ExecuteAction(GameActions.DisableRetryWin);
@@ -81,8 +96,17 @@ namespace Assets.scripts.controllers.actions.game {
 
 
 		private void EnableWin(){
-			Prefs.SetCurrentLevelToWon();
-			Prefs.SetLevelStatus(SceneManager.GetActiveScene().name, Prefs.COMPLETED);
+			SetStarsWonPrefs();
+
+			string currentLevel = SceneManager.GetActiveScene().name;
+
+			// Prefs set to indicate a winning condition 
+			// is set only if the level has not been beat before
+			if (!Prefs.IsLevelStatusComplete(currentLevel)) {
+				isNewLevelWon = true;
+				Prefs.SetCurrentLevelToWon();
+				Prefs.SetLevelStatus(currentLevel, Prefs.COMPLETED);
+			}
 
 			canvas.SetActiveClickBlocker(true);
 			//canvas.failSceneObject.SetActive(true);
@@ -110,17 +134,19 @@ namespace Assets.scripts.controllers.actions.game {
 			yield return null;
 		}
 
-		private void GetAllStars() {
-			
-		}
-
 		private IEnumerator LoadMainMenu(){
 			yield return new WaitForSeconds(12);
 			SceneManager.LoadSceneAsync("MainMenuScene");
 		}
 
+		private void SetStarsWonPrefs() {
+			if (endedWithPenguins <= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
+			else if (endedWithPenguins == PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
+			else if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
+		}
+			 
 		public bool SpawnNextStar() {
-			if (starsSpawned > 2 || endedWithPenguins < requiredPenguins[starsSpawned]) {
+			if (starsSpawned > MAX_NUM_OF_STARS_IDX || endedWithPenguins < requiredPenguins[starsSpawned]) {
 				Inventory.UpdateCount();
 				return false;
 			}
@@ -128,8 +154,6 @@ namespace Assets.scripts.controllers.actions.game {
 			star[starsSpawned].GetComponent<Star>().FlyIn();
 			AkSoundEngine.PostEvent(SoundConstants.FeedbackSounds.END_SCREEN_SPAWN_STAR, Camera.main.gameObject);
 			starsSpawned++;
-			if(Prefs.GetStarsForCurrentLevel() < starsSpawned) Prefs.SetStarsForCurrentLevel(starsSpawned);
-
 			return true;
 		}
 
