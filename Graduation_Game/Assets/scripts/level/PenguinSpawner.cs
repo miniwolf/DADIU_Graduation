@@ -10,6 +10,7 @@ using Assets.scripts.gamestate;
 using Assets.scripts.sound;
 using Assets.scripts.character;
 using Assets.scripts.camera;
+using Assets.scripts.controllers;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -45,7 +46,6 @@ namespace Assets.scripts.level {
 		    gameStateManager = FindObjectOfType<GameStateManager>();
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
-
 
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
@@ -88,8 +88,6 @@ namespace Assets.scripts.level {
 			}
 			StartCoroutine(PlatformComeIn());
 		}
-
-
 
 		private IEnumerator PlatformComeIn(){
 			RaycastHit hit;
@@ -156,7 +154,7 @@ namespace Assets.scripts.level {
 		}
 
 		private void EnableAPenguin(){
-			penguins[spawned - count].GetComponent<Penguin>().ExecuteAction(Assets.scripts.controllers.ControllableActions.Start);
+			penguins[spawned - count].GetComponent<Penguin>().ExecuteAction(ControllableActions.Start);
 			penguins[spawned - count].transform.parent = null;
 		}
 
@@ -169,7 +167,7 @@ namespace Assets.scripts.level {
 			go.SetActive(true);
 			go.tag = TagConstants.PENGUIN;
 			InjectionRegister.Redo();
-			go.GetComponent<Penguin>().ExecuteAction(Assets.scripts.controllers.ControllableActions.Stop);
+			go.GetComponent<Penguin>().ExecuteAction(ControllableActions.Stop);
 		    AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.SPAWN, penguinObject);
 			spawned++;
 		}

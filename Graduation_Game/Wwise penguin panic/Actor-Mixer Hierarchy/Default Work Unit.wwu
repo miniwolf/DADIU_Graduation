@@ -1442,32 +1442,6 @@
 								</BlendContainer>
 							</ChildrenList>
 						</Folder>
-						<Sound Name="egg hatching" ID="{B2C13BE8-EB15-4658-AAE9-EC752955BB2C}" ShortID="99585826" Type="SoundFX">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>600</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6D89169E-1405-4908-ABDA-6D991622DFD9}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="egg hatch" ID="{ECF4404F-9673-4F74-89F1-AF986830EE6D}" ShortID="732152079">
-									<Language>SFX</Language>
-									<AudioFile>egg hatch.wav</AudioFile>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="egg hatch" ID="{ECF4404F-9673-4F74-89F1-AF986830EE6D}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Folder Name="3D objects" ID="{64E48760-C681-40EF-A551-F1A7C7084C2E}" ShortID="447548059">
 							<ChildrenList>
 								<Sound Name="airplane_loop" ID="{83C81A5A-28F8-4734-8830-26CFB9B6CEA4}" ShortID="461939528" Type="SoundFX">
@@ -1498,6 +1472,158 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
+						<ActorMixer Name="egg_hatch" ID="{8201570B-783C-4E02-BF53-B2B887F385C7}" ShortID="53418098">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="egg_crack_1" ID="{5460A414-4CF0-4307-9506-6151498B2052}" ShortID="143016996" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="egg_crack_1" ID="{EB317B89-966C-4A78-8C13-25490F471896}" ShortID="957033884">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.024070706028076"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="6.17465937241949E-02"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.371526114781173"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>egg_crack_1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="egg_crack_1" ID="{EB317B89-966C-4A78-8C13-25490F471896}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<BlendContainer Name="pop" ID="{DE47D9FD-0F29-4321-AA81-D7E2D090B5FA}" ShortID="625986158">
+									<PropertyList>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+										</Reference>
+										<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+											<ObjectRef Name="Large_Bright_Chamber1" ID="{0BFA2291-5716-4759-AC24-F59D29E8F2E4}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="fish picked up" ID="{D0904C25-7442-47C8-B406-0BE1616ACBBF}" ShortID="978838612" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-11</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="fish picked up" ID="{D9FBB537-E209-4D2D-8290-AF57490BCC6A}" ShortID="561233549">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="3.48250507099392E-04"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="5.95508367139959E-02"/>
+														<Property Name="TrimEnd" Type="Real64" Value="9.90772692697769E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>fish picked up.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="fish picked up" ID="{D9FBB537-E209-4D2D-8290-AF57490BCC6A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pickup_add_to_score" ID="{896F2535-3F9B-42FB-8074-E9A4F839AB5F}" ShortID="286938609" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-7</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="fish added to score" ID="{AB944710-F93D-4B6D-AEDC-88CFB7B4E829}" ShortID="756988840">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="6.27814478392513E-03"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="2.84681392788329E-02"/>
+														<Property Name="TrimBegin" Type="Real64" Value="4.15656482246078E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>fish added to score.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="fish added to score" ID="{AB944710-F93D-4B6D-AEDC-88CFB7B4E829}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</BlendContainer>
+								<Sound Name="penguin_hatch_reward" ID="{057E8436-110D-4648-8806-034F5699D9EB}" ShortID="74506105" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>1200</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_hatch_reward" ID="{8217EE8B-D7FD-4FB2-B0CE-91A3BC823991}" ShortID="920378295">
+											<Language>SFX</Language>
+											<AudioFile>penguin_hatch_reward.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_hatch_reward" ID="{8217EE8B-D7FD-4FB2-B0CE-91A3BC823991}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</ActorMixer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{A55DDE74-B2D9-4A5B-A4D1-A212167226BA}" ShortID="79623298">
@@ -1689,6 +1815,11 @@
 												<Value>400</Value>
 											</ValueList>
 										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -1732,7 +1863,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-12</Value>
+												<Value>-17</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1757,6 +1888,40 @@
 									</ChildrenList>
 									<ActiveSourceList>
 										<ActiveSource Name="metal_clonk_2" ID="{39DB7362-B0BF-4BE8-A02A-D63BF06D82F1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="penguin_hatch_reward" ID="{36EE2A47-91CF-44A8-AE41-D4901346511E}" ShortID="523750465" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>1200</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_hatch_reward" ID="{29E53B32-7DC8-4CB9-AEAF-FBC017E82764}" ShortID="965089209">
+											<Language>SFX</Language>
+											<AudioFile>penguin_hatch_reward.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="920378295"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_hatch_reward" ID="{29E53B32-7DC8-4CB9-AEAF-FBC017E82764}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -1866,6 +2031,51 @@
 								</Sound>
 							</ChildrenList>
 						</BlendContainer>
+						<Sound Name="level fail" ID="{427854D7-E6DC-4779-963A-BD0DE88BF5B3}" ShortID="207443986" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-1200</Value>
+									</ValueList>
+								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="penguin_death_fail" ID="{A878E83E-2BCB-40C3-AA44-16CBE342992E}" ShortID="172410508">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="4.95458298926508E-03"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="1.37605284888521"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.76779521056978"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>penguin_death_fail.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="penguin_death_fail" ID="{A878E83E-2BCB-40C3-AA44-16CBE342992E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="seal" ID="{3A1AA5C2-31B4-4281-9324-DEECA22B4CA0}" ShortID="605867038">
@@ -6697,6 +6907,37 @@
 										</Sound>
 									</ChildrenList>
 								</RandomSequenceContainer>
+								<Sound Name="death fail" ID="{B7367E77-2B39-49F0-971F-F0F499D9DE68}" ShortID="1004850393" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="penguin_death_fail 2" ID="{52048875-0527-4419-9A92-4266625564A3}" ShortID="469283400">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="7.92733278282411E-03"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.22394715111478"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.556895127993393"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>penguin_death_fail 2.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="penguin_death_fail 2" ID="{52048875-0527-4419-9A92-4266625564A3}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<RandomSequenceContainer Name="penguin_react_to_death" ID="{1F9C1FE6-54EF-43EF-9351-68390486CE17}" ShortID="310406864">
