@@ -64,6 +64,7 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		void EnableFail(){
+			AkSoundEngine.PostEvent("level_fail", gameObject);
 			canvas.SetActiveClickBlocker(true);
 			canvas.failSceneObject.SetActive(true);
 			handler.StartCoroutine(ShowFail());
