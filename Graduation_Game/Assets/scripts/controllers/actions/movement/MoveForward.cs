@@ -3,11 +3,8 @@ using System.Diagnostics;
 using Assets.scripts.components;
 using Assets.scripts.sound;
 using UnityEngine;
-<<<<<<< HEAD
 using Debug = UnityEngine.Debug;
-=======
 using Assets.scripts.character;
->>>>>>> develop
 
 namespace Assets.scripts.controllers.actions.movement {
 	public class MoveForward : Action {
