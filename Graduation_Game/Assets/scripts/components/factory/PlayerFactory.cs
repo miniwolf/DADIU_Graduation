@@ -153,7 +153,7 @@ namespace Assets.scripts.components.factory {
 			if (constant != "")
 				actionHandler.AddAction(new SetTrigger(animator, constant));
 			if ( !constant.Equals(animationSet.deathDrownAnimation) ) {
-				actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
+				//actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			}
 			return actionHandler;
 		}
