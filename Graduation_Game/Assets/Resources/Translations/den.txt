@@ -34,3 +34,12 @@ shopBuyFish; 500 goldfish DK
 penguin; Penguin DK
 hatch; Hatch DK
 toNextEgg; to next egg DK
+youWon; You Won DK
+thisLevel; This Level DK
+total; Total DK
+next; Next DK
+retry; Retry DK
+replay; Replay DK
+tooltipUseTheJumppad; Use the jumppad to get the fish! DK
+tooltipDragJumppad; Drag from the icon to the iceberg DK
+youAreDead;You're Dead DK
