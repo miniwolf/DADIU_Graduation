@@ -61,6 +61,7 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
+			Debug.Log("hej2");
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
 
@@ -147,7 +148,7 @@ namespace Assets.scripts.controllers.actions.game {
 			 
 		public bool SpawnNextStar() {
 			if (starsSpawned > MAX_NUM_OF_STARS_IDX || endedWithPenguins < requiredPenguins[starsSpawned]) {
-				Inventory.UpdateCount();
+				//Inventory.UpdateCount();
 				return false;
 			}
 

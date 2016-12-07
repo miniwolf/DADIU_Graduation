@@ -18,18 +18,23 @@ namespace Assets.scripts.controllers.actions.movement{
 		}
 
 		public void Execute() {
-			System.Random rnd = new System.Random();
-			//int change = rnd.Next(-10,10);
-			int range = 10;
-			double rDouble;
-			do {
-				rDouble = rnd.NextDouble()* range;
-			} while(rDouble - 5 < 2 && rDouble - 5 > -2);
+			Vector3 newDir;
 			var dir = direction.GetDirection();
-			Vector3 newDir = new Vector3(dir.x, dir.y,dir.z + (float)rDouble-5);
+			if (direction.GetLane() == Assets.scripts.character.Penguin.Lane.Left) {
+				newDir = new Vector3(dir.x, dir.y,dir.z + GetRandRightLane());	
+			} else {
+				newDir = new Vector3(dir.x, dir.y,dir.z + GetRandLeftLane());
+			}
 			Vector3 normDir = Vector3.Normalize(newDir);
 			direction.SetDirection(normDir);
+		}
 
+		float GetRandLeftLane(){
+			return Random.Range(0f, 2f);
+		}
+
+		float GetRandRightLane(){
+			return Random.Range(-2f, 0f);
 		}
 	}
 }
