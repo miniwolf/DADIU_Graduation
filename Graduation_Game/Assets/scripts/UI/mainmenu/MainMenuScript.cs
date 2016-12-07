@@ -61,7 +61,7 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			LoadStars();
 
-			Debug.Log("NEXT WORLD ACCESSIBLE?? : " + isNextWorldAccessible());
+			ToggleTextOnAccessibleLevels();
 
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
@@ -227,12 +227,13 @@ namespace Assets.scripts.UI.mainmenu {
 		/// </summary>
 		/// <returns></returns>
 		public bool isNextWorldAccessible() {
-
+			//Debug.Log("DEBUG STARSHIT : " + StarsCollectedCountText.totalStars);
 			foreach (var marker in worldUnlockMarkers) {
-				if (StarsCollectedCountText.totalStars >= marker.starsNeeded && levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
+				if (StarsCollectedCountText.totalStars >= marker.starsNeeded) { //&& levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
 					return true;
+				}
+				//Debug.Log("marker : " + marker.starsNeeded);
 			}
-
 			return false;
 		}
 
@@ -255,6 +256,19 @@ namespace Assets.scripts.UI.mainmenu {
 
 			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
 				levels[i].btnFromScene.interactable = true;
+			}
+		}
+
+		/// <summary>
+		/// Hides the text on all levels from firstLvlIdxInNextWorld if they are not accessible
+		/// </summary>
+		private void ToggleTextOnAccessibleLevels() {
+			for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+				if(isNextWorldAccessible()) {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = true;
+				} else {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = false;
+				}
 			}
 		}
 
