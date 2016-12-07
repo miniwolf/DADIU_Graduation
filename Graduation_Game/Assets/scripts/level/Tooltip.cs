@@ -79,6 +79,7 @@ namespace Assets.scripts.level {
 
 					break;
 			}
+			gameObject.GetComponent<Collider>().enabled = false;
 		}
 			
 
