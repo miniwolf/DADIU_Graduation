@@ -12,6 +12,7 @@ public enum LocalizedString  {
 	level8,
 	level9,
 	popupNotEnoguhPenguins,
+	toPlayTheLevel,
 	backsettings,
 	settings,
 	thisWorldIsLocked,
@@ -33,5 +34,8 @@ public enum LocalizedString  {
     shopHatchPenguin,
     shopHatchPenguin2,
     shopFreezeTime,
-    shopBuyFish
+    shopBuyFish,
+    penguin,
+    hatch,
+    toNextEgg
 }

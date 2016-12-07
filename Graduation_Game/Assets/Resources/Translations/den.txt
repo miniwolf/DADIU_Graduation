@@ -7,7 +7,8 @@ level6;Level 6 DK
 level7;Level 7 DK
 level8;Level 8 DK
 level9;Level 9 DK
-popupNotEnoguhPenguins; Not enough penguins to play the level! DK
+popupNotEnoguhPenguins; Not enough penguins DK
+toPlayTheLevel; to play the level! DK
 backsettings; Tilbage
 settings; Indstillinger
 credits; creditsDK
@@ -30,3 +31,6 @@ shopHatchPenguin; Hatch a DK
 shopHatchPenguin2;Penguin DK
 shopFreezeTime; 1x Freezetime DK
 shopBuyFish; 500 goldfish DK
+penguin; Penguin DK
+hatch; Hatch DK
+toNextEgg; to next egg DK

@@ -7,7 +7,8 @@ level6;Level 6 EN
 level7;Level 7 EN
 level8;Level 8 EN
 level9;Level 9 EN
-popupNotEnoguhPenguins; Not enough penguins to play the level!
+popupNotEnoguhPenguins; Not enough penguins
+toPlayTheLevel; to play the level!
 backsettings; Back
 settings; settings
 credits; credits
@@ -30,3 +31,6 @@ shopHatchPenguin; Hatch a
 shopHatchPenguin2;Penguin
 shopFreezeTime; 1x Freezetime
 shopBuyFish; 500 goldfish
+penguin; Penguin
+hatch; Hatch
+toNextEgg; to next egg
