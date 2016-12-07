@@ -231,6 +231,38 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="pressure_plate_triggered" ID="{03AD6B4B-7CF4-4113-A080-34A445B3DF4F}">
+									<ChildrenList>
+										<Action Name="Play" ID="{F4CE399F-4391-47F4-9C4D-71A6A9F908CA}" ShortID="898979881" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{1E3970C4-D7B0-4247-928C-D3359E394297}" Global="false">
+													<ObjectRef Name="pressure_plate_1" ID="{BD4D2EC1-D0CB-4CC6-8AEA-E3D018D88D82}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="bridge_falling" ID="{88E042D3-170E-40A5-82EB-101EBC246CF5}">
+									<ChildrenList>
+										<Action Name="Play" ID="{3E7ED4C2-D26C-445B-A4E6-6E8A6620B49B}" ShortID="717987030" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{BFA0BC62-3116-478B-A0C0-2343D82C4A61}" Global="false">
+													<ObjectRef Name="metal_bridge_rustling_1" ID="{265830BE-8748-45A3-A731-134A460D24BE}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Play" ID="{DF2B204F-4F88-4D5F-B65E-7F8AD2A83F0D}" ShortID="984949120" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.4"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{652AC5EF-855E-4437-9EB6-6F1EB4D51620}" Global="false">
+													<ObjectRef Name="dump" ID="{62AC979C-10EE-489F-A68A-8948233648DB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Traps" ID="{C33B768A-7E9A-4144-9613-6D3ABC2549DC}" ShortID="969384721">
@@ -478,20 +510,6 @@
 									<ElementList>
 										<Element ID="{1928FD99-01F9-43B5-A9FA-BC0F5590D9CF}" Global="false">
 											<ObjectRef Name="button_press" ID="{64B165D8-CEED-4114-8452-33884BFCB01F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Play" ID="{A1453687-61BD-4E0B-81A4-096B76692874}" ShortID="143527408" Type="Play" Scope="One" Global="false">
-									<PropertyList>
-										<Property Name="Inclusion" Type="bool">
-											<ValueList>
-												<Value Platform="Android">False</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ElementList>
-										<Element ID="{7EAC7ED7-A6EF-4961-81BC-C4C91112D270}" Global="false">
-											<ObjectRef Name="placement_click_feedback" ID="{AEF68B1B-01A5-400E-A316-7444A56756EB}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -1036,144 +1054,6 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-					</ChildrenList>
-				</Folder>
-				<Folder Name="seal" ID="{C416748B-1D2B-4EAE-BD78-26D164DBC012}" ShortID="507328225">
-					<ChildrenList>
-						<Folder Name="deaths" ID="{5298FD46-CB85-43F2-9FCB-D5B0C793574F}" ShortID="1015717390">
-							<ChildrenList>
-								<Event Name="seal_death_excavator" ID="{7F6B76E7-716A-46A4-A7CC-81330E6D395B}">
-									<ChildrenList>
-										<Action Name="Play" ID="{C9DF6428-A053-4783-B952-A169F0C7EDC2}" ShortID="951675649" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{D7BCEA5F-0E2F-4857-8D88-578E8CB0E801}" Global="false">
-													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-										<Action Name="Play" ID="{90039531-93AF-4642-B83B-271761064589}" ShortID="132442451" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{73DEF6F4-7B00-4AD2-B446-0082C07ED6E9}" Global="false">
-													<ObjectRef Name="splat_8" ID="{2C94698E-0FB2-4C6E-8A72-FDF7DAF0D6A5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="seal_death_pit_drowning" ID="{25F0AB86-ED92-498D-BCCD-8BA43586102D}">
-									<ChildrenList>
-										<Action Name="Play" ID="{A6553363-612D-4599-B4EA-D7379F87D29F}" ShortID="903692944" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{4A0C3DDA-7A4C-4BAD-A7E6-37407912D5A7}" Global="false">
-													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-										<Action Name="Play" ID="{BEB34DFB-66D3-440D-BB1E-F7224ECF2B9F}" ShortID="684163466" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{F71FBAF4-7777-49DB-8B70-99DD783D9DD5}" Global="false">
-													<ObjectRef Name="penguin_drowning_bubble_1" ID="{2446334B-14E2-43E7-BF44-C7D395C76F38}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="seal_death_electrocution" ID="{A581C09E-A51A-44B0-8E9A-5D0BB8B40BCD}">
-									<ChildrenList>
-										<Action Name="Play" ID="{66705DBF-7D87-48AB-B326-AF4784083D0C}" ShortID="874161684" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{66BFEF38-B825-4599-9FD6-253F490A4A20}" Global="false">
-													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="seal_death_spikes" ID="{43A699B9-6DD0-417E-A30A-AC5AB401EAE2}">
-									<ChildrenList>
-										<Action Name="Play" ID="{75BCD227-2A6B-426B-B10C-8AE6B5D1245B}" ShortID="246968528" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{05416BAA-9709-4469-88F9-11C4176CCFDA}" Global="false">
-													<ObjectRef Name="seal_placeholder_1" ID="{0B9D8B6B-D64D-4F2F-964E-755858F6A55F}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-										<Action Name="Play" ID="{D4854147-E54F-455E-88B8-A7B41E9DD50B}" ShortID="49514247" Type="Play" Scope="One" Global="false">
-											<ElementList>
-												<Element ID="{FF5B9D19-6973-4DBD-A1EA-49BD9C785BB4}" Global="false">
-													<ObjectRef Name="penguin_death_spikes" ID="{4786A15B-C020-45E4-8DF1-DD10525AF7A5}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-												</Element>
-											</ElementList>
-										</Action>
-									</ChildrenList>
-								</Event>
-							</ChildrenList>
-						</Folder>
-						<Event Name="seal_move" ID="{5BBE33CA-72D7-4567-9E88-2235B6E23BA9}">
-							<ChildrenList>
-								<Action Name="Play" ID="{8587FFDC-DCFA-43AE-A0B7-44D8C68760E5}" ShortID="339907584" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{06003B17-1BC7-404A-A51C-2231B38E9FFF}" Global="false">
-											<ObjectRef Name="footsteps" ID="{57A29B5C-BC8C-4BEA-8C48-44ABB9B04FB7}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="seal_jump" ID="{5D68003E-A04E-4FEC-AEA7-02DB878162C6}">
-							<ChildrenList>
-								<Action Name="Play" ID="{CAE7E617-DB45-47BC-8A81-C077FA72D28F}" ShortID="773884344" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{5C8848C7-C967-4950-BD05-9E98799A510C}" Global="false">
-											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="seal_edge_fall" ID="{3A7716E4-48B5-4D08-BC21-6332108C33C4}">
-							<ChildrenList>
-								<Action Name="Play" ID="{2AB1259A-A608-4BCC-BE54-D4A4781845AE}" ShortID="126863113" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{2703C7DD-64EB-486B-85CC-B21F12FB6334}" Global="false">
-											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="seal_land" ID="{6C5313AA-7C5C-4248-82C2-646CCC8D19C7}">
-							<ChildrenList>
-								<Action Name="Play" ID="{8AE07170-902E-47A8-A0C7-6D629CB1C04F}" ShortID="400949072" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{EBC38215-0D93-490D-9CBF-6BAB6D3058DD}" Global="false">
-											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="seal_spawn" ID="{EDA5839E-9401-4E1C-92A9-ED7B758B4C91}">
-							<ChildrenList>
-								<Action Name="Play" ID="{887B217C-318D-49FD-83B7-37F38792AE0A}" ShortID="137642150" Type="Play" Scope="One" Global="false">
-									<ElementList>
-										<Element ID="{CE24A39F-6E8C-4994-8692-BDBCAEA2FBF1}" Global="false">
-											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-								<Action Name="Play" ID="{B6B1B2AA-12DC-41B3-A437-01F189AD4163}" ShortID="171083136" Type="Play" Scope="One" Global="false">
-									<PropertyList>
-										<Property Name="Delay" Type="Real64" Value="0.2"/>
-									</PropertyList>
-									<ElementList>
-										<Element ID="{71D4FCF2-02E1-4E99-92C8-D5E56747AB4C}" Global="false">
-											<ObjectRef Name="seal_placeholder_1" ID="{B8EA0069-09F9-4E65-AAA3-E18345F125E4}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
-										</Element>
-									</ElementList>
-								</Action>
-							</ChildrenList>
-						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="settings" ID="{B41A691A-76BB-4F79-B673-E898375A6A49}" ShortID="1069235155">
