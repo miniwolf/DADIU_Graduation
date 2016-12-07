@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.UI.translations;
 using Assets.scripts.sound;
+using UnityEditor;
 
 namespace Assets.scripts.UI.settingsmenu {
 	public class Settings : UIController, LanguageChangeListener {
@@ -21,7 +22,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		private Image ttsButtonImage;
 		private GameObject onTText;
 		private GameObject offTText;
-		private Button back;
+		public Button back;
 		private Text settingsText;
 		public Color selected;
 		public Color noSelected;
@@ -29,7 +30,8 @@ namespace Assets.scripts.UI.settingsmenu {
 		private Text soundText, languageText, tooltipsText;
 
 		void Start() {
-			TranslateApi.Register(this);
+            Debug.Log(gameObject);
+		    TranslateApi.Register(this);
 			// flag image
 			languageImage = GameObject.FindGameObjectWithTag(TagConstants.UI.LANGUAGE_IMAGE).GetComponent<Image>();
 			// get all components
@@ -175,13 +177,13 @@ namespace Assets.scripts.UI.settingsmenu {
 
 		private void UpdateTexts() {
 			settingsText.text = TranslateApi.GetString(LocalizedString.settings);
-			back.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.backsettings);
 			Text[] creditsText = credits.GetComponentsInChildren<Text>();
 			creditsText[0].text = TranslateApi.GetString(LocalizedString.credits);
 			creditsText[1].text = TranslateApi.GetString(LocalizedString.info);
 			soundText.text = TranslateApi.GetString(LocalizedString.sound);
 			languageText.text = TranslateApi.GetString(LocalizedString.language);
 			tooltipsText.text = TranslateApi.GetString(LocalizedString.tooltips);
+		    back.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.backsettings);
 		}
 
 		private void Back() {
