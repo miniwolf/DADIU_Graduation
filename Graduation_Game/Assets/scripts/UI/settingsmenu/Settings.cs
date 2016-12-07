@@ -37,7 +37,7 @@ namespace Assets.scripts.UI.settingsmenu {
 			GetTooltipsPanel();
 			GetMusicPanel();
 			// back button
-
+			back = GameObject.FindGameObjectWithTag(TagConstants.UI.BACK_SETTINGS).GetComponent<Button>();
 			settingsText = GameObject.FindGameObjectWithTag(TagConstants.UI.SETTINGS_TEXT).GetComponent<Text>();
 			languageText = GameObject.FindGameObjectWithTag(TagConstants.UI.LANGUAGE_TEXT).GetComponent<Text>();
 			soundText = GameObject.FindGameObjectWithTag(TagConstants.UI.SOUND_TEXT).GetComponent<Text>();
