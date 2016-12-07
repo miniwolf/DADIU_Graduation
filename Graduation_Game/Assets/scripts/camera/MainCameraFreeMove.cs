@@ -1,26 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Assets.scripts.UI.screen.ingame;
 using Assets.scripts.UI;
-using System;
+using Assets.scripts.UI.input;
+using Assets.scripts.UI.screen.ingame;
 
 namespace Assets.scripts.camera {
 	public class MainCameraFreeMove : MonoBehaviour, TouchInputListener, MouseInputListener {
-		InputManager inputManager;
+		private InputManager inputManager;
 
 		public float speed = .5f; // Speed of the camera while freely moving
 		public float edgeSpeed = .25f; // Speed of camera when dragging nearby edges
 		public float screenBoundaryThreshold = 10f; // Determines a window of pixels from left-/rightScreenBoundary
 		public Transform[] cameraSteps = new Transform[2]; // Place 2 camera steps in a level to determine the camera boundary positions
 
-		// Holds the initial input positions before starting to drag the camera
-		private Vector3 dragOrigin;
-		private Vector2 dragTouchOrigin;
-
 		private bool usingTouch;
 		private Vector3 lastTouchPosPos;
 		private Touch lastTouch;
-
 
 		// Limiters where the camera is allowed to move to
 		// Depends on cameraSteps placements
@@ -31,15 +26,12 @@ namespace Assets.scripts.camera {
 		private float leftScreenBoundary;
 		private float rightScreenBoundary;
 
-		// Threshold from camera boundaries
-		private float cameraStopThreshold = 0.01f;
-
-		List<Draggable> draggable = new List<Draggable>();
+		private readonly List<Draggable> draggable = new List<Draggable>();
 
 		// Use this for initialization
-		void Start() {
-			ToolButtons[] os = FindObjectsOfType<ToolButtons>();
-			foreach (ToolButtons o in os) {
+		private void Start() {
+			var os = FindObjectsOfType<ToolButtons>();
+			foreach ( var o in os ) {
 				draggable.Add(o);
 			}
 
@@ -54,87 +46,36 @@ namespace Assets.scripts.camera {
 			leftScreenBoundary = screenBoundaryThreshold;
 			rightScreenBoundary = Screen.width - screenBoundaryThreshold;
 		}
-		
-		void Update() {
-			foreach (Draggable d in draggable) {
-				if (d.IsDragging()) { // if any object is dragged, move the camera when touching the screen boundaries
-					if (usingTouch) {
-						MoveWhileDragging(lastTouch);
-					} else {
-						MoveWhileDragging();
-					}
+
+		private void Update() {
+			foreach ( var d in draggable ) {
+				if ( !d.IsDragging() ) {
+					continue;
+				}
+// if any object is dragged, move the camera when touching the screen boundaries
+				if ( usingTouch ) {
+					MoveWhileDragging(lastTouch);
+				} else {
+					MoveWhileDragging();
 				}
 			}
 		}
-
 
 		//
 		// TOUCH INPUT
 		//
-
 		public void OnTouch(Touch[] allTouches) {
-			if (!inputManager.IsCameraBlocked()) {
-				Touch touch = allTouches[0];
+			usingTouch = true;
+			var touch = allTouches[0];
+			if ( !inputManager.IsCameraBlocked() ) {
 
-				switch (touch.phase) {
-					case TouchPhase.Began:
-						usingTouch = true;
-						dragTouchOrigin = touch.position;
-						lastTouch = touch;
-						lastTouchPosPos = touch.position;
-						break;
-					case TouchPhase.Moved:
-						TouchMoveCamera(true, touch);
-						lastTouchPosPos = touch.position;
-						lastTouch = touch;
-						break;
-					case TouchPhase.Ended:
-						break;
+				if ( touch.phase == TouchPhase.Moved ) {
+					CameraMovement(true, touch.position.x);
 				}
-			} else {
-				Touch touch = allTouches[0];
 
-				switch (touch.phase) {
-					case TouchPhase.Began:
-						lastTouch = touch;
-						break;
-					case TouchPhase.Moved:
-						lastTouch = touch;
-						break;
-					case TouchPhase.Ended:
-						lastTouch = touch;
-						break;
-					default:
-						break;
-				}
+				lastTouchPosPos = touch.position;
 			}
-		}
-
-		// Moves the camera in x direction when touch is held down
-		private void TouchMoveCamera(bool isFreelyMoving, Touch touch) {
-			Vector2 pos = Camera.main.ScreenToViewportPoint(touch.position - dragTouchOrigin);
-			Vector2 move = new Vector2(pos.x * speed, 0);
-			//transform.Translate(-move, Space.World); // Moves the camera in -x direction while touching and moving the finger
-			float xMovement = touch.position.x - lastTouchPosPos.x;
-
-
-			if (isFreelyMoving) {
-				if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
-					transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
-				}
-			}
-			else {
-				// Makes sure to have the same movement speed while dragging on the edges
-				if (touch.position.x >= rightScreenBoundary) {
-					move = new Vector3(edgeSpeed, 0);
-					transform.Translate(move, Space.World);
-				}
-
-				if (touch.position.x <= leftScreenBoundary) {
-					move = new Vector3(-edgeSpeed, 0);
-					transform.Translate(move, Space.World);
-				}
-			}
+			lastTouch = touch;
 		}
 
 
@@ -145,68 +86,57 @@ namespace Assets.scripts.camera {
 		// Handles moving the camera from the edges of the screen
 		// while dragging an object
 		private void MoveWhileDragging() {
-			if (Input.mousePosition.x >= rightScreenBoundary) {
-				MoveCamera(false);
+			if ( Input.mousePosition.x >= rightScreenBoundary ) {
+				CameraMovement(false, Input.mousePosition.x);
 			}
 
-			if (Input.mousePosition.x <= leftScreenBoundary) {
-				MoveCamera(false);
+			if ( Input.mousePosition.x <= leftScreenBoundary ) {
+				CameraMovement(false, Input.mousePosition.x);
 			}
 		}
+
 		private void MoveWhileDragging(Touch touch) {
-			
-			if (touch.position.x >= rightScreenBoundary) {
-				TouchMoveCamera(false,touch);
+			if ( touch.position.x >= rightScreenBoundary ) {
+				CameraMovement(false, touch.position.x);
 			}
 
-			if (touch.position.x <= leftScreenBoundary) {
-				TouchMoveCamera(false,touch);
+			if ( touch.position.x <= leftScreenBoundary ) {
+				CameraMovement(false, touch.position.x);
 			}
 		}
 
 		public void OnMouseLeftDown() {
-			dragOrigin = Input.mousePosition;
 			lastTouchPosPos = Input.mousePosition;
-			//lastTouchPosPos = Input.mousePosition;
-			return;
 		}
 
 		public void OnMouseLeftUp() {
-			return;
 		}
 
 		public void OnMouseLeftPressed() {
-			MoveCamera(true);
-			lastTouchPosPos = Input.mousePosition;
-		}
-
-		// Moves the camera in x direction when mouse is held down
-		private void MoveCamera(bool isFreelyMoving) {
-			if (usingTouch) {
+			if ( usingTouch ) {
 				return;
 			}
 
-			Vector2 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-			Vector2 move = new Vector3(transform.position.x * speed, 0);
+			CameraMovement(true, Input.mousePosition.x);
+			lastTouchPosPos = Input.mousePosition;
+		}
 
-			float xMovement = Input.mousePosition.x - lastTouchPosPos.x;
-
-
-			if (isFreelyMoving) {
-				if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement*speed)) {
+		private void CameraMovement(bool isFreelyMoving, float inputX) {
+			if ( isFreelyMoving ) {
+				var xMovement = inputX - lastTouchPosPos.x;
+				if ( Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement * speed) ) {
 					transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
 				}
-			}
-			else {
-				if (Input.mousePosition.x >= rightScreenBoundary) {
+			} else {
+				Vector2 move;
+				if ( Input.mousePosition.x >= rightScreenBoundary ) {
 					move = new Vector3(edgeSpeed, 0);
-					transform.Translate(move, Space.World);
-				}
-
-				if (Input.mousePosition.x <= leftScreenBoundary) {
+				} else if (Input.mousePosition.x <= leftScreenBoundary) {
 					move = new Vector3(-edgeSpeed, 0);
-					transform.Translate(move, Space.World);
+				} else {
+					return;
 				}
+				transform.Translate(move, Space.World);
 			}
 		}
 
@@ -217,29 +147,19 @@ namespace Assets.scripts.camera {
 		// Limits the camera in x direction where cameraSteps[0] and 
 		// cameraSteps[cameraSteps.Length - 1] is placed in the scene
 		private bool CameraMovementLimit(float xMove) {
-
-			if (transform.position.x - xMove > limitLeftX && transform.position.x - xMove < limitRightX) {
-				return true;
-			} else {
-				return false;
-			}
+			return transform.position.x - xMove > limitLeftX && transform.position.x - xMove < limitRightX;
 		}
 
 		//
 		// RIGHT MOUSE BUTTON (not used)
 		//
-
 		public void OnMouseRightDown() {
-			throw new NotImplementedException();
 		}
 
 		public void OnMouseRightUp() {
-			throw new NotImplementedException();
 		}
 
 		public void OnMouseRightPressed() {
-			throw new NotImplementedException();
 		}
-
 	}
 }

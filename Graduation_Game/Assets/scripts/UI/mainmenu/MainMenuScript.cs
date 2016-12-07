@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Assets.scripts.sound;
 using Assets.scripts.controllers.actions.game;
 using System.Collections;
+using Assets.scripts.UI.input;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class MainMenuScript : UIController, TouchInputListener, MouseInputListener {

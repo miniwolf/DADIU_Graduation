@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Assets.scripts.UI.input;
 
 namespace Assets.scripts.UI {
 	public class InputManagerImpl : MonoBehaviour, InputManager {
