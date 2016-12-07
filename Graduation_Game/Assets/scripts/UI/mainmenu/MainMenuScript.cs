@@ -61,6 +61,8 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			LoadStars();
 
+			Debug.Log("NEXT WORLD ACCESSIBLE?? : " + isNextWorldAccessible());
+
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
 				Prefs.SetTooltips(1);
@@ -100,7 +102,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Uses sprite "Not Accessible" on all levels from index "fromLevelIdx" param
 		/// </summary>
 		/// <param name="fromLevelIdx"></para>
-		void MakeLevelsNotAccessible() {
+		private void MakeLevelsNotAccessible() {
 			foreach (var marker in worldUnlockMarkers) {
 				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
 					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
@@ -218,6 +220,20 @@ namespace Assets.scripts.UI.mainmenu {
 				}
 
 			}
+		}
+
+		/// <summary>
+		/// Returns true if next world has become accessable
+		/// </summary>
+		/// <returns></returns>
+		public bool isNextWorldAccessible() {
+
+			foreach (var marker in worldUnlockMarkers) {
+				if (StarsCollectedCountText.totalStars >= marker.starsNeeded && levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
+					return true;
+			}
+
+			return false;
 		}
 
 		/// <summary>

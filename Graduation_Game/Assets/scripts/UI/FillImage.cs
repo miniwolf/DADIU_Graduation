@@ -22,8 +22,8 @@ namespace Assets.scripts.UI {
 		void Start() {
 			mainMenuScript = GetComponent<MainMenuScript>();
 			levels = GetComponent<MainMenuScript>().levels;
-		    numOfLvls = levels.Length;
-		    levelStatusNames = new string[numOfLvls];
+			numOfLvls = levels.Length;
+			levelStatusNames = new string[numOfLvls];
 			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
 
 			LoadPreviouslyFilledSliders();
@@ -32,7 +32,11 @@ namespace Assets.scripts.UI {
 		// Update is called once per frame
 		void LateUpdate() {			
 			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon && !mainMenuScript.isLastLevelIdx()) {
-				FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+				if(fillOverTimeIdx == 5) {
+					if(mainMenuScript.isNextWorldAccessible()) FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+				} else {
+					FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+				}
 			}
 		}
 
@@ -50,11 +54,11 @@ namespace Assets.scripts.UI {
 			if (EndGame.isNewLevelWon) fillIndex = fillIndex - 1; 
 
 			for (int i = 0; i <= fillIndex; i++) {
-			    try {
-			        Fill(sliders[i]);
-			    } catch (Exception e) {
-			        Debug.Log(e);
-			    }
+				try {
+					Fill(sliders[i]);
+				} catch (Exception e) {
+					Debug.Log(e);
+				}
 			}
 		}
 
