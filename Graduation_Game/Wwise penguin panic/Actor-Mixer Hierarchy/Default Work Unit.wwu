@@ -752,6 +752,13 @@
 									</ChildrenList>
 								</Folder>
 								<Folder Name="stone" ID="{F2F57220-498C-4DB0-82E3-6D41595533AB}" ShortID="565775591">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ChildrenList>
 										<Sound Name="stone_place_1" ID="{95DEF1C8-A0E1-4E09-AE2B-16D243C37616}" ShortID="57348797" Type="SoundFX">
 											<PropertyList>
@@ -1023,7 +1030,13 @@
 									</ChildrenList>
 								</ActorMixer>
 								<ActorMixer Name="metal_bridge" ID="{F232AB3C-F76A-4360-9700-5F73B8BF4F6D}" ShortID="478004352">
+									<PropertyList>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
 									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="main distance to camera" ID="{11AA81C3-4E45-4277-9A74-5C09B828778B}" WorkUnitID="{2BF968F1-19C7-4F9F-BA8C-EC0229C96FE2}"/>
+										</Reference>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
 										</Reference>
@@ -5808,18 +5821,13 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="penguin_death_fail 2" ID="{52048875-0527-4419-9A92-4266625564A3}" ShortID="469283400">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="7.92733278282411E-03"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.22394715111478"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.556895127993393"/>
-											</PropertyList>
+										<AudioFileSource Name="penguin_death_fail 3" ID="{66A4546B-6305-4EA4-818D-E042D1A67817}" ShortID="235054527">
 											<Language>SFX</Language>
-											<AudioFile>penguin_death_fail 2.wav</AudioFile>
+											<AudioFile>penguin_death_fail 3.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="penguin_death_fail 2" ID="{52048875-0527-4419-9A92-4266625564A3}" Platform="Linked"/>
+										<ActiveSource Name="penguin_death_fail 3" ID="{66A4546B-6305-4EA4-818D-E042D1A67817}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
