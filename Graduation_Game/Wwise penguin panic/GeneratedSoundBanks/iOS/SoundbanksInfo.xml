@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="iOS" BasePlatform="iOS" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\iOS\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\iOS\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\iOS\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\iOS\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\iOS\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
