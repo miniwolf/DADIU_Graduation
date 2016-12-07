@@ -63,7 +63,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				UpdateUI(key);
 			}
 
-			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer")); // ignore both layers
+			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer") | 1 << LayerMask.NameToLayer("PenguinLayer")); // ignore all 3 layers
 			DisableArrowTools();
 		}
 
