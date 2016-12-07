@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Assets.scripts.eggHatching {
     public class SimpleEggHatch : MonoBehaviour {
 
-        public Text penguinsCountText, hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText;
+        public Text penguinsCountText, hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText, timerPopupText;
         public GameObject hatchEggsPanel;
         public GameObject template;
         public float hatchFeedbackSpeed = .5f;
@@ -40,12 +40,19 @@ namespace Assets.scripts.eggHatching {
         }
 
         public void OpenEggHatchingPanel() {
-            if(hatchableEggs > 0)
+			AkSoundEngine.PostEvent("button_pressed", gameObject);
+			if (hatchableEggs > 0)
                 hatchEggsPanel.SetActive(true);
         }
 
         public void HatchEggs() {
-            StartCoroutine(VisualFeedback());
+			if (hatchableEggs > 1) {
+				AkSoundEngine.PostEvent("egg_hatch_multiple", gameObject);
+			}
+			else {
+				AkSoundEngine.PostEvent("egg_hatch_single", gameObject);
+			}
+			StartCoroutine(VisualFeedback());
         }
 
         private void UpdateScreen() {
@@ -57,13 +64,26 @@ namespace Assets.scripts.eggHatching {
                 hatchCountTextInPanel.text = hatchableEggs + "/" + maxHatchableEggs;
             }
 
+            if (maxHatchableEggs <= 0 || hatchableEggs >= maxHatchableEggs) {
+                timerText.gameObject.SetActive(false);
+                timerPopupText.gameObject.SetActive(false);
+            } else {
+                timerText.gameObject.SetActive(true);
+                timerPopupText.gameObject.SetActive(true);
+            }
+
             if (hatchCountTextInMainCanvas != null) {
                 hatchCountTextInMainCanvas.text = hatchableEggs + "x";
             }
-
+            var txt = timeCount + " " + TranslateApi.GetString(LocalizedString.seconds);
             if (timerText != null) {
-                timerText.text = timeCount + " " + TranslateApi.GetString(LocalizedString.seconds);//+ "/"+ Prefs.GetHatchDuration();
+                timerText.text = txt;
             }
+
+            if (timerPopupText != null) {
+                timerPopupText.text = txt;
+            }
+
 //            Debug.Log("Penguins: " + penguinCount + "/" + penguinMaxCount + ", hatchable: " + hatchableEggs + "/" + maxHatchableEggs + ", timer: " + timeCount + "/" + Prefs.GetHatchDuration() );
         }
 
@@ -76,36 +96,7 @@ namespace Assets.scripts.eggHatching {
         }
 
         private IEnumerator VisualFeedback() {
-//            if(hatchEggsPanel != null) { // this check is here until EggHatching prefab is added to the main screne
-//                hatchEggsPanel.SetActive(false);
-//                pendingFeedback = Instantiate(template);
-//                pendingFeedback.gameObject.SetActive(true);
-//                pendingFeedback.transform.parent = transform;
-//
-//                Vector3 targetLocation = penguinsCountText.gameObject.transform.position;
-//                pendingFeedback.transform.position = hatchCountTextInPanel.transform.position;
-//
-//                float distance = float.MaxValue;
-//                float fraction = 0;
-//                Debug.DrawRay(hatchCountTextInPanel.transform.position, targetLocation, Color.red, 10000);
-//                while(distance > 1) {
-//                    if(fraction < 1) {
-//                        fraction += Time.deltaTime * hatchFeedbackSpeed;
-//                        pendingFeedback.transform.position = Vector3.Lerp(hatchCountTextInPanel.transform.position, targetLocation, fraction);
-//                    }
-//                    Debug.Log(
-//                        "Fraction: " + fraction +
-//                        ", Start position: " + hatchCountTextInPanel.transform.position +
-//                        ", Current position: " + pendingFeedback.transform.position +
-//                        ", Target position: " + targetLocation);
-//
-//                    distance = Vector3.Distance(pendingFeedback.transform.position, targetLocation);
-//                    yield return new WaitForEndOfFrame();
-//                }
-//            }
-
-//            pendingFeedback = null;
-            CloseDialog();
+			CloseDialog();
             lastHatchTime = Prefs.UpdateLastHatchTime();
             penguinCount += hatchableEggs;
             maxHatchableEggs -= hatchableEggs;

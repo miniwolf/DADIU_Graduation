@@ -31,7 +31,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
-		private int plutLatermask;
+		private int layermasksIgnored;
 	    private bool clickBlocked; // prevents clicking button if the previous click action was not yet finished
 		Color[] origColors;
 		MeshRenderer[] meshes;
@@ -66,7 +66,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			foreach(var key in tools.Keys) {
 				UpdateUI(key);
 			}
-			plutLatermask = ~(1 << LayerMask.NameToLayer("PlutoniumLayer"));
+			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer")); // ignore both layers
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -228,7 +228,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
 			
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, plutLatermask) //ignore plutonium layer
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layermasksIgnored) //ignore plutonium layer
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
