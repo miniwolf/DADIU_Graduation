@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.scripts.UI {
+namespace Assets.scripts.UI.input {
 	public interface TouchInputListener : InputListener {
 		void OnTouch(Touch[] allTouches);
 	}

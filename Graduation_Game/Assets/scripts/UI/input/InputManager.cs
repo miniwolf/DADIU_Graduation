@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.scripts.UI.input;
 
 namespace Assets.scripts.UI {
 	public interface InputManager {
