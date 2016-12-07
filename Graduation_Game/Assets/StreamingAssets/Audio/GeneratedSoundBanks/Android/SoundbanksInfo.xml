@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Desktop\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -22,6 +22,7 @@
 			<Path>Main_Soundbank.bnk</Path>
 			<IncludedEvents>
 				<Event Id="27047464" Name="airplane_loop" ObjectPath="\Events\Default Work Unit\SFXs\3D objects\airplane_loop"/>
+				<Event Id="2583471090" Name="bridge_falling" ObjectPath="\Events\Default Work Unit\SFXs\Tools\bridge_falling"/>
 				<Event Id="1250089922" Name="button_pressed" ObjectPath="\Events\Default Work Unit\ui\button_pressed"/>
 				<Event Id="987154840" Name="death_fail" ObjectPath="\Events\Default Work Unit\penguin\deaths\death_fail"/>
 				<Event Id="1940248758" Name="egg_hatch_multiple" ObjectPath="\Events\Default Work Unit\SFXs\egg_hatch_multiple"/>
@@ -60,15 +61,7 @@
 				<Event Id="3054427212" Name="pickup_add_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_add_to_score"/>
 				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency" MaxAttenuation="25.000000"/>
 				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score" MaxAttenuation="25.000000"/>
-				<Event Id="3715428614" Name="seal_death_electrocution" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_electrocution"/>
-				<Event Id="913448855" Name="seal_death_excavator" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_excavator"/>
-				<Event Id="1943522492" Name="seal_death_pit_drowning" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_pit_drowning"/>
-				<Event Id="3505549277" Name="seal_death_spikes" ObjectPath="\Events\Default Work Unit\seal\deaths\seal_death_spikes"/>
-				<Event Id="2674130862" Name="seal_edge_fall" ObjectPath="\Events\Default Work Unit\seal\seal_edge_fall"/>
-				<Event Id="2220048805" Name="seal_jump" ObjectPath="\Events\Default Work Unit\seal\seal_jump"/>
-				<Event Id="254264362" Name="seal_land" ObjectPath="\Events\Default Work Unit\seal\seal_land"/>
-				<Event Id="2620900526" Name="seal_move" ObjectPath="\Events\Default Work Unit\seal\seal_move" MaxAttenuation="25.000000"/>
-				<Event Id="585790082" Name="seal_spawn" ObjectPath="\Events\Default Work Unit\seal\seal_spawn"/>
+				<Event Id="133112871" Name="pressure_plate_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Tools\pressure_plate_triggered" MaxAttenuation="25.000000"/>
 				<Event Id="1345721513" Name="tool_change_lane_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_change_lane_placed" MaxAttenuation="25.000000"/>
 				<Event Id="4165526132" Name="tool_global_freeze_time_starting" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting"/>
 				<Event Id="2717875216" Name="tool_global_freeze_time_stopping" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping"/>
@@ -137,6 +130,10 @@
 					<ShortName>penguin_death_fail.wav</ShortName>
 					<Path>SFX\penguin_death_fail_7E6A080A.wem</Path>
 				</File>
+				<File Id="174735038" Language="SFX">
+					<ShortName>pressure_plate_1.wav</ShortName>
+					<Path>SFX\pressure_plate_1_3FF42723.wem</Path>
+				</File>
 				<File Id="203007558" Language="SFX">
 					<ShortName>68969__abel-k__tumble-dryer.wav</ShortName>
 					<Path>SFX\68969__abel-k__tumble-dryer_ED46B2C6.wem</Path>
@@ -165,6 +162,10 @@
 					<ShortName>penguin_1-24.wav</ShortName>
 					<Path>SFX\penguin_1-24_706A9764.wem</Path>
 				</File>
+				<File Id="300475285" Language="SFX">
+					<ShortName>metal_impact_1.wav</ShortName>
+					<Path>SFX\metal_impact_1_D9462EA5.wem</Path>
+				</File>
 				<File Id="311395350" Language="SFX">
 					<ShortName>footsteps_sandy_7.wav</ShortName>
 					<Path>SFX\footsteps_sandy_7_A6495CAB.wem</Path>
@@ -184,6 +185,10 @@
 				<File Id="356380210" Language="SFX">
 					<ShortName>penguin_1-20.wav</ShortName>
 					<Path>SFX\penguin_1-20_2350A0CC.wem</Path>
+				</File>
+				<File Id="359325848" Language="SFX">
+					<ShortName>metal_impact_2.wav</ShortName>
+					<Path>SFX\metal_impact_2_865C2A74.wem</Path>
 				</File>
 				<File Id="375180444" Language="SFX">
 					<ShortName>fish added to score.wav</ShortName>
@@ -321,6 +326,10 @@
 					<ShortName>fish picked up.wav</ShortName>
 					<Path>SFX\fish picked up_087222D8.wem</Path>
 				</File>
+				<File Id="678799885" Language="SFX">
+					<ShortName>metal_bridge_rustling_1.wav</ShortName>
+					<Path>SFX\metal_bridge_rustling_1_D378D3EA.wem</Path>
+				</File>
 				<File Id="691344409" Language="SFX">
 					<ShortName>penguin_1-09.wav</ShortName>
 					<Path>SFX\penguin_1-09_8B09CF22.wem</Path>
@@ -451,7 +460,7 @@
 				</File>
 				<File Id="1020207197" Language="SFX">
 					<ShortName>metal_hit_1.wav</ShortName>
-					<Path>SFX\metal_hit_1_CCB1777C.wem</Path>
+					<Path>SFX\metal_hit_1_1639AE48.wem</Path>
 				</File>
 				<File Id="1044733289" Language="SFX">
 					<ShortName>penguin_1-27.wav</ShortName>
