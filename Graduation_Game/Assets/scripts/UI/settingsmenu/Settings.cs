@@ -30,7 +30,6 @@ namespace Assets.scripts.UI.settingsmenu {
 		private Text soundText, languageText, tooltipsText;
 
 		void Start() {
-            Debug.Log(gameObject);
 		    TranslateApi.Register(this);
 			// flag image
 			languageImage = GameObject.FindGameObjectWithTag(TagConstants.UI.LANGUAGE_IMAGE).GetComponent<Image>();

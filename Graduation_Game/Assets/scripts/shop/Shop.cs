@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Assets.scripts.shop.item;
 using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
+using Assets.scripts.UI.translations;
 using UnityEngine;
 
 namespace Assets.scripts.shop {
-	public class Shop : MonoBehaviour {
+	public class Shop : MonoBehaviour, LanguageChangeListener {
 		private readonly Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
 		private Item<int> cash;
 
@@ -23,7 +24,8 @@ namespace Assets.scripts.shop {
 		public Item[] storeItems;
 
 		protected void Start() {
-			cash = Inventory.cash;
+		    Debug.Log(gameObject);
+		    cash = Inventory.cash;
 			foreach ( var storeItem in storeItems ) {
 				ShopItem buy;
 				switch (storeItem.item) {
@@ -64,5 +66,10 @@ namespace Assets.scripts.shop {
 		public Dictionary<string, ShopItem> GetItems() {
 			return items;
 		}
+
+	    public void OnLanguageChange(SupportedLanguage newLanguage) {
+
+
+	    }
 	}
 }
