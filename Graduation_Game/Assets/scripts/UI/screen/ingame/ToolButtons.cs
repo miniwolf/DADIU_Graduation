@@ -25,6 +25,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private float timeFirstClick;
 		private bool tutorialShown = false;
 		private GameObject[] tooltips;
+		private GameObject freezeTimeTool;
+		private GameObject freezeTime_UI_Image;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -55,7 +57,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 
-			foreach(var key in tools.Keys) {
+			HandleFreezetime(); // TODO test thourougly when the shop is working correctly
+
+			foreach (var key in tools.Keys) {
 				UpdateUI(key);
 			}
 
@@ -86,6 +90,19 @@ namespace Assets.scripts.UI.screen.ingame {
 					}
 				}
 			}
+		}
+
+		private void HandleFreezetime() {
+			freezeTime_UI_Image = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
+			freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
+
+			if (GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) != null) {
+				freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
+				if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+					freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
+				}
+			}
+
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -120,12 +137,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			switch(toolName) {
 			case TagConstants.JUMPTEMPLATE:
-			case TagConstants.BRIDGETEMPLATE:
-			case TagConstants.ENLARGETEMPLATE:
-			case TagConstants.MINIMIZETEMPLATE:
-			case TagConstants.SPEEDTEMPLATE:
 			case TagConstants.SWITCHTEMPLATE:
-			//case TagConstants.METALTEMPLATE:
 				PlaceTool(tools[toolName]);
 				break;
 			case TagConstants.Tool.FREEZE_TIME:
