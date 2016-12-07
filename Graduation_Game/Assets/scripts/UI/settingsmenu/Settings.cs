@@ -22,7 +22,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		private Image ttsButtonImage;
 		private GameObject onTText;
 		private GameObject offTText;
-		public Button back;
+		private Button back;
 		private Text settingsText;
 		public Color selected;
 		public Color noSelected;

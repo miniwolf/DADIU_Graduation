@@ -25,5 +25,13 @@ public enum LocalizedString  {
 	sound,
 	tooltips,
 	info,
-	seconds
+	seconds,
+    shopHatchSpeed,
+    shopHatchSpeed2,
+    shopPenguinSpace,
+    shopPenguinSpace2,
+    shopHatchPenguin,
+    shopHatchPenguin2,
+    shopFreezeTime,
+    shopBuyFish
 }

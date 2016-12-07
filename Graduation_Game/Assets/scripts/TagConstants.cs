@@ -114,7 +114,7 @@
 	        public const string SHOP_BUY_HATCH_PENGUIN = "BtnShopHatchPenguin";
 	        public const string SHOP_BUY_PENGUIN_SPACE = "BtnShopPenguinSpace";
 	        public const string SHOP_BUY_HATCH_SPEED = "BtnShopHatchSpeed";
-	        public const string SHOP_BUY_FREEZE_TIME = "BtnShopFreezeTime";
+	        public const string SHOP_BUY_FREEZE_TIME = "BtnShopFreezetime";
 	        public const string SHOP_BUY_FISH = "BtnShopBuyFish";
 	    }
 	}

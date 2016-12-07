@@ -22,3 +22,11 @@ jump; Write here tooltip for explaining jump DK
 switchlane; Write here tooltip for explaining switchlane DK
 thisWorldIsLocked; This world is locked! DK
 seconds; sek
+shopHatchSpeed; +1x for every DK
+shopHatchSpeed2;countdown  DK
+shopPenguinSpace;Extra Penguin DK
+shopPenguinSpace2;Space DK
+shopHatchPenguin; Hatch a DK
+shopHatchPenguin2;Penguin DK
+shopFreezeTime; 1x Freezetime DK
+shopBuyFish; 500 goldfish DK

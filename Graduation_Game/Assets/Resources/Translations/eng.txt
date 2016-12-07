@@ -22,3 +22,11 @@ jump; Write here tooltip for explaining jump EN
 switchlane; Write here tooltip for explaining switchlane EN
 thisWorldIsLocked; This world is locked!
 seconds; sec
+shopHatchSpeed; +1x for every
+shopHatchSpeed2;countdown
+shopPenguinSpace;Extra Penguin
+shopPenguinSpace2;Space
+shopHatchPenguin; Hatch a
+shopHatchPenguin2;Penguin
+shopFreezeTime; 1x Freezetime
+shopBuyFish; 500 goldfish

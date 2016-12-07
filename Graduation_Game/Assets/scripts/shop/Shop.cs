@@ -5,11 +5,15 @@ using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using Assets.scripts.UI.translations;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 namespace Assets.scripts.shop {
 	public class Shop : MonoBehaviour, LanguageChangeListener {
 		private readonly Dictionary<string, ShopItem> items = new Dictionary<string, ShopItem>();
 		private Item<int> cash;
+
+	    public Text textBuyFish, textHatchPenguin, textHatchPenguin2, textFreezeTime, textHatchSpeed,textHatchSpeed2, textPenguinSpace, textPenguinSpace2;
 
 		public enum Items {
 			Penguin, PenguinStock, RetryKey
@@ -24,7 +28,8 @@ namespace Assets.scripts.shop {
 		public Item[] storeItems;
 
 		protected void Start() {
-		    Debug.Log(gameObject);
+		    TranslateApi.Register(this);
+		    UpdateTexts();
 		    cash = Inventory.cash;
 			foreach ( var storeItem in storeItems ) {
 				ShopItem buy;
@@ -68,8 +73,22 @@ namespace Assets.scripts.shop {
 		}
 
 	    public void OnLanguageChange(SupportedLanguage newLanguage) {
+            UpdateTexts();
+	    }
 
+	    private void UpdateTexts() {
+	        textBuyFish.text = TranslateApi.GetString(LocalizedString.shopBuyFish);
+	        textFreezeTime.text = TranslateApi.GetString(LocalizedString.shopFreezeTime);
+	        textHatchPenguin.text = TranslateApi.GetString(LocalizedString.shopHatchPenguin);
+	        textHatchPenguin2.text = TranslateApi.GetString(LocalizedString.shopHatchPenguin2);
+	        textPenguinSpace.text = TranslateApi.GetString(LocalizedString.shopPenguinSpace);
+	        textPenguinSpace2.text = TranslateApi.GetString(LocalizedString.shopPenguinSpace2);
+	        textHatchSpeed.text = TranslateApi.GetString(LocalizedString.shopHatchSpeed);
+	        textHatchSpeed2.text = TranslateApi.GetString(LocalizedString.shopHatchSpeed2);
+	    }
 
+	    private void OnDestroy() {
+	        TranslateApi.UnRegister(this);
 	    }
 	}
 }
