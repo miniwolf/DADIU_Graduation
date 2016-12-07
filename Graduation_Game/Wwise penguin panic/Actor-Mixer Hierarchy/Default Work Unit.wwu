@@ -6543,6 +6543,62 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</ActorMixer>
+				<Folder Name="cinematic intro" ID="{B6E9A9F2-BF0F-403C-B96C-4BDC7E5C6938}" ShortID="168413546">
+					<ChildrenList>
+						<Sound Name="penguin intro cinematic no music" ID="{F844FD8B-00EB-442A-BE95-9EC77D3983C8}" ShortID="299716977" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="penguin intro cinematic no music 2" ID="{FC4F35E0-F85D-4CC1-9198-CF7C05450713}" ShortID="569134670">
+									<Language>SFX</Language>
+									<AudioFile>penguin intro cinematic no music 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="penguin intro cinematic no music 2" ID="{FC4F35E0-F85D-4CC1-9198-CF7C05450713}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="penguin intro cinematic with music" ID="{9A57440A-F89B-45DF-9BA7-4698172E9AFA}" ShortID="452147079" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Vorbis Quality Medium" ID="{01D20CF3-9A4C-4EEE-AE3E-2942B47543E9}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B6ED33E0-015E-4980-B8B6-ED933FD6AC5B}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="penguin intro cinematic with music 2" ID="{82A18B3C-891E-4CD2-9E8D-888A44919593}" ShortID="952860497">
+									<Language>SFX</Language>
+									<AudioFile>penguin intro cinematic with music 2.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="penguin intro cinematic with music 2" ID="{82A18B3C-891E-4CD2-9E8D-888A44919593}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -6,6 +6,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	516816362	penguin_death_excavator			\Default Work Unit\penguin\deaths\penguin_death_excavator	
 	540083679	penguin_death_pit_drowning			\Default Work Unit\penguin\deaths\penguin_death_pit_drowning	
 	554915610	penguin_get_up			\Default Work Unit\penguin\penguin_get_up	
+	655449888	stop_cinematic_audio			\Default Work Unit\ui\stop_cinematic_audio	
 	823784186	penguin_slide_loop			\Default Work Unit\penguin\slide\penguin_slide_loop	
 	987154840	death_fail			\Default Work Unit\penguin\deaths\death_fail	
 	1037802744	penguin_tool_change_lane_used			\Default Work Unit\penguin\Interactions\penguin_tool_change_lane_used	
@@ -23,6 +24,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1995024202	end_screen_star_spawn			\Default Work Unit\ui\end sreen\end_screen_star_spawn	
 	2001381670	penguin_death_spikes			\Default Work Unit\penguin\deaths\penguin_death_spikes	
 	2036647991	level_failed			\Default Work Unit\TEST\level_failed	
+	2069726370	start_cinematic_audio			\Default Work Unit\ui\start_cinematic_audio	
 	2088991191	end_screen_spawn			\Default Work Unit\ui\end sreen\end_screen_spawn	
 	2376935833	trap_wire_loop			\Default Work Unit\SFXs\Traps\trap_wire_loop	
 	2479484064	penguin_slide_takeoff			\Default Work Unit\penguin\slide\penguin_slide_takeoff	
@@ -112,6 +114,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	561233549	fish picked up	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\fish picked up_190D4858.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFXs\egg_hatch\pop\fish picked up		1731
 	562139762	footsteps_sandy_2	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\footsteps_sandy_2_7B261624.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\snow\snow1\footsteps_sandy_2		4033
 	566192766	penguin_1-29	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-29_CD245205.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\movement\voice\penguin_1-29		4862
+	569134670	penguin intro cinematic no music	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin intro cinematic no music 2_0EEECE5B.wem		\Actor-Mixer Hierarchy\Default Work Unit\cinematic intro\penguin intro cinematic no music		256277
 	576674518	penguin_1-34	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-34_88CAC0B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\electrocution\penguin_elec_death_voice\penguin_1-34		8654
 	590505010	penguin_1-03	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-03_3EA513B1.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\penguin_jump_used\penguin_1-03		6261
 	605879954	penguin_death_1	C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\SFX\penguin_1-56_B2CD2E76.wem		\Actor-Mixer Hierarchy\Default Work Unit\penguin\deaths\death voice\penguin_death_1		5040
