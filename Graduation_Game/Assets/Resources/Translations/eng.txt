@@ -34,3 +34,12 @@ shopBuyFish; 500 goldfish
 penguin; Penguin
 hatch; Hatch
 toNextEgg; to next egg
+youWon; You Won
+thisLevel; This Level
+total; Total
+next; Next
+retry; Retry
+replay; Replay
+tooltipUseTheJumppad; Use the jumppad to get the fish!
+tooltipDragJumppad; Drag from the icon to the iceberg
+youAreDead;You're Dead
