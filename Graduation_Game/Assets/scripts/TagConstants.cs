@@ -51,6 +51,7 @@
 		public const string JUMPARROW = "JumpArrow";
 		public const string TOOLTIP = "Tooltip";
 		public const string TOOLTIP_PANEL = "TooltipPanel";
+		public const string WIN_RING = "WinRing";
 
 		public class Tool {
 	        public const string FREEZE_TIME = "FreezeTemplate";
