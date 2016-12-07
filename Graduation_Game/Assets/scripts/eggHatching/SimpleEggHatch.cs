@@ -65,11 +65,15 @@ namespace Assets.scripts.eggHatching {
             }
 
             if (maxHatchableEggs <= 0 || hatchableEggs >= maxHatchableEggs) {
-                timerText.gameObject.SetActive(false);
-                timerPopupText.gameObject.SetActive(false);
+                if (timerText != null)
+                    timerText.gameObject.SetActive(false);
+                if (timerPopupText != null)
+                    timerPopupText.gameObject.SetActive(false);
             } else {
-                timerText.gameObject.SetActive(true);
-                timerPopupText.gameObject.SetActive(true);
+                if (timerText != null)
+                    timerText.gameObject.SetActive(true);
+                if (timerPopupText != null)
+                    timerPopupText.gameObject.SetActive(true);
             }
 
             if (hatchCountTextInMainCanvas != null) {

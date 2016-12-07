@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using Assets.scripts;
@@ -49,7 +50,11 @@ namespace Assets.scripts.UI {
 			if (EndGame.isNewLevelWon) fillIndex = fillIndex - 1; 
 
 			for (int i = 0; i <= fillIndex; i++) {
-				Fill(sliders[i]);
+			    try {
+			        Fill(sliders[i]);
+			    } catch (Exception e) {
+			        Debug.Log(e);
+			    }
 			}
 		}
 
