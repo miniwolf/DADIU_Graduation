@@ -61,7 +61,7 @@ namespace Assets.scripts.eggHatching {
             }
 
             if (hatchCountTextInPanel != null) {
-                hatchCountTextInPanel.text = hatchableEggs + "/" + maxHatchableEggs;
+                hatchCountTextInPanel.text = "+" + hatchableEggs + "x";
             }
 
             if (maxHatchableEggs <= 0 || hatchableEggs >= maxHatchableEggs) {
