@@ -91,7 +91,7 @@ namespace Assets.scripts.level {
 
 		private IEnumerator PlatformComeIn(){
 			RaycastHit hit;
-			if(!Physics.Raycast(new Vector3(transform.position.x,transform.position.y-1.1f,transform.position.z),new Vector3(1,0,0),out hit,50f, layerMask)){
+			if(!Physics.Raycast(new Vector3(transform.position.x,entrancePlatform.transform.position.y,transform.position.z),new Vector3(1,0,0),out hit,50f, layerMask)){
 				UnityEngine.Debug.LogError("The platform does not know where to move, because it cannot find where to go, put something with the levellayer on it, where it should stop");
 				yield return null;
 			}

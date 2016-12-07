@@ -139,7 +139,7 @@ namespace Assets.scripts.components.factory {
 
 		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
+			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem, constant));
 			if ( constant != "" ) {
 				actionHandler.AddAction(new SetTrigger(animator, constant));
 			}
@@ -148,7 +148,7 @@ namespace Assets.scripts.components.factory {
 
 		private Handler KillPenguinByWithSound(string animationConstant, string soundConstant) {
 			var actionHandler = new ActionHandler();
-			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
+			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem, animationConstant));
 			actionHandler.AddAction(new SetTrigger(animator, animationConstant));
 			actionHandler.AddAction(new PostSoundEvent(soundConstant));
 			return actionHandler;
