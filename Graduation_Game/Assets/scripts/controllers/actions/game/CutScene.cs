@@ -29,7 +29,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 		private IEnumerator TriggerSpawn(float time) {
 			yield return new WaitForSeconds(time);
-			GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>().EndLevel();
+			//GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>().EndLevel();
 			yield return null;
 		}
 	}
