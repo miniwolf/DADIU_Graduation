@@ -23,6 +23,8 @@ namespace Assets.scripts.components {
 
 		void SetDoubleJump (bool b);
 
+		Assets.scripts.character.Penguin.Lane GetLane ();
+
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);
 		AnimationCurve GetCurve(Penguin.CurveType type);
 		void SetInitialTime(Penguin.CurveType type, float time);

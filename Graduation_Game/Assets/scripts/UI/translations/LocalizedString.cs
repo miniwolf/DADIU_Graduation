@@ -37,5 +37,14 @@ public enum LocalizedString  {
     shopBuyFish,
     penguin,
     hatch,
-    toNextEgg
+    toNextEgg,
+    youWon,
+    thisLevel,
+    total,
+    next,
+    retry,
+    replay,
+    tooltipUseTheJumppad,
+    tooltipDragJumppad,
+    youAreDead
 }

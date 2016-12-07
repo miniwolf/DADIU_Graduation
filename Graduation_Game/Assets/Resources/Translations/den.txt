@@ -1,14 +1,16 @@
-level1;Level 1 DK
-level2;Level 2 DK
-level3;Level 3 DK
-level4;Level 4 DK
-level5;Level 5 DK
-level6;Level 6 DK
-level7;Level 7 DK
-level8;Level 8 DK
-level9;Level 9 DK
-popupNotEnoguhPenguins; Not enough penguins DK
-toPlayTheLevel; to play the level! DK
+level1;Bane 1
+level2;Bane 2
+level3;Bane 3
+level4;Bane 4
+level5;Bane 5
+level6;Bane 6
+level7;Bane 7
+level8;Bane 8
+level9;Bane 9
+level10;Bane 10
+level11;Bane 11
+popupNotEnoguhPenguins; Du har ikke nok pingviner
+toPlayTheLevel; til at spille banen! DK
 backsettings; Tilbage
 settings; Indstillinger
 credits; creditsDK
@@ -16,21 +18,30 @@ sound; lyd
 language; sprog
 tooltips; hjælp?
 info; info
-place; Write here tooltip for placing tool DK
-move; Write here tooltip for moving tool DK
-remove; Write here tooltip for removing tool DK
-jump; Write here tooltip for explaining jump DK
-switchlane; Write here tooltip for explaining switchlane DK
-thisWorldIsLocked; This world is locked! DK
+place; Træk et redskab fra kanpperne i bunden ud på isen
+move; Tryk og træk et redskab fra isen til et andet sted på isen
+remove; Tryk på et redskab og træk det væk fra banen og giv slip når det bliver rødt
+jump; Brug dit nye hoppe redskab som det andet
+switchlane; Brug skift bane til at få penguinerne til at skifte deres bane
+thisWorldIsLocked; Denne verden er låst
 seconds; sek
-shopHatchSpeed; +1x for every DK
-shopHatchSpeed2;countdown  DK
-shopPenguinSpace;Extra Penguin DK
-shopPenguinSpace2;Space DK
-shopHatchPenguin; Hatch a DK
-shopHatchPenguin2;Penguin DK
-shopFreezeTime; 1x Freezetime DK
-shopBuyFish; 500 goldfish DK
-penguin; Penguin DK
-hatch; Hatch DK
-toNextEgg; to next egg DK
+shopHatchSpeed; +1x for hvert køb
+shopHatchSpeed2; Nedtælling
+shopPenguinSpace; Ekstra Pingvin
+shopPenguinSpace2; Plads
+shopHatchPenguin; Udklæk en
+shopHatchPenguin2; Pingvin
+shopFreezeTime; 1x Tids frys
+shopBuyFish; 500 gyldne fisk
+penguin; Pingvin
+hatch; Udklæk
+toNextEgg; til næste æg
+youWon; Du vandt
+thisLevel; Denne bane
+total; Total DK
+next; Næste DK
+retry; Omkamp DK
+replay; Prøv igen DK
+tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene
+tooltipDragJumppad; Træk fra ikonet til isen
+youAreDead;Du er død
