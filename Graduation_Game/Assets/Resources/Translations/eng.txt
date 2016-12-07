@@ -1,12 +1,14 @@
-level1;Level 1 EN
-level2;Level 2 EN
-level3;Level 3 EN
-level4;Level 4 EN
-level5;Level 5 EN
-level6;Level 6 EN
-level7;Level 7 EN
-level8;Level 8 EN
-level9;Level 9 EN
+level1;Level 1
+level2;Level 2
+level3;Level 3
+level4;Level 4
+level5;Level 5
+level6;Level 6
+level7;Level 7
+level8;Level 8
+level9;Level 9
+level10;Level 10
+level11;Level 11
 popupNotEnoguhPenguins; Not enough penguins
 toPlayTheLevel; to play the level!
 backsettings; Back
@@ -16,9 +18,9 @@ sound; sound
 tooltips; help?
 info; info
 language; language
-place; Write here tooltip for placing tool EN
-move; Write here tooltip for moving tool EN
-remove; Write here tooltip for removing tool EN
+place; Drag from the tool icons to the ice to place a tool
+move; Click and move a tool placed on the ice, to a different place
+remove; Click and drag a tool until it becomes red, then release to return it to your stash
 jump; Write here tooltip for explaining jump EN
 switchlane; Write here tooltip for explaining switchlane EN
 thisWorldIsLocked; This world is locked!
