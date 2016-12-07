@@ -34,7 +34,7 @@ namespace Assets.scripts.level {
 			if ( !win ) {
 				alivePenguins = int.Parse(penguinCounter.text);
 				
-				if(penguins == alivePenguins) {
+				if(penguins == alivePenguins && alivePenguins != 0) {
 					switch (levelName) {
 						case PrefsConstants.LEVEL1:
 							SetPrefs(1);
