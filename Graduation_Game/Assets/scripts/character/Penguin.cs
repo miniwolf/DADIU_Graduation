@@ -109,7 +109,8 @@ namespace Assets.scripts.character {
 				ExecuteAction(ControllableActions.Celebrate);
 				ExecuteAction(ControllableActions.Win);
 				yield return new WaitForSeconds(timeOnWinPlatform);
-				ExecuteAction(ControllableActions.Stop);
+				//ExecuteAction(ControllableActions.Stop);
+				isStopped = true;
 			}
 		}
 
