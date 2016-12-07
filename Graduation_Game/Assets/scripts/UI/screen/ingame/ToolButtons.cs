@@ -25,6 +25,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private float timeFirstClick;
 		private bool tutorialShown = false;
 		private GameObject[] tooltips;
+		private GameObject freezeTimeTool;
+		private GameObject freezeTime_UI_Image;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -48,14 +50,6 @@ namespace Assets.scripts.UI.screen.ingame {
 		protected void Start() {
 			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
-		//	tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
-		/*	tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
-
-		/*	if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
-				tutorialShown = true;
-			}*/
 
 			tooltips = GameObject.FindGameObjectsWithTag(TagConstants.TOOLTIP);
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
@@ -63,10 +57,52 @@ namespace Assets.scripts.UI.screen.ingame {
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 
-			foreach(var key in tools.Keys) {
+			HandleFreezetime(); // TODO test thourougly when the shop is working correctly
+
+			foreach (var key in tools.Keys) {
 				UpdateUI(key);
 			}
+
 			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer")); // ignore both layers
+			DisableArrowTools();
+		}
+
+		private void DisableArrowTools() {
+			//find all tools on the scene and scale the arrow to 0
+			GameObject[] switchlanes = GameObject.FindGameObjectsWithTag(TagConstants.SWITCHTEMPLATE);
+			GameObject[] jumps = GameObject.FindGameObjectsWithTag(TagConstants.JUMPTEMPLATE);
+			Transform[] trans;
+			foreach ( GameObject go in switchlanes ) {
+				trans = go.GetComponentsInChildren<Transform>();
+				for ( int i = 0 ; i < trans.Length ; i++ ) {
+					if ( trans[i].tag == TagConstants.LANECHANGEARROW ) {
+						trans[i].localScale = Vector3.zero;
+						break;
+					}
+				}
+			}
+			foreach ( GameObject go in jumps ) {
+				trans = go.GetComponentsInChildren<Transform>();
+				for ( int i = 0 ; i < trans.Length ; i++ ) {
+					if ( trans[i].tag == TagConstants.JUMPARROW ) {
+						trans[i].localScale = Vector3.zero;
+						break;
+					}
+				}
+			}
+		}
+
+		private void HandleFreezetime() {
+			freezeTime_UI_Image = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
+			freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
+
+			if (GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) != null) {
+				freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
+				if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+					freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
+				}
+			}
+
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -101,12 +137,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			switch(toolName) {
 			case TagConstants.JUMPTEMPLATE:
-			case TagConstants.BRIDGETEMPLATE:
-			case TagConstants.ENLARGETEMPLATE:
-			case TagConstants.MINIMIZETEMPLATE:
-			case TagConstants.SPEEDTEMPLATE:
 			case TagConstants.SWITCHTEMPLATE:
-			//case TagConstants.METALTEMPLATE:
 				PlaceTool(tools[toolName]);
 				break;
 			case TagConstants.Tool.FREEZE_TIME:
@@ -139,6 +170,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			dragging = true;
 			currentObject = tools[count - 1];
+			// show the arrow in tool
+			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+				if (t.tag == TagConstants.LANECHANGEARROW) {
+					t.localScale = new Vector3(1, 1, 1);
+				} else if (t.tag == TagConstants.JUMPARROW) {
+					t.localScale = new Vector3(2, 2, 2);
+				}
+			}
 			currentObject.SetActive(true);
 			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
@@ -214,7 +253,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private bool IsATool(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layermasksIgnored)
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
@@ -363,6 +402,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				ChangeObjColorToRed(obj);
 				return;
 			}
+
 			doubleTap = false;
 			obj.transform.position = hit.point;
 			snapping.Snap(new Vector3(hit.point.x,hit.transform.position.y,hit.transform.position.z), obj.transform);

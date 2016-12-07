@@ -60,7 +60,7 @@ public class EndSceneController: MonoBehaviour {
 	}
 
 	private void EnablePopup() {
-		popup.transform.localScale = Vector3.one;
+		popup.transform.localScale = new Vector3(2,2,2);
 		popup.enabled = true;
 	}
 }
