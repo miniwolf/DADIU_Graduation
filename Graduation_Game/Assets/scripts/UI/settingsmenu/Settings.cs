@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Assets.scripts.UI.translations;
 using Assets.scripts.sound;
-using UnityEditor;
 
 namespace Assets.scripts.UI.settingsmenu {
 	public class Settings : UIController, LanguageChangeListener {
