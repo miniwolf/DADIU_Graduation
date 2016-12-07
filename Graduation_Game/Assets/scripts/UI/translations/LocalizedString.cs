@@ -11,6 +11,8 @@ public enum LocalizedString  {
 	level7,
 	level8,
 	level9,
+	level10,
+	level11,
 	popupNotEnoguhPenguins,
 	toPlayTheLevel,
 	backsettings,
