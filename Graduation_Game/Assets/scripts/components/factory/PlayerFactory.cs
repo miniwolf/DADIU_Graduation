@@ -21,13 +21,13 @@ namespace Assets.scripts.components.factory {
 		private readonly Animator animator;
 		private readonly Directionable directionable;
 		private readonly GameStateManager gameStateManager;
-	    private readonly NotifierSystem notifierSystem;
+		private readonly NotifierSystem notifierSystem;
 		private GameObject splat;
-		AnimationSet animationSet = new AnimationSet();
-	    private CouroutineDelegateHandler delegator;
+		private readonly AnimationSet animationSet = new AnimationSet();
+		private readonly CouroutineDelegateHandler delegator;
 
 		public PlayerFactory(Actionable<ControllableActions> actionable, GameObject penguin, GameObject levelSettings,
-		    GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat, CouroutineDelegateHandler delegator){
+			GameStateManager stateManager, NotifierSystem notifierSystem, GameObject splat, CouroutineDelegateHandler delegator){
 			this.actionable = actionable;
 			this.levelSettings = levelSettings;
 			directionable = penguin.GetComponent<Directionable>();
@@ -35,12 +35,12 @@ namespace Assets.scripts.components.factory {
 			animator.SetFloat("WalkBlend", Random.Range(0.0f, 1.0f));
 			animator.SetTime(Random.Range(0.0f, 1.0f));
 			gameStateManager = stateManager;
-		    this.notifierSystem = notifierSystem;
-		    Penguin p = penguin.GetComponent<Penguin>();
-		    p.SetGameStateManager(gameStateManager);
-		    p.SetNotifyManager(this.notifierSystem);
+			this.notifierSystem = notifierSystem;
+			var p = penguin.GetComponent<Penguin>();
+			p.SetGameStateManager(gameStateManager);
+			p.SetNotifyManager(this.notifierSystem);
 			this.splat = splat;
-		    this.delegator = delegator;
+			this.delegator = delegator;
 		}
 
 		public void Build() {
@@ -49,21 +49,11 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(ControllableActions.KillPenguinByWallSpikes, KillPenguinBy(animationSet.deathSpikeWallAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByGroundSpikes, KillPenguinBy(animationSet.deathSpikeGroundAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByPit, KillPenguinBy(animationSet.deathPitAnimation));
-			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinBy(animationSet.deathSpikeGroundAnimation)); // TODO: There should be another
+			actionable.AddAction(ControllableActions.KillPenguinByExcavator, KillPenguinByWithSound(animationSet.deathSpikeGroundAnimation, SoundConstants.PenguinSounds.DEATH_BY_EXCAVATOR));
 			actionable.AddAction(ControllableActions.KillPenguinByWater, KillPenguinBy(animationSet.deathDrownAnimation));
 			actionable.AddAction(ControllableActions.KillPenguinByElectricution, KillPenguinBy(animationSet.deathElectricAnimation));
-		//	actionable.AddAction(ControllableActions.KillPenguinByOrca, KillPenguinBy(deathSpikeAnimation != null ? deathSpikeAnimation() : null));			// inexistent
 			actionable.AddAction(ControllableActions.StartJump, CreateStartJump());
 			actionable.AddAction(ControllableActions.StopJump, CreateStopJump());
-		//	actionable.AddAction(ControllableActions.StartSpeed, CreateStartSpeed());
-		//	actionable.AddAction(ControllableActions.Speed, CreateSpeed());
-		//	actionable.AddAction(ControllableActions.StopSpeed, CreateStopSpeed());
-		//	actionable.AddAction(ControllableActions.StartEnlarge, CreateStartEnlarge());
-		//	actionable.AddAction(ControllableActions.Enlarge, CreateEnlarge());
-		//	actionable.AddAction(ControllableActions.StopEnlarge, CreateStopEnlarge());
-		//	actionable.AddAction(ControllableActions.StartMinimize, CreateStartMinimize());
-		//	actionable.AddAction(ControllableActions.Minimize, CreateMinimize());
-		//	actionable.AddAction(ControllableActions.StopMinimize, CreateStopMinimize());
 			actionable.AddAction(ControllableActions.StartSliding, CreateSlideAction(true));
 			actionable.AddAction(ControllableActions.StopSliding, CreateSlideAction(false));
 			actionable.AddAction(ControllableActions.Freeze, CreateFreezeAction(true));
@@ -150,14 +140,20 @@ namespace Assets.scripts.components.factory {
 		private Handler KillPenguinBy(string constant) {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
-			if (constant != "")
+			if ( constant != "" ) {
 				actionHandler.AddAction(new SetTrigger(animator, constant));
-			if ( !constant.Equals(animationSet.deathDrownAnimation) ) {
-				//actionHandler.AddAction(new DefaultBloodSplatterAction(splat));
 			}
 			return actionHandler;
 		}
-		
+
+		private Handler KillPenguinByWithSound(string animationConstant, string soundConstant) {
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new KillPenguin((Killable) actionable, notifierSystem));
+			actionHandler.AddAction(new SetTrigger(animator, animationConstant));
+			actionHandler.AddAction(new PostSoundEvent(soundConstant));
+			return actionHandler;
+		}
+
 		private Handler CreateStartJump() {
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new Jump((Directionable) actionable, levelSettings));
