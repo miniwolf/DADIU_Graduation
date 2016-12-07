@@ -24,6 +24,7 @@
 			public const string START_MOVING = "penguin_move_start";
 			public const string STOP_MOVING = "penguin_move_stop";
 			public const string SPAWN = "penguin_spawn";
+			public const string DEATH_BY_EXCAVATOR = "penguin_death_excavator";
 		}
 
 		public class SealSounds {
@@ -51,6 +52,8 @@
 			public const string CHANGE_LANE_TRIGGERED = "penguin_tool_change_lane_used";
 			public const string TOOL_RETURNED = "tool_returned_to_toolbar";
 			public const string TOOL_PICK_UP = "tool_picked_up";
+			public const string PRESSURE_PLATE = "pressure_plate_triggered";
+			public const string BRIDGE_FALLING = "bridge_falling";
 		}
 
 		/// <summary>
