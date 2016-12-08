@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<GameParameter Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}">
 					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="40"/>
+						<Property Name="InitialValue" Type="Real64" Value="35"/>
 					</PropertyList>
 				</GameParameter>
 				<GameParameter Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}">

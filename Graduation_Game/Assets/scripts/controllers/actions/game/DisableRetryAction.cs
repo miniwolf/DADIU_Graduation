@@ -11,7 +11,7 @@ using Assets.scripts.UI.inventory;
 namespace AssemblyCSharp {
 	public class DisableRetryAction : Action {
 		private Button retryCircle, retryButton;
-		private Image retryCircleImage;
+		private Image retryCircleImage, retryImage;
 		private Text retryPrize;
 		private string toFind;
 		private CanvasController canvas;
@@ -34,6 +34,9 @@ namespace AssemblyCSharp {
 						break;
 					case TagConstants.UI.RETRY_PRIZE:
 						retryPrize = trans[i].gameObject.GetComponent<Text>();
+						break;
+					case TagConstants.UI.RETRYCURRENCYIMAGE:
+						retryImage = trans[i].gameObject.GetComponent<Image>();
 						break;
 					default:
 						break;
