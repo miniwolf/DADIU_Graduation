@@ -67,6 +67,38 @@
 								</Property>
 							</PropertyList>
 						</Bus>
+						<Bus Name="SFX" ID="{DD9BB1EB-A14C-46BB-9DC8-BFABB4E6D673}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{C5ACAFF8-A9BA-4278-89B8-52083BE94561}" ShortID="555502037">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="rtpc_sfx_volume" ID="{1627970C-C353-404C-A373-91D7A536110E}" WorkUnitID="{B35BB35A-8FEF-4B4E-A805-5B5BDF02EAD4}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{11F47969-8F86-4102-8E54-8F8BDF430B77}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+						</Bus>
 					</ChildrenList>
 				</Bus>
 				<Bus Name="Master Secondary Bus" ID="{D2E0BC7E-7B3F-4FFE-A670-FAE02761B631}"/>
