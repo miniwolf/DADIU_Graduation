@@ -38,7 +38,7 @@ namespace Assets.scripts.level {
 		private int count;
 		private GameObject entrancePlatform;
 		private Vector3 origPos;
-		private int spawned = 0, layerMask = 1 << 8;
+		private int spawned = 0;// layerMask = 1 << 8;
 
 		public void Start() {
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
@@ -46,6 +46,7 @@ namespace Assets.scripts.level {
 		    gameStateManager = FindObjectOfType<GameStateManager>();
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
+			print("started");
 
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
@@ -91,11 +92,11 @@ namespace Assets.scripts.level {
 
 		private IEnumerator PlatformComeIn(){
 			RaycastHit hit;
-			if(!Physics.Raycast(new Vector3(transform.position.x,entrancePlatform.transform.position.y,transform.position.z),new Vector3(1,0,0),out hit,50f, layerMask)){
+			if(!Physics.Raycast(new Vector3(transform.position.x,entrancePlatform.transform.position.y,transform.position.z),new Vector3(1,0,0),out hit,50f)){
 				UnityEngine.Debug.LogError("The platform does not know where to move, because it cannot find where to go, put something with the levellayer on it, where it should stop");
 				yield return null;
 			}
-			print(hit.point);
+			//print(hit.transform.name);
 			Vector3 whereToGo = new Vector3(hit.point.x,transform.position.y,transform.position.z), origPos = transform.position;
 			float startTime = Time.time;;
 			float speedFactor = speedForPlatform;
@@ -110,14 +111,7 @@ namespace Assets.scripts.level {
 				//cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 				yield return new WaitForEndOfFrame();
 			}
-			StartCoroutine(Spawn());
-		}
-
-
-
-		private IEnumerator Spawn() {
-
-			yield return StartCoroutine(FreezeAndSpawnRest());
+			StartCoroutine(FreezeAndSpawnRest());
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {

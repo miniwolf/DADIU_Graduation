@@ -614,6 +614,31 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="start_cinematic_audio" ID="{610D6B6F-F9AD-4934-9236-11A1C8B9CF19}">
+							<ChildrenList>
+								<Action Name="Play" ID="{E2A8A858-AFB1-413C-A607-A660E17FD50F}" ShortID="105035040" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{A0D51AB0-F267-4C4B-A0B8-38298C9DB8F5}" Global="false">
+											<ObjectRef Name="penguin intro cinematic no music" ID="{F844FD8B-00EB-442A-BE95-9EC77D3983C8}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="stop_cinematic_audio" ID="{0867C094-9A1D-4D4B-A3A6-50030D9CA6E4}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{899E1F89-916A-4600-8366-DDAC8ED59B3F}" ShortID="135716260" Type="Stop" Scope="One" Global="true">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{FAE32984-2BA1-4063-8188-5CE4418E4ED5}" Global="true">
+											<ObjectRef Name="penguin intro cinematic no music" ID="{F844FD8B-00EB-442A-BE95-9EC77D3983C8}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="penguin" ID="{FDB36A1D-2B7B-43AF-977A-C61FB1D135E7}" ShortID="1070696930">

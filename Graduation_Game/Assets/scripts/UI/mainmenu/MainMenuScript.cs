@@ -61,6 +61,8 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			LoadStars();
 
+			ToggleTextOnAccessibleLevels();
+
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
 				Prefs.SetTooltips(1);
@@ -100,7 +102,7 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Uses sprite "Not Accessible" on all levels from index "fromLevelIdx" param
 		/// </summary>
 		/// <param name="fromLevelIdx"></para>
-		void MakeLevelsNotAccessible() {
+		private void MakeLevelsNotAccessible() {
 			foreach (var marker in worldUnlockMarkers) {
 				if (StarsCollectedCountText.totalStars < marker.starsNeeded) {
 					for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
@@ -221,6 +223,21 @@ namespace Assets.scripts.UI.mainmenu {
 		}
 
 		/// <summary>
+		/// Returns true if next world has become accessable
+		/// </summary>
+		/// <returns></returns>
+		public bool isNextWorldAccessible() {
+			//Debug.Log("DEBUG STARSHIT : " + StarsCollectedCountText.totalStars);
+			foreach (var marker in worldUnlockMarkers) {
+				if (StarsCollectedCountText.totalStars >= marker.starsNeeded) { //&& levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
+					return true;
+				}
+				//Debug.Log("marker : " + marker.starsNeeded);
+			}
+			return false;
+		}
+
+		/// <summary>
 		/// Checks if the last level has been reached
 		/// </summary>
 		/// <returns>True if last level has been unlocked</returns>
@@ -239,6 +256,19 @@ namespace Assets.scripts.UI.mainmenu {
 
 			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
 				levels[i].btnFromScene.interactable = true;
+			}
+		}
+
+		/// <summary>
+		/// Hides the text on all levels from firstLvlIdxInNextWorld if they are not accessible
+		/// </summary>
+		private void ToggleTextOnAccessibleLevels() {
+			for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+				if(isNextWorldAccessible()) {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = true;
+				} else {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = false;
+				}
 			}
 		}
 

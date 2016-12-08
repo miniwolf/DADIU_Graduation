@@ -21,6 +21,7 @@ namespace Assets.scripts.level {
 		private string levelName;
 		private bool win;
 		private CutSceneController cutSceneController;
+		private GameObject winRing;
 
 		void Start() {
 			levelName = SceneManager.GetActiveScene().name;
@@ -28,6 +29,14 @@ namespace Assets.scripts.level {
 			canvas = GameObject.FindGameObjectWithTag(TagConstants.CANVAS).GetComponent<CanvasController>();
 			penguinCounter = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_COUNTER_TEXT).GetComponent<Text>();
 			cutSceneController = GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>();
+			Transform[] trans = gameObject.GetComponentsInChildren<Transform>();
+			foreach ( Transform t in trans ) {
+				if ( t.tag == TagConstants.WIN_RING ) {
+					winRing = t.gameObject;
+					winRing.SetActive(false);
+					break;
+				}
+			}
 		}
 
 		void Update() {
@@ -82,6 +91,7 @@ namespace Assets.scripts.level {
 			win = true;
 			StartCoroutine(ForceCameraToWin());
 			canvas.EndLevel();
+			winRing.SetActive(true);
 			//GameObject.FindGameObjectWithTag(TagConstants.CUTSCENE).GetComponent<CutSceneController>().ShowCutScene();
 		}
 

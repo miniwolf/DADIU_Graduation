@@ -12,7 +12,7 @@ namespace Assets.scripts.UI{
 			transform.localScale = Vector3.zero;
 		}
 		public void Finish() {
-			Inventory.UpdateCount();
+			//Inventory.UpdateCount();
 			SceneManager.LoadScene("MainMenuScene");
 		}
 	}
