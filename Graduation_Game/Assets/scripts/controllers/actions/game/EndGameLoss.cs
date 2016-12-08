@@ -87,7 +87,5 @@ namespace Assets.scripts.controllers.actions.game {
 			yield return new WaitForSeconds(12);
 			SceneManager.LoadSceneAsync("MainMenuScene");
 		}
-
-
 	}
 }

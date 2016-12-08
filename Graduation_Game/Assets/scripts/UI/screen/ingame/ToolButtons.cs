@@ -125,15 +125,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		private static void HandleFreezetime() {
 			freezeTime_UI_Image = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
 			freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
-
-			if ( GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) == null ) {
-				return;
-			}
-
-			freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
 			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
 				freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
 			}
+			UpdateFreezeTime(freezeTime_UI_Image);
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -192,6 +187,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			if ( Inventory.numberOfFreezeTime.GetValue() == 0 ) {
 				freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
 			}
+			UpdateFreezeTime(freezeTime_UI_Image);
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
@@ -390,27 +386,28 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
-			string uiTag = "";
-			string textValue = "";
+			var uiTag = "";
 
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-					//textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-					//textValue = "Jump: ";
-					break;
-				case TagConstants.Tool.FREEZE_TIME:
-					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-					//textValue = "Freeze time: ";
 					break;
 			}
 
+			if ( uiTag == "" ) {
+				return;
+			}
 			var text = GetText(uiTag);
 			if(text != null)
-				text.text = textValue + tool.Count;
+				text.text = tool.Count.ToString();
+		}
+
+		private static void UpdateFreezeTime(GameObject freezeTimeUiImage) {
+			var text = freezeTimeUiImage.GetComponentInChildren<Text>();
+			text.text = Inventory.numberOfFreezeTime.GetValue().ToString();
 		}
 
 		private Text GetText(string uiTag) {
