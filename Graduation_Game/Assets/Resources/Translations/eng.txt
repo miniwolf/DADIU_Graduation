@@ -48,3 +48,7 @@ tooltipDragJumppad; Drag from the icon to the iceberg
 youAreDead;You lose
 on; on
 off;off
+starsNextWorld1;You need 
+starsNextWorld2;To unlock all levels
+SFX;SFX
+Music;Music

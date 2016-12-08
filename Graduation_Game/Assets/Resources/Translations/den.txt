@@ -48,3 +48,7 @@ tooltipDragJumppad; Træk fra ikonet til isen
 youAreDead;Du har tabt
 on;til
 off;fra
+starsNextWorld1;Du skal bruge 
+starsNextWorld2;til at låse alle baner op
+SFX;SFX
+Music;Musik

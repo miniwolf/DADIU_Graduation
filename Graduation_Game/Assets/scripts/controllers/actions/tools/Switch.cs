@@ -59,7 +59,7 @@ namespace Assets.scripts.controllers.actions.tools {
 	        // make sure that penguin can change lane
 //		    RaycastHit hit;
 //
-	        { // don't look here
+	   /*     { // don't look here
 	            var oldDirectionUp = newDirection;
                 oldDirectionUp.z = 0;
                 var forwardUp = CanWalk(oldDirectionUp);
@@ -89,7 +89,7 @@ namespace Assets.scripts.controllers.actions.tools {
                     if (forwardGround) // and you can walk forward
                         yield break; // don't switch lane
                 }
-	    }
+	    }*/
 
 	    directionable.SetDirection(newDirection); //change penguin's direction
 			penguin.transform.rotation = newRotation; //rotate penguin

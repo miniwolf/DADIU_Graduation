@@ -27,9 +27,9 @@ namespace Assets.scripts.level {
 
 		public float speedUpFactor = 1.5f;
 
-		public float waitForCameraToPan = 0.5f;
+		private float waitForCameraToPan = 1f;
 
-		public float speedForPlatform = 3f, cameraPanSpeed = 5f;
+		private float speedForPlatform = 3f, cameraPanSpeed = 10f;
 
 		private GameObject penguinObject;
 		private Text countDown;

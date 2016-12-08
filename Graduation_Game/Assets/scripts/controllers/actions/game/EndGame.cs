@@ -63,6 +63,7 @@ namespace Assets.scripts.controllers.actions.game {
 		public void Execute() {
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
+			reqPenguins = requiredPenguins[2];
 
 			PENGUINS_REQUIRED_FOR_1_STAR = requiredPenguins[0];
 			PENGUINS_REQUIRED_FOR_2_STAR = requiredPenguins[1];

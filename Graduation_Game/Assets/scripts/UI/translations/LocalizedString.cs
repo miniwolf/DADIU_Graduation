@@ -52,5 +52,9 @@ public enum LocalizedString  {
     tooltipDragJumppad,
     youAreDead,
 	on,
-	off
+	off,
+	starsNextWorld1,
+	starsNextWorld2,
+	SFX,
+	Music
 }

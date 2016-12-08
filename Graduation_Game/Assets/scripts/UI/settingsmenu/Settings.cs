@@ -151,7 +151,7 @@ namespace Assets.scripts.UI.settingsmenu {
 		}
 
 		public void ChangeLanguage() {
-			ChangeButtons(Prefs.IsEnglishOn(), ukText, dkText, lanButtonImage);
+			ChangeButtons(Prefs.IsEnglishOn(), dkText, ukText, lanButtonImage);
 			SupportedLanguage newLanguage = ResolveLangauge();
 			TranslateApi.ChangeLanguage(newLanguage);
 			UpdateLanguageImage();
