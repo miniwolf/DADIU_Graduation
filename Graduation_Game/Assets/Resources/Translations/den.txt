@@ -10,7 +10,7 @@ level9;Bane 9
 level10;Bane 10
 level11;Bane 11
 popupNotEnoguhPenguins; Du har ikke nok pingviner
-toPlayTheLevel; til at spille banen! DK
+toPlayTheLevel; til at spille banen!
 backsettings; Tilbage
 settings; Indstillinger
 credits; creditsDK
@@ -38,10 +38,10 @@ hatch; Udklæk
 toNextEgg; til næste æg
 youWon; Du vandt
 thisLevel; Denne bane
-total; Total DK
-next; Næste DK
-retry; Omkamp DK
-replay; Prøv igen DK
+total; Total
+next; Næste
+retry; Omkamp
+replay; Prøv igen
 tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene
 tooltipDragJumppad; Træk fra ikonet til isen
 youAreDead;Du er død

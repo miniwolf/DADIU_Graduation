@@ -18,11 +18,11 @@ sound; sound
 tooltips; help?
 info; info
 language; language
-place; Drag from the tool icons to the ice to place a tool
+place; Drag from the icon to the iceberg
 move; Click and move a tool placed on the ice, to a different place
 remove; Click and drag a tool until it becomes red, then release to return it to your stash
 jump; Write here tooltip for explaining jump EN
-switchlane; Write here tooltip for explaining switchlane EN
+switchlane; Place a switch lane to make the penguins change lanes
 thisWorldIsLocked; This world is locked!
 seconds; sec
 shopHatchSpeed; +1x for every
