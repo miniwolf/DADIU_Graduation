@@ -182,6 +182,10 @@ namespace Assets.scripts.UI.settingsmenu {
 			languageText.text = TranslateApi.GetString(LocalizedString.language);
 			tooltipsText.text = TranslateApi.GetString(LocalizedString.tooltips);
 		    back.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.backsettings);
+			onText.GetComponent<Text>().text = TranslateApi.GetString(LocalizedString.on);
+			offText.GetComponent<Text>().text = TranslateApi.GetString(LocalizedString.off);
+			onTText.GetComponent<Text>().text = TranslateApi.GetString(LocalizedString.on);
+			offTText.GetComponent<Text>().text = TranslateApi.GetString(LocalizedString.off);
 		}
 
 		private void Back() {
