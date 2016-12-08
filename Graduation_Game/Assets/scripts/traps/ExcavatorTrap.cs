@@ -19,9 +19,18 @@ namespace Assets.scripts.traps {
 		private Vector3 initialPosition;
 		private bool immune;
 
+		private AudioSource src;
+
 		void Start() {
 			initialPosition = transform.position;
 			initialPosY = initialPosition.y;
+			src = transform.parent.GetComponent<AudioSource>();
+			if (Prefs.MasterOn()) {
+				src.mute = true;
+			}else if(Prefs.GetSFXValue()!=0){
+				src.volume = Prefs.GetSFXValue() / 100;
+			}
+
 		}
 
 		// The trigger event handles the activation event of the excavator

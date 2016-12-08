@@ -46,3 +46,5 @@ replay; Prøv igen
 tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene!
 tooltipDragJumppad; Træk fra ikonet til isen
 youAreDead;Du har tabt
+on;til
+off;fra

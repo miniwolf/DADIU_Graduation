@@ -74,8 +74,7 @@ namespace Assets.Editor.PlayerPrefs {
 				UnityEngine.PlayerPrefs.DeleteKey("backFromSecret");
 			}
 
-
-			if (GUILayout.Button("Reset level progression values")) {
+		    if (GUILayout.Button("Reset level progression values")) {
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVELPLAYED);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.COLLECTEDSTARS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.TOTALSTARS);
@@ -119,8 +118,11 @@ namespace Assets.Editor.PlayerPrefs {
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL11WON);
 			}
 
+		    if (GUILayout.Button("Delete all PlayerPrefs ")) {
+		        UnityEngine.PlayerPrefs.DeleteAll();
+		    }
 
-			levelPlayed.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVELPLAYED, levelPlayed.GetValue()));
+		    levelPlayed.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVELPLAYED, levelPlayed.GetValue()));
 			DrawEntry(InventoryConstants.COLLECTEDSTARS, collectedStars);
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
 			DrawEntry(InventoryConstants.LEVELINDEX, levelIndex);

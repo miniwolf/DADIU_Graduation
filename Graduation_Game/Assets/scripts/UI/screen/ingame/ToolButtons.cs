@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
+using Assets.scripts.controllers.actions.sound;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.gamestate;
@@ -125,15 +126,10 @@ namespace Assets.scripts.UI.screen.ingame {
 		private static void HandleFreezetime() {
 			freezeTime_UI_Image = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
 			freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
-
-			if ( GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) == null ) {
-				return;
-			}
-
-			freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
 			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
 				freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
 			}
+			UpdateFreezeTime(freezeTime_UI_Image);
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -185,13 +181,16 @@ namespace Assets.scripts.UI.screen.ingame {
 		public IEnumerator FreezeTime() {
 			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
 				Inventory.numberOfFreezeTime.SetValue(Inventory.numberOfFreezeTime.GetValue() - 1);
+				new PostSoundEvent(SoundConstants.FeedbackSounds.FREEZE_TIME_START, Camera.main).Execute();
 				gameStateManager.SetGameFrozen(true);
 				yield return new WaitForSeconds(freezeToolTime);
 				gameStateManager.SetGameFrozen(false);
+				new PostSoundEvent(SoundConstants.FeedbackSounds.FREEZE_TIME_STOP, Camera.main).Execute();
 			}
 			if ( Inventory.numberOfFreezeTime.GetValue() == 0 ) {
 				freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
 			}
+			UpdateFreezeTime(freezeTime_UI_Image);
 		}
 
 		public void PlaceTool(IList<GameObject> tools) {
@@ -316,6 +315,16 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+			if (currentObject != null && doubleTap) {
+				Vector3 origScale = currentObject.transform.localScale;
+				currentObject.transform.localScale = origScale;
+				PutObjectInPool(currentObject.transform);
+				UpdateUI(currentObject.tag);
+				currentObject.SetActive(false);
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
+				currentObject = null;
+				ChangeColor(notReturning);
+			}
 			currentObject = hit.transform.parent.gameObject;
 			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
 				if (t.tag == TagConstants.LANECHANGEARROW) {
@@ -390,27 +399,28 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 		void UpdateUI(string tag) {
 			var tool = tools[tag];
-			string uiTag = "";
-			string textValue = "";
+			var uiTag = "";
 
 			switch(tag) {
 				case TagConstants.SWITCHTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE;
-					//textValue = "Switch Lane: ";
 					break;
 				case TagConstants.JUMPTEMPLATE:
 					uiTag = TagConstants.UI.IN_GAME_TOOL_JUMP;
-					//textValue = "Jump: ";
-					break;
-				case TagConstants.Tool.FREEZE_TIME:
-					uiTag = TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME;
-					//textValue = "Freeze time: ";
 					break;
 			}
 
+			if ( uiTag == "" ) {
+				return;
+			}
 			var text = GetText(uiTag);
 			if(text != null)
-				text.text = textValue + tool.Count;
+				text.text = tool.Count.ToString();
+		}
+
+		private static void UpdateFreezeTime(GameObject freezeTimeUiImage) {
+			var text = freezeTimeUiImage.GetComponentInChildren<Text>();
+			text.text = Inventory.numberOfFreezeTime.GetValue().ToString();
 		}
 
 		private Text GetText(string uiTag) {

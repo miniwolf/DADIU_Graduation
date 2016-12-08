@@ -26,8 +26,12 @@ namespace Assets.scripts.gamestate {
 	    void NewLevelLoaded(Scene scene, LoadSceneMode mode) {
 	        Debug.Log("New scene loaded: " + scene.name + " masterOn: " + Prefs.MasterOn());
 
-	        if (!Prefs.MasterOn())
+	        if (!Prefs.MasterOn()) {
+	            AkSoundEngine.PostEvent(SoundConstants.Master.MUSIC_MUTE, Camera.main.gameObject);
+	            AkSoundEngine.PostEvent(SoundConstants.Master.MASTER_MUTE, Camera.main.gameObject);
 	            return;
+	        }
+
 	        string ev;
 
 	        if(scene.name.Equals("MainMenuScene") || scene.name.Equals("Settings")) {
