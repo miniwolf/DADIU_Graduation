@@ -8,6 +8,12 @@ public class MusicSlider : MonoBehaviour {
 
 	private int value;
 
+	void Start(){
+		value = Prefs.GetMusicValue();
+		GetComponent<Slider>().value = (float)value;
+		AkSoundEngine.SetRTPCValue("rtpc_music_volume", value);
+	}
+
 	public void ChangeVolume(){
 		value = (int)GetComponent<Slider>().value;
 		AkSoundEngine.SetRTPCValue("rtpc_music_volume", value);
