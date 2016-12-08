@@ -179,7 +179,7 @@ namespace Assets.scripts.UI.mainmenu {
 				string levelName = levels[i].sceneFileName;
 				if (Prefs.IsLevelStatusComplete(levelName)) {
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
-					if (!currentLvl && i < levels.Length - 1) {
+					if (!currentLvl && i < levels.Length - 1 && !isLastLevelIdx()) {
 						if(levels[i + 1].btnFromScene.GetComponent<Image>().sprite != levelBtnNotAccessable) {
 							levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 							currentLvl = true; // Current level has been set
@@ -252,9 +252,14 @@ namespace Assets.scripts.UI.mainmenu {
 		private void UnlockLevels() {
 			int numOfLvlsToUnlock = Prefs.GetLevelUnlockIndex();
 
-			if (isLastLevelIdx()) return;
+			if (isLastLevelIdx()) {
+				for(int i = 0; i < levels.Length-1; i++)
+					levels[1].btnFromScene.interactable = true;
 
-			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
+				return;
+			}
+
+			for (int i = 0; i < numOfLvlsToUnlock; i++) {
 				levels[i].btnFromScene.interactable = true;
 			}
 		}
