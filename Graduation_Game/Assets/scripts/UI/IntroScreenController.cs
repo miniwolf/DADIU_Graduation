@@ -107,13 +107,17 @@ namespace Assets.scripts.UI {
 
 		}
 
-		private void PlayMovie(){
+	    private void PlayMovie() {
             #if UNITY_IPHONE || UNITY_ANDROID
-                Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+                if (Prefs.IsEnglishOn()) {
+                    Handheld.PlayFullScreenMovie("cutSceneDAwithSound.mp4");
+                } else {
+                    Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+                }
             #endif
-		    playSound = true;
 		    moviePlaying = true;
-		    //movie.Play();
+			playSound = true;
+			//movie.Play();
 		}
 
 	    private void StopMovie(){

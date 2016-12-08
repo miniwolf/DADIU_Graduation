@@ -61,7 +61,6 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
-			Debug.Log("hej2");
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
 
@@ -73,6 +72,12 @@ namespace Assets.scripts.controllers.actions.game {
 				actionable.ExecuteAction(GameActions.DisableRetryWin);
 				shouldShowRetry = false;
 			}
+
+			if ( Inventory.key.GetValue() <= 0 ) {
+				actionable.ExecuteAction(GameActions.DisableRetryWin);
+				shouldShowRetry = false;
+			}
+
 			PenguinIcons();
 			EnableWin();
 		}
