@@ -30,7 +30,7 @@
 							<ChildrenList>
 								<MusicSegment Name="igm" ID="{FDF358F6-7768-4CB5-BA05-1964F524E1C1}" ShortID="989828197">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="73326.3157894738"/>
+										<Property Name="EndPosition" Type="Real64" Value="115200"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -56,9 +56,12 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="pp_2" ID="{674A68FA-69F4-45B4-AE80-A3CEAED281D0}" ShortID="819820494">
+												<AudioFileSource Name="penguin_panic_theme_final [mono]" ID="{71AF2263-9E3D-4FA3-A53F-ED9103BD09A9}" ShortID="939054508">
 													<Language>SFX</Language>
-													<AudioFile>pp_2.wav</AudioFile>
+													<AudioFile>penguin_panic_theme_final [mono].wav</AudioFile>
+													<ConvertedFileIDList>
+														<File ID="872880015"/>
+													</ConvertedFileIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
@@ -72,73 +75,14 @@
 											<SequenceList>
 												<MusicTrackSequence Name="" ID="{60A5DE3A-EF7B-4CD6-904C-131A45B13B54}">
 													<ClipList>
-														<MusicClip Name="pp_2" ID="{9BD9EB44-5D04-4E6F-84F0-33674E00B952}">
+														<MusicClip Name="penguin_panic_theme_final [mono]" ID="{60C6FA91-69E2-44AB-BFB2-DDB213314455}">
 															<PropertyList>
-																<Property Name="BeginTrimOffset" Type="Real64" Value="-5.00222085975111E-12"/>
 																<Property Name="EndTrimOffset" Type="Real64" Value="57600"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
 																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-																<Property Name="PlayAt" Type="Real64" Value="7.27595761418343E-12"/>
+																<Property Name="PlayAt" Type="Real64" Value="9.77706804405898E-12"/>
 															</PropertyList>
-															<AudioSourceRef Name="pp_2" ID="{674A68FA-69F4-45B4-AE80-A3CEAED281D0}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{5CE1E5FC-C307-49E1-B255-F512B8926CC3}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{D075438C-578F-4AF7-BA8B-895FD192F2FE}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{783C0D19-B33F-4E99-96BE-49DE5CF53304}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
+															<AudioSourceRef Name="penguin_panic_theme_final [mono]" ID="{71AF2263-9E3D-4FA3-A53F-ED9103BD09A9}"/>
 														</MusicClip>
 													</ClipList>
 												</MusicTrackSequence>
@@ -161,7 +105,7 @@
 								</MusicSegment>
 								<MusicSegment Name="transition" ID="{601FBDFD-566B-4AA1-A8D8-6E8B872902C8}" ShortID="1032674769">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="4800"/>
+										<Property Name="EndPosition" Type="Real64" Value="9600"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -192,9 +136,9 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="pp_transition_1" ID="{BA453B01-F9BC-40F5-8092-A5D620A220CA}" ShortID="804564895">
+												<AudioFileSource Name="penguin_panic_transition_final [mono]" ID="{52CE878D-436D-4F14-8EFD-E394D715D776}" ShortID="613525973">
 													<Language>SFX</Language>
-													<AudioFile>pp_transition_1.wav</AudioFile>
+													<AudioFile>penguin_panic_transition_final [mono].wav</AudioFile>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
@@ -208,13 +152,13 @@
 											<SequenceList>
 												<MusicTrackSequence Name="" ID="{FD374B94-D937-4FCA-A7E4-4F1774127DA1}">
 													<ClipList>
-														<MusicClip Name="pp_transition_1" ID="{9070CAAE-6AC3-43BE-AE3A-9525ABE3B4FD}">
+														<MusicClip Name="penguin_panic_transition_final [mono]" ID="{B1A8AA63-F43A-4EC3-B566-E926A8BF3294}">
 															<PropertyList>
 																<Property Name="EndTrimOffset" Type="Real64" Value="4800"/>
 																<Property Name="FadeInMode" Type="int16" Value="0"/>
 																<Property Name="FadeOutMode" Type="int16" Value="0"/>
 															</PropertyList>
-															<AudioSourceRef Name="pp_transition_1" ID="{BA453B01-F9BC-40F5-8092-A5D620A220CA}"/>
+															<AudioSourceRef Name="penguin_panic_transition_final [mono]" ID="{52CE878D-436D-4F14-8EFD-E394D715D776}"/>
 														</MusicClip>
 													</ClipList>
 												</MusicTrackSequence>
@@ -284,7 +228,7 @@
 							<ChildrenList>
 								<MusicSegment Name="mmm" ID="{52A8BE6F-8859-482C-973B-67D7F948D3CB}" ShortID="195173715">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="25800"/>
+										<Property Name="EndPosition" Type="Real64" Value="38400"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -315,9 +259,9 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="pp_menu_2" ID="{7BF8A771-DA72-4950-BAA2-04F5B194B2FB}" ShortID="537707058">
+												<AudioFileSource Name="penguin_panic_menu_final [mono]" ID="{E0617C57-AA05-489F-8AB2-CDFF0A3077A4}" ShortID="617918450">
 													<Language>SFX</Language>
-													<AudioFile>pp_menu_2.wav</AudioFile>
+													<AudioFile>penguin_panic_menu_final [mono].wav</AudioFile>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
@@ -331,72 +275,13 @@
 											<SequenceList>
 												<MusicTrackSequence Name="" ID="{DA837B27-9337-4CC4-8514-0333A0DC58E6}">
 													<ClipList>
-														<MusicClip Name="pp_menu_2" ID="{E3A2D596-340F-494E-B510-4739BFFE420F}">
+														<MusicClip Name="penguin_panic_menu_final [mono]" ID="{1D884C60-1C6F-4083-8B3E-5D9642495204}">
 															<PropertyList>
 																<Property Name="EndTrimOffset" Type="Real64" Value="19200"/>
 																<Property Name="FadeInMode" Type="int16" Value="0"/>
 																<Property Name="FadeOutMode" Type="int16" Value="0"/>
 															</PropertyList>
-															<AudioSourceRef Name="pp_menu_2" ID="{7BF8A771-DA72-4950-BAA2-04F5B194B2FB}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{84B0E01B-83D9-412D-9FFD-28A62168C6DC}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>19.2</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{65448514-6AF7-45A0-B5D0-5F76CCF35B75}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>19.2</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{F493479F-78B8-4B81-AC4D-28C6D622CD8B}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>19.2</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
+															<AudioSourceRef Name="penguin_panic_menu_final [mono]" ID="{E0617C57-AA05-489F-8AB2-CDFF0A3077A4}"/>
 														</MusicClip>
 													</ClipList>
 												</MusicTrackSequence>
@@ -465,7 +350,7 @@
 							<ChildrenList>
 								<MusicSegment Name="freeze transition" ID="{83887778-315C-4318-9C6A-FC2B6C6472C6}" ShortID="46129623">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="57600"/>
+										<Property Name="EndPosition" Type="Real64" Value="96000"/>
 										<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
 										<Property Name="Tempo" Type="Real64" Value="100"/>
 									</PropertyList>
@@ -488,12 +373,9 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="pp_2" ID="{F935070D-BE36-45FA-9EFE-2819EB376DCE}" ShortID="845719284">
+												<AudioFileSource Name="penguin_panic_theme_final [mono]" ID="{A501D53E-D5F5-40DF-98F6-558A3E547812}" ShortID="872880015">
 													<Language>SFX</Language>
-													<AudioFile>pp_2.wav</AudioFile>
-													<ConvertedFileIDList>
-														<File ID="819820494"/>
-													</ConvertedFileIDList>
+													<AudioFile>penguin_panic_theme_final [mono].wav</AudioFile>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
@@ -507,7 +389,7 @@
 											<SequenceList>
 												<MusicTrackSequence Name="" ID="{5F050488-EFC0-463D-A21C-E68A2F9B1A19}">
 													<ClipList>
-														<MusicClip Name="pp_2" ID="{9D8A5C52-9A47-4E81-A47A-ACB70BA8067B}">
+														<MusicClip Name="penguin_panic_theme_final [mono]" ID="{BECE3C07-3EB9-47E2-923C-89FA7DE08C74}">
 															<PropertyList>
 																<Property Name="BeginTrimOffset" Type="Real64" Value="19200"/>
 																<Property Name="EndTrimOffset" Type="Real64" Value="57600"/>
@@ -515,10 +397,10 @@
 																<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																<Property Name="PlayAt" Type="Real64" Value="-19200"/>
 															</PropertyList>
-															<AudioSourceRef Name="pp_2" ID="{F935070D-BE36-45FA-9EFE-2819EB376DCE}"/>
+															<AudioSourceRef Name="penguin_panic_theme_final [mono]" ID="{A501D53E-D5F5-40DF-98F6-558A3E547812}"/>
 															<PropertyCurveList>
 																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{24B6B97E-A819-49EB-8EF8-A4EE59F8FE10}">
+																	<Curve Name="" ID="{48552D53-E73A-4F16-A5A5-92E6EF729DA7}">
 																		<PropertyList>
 																			<Property Name="Flags" Type="int32" Value="1"/>
 																		</PropertyList>
@@ -537,7 +419,7 @@
 																	</Curve>
 																</PropertyCurve>
 																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{41489909-1F0A-452B-92ED-5EAF8A4C2A7B}">
+																	<Curve Name="" ID="{5286DC24-89F9-4A26-89DF-C41F21A2A083}">
 																		<PropertyList>
 																			<Property Name="Flags" Type="int32" Value="1"/>
 																		</PropertyList>
@@ -556,7 +438,7 @@
 																	</Curve>
 																</PropertyCurve>
 																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{FFBE55F6-39F5-4CB5-A3ED-81C9CDB4AF50}">
+																	<Curve Name="" ID="{05FFDE7F-3AA5-4EF1-A5F5-DBCFB7CF12E4}">
 																		<PropertyList>
 																			<Property Name="Flags" Type="int32" Value="3"/>
 																		</PropertyList>
@@ -597,7 +479,7 @@
 								</MusicSegment>
 								<MusicSegment Name="igm" ID="{357CA2EF-617D-4B9A-ACF0-EDD501F5856C}" ShortID="599214690">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="73326.3157894738"/>
+										<Property Name="EndPosition" Type="Real64" Value="115200"/>
 										<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
 										<Property Name="Tempo" Type="Real64" Value="100"/>
 									</PropertyList>
@@ -625,11 +507,11 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="pp_2" ID="{7A5FF68C-8B99-4CBB-99C4-85AA083FFECC}" ShortID="115890155">
+												<AudioFileSource Name="penguin_panic_theme_final [mono]" ID="{AF6C84E0-ABAE-4805-83D8-9E751317CD6C}" ShortID="298919164">
 													<Language>SFX</Language>
-													<AudioFile>pp_2.wav</AudioFile>
+													<AudioFile>penguin_panic_theme_final [mono].wav</AudioFile>
 													<ConvertedFileIDList>
-														<File ID="819820494"/>
+														<File ID="872880015"/>
 													</ConvertedFileIDList>
 												</AudioFileSource>
 											</ChildrenList>
@@ -644,73 +526,14 @@
 											<SequenceList>
 												<MusicTrackSequence Name="" ID="{15F92C78-444D-440D-82DF-F3ED15765EEA}">
 													<ClipList>
-														<MusicClip Name="pp_2" ID="{D7D29899-82FE-4643-ACB3-9ECD2A6F93AD}">
+														<MusicClip Name="penguin_panic_theme_final [mono]" ID="{42AE54AE-5BDF-441F-81CC-08AD1616619B}">
 															<PropertyList>
-																<Property Name="BeginTrimOffset" Type="Real64" Value="-5.00222085975111E-12"/>
 																<Property Name="EndTrimOffset" Type="Real64" Value="57600"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
 																<Property Name="FadeOutMode" Type="int16" Value="0"/>
-																<Property Name="PlayAt" Type="Real64" Value="7.27595761418343E-12"/>
+																<Property Name="PlayAt" Type="Real64" Value="9.77690151060528E-12"/>
 															</PropertyList>
-															<AudioSourceRef Name="pp_2" ID="{7A5FF68C-8B99-4CBB-99C4-85AA083FFECC}"/>
-															<PropertyCurveList>
-																<PropertyCurve PropertyName="Highpass">
-																	<Curve Name="" ID="{92BAF7F2-A15A-4D93-9B75-07A3BD4A2574}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Lowpass">
-																	<Curve Name="" ID="{5DC9915D-2C42-46F1-B50E-4649880AB0F2}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="1"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-																<PropertyCurve PropertyName="Volume">
-																	<Curve Name="" ID="{43891240-1AAC-4BD0-8A33-5218E8564C2A}">
-																		<PropertyList>
-																			<Property Name="Flags" Type="int32" Value="3"/>
-																		</PropertyList>
-																		<PointList>
-																			<Point>
-																				<XPos>0</XPos>
-																				<YPos>0</YPos>
-																				<Flags>5</Flags>
-																			</Point>
-																			<Point>
-																				<XPos>57.6</XPos>
-																				<YPos>0</YPos>
-																				<Flags>37</Flags>
-																			</Point>
-																		</PointList>
-																	</Curve>
-																</PropertyCurve>
-															</PropertyCurveList>
+															<AudioSourceRef Name="penguin_panic_theme_final [mono]" ID="{AF6C84E0-ABAE-4805-83D8-9E751317CD6C}"/>
 														</MusicClip>
 													</ClipList>
 												</MusicTrackSequence>
