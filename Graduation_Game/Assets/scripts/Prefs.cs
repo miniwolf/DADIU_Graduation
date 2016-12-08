@@ -103,7 +103,7 @@ namespace Assets.scripts {
         }
 
 		public static int GetSFXValue(){
-			return PlayerPrefs.GetInt("SFXValue", 75);
+			return PlayerPrefs.GetInt("SFXValue", 40);
 		}
 
 		public static void SetSFXValue(int value){

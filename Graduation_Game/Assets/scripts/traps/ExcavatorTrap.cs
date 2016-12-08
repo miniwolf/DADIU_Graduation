@@ -28,7 +28,7 @@ namespace Assets.scripts.traps {
 			if (Prefs.MasterOn()) {
 				src.mute = true;
 			}else if(Prefs.GetSFXValue()!=0){
-				src.volume = Prefs.GetSFXValue() / 10;
+				src.volume = Prefs.GetSFXValue() / 100;
 			}
 
 		}
