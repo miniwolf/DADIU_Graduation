@@ -42,6 +42,8 @@
 			public const string BUTTON_PRESS = "button_pressed";
 			public const string END_SCREEN_TRIGGER = "end_screen_spawn";
 			public const string END_SCREEN_SPAWN_STAR = "end_screen_star_spawn";
+			public const string FREEZE_TIME_START = "tool_global_freeze_time_starting";
+			public const string FREEZE_TIME_STOP = "tool_global_freeze_time_stopping";
 		}
 
 		/// <summary>

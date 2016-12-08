@@ -50,5 +50,7 @@ public enum LocalizedString  {
     replay,
     tooltipUseTheJumppad,
     tooltipDragJumppad,
-    youAreDead
+    youAreDead,
+	on,
+	off
 }
