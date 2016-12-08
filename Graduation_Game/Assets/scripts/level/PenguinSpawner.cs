@@ -48,7 +48,8 @@ namespace Assets.scripts.level {
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
 			print("started");
-			origScale = countDown.transform.localScale;
+
+			origScale = Vector3.one;
 			countDown.transform.localScale = Vector3.zero;
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
