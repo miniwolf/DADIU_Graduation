@@ -144,7 +144,7 @@
 										</Action>
 										<Action Name="Set Voice Pitch" ID="{2B3DF3A4-D98C-456B-B2D2-FD806028A082}" ShortID="285166514" Type="ChangePitch" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
 												<Property Name="Pitch" Type="int32" Value="-1200"/>
 											</PropertyList>
 											<ElementList>
@@ -155,7 +155,7 @@
 										</Action>
 										<Action Name="Set Voice Volume" ID="{FDFEF34E-C4B2-42D2-8AE1-CFB53C8DCFD3}" ShortID="719330815" Type="ChangeVolume" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="FadeTime" Type="Real64" Value="2.8"/>
+												<Property Name="FadeTime" Type="Real64" Value="1.4"/>
 												<Property Name="Volume" Type="Real64" Value="-96"/>
 											</PropertyList>
 											<ElementList>
@@ -166,7 +166,7 @@
 										</Action>
 										<Action Name="Set Voice Pitch" ID="{29539941-6BA6-47ED-87B7-0AD7BCCB7320}" ShortID="309722496" Type="ChangePitch" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="Delay" Type="Real64" Value="3"/>
+												<Property Name="Delay" Type="Real64" Value="1.5"/>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{9A415CE9-8971-4CE2-8779-60723379AEDC}" Global="true">
@@ -176,7 +176,7 @@
 										</Action>
 										<Action Name="Post Event" ID="{E2217735-8014-48AE-B4BD-E42B72BB9EC6}" ShortID="504295923" Type="PlayEvent" Scope="One" Global="false">
 											<PropertyList>
-												<Property Name="Delay" Type="Real64" Value="2.8"/>
+												<Property Name="Delay" Type="Real64" Value="1.5"/>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{88A73A73-DA7D-4FFA-ABF7-5D50B0417951}" Global="false">
@@ -186,7 +186,8 @@
 										</Action>
 										<Action Name="Set Voice Volume" ID="{27660C05-2647-4926-93C4-B25DBA874989}" ShortID="177615661" Type="ChangeVolume" Scope="One" Global="true">
 											<PropertyList>
-												<Property Name="Delay" Type="Real64" Value="3"/>
+												<Property Name="Delay" Type="Real64" Value="2"/>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
 											</PropertyList>
 											<ElementList>
 												<Element ID="{616933F9-5E50-4BDA-9569-950D42319150}" Global="true">
@@ -357,7 +358,7 @@
 								</Action>
 								<Action Name="Play" ID="{AC317799-9B71-4C93-AC96-341FDB5C4663}" ShortID="623560006" Type="Play" Scope="One" Global="false">
 									<PropertyList>
-										<Property Name="Delay" Type="Real64" Value="0.6"/>
+										<Property Name="Delay" Type="Real64" Value="0.58"/>
 									</PropertyList>
 									<ElementList>
 										<Element ID="{870BD84F-C2A7-4DD4-9A19-F93BD4B34612}" Global="false">
@@ -377,7 +378,7 @@
 								</Action>
 								<Action Name="Play" ID="{08901091-763F-4366-A697-A94705BC7203}" ShortID="1050418108" Type="Play" Scope="One" Global="false">
 									<PropertyList>
-										<Property Name="Delay" Type="Real64" Value="0.7"/>
+										<Property Name="Delay" Type="Real64" Value="0.71"/>
 									</PropertyList>
 									<ElementList>
 										<Element ID="{94C80639-9B49-4600-8DFD-ACABB4543FA9}" Global="false">
@@ -551,6 +552,29 @@
 											<ElementList>
 												<Element ID="{DA0235B1-317C-4516-B216-68586AE6C885}" Global="false">
 													<ObjectRef Name="music_low_pass_on" ID="{E5F3BF57-F1B9-4F78-95AA-1FDA844D0287}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Set Voice Volume" ID="{45F19347-F05F-48D7-9D99-6680950A6607}" ShortID="979205927" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="Absolute" Type="bool" Value="False"/>
+												<Property Name="FadeCurve" Type="int16" Value="8"/>
+												<Property Name="FadeTime" Type="Real64" Value="8"/>
+												<Property Name="Volume" Type="Real64" Value="-12"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{70AE065B-FE78-4A63-9D14-24AFC660D466}" Global="true">
+													<ObjectRef Name="penguin_celebrate" ID="{E49796CB-1DE6-4DC5-9005-8EF53FDD8598}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Stop" ID="{B8A717B5-5C4F-4209-BA08-DAA3A4ADA2A2}" ShortID="283820837" Type="Stop" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{C3614E58-8888-4F9A-ADD4-650C9FCFC231}" Global="true">
+													<ObjectRef Name="slide_loop_1" ID="{AFD1E03A-4D04-484B-BBF2-6BD61F9AD435}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
 												</Element>
 											</ElementList>
 										</Action>
@@ -1122,6 +1146,17 @@
 												<GroupItem Name="main_menu" ID="{E80893D3-AA5A-48DC-AF66-F474E4404B24}"/>
 											</SetItemParam>
 										</Action>
+										<Action Name="Set Voice Volume" ID="{E5305495-1308-4220-95C9-F97B61A0FBB0}" ShortID="260548185" Type="ChangeVolume" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+												<Property Name="Volume" Type="Real64" Value="-10"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{FC01B5DB-BEE4-40B7-8C5B-5C4E9377886E}" Global="true">
+													<ObjectRef Name="penguin_celebrate" ID="{E49796CB-1DE6-4DC5-9005-8EF53FDD8598}" WorkUnitID="{4C0361C0-98EC-4FE9-B5EF-8BAE0FBC67E7}"/>
+												</Element>
+											</ElementList>
+										</Action>
 									</ChildrenList>
 								</Event>
 								<Event Name="music_state_in_game" ID="{8A236C03-9C20-43E7-99F1-33E4B72261FB}">
@@ -1137,6 +1172,9 @@
 								<Event Name="mute_music" ID="{07715555-2C36-4587-AC47-79AB0BDF8BFB}">
 									<ChildrenList>
 										<Action Name="Stop" ID="{8104E09C-88F2-4B54-B57C-5DB4EA752106}" ShortID="613276537" Type="Stop" Scope="One" Global="true">
+											<PropertyList>
+												<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{8E7BE27F-7A79-4E82-8364-5B451BEF90D3}" Global="true">
 													<ObjectRef Name="music" ID="{C3FFEDC2-835D-4576-9461-255CFB355952}" WorkUnitID="{1401638D-CB18-48AC-8564-38C58FD360DA}"/>
