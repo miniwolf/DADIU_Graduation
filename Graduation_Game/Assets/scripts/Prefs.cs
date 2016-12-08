@@ -87,7 +87,7 @@ namespace Assets.scripts {
 		}
 
 		public static bool IsEnglishOn() {
-			return PlayerPrefs.GetInt(LANGUAGE) == 0;
+			return PlayerPrefs.GetInt(LANGUAGE,1) == 0;
 		}
 
 		public static void SetLanguage(int language) {
@@ -101,6 +101,22 @@ namespace Assets.scripts {
         public static bool MasterOn() {
             return PlayerPrefs.GetInt(SOUND_MASTER, TRUE) == TRUE;
         }
+
+		public static int GetSFXValue(){
+			return PlayerPrefs.GetInt("SFXValue", 75);
+		}
+
+		public static void SetSFXValue(int value){
+			PlayerPrefs.SetInt("SFXValue", value);
+		}
+
+		public static void SetMusicValue(int value){
+			PlayerPrefs.SetInt("MusicValue", value);
+		}
+
+		public static int GetMusicValue(){
+			return PlayerPrefs.GetInt("MusicValue", 75);
+		}
 
         public static void SetTotalStars(int totalStars) {
              PlayerPrefs.SetInt(TOTALSTARS, totalStars);

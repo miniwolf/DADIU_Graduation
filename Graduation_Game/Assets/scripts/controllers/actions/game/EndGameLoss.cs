@@ -40,6 +40,11 @@ namespace Assets.scripts.controllers.actions.game {
 
 		public void Execute() {
 			EnableFail();
+			if ( Inventory.key.GetValue() > 0 ) {
+				actionable.ExecuteAction(GameActions.RetryButtonLoss);
+			} else {
+				actionable.ExecuteAction(GameActions.DisableRetryLose);
+			}
 		}
 
 		private void SetupEndScene()
@@ -60,7 +65,7 @@ namespace Assets.scripts.controllers.actions.game {
 
 			actionable.ExecuteAction(GameActions.FlowScore);
 			handler.StartCoroutine(LoadMainMenu());
-			actionable.ExecuteAction(GameActions.RetryButtonLoss);
+
 		}
 
 		void EnableFail(){

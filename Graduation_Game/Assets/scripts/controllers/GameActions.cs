@@ -2,7 +2,7 @@
 	public enum GameActions {
 		EndLevel, FlowPlutonium, TriggerStar, TriggerCutScene, FlowScore, EndLevelLoss,
 		RetryButtonLoss, RetryButtonWin, DisableRetryWin,
-		SpeedUpPenguins, ResetPenguinSpeed
+		SpeedUpPenguins, ResetPenguinSpeed, DisableRetryLose
 
 	}
 }
