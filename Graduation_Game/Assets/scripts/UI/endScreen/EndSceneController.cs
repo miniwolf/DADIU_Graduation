@@ -35,7 +35,7 @@ public class EndSceneController: MonoBehaviour {
 		}
 
 		if(Inventory.penguinCount.GetValue() >= initialPenguinCount) {
-			SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		} else {
 			EnablePopup();
 		}

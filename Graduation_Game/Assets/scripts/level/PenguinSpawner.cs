@@ -96,7 +96,7 @@ namespace Assets.scripts.level {
 				UnityEngine.Debug.LogError("The platform does not know where to move, because it cannot find where to go, put something with the levellayer on it, where it should stop");
 				yield return null;
 			}
-			print(hit.transform.name);
+			//print(hit.transform.name);
 			Vector3 whereToGo = new Vector3(hit.point.x,transform.position.y,transform.position.z), origPos = transform.position;
 			float startTime = Time.time;;
 			float speedFactor = speedForPlatform;
@@ -111,14 +111,7 @@ namespace Assets.scripts.level {
 				//cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 				yield return new WaitForEndOfFrame();
 			}
-			StartCoroutine(Spawn());
-		}
-
-
-
-		private IEnumerator Spawn() {
-
-			yield return StartCoroutine(FreezeAndSpawnRest());
+			StartCoroutine(FreezeAndSpawnRest());
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {

@@ -9,7 +9,6 @@ namespace Assets.scripts.UI {
 		public Sprite[] introScreens;
 		private int currentScreen;
 		private Text skipIntro;
-		private GameObject tvImage;
 		private Button intro;
 		private Canvas canvas;
 		//public GameObject introPlayer;
@@ -19,8 +18,6 @@ namespace Assets.scripts.UI {
 
 		void Start() {
 			canvas = GameObject.Find("MainMenuCanvas").GetComponent<Canvas>();
-			tvImage = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_IMAGE);
-			tvImage.SetActive(false);
 			//intro = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_BUTTON).GetComponent<Button>();
 			//intro.onClick.AddListener(() => LoadIntro());
 			currentScreen = 0;
