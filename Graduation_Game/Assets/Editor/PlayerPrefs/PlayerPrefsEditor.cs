@@ -51,7 +51,7 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<string> level9status = Inventory.level9status;
 		private readonly Item<string> level10status = Inventory.level10status;
 
-
+		private readonly Item<int> numberOfFreeze = Inventory.numberOfFreezeTime;
 
 		private readonly Item<int> totalStars = Inventory.totalStars;
 
@@ -148,6 +148,8 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.LEVEL8WON, level8won);
 			DrawEntry(InventoryConstants.LEVEL9WON, level9won);
 			DrawEntry(InventoryConstants.LEVEL10WON, level10won);
+
+			DrawEntry(InventoryConstants.FREEZECOUNT, numberOfFreeze);
 
 			level1status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL1STATUS, level1status.GetValue()));
 			level2status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL2STATUS, level2status.GetValue()));

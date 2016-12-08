@@ -29,6 +29,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameObject freezeTimeTool;
 		private GameObject freezeTime_UI_Image;
 
+		private static List<GameObject> listOfButtons = new List<GameObject>();
+
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
 		private bool oneClick;
@@ -66,6 +68,29 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer") | 1 << LayerMask.NameToLayer("PenguinLayer")); // ignore all 3 layers
 			DisableArrowTools();
+			DisableButtons();
+		}
+
+		private void DisableButtons() {
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE));
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP));
+			listOfButtons.Add(freezeTime_UI_Image);
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.PENGUINSPEEDUPBUTTON));
+			listOfButtons.ForEach( go => {
+					if (go != null) {
+						go.SetActive(false);
+					}
+				}
+			);
+		}
+
+		public static void EnableButtons() {
+			listOfButtons.ForEach( go => {
+					if (go != null) {
+						go.SetActive(true);
+					}
+				}
+			);
 		}
 
 		private void DisableArrowTools() {
