@@ -87,7 +87,7 @@ namespace Assets.scripts.shop {
 	        textPenguinSpace.text = TranslateApi.GetString(LocalizedString.shopPenguinSpace);
 	        textPenguinSpace2.text = TranslateApi.GetString(LocalizedString.shopPenguinSpace2);
 	        textHatchSpeed.text = TranslateApi.GetString(LocalizedString.shopHatchSpeed);
-	        textHatchSpeed2.text = TranslateApi.GetString(LocalizedString.shopHatchSpeed2);
+	        //textHatchSpeed2.text = TranslateApi.GetString(LocalizedString.shopHatchSpeed2);
 	    }
 
 	    private void OnDestroy() {
