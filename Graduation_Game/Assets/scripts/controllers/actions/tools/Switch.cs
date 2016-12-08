@@ -39,56 +39,60 @@ namespace Assets.scripts.controllers.actions.tools {
 			couroutineHandler.StartCoroutine(SwitchLane());
 		}
 
-		private IEnumerator SwitchLane() {
-			// start switching lanes after the last lane switch is finished
-			while (other.IsSwitchingLanes()) {
-				yield return new WaitForSeconds(0.05f);
-			}
+	    private IEnumerator SwitchLane()
+	    {
+	        // start switching lanes after the last lane switch is finished
+	        while (other.IsSwitchingLanes())
+	        {
+	            yield return new WaitForSeconds(0.05f);
+	        }
 
-			isSwitchingLane = true;
+	        isSwitchingLane = true;
 
-			var oldDirection = directionable.GetDirection();
-			var oldDirectionTmp = directionable.GetDirection();
-			var oldRotation = penguin.transform.rotation;
+	        var oldDirection = directionable.GetDirection();
+	        var oldDirectionTmp = directionable.GetDirection();
+	        var oldRotation = penguin.transform.rotation;
 
-			var newRotation = laneSwitch.GetNewRotation(oldRotation);
-			var newDirection = newRotation * oldDirection;
-			newDirection = new Vector3(newDirection.x, newDirection.y +Mathf.Abs(directionable.GetDirection().y)+0.5f,newDirection.z);
-		    // make sure that penguin can change lane
+	        var newRotation = laneSwitch.GetNewRotation(oldRotation);
+	        var newDirection = newRotation * oldDirection;
+	        newDirection = new Vector3(newDirection.x, newDirection.y + Mathf.Abs(directionable.GetDirection().y) + 0.5f,
+	            newDirection.z);
+	        // make sure that penguin can change lane
 //		    RaycastHit hit;
 //
-		    var oldDirectionUp = newDirection;
-		    oldDirectionUp.z = 0;
-		    var forwardUp = CanWalk(oldDirectionUp);
-		    Debug.DrawRay(penguin.transform.position, oldDirectionUp * raycastLength, Color.blue, 10000);
+	        { // don't look here
+	            var oldDirectionUp = newDirection;
+                oldDirectionUp.z = 0;
+                var forwardUp = CanWalk(oldDirectionUp);
+                Debug.DrawRay(penguin.transform.position, oldDirectionUp * raycastLength, Color.blue, 10000);
 
-		    var switchUp = CanWalk(newDirection);
-		    Debug.DrawRay(penguin.transform.position, newDirection * raycastLength, Color.red, 10000);
+                var switchUp = CanWalk(newDirection);
+                Debug.DrawRay(penguin.transform.position, newDirection * raycastLength, Color.red, 10000);
 
-		    oldDirectionTmp.x = -penguin.transform.position.x;
-		    var forwardGround = CanWalk(oldDirectionTmp);
-		    Debug.DrawRay(penguin.transform.position, oldDirectionTmp * raycastLength, Color.yellow, 10000);
+                oldDirectionTmp.x = -penguin.transform.position.x; // wtf part
+	            if (penguin.transform.position.x > 0) oldDirectionTmp.x = oldDirectionTmp.x * -1;
+	            var forwardGround = CanWalk(oldDirectionTmp);
+                Debug.DrawRay(penguin.transform.position, oldDirectionTmp * raycastLength, Color.yellow, 10000);
 
-			var sideDir = newRotation * oldDirectionTmp;
-//		    sideDir.y = newDirection.y + Mathf.Abs(directionable.GetDirection().y) + 0.5f;
-//		    sideDir.x = oldDirectionTmp.x;
-		    var switchGround = CanWalk(sideDir);
-		    Debug.DrawRay(penguin.transform.position, sideDir * raycastLength, Color.cyan, 10000);
+                var sideDir = newRotation * oldDirectionTmp;
+                var switchGround = CanWalk(sideDir);
+                Debug.DrawRay(penguin.transform.position, sideDir * raycastLength, Color.cyan, 10000);
 
+                Debug.Log(
+                    "switchGround: " + switchGround +
+                    " switchUp: " + switchUp +
+                    " forwardGround: " + forwardGround +
+                    " forwardUp: " + forwardUp
+                );
 
-		    Debug.Log(
-		        "switchGround: " + switchGround  +
-		        " switchUp: " + switchUp +
-       		    " forwardGround: " + forwardGround  +
-		        " forwardUp: " + forwardUp
-		    );
+                if (!switchGround) {
+                    // if there's an obstacle in the other lane
+                    if (forwardGround) // and you can walk forward
+                        yield break; // don't switch lane
+                }
+	    }
 
-		    if (!switchGround) { // if there's an obstacle in the other lane
-		        if(forwardGround) // and you can walk forward
-		            yield break; // don't switch lane
-		    }
-
-		    directionable.SetDirection(newDirection); //change penguin's direction
+	    directionable.SetDirection(newDirection); //change penguin's direction
 			penguin.transform.rotation = newRotation; //rotate penguin
 			// change lane of the penguin
 			penguin.GetComponent<Penguin>().SetLane(laneSwitch.GetType() == typeof(Left)
