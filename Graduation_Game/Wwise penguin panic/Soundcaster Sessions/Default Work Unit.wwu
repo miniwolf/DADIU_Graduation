@@ -104,12 +104,16 @@
 							<Value>96.3350785340314</Value>
 						</RTPCValue>
 						<RTPCValue>
+							<GameParameterRef Name="rtpc_sfx_volume" ID="{1627970C-C353-404C-A373-91D7A536110E}"/>
+							<Value>75</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>
 							<Value>100</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
-							<Value>50</Value>
+							<Value>40</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">

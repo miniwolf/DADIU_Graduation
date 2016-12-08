@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -300,6 +300,10 @@
 					<ShortName>penguin_1-34.wav</ShortName>
 					<Path>SFX\penguin_1-34_88CAC0B2.wem</Path>
 				</File>
+				<File Id="582123513" Language="SFX">
+					<ShortName>penguin_1-11.wav</ShortName>
+					<Path>SFX\penguin_1-11_92B2311D.wem</Path>
+				</File>
 				<File Id="590505010" Language="SFX">
 					<ShortName>penguin_1-03.wav</ShortName>
 					<Path>SFX\penguin_1-03_3EA513B1.wem</Path>
@@ -419,6 +423,10 @@
 				<File Id="824157448" Language="SFX">
 					<ShortName>footsteps_sandy_6.wav</ShortName>
 					<Path>SFX\footsteps_sandy_6_2B541CCF.wem</Path>
+				</File>
+				<File Id="851894782" Language="SFX">
+					<ShortName>penguin_1-67.wav</ShortName>
+					<Path>SFX\penguin_1-67_A9C80496.wem</Path>
 				</File>
 				<File Id="853971576" Language="SFX">
 					<ShortName>penguin_1-13.wav</ShortName>
