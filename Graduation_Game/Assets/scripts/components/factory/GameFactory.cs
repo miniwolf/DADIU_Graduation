@@ -22,7 +22,7 @@ namespace Assets.scripts.components.factory {
 			actionable.AddAction(GameActions.RetryButtonLoss, RetryButtonLogicLoss(actionable));
 			actionable.AddAction(GameActions.RetryButtonWin, RetryButtonLogicWin(actionable));
 			actionable.AddAction(GameActions.DisableRetryWin, DisableRetryWin());
-
+			actionable.AddAction(GameActions.DisableRetryLose, DisableRetryLose());
 		}
 
 		public void BuildSpeedButton(Actionable<GameActions> actionable){
@@ -92,6 +92,12 @@ namespace Assets.scripts.components.factory {
 		private Handler DisableRetryWin(){
 			var actionHandler = new ActionHandler();
 			actionHandler.AddAction(new DisableRetryAction(TagConstants.UI.ENDSCENEOBJECT));
+			return actionHandler;
+		}
+
+		private Handler DisableRetryLose(){
+			var actionHandler = new ActionHandler();
+			actionHandler.AddAction(new DisableRetryAction(TagConstants.UI.FAILSCENEOBJECT));
 			return actionHandler;
 		}
 	}

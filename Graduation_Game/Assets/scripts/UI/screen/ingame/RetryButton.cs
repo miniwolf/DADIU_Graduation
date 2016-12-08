@@ -13,6 +13,7 @@ namespace Assets.scripts.UI.screen.ingame {
 				// reload level
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			} else {
+				//gameObject.SetActive(false);
 				print("KEY SHOULD BE BOUGHT NOW!!!!");
 				//TODO Should pay for a new key? Should ask if they want to buy a key and use it
 				//TODO show popup letting user know 

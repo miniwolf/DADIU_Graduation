@@ -68,7 +68,6 @@ namespace Assets.scripts.UI {
 			}
 
 			if(int.Parse(penguinCounter.text) <= 0 && !over) {
-				print("hej");
 				ExecuteAction(GameActions.EndLevelLoss);
 				over = true;
 			}
