@@ -2,6 +2,7 @@
 using Assets.scripts.UI.inventory;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.scripts.camera;
 
 namespace Assets.scripts.eggHatching {
     public class SimpleEggHatch : MonoBehaviour {
@@ -17,9 +18,10 @@ namespace Assets.scripts.eggHatching {
         private int timeCount;
         private int hatchableEggs;
         private int maxHatchableEggs;
-//        private GameObject pendingFeedback;
+		private MainCameraFreeMove cameraMove;
+		//        private GameObject pendingFeedback;
 
-        void Start() {
+		void Start() {
             penguinCount = Inventory.penguinCount.GetValue();
             penguinMaxCount = Inventory.penguinStorage.GetValue();
             hatchDuration = Prefs.GetHatchDuration();
@@ -28,7 +30,8 @@ namespace Assets.scripts.eggHatching {
 
             template.gameObject.SetActive(false);
             hatchEggsPanel.SetActive(false);
-        }
+			cameraMove = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<MainCameraFreeMove>();
+		}
 
         void Update() {
             UpdateValues();
@@ -37,13 +40,15 @@ namespace Assets.scripts.eggHatching {
 
         public void CloseDialog() {
             hatchEggsPanel.SetActive(false);
-        }
+			cameraMove.popUpOn = false;
+		}
 
         public void OpenEggHatchingPanel() {
 			AkSoundEngine.PostEvent("button_pressed", gameObject);
 			if (hatchableEggs > 0)
                 hatchEggsPanel.SetActive(true);
-        }
+			cameraMove.popUpOn = true;
+		}
 
         public void HatchEggs() {
 			if (hatchableEggs > 1) {

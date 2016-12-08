@@ -28,6 +28,7 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<int> level8stars = Inventory.level8stars;
 		private readonly Item<int> level9stars = Inventory.level9stars;
 		private readonly Item<int> level10stars = Inventory.level10stars;
+		private readonly Item<int> level11stars = Inventory.level11stars;
 
 		private readonly Item<int> level1won = Inventory.level1won;
 		private readonly Item<int> level2won = Inventory.level2won;
@@ -39,6 +40,7 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<int> level8won = Inventory.level8won;
 		private readonly Item<int> level9won = Inventory.level9won;
 		private readonly Item<int> level10won = Inventory.level10won;
+		private readonly Item<int> level11won = Inventory.level11won;
 
 		private readonly Item<string> level1status = Inventory.level1status;
 		private readonly Item<string> level2status = Inventory.level2status;
@@ -50,6 +52,7 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<string> level8status = Inventory.level8status;
 		private readonly Item<string> level9status = Inventory.level9status;
 		private readonly Item<string> level10status = Inventory.level10status;
+		private readonly Item<string> level11status = Inventory.level11status;
 
 		private readonly Item<int> numberOfFreeze = Inventory.numberOfFreezeTime;
 
@@ -88,6 +91,7 @@ namespace Assets.Editor.PlayerPrefs {
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8STARS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9STARS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL11STARS);
 
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL1STATUS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL2STATUS);
@@ -99,6 +103,7 @@ namespace Assets.Editor.PlayerPrefs {
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8STATUS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9STATUS);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL11STATUS);
 
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL1WON);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL2WON);
@@ -110,6 +115,7 @@ namespace Assets.Editor.PlayerPrefs {
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8WON);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9WON);
 				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL11WON);
 			}
 
 		    if (GUILayout.Button("Delete all PlayerPrefs ")) {
@@ -139,6 +145,7 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.LEVEL8STARS, level8stars);
 			DrawEntry(InventoryConstants.LEVEL9STARS, level9stars);
 			DrawEntry(InventoryConstants.LEVEL10STARS, level10stars);
+			DrawEntry(InventoryConstants.LEVEL11STARS, level11stars);
 
 			DrawEntry(InventoryConstants.LEVEL1WON, level1won);
 			DrawEntry(InventoryConstants.LEVEL2WON, level2won);
@@ -150,6 +157,7 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.LEVEL8WON, level8won);
 			DrawEntry(InventoryConstants.LEVEL9WON, level9won);
 			DrawEntry(InventoryConstants.LEVEL10WON, level10won);
+			DrawEntry(InventoryConstants.LEVEL11WON, level11won);
 
 			DrawEntry(InventoryConstants.FREEZECOUNT, numberOfFreeze);
 
@@ -163,6 +171,7 @@ namespace Assets.Editor.PlayerPrefs {
 			level8status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL8STATUS, level8status.GetValue()));
 			level9status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL9STATUS, level9status.GetValue()));
 			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL10STATUS, level10status.GetValue()));
+			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL11STATUS, level11status.GetValue()));
 		}
 
 		private void DrawEntry(string s, Item<int> item) {

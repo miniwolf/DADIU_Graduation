@@ -12,6 +12,7 @@ namespace Assets.scripts.camera {
 		public float edgeSpeed = .25f; // Speed of camera when dragging nearby edges
 		public float screenBoundaryThreshold = 10f; // Determines a window of pixels from left-/rightScreenBoundary
 		public Transform[] cameraSteps = new Transform[2]; // Place 2 camera steps in a level to determine the camera boundary positions
+		public bool popUpOn = false;
 
 		private bool usingTouch;
 		private Vector3 lastTouchPosPos;
@@ -122,21 +123,26 @@ namespace Assets.scripts.camera {
 		}
 
 		private void CameraMovement(bool isFreelyMoving, float inputX) {
-			if ( isFreelyMoving ) {
-				var xMovement = inputX - lastTouchPosPos.x;
-				if ( Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement * speed) ) {
-					transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
+			if (!popUpOn) {
+				if (isFreelyMoving) {
+					var xMovement = inputX - lastTouchPosPos.x;
+					if (Mathf.Abs(xMovement) > 10f && CameraMovementLimit(xMovement * speed)) {
+						transform.position -= new Vector3((xMovement) * speed, 0f, 0f);
+					}
 				}
-			} else {
-				Vector2 move;
-				if ( Input.mousePosition.x >= rightScreenBoundary ) {
-					move = new Vector3(edgeSpeed, 0);
-				} else if (Input.mousePosition.x <= leftScreenBoundary) {
-					move = new Vector3(-edgeSpeed, 0);
-				} else {
-					return;
+				else {
+					Vector2 move;
+					if (Input.mousePosition.x >= rightScreenBoundary) {
+						move = new Vector3(edgeSpeed, 0);
+					}
+					else if (Input.mousePosition.x <= leftScreenBoundary) {
+						move = new Vector3(-edgeSpeed, 0);
+					}
+					else {
+						return;
+					}
+					transform.Translate(move, Space.World);
 				}
-				transform.Translate(move, Space.World);
 			}
 		}
 
