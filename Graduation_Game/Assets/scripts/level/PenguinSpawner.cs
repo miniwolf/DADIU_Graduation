@@ -11,6 +11,7 @@ using Assets.scripts.sound;
 using Assets.scripts.character;
 using Assets.scripts.camera;
 using Assets.scripts.controllers;
+using Assets.scripts.UI.screen.ingame;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -46,6 +47,7 @@ namespace Assets.scripts.level {
 		    gameStateManager = FindObjectOfType<GameStateManager>();
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
+			print("started");
 
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
@@ -95,7 +97,7 @@ namespace Assets.scripts.level {
 				UnityEngine.Debug.LogError("The platform does not know where to move, because it cannot find where to go, put something with the levellayer on it, where it should stop");
 				yield return null;
 			}
-			print(hit.transform.name);
+			//print(hit.transform.name);
 			Vector3 whereToGo = new Vector3(hit.point.x,transform.position.y,transform.position.z), origPos = transform.position;
 			float startTime = Time.time;;
 			float speedFactor = speedForPlatform;
@@ -110,14 +112,7 @@ namespace Assets.scripts.level {
 				//cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 				yield return new WaitForEndOfFrame();
 			}
-			StartCoroutine(Spawn());
-		}
-
-
-
-		private IEnumerator Spawn() {
-
-			yield return StartCoroutine(FreezeAndSpawnRest());
+			StartCoroutine(FreezeAndSpawnRest());
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {
@@ -143,14 +138,16 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator EnableThePenguins(){
+			ToolButtons.EnableButtons();
 			EnableAPenguin();
 			count--;
 			while (count > 0) {
 				yield return new WaitForSeconds(countTime);
-				if (!gameStateManager.IsGameFrozen()) {
-					EnableAPenguin();
-					count--;
+				if ( gameStateManager.IsGameFrozen() ) {
+					continue;
 				}
+				EnableAPenguin();
+				count--;
 			}
 		}
 

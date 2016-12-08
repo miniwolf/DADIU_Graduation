@@ -16,8 +16,8 @@ namespace Assets.scripts.level {
 
 		[Tooltip("type of tooltip: place, move, remove or newtool")]
 		public Type type = Type.Place;
-		[Tooltip("type of tool for newtool tooltip: jump or switchlane")]
-		public TypeTool typeNewtool = TypeTool.Jump;
+		[Tooltip("type of tool for tooltip: jump or switchlane")]
+		public TypeTool typeTool = TypeTool.Jump;
 
 		private GameObject panel;
 		private bool isPlaced;
@@ -27,6 +27,8 @@ namespace Assets.scripts.level {
 		private bool active;
 		private List<PenguinSpawner> penguinSpawner = new List<PenguinSpawner>();
 		private List<GameObject> penguins = new List<GameObject>();
+		public Text text1; //texts in the tooltip panel
+		public Text text2;
 
 		void Start() {
 			//Prefs.SetTooltips(1); // ONLY FOR TESTING
@@ -59,26 +61,27 @@ namespace Assets.scripts.level {
 			panel.SetActive(true);
 			switch(type) {
 				case Type.Place:
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.place);
-				break;
-				case Type.Move:
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.move);
-					break;
-				case Type.Remove:
-					panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.remove);
-					break;
-				case Type.Newtool:
-					switch ( typeNewtool ) {
-						case TypeTool.Jump: 
-							panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.jump);
+					text2.text = TranslateApi.GetString(LocalizedString.place);
+					switch(typeTool) {
+						case TypeTool.Jump:
+							text1.text = TranslateApi.GetString(LocalizedString.tooltipUseTheJumppad);
 							break;
-						case TypeTool.Switchlane: 
-							panel.GetComponentInChildren<Text>().text = TranslateApi.GetString(LocalizedString.switchlane);
+						case TypeTool.Switchlane:
+							text1.text = TranslateApi.GetString(LocalizedString.switchlane);
 							break;
 					}
-
+				break;
+				case Type.Move:
+					text1.text = TranslateApi.GetString(LocalizedString.move1);
+					text2.text = TranslateApi.GetString(LocalizedString.move2);
+					break;
+				case Type.Remove:
+					text1.text = TranslateApi.GetString(LocalizedString.remove1);
+					text2.text = TranslateApi.GetString(LocalizedString.remove2);
 					break;
 			}
+
+
 			gameObject.GetComponent<Collider>().enabled = false;
 		}
 			

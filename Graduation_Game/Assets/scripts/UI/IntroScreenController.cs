@@ -9,18 +9,16 @@ namespace Assets.scripts.UI {
 		public Sprite[] introScreens;
 		private int currentScreen;
 		private Text skipIntro;
-		private GameObject tvImage;
 		private Button intro;
 		private Canvas canvas;
 		//public GameObject introPlayer;
 		public Material movies;
 		//private MovieTexture movie;
 		private bool moviePlaying;
+		private bool playSound;
 
 		void Start() {
 			canvas = GameObject.Find("MainMenuCanvas").GetComponent<Canvas>();
-			tvImage = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_IMAGE);
-			tvImage.SetActive(false);
 			//intro = GameObject.FindGameObjectWithTag(TagConstants.UI.INTRO_BUTTON).GetComponent<Button>();
 			//intro.onClick.AddListener(() => LoadIntro());
 			currentScreen = 0;
@@ -43,6 +41,7 @@ namespace Assets.scripts.UI {
 		IEnumerator HackSound(){
 			yield return new WaitForSeconds(0.2f);
 			AkSoundEngine.PostEvent("music_state_none", Camera.main.gameObject);
+			playSound = true;
 		}
 
 		void Update(){
@@ -83,7 +82,10 @@ namespace Assets.scripts.UI {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			GameObject.FindGameObjectWithTag("IntroScreen");
 			StopMovie();
-			AkSoundEngine.PostEvent("music_state_menu", Camera.main.gameObject);
+			Debug.Log("SkipIntro " + moviePlaying);
+
+			if(playSound)
+				AkSoundEngine.PostEvent("music_state_menu", Camera.main.gameObject);
 			//introPlayer.SetActive(false);
 			//GameObject.FindGameObjectWithTag("IntroScreen").SetActive(false);
 		}
@@ -109,13 +111,13 @@ namespace Assets.scripts.UI {
             #if UNITY_IPHONE || UNITY_ANDROID
                 Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
             #endif
-
+		    playSound = true;
 		    moviePlaying = true;
-			//movie.Play();
+		    //movie.Play();
 		}
-		private void StopMovie(){
+
+	    private void StopMovie(){
 			//movie.Stop();
 		}
-
 	}
 }
