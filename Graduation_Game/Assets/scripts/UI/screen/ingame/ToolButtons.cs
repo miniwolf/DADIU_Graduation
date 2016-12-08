@@ -312,6 +312,16 @@ namespace Assets.scripts.UI.screen.ingame {
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
+			if (currentObject != null && doubleTap) {
+				Vector3 origScale = currentObject.transform.localScale;
+				currentObject.transform.localScale = origScale;
+				PutObjectInPool(currentObject.transform);
+				UpdateUI(currentObject.tag);
+				currentObject.SetActive(false);
+				currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
+				currentObject = null;
+				ChangeColor(notReturning);
+			}
 			currentObject = hit.transform.parent.gameObject;
 			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
 				if (t.tag == TagConstants.LANECHANGEARROW) {

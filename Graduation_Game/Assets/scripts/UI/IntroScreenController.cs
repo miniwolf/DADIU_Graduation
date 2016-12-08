@@ -107,19 +107,21 @@ namespace Assets.scripts.UI {
 
 		}
 
-		private void PlayMovie() {
-			if (Prefs.IsEnglishOn()) {
-				Handheld.PlayFullScreenMovie("cutSceneDAwithSound.mp4");
-			} else {
-				Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
-			}
-			moviePlaying = true;
+	    private void PlayMovie() {
+            #if UNITY_IPHONE || UNITY_ANDROID
+                if (Prefs.IsEnglishOn()) {
+                    Handheld.PlayFullScreenMovie("cutSceneDAwithSound.mp4");
+                } else {
+                    Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+                }
+            #endif
+		    moviePlaying = true;
 			playSound = true;
 			//movie.Play();
 		}
-		private void StopMovie(){
+
+	    private void StopMovie(){
 			//movie.Stop();
 		}
-
 	}
 }
