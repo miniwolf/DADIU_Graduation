@@ -14,7 +14,7 @@ public class PenguinSounds : MonoBehaviour {
 	}
 
 	public void PlayPenguinDeathDrowning() {
-		AkSoundEngine.PostEvent ("penguin_death_drowning", gameObject);
+		AkSoundEngine.PostEvent ("penguin_death_pit_drowning", gameObject);
 	}
 
 	public void PlayPenguinDeathSpikes() {

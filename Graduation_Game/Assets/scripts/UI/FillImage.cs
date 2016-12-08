@@ -33,7 +33,7 @@ namespace Assets.scripts.UI {
 		void LateUpdate() {			
 			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon && !mainMenuScript.isLastLevelIdx()) {
 				if(fillOverTimeIdx == 5) {
-					if(mainMenuScript.isNextWorldAccessible()) FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+					if(mainMenuScript.IsNextWorldAccessible()) FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
 				} else {
 					FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
 				}
