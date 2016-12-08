@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.scripts.components;
 using Assets.scripts.components.registers;
+using Assets.scripts.controllers.actions.sound;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.gamestate;
@@ -180,9 +181,11 @@ namespace Assets.scripts.UI.screen.ingame {
 		public IEnumerator FreezeTime() {
 			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
 				Inventory.numberOfFreezeTime.SetValue(Inventory.numberOfFreezeTime.GetValue() - 1);
+				new PostSoundEvent(SoundConstants.FeedbackSounds.FREEZE_TIME_START, Camera.main).Execute();
 				gameStateManager.SetGameFrozen(true);
 				yield return new WaitForSeconds(freezeToolTime);
 				gameStateManager.SetGameFrozen(false);
+				new PostSoundEvent(SoundConstants.FeedbackSounds.FREEZE_TIME_STOP, Camera.main).Execute();
 			}
 			if ( Inventory.numberOfFreezeTime.GetValue() == 0 ) {
 				freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
