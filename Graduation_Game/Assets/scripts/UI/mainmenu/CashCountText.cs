@@ -4,8 +4,12 @@ using UnityEngine.UI;
 
 namespace Assets.scripts.UI.mainmenu {
 	public class CashCountText : MonoBehaviour {
+		Text text;
 		protected void Start() {
-			var text = GetComponent<Text>();
+			text = GetComponent<Text>();
+			text.text = Inventory.cash.GetValue().ToString();
+		}
+		void Update(){
 			text.text = Inventory.cash.GetValue().ToString();
 		}
 	}
