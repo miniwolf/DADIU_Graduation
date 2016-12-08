@@ -13,28 +13,29 @@ popupNotEnoguhPenguins; Du har ikke nok pingviner
 toPlayTheLevel; til at spille banen!
 backsettings; Tilbage
 settings; Indstillinger
-credits; creditsDK
+credits; credits
 sound; lyd
 language; sprog
 tooltips; hjælp?
 info; info
-place; Træk et redskab fra kanpperne i bunden ud på isen
-move; Tryk og træk et redskab fra isen til et andet sted på isen
-remove; Tryk på et redskab og træk det væk fra banen og giv slip når det bliver rødt
+place; Træk redskabet fra bunden ud på isen
+move1; Klik på skiltet med pilen og
+move2; flyt den til en ny placering
+remove1; Klik og træk et værktøj indtil det bliver 
+remove2; rødt slip det for at returnere det
 jump; Brug dit nye hoppe redskab som det andet
-switchlane; Brug skift bane til at få penguinerne til at skifte deres bane
+switchlane; Skiltet med pilen skifter retning
 thisWorldIsLocked; Denne verden er låst
 seconds; sek
-shopHatchSpeed; +1x for hvert køb
-shopHatchSpeed2; Nedtælling
+shopHatchSpeed; omkampsnøgle
 shopPenguinSpace; Ekstra Pingvin
 shopPenguinSpace2; Plads
 shopHatchPenguin; Udklæk en
 shopHatchPenguin2; Pingvin
-shopFreezeTime; 1x Tids frys
+shopFreezeTime; 1x Tidsfrys
 shopBuyFish; 500 gyldne fisk
 penguin; Pingvin
-hatch; Udklæk
+hatch; Klæk
 toNextEgg; til næste æg
 youWon; Du vandt
 thisLevel; Denne bane
@@ -42,6 +43,6 @@ total; Total
 next; Næste
 retry; Omkamp
 replay; Prøv igen
-tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene
+tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene!
 tooltipDragJumppad; Træk fra ikonet til isen
-youAreDead;Du er død
+youAreDead;Du har tabt

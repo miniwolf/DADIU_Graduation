@@ -19,17 +19,18 @@ tooltips; help?
 info; info
 language; language
 place; Drag from the icon to the iceberg
-move; Click and move a tool placed on the ice, to a different place
-remove; Click and drag a tool until it becomes red, then release to return it to your stash
+move1; Click the arrow sign and move it
+move2; to a different location
+remove1; Click and drag a tool until it becomes red
+remove2;then release to return it to your stash
 jump; Write here tooltip for explaining jump EN
-switchlane; Place a switch lane to make the penguins change lanes
+switchlane; Use the arrow sign to switch lane
 thisWorldIsLocked; This world is locked!
 seconds; sec
-shopHatchSpeed; +1x for every
-shopHatchSpeed2;countdown
+shopHatchSpeed; Retry key
 shopPenguinSpace;Extra Penguin
 shopPenguinSpace2;Space
-shopHatchPenguin; Hatch a
+shopHatchPenguin; Buy a
 shopHatchPenguin2;Penguin
 shopFreezeTime; 1x Freezetime
 shopBuyFish; 500 goldfish
@@ -44,4 +45,4 @@ retry; Retry
 replay; Replay
 tooltipUseTheJumppad; Use the jumppad to get the fish!
 tooltipDragJumppad; Drag from the icon to the iceberg
-youAreDead;You're Dead
+youAreDead;You lose
