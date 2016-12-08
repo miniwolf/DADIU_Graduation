@@ -95,7 +95,6 @@ namespace Assets.scripts.controllers.actions.game {
 			handler.StartCoroutine(SpawnStars());
 		}
 
-
 		private void EnableWin(){
 			SetStarsWonPrefs();
 

@@ -106,9 +106,11 @@ namespace Assets.scripts.UI {
 		}
 
 		private void PlayMovie(){
+            #if UNITY_IPHONE || UNITY_ANDROID
+                Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+            #endif
 
-			Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
-			moviePlaying = true;
+		    moviePlaying = true;
 			//movie.Play();
 		}
 		private void StopMovie(){
