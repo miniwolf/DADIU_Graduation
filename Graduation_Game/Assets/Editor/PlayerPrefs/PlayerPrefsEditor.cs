@@ -171,7 +171,7 @@ namespace Assets.Editor.PlayerPrefs {
 			level8status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL8STATUS, level8status.GetValue()));
 			level9status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL9STATUS, level9status.GetValue()));
 			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL10STATUS, level10status.GetValue()));
-			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL11STATUS, level11status.GetValue()));
+			level11status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL11STATUS, level11status.GetValue()));
 		}
 
 		private void DrawEntry(string s, Item<int> item) {

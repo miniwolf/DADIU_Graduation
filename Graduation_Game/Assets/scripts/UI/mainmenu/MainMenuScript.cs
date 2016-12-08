@@ -178,6 +178,7 @@ namespace Assets.scripts.UI.mainmenu {
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
 				if (Prefs.IsLevelStatusComplete(levelName)) {
+					Debug.Log("DEBUG : " + levelName);
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
 					if (!currentLvl && i < levels.Length - 1 && !isLastLevelIdx()) {
 						if(levels[i + 1].btnFromScene.GetComponent<Image>().sprite != levelBtnNotAccessable) {
@@ -253,13 +254,13 @@ namespace Assets.scripts.UI.mainmenu {
 			int numOfLvlsToUnlock = Prefs.GetLevelUnlockIndex();
 
 			if (isLastLevelIdx()) {
-				for(int i = 0; i < levels.Length-1; i++)
-					levels[1].btnFromScene.interactable = true;
+				for(int i = 0; i < levels.Length; i++)
+					levels[i].btnFromScene.interactable = true;
 
 				return;
 			}
 
-			for (int i = 0; i < numOfLvlsToUnlock; i++) {
+			for (int i = 0; i < numOfLvlsToUnlock+1; i++) {
 				levels[i].btnFromScene.interactable = true;
 			}
 		}
