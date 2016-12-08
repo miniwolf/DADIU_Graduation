@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Assets.scripts.gamestate;
 using Assets.scripts.sound;
 using Assets.scripts.level;
+using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
@@ -27,6 +28,8 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameObject[] tooltips;
 		private GameObject freezeTimeTool;
 		private GameObject freezeTime_UI_Image;
+
+		private static List<GameObject> listOfButtons = new List<GameObject>();
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
@@ -65,6 +68,29 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer") | 1 << LayerMask.NameToLayer("PenguinLayer")); // ignore all 3 layers
 			DisableArrowTools();
+			DisableButtons();
+		}
+
+		private void DisableButtons() {
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_SWITCH_LANE));
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_JUMP));
+			listOfButtons.Add(freezeTime_UI_Image);
+			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.PENGUINSPEEDUPBUTTON));
+			listOfButtons.ForEach( go => {
+					if (go != null) {
+						go.SetActive(false);
+					}
+				}
+			);
+		}
+
+		public static void EnableButtons() {
+			listOfButtons.ForEach( go => {
+					if (go != null) {
+						go.SetActive(true);
+					}
+				}
+			);
 		}
 
 		private void DisableArrowTools() {
@@ -98,7 +124,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			if (GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) != null) {
 				freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
-				if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+				if (Inventory.numberOfFreezeTime.GetValue() > 0) {
 					freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
 				}
 			}
@@ -152,10 +178,14 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public IEnumerator FreezeTime() {
-			if(tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
+				Inventory.numberOfFreezeTime.SetValue(Inventory.numberOfFreezeTime.GetValue() - 1);
 				gameStateManager.SetGameFrozen(true);
 				yield return new WaitForSeconds(freezeToolTime);
 				gameStateManager.SetGameFrozen(false);
+			}
+			if ( Inventory.numberOfFreezeTime.GetValue() == 0 ) {
+				freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
 			}
 		}
 
@@ -182,6 +212,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
+			if (touchUsed) {
+				PlaceObject(currentObject, Input.GetTouch(0).position);
+			}
 
 		}
 
@@ -202,18 +235,19 @@ namespace Assets.scripts.UI.screen.ingame {
 						}
 					}
 				}
-				if(touch.phase == TouchPhase.Began) {
+				if (touch.phase == TouchPhase.Began && !dragging) {
 					IsAToolHit(touch.position);
-				} else if(dragging) {
-					switch(touch.phase) {
-					case TouchPhase.Moved:
+
+				} else if (dragging) {
+					switch (touch.phase) {
+						case TouchPhase.Moved:
 							//Debug.Log(currentObject);
 							// If Bridge PlaceBridgeObject
-						PlaceObject(currentObject, touch.position);
-						break;
-					case TouchPhase.Ended:
+							PlaceObject(currentObject, touch.position);
+							break;
+						case TouchPhase.Ended:
 							ReleaseTool(doubleTap);
-						break;
+							break;
 					}
 				}
 			}

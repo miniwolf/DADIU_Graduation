@@ -33,7 +33,9 @@ namespace Assets.scripts.components.factory {
 			directionable = penguin.GetComponent<Directionable>();
 			animator = penguin.GetComponentInChildren<Animator>();
 			animator.SetFloat("WalkBlend", Random.Range(0.0f, 1.0f));
-			animator.SetTime(Random.Range(0.0f, 1.0f));
+			//animator.SetTime(Random.Range(0.0f, 1.0f));
+			animator.ForceStateNormalizedTime(Random.Range(0.0f, 1.0f)); 
+
 			gameStateManager = stateManager;
 			this.notifierSystem = notifierSystem;
 			var p = penguin.GetComponent<Penguin>();

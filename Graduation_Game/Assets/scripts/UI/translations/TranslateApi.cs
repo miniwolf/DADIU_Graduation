@@ -20,6 +20,7 @@ public class TranslateApi {
 				LoadLanguage(languageLoaded);
 			}
 		}
+
 		return translationLookupTable[key];
 	}
 

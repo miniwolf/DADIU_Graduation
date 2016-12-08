@@ -1,37 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Assets.scripts.controllers.actions;
+﻿using System.Collections.Generic;
 using Assets.scripts.character;
-using Assets.scripts;
 using Assets.scripts.level;
+using UnityEngine;
 
-public class ResetPenguinSpeed : Action {
+namespace Assets.scripts.controllers.actions.game {
+	public class ResetPenguinSpeed : Action {
+		private readonly List<Penguin> penguins = new List<Penguin>();
+		private float origSpeed = 0.6f;
+		private GameObject[] penguinSpawners;
 
-	private List<Penguin> penguins = new List<Penguin>();
-	private float origSpeed = 0.6f;
-	private GameObject[] penguinSpawners;
-
-	public void Setup (GameObject gameObject) {
-		origSpeed = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_TEMPLATE).GetComponent<Penguin>().GetWalkSpeed();
-		penguinSpawners = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
-	}
-
-	public void Execute () {
-		for (int j = 0; j < penguinSpawners.Length; j++) {
-			List<GameObject> penguinsGO = penguinSpawners[j].GetComponent<PenguinSpawner>().GetAllPenguins();
-			for (int i = 0; i < penguinsGO.Count; i++) {
-				penguins.Add(penguinsGO[i].GetComponent<Penguin>());
-			}
+		public void Setup (GameObject gameObject) {
+			origSpeed = GameObject.FindGameObjectWithTag(TagConstants.PENGUIN_TEMPLATE).GetComponent<Penguin>().GetWalkSpeed();
+			penguinSpawners = GameObject.FindGameObjectsWithTag(TagConstants.PENGUIN_SPAWNER);
 		}
-		for (int i = 0; i < penguins.Count; i++) {
-			if (penguins[i].IsDead()) {
-				continue;
+
+		public void Execute () {
+			foreach ( var t1 in penguinSpawners ) {
+				var penguinsGO = t1.GetComponent<PenguinSpawner>().GetAllPenguins();
+				foreach ( var t in penguinsGO ) {
+					penguins.Add(t.GetComponent<Penguin>());
+				}
 			}
-			if (!penguins[i].GetJump()) {
-				penguins[i].SetSpeedUp(false);
-				penguins[i].SetSpeed(origSpeed);
-				penguins[i].SetWalkSpeed(origSpeed);
+			foreach (var penguin in penguins) {
+				if ( penguin.IsDead() ) {
+					continue;
+				}
+				penguin.SetWalkSpeed(origSpeed);
+				if ( penguin.GetJump() ) {
+					continue;
+				}
+
+				penguin.SetSpeedUp(false);
+				penguin.SetSpeed(origSpeed);
 			}
 		}
 	}
