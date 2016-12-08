@@ -187,7 +187,9 @@ namespace Assets.scripts.UI.screen.ingame {
 			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
-			PlaceObject(currentObject, Input.GetTouch(0).position);
+			if (touchUsed) {
+				PlaceObject(currentObject, Input.GetTouch(0).position);
+			}
 
 		}
 
