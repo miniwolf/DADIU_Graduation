@@ -11,6 +11,7 @@ using Assets.scripts.sound;
 using Assets.scripts.character;
 using Assets.scripts.camera;
 using Assets.scripts.controllers;
+using Assets.scripts.UI.screen.ingame;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -137,14 +138,16 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator EnableThePenguins(){
+			ToolButtons.EnableButtons();
 			EnableAPenguin();
 			count--;
 			while (count > 0) {
 				yield return new WaitForSeconds(countTime);
-				if (!gameStateManager.IsGameFrozen()) {
-					EnableAPenguin();
-					count--;
+				if ( gameStateManager.IsGameFrozen() ) {
+					continue;
 				}
+				EnableAPenguin();
+				count--;
 			}
 		}
 
