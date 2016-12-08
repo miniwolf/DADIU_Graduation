@@ -46,6 +46,7 @@ namespace Assets.scripts.level {
 		    gameStateManager = FindObjectOfType<GameStateManager>();
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
+			print("started");
 
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
