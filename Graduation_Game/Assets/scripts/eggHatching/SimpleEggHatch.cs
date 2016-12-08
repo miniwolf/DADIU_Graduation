@@ -45,9 +45,10 @@ namespace Assets.scripts.eggHatching {
 
         public void OpenEggHatchingPanel() {
 			AkSoundEngine.PostEvent("button_pressed", gameObject);
-			if (hatchableEggs > 0)
-                hatchEggsPanel.SetActive(true);
-			cameraMove.popUpOn = true;
+			if (hatchableEggs > 0) {
+				hatchEggsPanel.SetActive(true);
+				cameraMove.popUpOn = true;
+			}
 		}
 
         public void HatchEggs() {
