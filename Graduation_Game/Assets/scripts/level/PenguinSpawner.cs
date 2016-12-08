@@ -38,7 +38,7 @@ namespace Assets.scripts.level {
 		private List<GameObject> penguins = new List<GameObject>();
 		private int count;
 		private GameObject entrancePlatform;
-		private Vector3 origPos;
+		private Vector3 origPos, origScale;
 		private int spawned = 0;// layerMask = 1 << 8;
 
 		public void Start() {
@@ -48,7 +48,8 @@ namespace Assets.scripts.level {
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
 			print("started");
-
+			origScale = countDown.transform.localScale;
+			countDown.transform.localScale = Vector3.zero;
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -115,7 +116,7 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {
-
+			countDown.transform.localScale = origScale;
 		    int counter = numIntervals;
 			do {
 				// print in text UI
