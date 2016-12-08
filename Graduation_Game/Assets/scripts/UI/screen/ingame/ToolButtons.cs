@@ -187,6 +187,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
 			tools.RemoveAt(count - 1);
+			PlaceObject(currentObject, Input.GetTouch(0).position);
 
 		}
 
@@ -207,18 +208,19 @@ namespace Assets.scripts.UI.screen.ingame {
 						}
 					}
 				}
-				if(touch.phase == TouchPhase.Began) {
+				if (touch.phase == TouchPhase.Began && !dragging) {
 					IsAToolHit(touch.position);
-				} else if(dragging) {
-					switch(touch.phase) {
-					case TouchPhase.Moved:
+
+				} else if (dragging) {
+					switch (touch.phase) {
+						case TouchPhase.Moved:
 							//Debug.Log(currentObject);
 							// If Bridge PlaceBridgeObject
-						PlaceObject(currentObject, touch.position);
-						break;
-					case TouchPhase.Ended:
+							PlaceObject(currentObject, touch.position);
+							break;
+						case TouchPhase.Ended:
 							ReleaseTool(doubleTap);
-						break;
+							break;
 					}
 				}
 			}
