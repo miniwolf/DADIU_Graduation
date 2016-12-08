@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Assets.scripts.gamestate;
 using Assets.scripts.sound;
 using Assets.scripts.level;
+using Assets.scripts.UI.inventory;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
@@ -98,7 +99,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 			if (GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) != null) {
 				freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
-				if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+				if (Inventory.numberOfFreezeTime.GetValue() > 0) {
 					freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
 				}
 			}
@@ -152,10 +153,14 @@ namespace Assets.scripts.UI.screen.ingame {
 		}
 
 		public IEnumerator FreezeTime() {
-			if(tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+			if ( Inventory.numberOfFreezeTime.GetValue() > 0 ) {
+				Inventory.numberOfFreezeTime.SetValue(Inventory.numberOfFreezeTime.GetValue() - 1);
 				gameStateManager.SetGameFrozen(true);
 				yield return new WaitForSeconds(freezeToolTime);
 				gameStateManager.SetGameFrozen(false);
+			}
+			if ( Inventory.numberOfFreezeTime.GetValue() == 0 ) {
+				freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
 			}
 		}
 
