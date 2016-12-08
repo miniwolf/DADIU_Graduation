@@ -42,7 +42,7 @@ thisLevel; Denne bane
 total; Total
 next; Næste
 retry; Omkamp
-replay; Prøv igen
+replay; prøv igen
 tooltipUseTheJumppad; Brug hoppe redskabet for at få fiskene!
 tooltipDragJumppad; Træk fra ikonet til isen
 youAreDead;Du har tabt
