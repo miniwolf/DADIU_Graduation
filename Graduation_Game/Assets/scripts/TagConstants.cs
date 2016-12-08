@@ -74,16 +74,13 @@
 			public const string TOGGLE_CHANGE_TOOLTIPS = "ChangeTooltips";
 			public const string BACK_SETTINGS = "BackSettings";
 			public const string SETTINGS_TEXT = "SettingsText";
-	        public const string DEATH_CAM_RIGHT = "DeathCamRight";
-	        public const string DEATH_CAM_LEFT = "DeathCamLeft";
-	        public const string POPUP_PENGUIN_REQUIRED = "PenguinRequiredPopup";
-	        public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
-	        public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
-	        public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
-	        public const string IN_GAME_TOOL_ENLARGE= "InGameMenuToolEnlarge";
-	        public const string IN_GAME_TOOL_MINIMIZE= "InGameMenuToolMinimize";
-	        public const string IN_GAME_TOOL_SPEED= "InGameMenuToolSpeed";
-	        public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
+			public const string DEATH_CAM_RIGHT = "DeathCamRight";
+			public const string DEATH_CAM_LEFT = "DeathCamLeft";
+			public const string POPUP_PENGUIN_REQUIRED = "PenguinRequiredPopup";
+			public const string IN_GAME_TOOL_SWITCH_LANE = "InGameMenuToolSwitchLane";
+			public const string IN_GAME_TOOL_JUMP = "InGameMenuToolJump";
+			public const string IN_GAME_TOOL_BRIDGE= "InGameMenuToolBridge";
+			public const string IN_GAME_TOOL_FREEZE_TIME= "InGameMenuToolFreezeTime";
 
 			public const string GAME_OVER_PANEL = "GameOverPanel";
 			public const string RETRY_CIRCLE = "RetryCircle";
