@@ -58,6 +58,7 @@
 	    }
 
 	    public class UI {
+			public const string BUTTON_NEXT_WORLD = "ButtonNextWorld";
 			public const string LANGUAGE_IMAGE = "LanguageImage";
 	        public const string DROPDOWN_CHANGE_LANGUAGE = "ChangeLanguage";
 			public const string UK_TEXT = "UKText";
