@@ -5,7 +5,6 @@ using Assets.scripts.sound;
 using Assets.scripts.UI.inventory;
 using Assets.scripts.UI.translations;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 namespace Assets.scripts.shop {
@@ -16,7 +15,7 @@ namespace Assets.scripts.shop {
 	    public Text textBuyFish, textHatchPenguin, textHatchPenguin2, textFreezeTime, textHatchSpeed,textHatchSpeed2, textPenguinSpace, textPenguinSpace2;
 
 		public enum Items {
-			Penguin, PenguinStock, RetryKey
+			Penguin, PenguinStock, RetryKey, Freeze
 		}
 
 		[Serializable]
@@ -45,6 +44,10 @@ namespace Assets.scripts.shop {
 					case Items.RetryKey:
 						buy = new BuyRetryKey();
 						items.Add("Key", buy);
+						break;
+					case Items.Freeze:
+						buy = new BuyFreezeTime();
+						items.Add("Freeze", buy);
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();
