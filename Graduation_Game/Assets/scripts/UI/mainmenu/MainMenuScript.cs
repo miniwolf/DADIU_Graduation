@@ -19,6 +19,7 @@ namespace Assets.scripts.UI.mainmenu {
 		private Image popup;
 		private InputManager inputManager;
 		private FillImage fillImageScript;
+		private GameObject nextWorldBanner;
 
 		public int firstLvlIdxInNextWorld = 5; // The first level index into a new world
 
@@ -37,7 +38,7 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			string lastLevelName = Prefs.GetLevelLastPlayedName();
+			nextWorldBanner = GameObject.FindGameObjectWithTag(TagConstants.UI.BUTTON_NEXT_WORLD);
 
 			InitilizeLevels();
 			LockNonInteractableLevels();
@@ -62,6 +63,7 @@ namespace Assets.scripts.UI.mainmenu {
 			LoadStars();
 
 			ToggleTextOnAccessibleLevels();
+			ToggleNextWorldBanner();
 
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
@@ -226,13 +228,11 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Returns true if next world has become accessable
 		/// </summary>
 		/// <returns></returns>
-		public bool isNextWorldAccessible() {
-			//Debug.Log("DEBUG STARSHIT : " + StarsCollectedCountText.totalStars);
+		public bool IsNextWorldAccessible() {
 			foreach (var marker in worldUnlockMarkers) {
 				if (StarsCollectedCountText.totalStars >= marker.starsNeeded) { //&& levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
 					return true;
 				}
-				//Debug.Log("marker : " + marker.starsNeeded);
 			}
 			return false;
 		}
@@ -264,12 +264,17 @@ namespace Assets.scripts.UI.mainmenu {
 		/// </summary>
 		private void ToggleTextOnAccessibleLevels() {
 			for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
-				if(isNextWorldAccessible()) {
+				if(IsNextWorldAccessible()) {
 					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = true;
 				} else {
 					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = false;
 				}
 			}
+		}
+
+		private void ToggleNextWorldBanner() {
+			if(IsNextWorldAccessible())
+				nextWorldBanner.SetActive(false); // Disable the banner when next world is accessible
 		}
 
 		private void OnDestroy() {

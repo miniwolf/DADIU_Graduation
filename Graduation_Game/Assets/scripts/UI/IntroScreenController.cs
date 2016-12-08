@@ -15,6 +15,7 @@ namespace Assets.scripts.UI {
 		public Material movies;
 		//private MovieTexture movie;
 		private bool moviePlaying;
+		private bool playSound;
 
 		void Start() {
 			canvas = GameObject.Find("MainMenuCanvas").GetComponent<Canvas>();
@@ -40,6 +41,7 @@ namespace Assets.scripts.UI {
 		IEnumerator HackSound(){
 			yield return new WaitForSeconds(0.2f);
 			AkSoundEngine.PostEvent("music_state_none", Camera.main.gameObject);
+			playSound = true;
 		}
 
 		void Update(){
@@ -80,7 +82,10 @@ namespace Assets.scripts.UI {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			GameObject.FindGameObjectWithTag("IntroScreen");
 			StopMovie();
-			AkSoundEngine.PostEvent("music_state_menu", Camera.main.gameObject);
+			Debug.Log("SkipIntro " + moviePlaying);
+
+			if(playSound)
+				AkSoundEngine.PostEvent("music_state_menu", Camera.main.gameObject);
 			//introPlayer.SetActive(false);
 			//GameObject.FindGameObjectWithTag("IntroScreen").SetActive(false);
 		}
@@ -102,10 +107,11 @@ namespace Assets.scripts.UI {
 
 		}
 
-		private void PlayMovie(){
+		private void PlayMovie() {
 
 			Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
 			moviePlaying = true;
+			playSound = true;
 			//movie.Play();
 		}
 		private void StopMovie(){
