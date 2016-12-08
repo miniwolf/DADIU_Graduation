@@ -108,8 +108,11 @@ namespace Assets.scripts.UI {
 		}
 
 		private void PlayMovie() {
-
-			Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+			if (Prefs.IsEnglishOn) {
+				Handheld.PlayFullScreenMovie("cutSceneDAwithSound.mp4");
+			} else {
+				Handheld.PlayFullScreenMovie("cutSceneENwithSound.mp4");
+			}
 			moviePlaying = true;
 			playSound = true;
 			//movie.Play();
