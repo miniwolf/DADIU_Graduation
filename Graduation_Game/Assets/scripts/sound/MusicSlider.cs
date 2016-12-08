@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.scripts;
 
 public class MusicSlider : MonoBehaviour {
 
@@ -10,5 +11,6 @@ public class MusicSlider : MonoBehaviour {
 	public void ChangeVolume(){
 		value = (int)GetComponent<Slider>().value;
 		AkSoundEngine.SetRTPCValue("rtpc_music_volume", value);
+		Prefs.SetMusicValue(value);
 	}
 }
