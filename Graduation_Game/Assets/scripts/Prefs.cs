@@ -87,7 +87,7 @@ namespace Assets.scripts {
 		}
 
 		public static bool IsEnglishOn() {
-			return PlayerPrefs.GetInt(LANGUAGE) == 0;
+			return PlayerPrefs.GetInt(LANGUAGE,1) == 0;
 		}
 
 		public static void SetLanguage(int language) {
