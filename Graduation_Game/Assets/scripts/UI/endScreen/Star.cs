@@ -7,7 +7,7 @@ using System.Collections;
 namespace Assets.scripts.tools {
 	public class Star : ActionableGameEntityImpl<GameActions> {
 		private Vector3 currScale;
-		private Vector3 targetScale = new Vector3(0.2f, 0.2f, 0.2f);
+		private Vector3 targetScale = new Vector3(1f, 1f, 1f);
 
 		void Start(){
 			gameObject.GetComponent<Image>().enabled = false;
@@ -28,7 +28,7 @@ namespace Assets.scripts.tools {
 				distCovered = (Time.time - startTime) * speedFactor;
 				fracJourney = distCovered / journeyLength;
 				if (fracJourney < 0.70f) {
-					GetComponent<RectTransform>().localScale = Vector3.Lerp(Vector3.zero, new Vector3(targetScale.x + 0.2f, targetScale.y + 0.2f, targetScale.z + 0.2f), fracJourney);
+					GetComponent<RectTransform>().localScale = Vector3.Lerp(Vector3.zero, new Vector3(targetScale.x + 0.4f, targetScale.y + 0.4f, targetScale.z + 0.4f), fracJourney);
 					currScale = transform.localScale;
 				} else {
 					GetComponent<RectTransform>().localScale = Vector3.Lerp(currScale, targetScale, fracJourney);
