@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.scripts.gamestate;
 using Assets.scripts.sound;
+using Assets.scripts.level;
 
 namespace Assets.scripts.UI.screen.ingame {
 	public class ToolButtons : MonoBehaviour, GameEntity, Draggable, SetSnappingTool, /*IPointerEnterHandler, IPointerExitHandler,*/ GameFrozenChecker {
@@ -23,18 +24,24 @@ namespace Assets.scripts.UI.screen.ingame {
 		private GameStateManager gameStateManager;
 		private float timeFirstClick;
 		private bool tutorialShown = false;
+		private GameObject[] tooltips;
+		private GameObject freezeTimeTool;
+		private GameObject freezeTime_UI_Image;
 
 		private readonly Dictionary<string, List<GameObject>> tools = new Dictionary<string, List<GameObject>>();
 		private bool dragging;
 		private bool oneClick;
 		private bool doubleTap;
 		private const int layermask = 1 << 8;
+		private int layermasksIgnored;
+	    private bool clickBlocked; // prevents clicking button if the previous click action was not yet finished
 		Color[] origColors;
 		MeshRenderer[] meshes;
 		private bool touchUsed = false;
-
+		private bool wasToolHit = false;
 		public float closessToCam = 10f;
 		public float toolOffSetWhileMoving = 20f;
+
 
 		protected void Awake() {
 			InjectionRegister.Register(this);
@@ -43,23 +50,59 @@ namespace Assets.scripts.UI.screen.ingame {
 		protected void Start() {
 			tools.Add(TagConstants.JUMPTEMPLATE, new List<GameObject>());
 			tools.Add(TagConstants.SWITCHTEMPLATE, new List<GameObject>());
-		//	tools.Add(TagConstants.SPEEDTEMPLATE, new List<GameObject>());
-		/*	tools.Add(TagConstants.BRIDGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.ENLARGETEMPLATE, new List<GameObject>());
-			tools.Add(TagConstants.MINIMIZETEMPLATE, new List<GameObject>());*/
 
-			if (!GameObject.FindGameObjectWithTag(TagConstants.TOOLTUTORIAL)) {
-				tutorialShown = true;
-			}
-
+			tooltips = GameObject.FindGameObjectsWithTag(TagConstants.TOOLTIP);
 			tools.Add(TagConstants.Tool.FREEZE_TIME, new List<GameObject>());
 			img = GetComponent<Image>();
 			cam = Camera.main;
 			PoolSystem(GameObject.FindGameObjectWithTag(TagConstants.SPAWNPOOL));
 
-			foreach(var key in tools.Keys) {
+			HandleFreezetime(); // TODO test thourougly when the shop is working correctly
+
+			foreach (var key in tools.Keys) {
 				UpdateUI(key);
 			}
+
+			layermasksIgnored = ~(1 << LayerMask.NameToLayer("PlutoniumLayer") | 1 << LayerMask.NameToLayer("TriggersLayer") | 1 << LayerMask.NameToLayer("PenguinLayer")); // ignore all 3 layers
+			DisableArrowTools();
+		}
+
+		private void DisableArrowTools() {
+			//find all tools on the scene and scale the arrow to 0
+			GameObject[] switchlanes = GameObject.FindGameObjectsWithTag(TagConstants.SWITCHTEMPLATE);
+			GameObject[] jumps = GameObject.FindGameObjectsWithTag(TagConstants.JUMPTEMPLATE);
+			Transform[] trans;
+			foreach ( GameObject go in switchlanes ) {
+				trans = go.GetComponentsInChildren<Transform>();
+				for ( int i = 0 ; i < trans.Length ; i++ ) {
+					if ( trans[i].tag == TagConstants.LANECHANGEARROW ) {
+						trans[i].localScale = Vector3.zero;
+						break;
+					}
+				}
+			}
+			foreach ( GameObject go in jumps ) {
+				trans = go.GetComponentsInChildren<Transform>();
+				for ( int i = 0 ; i < trans.Length ; i++ ) {
+					if ( trans[i].tag == TagConstants.JUMPARROW ) {
+						trans[i].localScale = Vector3.zero;
+						break;
+					}
+				}
+			}
+		}
+
+		private void HandleFreezetime() {
+			freezeTime_UI_Image = GameObject.FindGameObjectWithTag(TagConstants.UI.IN_GAME_TOOL_FREEZE_TIME);
+			freezeTime_UI_Image.SetActive(false); // Disable Freeze time UI by default
+
+			if (GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME) != null) {
+				freezeTimeTool = GameObject.FindGameObjectWithTag(TagConstants.Tool.FREEZE_TIME);
+				if (tools[TagConstants.Tool.FREEZE_TIME].Count > 0) {
+					freezeTime_UI_Image.SetActive(true); // Enable freeze time UI when it is available
+				}
+			}
+
 		}
 
 		private void PoolSystem(GameObject spawnPool) {
@@ -90,14 +133,11 @@ namespace Assets.scripts.UI.screen.ingame {
 			if(gameStateManager.IsGameFrozen())
 				return;
 
+		    if (clickBlocked) return;
+
 			switch(toolName) {
 			case TagConstants.JUMPTEMPLATE:
-			case TagConstants.BRIDGETEMPLATE:
-			case TagConstants.ENLARGETEMPLATE:
-			case TagConstants.MINIMIZETEMPLATE:
-			case TagConstants.SPEEDTEMPLATE:
 			case TagConstants.SWITCHTEMPLATE:
-			//case TagConstants.METALTEMPLATE:
 				PlaceTool(tools[toolName]);
 				break;
 			case TagConstants.Tool.FREEZE_TIME:
@@ -130,6 +170,14 @@ namespace Assets.scripts.UI.screen.ingame {
 			inputManager.BlockCameraMovement();
 			dragging = true;
 			currentObject = tools[count - 1];
+			// show the arrow in tool
+			foreach (Transform t in currentObject.GetComponentsInChildren<Transform>()) {
+				if (t.tag == TagConstants.LANECHANGEARROW) {
+					t.localScale = new Vector3(1, 1, 1);
+				} else if (t.tag == TagConstants.JUMPARROW) {
+					t.localScale = new Vector3(2, 2, 2);
+				}
+			}
 			currentObject.SetActive(true);
 			SaveOrigColors(currentObject);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
@@ -205,7 +253,7 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private bool IsATool(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layermasksIgnored)
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
@@ -215,14 +263,17 @@ namespace Assets.scripts.UI.screen.ingame {
 			return true;
 		}
 
+
 		private void IsAToolHit(Vector3 pos) {
 			RaycastHit hit;
-			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f)
+			
+			if(!Physics.Raycast(cam.ScreenPointToRay(pos), out hit, 400f, layermasksIgnored) //ignore plutonium layer
 			    || hit.transform == null
 			    || hit.transform.parent == null
 			    || hit.transform.parent.gameObject.GetComponent<components.Draggable>() == null) {
 				return;
 			}
+			wasToolHit = true;
 			dragging = true;
 			inputManager.BlockCameraMovement();
 			hit.transform.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -240,7 +291,10 @@ namespace Assets.scripts.UI.screen.ingame {
 
 		private void ReleaseTool(bool doubleTap) {
 			if(doubleTap) { // return tool back
+				wasToolHit=false;
 				dragging = false;
+				// tooltip for remove tool finishes
+				TooltipsRemove();
 				FlyGOToButton(currentObject);
 
 			} else { // place tool to the scene
@@ -259,10 +313,18 @@ namespace Assets.scripts.UI.screen.ingame {
 				}
 				dragging = false;
 				currentObject.GetComponentInChildren<BoxCollider>().enabled = true;
+				if ( wasToolHit ) {
+					//tooltip for move tool finishes
+					TooltipsMove(); 
+					wasToolHit = false;
+				} else {
+					//tooltip for place tool finishes
+					TooltipsPlace(); 
+				}
 			}
-			if (!tutorialShown) {
+		/*	if (!tutorialShown) {
 				DismissTutorial(currentObject.tag);
-			}
+			}*/
 
 			ChangeObjColotToOriginal(currentObject);
 			StartCoroutine(CameraHack());
@@ -340,9 +402,10 @@ namespace Assets.scripts.UI.screen.ingame {
 				ChangeObjColorToRed(obj);
 				return;
 			}
+
 			doubleTap = false;
 			obj.transform.position = hit.point;
-			snapping.Snap(hit.transform.position, obj.transform);
+			snapping.Snap(new Vector3(hit.point.x,hit.transform.position.y,hit.transform.position.z), obj.transform);
 			ChangeObjColorToGreen(obj);
 		}
 
@@ -381,6 +444,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		private void FlyGOToButton(GameObject obj){
 			Vector3 flyTo;
 			GameObject go;
+		    clickBlocked = true;
 			switch (obj.transform.tag) {
 				case TagConstants.JUMPTEMPLATE:
 				case TagConstants.JUMP:
@@ -394,12 +458,11 @@ namespace Assets.scripts.UI.screen.ingame {
 					flyTo = Camera.main.ScreenToWorldPoint(new Vector3(go.transform.position.x, go.transform.position.y, 10f));
 					StartCoroutine(FlyingObjToButton(obj, flyTo));
 					break;
-			
 			}
 		}
 
 		private IEnumerator FlyingObjToButton(GameObject obj, Vector3 destination){
-			Vector3 startPos = obj.transform.position;
+		    Vector3 startPos = obj.transform.position;
 			Vector3 origScale = obj.transform.localScale;
 			float startTime = Time.time;
 			float speedFactor = 10f, journeyLength = Vector3.Distance(startPos, destination);
@@ -413,42 +476,47 @@ namespace Assets.scripts.UI.screen.ingame {
 				obj.transform.localScale = origScale * (1f - fracJourney);
 				yield return new WaitForEndOfFrame();
 			}
-			obj.transform.localScale = origScale;
+		    AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+		    obj.transform.localScale = origScale;
 			PutObjectInPool(currentObject.transform);
 			UpdateUI(currentObject.tag);
 			currentObject.SetActive(false);
 			currentObject.GetComponentInChildren<BoxCollider>().enabled = false;
-			currentObject = null;
+		    currentObject = null;
 			ChangeColor(notReturning);
 			doubleTap = false;
-			AkSoundEngine.PostEvent(SoundConstants.ToolSounds.TOOL_RETURNED, currentObject);
+		    clickBlocked = false;
 		}
 
-		/*
-		public void OnPointerEnter(PointerEventData data){
-			if ( !dragging ) {
-				return;
+		private void TooltipsPlace() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Place && tooltip.IsActive()) {
+					tooltip.SetPlace(true);
+					return;
+				}
 			}
-
-			ChangeColor(returning);
-			shouldReturn = true;
 		}
 
-		public void OnPointerExit(PointerEventData data){
-			if ( !dragging ) {
-				return;
+		private void TooltipsMove() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Move && tooltip.IsActive()) {
+					tooltip.SetMove(true);
+					return;
+				}
 			}
-
-			ChangeColor(notReturning);
-			StartCoroutine(CheckIfItemShouldBeDestroyedUsingTouch());
 		}
 
-		private IEnumerator CheckIfItemShouldBeDestroyedUsingTouch(){
-			yield return new WaitForSeconds(0.2f);
-			shouldReturn = false;
-			ChangeColor(notReturning);
+		private void TooltipsRemove() {
+			foreach ( GameObject t in tooltips ) {
+				Tooltip tooltip = t.GetComponent<Tooltip>();
+				if ( tooltip.GetType() == Tooltip.Type.Remove && tooltip.IsActive()) {
+					tooltip.SetRemove(true);
+					return;
+				}
+			}
 		}
-		*/
 
 		private IEnumerator CameraHack() {
 			yield return new WaitForSeconds(0.2f);

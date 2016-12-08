@@ -5,13 +5,15 @@ using UnityEngine;
 namespace Assets.scripts.controllers.actions.movement {
     public class StartSlidingAction : Action {
         private Directionable directionable;
-        private Animator animator;
-        private CouroutineDelegateHandler delegator;
+		private Animator animator;
+		private string animation;
+		private CouroutineDelegateHandler delegator;
 
-        public StartSlidingAction(CouroutineDelegateHandler delegator, Animator anim, Directionable directionable) {
+        public StartSlidingAction(CouroutineDelegateHandler delegator, Animator anim, string animation, Directionable directionable) {
             this.directionable = directionable;
             this.animator = anim;
             this. delegator = delegator;
+			this.animation = animation;
         }
 
         public void Setup(GameObject gameObject) {
@@ -19,7 +21,7 @@ namespace Assets.scripts.controllers.actions.movement {
         }
 
         public void Execute() {
-            animator.SetBool(AnimationConstants.SLIDE, true);
+            animator.SetBool(animation, true);
             delegator.StartCoroutine(IncreasePenguinSpeed(directionable, animator));
         }
 
@@ -28,11 +30,13 @@ namespace Assets.scripts.controllers.actions.movement {
 
             p.SetSlide(true);
             while (p.IsSliding()) {
-                p.SetSpeed(p.GetSpeed() + p.GetSlideSpeedupIncrement());
+                if(p.GetSpeed() <= p.GetSlideMaxSpeedMult())
+                    p.SetSpeed(p.GetSpeed() + p.GetSlideSpeedupIncrement());
+//                Debug.Log("Current speed: " + p.GetSpeed());
                 yield return new WaitForFixedUpdate();
             }
 
-            anim.SetBool(AnimationConstants.SLIDE, false);
+            anim.SetBool(animation, false);
             p.SetSpeed(originalSpeed);
             yield return null;
         }

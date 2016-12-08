@@ -8,6 +8,7 @@ namespace Assets.scripts.components {
 		float GetJumpSpeed();
 		float GetWalkSpeed();
 		float GetSlideSpeedupIncrement();
+		float GetSlideMaxSpeedMult();
 		void SetSpeed(float speed);
 		float GetSpeed();
 		void SetScale(Vector3 scale);
@@ -15,6 +16,14 @@ namespace Assets.scripts.components {
 		void SetJump(bool jump);
 		void SetSlide(bool jump);
 		bool GetJump();
+
+		bool GetDoubleJump ();
+
+		bool GetSpeedUp();
+
+		void SetDoubleJump (bool b);
+
+		Assets.scripts.character.Penguin.Lane GetLane ();
 
 		void SetCurve(Penguin.CurveType type, AnimationCurve curve);
 		AnimationCurve GetCurve(Penguin.CurveType type);

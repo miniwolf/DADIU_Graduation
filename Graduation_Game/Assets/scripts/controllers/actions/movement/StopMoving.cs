@@ -1,27 +1,23 @@
-﻿using UnityEngine;
-using Assets.scripts.character;
-using Assets.scripts.controllers.actions;
+﻿using Assets.scripts.character;
 using Assets.scripts.components;
-using Assets.scripts.controllers;
+using UnityEngine;
 
-namespace AssemblyCSharp {
+namespace Assets.scripts.controllers.actions.movement {
 	public class StopMoving : Action {
 		private readonly Actionable<ControllableActions> actionable;
-		Penguin penguin;
+		private Penguin penguin;
 
-		public StopMoving(Actionable<ControllableActions> actionable){
+		public StopMoving(Actionable<ControllableActions> actionable) {
 			this.actionable = actionable;
 		}
 
-
-		public void Setup(GameObject go){
+		public void Setup(GameObject go) {
 			penguin = go.GetComponent<Penguin>();
 		}
 
-		public void Execute(){
+		public void Execute() {
 			penguin.SetStop(true);
 			actionable.ExecuteAction(ControllableActions.Freeze);
 		}
 	}
 }
-

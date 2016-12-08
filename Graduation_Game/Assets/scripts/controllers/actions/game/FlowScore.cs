@@ -5,14 +5,17 @@ using Assets.scripts.components;
 using System.Collections;
 using Assets.scripts;
 using UnityEngine.UI;
+using Assets.scripts.UI.inventory;
 
 namespace AssemblyCSharp {
 	public class FlowScore : Action{
 		private GameObject canvas;
 		private CanvasController canvasController;
 		private CouroutineDelegateHandler handler;
-		private int plutoniumThisLevelint, totalPlutonium, target;
-		private Text plutoniumCounter, plutoniumThisLevel, plutoniumTotal;
+		private int plutoniumThisLevelint, target;
+		private Item<int> totalPlutonium;
+		private Text plutoniumCounter; 
+		private Text[] plutoniumThisLevel, plutoniumTotal;
 
 
 		public FlowScore (CouroutineDelegateHandler handler) {
@@ -25,26 +28,43 @@ namespace AssemblyCSharp {
 			plutoniumCounter = canvasController.GetPlutoniumCounter();
 			plutoniumTotal = canvasController.GetPlutoniumTotal();
 			plutoniumThisLevel = canvasController.GetPlutoniumThisLevel();
-			totalPlutonium = PlayerPrefs.GetInt("Plutonium");
+			totalPlutonium = Inventory.cash;
 		}
 
 		public void Execute () {
-			target = totalPlutonium + int.Parse(plutoniumThisLevel.text);
-			plutoniumTotal.GetComponent<Text>().text = totalPlutonium.ToString();
-			plutoniumThisLevel.GetComponent<Text>().text = plutoniumCounter.text;
+			AssignTotalPlutonium();
+			AssignThisLevelPlutonium();
 			plutoniumThisLevelint = int.Parse(plutoniumCounter.text);
+			target = totalPlutonium.GetValue() + plutoniumThisLevelint;
 
 			handler.StartCoroutine(FlowTheScore());
 		}
+
+		private void AssignTotalPlutonium(){
+			for (int i = 0; i < plutoniumTotal.Length; i++) {
+				plutoniumTotal[i].text = totalPlutonium.GetValue().ToString();
+			}
+		}
+		
+		private void AssignThisLevelPlutonium(){
+			for (int i = 0; i < plutoniumThisLevel.Length; i++) {
+				plutoniumThisLevel[i].text = plutoniumThisLevelint.ToString();
+			}
+		}
+
 
 		private IEnumerator FlowTheScore() {
 			yield return new WaitForSeconds(canvasController.timeBeforeScoreFlow); //Seems strange atm
 
 			while (plutoniumThisLevelint > 0) {
+				// place sound for score flow tick	
+				float score = 100 - (plutoniumThisLevelint / float.Parse(plutoniumCounter.text) * 100);
+				AkSoundEngine.SetRTPCValue("count_up_pitch", score);
+				AkSoundEngine.PostEvent("end_screen_count_up", Camera.main.gameObject);
 				yield return new WaitForSeconds(GetTimeFromCurve());
 			}
 
-			PlayerPrefs.SetInt("Plutonium", totalPlutonium);
+			//PlayerPrefs.SetInt("Plutonium", totalPlutonium);
 			//handler.StartCoroutine(LoadMainMenu());
 			yield return null;
 		}
@@ -54,22 +74,22 @@ namespace AssemblyCSharp {
 			if (plutoniumThisLevelint > 100) {
 				int portion = Mathf.RoundToInt(plutoniumThisLevelint / 50);
 				plutoniumThisLevelint -= portion;
-				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
-				plutoniumCounter.text = plutoniumThisLevelint.ToString();
+				AssignThisLevelPlutonium();
+				//plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			else {
 				int portion = 1;
 				plutoniumThisLevelint -= portion;
-				plutoniumThisLevel.text = plutoniumThisLevelint.ToString();
-				plutoniumCounter.text = plutoniumThisLevelint.ToString();
+				AssignThisLevelPlutonium();
+				//plutoniumCounter.text = plutoniumThisLevelint.ToString();
 				UpdateScore(portion);
 			}
 			return t;
 		}
 		private void UpdateScore(float portion) {
-			totalPlutonium += (int)portion;
-			plutoniumTotal.text = totalPlutonium.ToString();
+			totalPlutonium.SetValue(totalPlutonium.GetValue() + (int)portion);
+			AssignTotalPlutonium();
 		}
 	}
 }

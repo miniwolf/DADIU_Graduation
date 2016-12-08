@@ -11,7 +11,7 @@ using Assets.scripts.level;
 
 namespace Assets.scripts.components.registers {
 	public class InjectionRegister : MonoBehaviour {
-		private static readonly List<GameEntity> components = new List<GameEntity>();
+		private static readonly Queue<GameEntity> components = new Queue<GameEntity>();
 		private static bool finished;
 		private static LevelSettings levelSettings;
 		private static CouroutineDelegateHandler handler;
@@ -23,6 +23,9 @@ namespace Assets.scripts.components.registers {
 		private static GameObject splat;
 		private static GameFactory gameFactory;
 		public GameObject penguin;
+		private static GameObject tooltipPanel;
+
+		private static System.Object locc = new System.Object();
 
 		protected void Awake() {
 			snap = new SnappingTool();
@@ -30,7 +33,7 @@ namespace Assets.scripts.components.registers {
 			if ( levelObj != null ) {
 				levelSettings = levelObj.GetComponent<LevelSettings>();
 			}
-
+			tooltipPanel = GameObject.FindGameObjectWithTag(TagConstants.UI.TOOLTIP_PANEL);
 			handler = gameObject.GetComponentInChildren<CouroutineDelegateHandler>();
 			pickupFactory = new PickupFactory(handler, penguin);
 			gameFactory = new GameFactory(handler);
@@ -42,18 +45,22 @@ namespace Assets.scripts.components.registers {
 
 		protected void Start() {
 			InitializeComponents();
-			components.Clear();
 			finished = true;
 		}
 
 		protected void OnDestroy() {
-			components.Clear();
+			lock ( locc ) {
+				components.Clear();
+			}
 		}
 
 		private static void InitializeComponents() {
-			foreach(var component in components) {
-				InitializeComponent(component);
-				component.SetupComponents();
+			lock ( locc ) {
+				while ( components.Count != 0 ) {
+					var component = components.Dequeue();
+					InitializeComponent(component);
+					component.SetupComponents();
+				}
 			}
 		}
 
@@ -77,9 +84,6 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.CANVAS:
 					gameFactory.BuildCanvas(component.GetActionable<GameActions>());
 					break;
-				case TagConstants.TOOLTIP:
-					component.GetGameObject().GetComponent<Tooltip>().SetGameStateManager(gameStateManager);
-					break;
 				case TagConstants.STAR1: case TagConstants.STAR2: case TagConstants.STAR3:
 					gameFactory.BuildStar(component.GetActionable<GameActions>());
 					break;
@@ -101,7 +105,17 @@ namespace Assets.scripts.components.registers {
 				case TagConstants.HATCHABLE_PENGUIN:
 					pickupFactory.BuildHatchableEgg(component.GetActionable<PickupActions>());
 					break;
+				case TagConstants.JUMP:
+					ToolFactory.BuildJump(component.GetActionable<ToolActions>(),
+						component.GetGameObject().transform.parent.gameObject.GetComponentInChildren<Animator>());
+					break;
 				case TagConstants.CUTSCENE:
+					break;
+				case TagConstants.TOOLTIP:
+					component.GetGameObject().GetComponent<Tooltip>().SetPanel(tooltipPanel);
+					break;
+				case TagConstants.UI.PENGUINSPEEDUPBUTTON:
+					gameFactory.BuildSpeedButton(component.GetActionable<GameActions>());
 					break;
 				default:
 					throw new NotImplementedException("Tag has no specific behaviour yet: <" + component.GetTag() + "> this does maybe not need to be registered");
@@ -109,16 +123,15 @@ namespace Assets.scripts.components.registers {
 		}
 
 		public static void Register(GameEntity component) {
-			components.Add(component);
+			lock ( locc ) {
+				components.Enqueue(component);
+			}
 		}
 
 		public static void Redo() {
-			if ( !finished ) {
-				return;
+			lock ( locc ) {
+				InitializeComponents();
 			}
-
-			InitializeComponents();
-			components.Clear();
 		}
 	}
 }

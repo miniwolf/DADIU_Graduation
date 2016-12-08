@@ -1,68 +1,80 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Assets.scripts;
+using Assets.scripts.UI.mainmenu;
+using Assets.scripts.controllers.actions.game;
 
+// TODO rename this file to represent sliders and particle systems, not images
 namespace Assets.scripts.UI {
 	public class FillImage : MonoBehaviour {
-		public static float fillAmountTime = 1f;
+		public Slider[] sliders;
+		public float fillAmountTime = 5f;
 
+		private MainMenuScript mainMenuScript;
+		private static int numOfLvls;
 		private float fillAmount;
-		public static int numOfLvls = 5;
-		public Image[] fillImages = new Image[numOfLvls - 1];
-		public ParticleSystem[] particleSystems = new ParticleSystem[numOfLvls - 1];
-		private string[] levelStatusNames = new string[numOfLvls];
-		private string status = "status";
-		private string completed = "completed";
+		private string[] levelStatusNames ;
 		private int fillOverTimeIdx;
+		private MainMenuScript.LvlData[] levels;
 
 		void Start() {
-			levelStatusNames = InitilizeLevelStatusNames(levelStatusNames);
-		}
+			mainMenuScript = GetComponent<MainMenuScript>();
+			levels = GetComponent<MainMenuScript>().levels;
+			numOfLvls = levels.Length;
+			levelStatusNames = new string[numOfLvls];
+			fillOverTimeIdx = GetLastLevelIndexToFill(levels);
 
+			LoadPreviouslyFilledSliders();
+		}
+		
 		// Update is called once per frame
-		void LateUpdate() {
-
-			fillOverTimeIdx = GetLastLevelIndexToFill(levelStatusNames);
-
-			FillLevelLines(fillOverTimeIdx);
-
-			if (fillOverTimeIdx > -1) {
-				FillOverTime(fillImages[fillOverTimeIdx], particleSystems[fillOverTimeIdx], fillAmountTime);
+		void LateUpdate() {			
+			if (fillOverTimeIdx > -1 && EndGame.isNewLevelWon && !mainMenuScript.isLastLevelIdx()) {
+				if(fillOverTimeIdx == 5) {
+					if(mainMenuScript.isNextWorldAccessible()) FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+				} else {
+					FillOverTime(sliders[fillOverTimeIdx], fillAmountTime);
+				}
 			}
 		}
 
-		// levelStatusNames will include the PlayerPrefs level status names
-		private string[] InitilizeLevelStatusNames(string[] levelStatusNames) {
-			for (int i = 0; i < levelStatusNames.Length; i++) {
-				levelStatusNames[i] = "Level" + (i + 1).ToString() + status;
-			}
-			return levelStatusNames;
+		// Time it takes to fill the slider
+		// used in MainMenuScript
+		public float GetFillAmountTime() {
+			return fillAmountTime;
 		}
 
-		// Fills previously completed level lines instantly
-		private void FillLevelLines(int fillOverTimeIdx) {
-			for (int i = 0; i < fillOverTimeIdx; i++) {
-				Fill(fillImages[i]);
+		private void LoadPreviouslyFilledSliders() {
+			int fillIndex = fillOverTimeIdx;
+
+			// We want to use the last index to load the slider over time
+			// whenever a fresh level is won
+			if (EndGame.isNewLevelWon) fillIndex = fillIndex - 1; 
+
+			for (int i = 0; i <= fillIndex; i++) {
+				try {
+					Fill(sliders[i]);
+				} catch (Exception e) {
+					Debug.Log(e);
+				}
 			}
 		}
 
 		// Fills the last completed level line over time
-		private void FillOverTime(Image image, ParticleSystem ps, float fillTime) {
+		private void FillOverTime(Slider slider, float fillTime) {
 			if (Time.timeSinceLevelLoad < fillTime) {
 				float fillAmountChange = Time.deltaTime / fillTime;
-				image.fillAmount += fillAmountChange;
-			}
-			else {
-				ps.Play();
-
+				slider.value += fillAmountChange;
 			}
 		}
 
 		// Returns the index of the last level that was completed,
 		// and -1 if no level was completed
-		private int GetLastLevelIndexToFill(string[] levelStatusNames) {
-			for (int i = levelStatusNames.Length - 1; i > -1; i--) {
-				if (PlayerPrefs.GetString(levelStatusNames[i]) == completed) {
+		private int GetLastLevelIndexToFill(MainMenuScript.LvlData[] levels) {
+			for (int i = levels.Length - 1; i > -1; i--) {
+				if(Prefs.IsLevelStatusComplete(levels[i].sceneFileName)) {
 					fillOverTimeIdx = i;
 					return fillOverTimeIdx;
 				}
@@ -70,9 +82,9 @@ namespace Assets.scripts.UI {
 			return -1;
 		}
 
-		// Instantly fills an image
-		private void Fill(Image image) {
-			image.fillAmount = 1f;
+		// Instantly fills a slider
+		private void Fill(Slider slider) {
+			slider.value = 1f;
 		}
 	}
 }

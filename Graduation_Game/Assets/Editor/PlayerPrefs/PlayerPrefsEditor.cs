@@ -17,16 +17,29 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<int> cash = Inventory.cash;
 		private readonly Item<int> key = Inventory.key;
 		private readonly Item<string> loginDate = Inventory.loginDate;
-		private readonly Item<int> level1 = Inventory.level1;
-		private readonly Item<int> level2 = Inventory.level2;
-		private readonly Item<int> level3 = Inventory.level3;
-		private readonly Item<int> level4 = Inventory.level4;
-		private readonly Item<int> level5 = Inventory.level5;
-		private readonly Item<int> level6 = Inventory.level6;
-		private readonly Item<int> level7 = Inventory.level7;
-		private readonly Item<int> level8 = Inventory.level8;
-		private readonly Item<int> level9 = Inventory.level9;
-		private readonly Item<int> level10 = Inventory.level10;
+
+		private readonly Item<int> level1stars = Inventory.level1stars;
+		private readonly Item<int> level2stars = Inventory.level2stars;
+		private readonly Item<int> level3stars = Inventory.level3stars;
+		private readonly Item<int> level4stars = Inventory.level4stars;
+		private readonly Item<int> level5stars = Inventory.level5stars;
+		private readonly Item<int> level6stars = Inventory.level6stars;
+		private readonly Item<int> level7stars = Inventory.level7stars;
+		private readonly Item<int> level8stars = Inventory.level8stars;
+		private readonly Item<int> level9stars = Inventory.level9stars;
+		private readonly Item<int> level10stars = Inventory.level10stars;
+
+		private readonly Item<int> level1won = Inventory.level1won;
+		private readonly Item<int> level2won = Inventory.level2won;
+		private readonly Item<int> level3won = Inventory.level3won;
+		private readonly Item<int> level4won = Inventory.level4won;
+		private readonly Item<int> level5won = Inventory.level5won;
+		private readonly Item<int> level6won = Inventory.level6won;
+		private readonly Item<int> level7won = Inventory.level7won;
+		private readonly Item<int> level8won = Inventory.level8won;
+		private readonly Item<int> level9won = Inventory.level9won;
+		private readonly Item<int> level10won = Inventory.level10won;
+
 		private readonly Item<string> level1status = Inventory.level1status;
 		private readonly Item<string> level2status = Inventory.level2status;
 		private readonly Item<string> level3status = Inventory.level3status;
@@ -37,6 +50,8 @@ namespace Assets.Editor.PlayerPrefs {
 		private readonly Item<string> level8status = Inventory.level8status;
 		private readonly Item<string> level9status = Inventory.level9status;
 		private readonly Item<string> level10status = Inventory.level10status;
+
+
 
 		private readonly Item<int> totalStars = Inventory.totalStars;
 
@@ -50,6 +65,55 @@ namespace Assets.Editor.PlayerPrefs {
 		}
 
 		private void OnGUI() {
+
+			if (GUILayout.Button("Delete playerprefs for secretLevel")) {
+				UnityEngine.PlayerPrefs.DeleteKey("hasVisited");
+				UnityEngine.PlayerPrefs.DeleteKey("backFromSecret");
+			}
+
+
+			if (GUILayout.Button("Reset level progression values")) {
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVELPLAYED);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.COLLECTEDSTARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.TOTALSTARS);
+
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVELINDEX);
+
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL1STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL2STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL3STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL4STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL5STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL6STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL7STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9STARS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10STARS);
+
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL1STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL2STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL3STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL4STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL5STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL6STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL7STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9STATUS);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10STATUS);
+
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL1WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL2WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL3WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL4WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL5WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL6WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL7WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL8WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL9WON);
+				UnityEngine.PlayerPrefs.DeleteKey(InventoryConstants.LEVEL10WON);
+			}
+
+
 			levelPlayed.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVELPLAYED, levelPlayed.GetValue()));
 			DrawEntry(InventoryConstants.COLLECTEDSTARS, collectedStars);
 			DrawEntry(InventoryConstants.HASINITIALIZED, hasInitialized);
@@ -60,19 +124,30 @@ namespace Assets.Editor.PlayerPrefs {
 			DrawEntry(InventoryConstants.CASH, cash);
 			DrawEntry(InventoryConstants.KEY, key);
 			loginDate.SetValue(EditorGUILayout.TextField(InventoryConstants.LASTLOGIN, loginDate.GetValue()));
-			DrawEntry(InventoryConstants.LEVEL1, level1);
-			DrawEntry(InventoryConstants.LEVEL2, level2);
-			DrawEntry(InventoryConstants.LEVEL3, level3);
-			DrawEntry(InventoryConstants.LEVEL4, level4);
-			DrawEntry(InventoryConstants.LEVEL5, level5);
-			DrawEntry(InventoryConstants.LEVEL6, level6);
-			DrawEntry(InventoryConstants.LEVEL7, level7);
-			DrawEntry(InventoryConstants.LEVEL8, level8);
-			DrawEntry(InventoryConstants.LEVEL9, level9);
-			DrawEntry(InventoryConstants.LEVEL10, level10);
-			DrawEntry(InventoryConstants.LEVEL10, level10);
 
 			DrawEntry(InventoryConstants.TOTALSTARS, totalStars);
+
+			DrawEntry(InventoryConstants.LEVEL1STARS, level1stars);
+			DrawEntry(InventoryConstants.LEVEL2STARS, level2stars);
+			DrawEntry(InventoryConstants.LEVEL3STARS, level3stars);
+			DrawEntry(InventoryConstants.LEVEL4STARS, level4stars);
+			DrawEntry(InventoryConstants.LEVEL5STARS, level5stars);
+			DrawEntry(InventoryConstants.LEVEL6STARS, level6stars);
+			DrawEntry(InventoryConstants.LEVEL7STARS, level7stars);
+			DrawEntry(InventoryConstants.LEVEL8STARS, level8stars);
+			DrawEntry(InventoryConstants.LEVEL9STARS, level9stars);
+			DrawEntry(InventoryConstants.LEVEL10STARS, level10stars);
+
+			DrawEntry(InventoryConstants.LEVEL1WON, level1won);
+			DrawEntry(InventoryConstants.LEVEL2WON, level2won);
+			DrawEntry(InventoryConstants.LEVEL3WON, level3won);
+			DrawEntry(InventoryConstants.LEVEL4WON, level4won);
+			DrawEntry(InventoryConstants.LEVEL5WON, level5won);
+			DrawEntry(InventoryConstants.LEVEL6WON, level6won);
+			DrawEntry(InventoryConstants.LEVEL7WON, level7won);
+			DrawEntry(InventoryConstants.LEVEL8WON, level8won);
+			DrawEntry(InventoryConstants.LEVEL9WON, level9won);
+			DrawEntry(InventoryConstants.LEVEL10WON, level10won);
 
 			level1status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL1STATUS, level1status.GetValue()));
 			level2status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL2STATUS, level2status.GetValue()));
@@ -84,12 +159,6 @@ namespace Assets.Editor.PlayerPrefs {
 			level8status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL8STATUS, level8status.GetValue()));
 			level9status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL9STATUS, level9status.GetValue()));
 			level10status.SetValue(EditorGUILayout.TextField(InventoryConstants.LEVEL10STATUS, level10status.GetValue()));
-
-		
-			if (GUILayout.Button("Delete playerprefs for secretLevel")) {
-				UnityEngine.PlayerPrefs.DeleteKey("hasVisited");
-				UnityEngine.PlayerPrefs.DeleteKey("backFromSecret");
-			}
 		}
 
 		private void DrawEntry(string s, Item<int> item) {

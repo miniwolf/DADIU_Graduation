@@ -5,80 +5,67 @@ using System.Collections.Generic;
 using Assets.scripts.components.registers;
 using Assets.scripts.gamestate;
 using Assets.scripts.UI.screen.ingame;
-using JetBrains.Annotations;
 using System.Collections;
-using Assets.scripts.sound;
 
 namespace Assets.scripts.character {
 	public class Penguin : ActionableGameEntityImpl<ControllableActions>, Directionable, Killable, GameFrozenChecker, Notifiable {
 		public enum Lane {Left, Right};
 		public enum CurveType {Speed, Enlarge, Minimize};
 		public enum Weight {Normal, Big, Small}
-		public float timeOnWinPlatform = 3.5f;
 
 		public Vector3 direction;
+		private Vector3 screenPoint;
+		public float timeOnWinPlatform = 2.75f;
 		public float jumpSpeed = 7;
 		public float walkSpeed = 5;
-		public float slideSpeedupIncrement = 0.1f;
+		public float slideSpeedupIncrement = 0.01f;
+		public float slideMaxSpeedMult = 20;
 		public float speed;
+		private float groundY;
 		public bool jump;
+		public bool isSliding;
+		public bool notWalkingOnSolidSurface;
+		private bool doubleJump, speedUp, isDead, isFrozen, isRunning, isEnlarging, isMinimizing, isStopped;
 		public Lane lane = Lane.Left;
 		public Lane goingToLane = Lane.Left;
-	    public bool isSliding;
-	    private bool isDead;
-		private bool isFrozen;
 		private CharacterController characterController;
-		private float groundY;
-		private bool isRunning;
-		private bool isEnlarging;
-		private bool isMinimizing;
 		private Dictionary<CurveType, AnimationCurve> curveDict;
 		private Dictionary<CurveType, float> initialTimeDict;
 		private Weight weight;
-	    private GameStateManager gameStateManager;
-		private bool isStopped = false;
-	    private NotifierSystem notifierSystem;
-	    private Camera deathCam;
+		private GameStateManager gameStateManager;
+		private NotifierSystem notifierSystem;
+		private Camera deathCam;
+		private Moveable moveable;
 
-	    void Start() {
+		private void Start() {
+			//moveable = new Moveable();
 			groundY = transform.position.y;
 			characterController = GetComponent<CharacterController>();
 			speed = walkSpeed;
 			curveDict = new Dictionary<CurveType, AnimationCurve>();
 			initialTimeDict = new Dictionary<CurveType, float>();
 			weight = Weight.Normal;
-	        deathCam =  GetComponentInChildren<Camera>();
-	        deathCam.enabled = false;
-	    }
+			deathCam =  GetComponentInChildren<Camera>();
+			deathCam.enabled = false;
+		}
 
-		void FixedUpdate() {
+		private void FixedUpdate() {
 			if (isStopped) {
 				return;
 			}
 			// TODO make a bool variable to disable (or not) the buttons in the UI
 			// so game designer can try and decide what option is better
 
-		    if (gameStateManager.IsGameFrozen()) {
-		        ExecuteAction(ControllableActions.Freeze);
-		        return;
-		    } else {
-		        ExecuteAction(ControllableActions.UnFreeze);
-		    }
+			if (gameStateManager.IsGameFrozen()) {
+				ExecuteAction(ControllableActions.Freeze);
+				return;
+			} else {
+				ExecuteAction(ControllableActions.UnFreeze);
+			}
 
 			if (!isDead) {
 				ExecuteAction(ControllableActions.Move);
-				/*
-				if ( isRunning ) {
-					ExecuteAction(ControllableActions.Speed);
-				}
-				if ( isEnlarging ) {
-					ExecuteAction(ControllableActions.Enlarge);
-				}
-				if ( isMinimizing ) {
-					ExecuteAction(ControllableActions.Minimize);
-				}*/
 			} else {
-			    
 				if ( !characterController.isGrounded ) {
 					//characterController.Move(new Vector3(0, -9.8f, 0) * Time.deltaTime);
 				} else {
@@ -88,25 +75,27 @@ namespace Assets.scripts.character {
 			}
 		}
 
-		 IEnumerator OnTriggerEnter(Collider collider) {
-			if (collider.transform.tag == TagConstants.WINZONE) {
-				ExecuteAction(ControllableActions.Celebrate);
-				ExecuteAction(ControllableActions.Win);
-				yield return new WaitForSeconds(timeOnWinPlatform);
-				ExecuteAction(ControllableActions.Stop);
-			}
+		private void OnCollisionEnter(Collision collision) {
+			notWalkingOnSolidSurface = collision.transform.tag == TagConstants.LANE;
 		}
 
-	    void OnDestroy() {
-	        StopSound();
-	        gameStateManager = null;
-	    }
+		private IEnumerator OnTriggerEnter(Collider collider) {
+			if ( collider.transform.tag != TagConstants.WINZONE ) {
+				yield break;
+			}
 
-	    private void StopSound()	    {
-	        AkSoundEngine.PostEvent(SoundConstants.PenguinSounds.STOP_MOVING, gameObject);
-	    }
+			ExecuteAction(ControllableActions.Celebrate);
+			ExecuteAction(ControllableActions.Win);
+			yield return new WaitForSeconds(timeOnWinPlatform);
+			//ExecuteAction(ControllableActions.Stop);
+			isStopped = true;
+		}
 
-	    public override string GetTag() {
+		private void OnDestroy() {
+			gameStateManager = null;
+		}
+
+		public override string GetTag() {
 			return TagConstants.PENGUIN;
 		}
 
@@ -170,16 +159,23 @@ namespace Assets.scripts.character {
 			return jumpSpeed;
 		}
 
-	    public float GetWalkSpeed() {
+		public float GetWalkSpeed() {
 			return walkSpeed;
 		}
 
-	    public float GetSlideSpeedupIncrement()
-	    {
-	        return slideSpeedupIncrement;
-	    }
+		public void SetWalkSpeed(float walkSpeed) {
+			this.walkSpeed = walkSpeed;
+		}
 
-	    public void SetSpeed(float speed) {
+		public float GetSlideSpeedupIncrement() {
+			return slideSpeedupIncrement;
+		}
+
+		public float GetSlideMaxSpeedMult() {
+			return slideMaxSpeedMult;
+		}
+
+		public void SetSpeed(float speed) {
 			this.speed = speed;
 		}
 
@@ -191,13 +187,28 @@ namespace Assets.scripts.character {
 			this.jump = jump;
 		}
 
-	    public void SetSlide(bool sliding)
-	    {
-	        isSliding = sliding;
-	    }
+		public void SetSlide(bool sliding) {
+			isSliding = sliding;
+		}
 
-	    public bool GetJump() {
+		public bool GetJump() {
 			return jump;
+		}
+
+		public bool GetDoubleJump(){
+			return doubleJump;
+		}
+
+		public void SetDoubleJump(bool doubleJump){
+			this.doubleJump = doubleJump;
+		}
+
+		public bool GetSpeedUp(){
+			return speedUp;
+		}
+
+		public void SetSpeedUp(bool speedUp){
+			this.speedUp = speedUp;
 		}
 
 		public float GetGroundY() {
@@ -209,7 +220,6 @@ namespace Assets.scripts.character {
 		}
 
 		public void Kill() {
-			StopSound();
 			isDead = true;
 		}
 
@@ -221,11 +231,11 @@ namespace Assets.scripts.character {
 			return isRunning;
 		}
 
-	    public bool IsSliding() {
-	        return isSliding;
-	    }
+		public bool IsSliding() {
+			return isSliding;
+		}
 
-	    public void SetRunning(bool running) {
+		public void SetRunning(bool running) {
 			isRunning = running;
 		}
 
@@ -253,6 +263,10 @@ namespace Assets.scripts.character {
 			return new Vector3(1, 1, 1);
 		}
 
+		public void SetStop(bool stop){
+			isStopped = stop;
+		}
+
 		public Weight GetWeight() {
 			return weight;
 		}
@@ -261,30 +275,25 @@ namespace Assets.scripts.character {
 			this.weight = weight;
 		}
 
-	    public void SetGameStateManager(GameStateManager manager) {
-	        gameStateManager = manager;
-	    }
-
-	    public void SetNotifyManager(NotifierSystem s)
-	    {
-	        notifierSystem = s;
-	        notifierSystem.Register(NotifierSystem.Event.PenguinDied, this);
-	    }
-
-		public void SetStop(bool stop){
-			isStopped = stop;
+		public void SetGameStateManager(GameStateManager manager) {
+			gameStateManager = manager;
 		}
 
-	    /// <summary>
-	    /// Triggered when some penguin dies
-	    /// </summary>
-	    /// <param name="penguin"></param>
-	    public void Notify(GameObject penguin) {
-	        ExecuteAction(ControllableActions.OtherPenguinDied);
-	    }
+		public void SetNotifyManager(NotifierSystem s) {
+			notifierSystem = s;
+			notifierSystem.Register(NotifierSystem.Event.PenguinDied, this);
+		}
 
-	    public Camera GetDeathCam() {
-	        return deathCam;
-	    }
+		/// <summary>
+		/// Triggered when some penguin dies
+		/// </summary>
+		/// <param name="penguin"></param>
+		public void Notify(GameObject penguin) {
+			ExecuteAction(ControllableActions.OtherPenguinDied);
+		}
+
+		public Camera GetDeathCam() {
+			return deathCam;
+		}
 	}
 }

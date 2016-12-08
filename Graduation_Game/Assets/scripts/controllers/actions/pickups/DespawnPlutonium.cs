@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.scripts.UI;
 
 namespace Assets.scripts.controllers.actions.pickups {
 	public class DespawnPlutonium : Action {
@@ -13,6 +14,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 		private RectTransform canvas;
 		private readonly CouroutineDelegateHandler delegator;
 		private Actionable<PickupActions> actionable;
+		private Text[] plutoniumThisLevel;
 
 		public DespawnPlutonium(CouroutineDelegateHandler d, Text counter, Actionable<PickupActions> actionable) {
 			delegator = d;
@@ -26,6 +28,7 @@ namespace Assets.scripts.controllers.actions.pickups {
 			plutoniumCounter = GameObject.FindGameObjectWithTag(TagConstants.PLUTONIUM_COUNTER_TEXT).GetComponent<Text>();
 			counter = plutoniumCounter.transform.parent.GetComponent<Image>();
 			canvas = GameObject.Find(TagConstants.CANVAS).GetComponent<RectTransform>();
+			plutoniumThisLevel = canvas.GetComponent<CanvasController>().GetPlutoniumThisLevel();
 		}
 
 		public void Execute() {
@@ -48,6 +51,9 @@ namespace Assets.scripts.controllers.actions.pickups {
 			if (currencyGameObject.GetComponent<ParticleSystem>() == null) {
 				ParticleSystem p = currencyGameObject.AddComponent<ParticleSystem>();
 				p.startSpeed = 10f;
+			} else {
+				gameObject.transform.parent.GetComponent<ParticleSystem>().Play();
+				gameObject.transform.parent.GetComponent<ParticleSystem>().startSpeed = 10;
 			}
 			float fraction = 0;
 			float speed = 1f;
@@ -70,12 +76,19 @@ namespace Assets.scripts.controllers.actions.pickups {
 				ApplyChange(1);
 				yield return new WaitForSeconds(0.02f);
 			}
+			UpdateCountOnEndSceneObject();
 			yield return null;
 		}
 
 		private void ApplyChange(int portion) {
 			currencyCounter.text = (int.Parse(currencyCounter.text) + portion).ToString();
 			pointsToAdd -= portion;
+		}
+
+		private void UpdateCountOnEndSceneObject(){
+			for (int i = 0; i < plutoniumThisLevel.Length; i++) {
+				plutoniumThisLevel[i].text = currencyCounter.text;
+			}
 		}
 	}
 }

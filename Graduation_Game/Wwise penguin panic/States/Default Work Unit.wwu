@@ -8,6 +8,7 @@
 						<State Name="None" ID="{59FD3DDF-0662-4D11-B5E5-737F80C771A3}"/>
 						<State Name="main_menu" ID="{E80893D3-AA5A-48DC-AF66-F474E4404B24}"/>
 						<State Name="in_game" ID="{7F1C5A79-24DB-4E47-AD1A-BB6CDF110C66}"/>
+						<State Name="freeze_transition" ID="{19795D63-2784-4C46-8D55-847BB29C5688}"/>
 					</ChildrenList>
 				</StateGroup>
 			</ChildrenList>
