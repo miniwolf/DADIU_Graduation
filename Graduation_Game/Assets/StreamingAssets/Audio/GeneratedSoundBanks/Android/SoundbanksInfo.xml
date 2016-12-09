@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -264,10 +264,6 @@
 					<ShortName>penguin_1-82.wav</ShortName>
 					<Path>SFX\penguin_1-82_2A4357BC.wem</Path>
 				</File>
-				<File Id="537707058" Language="SFX">
-					<ShortName>pp_menu_2.wav</ShortName>
-					<Path>SFX\pp_menu_2_0CDD8189.wem</Path>
-				</File>
 				<File Id="541496984" Language="SFX">
 					<ShortName>penguin_1-23.wav</ShortName>
 					<Path>SFX\penguin_1-23_08814749.wem</Path>
@@ -311,6 +307,14 @@
 				<File Id="613300534" Language="SFX">
 					<ShortName>footsteps_sandy_10.wav</ShortName>
 					<Path>SFX\footsteps_sandy_10_13FCDB32.wem</Path>
+				</File>
+				<File Id="613525973" Language="SFX">
+					<ShortName>penguin_panic_transition_final [mono].wav</ShortName>
+					<Path>SFX\penguin_panic_transition_final [mono]_0CDD8189.wem</Path>
+				</File>
+				<File Id="617918450" Language="SFX">
+					<ShortName>penguin_panic_menu_final [mono].wav</ShortName>
+					<Path>SFX\penguin_panic_menu_final [mono]_0CDD8189.wem</Path>
 				</File>
 				<File Id="619398126" Language="SFX">
 					<ShortName>penguin_1-53.wav</ShortName>
@@ -404,17 +408,9 @@
 					<ShortName>menu_click_1.wav</ShortName>
 					<Path>SFX\menu_click_1_50DB02DB.wem</Path>
 				</File>
-				<File Id="804564895" Language="SFX">
-					<ShortName>pp_transition_1.wav</ShortName>
-					<Path>SFX\pp_transition_1_0CDD8189.wem</Path>
-				</File>
 				<File Id="806008759" Language="SFX">
 					<ShortName>mechanical_click_6.wav</ShortName>
 					<Path>SFX\mechanical_click_6_50DB02DB.wem</Path>
-				</File>
-				<File Id="819820494" Language="SFX">
-					<ShortName>pp_2.wav</ShortName>
-					<Path>SFX\pp_2_0CDD8189.wem</Path>
 				</File>
 				<File Id="824157448" Language="SFX">
 					<ShortName>footsteps_sandy_6.wav</ShortName>
@@ -427,6 +423,10 @@
 				<File Id="853971576" Language="SFX">
 					<ShortName>penguin_1-13.wav</ShortName>
 					<Path>SFX\penguin_1-13_BBAD6558.wem</Path>
+				</File>
+				<File Id="872880015" Language="SFX">
+					<ShortName>penguin_panic_theme_final [mono].wav</ShortName>
+					<Path>SFX\penguin_panic_theme_final [mono]_0CDD8189.wem</Path>
 				</File>
 				<File Id="874724407" Language="SFX">
 					<ShortName>fish added to score.wav</ShortName>
