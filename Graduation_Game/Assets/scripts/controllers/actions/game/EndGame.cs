@@ -146,9 +146,9 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private void SetStarsWonPrefs() {
-			if (endedWithPenguins <= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
-			else if (endedWithPenguins == PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
-			else if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
+			if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
+			if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
+			if (endedWithPenguins == PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
 		}
 			 
 		public bool SpawnNextStar() {

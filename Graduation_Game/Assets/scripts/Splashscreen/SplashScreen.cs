@@ -10,6 +10,7 @@ public class SplashScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		PlayerPrefs.SetInt("language", 1);
 		StartCoroutine(Next());
 	}
 

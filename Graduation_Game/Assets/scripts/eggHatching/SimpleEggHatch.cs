@@ -7,7 +7,7 @@ using Assets.scripts.camera;
 namespace Assets.scripts.eggHatching {
     public class SimpleEggHatch : MonoBehaviour {
 
-        public Text penguinsCountText, hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText, timerPopupText;
+        public Text hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText, timerPopupText;
         public GameObject hatchEggsPanel;
         public GameObject template;
         public float hatchFeedbackSpeed = .5f;
@@ -62,9 +62,9 @@ namespace Assets.scripts.eggHatching {
         }
 
         private void UpdateScreen() {
-            if (penguinsCountText != null) {
+          /*  if (penguinsCountText != null) {
                 penguinsCountText.text = penguinCount + "/" + penguinMaxCount;
-            }
+            }*/
 
             if (hatchCountTextInPanel != null) {
                 hatchCountTextInPanel.text = "+" + hatchableEggs + "x";

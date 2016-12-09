@@ -78,7 +78,7 @@ namespace Assets.scripts.UI.screen.ingame {
 			listOfButtons.Add(GameObject.FindGameObjectWithTag(TagConstants.UI.PENGUINSPEEDUPBUTTON));
 			listOfButtons.ForEach( go => {
 					if (go != null) {
-						go.SetActive(false);
+						go.transform.localScale = Vector3.zero;
 					}
 				}
 			);
@@ -87,7 +87,7 @@ namespace Assets.scripts.UI.screen.ingame {
 		public static void EnableButtons() {
 			listOfButtons.ForEach( go => {
 					if (go != null) {
-						go.SetActive(true);
+						go.transform.localScale = Vector3.one;
 					}
 				}
 			);

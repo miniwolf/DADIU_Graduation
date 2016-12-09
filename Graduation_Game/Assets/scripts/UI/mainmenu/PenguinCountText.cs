@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Assets.scripts.UI.mainmenu {
 	public class PenguinCountText : MonoBehaviour {
 		Text text;
-		protected void Start() {
+		void Start() {
 			text = GetComponent<Text>();
 			text.text = Inventory.penguinCount.GetValue() + "/" + Inventory.penguinStorage.GetValue();
 		}

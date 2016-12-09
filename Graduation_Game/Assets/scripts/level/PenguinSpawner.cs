@@ -106,7 +106,7 @@ namespace Assets.scripts.level {
 			float distCovered = (Time.time - startTime)*speedFactor;
 			float fracJourney = distCovered / journeyLength;
 			//print(path[0] + " " + path[1]);
-			while(fracJourney < 0.85f){
+			while(fracJourney < 1f){
 				distCovered = (Time.time - startTime)*speedFactor;
 				fracJourney = distCovered / journeyLength;
 				transform.position = Vector3.Lerp(origPos, whereToGo, fracJourney);
