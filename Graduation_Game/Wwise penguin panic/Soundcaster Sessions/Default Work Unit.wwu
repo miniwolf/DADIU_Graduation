@@ -42,12 +42,20 @@
 							<Position X="1" Y="4"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="start_cinematic_audio" ID="{610D6B6F-F9AD-4934-9236-11A1C8B9CF19}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="1" Y="6"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="penguin_slide_end" ID="{2E539E9D-D2CB-4D19-ADB5-B4FA15DC980F}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="2" Y="1"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="pickup_add_to_score" ID="{968006F2-1F41-4E56-AC01-5D5D1981DC2B}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
 							<Position X="2" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="stop_cinematic_audio" ID="{0867C094-9A1D-4D4B-A3A6-50030D9CA6E4}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
+							<Position X="2" Y="6"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="mute_master" ID="{DF31F477-BD16-44C8-92C1-6465F957766A}" WorkUnitID="{EDCE7756-B6A4-492B-B098-3DEF03FC2B73}"/>
@@ -96,16 +104,20 @@
 							<Value>96.3350785340314</Value>
 						</RTPCValue>
 						<RTPCValue>
+							<GameParameterRef Name="rtpc_sfx_volume" ID="{1627970C-C353-404C-A373-91D7A536110E}"/>
+							<Value>75</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}"/>
 							<Value>100</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
-							<Value>50</Value>
+							<Value>35</Value>
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="in_game" ID="{7F1C5A79-24DB-4E47-AD1A-BB6CDF110C66}"/>
+						<CurrentStateRef Name="freeze_transition" ID="{19795D63-2784-4C46-8D55-847BB29C5688}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

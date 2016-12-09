@@ -29,6 +29,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> level8won = new PreferenceItem<int>(InventoryConstants.LEVEL8WON);
 		public static readonly Item<int> level9won = new PreferenceItem<int>(InventoryConstants.LEVEL9WON);
 		public static readonly Item<int> level10won = new PreferenceItem<int>(InventoryConstants.LEVEL10WON);
+		public static readonly Item<int> level11won = new PreferenceItem<int>(InventoryConstants.LEVEL11WON);
 
 		public static readonly Item<int> level1stars = new PreferenceItem<int>(InventoryConstants.LEVEL1STARS);
 		public static readonly Item<int> level2stars = new PreferenceItem<int>(InventoryConstants.LEVEL2STARS);
@@ -40,6 +41,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<int> level8stars = new PreferenceItem<int>(InventoryConstants.LEVEL8STARS);
 		public static readonly Item<int> level9stars = new PreferenceItem<int>(InventoryConstants.LEVEL9STARS);
 		public static readonly Item<int> level10stars = new PreferenceItem<int>(InventoryConstants.LEVEL10STARS);
+		public static readonly Item<int> level11stars = new PreferenceItem<int>(InventoryConstants.LEVEL11STARS);
 
 		public static readonly Item<string> level1status = new PreferenceItem<string>(InventoryConstants.LEVEL1STATUS);
 		public static readonly Item<string> level2status = new PreferenceItem<string>(InventoryConstants.LEVEL2STATUS);
@@ -51,6 +53,7 @@ namespace Assets.scripts.UI.inventory {
 		public static readonly Item<string> level8status = new PreferenceItem<string>(InventoryConstants.LEVEL8STATUS);
 		public static readonly Item<string> level9status = new PreferenceItem<string>(InventoryConstants.LEVEL9STATUS);
 		public static readonly Item<string> level10status = new PreferenceItem<string>(InventoryConstants.LEVEL10STATUS);
+		public static readonly Item<string> level11status = new PreferenceItem<string>(InventoryConstants.LEVEL11STATUS);
 
 		public static readonly Item<int> totalStars = new PreferenceItem<int>(InventoryConstants.TOTALSTARS);
 		public static readonly Item<int> eggCount = new PreferenceItem<int>(InventoryConstants.PENGUINEGG);

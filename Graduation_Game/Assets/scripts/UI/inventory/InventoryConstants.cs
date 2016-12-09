@@ -26,6 +26,7 @@
 		public const string LEVEL8WON = "W1Level5won";
 		public const string LEVEL9WON = "W1Level6won";
 		public const string LEVEL10WON = "W1Level7won";
+		public const string LEVEL11WON = "W1Level8won";
 
 		public const string LEVEL1STATUS = "W0Level0status";
 		public const string LEVEL2STATUS = "W0Level1status";
@@ -37,6 +38,7 @@
 		public const string LEVEL8STATUS = "W1Level5status";
 		public const string LEVEL9STATUS = "W1Level6status";
 		public const string LEVEL10STATUS = "W1Level7status";
+		public const string LEVEL11STATUS = "W1Level8status";
 
 		public const string LEVEL1STARS = "W0Level0stars";
 		public const string LEVEL2STARS = "W0Level1stars";
@@ -48,5 +50,6 @@
 		public const string LEVEL8STARS = "W1Level5stars";
 		public const string LEVEL9STARS = "W1Level6stars";
 		public const string LEVEL10STARS = "W1Level7stars";
+		public const string LEVEL11STARS = "W1Level8stars";
 	}
 }

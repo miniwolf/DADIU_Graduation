@@ -19,8 +19,10 @@ public enum LocalizedString  {
 	settings,
 	thisWorldIsLocked,
 	place,
-	move,
-	remove,
+	move1,
+	move2,
+	remove1,
+	remove2,
 	jump,
 	switchlane,
 	credits,
@@ -48,5 +50,11 @@ public enum LocalizedString  {
     replay,
     tooltipUseTheJumppad,
     tooltipDragJumppad,
-    youAreDead
+    youAreDead,
+	on,
+	off,
+	starsNextWorld1,
+	starsNextWorld2,
+	SFX,
+	Music
 }

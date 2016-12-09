@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="11" SoundbankVersion="120">
 	<RootPaths>
-		<ProjectRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\nelkj\OneDrive\Dokumenter\Work\DADIU\Graduation Game\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\student\Documents\DADIU_Graduation\Graduation_Game\Wwise penguin panic\GeneratedSoundBanks\Android\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -62,6 +62,8 @@
 				<Event Id="1649917113" Name="pickup_currency" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_currency" MaxAttenuation="25.000000"/>
 				<Event Id="2713534190" Name="pickup_fly_to_score" ObjectPath="\Events\Default Work Unit\SFXs\Pickups\pickup_fly_to_score" MaxAttenuation="25.000000"/>
 				<Event Id="133112871" Name="pressure_plate_triggered" ObjectPath="\Events\Default Work Unit\SFXs\Tools\pressure_plate_triggered" MaxAttenuation="25.000000"/>
+				<Event Id="2069726370" Name="start_cinematic_audio" ObjectPath="\Events\Default Work Unit\ui\start_cinematic_audio"/>
+				<Event Id="655449888" Name="stop_cinematic_audio" ObjectPath="\Events\Default Work Unit\ui\stop_cinematic_audio" MaxAttenuation="0.000000"/>
 				<Event Id="1345721513" Name="tool_change_lane_placed" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_change_lane_placed" MaxAttenuation="25.000000"/>
 				<Event Id="4165526132" Name="tool_global_freeze_time_starting" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_starting"/>
 				<Event Id="2717875216" Name="tool_global_freeze_time_stopping" ObjectPath="\Events\Default Work Unit\SFXs\Tools\tool_global_freeze_time_stopping"/>
@@ -286,9 +288,17 @@
 					<ShortName>penguin_1-29.wav</ShortName>
 					<Path>SFX\penguin_1-29_CD245205.wem</Path>
 				</File>
+				<File Id="569134670" Language="SFX">
+					<ShortName>penguin intro cinematic no music 2.wav</ShortName>
+					<Path>SFX\penguin intro cinematic no music 2_0EEECE5B.wem</Path>
+				</File>
 				<File Id="576674518" Language="SFX">
 					<ShortName>penguin_1-34.wav</ShortName>
 					<Path>SFX\penguin_1-34_88CAC0B2.wem</Path>
+				</File>
+				<File Id="582123513" Language="SFX">
+					<ShortName>penguin_1-11.wav</ShortName>
+					<Path>SFX\penguin_1-11_92B2311D.wem</Path>
 				</File>
 				<File Id="590505010" Language="SFX">
 					<ShortName>penguin_1-03.wav</ShortName>
@@ -409,6 +419,10 @@
 				<File Id="824157448" Language="SFX">
 					<ShortName>footsteps_sandy_6.wav</ShortName>
 					<Path>SFX\footsteps_sandy_6_2B541CCF.wem</Path>
+				</File>
+				<File Id="851894782" Language="SFX">
+					<ShortName>penguin_1-67.wav</ShortName>
+					<Path>SFX\penguin_1-67_A9C80496.wem</Path>
 				</File>
 				<File Id="853971576" Language="SFX">
 					<ShortName>penguin_1-13.wav</ShortName>

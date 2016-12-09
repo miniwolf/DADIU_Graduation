@@ -11,6 +11,7 @@ using Assets.scripts.sound;
 using Assets.scripts.character;
 using Assets.scripts.camera;
 using Assets.scripts.controllers;
+using Assets.scripts.UI.screen.ingame;
 
 namespace Assets.scripts.level {
 	public class PenguinSpawner : MonoBehaviour {
@@ -26,9 +27,9 @@ namespace Assets.scripts.level {
 
 		public float speedUpFactor = 1.5f;
 
-		public float waitForCameraToPan = 0.5f;
+		private float waitForCameraToPan = 1f;
 
-		public float speedForPlatform = 3f, cameraPanSpeed = 5f;
+		private float speedForPlatform = 3f, cameraPanSpeed = 10f;
 
 		private GameObject penguinObject;
 		private Text countDown;
@@ -37,7 +38,7 @@ namespace Assets.scripts.level {
 		private List<GameObject> penguins = new List<GameObject>();
 		private int count;
 		private GameObject entrancePlatform;
-		private Vector3 origPos;
+		private Vector3 origPos, origScale;
 		private int spawned = 0;// layerMask = 1 << 8;
 
 		public void Start() {
@@ -46,7 +47,10 @@ namespace Assets.scripts.level {
 		    gameStateManager = FindObjectOfType<GameStateManager>();
 			entrancePlatform = GameObject.FindGameObjectWithTag("EntrancePlatform");
 			count = penguinCount;
+			print("started");
 
+			origScale = Vector3.one;
+			countDown.transform.localScale = Vector3.zero;
 			for ( var i = 0; i < transform.childCount; i++ ) {
 				var child = transform.GetChild(i);
 				if ( child.tag != TagConstants.PENGUIN_TEMPLATE ) {
@@ -72,13 +76,12 @@ namespace Assets.scripts.level {
 			path[0].position = new Vector3(path[0].transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
 			path[1].position = new Vector3(path[1].transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
 			Camera.main.transform.position = path[1].position;
+			yield return new WaitForSeconds(waitForCameraToPan);
 			float startTime = Time.time;
 			float speedFactor = cameraPanSpeed;
 			float journeyLength = Vector3.Distance(path[1].position, path[0].position);
 			float distCovered = (Time.time - startTime)*speedFactor;
 			float fracJourney = distCovered / journeyLength;
-			//print(path[0] + " " + path[1]);
-			yield return new WaitForSeconds(waitForCameraToPan);
 			while(fracJourney < 1f){
 				distCovered = (Time.time - startTime)*speedFactor;
 				fracJourney = distCovered / journeyLength;
@@ -95,7 +98,7 @@ namespace Assets.scripts.level {
 				UnityEngine.Debug.LogError("The platform does not know where to move, because it cannot find where to go, put something with the levellayer on it, where it should stop");
 				yield return null;
 			}
-			print(hit.transform.name);
+			//print(hit.transform.name);
 			Vector3 whereToGo = new Vector3(hit.point.x,transform.position.y,transform.position.z), origPos = transform.position;
 			float startTime = Time.time;;
 			float speedFactor = speedForPlatform;
@@ -103,25 +106,18 @@ namespace Assets.scripts.level {
 			float distCovered = (Time.time - startTime)*speedFactor;
 			float fracJourney = distCovered / journeyLength;
 			//print(path[0] + " " + path[1]);
-			while(fracJourney < 0.85f){
+			while(fracJourney < 1f){
 				distCovered = (Time.time - startTime)*speedFactor;
 				fracJourney = distCovered / journeyLength;
 				transform.position = Vector3.Lerp(origPos, whereToGo, fracJourney);
 				//cam.transform.position = Vector3.Lerp(startPosCam, moveTo, fracJourney+0.15f);
 				yield return new WaitForEndOfFrame();
 			}
-			StartCoroutine(Spawn());
-		}
-
-
-
-		private IEnumerator Spawn() {
-
-			yield return StartCoroutine(FreezeAndSpawnRest());
+			StartCoroutine(FreezeAndSpawnRest());
 		}
 
 		private IEnumerator FreezeAndSpawnRest() {
-
+			countDown.transform.localScale = origScale;
 		    int counter = numIntervals;
 			do {
 				// print in text UI
@@ -143,14 +139,16 @@ namespace Assets.scripts.level {
 		}
 
 		private IEnumerator EnableThePenguins(){
+			ToolButtons.EnableButtons();
 			EnableAPenguin();
 			count--;
 			while (count > 0) {
 				yield return new WaitForSeconds(countTime);
-				if (!gameStateManager.IsGameFrozen()) {
-					EnableAPenguin();
-					count--;
+				if ( gameStateManager.IsGameFrozen() ) {
+					continue;
 				}
+				EnableAPenguin();
+				count--;
 			}
 		}
 

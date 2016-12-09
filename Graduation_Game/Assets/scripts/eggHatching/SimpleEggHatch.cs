@@ -2,11 +2,12 @@
 using Assets.scripts.UI.inventory;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.scripts.camera;
 
 namespace Assets.scripts.eggHatching {
     public class SimpleEggHatch : MonoBehaviour {
 
-        public Text penguinsCountText, hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText, timerPopupText;
+        public Text hatchCountTextInPanel, hatchCountTextInMainCanvas, timerText, timerPopupText;
         public GameObject hatchEggsPanel;
         public GameObject template;
         public float hatchFeedbackSpeed = .5f;
@@ -17,9 +18,10 @@ namespace Assets.scripts.eggHatching {
         private int timeCount;
         private int hatchableEggs;
         private int maxHatchableEggs;
-//        private GameObject pendingFeedback;
+		private MainCameraFreeMove cameraMove;
+		//        private GameObject pendingFeedback;
 
-        void Start() {
+		void Start() {
             penguinCount = Inventory.penguinCount.GetValue();
             penguinMaxCount = Inventory.penguinStorage.GetValue();
             hatchDuration = Prefs.GetHatchDuration();
@@ -28,7 +30,8 @@ namespace Assets.scripts.eggHatching {
 
             template.gameObject.SetActive(false);
             hatchEggsPanel.SetActive(false);
-        }
+			cameraMove = GameObject.FindGameObjectWithTag("MainCamera").transform.GetComponent<MainCameraFreeMove>();
+		}
 
         void Update() {
             UpdateValues();
@@ -37,13 +40,16 @@ namespace Assets.scripts.eggHatching {
 
         public void CloseDialog() {
             hatchEggsPanel.SetActive(false);
-        }
+			cameraMove.popUpOn = false;
+		}
 
         public void OpenEggHatchingPanel() {
 			AkSoundEngine.PostEvent("button_pressed", gameObject);
-			if (hatchableEggs > 0)
-                hatchEggsPanel.SetActive(true);
-        }
+			if (hatchableEggs > 0) {
+				hatchEggsPanel.SetActive(true);
+				cameraMove.popUpOn = true;
+			}
+		}
 
         public void HatchEggs() {
 			if (hatchableEggs > 1) {
@@ -56,9 +62,9 @@ namespace Assets.scripts.eggHatching {
         }
 
         private void UpdateScreen() {
-            if (penguinsCountText != null) {
+          /*  if (penguinsCountText != null) {
                 penguinsCountText.text = penguinCount + "/" + penguinMaxCount;
-            }
+            }*/
 
             if (hatchCountTextInPanel != null) {
                 hatchCountTextInPanel.text = "+" + hatchableEggs + "x";

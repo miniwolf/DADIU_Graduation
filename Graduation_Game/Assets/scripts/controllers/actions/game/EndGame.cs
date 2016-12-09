@@ -61,9 +61,9 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		public void Execute() {
-			Debug.Log("hej2");
 			endedWithPenguins = int.Parse(penguinCounter.text);
 			requiredPenguins = canvas.GetAmountOfPenguinsForStars();
+			reqPenguins = requiredPenguins[2];
 
 			PENGUINS_REQUIRED_FOR_1_STAR = requiredPenguins[0];
 			PENGUINS_REQUIRED_FOR_2_STAR = requiredPenguins[1];
@@ -73,6 +73,12 @@ namespace Assets.scripts.controllers.actions.game {
 				actionable.ExecuteAction(GameActions.DisableRetryWin);
 				shouldShowRetry = false;
 			}
+
+			if ( Inventory.key.GetValue() <= 0 ) {
+				actionable.ExecuteAction(GameActions.DisableRetryWin);
+				shouldShowRetry = false;
+			}
+
 			PenguinIcons();
 			EnableWin();
 		}
@@ -94,7 +100,6 @@ namespace Assets.scripts.controllers.actions.game {
 			handler.StartCoroutine(LoadMainMenu());
 			handler.StartCoroutine(SpawnStars());
 		}
-
 
 		private void EnableWin(){
 			SetStarsWonPrefs();
@@ -141,9 +146,9 @@ namespace Assets.scripts.controllers.actions.game {
 		}
 
 		private void SetStarsWonPrefs() {
-			if (endedWithPenguins <= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
-			else if (endedWithPenguins == PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
-			else if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
+			if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_1_STAR) Prefs.SetStarsForCurrentLevel(1);
+			if (endedWithPenguins >= PENGUINS_REQUIRED_FOR_2_STAR) Prefs.SetStarsForCurrentLevel(2);
+			if (endedWithPenguins == PENGUINS_REQUIRED_FOR_3_STAR) Prefs.SetStarsForCurrentLevel(3);
 		}
 			 
 		public bool SpawnNextStar() {

@@ -3,7 +3,11 @@
 	<GameParameters>
 		<WorkUnit Name="Default Work Unit" ID="{B35BB35A-8FEF-4B4E-A805-5B5BDF02EAD4}" PersistMode="Standalone">
 			<ChildrenList>
-				<GameParameter Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}"/>
+				<GameParameter Name="rtpc_music_volume" ID="{753BE8E8-2177-4C05-BAE1-C235E263135F}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="35"/>
+					</PropertyList>
+				</GameParameter>
 				<GameParameter Name="rtpc_master_volume" ID="{E99C8248-A35F-42FA-97F8-10EC8E2F5E6A}">
 					<PropertyList>
 						<Property Name="InitialValue" Type="Real64" Value="100"/>
@@ -13,6 +17,11 @@
 					<PropertyList>
 						<Property Name="SlewRateDown" Type="Real64" Value="1"/>
 						<Property Name="SlewRateUp" Type="Real64" Value="0"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="rtpc_sfx_volume" ID="{1627970C-C353-404C-A373-91D7A536110E}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="75"/>
 					</PropertyList>
 				</GameParameter>
 			</ChildrenList>

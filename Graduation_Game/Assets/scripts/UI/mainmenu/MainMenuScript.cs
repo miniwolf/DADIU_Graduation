@@ -19,6 +19,7 @@ namespace Assets.scripts.UI.mainmenu {
 		private Image popup;
 		private InputManager inputManager;
 		private FillImage fillImageScript;
+		private GameObject nextWorldBanner;
 
 		public int firstLvlIdxInNextWorld = 5; // The first level index into a new world
 
@@ -37,7 +38,7 @@ namespace Assets.scripts.UI.mainmenu {
 			inputManager.SubscribeForMouse(this);
 			inputManager.SubscribeForTouch(this);
 
-			string lastLevelName = Prefs.GetLevelLastPlayedName();
+			nextWorldBanner = GameObject.FindGameObjectWithTag(TagConstants.UI.BUTTON_NEXT_WORLD);
 
 			InitilizeLevels();
 			LockNonInteractableLevels();
@@ -61,7 +62,8 @@ namespace Assets.scripts.UI.mainmenu {
 			}
 			LoadStars();
 
-			Debug.Log("NEXT WORLD ACCESSIBLE?? : " + isNextWorldAccessible());
+			ToggleTextOnAccessibleLevels();
+			ToggleNextWorldBanner();
 
 			// first time we set up the language as English, tooltips and music on 
 			if (!PlayerPrefs.HasKey("NoIntroScreen")) {
@@ -176,8 +178,9 @@ namespace Assets.scripts.UI.mainmenu {
 			for (int i = levels.Length - 1; i >= 0; i--) {
 				string levelName = levels[i].sceneFileName;
 				if (Prefs.IsLevelStatusComplete(levelName)) {
+					Debug.Log("DEBUG : " + levelName);
 					levels[i].btnFromScene.GetComponent<Image>().sprite = levelBtnCompleted;
-					if (!currentLvl && i < levels.Length - 1) {
+					if (!currentLvl && i < levels.Length - 1 && !isLastLevelIdx()) {
 						if(levels[i + 1].btnFromScene.GetComponent<Image>().sprite != levelBtnNotAccessable) {
 							levels[i + 1].btnFromScene.GetComponent<Image>().sprite = levelBtnCurrent;
 							currentLvl = true; // Current level has been set
@@ -226,13 +229,12 @@ namespace Assets.scripts.UI.mainmenu {
 		/// Returns true if next world has become accessable
 		/// </summary>
 		/// <returns></returns>
-		public bool isNextWorldAccessible() {
-
+		public bool IsNextWorldAccessible() {
 			foreach (var marker in worldUnlockMarkers) {
-				if (StarsCollectedCountText.totalStars >= marker.starsNeeded && levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
+				if (StarsCollectedCountText.totalStars >= marker.starsNeeded) { //&& levels[firstLvlIdxInNextWorld].btnFromScene.interactable)
 					return true;
+				}
 			}
-
 			return false;
 		}
 
@@ -251,11 +253,34 @@ namespace Assets.scripts.UI.mainmenu {
 		private void UnlockLevels() {
 			int numOfLvlsToUnlock = Prefs.GetLevelUnlockIndex();
 
-			if (isLastLevelIdx()) return;
+			if (isLastLevelIdx()) {
+				for(int i = 0; i < levels.Length; i++)
+					levels[i].btnFromScene.interactable = true;
 
-			for (int i = 0; i < numOfLvlsToUnlock + 1; i++) {
+				return;
+			}
+
+			for (int i = 0; i < numOfLvlsToUnlock+1; i++) {
 				levels[i].btnFromScene.interactable = true;
 			}
+		}
+
+		/// <summary>
+		/// Hides the text on all levels from firstLvlIdxInNextWorld if they are not accessible
+		/// </summary>
+		private void ToggleTextOnAccessibleLevels() {
+			for (int i = firstLvlIdxInNextWorld; i < levels.Length; i++) {
+				if(IsNextWorldAccessible()) {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = true;
+				} else {
+					levels[i].btnFromScene.GetComponentInChildren<Text>().enabled = false;
+				}
+			}
+		}
+
+		private void ToggleNextWorldBanner() {
+			if(IsNextWorldAccessible())
+				nextWorldBanner.SetActive(false); // Disable the banner when next world is accessible
 		}
 
 		private void OnDestroy() {
